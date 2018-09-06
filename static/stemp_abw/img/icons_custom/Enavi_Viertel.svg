@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg9684"
+   version="1.1"
+   viewBox="0 0 46.946346 44.17086"
+   height="44.17086mm"
+   width="46.946346mm"
+   sodipodi:docname="Enavi_Viertel.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="1.4136394"
+     inkscape:cx="92.961869"
+     inkscape:cy="83.472492"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs9678" />
+  <metadata
+     id="metadata9681">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-82.360162,-109.361)"
+     id="layer1">
+    <path
+       style="fill:#ebf2fa;stroke-width:0.12398905;fill-opacity:1"
+       d="m 85.619351,143.86407 h -3.259189 l 11.047721,-11.03156 10.952277,10.93576 h -3.49897 v 9.76359 H 85.619351 Z m 15.240719,-4.76677 v -4.57998 h -2.47928 v 2.10432"
+       id="shape2-4" />
+    <path
+       id="path1483"
+       d="m 110.49017,143.86407 h -3.25919 l 11.04772,-11.03156 10.9523,10.93576 h -3.49897 v 9.76359 h -15.24186 z m 15.24074,-4.76677 v -4.57998 h -2.47929 v 2.10432"
+       style="fill:#ebf2fa;stroke-width:0.12398905;fill-opacity:1" />
+    <path
+       id="path1485"
+       d="m 85.619351,120.58059 h -3.259189 l 11.047721,-11.03156 10.952277,10.93576 h -3.49897 v 9.76359 H 85.619351 Z m 15.240719,-4.76677 v -4.57998 h -2.47928 v 2.10432"
+       style="fill:#ebf2fa;stroke-width:0.12398905;fill-opacity:1" />
+    <path
+       style="fill:#ebf2fa;stroke-width:0.12398905;fill-opacity:1"
+       d="m 110.49017,120.58059 h -3.25919 l 11.04772,-11.03156 10.9523,10.93576 h -3.49897 v 9.76359 h -15.24186 z m 15.24074,-4.76677 v -4.57998 h -2.47929 v 2.10432"
+       id="path1487" />
+  </g>
+</svg>
