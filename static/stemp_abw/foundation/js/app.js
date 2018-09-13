@@ -40194,7 +40194,7 @@ if (document.getElementById('mapid')) {
 
 	var mymap = L.map('mapid', {
 		zoomControl: false
-	}).setView([51.505, -0.09], 13);
+	}).setView([51.834167, 12.237778], 10);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
