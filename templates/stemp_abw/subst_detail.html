@@ -1,0 +1,41 @@
+{% load static %}
+{% load leaflet_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Substation detail view</title>
+    {% leaflet_css %}
+    {% leaflet_js %}
+    <style>
+        .leaflet-container { height: 100%; }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 99%;
+            height: 90%;
+         }
+    </style>
+</head>
+<body>
+
+    <div id="map">
+        <h1>Substation {{ subst.subst_id }}</h1>
+        {% leaflet_map "main" callback="map_init" %}
+    </div>
+
+    <script type="text/javascript">
+        function map_init(map, options) {
+            // get point lat and lon
+            var lon = "{{ subst.geom.x }}";
+            var lat = "{{ subst.geom.y }}";
+            // zoom to point & add it to map
+            map.setView([lat, lon], 12);
+            L.marker([lat, lon]).addTo(map);
+        }
+    </script>
+
+</body>
+</html>
