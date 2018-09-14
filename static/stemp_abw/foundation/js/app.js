@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 43);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -14580,6 +14580,8 @@ __webpack_require__(40);
 
 __webpack_require__(41);
 
+__webpack_require__(42);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.$ = _jquery2.default;
@@ -22364,6 +22366,46 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var footerHidden = false;
+
+(0, _jquery2.default)('#footer--hide').click(function () {
+
+  if (!footerHidden) {
+
+    (0, _jquery2.default)('.map-footer').height('2.5rem');
+    (0, _jquery2.default)('#mapid').height('calc(100% - 2.5rem)');
+    (0, _jquery2.default)('#footer-legal').css('display', 'none');
+    (0, _jquery2.default)('#footer-logos').css('display', 'none');
+
+    (0, _jquery2.default)("#footer--hide__icon").replaceWith("<i class=\"icon ion-chevron-up\" id=\"footer--hide__icon\"></i>");
+
+    footerHidden = true;
+  } else {
+
+    (0, _jquery2.default)('.map-footer').height('8rem');
+    (0, _jquery2.default)('#mapid').height('calc(100% - 8rem)');
+    (0, _jquery2.default)('#footer-legal').css('display', 'block');
+    (0, _jquery2.default)('#footer-logos').css('display', 'block');
+
+    (0, _jquery2.default)("#footer--hide__icon").replaceWith("<i class=\"icon ion-chevron-down\" id=\"footer--hide__icon\"></i>");
+
+    footerHidden = false;
+  }
+});
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40181,7 +40223,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40209,7 +40251,7 @@ if (document.getElementById('mapid')) {
 }*/
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40237,7 +40279,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(20);
