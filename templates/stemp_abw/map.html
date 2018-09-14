@@ -316,8 +316,6 @@
                 return marker;
             }
 
-            //map.on('click', highlightLayer);
-
             var dataurl = "{% url 'stemp_abw:subst.data' %}";
 
             // Download GeoJSON via Ajax
@@ -329,6 +327,10 @@
                     }).addTo(map);
 
                 });
+                map.removeControl(map.zoomControl);
+            	L.control.zoom({
+		position: 'bottomright'
+	}).addTo(map);
 
         }
 
