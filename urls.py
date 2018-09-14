@@ -12,8 +12,8 @@ urlpatterns = [
     path('subst/<int:pk>/', views.HvMvSubstDetailView.as_view(), name='subst-detail'),
     path('subst/', views.HvMvSubstView.as_view(), name='subst'),
 
-    re_path(r'^data/',
+    re_path(r'^subst.data/',
         GeoJSONLayerView.as_view(model=HvMvSubst,
                                  properties=(['popup_content'])),
-        name='data')
+        name='subst.data')
     ]

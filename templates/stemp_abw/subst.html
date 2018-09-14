@@ -12,6 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     <style>
+
+        /* Map 100% */
         .leaflet-container { height: 100%; }
         #map {
             position: absolute;
@@ -20,18 +22,21 @@
             width: 100%;
             height: 100%;
             }
+
+        /* Tooltips */
+        .custom_popup .leaflet-popup-tip-container {
+            width:30px;
+            height:15px;
+        }
         .custom_popup .leaflet-popup-tip {
-            border-left:1px solid transparent;
-            border-right:1px solid transparent;
-            border-top:1px solid #002c50;
-        },
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            border-top: 1px solid #fff;
+        }
         .custom_popup .leaflet-popup-content-wrapper {
-            background: #fff;
-            border-radius: 100px;
-            border-top: 10px #002c50;
-            width: 200px;
-            height: 100px;
-            color: #000;
+            background: #ffffff;
+            /* border: 1px solid #002c50; */
+            color: #002c50;
         }
     </style>
 </head>
@@ -44,7 +49,7 @@
     <script type="text/javascript">
 
         function main_map_init (map, options) {
-            map.setView([51.834167, 12.237778], 10);
+            //map.setView([51.834167, 12.237778], 10);
 
             // point style
 
@@ -112,29 +117,31 @@
                         click: highlightFeature,
                         mouseover: highlightFeature,
                         mouseout: resetHighlight,
-                        });
-                }
+                    });
+            }
 
             function pointToLayer(feature, latlng) {
-                        var marker = L.circleMarker(latlng)
-                        //marker.bindPopup('<p>' + feature.properties.popup_content + ' XXX ' + '</p>');
-                        return marker;
-                  }
+                var marker = L.circleMarker(latlng)
+                //marker.bindPopup('<p>' + feature.properties.popup_content + ' XXX ' + '</p>');
+                return marker;
+            }
 
             //map.on('click', highlightLayer);
 
-            var dataurl = "{% url 'stemp_abw:data' %}";
+            var dataurl = "{% url 'stemp_abw:subst.data' %}";
 
             // Download GeoJSON via Ajax
             $.getJSON(dataurl, function (data) {
-                // Add GeoJSON layer
 
+                // Add GeoJSON layer
                 geojson=L.geoJson(data, {style: style, onEachFeature: onEachFeature,
                     pointToLayer: pointToLayer
                     }).addTo(map);
+
                 });
 
-            }
+        }
+
     </script>
 
 </body>
