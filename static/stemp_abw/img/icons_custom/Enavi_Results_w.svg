@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 47.813984 40.821427"
+   height="40.821426mm"
+   width="47.813984mm">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-42.003887,-7.78265)"
+     id="layer1">
+    <rect
+       y="31.535862"
+       x="42.003887"
+       height="17.068214"
+       width="8.5044641"
+       id="rect1063"
+       style="opacity:1;fill:#ebf2fa;fill-opacity:1;stroke:none;stroke-width:6.04836893;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       style="opacity:1;fill:#ebf2fa;fill-opacity:1;stroke:none;stroke-width:9.35380554;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1065"
+       width="8.5044641"
+       height="40.821426"
+       x="55.107059"
+       y="7.78265" />
+    <rect
+       y="24.359879"
+       x="68.210236"
+       height="24.244198"
+       width="8.5044641"
+       id="rect1067"
+       style="opacity:1;fill:#ebf2fa;fill-opacity:1;stroke:none;stroke-width:7.20855284;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       style="opacity:1;fill:#ebf2fa;fill-opacity:1;stroke:none;stroke-width:8.51506424;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1069"
+       width="8.5044641"
+       height="33.828869"
+       x="81.313408"
+       y="14.775209" />
+  </g>
+</svg>

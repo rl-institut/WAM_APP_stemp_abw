@@ -45,6 +45,9 @@ class Map(TemplateView):
     #         geom=row['geom']
     #     )#.save()
 
+# class MapNew(TemplateView):
+#     template_name = 'stemp_abw/map2.html'
+
 class HvMvSubstDetailView(DetailView):
     template_name = 'stemp_abw/subst_detail.html'
     model = HvMvSubst
