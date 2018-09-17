@@ -11,6 +11,7 @@ class HvMvSubst(models.Model):
     subst_id = models.IntegerField()
 
     objects = geomodels.Manager()
+    name = 'xxxxxxxxxx'
 
     @property
     def popup_content(self):
