@@ -11,6 +11,7 @@
     <title>Stemp Tool Anhalt</title>
     <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
     <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.css">
 
     {% leaflet_css %}
     {% leaflet_js %}
@@ -156,15 +157,16 @@
 
                         <!-- Third panel content -->
                         <div class="tabs-panel" id="panel-areas">
-                          <div class="xxx">
+                          <p>Anzuzeigende Layer auswählen</p>
+                          <div class="">
+                            Substations&nbsp;<input type="checkbox" name="my-checkbox" id="osmCheck" checked data-size="mini">
                           </div>
-                          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                         </div>
 
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
                           <p>Four</p>
-                          <img class="thumbnail" src="{% static 'stemp_abw/img/generic/rectangle-2.jpg' %}">
+                          <!--<img class="thumbnail" src="{% static 'stemp_abw/img/generic/rectangle-2.jpg' %}">-->
                         </div>
                       </div>
 
@@ -239,6 +241,7 @@
       </div>
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
       <script type="text/javascript">
 
         function main_map_init (map, options) {
@@ -250,6 +253,7 @@
                 'className' : 'custom_popup'
                 }
 
+            // point style
             var highlightStyle = {
                     weight: 2,
                     color: '#666',
@@ -264,7 +268,6 @@
                     fillOpacity: 0.25
             }
 
-            // point style
             function style(feature) {
                 return {
                     fillColor: '#ff7800',
@@ -310,6 +313,8 @@
 
             var dataurl = "{% url 'stemp_abw:subst.data' %}";
 
+            var controlLayers = map.layerscontrol;
+
             // Download GeoJSON via Ajax
             $.getJSON(dataurl, function (data) {
 
@@ -317,16 +322,35 @@
                 geojson=L.geoJson(data, {style: style, onEachFeature: onEachFeature,
                     pointToLayer: pointToLayer
                 }).addTo(map);
+                controlLayers.addOverlay(geojson, '{{ label }}');
+                //controlLayers.addOverlay(geojson, data.type);
 
             });
-
             // Move zoom control
             map.removeControl(map.zoomControl);
-                L.control.zoom({
+            L.control.zoom({
 		        position: 'bottomright'
 	        }).addTo(map);
 
-        }
+            var streetsTile = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/gvenech.m13knc8e/{z}/{x}/{y}.png'   );
+            $("[name='my-checkbox']").bootstrapSwitch({
+            onSwitchChange: function (event, state) {
+
+                if(state) map.addLayer(geojson);
+                else map.removeLayer(geojson);
+            }
+            });
+
+         }
+
+
+
+        //document.getElementsByName("mapid").removeControl(map.zoomControl);
+        //var x = document.getElementById('xxx');
+        //x.write(5+6);
+        // var x = document.getElementById('mapid') {
+        //    x.removeControl(map.zoomControl);
+        //}
 
     </script>
   </body>

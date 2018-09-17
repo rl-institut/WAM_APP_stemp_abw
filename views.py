@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from djgeojson.views import GeoJSONLayerView
 import sqlahelper
@@ -26,16 +25,21 @@ class IndexView(TemplateView):
 #     return render(request, 'stemp_abw/map.html', {'data': data}, )
 
 class MapData(GeoJSONLayerView):
-    bla = 'hahaha'
-
     model = HvMvSubst
     properties = ['popup_content', 'name']
     srid = 4326
 
 
 class MapView(TemplateView):
+    label = 'Substations'
     template_name = 'stemp_abw/map.html'
-    #context_object_name = 'subst'
+    context_object_name = 'subst'
+
+    def get_context_data(self, **kwargs):
+        context = super(MapView, self).get_context_data(**kwargs)
+        context['label'] = self.label
+        return context
+
 
     # def get_data(self):
     #     return 'result'
