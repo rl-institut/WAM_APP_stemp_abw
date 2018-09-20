@@ -3,7 +3,9 @@ from djgeojson.views import GeoJSONLayerView
 import sqlahelper
 from stemp_abw import oep_models
 from .oep_models import WnAbwEgoDpHvmvSubstation
-from .models import HvMvSubst
+from .models import HvMvSubst, OsmPowerGen, RpAbwBound
+from .forms import LayerForm
+from .app_settings import LAYERS, LAYER_STYLE
 
 
 class IndexView(TemplateView):
@@ -24,20 +26,40 @@ class IndexView(TemplateView):
 #
 #     return render(request, 'stemp_abw/map.html', {'data': data}, )
 
-class MapData(GeoJSONLayerView):
+class SubstData(GeoJSONLayerView):
     model = HvMvSubst
     properties = ['popup_content', 'name']
     srid = 4326
+    geometry_field = 'geom'
+
+
+class OsmPowerGenData(GeoJSONLayerView):
+    model = OsmPowerGen
+    properties = ['popup_content']
+    srid = 4326
+    geometry_field = 'geom'
+
+
+class RpAbwBoundData(GeoJSONLayerView):
+    model = RpAbwBound
+    properties = ['popup_content']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5   # float
+    #simplify = 0.02  # generalization
 
 
 class MapView(TemplateView):
-    label = 'Substations'
+    #label = 'Substations'
     template_name = 'stemp_abw/map.html'
     context_object_name = 'subst'
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context['label'] = self.label
+        #context['label'] = self.label
+        context['layer_list'] = LAYERS
+        context['layer_form'] = LayerForm(layers=LAYERS)
+        context['layer_style'] = LAYER_STYLE
         return context
 
 

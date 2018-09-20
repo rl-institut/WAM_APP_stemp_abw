@@ -45,3 +45,5 @@ oep_models.Base.metadata.bind = engine
 # # Add reiner:
 # engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
 # sqlahelper.add_engine(engine, 'reiners_db')
+
+LAYERS = ('subst', 'gen', 'rpabw')

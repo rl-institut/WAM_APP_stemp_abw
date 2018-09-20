@@ -2,7 +2,6 @@ from django.urls import path, re_path
 from djgeojson.views import GeoJSONLayerView
 
 from . import views
-from .models import HvMvSubst
 
 app_name = 'stemp_abw'
 
@@ -19,5 +18,8 @@ urlpatterns = [
     #                              srid=4326),
     #     name='subst.data'),
 
-    re_path(r'^subst.data/', views.MapData.as_view(), name='subst.data')
+    re_path(r'^subst.data/', views.SubstData.as_view(), name='subst.data'),
+    re_path(r'^gen.data/', views.OsmPowerGenData.as_view(), name='gen.data'),
+    re_path(r'^rpabw.data/', views.RpAbwBoundData.as_view(), name='rpabw.data')
+
     ]
