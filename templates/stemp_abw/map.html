@@ -265,7 +265,7 @@
         function main_map_init (map, options) {
 
             // Parse layer style JSON
-            var style_data = JSON.parse({{ layer_style }});
+            var style_data = JSON.parse('{{ layer_style | escapejs }}');
 
             // popup style
             var customPopup =
@@ -277,7 +277,7 @@
             // point style
             var highlightStyle = {
                     weight: 2,
-                    color: '#666',
+                    color: '#fff',
                     dashArray: '',
                     fillOpacity: 0.7
                 }
@@ -289,30 +289,14 @@
                     fillOpacity: 0.25
             }
 
-            function style(feature) {
-                return {
-                    fillColor: '#ff7800',
-                    weight: 1,
-                    opacity: 1,
-                    color: 'gray',
-                    fillOpacity: 0.25
-                };
-            }
-
             // mousover styles
             function highlightFeature(e) {
                 var layer = e.target;
-                layer.setStyle(highlightStyle, {title: 'Hover Text'});
+                layer.setStyle(highlightStyle);
             }
-
             function resetHighlight(e) {
                 var layer = e.target;
                 layer.setStyle(normalStyle);
-            }
-
-            function highlightFeature(e) {
-                var layer = e.target;
-                layer.setStyle(highlightStyle);
             }
 
             // bind popups for each feature and define event actions
@@ -333,54 +317,36 @@
                 return marker;
             }
 
+            // Create layer style from style_data json obj
+            // if it does not exist, use default
+            function layerStyle (name) {
+                if (style_data.hasOwnProperty(name)) {
+                    return style_data[name].style;
+                } else {
+                    return style_data.default.style;
+                }
 
+            }
 
-            var controlLayers = map.layerscontrol;
-
-            var layers = [];
-
+            var layers = {};
 
             // Load GeoJsons via Ajax and add layers to map
             {% for layer in layer_list %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
+
                 // Load data via Ajax
                 $.getJSON(dataurl, function (data) {
                     // Add GeoJSON layer
-                    layers["{{ layer }}"] = new L.geoJson(data, {style: style,
-                                                                 onEachFeature: onEachFeature,
-                                                                 pointToLayer: pointToLayer
-                                                                }
-                                                         ).addTo(map);
+                    var layer = new L.geoJson(data, {style: layerStyle("{{ layer }}"),
+                                                     onEachFeature: onEachFeature,
+                                                     pointToLayer: pointToLayer
+                                                     }
+                                             );
+                    layers["{{ layer }}"] = layer;
+                    map.addLayer(layer);
                 });
             {% endfor %}
-
-
-            /*
-            // Download GeoJSON via Ajax
-            var dataurl = "{% url 'stemp_abw:subst.data' %}";
-            $.getJSON(dataurl, function (data) {
-
-                // Add GeoJSON layer
-                layers["cb_subst"] = new L.geoJson(data, {style: style,
-                                                          onEachFeature: onEachFeature,
-                                                          pointToLayer: pointToLayer
-                                                          }
-                                                   ).addTo(map);
-                //controlLayers.addOverlay(layers["cb_subst"], '{{ label }}');
-            });
-            var dataurl = "{% url 'stemp_abw:gen.data' %}";
-            $.getJSON(dataurl, function (data) {
-
-                // Add GeoJSON layer
-                layers["cb_gen"] = new L.geoJson(data, {style: style,
-                                                        onEachFeature: onEachFeature,
-                                                        pointToLayer: pointToLayer
-                                                        }
-                                                 ).addTo(map);
-                //controlLayers.addOverlay(layers["cb_gen"], '{{ label }}');
-            });
-            */
 
             // Move zoom control
             map.removeControl(map.zoomControl);
@@ -409,13 +375,10 @@
 
             // Control layer visibility via checkboxes
             $( '.checkboxinput' ).click( function () {
-              //$( '.tabs-panel input[id="sw4"]' ).prop('checked', this.checked)
               var id = $(this).attr('id');
               l = layers[id.replace('cb_','')]
               if(this.checked) map.addLayer(l);
               else map.removeLayer(l);
-
-              //alert('Call post for:'+id);
             })
 
 

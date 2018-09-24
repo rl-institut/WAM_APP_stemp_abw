@@ -47,3 +47,42 @@ oep_models.Base.metadata.bind = engine
 # sqlahelper.add_engine(engine, 'reiners_db')
 
 LAYERS = ('subst', 'gen', 'rpabw')
+
+LAYER_STYLE = {
+    'default': {
+        'style': {
+            'fillColor': '#888888',
+            'weight': 1,
+            'opacity': 1,
+            'color': 'gray',
+            'fillOpacity': 0.25
+        }
+    },
+    'subst': {
+        'style': {
+            'fillColor': '#ff0000',
+            'weight': 1,
+            'opacity': 1,
+            'color': 'gray',
+            'fillOpacity': 0.25
+        }
+    },
+    'gen': {
+        'style': {
+            'fillColor': '#00aa00',
+            'weight': 1,
+            'opacity': 1,
+            'color': 'gray',
+            'fillOpacity': 0.25
+        }
+    },
+    'rpabw': {
+        'style': {
+            'fillColor': '#444444',
+            'weight': 2,
+            'opacity': 1,
+            'color': 'gray',
+            'fillOpacity': 0.25
+        }
+    }
+}
