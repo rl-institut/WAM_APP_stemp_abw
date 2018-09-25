@@ -172,9 +172,9 @@
                             <!--<span class="show-for-sr">Download Kittens</span>-->
                           <!--</label>-->
                           <div class="switch tiny">
-                            <input class="switch-input toggle-button" id="exampleSwitch1" type="checkbox" name="exampleSwitch" checked>
+                            <input class="switch-input" id="exampleSwitch1" type="checkbox" name="exampleSwitch" checked>
                             <label class="switch-paddle" for="exampleSwitch1">
-                              <!--<span class="show-for-sr">Download Kittens</span>-->
+                              <span class="show-for-sr">Download Kittens</span>
                             </label>
                           </div>
                           <p id="xxxxx"></p>
@@ -294,21 +294,21 @@
                 var layer = e.target;
                 layer.setStyle(highlightStyle);
             }
-            function resetHighlight(e) {
-                var layer = e.target;
-                layer.setStyle(normalStyle);
-            }
 
             // bind popups for each feature and define event actions
-            function onEachFeature(feature, layer) {
+            function onEachFeature(d) {
+            return function(feature, layer) {
                 if (feature.properties && feature.properties.popup_content) {
                     layer.bindPopup(feature.properties.popup_content, customPopup);
                     };
                     layer.on({
                         click: highlightFeature,
                         mouseover: highlightFeature,
-                        mouseout: resetHighlight,
+                        mouseout: function() {
+                                      layer.setStyle(layerStyle(d));
+                                  }
                     });
+            };
             }
 
             function pointToLayer(feature, latlng) {
@@ -339,7 +339,7 @@
                 $.getJSON(dataurl, function (data) {
                     // Add GeoJSON layer
                     var layer = new L.geoJson(data, {style: layerStyle("{{ layer }}"),
-                                                     onEachFeature: onEachFeature,
+                                                     onEachFeature: onEachFeature("{{ layer }}"),
                                                      pointToLayer: pointToLayer
                                                      }
                                              );
@@ -357,22 +357,6 @@
             // Control layer
             $(document).foundation();
 
-            /*
-            $( '.tabs-panel .toggle-button' ).click( function () {
-              $( '.tabs-panel input[type="checkbox"]' ).prop('checked', this.checked)
-                if(this.checked) map.addLayer(geojson);
-                else map.removeLayer(geojson);
-            })
-            */
-
-            /*
-            $( '#sw4' ).click( function () {
-              $( '.tabs-panel input[id="sw4"]' ).prop('checked', this.checked)
-                if(this.checked) map.addLayer(geojson);
-                else map.removeLayer(geojson);
-            })
-            */
-
             // Control layer visibility via checkboxes
             $( '.checkboxinput' ).click( function () {
               var id = $(this).attr('id');
@@ -383,20 +367,6 @@
 
 
         }
-        /*
-        function testx () {
-
-
-          //var map = $( 'map' )
-          map = window.maps[0]
-
-          $( '#xxxxx' ).append('hallo');
-          $( '#swone' ).prop('checked', this.checked);
-                if(this.checked) map.addLayer(geojson);
-                else map.removeLayer(geojson);
-        }
-        */
-
 
     </script>
   </body>
