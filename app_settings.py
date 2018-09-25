@@ -49,13 +49,30 @@ oep_models.Base.metadata.bind = engine
 LAYERS = ('subst', 'gen', 'rpabw')
 
 LAYER_STYLE = {
-    'default': {
+    '_default': {
         'style': {
-            'fillColor': '#888888',
+            'fillColor': '#888',
             'weight': 1,
             'opacity': 1,
             'color': 'gray',
             'fillOpacity': 0.25
+        }
+    },
+    '_click': {
+        'style': {
+            'color': '#fff',
+            'weight': 2,
+            'opacity': 1,
+            'fillOpacity': 0.7,
+            'fillColor': '#fff',
+        }
+    },
+    '_highlight': {
+        'style': {
+            'color': '#fff',
+            'weight': 2,
+            'opacity': 1,
+            'fillOpacity': 0.7
         }
     },
     'subst': {
@@ -78,7 +95,7 @@ LAYER_STYLE = {
     },
     'rpabw': {
         'style': {
-            'fillColor': '#444444',
+            'fillColor': '#444',
             'weight': 2,
             'opacity': 1,
             'color': 'gray',

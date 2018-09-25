@@ -274,39 +274,39 @@
                 'className' : 'custom_popup'
                 }
 
-            // point style
-            var highlightStyle = {
-                    weight: 2,
-                    color: '#fff',
-                    dashArray: '',
-                    fillOpacity: 0.7
-                }
-
-            var normalStyle = {
-                    weight: 1,
-                    opacity: 1,
-                    color: 'gray',
-                    fillOpacity: 0.25
+            // feature: click style
+            function setClickFeatureStyle(e) {
+                var style = getLayerStyle("_click");
+                var layer = e.target;
+                layer.setStyle(style);
             }
 
-            // mousover styles
-            function highlightFeature(e) {
+            // feature: mousover style
+            function setHighlightFeatureStyle(e) {
+                var style = getLayerStyle("_highlight");
                 var layer = e.target;
-                layer.setStyle(highlightStyle);
+                layer.setStyle(style);
+            }
+
+            // feature: normal style
+            function setNormalFeatureStyle(layerName) {
+              return function _(e) {
+                var style = getLayerStyle(layerName);
+                var layer = e.target;
+                layer.setStyle(style);
+            };
             }
 
             // bind popups for each feature and define event actions
-            function onEachFeature(d) {
+            function onEachFeature(layerName) {
             return function(feature, layer) {
                 if (feature.properties && feature.properties.popup_content) {
                     layer.bindPopup(feature.properties.popup_content, customPopup);
                     };
                     layer.on({
-                        click: highlightFeature,
-                        mouseover: highlightFeature,
-                        mouseout: function() {
-                                      layer.setStyle(layerStyle(d));
-                                  }
+                        click: setClickFeatureStyle,
+                        mouseover: setHighlightFeatureStyle,
+                        mouseout: setNormalFeatureStyle(layerName)
                     });
             };
             }
@@ -319,11 +319,11 @@
 
             // Create layer style from style_data json obj
             // if it does not exist, use default
-            function layerStyle (name) {
+            function getLayerStyle (name) {
                 if (style_data.hasOwnProperty(name)) {
                     return style_data[name].style;
                 } else {
-                    return style_data.default.style;
+                    return style_data._default.style;
                 }
 
             }
@@ -338,7 +338,7 @@
                 // Load data via Ajax
                 $.getJSON(dataurl, function (data) {
                     // Add GeoJSON layer
-                    var layer = new L.geoJson(data, {style: layerStyle("{{ layer }}"),
+                    var layer = new L.geoJson(data, {style: getLayerStyle("{{ layer }}"),
                                                      onEachFeature: onEachFeature("{{ layer }}"),
                                                      pointToLayer: pointToLayer
                                                      }
