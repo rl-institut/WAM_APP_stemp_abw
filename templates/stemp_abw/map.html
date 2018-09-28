@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="de">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,42 +60,41 @@
         <div class="off-canvas-wrapper off-canvas-wrapper--left">
 
           <!-- OFF CANVAS START -->
-          <div class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap" style="color: black; overflow-y: hidden">
+          <aside class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap">
 
             <div class="grid-y medium-grid-frame">
               <div class="cell medium-auto medium-cell-block-container">
                 <div class="grid-x">
-                  <div class="cell small-3 medium-2 offcanvas-tabs__wrapper medium-cell-block-y">
+                  <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
                     <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
                       <li class="tabs-title is-active">
                         <a href="#panel-scenarios" aria-selected="true">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                          <h2>Szenario</h2>
+                          <h2 class="tabs-title__head">Szenario</h2>
                         </a>
                       </li>
                       <li class="tabs-title">
                         <a href="#panel-energy">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
-                          <h2 style="padding-top: .2rem;">Energie-<br>system</h2>
+                          <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
                         </a>
                       </li>
                       <li class="tabs-title">
                         <a href="#panel-areas">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                          <h2>Flächen</h2>
+                          <h2 class="tabs-title__head">Flächen</h2>
                         </a>
                       </li>
-                      <li class="tabs-title">
+                      <li class="tabs-title" id="tabsResults">
                         <a href="#panel-results">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
-                          <h2>Ergebnisse</h2>
+                          <h2 class="tabs-title__head">Ergebnisse</h2>
                         </a>
                       </li>
                     </ul>
-
-                  </div>
-                  <div class="cell small-9 medium-10 medium-cell-block-y tabs-content__wrapper">
-                      <div class="tabs-content" data-tabs-content="offcanvas-tabs">
+                  </nav>
+                  <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
+                    <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
                         <!-- First panel content -->
                         <div class="tabs-panel is-active" id="panel-scenarios">
@@ -118,9 +117,10 @@
                               </div>
                             </fieldset>
                           </form>
-                          <div class="panel__text panel__text--highlighted">
+                        <div class="panel-desc panel-desc--highlighted">
                             <p id="scenarioPanelText">
-                                <span style="font-weight:700">Status Quo</span><span style="display:inline-block">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>
+                            <span class="panel-desc__header">Status Quo</span>
+                            <span class="panel-desc__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>
                             </p>
                           </div>
                         </div>
@@ -130,27 +130,22 @@
                           <ul class="accordion" data-accordion>
                             <li class="accordion-item accordion-item--no-border is-active" data-accordion-item>
                               <a href="#" class="accordion-title accordion-title--100">Stromerzeugung</a>
-                              <div class="accordion-content" data-tab-content >
-                                <p>Kapazität Windkraftanlagen [MW] <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i></p>
-                                <div class="slider slider--blue" data-slider data-initial-start="50" data-end="100" data-step="10">
-                                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1"></span>
-                                  <span class="slider-fill" data-slider-fill></span>
-                                  <input type="hidden">
-                                </div>
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Kapazität Windkraftanlagen [W/M]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="capacityWindPower" value="" />
                               </div>
                             </li>
                             <li class="accordion-item" data-accordion-item>
                               <a href="#" class="accordion-title accordion-title--100">Wärmeerzeugung</a>
                               <div class="accordion-content" data-tab-content>
-                                <textarea></textarea>
-                                <button class="button">I do nothing!</button>
                               </div>
                             </li>
                             <li class="accordion-item" data-accordion-item>
                               <a href="#" class="accordion-title accordion-title--100">Strombedarf</a>
                               <div class="accordion-content" data-tab-content>
-                                Type your name!
-                                <input type="text"></input>
                               </div>
                             </li>
                           </ul>
@@ -183,28 +178,35 @@
 
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
-                          <p>Four</p>
-                          <!--<img class="thumbnail" src="{% static 'stemp_abw/img/generic/rectangle-2.jpg' %}">-->
+                        <div class="grid-x">
+                          <div class="cell u-text--center">
+                            <button href="map.html" class="btn btn-cta" id="btnExpand">
+                              Mehr Ergebnisse
+                              <i class ="icon ion-android-add icon--small"></i>
+                            </button>
                         </div>
                       </div>
 
                   </div>
+
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
 
-            <button class="close-button" aria-label="Close menu" type="button" data-close>
+            <button class="close-button" aria-label="Close menu" type="button" data-close id="btnCloseOffcanvas">
               <span aria-hidden="true">&times;</span>
             </button>
 
-          </div>
+          </aside>
           <!-- OFF CANVAS END -->
 
           <!-- CONTENT (MAP + FOOTER) START -->
-          <div class="off-canvas-content" data-off-canvas-content>
+          <main class="off-canvas-content" data-off-canvas-content>
             <div class="map-wrapper">
 
-              <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter">
+              <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
                 <i class="icon ion-android-options"></i>
               </button>
 
@@ -214,7 +216,7 @@
               <!--</div>-->
 
             </div>
-          </div>
+          </main>
           <!-- CONTENT (MAP + FOOTER) END -->
 
         </div>
@@ -222,8 +224,8 @@
         <footer class="map-footer">
           <div class="grid-x">
     
-            <div class="cell u-text--center" id="footer--hide" style="color: black; height: 1rem; position: absolute;">
-              <div style="margin: 0;">
+            <div class="cell u-text--center" id="footer--hide">
+              <div>
                 <i class="icon ion-chevron-down" id="footer--hide__icon"></i>
               </div>
             </div>
@@ -260,7 +262,7 @@
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
-      <script type="text/javascript">
+    <script type="text/javascript">
 
         function main_map_init (map, options) {
 
