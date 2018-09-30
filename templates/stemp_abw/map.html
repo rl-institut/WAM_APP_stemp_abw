@@ -153,23 +153,32 @@
                         <div class="tabs-panel" id="panel-areas">
                           <p>Anzuzeigende Layer auswählen</p>
 
-                            <form>
-                              <fieldset>
-                                <legend><small>Group 1</small></legend>
-                          {% csrf_token %}
-                          {% for layer in layer_select_form %}
-                            {{layer}}
-                          {% endfor %}
-                                </fieldset>
-                            </form>
+                          <form>
+                            <div class="grid-x">
+                              <div class="cell small-11">
+                                Alle Ebenen anzeigen
+                              </div>
+                              <div class="cell small-1">
+                                <div class="switch tiny master">
+                                  <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers" checked>
+                                  <label class="switch-paddle" for="cb_all_layers">
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
 
-
-                          <div class="switch tiny">
-                            <input class="switch-input" id="exampleSwitch1" type="checkbox" name="exampleSwitch" checked>
-                            <label class="switch-paddle" for="exampleSwitch1">
-                              <span class="show-for-sr">Download Kittens</span>
-                            </label>
-                          </div>
+                          <form>
+                            <fieldset>
+                              <legend>
+                                <small>Group 1</small>
+                              </legend>
+                              {% csrf_token %}
+                              {% for layer in layer_select_form %}
+                                {{layer}}
+                              {% endfor %}
+                            </fieldset>
+                          </form>
 
                         </div>
 
@@ -358,9 +367,24 @@
             // Control layer visibility via checkboxes
             $( '.switch-input-layer-select' ).click( function () {
               var id = $(this).attr('id');
-              l = layers[id.replace('cb_','')]
-              if(this.checked) map.addLayer(l);
-              else map.removeLayer(l);
+
+              // Master switch for all layers
+              if (id == "cb_all_layers") {
+                for (var l in layers) {
+                  if (layers.hasOwnProperty(l)) {
+                    if (this.checked) map.addLayer(layers[l]);
+                    else map.removeLayer(layers[l]);
+                  }
+                $( '.switch-input-layer-select' ).prop('checked', this.checked);
+                }
+              }
+
+              // Individual layers switches
+              else {
+                l = layers[id.replace('cb_','')];
+                if (this.checked) map.addLayer(l);
+                else map.removeLayer(l);
+              };
             })
 
 

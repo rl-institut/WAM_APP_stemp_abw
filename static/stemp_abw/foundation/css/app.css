@@ -6284,6 +6284,12 @@ html.is-reveal-open body {
   .switch.tiny input:checked ~ .switch-paddle::after {
     left: 1.5rem; }
 
+/* Custom colored switch paddle */
+.switch.tiny.master
+  input:checked ~ .switch-paddle {
+    background: #002c50;
+  }
+
 .switch.small {
   height: 1.75rem; }
   .switch.small .switch-paddle {
