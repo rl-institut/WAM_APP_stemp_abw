@@ -24,6 +24,5 @@ class LayerSelectForm(forms.Form):
                                                'name': name}
                                     ),
                                     initial = '1',
-                                    required = False,
-                                    #help_text='helptext',
+                                    required = False
                                 )
