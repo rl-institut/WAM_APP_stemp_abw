@@ -1,7 +1,6 @@
 {% load static %}
 {% load leaflet_tags %}
 {% load geojson_tags %}
-{% load crispy_forms_tags %}
 
 <!doctype html>
 <html class="no-js" lang="de">
@@ -12,7 +11,7 @@
     <title>Stemp Tool Anhalt</title>
     <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
     <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.css">-->
 
     {% leaflet_css %}
     {% leaflet_js %}
@@ -157,22 +156,25 @@
                           <!--<div class="">-->
                             <!--Substations&nbsp;<input type="checkbox" name="my-checkbox" id="osmCheck" checked data-size="mini">-->
                           <!--</div>-->
-                          <div>
-                            {% crispy layer_form %}
-                          </div>
 
-                          <!--<div class="switch">-->
-                          <!--<input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">-->
-                          <!--<label class="switch-paddle" for="exampleSwitch">-->
-                            <!--<span class="show-for-sr">Download Kittens</span>-->
-                          <!--</label>-->
+
+                            <form>
+                              <fieldset>
+                                <legend><small>Group 1</small></legend>
+                          {% csrf_token %}
+                          {% for layer in layer_select_form %}
+                            {{layer}}
+                          {% endfor %}
+                                </fieldset>
+                            </form>
+
+
                           <div class="switch tiny">
                             <input class="switch-input" id="exampleSwitch1" type="checkbox" name="exampleSwitch" checked>
                             <label class="switch-paddle" for="exampleSwitch1">
                               <span class="show-for-sr">Download Kittens</span>
                             </label>
                           </div>
-                          <p id="xxxxx"></p>
 
                         </div>
 
@@ -261,7 +263,7 @@
       </div>
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>-->
     <script type="text/javascript">
 
         function main_map_init (map, options) {
@@ -360,7 +362,7 @@
             $(document).foundation();
 
             // Control layer visibility via checkboxes
-            $( '.checkboxinput' ).click( function () {
+            $( '.switch-input-layer-select' ).click( function () {
               var id = $(this).attr('id');
               l = layers[id.replace('cb_','')]
               if(this.checked) map.addLayer(l);

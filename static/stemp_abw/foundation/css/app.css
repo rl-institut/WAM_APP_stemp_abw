@@ -6214,6 +6214,11 @@ html.is-reveal-open body {
   margin-bottom: 0;
   opacity: 0; }
 
+.switch-input-layer-select {
+  position: absolute;
+  margin-bottom: 0;
+  opacity: 0; }
+
 .switch-paddle {
   position: relative;
   display: block;

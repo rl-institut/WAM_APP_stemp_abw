@@ -1,10 +1,12 @@
 from django.views.generic import TemplateView, DetailView
 from djgeojson.views import GeoJSONLayerView
+from django import forms
 import sqlahelper
 from stemp_abw import oep_models
 from .oep_models import WnAbwEgoDpHvmvSubstation
 from .models import HvMvSubst, OsmPowerGen, RpAbwBound
-from .forms import LayerForm
+from .forms import LayerSelectForm
+from .widgets import LayerSelectWidget
 from .app_settings import LAYERS, LAYER_STYLE
 from django.core import serializers
 import json
@@ -58,9 +60,10 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
         #context['label'] = self.label
         context['layer_list'] = LAYERS
-        context['layer_form'] = LayerForm(layers=LAYERS)
-        #context['layer_style'] = serializers.deserialize("json", LAYER_STYLE)
         context['layer_style'] = json.dumps(LAYER_STYLE)
+
+        context['layer_select_form'] = LayerSelectForm(layers=LAYERS)
+
         return context
 
 

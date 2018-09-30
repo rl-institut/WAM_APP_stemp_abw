@@ -13,4 +13,3 @@ django
 django-postgresql
 django-leaflet
 django-geojson
-django-crispy-forms
