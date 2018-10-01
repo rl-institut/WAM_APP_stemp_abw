@@ -1,5 +1,5 @@
 
-# import os
+from collections import OrderedDict
 import sqlalchemy
 import sqlahelper
 # from configobj import ConfigObj
@@ -46,9 +46,12 @@ oep_models.Base.metadata.bind = engine
 # engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
 # sqlahelper.add_engine(engine, 'reiners_db')
 
-LAYERS = ('subst', 'gen', 'rpabw')
+LAYER_ORDER = ('rpabw',
+               'subst',
+               'gen'
+               )
 
-LAYER_STYLE = {
+LAYER_METADATA = {
     '_default': {
         'style': {
             'fillColor': '#888',
@@ -76,6 +79,7 @@ LAYER_STYLE = {
         }
     },
     'subst': {
+        'group': 'electric',
         'style': {
             'fillColor': '#ff0000',
             'weight': 1,
@@ -85,6 +89,7 @@ LAYER_STYLE = {
         }
     },
     'gen': {
+        'group': 'electric',
         'style': {
             'fillColor': '#00aa00',
             'weight': 1,
@@ -94,6 +99,7 @@ LAYER_STYLE = {
         }
     },
     'rpabw': {
+        'group': 'region',
         'style': {
             'fillColor': '#444',
             'weight': 2,
@@ -103,3 +109,13 @@ LAYER_STYLE = {
         }
     }
 }
+
+# Add default layer styles to LAYER_ORDER
+LAYER_ORDER += tuple(k for k in LAYER_METADATA.keys() if k.startswith('_'))
+
+# Sort LAYER_METADATA dict using LAYER_ORDER tuple
+LAYER_METADATA = OrderedDict(
+    sorted(
+        LAYER_METADATA.items(), key=lambda _: LAYER_ORDER.index(_[0])
+    )
+)
