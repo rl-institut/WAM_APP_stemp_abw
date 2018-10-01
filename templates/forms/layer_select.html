@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>
+    <small>Group 1</small>
+  </legend>
+  {% csrf_token %}
+  {% for layer in layer_select_form %}
+    {{ layer }}
+  {% endfor %}
+</fieldset>

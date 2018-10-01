@@ -7,7 +7,7 @@ from .oep_models import WnAbwEgoDpHvmvSubstation
 from .models import HvMvSubst, OsmPowerGen, RpAbwBound
 from .forms import LayerSelectForm
 from .widgets import LayerSelectWidget
-from .app_settings import LAYER_METADATA
+from .app_settings import LAYER_METADATA,LAYER_DEFAULT_STYLES
 from django.core import serializers
 import json
 
@@ -57,13 +57,18 @@ class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
 
     def get_context_data(self, **kwargs):
-        layers = [k for k in LAYER_METADATA.keys() if not k.startswith('_')]
+        groups = [k for k in LAYER_METADATA.keys()]
+        layers = [l for v in LAYER_METADATA.values() for l in v.keys()]
+        layer_style = {l:a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
+        layer_style.update(LAYER_DEFAULT_STYLES)
+
         context = super(MapView, self).get_context_data(**kwargs)
         #context['label'] = self.label
         context['layer_list'] = layers
-        context['layer_style'] = json.dumps(LAYER_METADATA)
+        context['layer_style'] = json.dumps(layer_style)
 
         context['layer_select_form'] = LayerSelectForm(layers=layers)
+        #context['layer_groups'] = {k: v['group'] for k,v in LAYER_METADATA.items() if not k.startswith('_')}
 
         return context
 

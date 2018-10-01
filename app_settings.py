@@ -1,8 +1,8 @@
-
+import os
 from collections import OrderedDict
 import sqlalchemy
 import sqlahelper
-# from configobj import ConfigObj
+from configobj import ConfigObj
 
 import oedialect as _
 
@@ -15,7 +15,6 @@ from stemp_abw import oep_models
 # ADDITIONAL_PARAMETERS = ConfigObj(
 #     os.path.join(settings.BASE_DIR, 'stemp', 'attributes.cfg'))
 
-# LABELS = ConfigObj(os.path.join(settings.BASE_DIR, 'stemp', 'labels.cfg'))
 
 DB_URL = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}'
 
@@ -46,76 +45,30 @@ oep_models.Base.metadata.bind = engine
 # engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
 # sqlahelper.add_engine(engine, 'reiners_db')
 
-LAYER_ORDER = ('rpabw',
-               'subst',
-               'gen'
-               )
+LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                        'stemp_abw',
+                                        'settings',
+                                        'layers.cfg'))
 
-LAYER_METADATA = {
+LAYER_DEFAULT_STYLES = {
     '_default': {
-        'style': {
-            'fillColor': '#888',
-            'weight': 1,
-            'opacity': 1,
-            'color': 'gray',
-            'fillOpacity': 0.25
-        }
+        'fillColor': '#888',
+        'weight': 1,
+        'opacity': 1,
+        'color': 'gray',
+        'fillOpacity': 0.25
     },
     '_click': {
-        'style': {
-            'color': '#fff',
-            'weight': 2,
-            'opacity': 1,
-            'fillOpacity': 0.7,
-            'fillColor': '#fff',
-        }
+        'color': '#fff',
+        'weight': 2,
+        'opacity': 1,
+        'fillOpacity': 0.7,
+        'fillColor': '#fff',
     },
     '_highlight': {
-        'style': {
-            'color': '#fff',
-            'weight': 2,
-            'opacity': 1,
-            'fillOpacity': 0.7
-        }
-    },
-    'subst': {
-        'group': 'electric',
-        'style': {
-            'fillColor': '#ff0000',
-            'weight': 1,
-            'opacity': 1,
-            'color': 'gray',
-            'fillOpacity': 0.25
-        }
-    },
-    'gen': {
-        'group': 'electric',
-        'style': {
-            'fillColor': '#00aa00',
-            'weight': 1,
-            'opacity': 1,
-            'color': 'gray',
-            'fillOpacity': 0.25
-        }
-    },
-    'rpabw': {
-        'group': 'region',
-        'style': {
-            'fillColor': '#444',
-            'weight': 2,
-            'opacity': 1,
-            'color': 'gray',
-            'fillOpacity': 0.25
-        }
+        'color': '#fff',
+        'weight': 2,
+        'opacity': 1,
+        'fillOpacity': 0.7
     }
 }
-
-# Add default layer styles to LAYER_ORDER
-LAYER_ORDER += tuple(k for k in LAYER_METADATA.keys() if k.startswith('_'))
-
-# Sort LAYER_METADATA dict using LAYER_ORDER tuple
-LAYER_METADATA = OrderedDict(
-    sorted(
-        LAYER_METADATA.items(), key=lambda _: LAYER_ORDER.index(_[0])
-    )
-)

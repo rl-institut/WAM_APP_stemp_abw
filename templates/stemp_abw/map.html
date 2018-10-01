@@ -169,15 +169,7 @@
                           </form>
 
                           <form>
-                            <fieldset>
-                              <legend>
-                                <small>Group 1</small>
-                              </legend>
-                              {% csrf_token %}
-                              {% for layer in layer_select_form %}
-                                {{layer}}
-                              {% endfor %}
-                            </fieldset>
+                            {% include "forms/layer_select.html" %}
                           </form>
 
                         </div>
@@ -328,9 +320,9 @@
             // if it does not exist, use default
             function getLayerStyle (name) {
                 if (style_data.hasOwnProperty(name)) {
-                    return style_data[name].style;
+                    return style_data[name];
                 } else {
-                    return style_data._default.style;
+                    return style_data._default;
                 }
 
             }
