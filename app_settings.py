@@ -50,25 +50,7 @@ LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                         'settings',
                                         'layers.cfg'))
 
-LAYER_DEFAULT_STYLES = {
-    '_default': {
-        'fillColor': '#888',
-        'weight': 1,
-        'opacity': 1,
-        'color': 'gray',
-        'fillOpacity': 0.25
-    },
-    '_click': {
-        'color': '#fff',
-        'weight': 2,
-        'opacity': 1,
-        'fillOpacity': 0.7,
-        'fillColor': '#fff',
-    },
-    '_highlight': {
-        'color': '#fff',
-        'weight': 2,
-        'opacity': 1,
-        'fillOpacity': 0.7
-    }
-}
+LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
+                                              'stemp_abw',
+                                              'settings',
+                                              'layer_default_styles.cfg'))
