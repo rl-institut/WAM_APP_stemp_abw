@@ -57,14 +57,13 @@ class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
 
     def get_context_data(self, **kwargs):
+        layers = [k for k in LAYER_METADATA.keys() if not k.startswith('_')]
         context = super(MapView, self).get_context_data(**kwargs)
         #context['label'] = self.label
-        context['layer_list'] = [k for k in LAYER_METADATA.keys() if not k.startswith('_')]
+        context['layer_list'] = layers
         context['layer_style'] = json.dumps(LAYER_METADATA)
 
-        context['layer_select_form'] = LayerSelectForm(
-            layers=[k for k in LAYER_METADATA.keys() if not k.startswith('_')]
-        )
+        context['layer_select_form'] = LayerSelectForm(layers=layers)
 
         return context
 
