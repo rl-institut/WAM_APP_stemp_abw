@@ -13,12 +13,11 @@ import sqlahelper
 
 
 class HvMvSubst(models.Model):
-    label = 'HvMvSubst'
+    name = 'subst'
     geom = geomodels.PointField(srid=4326, null=True)
     subst_id = models.IntegerField()
 
     objects = geomodels.Manager()
-    name = 'xxxxxxxxxx'
 
     @property
     def popup_content(self):
@@ -35,7 +34,7 @@ class HvMvSubst(models.Model):
 
 
 class OsmPowerGen(models.Model):
-    label = 'OsmPowerGen'
+    name = 'gen'
     geom = geomodels.PointField(srid=4326, null=True)
     subst_id = models.IntegerField()
     osm_id = models.IntegerField()
@@ -52,7 +51,7 @@ class OsmPowerGen(models.Model):
 
 
 class RpAbwBound(models.Model):
-    label = 'RpAbwBound'
+    name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)
 
     @property
