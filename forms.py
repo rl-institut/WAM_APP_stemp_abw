@@ -15,16 +15,18 @@ class LayerSelectForm(forms.Form):
             self.fields[name] = forms.TypedChoiceField(
                 #label = 'Layer {}'.format(name),
                 label = '',
-                choices = (
-                    (1, "Yes"),
-                    (0, "No")
-                ),
+                # choices = (
+                #     (1, "Yes"),
+                #     (0, "No")
+                # ),
                 coerce = lambda x: bool(int(x)),
                 widget=LayerSelectWidget(
                     attrs={'id': 'cb_{}'.format(name),
                            'label': data['label'],
-                           'name': name}
+                           'name': name,
+                           'checked': True if data['show'] == '1' else False
+                           }
                 ),
-                initial = '1',
+                #initial = 1,
                 required = False
             )

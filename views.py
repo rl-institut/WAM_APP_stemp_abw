@@ -74,7 +74,7 @@ class MapView(TemplateView):
         #groups = {grp:{lay for lay in lays.keys()} for grp, lays in LAYER_METADATA.items()}
 
         # create layer list for AJAX data urls
-        layer_list = [l for v in LAYER_METADATA.values() for l in v.keys()]
+        layer_list = {l:d['show'] for ls in LAYER_METADATA.values() for l, d in ls.items()}
         self.layer_data['layer_list'] = layer_list
 
         # create JSON for layer styles

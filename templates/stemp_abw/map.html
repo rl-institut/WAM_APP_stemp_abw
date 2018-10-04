@@ -330,7 +330,7 @@
             var layers = {};
 
             // Load GeoJsons via Ajax and add layers to map
-            {% for layer in layer_list %}
+            {% for layer, show in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
 
@@ -343,7 +343,9 @@
                                                      }
                                              );
                     layers["{{ layer }}"] = layer;
-                    map.addLayer(layer);
+                    {% if show == '1' %}
+                        map.addLayer(layer);
+                    {% endif %}
                 });
             {% endfor %}
 
