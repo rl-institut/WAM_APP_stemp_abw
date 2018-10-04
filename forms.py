@@ -10,19 +10,20 @@ class LayerSelectForm(forms.Form):
             raise ValueError('No layers given. Please add some in app_settings.')
         super(LayerSelectForm, self).__init__(*args, **kwargs)
 
-        for name in layers:
-            self.fields[name] = forms.TypedChoiceField(
-                                    label = 'Layer {}'.format(name),
-                                    choices = (
-                                        (1, "Yes"),
-                                        (0, "No")
-                                    ),
-                                    coerce = lambda x: bool(int(x)),
-                                    widget=LayerSelectWidget(
-                                        attrs={'id': 'cb_{}'.format(name),
-                                               'label': 'Layer {}'.format(name),
-                                               'name': name}
-                                    ),
-                                    initial = '1',
-                                    required = False
-                                )
+        for layer in layers:
+            self.fields[layer] = forms.TypedChoiceField(
+                #label = 'Layer {}'.format(layer),
+                label = '',
+                choices = (
+                    (1, "Yes"),
+                    (0, "No")
+                ),
+                coerce = lambda x: bool(int(x)),
+                widget=LayerSelectWidget(
+                    attrs={'id': 'cb_{}'.format(layer),
+                           'label': 'Layer {}'.format(layer),
+                           'name': layer}
+                ),
+                initial = '1',
+                required = False
+            )

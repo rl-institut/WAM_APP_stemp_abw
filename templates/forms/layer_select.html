@@ -1,9 +1,12 @@
-<fieldset>
-  <legend>
-    <small>Group 1</small>
-  </legend>
-  {% csrf_token %}
-  {% for layer in layer_select_form %}
-    {{ layer }}
-  {% endfor %}
-</fieldset>
+{% csrf_token %}
+{% for group, layers in layer_groups.items %}
+  <fieldset>
+    <legend>
+      <small style="color: #000">{{ group }}</small>
+    </legend>
+    {% for layer in layers %}
+      {{ layer }}
+    {% endfor %}
+
+  </fieldset>
+{% endfor %}

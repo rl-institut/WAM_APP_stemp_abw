@@ -10,6 +10,7 @@ from .widgets import LayerSelectWidget
 from .app_settings import LAYER_METADATA,LAYER_DEFAULT_STYLES
 from django.core import serializers
 import json
+from collections import OrderedDict
 
 
 class IndexView(TemplateView):
@@ -55,22 +56,37 @@ class RpAbwBoundData(GeoJSONLayerView):
 
 class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
+    layer_data = {}
+
+    def __init__(self):
+        super(MapView, self).__init__()
+        self.prepare_layer_data()
 
     def get_context_data(self, **kwargs):
-        groups = [k for k in LAYER_METADATA.keys()]
-        layers = [l for v in LAYER_METADATA.values() for l in v.keys()]
-        layer_style = {l:a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
-        layer_style.update(LAYER_DEFAULT_STYLES)
-
         context = super(MapView, self).get_context_data(**kwargs)
-        #context['label'] = self.label
-        context['layer_list'] = layers
-        context['layer_style'] = json.dumps(layer_style)
-
-        context['layer_select_form'] = LayerSelectForm(layers=layers)
-        #context['layer_groups'] = {k: v['group'] for k,v in LAYER_METADATA.items() if not k.startswith('_')}
+        context.update(self.layer_data)
+        # context['label'] = self.label
 
         return context
+
+    def prepare_layer_data(self):
+
+        #groups = {grp:{lay for lay in lays.keys()} for grp, lays in LAYER_METADATA.items()}
+
+        # create layer list for AJAX data urls
+        layer_list = [l for v in LAYER_METADATA.values() for l in v.keys()]
+        self.layer_data['layer_list'] = layer_list
+
+        # create JSON for layer styles
+        layer_style = {l:a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
+        layer_style.update(LAYER_DEFAULT_STYLES)
+        self.layer_data['layer_style'] = json.dumps(layer_style)
+
+        # create layer groups for layer menu
+        layer_groups = OrderedDict()
+        for grp, layers in LAYER_METADATA.items():
+            layer_groups[grp] = [LayerSelectForm(layers=[l for l in layers.keys()])]
+        self.layer_data['layer_groups'] = layer_groups
 
 
     # def get_data(self):
@@ -91,8 +107,6 @@ class MapView(TemplateView):
     #         geom=row['geom']
     #     )#.save()
 
-# class MapNew(TemplateView):
-#     template_name = 'stemp_abw/map2.html'
 
 class HvMvSubstDetailView(DetailView):
     template_name = 'stemp_abw/subst_detail.html'
