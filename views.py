@@ -7,7 +7,7 @@ from .oep_models import WnAbwEgoDpHvmvSubstation
 from .models import HvMvSubst, OsmPowerGen, RpAbwBound
 from .forms import LayerSelectForm
 from .widgets import LayerSelectWidget
-from .app_settings import LAYER_METADATA,LAYER_DEFAULT_STYLES
+from .app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
 from django.core import serializers
 import json
 from collections import OrderedDict
@@ -85,7 +85,7 @@ class MapView(TemplateView):
         # create layer groups for layer menu
         layer_groups = OrderedDict()
         for grp, layers in LAYER_METADATA.items():
-            layer_groups[grp] = [LayerSelectForm(layers=[l for l in layers.keys()])]
+            layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 
 
