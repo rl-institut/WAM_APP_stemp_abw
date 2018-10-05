@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, DetailView
 from djgeojson.views import GeoJSONLayerView
+from django.shortcuts import get_object_or_404
 from django import forms
 import sqlahelper
 from stemp_abw import oep_models
@@ -8,7 +9,6 @@ from .models import HvMvSubst, OsmPowerGen, RpAbwBound
 from .forms import LayerSelectForm
 from .widgets import LayerSelectWidget
 from .app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
-from django.core import serializers
 import json
 from collections import OrderedDict
 
@@ -30,28 +30,6 @@ class IndexView(TemplateView):
 #     #     )#.save()
 #
 #     return render(request, 'stemp_abw/map.html', {'data': data}, )
-
-class SubstData(GeoJSONLayerView):
-    model = HvMvSubst
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-
-
-class OsmPowerGenData(GeoJSONLayerView):
-    model = OsmPowerGen
-    properties = ['popup_content']
-    srid = 4326
-    geometry_field = 'geom'
-
-
-class RpAbwBoundData(GeoJSONLayerView):
-    model = RpAbwBound
-    properties = ['popup_content']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5   # float
-    #simplify = 0.02  # generalization
 
 
 class MapView(TemplateView):
@@ -107,7 +85,80 @@ class MapView(TemplateView):
     #         geom=row['geom']
     #     )#.save()
 
+#########################
+### GeoJSONLayerViews ###
+#########################
+class SubstData(GeoJSONLayerView):
+    model = HvMvSubst
+    # TODO: 'name' is used to load popup content in JS from view (build url).
+    # TODO: Find smarter approach!
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
 
+
+class OsmPowerGenData(GeoJSONLayerView):
+    model = OsmPowerGen
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+
+
+class RpAbwBoundData(GeoJSONLayerView):
+    model = RpAbwBound
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5   # float
+    #simplify = 0.02  # generalization
+
+####################
+### Detail Views ###
+####################
+class SubstDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = HvMvSubst
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(SubstDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some substation content'
+
+        return context
+
+
+class OsmPowerGenDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = OsmPowerGen
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(OsmPowerGenDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some generator content'
+
+        return context
+
+
+class RpAbwBoundDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = RpAbwBound
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RpAbwBoundDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+
+### OLD STUFF ###
 class HvMvSubstDetailView(DetailView):
     template_name = 'stemp_abw/subst_detail.html'
     model = HvMvSubst
@@ -127,3 +178,13 @@ class HvMvSubstView(TemplateView):
     #     # Add in a QuerySet of all the books
     #     context['data'] = HvMvSubst.objects.all()
     #     return context
+
+
+# class LayerPopupView(TemplateView):
+#     template_name = 'stemp_abw/layer_popup.html'
+#     context_object_name = 'obj'
+#
+#     def __init__(self, xxx, **kwargs):
+#         super(LayerPopupView, self).__init__(**kwargs)
+
+

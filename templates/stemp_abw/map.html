@@ -274,10 +274,16 @@
                 }
 
             // feature: click style
-            function setClickFeatureStyle(e) {
+            function execClickAction(e) {
                 var style = getLayerStyle("_click");
                 var layer = e.target;
                 layer.setStyle(style);
+
+                // load popup content from detail view
+                var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id)
+                $.get( url, function( data ) {
+                  layer.setPopupContent(data);
+                });
             }
 
             // feature: mousover style
@@ -300,10 +306,10 @@
             function onEachFeature(layerName) {
             return function(feature, layer) {
                 if (feature.properties && feature.properties.popup_content) {
-                    layer.bindPopup(feature.properties.popup_content, customPopup);
+                    layer.bindPopup('', customPopup);
                     };
                     layer.on({
-                        click: setClickFeatureStyle,
+                        click: execClickAction,
                         mouseover: setHighlightFeatureStyle,
                         mouseout: setNormalFeatureStyle(layerName)
                     });
@@ -312,7 +318,6 @@
 
             function pointToLayer(feature, latlng) {
                 var marker = L.circleMarker(latlng)
-                //marker.bindPopup('<p>' + feature.properties.popup_content + ' XXX ' + '</p>');
                 return marker;
             }
 
