@@ -13,3 +13,5 @@ django
 django-postgresql
 django-leaflet
 django-geojson
+pathos
+oemof
