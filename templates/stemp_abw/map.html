@@ -149,6 +149,7 @@
                           </ul>
 
                           <div class="grid-x">
+
                             <div class="cell u-text--center">
                               <form method="post" id="frmSimulate">
                                 {% csrf_token %}
@@ -158,6 +159,14 @@
                                 </button>
                               </form>
                             </div>
+
+                            <div class="cell small-1"></div>
+                            <div class="cell small-2">Fortschritt</div>
+                              <div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-meter" id="progressMeter" style="width: 0%"></div>
+                              </div>
+                            <div class="cell small-1"></div>
+
                           </div>
                         </div>
 
@@ -419,7 +428,14 @@
                 }
             }).done(function(returned_data){
                 console.log(returned_data);
+                updateSimProgressBar(25);
             });
+        };
+
+        // Update simulation progress bar
+        function updateSimProgressBar(value) {
+            $('#progressBar').prop('aria-valuenow', value);
+            $('#progressMeter').prop('style', 'width: ' + String(value) + '%');
         };
 
     </script>
