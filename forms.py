@@ -11,7 +11,6 @@ class LayerSelectForm(forms.Form):
         super(LayerSelectForm, self).__init__(*args, **kwargs)
 
         for name, data in layers.items():
-            print(name)
             self.fields[name] = forms.TypedChoiceField(
                 #label = 'Layer {}'.format(name),
                 label = '',

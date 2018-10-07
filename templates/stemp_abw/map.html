@@ -147,6 +147,18 @@
                               </div>
                             </li>
                           </ul>
+
+                          <div class="grid-x">
+                            <div class="cell u-text--center">
+                              <form method="post" id="frmSimulate">
+                                {% csrf_token %}
+                                <button class="btn btn-cta" type="button" id="btnSimulate" onclick="btnAction(this.id)" value="simulate">
+                                  Simulieren
+                                  <i class ="icon ion-android-arrow-dropright-circle icon--small"></i>
+                                </button>
+                              </form>
+                            </div>
+                          </div>
                         </div>
 
                         <!-- Third panel content -->
@@ -387,7 +399,28 @@
             })
 
 
-        }
+        };
+
+        // Post to view if button is clicked without reloading page
+        function btnAction(element_id) {
+            element = $('#' + element_id)
+            element.prop("disabled", true);
+
+            $.ajax({
+                url : '{% url 'stemp_abw:map' %}',
+                type : "POST",
+                data : {value : element.val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}'},
+                success: function(page) {
+                    console.log('success');
+                },
+                error: function(page) {
+                    console.log('error');
+                }
+            }).done(function(returned_data){
+                console.log(returned_data);
+            });
+        };
 
     </script>
   </body>

@@ -1,13 +1,11 @@
 from django.views.generic import TemplateView, DetailView
 from djgeojson.views import GeoJSONLayerView
-from django.shortcuts import get_object_or_404
-from django import forms
+from django.shortcuts import HttpResponse
 import sqlahelper
 from stemp_abw import oep_models
 from .oep_models import WnAbwEgoDpHvmvSubstation
 from .models import HvMvSubst, OsmPowerGen, RpAbwBound
 from .forms import LayerSelectForm
-from .widgets import LayerSelectWidget
 from .app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
 import json
 from collections import OrderedDict
@@ -46,6 +44,10 @@ class MapView(TemplateView):
         # context['label'] = self.label
 
         return context
+
+    def post(self, request):
+        print(request.POST)
+        return HttpResponse(json.dumps({'hallo': 'test'}))
 
     def prepare_layer_data(self):
 
