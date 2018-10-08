@@ -11,6 +11,7 @@
     <title>Stemp Tool Anhalt</title>
     <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
     <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
+    <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
 
     {% leaflet_css %}
     {% leaflet_js %}
@@ -65,25 +66,25 @@
                 <div class="grid-x">
                   <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
                     <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
-                      <li class="tabs-title is-active">
+                      <li class="tabs-title is-active" id="tabsScenarios">
                         <a href="#panel-scenarios" aria-selected="true">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
                           <h2 class="tabs-title__head">Szenario</h2>
                         </a>
                       </li>
-                      <li class="tabs-title">
+                      <li class="tabs-title" id="tabsEnergy">
                         <a href="#panel-energy">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
                           <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
                         </a>
                       </li>
-                      <li class="tabs-title">
+                      <li class="tabs-title" id="tabsAreas">
                         <a href="#panel-areas">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
                           <h2 class="tabs-title__head">Flächen</h2>
                         </a>
                       </li>
-                      <li class="tabs-title" id="tabsResults">
+                      <li class="tabs-results tabs-title" id="tabsResults">
                         <a href="#panel-results">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
                           <h2 class="tabs-title__head">Ergebnisse</h2>
@@ -201,18 +202,102 @@
 
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
-                        <div class="grid-x">
-                          <div class="cell u-text--center">
-                            <button href="map.html" class="btn btn-cta" id="btnExpand">
-                              Mehr Ergebnisse
-                              <i class ="icon ion-android-add icon--small"></i>
-                            </button>
+                          <div class="grid-x">
+                            <!-- Button expand -->
+                            <!--
+                            <div class="cell u-text--center">
+                            <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                                Mehr Ergebnisse
+                                <i class ="icon ion-android-add icon--small"></i>
+                              </button>
+                            </div>
+                            -->
+
+                          <div class="cell" id="results-wrap">
+                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                              <li class="tabs-title is-active"><a href="#results-panel1" aria-selected="true">Windkraft</a></li>
+                              <li class="tabs-title"><a href="#results-panel2">PV</a></li>
+                              <li class="tabs-title"><a href="#results-panel3">Biomasse</a></li>
+                              <li class="tabs-title"><a href="#results-panel4">Konventionelles Kraftwerk</a></li>
+                              <li class="tabs-title"><a href="#results-panel5">Wärmebedarf</a></li>
+                              <li class="tabs-title"><a href="#results-panel6">Strombedarf</a></li>
+                              <li class="tabs-title"><a href="#results-panel7">eMobilität</a></li>
+                              <li class="tabs-title"><a href="#results-panel8">Demand-Side-Management</a></li>
+                              <li class="tabs-title"><a href="#results-panel9">Batterie</a></li>
+                            </ul>
+
+                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                              <div class="tabs-panel is-active" id="results-panel1">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel2">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel3">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel4">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel5">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel6">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel7">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel8">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="results-panel9">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4">Insert results here</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
 
-                  </div>
-
                     </div>
+
                   </section>
                 </div>
               </div>

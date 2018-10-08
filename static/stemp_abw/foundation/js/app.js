@@ -42692,8 +42692,9 @@ if ((0, _jquery2.default)(window).width() >= 640) {
     }
   };
 
+  /*
   // expands or reduces off-canvas width
-  (0, _jquery2.default)('#btnExpand').on('click', function () {
+    $('#btnExpand').on('click', function() {
 
     if (!expanded) {
       toggleWidth('100%', '100%');
@@ -42705,15 +42706,34 @@ if ((0, _jquery2.default)(window).width() >= 640) {
 
     // changes btn text
     btnExpandText(expanded);
+    })
+    */
+
+  (0, _jquery2.default)('#tabsScenarios').on('click', function () {
+    toggleWidth('35rem', '30rem');
   });
 
-  // makes sure that clicking on another tab will reduce the off-canvas width if the off-canvas is expanded to 100%
-  (0, _jquery2.default)("[data-tabs]").on('change.zf.tabs', function () {
+  (0, _jquery2.default)('#tabsEnergy').on('click', function () {
+    toggleWidth('35rem', '30rem');
+  });
+
+  (0, _jquery2.default)('#tabsAreas').on('click', function () {
+    toggleWidth('35rem', '30rem');
+  });
+
+  (0, _jquery2.default)('#tabsResults').on('click', function () {
+    toggleWidth('100%', '100%');
+  });
+
+  /*
+    // makes sure that clicking on another nav tab will reduce the off-canvas width if the off-canvas is expanded to 100%
+    $("[data-tabs]#offcanvas-tabs").on('change.zf.tabs', function(){
     toggleWidth('35rem', '30rem');
 
     // changes btn text if needed
     btnExpandText(false);
   });
+    */
 
   // some elements were not disappearing completely when clicking on expanded off-canvas close button (x)
   // makes sure all elements fade away
