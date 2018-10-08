@@ -229,19 +229,81 @@
                             <div class="tabs-content" data-tabs-content="deeplinked-tabs">
                               <div class="tabs-panel is-active" id="results-panel1">
                                 <div class="grid-x grid-margin-x">
-                                  
+                                  <div class="cell small-4">
+                                    <p class="lead">Windenergie</p>
+                                    <table>
+                                      <tbody>
+                                        <tr>
+                                          <td>Installierte Gesamtleistung</td>
+                                          <td width="25%">700 MW</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Anzahl Windenergieanlagen</td>
+                                          <td width="25%">100</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Jährlich erzeugte Energiemenge</td>
+                                          <td width="25%">1.05 TWh</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <div class="cell small-4">
+                                    <p class="lead">Photovoltaik</p>
+                                    <table>
+                                      <tbody>
+                                        <tr>
+                                          <td>Installierte Gesamtleistung</td>
+                                          <td width="25%">200 MW</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Anzahl Photovoltaikanlagen</td>
+                                          <td width="25%">400</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Jährlich erzeugte Energiemenge</td>
+                                          <td width="25%">100 GWh</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <div class="cell small-4">
+                                    <p class="lead">Biomasse und Biogas</p>
+                                    <table>
+                                      <tbody>
+                                        <tr>
+                                          <td>Installierte Gesamtleistung</td>
+                                          <td width="25%">200 MW</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Anzahl Biomasseanlagen</td>
+                                          <td width="25%">30</td>
+                                        </tr>
+                                       <tr>
+                                          <td>Anzahl Biogasanlagen</td>
+                                          <td width="25%">20</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Jährlich erzeugte Energiemenge</td>
+                                          <td width="25%">200 GWh</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  {% include "stemp_abw/results.html" %}
                                 </div>
                               </div>
                               <div class="tabs-panel" id="results-panel2">
                                 <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
+                                  {% include "stemp_abw/results2.html" %}
                                 </div>
                               </div>
                               <div class="tabs-panel" id="results-panel3">
                                 <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">Insert results here</div>
+                                  <div class="cell small-4                                  ">Insert results here</div>
                                   <div class="cell small-4">Insert results here</div>
                                   <div class="cell small-4">Insert results here</div>
                                 </div>
