@@ -79,6 +79,16 @@ class RpAbwBound(LayerModel):
         return 'PR ABW Grenze des Planungsraumes'
 
 
+class RegMun(LayerModel):
+    name = 'reg_mun'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    rs = models.CharField(max_length=254, null=True)
+    ags = models.CharField(max_length=254, null=True)
+    gen = models.CharField(max_length=254, null=True)
+    bez = models.CharField(max_length=254, null=True)
+    nuts = models.CharField(max_length=254, null=True)
+
+
 class RegPrioAreaRes(LayerModel):
     name = 'reg_prio_area_res'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
@@ -148,3 +158,8 @@ class RegPrioAreaFloodProt(LayerModel):
     bemerkunge = models.CharField(max_length=254, null=True)
     bezeich_2 = models.CharField(max_length=254, null=True)
     bezeich_3 = models.CharField(max_length=254, null=True)
+
+
+class GenWEC(LayerModel):
+    name = 'gen_wec'
+    geom = geomodels.MultiPointField(srid=3035, null=True)

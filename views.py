@@ -144,6 +144,14 @@ class RpAbwBoundData(GeoJSONLayerView):
     precision = 5
 
 
+class RegMunData(GeoJSONLayerView):
+    model = models.RegMun
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
 class RegPrioAreaResData(GeoJSONLayerView):
     model = models.RegPrioAreaRes
     properties = ['popup_content', 'name']
@@ -216,6 +224,13 @@ class RegPrioAreaFloodProtData(GeoJSONLayerView):
     precision = 4
 
 
+class GenWECData(GeoJSONLayerView):
+    model = models.GenWEC
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
 ####################
 ### Detail Views ### for popups
 ####################
@@ -254,6 +269,20 @@ class RpAbwBoundDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RpAbwBoundDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegMunDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegMun
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDetailView, self).get_context_data(**kwargs)
 
         # TODO: Load more context from LAYER_METADATA, e.g. label & description
         context['bla'] = 'Some Planungsregion content'
@@ -379,6 +408,20 @@ class RegPrioAreaFloodProtDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegPrioAreaFloodProtDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class GenWECDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.GenWEC
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(GenWECDetailView, self).get_context_data(**kwargs)
 
         # TODO: Load more context from LAYER_METADATA, e.g. label & description
         context['bla'] = 'Some Planungsregion content'

@@ -14,6 +14,7 @@ urlpatterns = [
     path('popup/subst/<int:pk>/', views.SubstDetailView.as_view(), name='subst-detail'),
     path('popup/gen/<int:pk>/', views.OsmPowerGenDetailView.as_view(), name='gen-detail'),
     path('popup/rpabw/<int:pk>/', views.RpAbwBoundDetailView.as_view(), name='rpabw-detail'),
+    path('popup/reg_mun/<int:pk>/', views.RegMunDetailView.as_view(), name='reg_mun-detail'),
     path('popup/reg_prio_area_res/<int:pk>/', views.RegPrioAreaResDetailView.as_view(), name='reg_prio_area_res-detail'),
     path('popup/reg_water_prot_area/<int:pk>/', views.RegWaterProtAreaDetailView.as_view(), name='reg_water_prot_area-detail'),
     path('popup/reg_bird_prot_area/<int:pk>/', views.RegBirdProtAreaDetailView.as_view(), name='reg_bird_prot_area-detail'),
@@ -23,11 +24,13 @@ urlpatterns = [
     path('popup/reg_resid_area/<int:pk>/', views.RegResidAreaDetailView.as_view(), name='reg_resid_area-detail'),
     path('popup/reg_resid_area_b500/<int:pk>/', views.RegResidAreaB500DetailView.as_view(), name='reg_resid_area_b500-detail'),
     path('popup/reg_prio_area_flood_prot/<int:pk>/', views.RegPrioAreaFloodProtDetailView.as_view(), name='reg_prio_area_flood_prot-detail'),
+    path('popup/gen_wec/<int:pk>/', views.GenWECDetailView.as_view(), name='gen_wec-detail'),
 
     # JSON Data
     re_path(r'^subst.data/', views.SubstData.as_view(), name='subst.data'),
     re_path(r'^gen.data/', views.OsmPowerGenData.as_view(), name='gen.data'),
     re_path(r'^rpabw.data/', views.RpAbwBoundData.as_view(), name='rpabw.data'),
+    re_path(r'^reg_mun.data/', views.RegMunData.as_view(), name='reg_mun.data'),
     re_path(r'^reg_prio_area_res.data/', views.RegPrioAreaResData.as_view(), name='reg_prio_area_res.data'),
     re_path(r'^reg_water_prot_area.data/', views.RegWaterProtAreaData.as_view(), name='reg_water_prot_area.data'),
     re_path(r'^reg_bird_prot_area.data/', views.RegBirdProtAreaData.as_view(), name='reg_bird_prot_area.data'),
@@ -37,6 +40,7 @@ urlpatterns = [
     re_path(r'^reg_resid_area.data/', views.RegResidAreaData.as_view(), name='reg_resid_area.data'),
     re_path(r'^reg_resid_area_b500.data/', views.RegResidAreaB500Data.as_view(), name='reg_resid_area_b500.data'),
     re_path(r'^reg_prio_area_flood_prot.data/', views.RegPrioAreaFloodProtData.as_view(), name='reg_prio_area_flood_prot.data'),
+    re_path(r'^gen_wec.data/', views.GenWECData.as_view(), name='gen_wec.data'),
 
     # Old stuff
     path('subst/<int:pk>/', views.HvMvSubstDetailView.as_view(), name='subst-detail'),
