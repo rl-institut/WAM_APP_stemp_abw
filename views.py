@@ -112,6 +112,9 @@ class MapView(TemplateView):
     #         geom=row['geom']
     #     )#.save()
 
+class SourcesView(TemplateView):
+    template_name = 'stemp_abw/sources.html'
+
 #########################
 ### GeoJSONLayerViews ###
 #########################

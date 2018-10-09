@@ -8,6 +8,7 @@ app_name = 'stemp_abw'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
+    path('sources/', views.SourcesView.as_view(), name='sources'),
 
     # Detail data
     path('popup/subst/<int:pk>/', views.SubstDetailView.as_view(), name='subst-detail'),
