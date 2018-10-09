@@ -22,6 +22,7 @@ class LayerSelectForm(forms.Form):
                 widget=LayerSelectWidget(
                     attrs={'id': 'cb_{}'.format(name),
                            'label': data['label'],
+                           'color': data['style']['fillColor'],
                            'name': name,
                            'checked': True if data['show'] == '1' else False
                            }
