@@ -2,7 +2,8 @@
 {% for group, layers in layer_groups.items %}
   <fieldset>
     <legend>
-      <small style="color: #000">{{ group }}</small>
+      <small style="color: #000; border-bottom: 1px solid #000;">{{ group }}</small>
+
     </legend>
     {% for layer in layers %}
       {{ layer }}
