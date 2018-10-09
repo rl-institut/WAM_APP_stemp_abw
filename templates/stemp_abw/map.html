@@ -131,25 +131,167 @@
                         <!-- Second panel content -->
                         <div class="tabs-panel" id="panel-energy">
                           <ul class="accordion" data-accordion>
+
                             <li class="accordion-item accordion-item--no-border is-active" data-accordion-item>
                               <a href="#" class="accordion-title accordion-title--100">Stromerzeugung</a>
                               <div class="accordion-content parameter" data-tab-content >
                               <p class="parameter__label">
-                                Kapazität Windkraftanlagen [W/M]
+                                Leistung Windkraftanlagen [MW]
                                 <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
                               </p>
                               <input id="capacityWindPower" value="" />
                               </div>
-                            </li>
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Wärmeerzeugung</a>
-                              <div class="accordion-content" data-tab-content>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Leistung Photovoltaik (Dachanlagen) [MW]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="capacityPVroofPower" value="" />
+                              </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Leistung Photovoltaik (Freiflächenanlagen) [MW]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="capacityPVgroundPower" value="" />
+                              </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Leistung Biomasse/-gas [MW]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="capacityBioPower" value="" />
+                              </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Leistung konventionelle Kraftwerke [MW]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="capacityConvPower" value="" />
                               </div>
                             </li>
+
                             <li class="accordion-item" data-accordion-item>
                               <a href="#" class="accordion-title accordion-title--100">Strombedarf</a>
-                              <div class="accordion-content" data-tab-content>
+                              <!--<div class="accordion-content" data-tab-content>-->
+                              <!--</div>-->
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Einsparung Haushalte (Status Quo = 0) [%]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="demandRedHH" value="" />
                               </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Einsparung GHD (Status Quo = 0) [%]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="demandRedGHD" value="" />
+                              </div>
+                            </li>
+
+                            <li class="accordion-item" data-accordion-item>
+                              <a href="#" class="accordion-title accordion-title--100">Flexibilität</a>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Batteriekapazität [GWh]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="flexBat" value="" />
+                              </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Demand-Side-Management (Anteil Haushalte) [%]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="flexDSMHH" value="" />
+                              </div>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Elektromobilität (Anteil privater Fahrzeuge) [%]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="flexEmob" value="" />
+                              </div>
+                            </li>
+
+                            <li class="accordion-item" data-accordion-item>
+                              <a href="#" class="accordion-title accordion-title--100">Potenzialflächen und Restriktionen</a>
+
+                              <div class="accordion-content parameter" data-tab-content >
+                              <p class="parameter__label">
+                                Abstand zu Siedlungen [m]
+                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                              </p>
+                              <input id="potDistSettle" value="" />
+                              </div>
+
+                              <div class="accordion-content" data-tab-content>
+                                <div class="grid-x">
+                                  <div class="cell small-1"></div>
+                                  <div class="cell small-8">
+                                    Wald verwenden
+                                  </div>
+                                  <div class="cell small-1">
+                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                  </div>
+                                  <div class="cell small-1">
+                                    <div class="switch tiny">
+                                      <input class="switch-input" id="potUseForest" type="checkbox" checked>
+                                      <label class="switch-paddle" for="potUseForest">
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="cell small-1"></div>
+                                </div>
+
+                                <div class="grid-x">
+                                  <div class="cell small-1"></div>
+                                  <div class="cell small-8">
+                                    FFH-Gebiete verwenden
+                                  </div>
+                                  <div class="cell small-1">
+                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                  </div>
+                                  <div class="cell small-1">
+                                    <div class="switch tiny">
+                                      <input class="switch-input" id="potUseFFH" type="checkbox" checked>
+                                      <label class="switch-paddle" for="potUseFFH">
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="cell small-1"></div>
+                                </div>
+
+                                <div class="grid-x">
+                                  <div class="cell small-1"></div>
+                                  <div class="cell small-8">
+                                    UNESCO-Welterbegebiet verwenden
+                                  </div>
+                                  <div class="cell small-1">
+                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                  </div>
+                                  <div class="cell small-1">
+                                    <div class="switch tiny">
+                                      <input class="switch-input" id="potUseUNESCO" type="checkbox" checked>
+                                      <label class="switch-paddle" for="potUseUNESCO">
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="cell small-1"></div>
+                                </div>
+                              </div>
+
                             </li>
                           </ul>
 
