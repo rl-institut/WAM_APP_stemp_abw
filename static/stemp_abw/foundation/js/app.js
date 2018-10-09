@@ -42767,11 +42767,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   (0, _jquery2.default)('#scenarioPanelText').empty();
 
   if (this.checked && this.value == 'statusQuo') {
-    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">Status Quo</span><span style="display:inline-block">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>');
+    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">Status Quo</span><span style="display:inline-block">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>');
   } else if (this.checked && this.value == 'germany') {
-    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">Deutsches Klimaschutzziel</span><span style="display:inline-block">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>');
+    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">Deutsches Klimaschutzziel</span><span style="display:inline-block">Dieses Szenario beschreibt einen möglichen Pfad zur Erreichung der deutschen Klimaschutzziele.</span>');
   } else if (this.checked && this.value == '100') {
-    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">100% EE</span><span style="display:inline-block">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>');
+    (0, _jquery2.default)('#scenarioPanelText').append('<span style="font-weight:700">100% erneuerbar</span><span style="display:inline-block">In diesem Szenario wird eine Energieversorgung aus 100% erneuerbaren Quellen angestrebt.</span>');
   }
 });
 
