@@ -21,6 +21,7 @@ urlpatterns = [
     path('popup/reg_landsc_prot_area/<int:pk>/', views.RegLandscProtAreaDetailView.as_view(), name='reg_landsc_prot_area-detail'),
     path('popup/reg_resid_area/<int:pk>/', views.RegResidAreaDetailView.as_view(), name='reg_resid_area-detail'),
     path('popup/reg_resid_area_b500/<int:pk>/', views.RegResidAreaB500DetailView.as_view(), name='reg_resid_area_b500-detail'),
+    path('popup/reg_prio_area_flood_prot/<int:pk>/', views.RegPrioAreaFloodProtDetailView.as_view(), name='reg_prio_area_flood_prot-detail'),
 
     # JSON Data
     re_path(r'^subst.data/', views.SubstData.as_view(), name='subst.data'),
@@ -34,6 +35,7 @@ urlpatterns = [
     re_path(r'^reg_landsc_prot_area.data/', views.RegLandscProtAreaData.as_view(), name='reg_landsc_prot_area.data'),
     re_path(r'^reg_resid_area.data/', views.RegResidAreaData.as_view(), name='reg_resid_area.data'),
     re_path(r'^reg_resid_area_b500.data/', views.RegResidAreaB500Data.as_view(), name='reg_resid_area_b500.data'),
+    re_path(r'^reg_prio_area_flood_prot.data/', views.RegPrioAreaFloodProtData.as_view(), name='reg_prio_area_flood_prot.data'),
 
     # Old stuff
     path('subst/<int:pk>/', views.HvMvSubstDetailView.as_view(), name='subst-detail'),

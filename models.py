@@ -141,3 +141,10 @@ class RegResidAreaB500(LayerModel):
     name = 'reg_resid_area_b500'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
+
+class RegPrioAreaFloodProt(LayerModel):
+    name = 'reg_prio_area_flood_prot'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bemerkunge = models.CharField(max_length=254, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
+    bezeich_3 = models.CharField(max_length=254, null=True)
