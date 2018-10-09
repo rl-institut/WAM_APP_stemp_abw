@@ -40,15 +40,38 @@ class MapView(TemplateView):
         super(MapView, self).__init__()
         self.prepare_layer_data()
 
+        self.simulation = Simulation()
+
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
         context.update(self.layer_data)
         # context['label'] = self.label
 
+        # TODO: Temp stuff for WS
+        labels1 = OrderedDict((
+            ('Windenergie Erzeugung', ['Wind']),
+            ('Photovoltaik Erzeugung', ['PV']),
+            ('Bioenergie Erzeugung', ['Biomasse', 'Biogas'])
+        ))
+        visualizations1 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
+                          for t, c in labels1.items()]
+        labels2 = {'Erzeugung': ['Strom', 'Wärme'],
+                  'Bedarf': ['Strom', 'Wärme'],
+                  'Erneuerbare Energien': ['Wind', 'Solar']
+                  }
+        visualizations2 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
+                          for t, c in labels2.items()]
+        context['visualizations1'] = visualizations1
+        context['visualizations2'] = visualizations2
+
         return context
 
     def post(self, request):
         print(request.POST)
+
+        results = self.simulation.run()
+        print(results)
+
         return HttpResponse(json.dumps({'hallo': 'test'}))
 
     def prepare_layer_data(self):
