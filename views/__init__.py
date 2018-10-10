@@ -1,12 +1,15 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse
 import json
+from collections import OrderedDict
 #import sqlahelper
 from stemp_abw.forms import LayerSelectForm
 from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
-from collections import OrderedDict
 from stemp_abw.simulation import Simulation
 from stemp_abw import results
+
+from stemp_abw.views.detail_views import *
+from stemp_abw.views.serial_views import *
 
 
 class IndexView(TemplateView):
