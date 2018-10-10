@@ -2,9 +2,7 @@ from django.views.generic import TemplateView, DetailView
 from djgeojson.views import GeoJSONLayerView
 from django.shortcuts import HttpResponse
 import json
-import sqlahelper
-from stemp_abw import oep_models
-from .oep_models import WnAbwEgoDpHvmvSubstation
+#import sqlahelper
 import stemp_abw.models as models
 from stemp_abw.forms import LayerSelectForm
 from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
@@ -15,21 +13,6 @@ from stemp_abw import results
 
 class IndexView(TemplateView):
     template_name = 'stemp_abw/index.html'
-
-
-# def map(request):
-#     #question = get_object_or_404(Question, pk=question_id)
-#
-#     session = sqlahelper.get_session()
-#     query = session.query(oep_models.WnAbwEgoDpHvmvSubstation)
-#     data = query.all()
-#     # for id, row in data.iterrows():
-#     #     HvMvSubstation(
-#     #         subst_id=row['subst_id'],
-#     #         geom=row['geom']
-#     #     )#.save()
-#
-#     return render(request, 'stemp_abw/map.html', {'data': data}, )
 
 
 class MapView(TemplateView):
@@ -93,24 +76,6 @@ class MapView(TemplateView):
             layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 
-
-    # def get_data(self):
-    #     return 'result'
-
-
-    # class Meta:
-    #
-    #     model = MushroomSpot
-    #model = WnAbwEgoDpHvmvSubstation
-
-    # session = sqlahelper.get_session()
-    # query = session.query(oep_models.WnAbwEgoDpHvmvSubstation)
-    # data = query.all()
-    # for id, row in data.iterrows():
-    #     HvMvSubstation(
-    #         subst_id=row['subst_id'],
-    #         geom=row['geom']
-    #     )#.save()
 
 class SourcesView(TemplateView):
     template_name = 'stemp_abw/sources.html'
@@ -583,34 +548,3 @@ class RegDeadZoneSoftDetailView(DetailView):
         context['bla'] = 'Some Planungsregion content'
 
         return context
-
-### OLD STUFF ###
-class HvMvSubstDetailView(DetailView):
-    template_name = 'stemp_abw/subst_detail.html'
-    model = models.HvMvSubst
-    context_object_name = 'subst'
-
-
-class HvMvSubstView(TemplateView):
-    template_name = 'stemp_abw/subst.html'
-    model = models.HvMvSubst
-    context_object_name = 'subst'
-
-    #queryset = qs_results
-
-    # def get_context_data(self, **kwargs):
-    #     # Call the base implementation first to get a context
-    #     context = super().get_context_data(**kwargs)
-    #     # Add in a QuerySet of all the books
-    #     context['data'] = HvMvSubst.objects.all()
-    #     return context
-
-
-# class LayerPopupView(TemplateView):
-#     template_name = 'stemp_abw/layer_popup.html'
-#     context_object_name = 'obj'
-#
-#     def __init__(self, xxx, **kwargs):
-#         super(LayerPopupView, self).__init__(**kwargs)
-
-

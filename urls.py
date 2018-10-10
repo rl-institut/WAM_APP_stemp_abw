@@ -56,8 +56,4 @@ urlpatterns = [
     re_path(r'^reg_dead_zone_hard.data/', views.RegDeadZoneHardData.as_view(), name='reg_dead_zone_hard.data'),
     re_path(r'^reg_dead_zone_soft.data/', views.RegDeadZoneSoftData.as_view(), name='reg_dead_zone_soft.data'),
 
-    # Old stuff
-    path('subst/<int:pk>/', views.HvMvSubstDetailView.as_view(), name='subst-detail'),
-    path('subst/', views.HvMvSubstView.as_view(), name='subst')
-
     ]
