@@ -160,6 +160,50 @@ class RegPrioAreaFloodProt(LayerModel):
     bezeich_3 = models.CharField(max_length=254, null=True)
 
 
+class RegPrioAreaCult(LayerModel):
+    name = 'reg_prio_area_cult'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
+
+
+class RegForest(LayerModel):
+    name = 'reg_forest'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegFFHProtArea(LayerModel):
+    name = 'reg_ffh_prot_area'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    gebietsnam = models.CharField(max_length=254, null=True)
+    gebietsnum = models.CharField(max_length=254, null=True)
+    rechtsgrun = models.CharField(max_length=254, null=True)
+    erfassungs = models.CharField(max_length=254, null=True)
+    info_konta = models.CharField(max_length=254, null=True)
+
+
+class RegResidAreaB1000(LayerModel):
+    name = 'reg_resid_area_b1000'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegPrioAreaWEC(LayerModel):
+    name = 'reg_prio_area_wec'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
+    bezeich_3 = models.CharField(max_length=254, null=True)
+
+
 class GenWEC(LayerModel):
     name = 'gen_wec'
     geom = geomodels.MultiPointField(srid=3035, null=True)
+
+
+class RegDeadZoneHard(LayerModel):
+    name = 'reg_dead_zone_hard'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegDeadZoneSoft(LayerModel):
+    name = 'reg_dead_zone_soft'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+

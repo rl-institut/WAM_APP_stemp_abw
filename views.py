@@ -224,12 +224,69 @@ class RegPrioAreaFloodProtData(GeoJSONLayerView):
     precision = 4
 
 
+class RegPrioAreaCultData(GeoJSONLayerView):
+    model = models.RegPrioAreaCult
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 4
+
+
+class RegForestData(GeoJSONLayerView):
+    model = models.RegForest
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 4
+
+
+class RegFFHProtAreaData(GeoJSONLayerView):
+    model = models.RegFFHProtArea
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 4
+
+
+class RegResidAreaB1000Data(GeoJSONLayerView):
+    model = models.RegResidAreaB1000
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 4
+
+
+class RegPrioAreaWECData(GeoJSONLayerView):
+    model = models.RegPrioAreaWEC
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
 class GenWECData(GeoJSONLayerView):
     model = models.GenWEC
     properties = ['popup_content', 'name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
+
+
+class RegDeadZoneHardData(GeoJSONLayerView):
+    model = models.RegDeadZoneHard
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegDeadZoneSoftData(GeoJSONLayerView):
+    model = models.RegDeadZoneSoft
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
 
 ####################
 ### Detail Views ### for popups
@@ -401,6 +458,7 @@ class RegResidAreaB500DetailView(DetailView):
 
         return context
 
+
 class RegPrioAreaFloodProtDetailView(DetailView):
     template_name = 'stemp_abw/layer_popup.html'
     model = models.RegPrioAreaFloodProt
@@ -415,6 +473,62 @@ class RegPrioAreaFloodProtDetailView(DetailView):
         return context
 
 
+class RegPrioAreaCultDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegPrioAreaCult
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegPrioAreaCultDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegForestDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegForest
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegForestDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegFFHProtAreaDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegFFHProtArea
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegFFHProtAreaDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegResidAreaB1000DetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegResidAreaB1000
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegResidAreaB1000DetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
 class GenWECDetailView(DetailView):
     template_name = 'stemp_abw/layer_popup.html'
     model = models.GenWEC
@@ -422,6 +536,48 @@ class GenWECDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(GenWECDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegPrioAreaWECDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegPrioAreaWEC
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegPrioAreaWECDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegDeadZoneHardDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegDeadZoneHard
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegDeadZoneHardDetailView, self).get_context_data(**kwargs)
+
+        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+        context['bla'] = 'Some Planungsregion content'
+
+        return context
+
+
+class RegDeadZoneSoftDetailView(DetailView):
+    template_name = 'stemp_abw/layer_popup.html'
+    model = models.RegDeadZoneSoft
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegDeadZoneSoftDetailView, self).get_context_data(**kwargs)
 
         # TODO: Load more context from LAYER_METADATA, e.g. label & description
         context['bla'] = 'Some Planungsregion content'

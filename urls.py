@@ -24,7 +24,14 @@ urlpatterns = [
     path('popup/reg_resid_area/<int:pk>/', views.RegResidAreaDetailView.as_view(), name='reg_resid_area-detail'),
     path('popup/reg_resid_area_b500/<int:pk>/', views.RegResidAreaB500DetailView.as_view(), name='reg_resid_area_b500-detail'),
     path('popup/reg_prio_area_flood_prot/<int:pk>/', views.RegPrioAreaFloodProtDetailView.as_view(), name='reg_prio_area_flood_prot-detail'),
+    path('popup/reg_prio_area_cult/<int:pk>/', views.RegPrioAreaCultDetailView.as_view(), name='reg_prio_area_cult-detail'),
+    path('popup/reg_forest/<int:pk>/', views.RegForestDetailView.as_view(), name='reg_forest-detail'),
+    path('popup/reg_ffh_prot_area/<int:pk>/', views.RegFFHProtAreaDetailView.as_view(), name='reg_ffh_prot_area-detail'),
+    path('popup/reg_resid_area_b1000/<int:pk>/', views.RegResidAreaB1000DetailView.as_view(), name='reg_resid_area_b1000-detail'),
+    path('popup/reg_prio_area_wec/<int:pk>/', views.RegPrioAreaWECDetailView.as_view(), name='reg_prio_area_wec-detail'),
     path('popup/gen_wec/<int:pk>/', views.GenWECDetailView.as_view(), name='gen_wec-detail'),
+    path('popup/reg_dead_zone_hard/<int:pk>/', views.RegDeadZoneHardDetailView.as_view(), name='reg_dead_zone_hard-detail'),
+    path('popup/reg_dead_zone_soft/<int:pk>/', views.RegDeadZoneSoftDetailView.as_view(), name='reg_dead_zone_soft-detail'),
 
     # JSON Data
     re_path(r'^subst.data/', views.SubstData.as_view(), name='subst.data'),
@@ -40,7 +47,14 @@ urlpatterns = [
     re_path(r'^reg_resid_area.data/', views.RegResidAreaData.as_view(), name='reg_resid_area.data'),
     re_path(r'^reg_resid_area_b500.data/', views.RegResidAreaB500Data.as_view(), name='reg_resid_area_b500.data'),
     re_path(r'^reg_prio_area_flood_prot.data/', views.RegPrioAreaFloodProtData.as_view(), name='reg_prio_area_flood_prot.data'),
+    re_path(r'^reg_prio_area_cult.data/', views.RegPrioAreaCultData.as_view(), name='reg_prio_area_cult.data'),
+    re_path(r'^reg_forest.data/', views.RegForestData.as_view(), name='reg_forest.data'),
+    re_path(r'^reg_ffh_prot_area.data/', views.RegFFHProtAreaData.as_view(), name='reg_ffh_prot_area.data'),
+    re_path(r'^reg_resid_area_b1000.data/', views.RegResidAreaB1000Data.as_view(), name='reg_resid_area_b1000.data'),
+    re_path(r'^reg_prio_area_wec.data/', views.RegPrioAreaWECData.as_view(), name='reg_prio_area_wec.data'),
     re_path(r'^gen_wec.data/', views.GenWECData.as_view(), name='gen_wec.data'),
+    re_path(r'^reg_dead_zone_hard.data/', views.RegDeadZoneHardData.as_view(), name='reg_dead_zone_hard.data'),
+    re_path(r'^reg_dead_zone_soft.data/', views.RegDeadZoneSoftData.as_view(), name='reg_dead_zone_soft.data'),
 
     # Old stuff
     path('subst/<int:pk>/', views.HvMvSubstDetailView.as_view(), name='subst-detail'),
