@@ -1,6 +1,14 @@
 <div class="grid-x">
   <div class="cell small-1">
-    <i class ="icon ion-stop icon--small" style="color: {{widget.attrs.color}};"></i>
+    {% if widget.attrs.geom_type == 'poly' %}
+      <i class ="icon ion-stop icon--small" style="color: {{widget.attrs.color}};"></i>
+    {% elif widget.attrs.geom_type == 'point' %}
+      <i class ="icon ion-record icon--small" style="color: {{widget.attrs.color}};"></i>
+    {% elif widget.attrs.geom_type == 'line' %}
+      <i class ="icon ion-minus icon--small" style="color: {{widget.attrs.color}};"></i>
+    {% else %}
+      <i class ="icon ion-stop icon--small" style="color: {{widget.attrs.color}};"></i>
+    {% endif %}
   </div>
   <div class="cell small-9">
     {{widget.attrs.label}}

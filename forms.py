@@ -23,6 +23,7 @@ class LayerSelectForm(forms.Form):
                     attrs={'id': 'cb_{}'.format(name),
                            'label': data['label'],
                            'color': data['style']['fillColor'],
+                           'geom_type': data['geom_type'],
                            'name': name,
                            'checked': True if data['show'] == '1' else False
                            }
