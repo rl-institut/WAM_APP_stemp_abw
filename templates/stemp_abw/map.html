@@ -615,6 +615,9 @@
                 var layer = e.target;
                 layer.setStyle(style);
 
+                // center map to clicked entity
+                layer._map.panTo(e.latlng, {duration: 1});
+
                 // load popup content from detail view
                 var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id)
                 $.get( url, function( data ) {
