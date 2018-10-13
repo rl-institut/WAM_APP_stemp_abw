@@ -673,6 +673,9 @@
 
             var layers = {};
 
+            layer_count = {{ layer_list|length }};
+            var layer_ctr = 0;
+
             // Load GeoJsons via Ajax and add layers to map
             {% for layer, show in layer_list.items %}
                 // Build data URL
@@ -687,6 +690,12 @@
                                                      }
                                              );
                     layers["{{ layer }}"] = layer;
+                    layer_ctr++;
+
+                    console.log('Layer ' +
+                                String(layer_ctr) + '/' + String(layer_count) +
+                                ' loaded: ' + '{{ layer }}');
+
                     {% if show == '1' %}
                         map.addLayer(layer);
                     {% endif %}
