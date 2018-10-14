@@ -45,7 +45,7 @@ oep_models.Base.metadata.bind = engine
 # engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
 # sqlahelper.add_engine(engine, 'reiners_db')
 
-# TODO: Verify configs after import
+# TODO: Verify configs after import / make failsafe!
 LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                         'stemp_abw',
                                         'settings',
@@ -55,3 +55,8 @@ LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
                                               'settings',
                                               'layer_default_styles.cfg'))
+
+LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
+                                'stemp_abw',
+                                'settings',
+                                'labels.cfg'))

@@ -4,7 +4,7 @@ import json
 from collections import OrderedDict
 #import sqlahelper
 from stemp_abw.forms import LayerSelectForm
-from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES
+from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, LABELS
 from stemp_abw.simulation import Simulation
 from stemp_abw import results
 
@@ -71,9 +71,19 @@ class MapView(TemplateView):
         layer_style.update(LAYER_DEFAULT_STYLES)
         self.layer_data['layer_style'] = json.dumps(layer_style)
 
-        # create layer groups for layer menu
+        # === update layer and layer group labels using labels config ===
+        # 1) layer group titles
+        layer_metadata = OrderedDict((LABELS['layer_groups'][g]['title'], ls)
+                                     for (g, ls) in LAYER_METADATA.items())
+        # 2) layer titles and texts
+        for g, ls in layer_metadata.items():
+            for l, v in ls.items():
+                layer_metadata[g][l]['title'] = LABELS['layers'][l]['title']
+                layer_metadata[g][l]['text'] = LABELS['layers'][l]['text']
+
+        # create layer groups for layer menu using layers config
         layer_groups = OrderedDict()
-        for grp, layers in LAYER_METADATA.items():
+        for grp, layers in layer_metadata.items():
             layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 

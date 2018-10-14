@@ -21,7 +21,7 @@ class LayerSelectForm(forms.Form):
                 coerce = lambda x: bool(int(x)),
                 widget=LayerSelectWidget(
                     attrs={'id': 'cb_{}'.format(name),
-                           'label': data['label'],
+                           'title': data['title'],
                            'color': data['style']['fillColor'],
                            'geom_type': data['geom_type'],
                            'name': name,
