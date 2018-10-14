@@ -22,6 +22,7 @@ class LayerSelectForm(forms.Form):
                 widget=LayerSelectWidget(
                     attrs={'id': 'cb_{}'.format(name),
                            'title': data['title'],
+                           'text': data['text'],
                            'color': data['style']['fillColor'],
                            'geom_type': data['geom_type'],
                            'name': name,
