@@ -60,8 +60,6 @@ class MapView(TemplateView):
 
     def prepare_layer_data(self):
 
-        #groups = {grp:{lay for lay in lays.keys()} for grp, lays in LAYER_METADATA.items()}
-
         # create layer list for AJAX data urls
         layer_list = {l:d['show'] for ls in LAYER_METADATA.values() for l, d in ls.items()}
         self.layer_data['layer_list'] = layer_list
@@ -71,33 +69,21 @@ class MapView(TemplateView):
         layer_style.update(LAYER_DEFAULT_STYLES)
         self.layer_data['layer_style'] = json.dumps(layer_style)
 
-        # === update layer and layer group labels using labels config ===
-        # 1) layer group titles and texts
+        # update layer and layer group labels using labels config
         layer_metadata = OrderedDict()
-        for (g, ls) in LAYER_METADATA.items():
-            # layer_metadata[g]['layers'] = ls
-            layer_metadata.update({g: {'layers': ls}})
-            layer_metadata[g]['title'] = LABELS['layer_groups'][g]['title']
-            layer_metadata[g]['text'] = LABELS['layer_groups'][g]['text']
-        # layer_metadata = OrderedDict((LABELS['layer_groups'][g]['title'], ls)
-        #                              for (g, ls) in LAYER_METADATA.items())
-
-        # 2) layer titles and texts
-        for g, ls in layer_metadata.items():
-            for l, v in ls['layers'].items():
-                layer_metadata[g]['layers'][l]['title'] = LABELS['layers'][l]['title']
-                layer_metadata[g]['layers'][l]['text'] = LABELS['layers'][l]['text']
+        for (grp, layers) in LAYER_METADATA.items():
+            layer_metadata.update({grp: {'layers': layers}})
+            layer_metadata[grp]['title'] = LABELS['layer_groups'][grp]['title']
+            layer_metadata[grp]['text'] = LABELS['layer_groups'][grp]['text']
+            for l, v in layers.items():
+                layer_metadata[grp]['layers'][l]['title'] = LABELS['layers'][l]['title']
+                layer_metadata[grp]['layers'][l]['text'] = LABELS['layers'][l]['text']
 
         # create layer groups for layer menu using layers config
-        layer_groups = OrderedDict()
+        layer_groups = layer_metadata.copy()
         for grp, layers in layer_metadata.items():
-            layer_groups.update(
-                {grp: {'layers': [LayerSelectForm(layers=layers['layers'])],
-                       'title': layer_metadata[grp]['title'],
-                       'text': layer_metadata[grp]['text']
-                       }
-                 }
-            )
+            layer_groups[grp]['layers'] = [LayerSelectForm(layers=layers['layers'])]
+
             #layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 
