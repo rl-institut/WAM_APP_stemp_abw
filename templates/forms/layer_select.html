@@ -1,11 +1,11 @@
 {% csrf_token %}
-{% for group, layers in layer_groups.items %}
+{% for group, data in layer_groups.items %}
   <fieldset>
     <legend>
-      <small style="color: #000; border-bottom: 1px solid #000;">{{ group }}</small>
-
+      <small style="color: #000; border-bottom: 1px solid #000;">{{ data.title }}</small>
+      <i class ="icon ion-help-circled icon--small" title="{{data.text}}"></i>
     </legend>
-    {% for layer in layers %}
+    {% for layer in data.layers %}
       {{ layer }}
     {% endfor %}
 

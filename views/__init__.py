@@ -72,19 +72,33 @@ class MapView(TemplateView):
         self.layer_data['layer_style'] = json.dumps(layer_style)
 
         # === update layer and layer group labels using labels config ===
-        # 1) layer group titles
-        layer_metadata = OrderedDict((LABELS['layer_groups'][g]['title'], ls)
-                                     for (g, ls) in LAYER_METADATA.items())
+        # 1) layer group titles and texts
+        layer_metadata = OrderedDict()
+        for (g, ls) in LAYER_METADATA.items():
+            # layer_metadata[g]['layers'] = ls
+            layer_metadata.update({g: {'layers': ls}})
+            layer_metadata[g]['title'] = LABELS['layer_groups'][g]['title']
+            layer_metadata[g]['text'] = LABELS['layer_groups'][g]['text']
+        # layer_metadata = OrderedDict((LABELS['layer_groups'][g]['title'], ls)
+        #                              for (g, ls) in LAYER_METADATA.items())
+
         # 2) layer titles and texts
         for g, ls in layer_metadata.items():
-            for l, v in ls.items():
-                layer_metadata[g][l]['title'] = LABELS['layers'][l]['title']
-                layer_metadata[g][l]['text'] = LABELS['layers'][l]['text']
+            for l, v in ls['layers'].items():
+                layer_metadata[g]['layers'][l]['title'] = LABELS['layers'][l]['title']
+                layer_metadata[g]['layers'][l]['text'] = LABELS['layers'][l]['text']
 
         # create layer groups for layer menu using layers config
         layer_groups = OrderedDict()
         for grp, layers in layer_metadata.items():
-            layer_groups[grp] = [LayerSelectForm(layers=layers)]
+            layer_groups.update(
+                {grp: {'layers': [LayerSelectForm(layers=layers['layers'])],
+                       'title': layer_metadata[grp]['title'],
+                       'text': layer_metadata[grp]['text']
+                       }
+                 }
+            )
+            #layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 
 
