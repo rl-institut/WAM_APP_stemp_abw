@@ -18,20 +18,16 @@ class IndexView(TemplateView):
 
 class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
-    layer_data = {}
-    label_data = {}
 
     def __init__(self):
         super(MapView, self).__init__()
-        self.prepare_layer_data()
-        self.prepare_label_data()
 
         self.simulation = Simulation()
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context.update(self.layer_data)
-        context.update(self.label_data)
+        context.update(self.prepare_layer_data())
+        context.update(self.prepare_label_data())
 
         # TODO: Temp stuff for WS
         labels1 = OrderedDict((
@@ -62,14 +58,16 @@ class MapView(TemplateView):
 
     def prepare_layer_data(self):
 
+        layer_data = {}
+
         # create layer list for AJAX data urls
         layer_list = {l:d['show'] for ls in LAYER_METADATA.values() for l, d in ls.items()}
-        self.layer_data['layer_list'] = layer_list
+        layer_data['layer_list'] = layer_list
 
         # create JSON for layer styles
         layer_style = {l:a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
         layer_style.update(LAYER_DEFAULT_STYLES)
-        self.layer_data['layer_style'] = json.dumps(layer_style)
+        layer_data['layer_style'] = json.dumps(layer_style)
 
         # update layer and layer group labels using labels config
         layer_metadata = OrderedDict()
@@ -85,13 +83,13 @@ class MapView(TemplateView):
         layer_groups = layer_metadata.copy()
         for grp, layers in layer_metadata.items():
             layer_groups[grp]['layers'] = [LayerSelectForm(layers=layers['layers'])]
+        layer_data['layer_groups'] = layer_groups
 
-        self.layer_data['layer_groups'] = layer_groups
+        return layer_data
 
     def prepare_label_data(self):
-        self.label_data['panels'] = LABELS['panels']
+        return {'panels':  LABELS['panels']}
+
 
 class SourcesView(TemplateView):
     template_name = 'stemp_abw/sources.html'
-
-
