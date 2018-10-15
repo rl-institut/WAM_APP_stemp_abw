@@ -97,13 +97,17 @@
 
                         <!-- First panel content -->
                         <div class="tabs-panel is-active" id="panel-scenarios">
+                          <p class="lead">
+                            {{ panels.scenarios.title }}
+                            <i class ="icon ion-help-circled" title="{{ panels.scenarios.text }}"></i>
+                          </p>
                         <div class="grid-x">
                           <div class="cell">
                           <form>
                             <fieldset>
-                              <legend>Szenario auswählen 
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </legend>
+                              <!--<legend>Szenario auswählen -->
+                                <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="Informationen zum Inhalt"></i>-->
+                              <!--</legend>-->
                                 <label class="control control--radio">Status Quo
                                   <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
                                   <div class="control__indicator"></div>
@@ -130,6 +134,10 @@
 
                         <!-- Second panel content -->
                         <div class="tabs-panel" id="panel-energy">
+                          <p class="lead">
+                            {{ panels.esys.title }}
+                            <i class ="icon ion-help-circled" title="{{ panels.esys.text }}"></i>
+                          </p>
                           <ul class="accordion" data-accordion>
 
                             <li class="accordion-item accordion-item--no-border is-active" data-accordion-item>
@@ -332,8 +340,9 @@
                         <!-- Third panel content -->
                         <div class="tabs-panel" id="panel-areas">
                           <!--<span class="lead">Flächen</span><i class ="icon ion-help-circled"></i>-->
-                          <p class="lead">Flächen
-                            <i class ="icon ion-help-circled" title="Informationen zum Inhalt"></i>
+                          <p class="lead">
+                            {{ panels.areas.title }}
+                            <i class ="icon ion-help-circled" title="{{ panels.areas.text }}"></i>
                           </p>
 
                           <form>
@@ -359,6 +368,10 @@
 
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
+                          <p class="lead">
+                            {{ panels.results.title }}
+                            <i class ="icon ion-help-circled" title="{{ panels.results.text }}"></i>
+                          </p>
                           <div class="grid-x">
                             <!-- Button expand -->
                             <!--

@@ -1361,7 +1361,7 @@ footer {
   display: inline-block; }
 
 #panel-energy {
-  padding-top: 3rem;
+  padding-top: 1rem;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0; }
@@ -1373,6 +1373,10 @@ footer {
     width: 100%; }
   #panel-energy .accordion-item--no-border {
     border-top: none; }
+
+#panel-energy p {
+  padding-left: 1rem;
+}
 
 .tabs-panel .accordion-item .accordion-title {
   padding-top: 1.5rem;

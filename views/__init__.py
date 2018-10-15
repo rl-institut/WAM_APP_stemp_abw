@@ -19,17 +19,19 @@ class IndexView(TemplateView):
 class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
     layer_data = {}
+    label_data = {}
 
     def __init__(self):
         super(MapView, self).__init__()
         self.prepare_layer_data()
+        self.prepare_label_data()
 
         self.simulation = Simulation()
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
         context.update(self.layer_data)
-        # context['label'] = self.label
+        context.update(self.label_data)
 
         # TODO: Temp stuff for WS
         labels1 = OrderedDict((
@@ -84,9 +86,10 @@ class MapView(TemplateView):
         for grp, layers in layer_metadata.items():
             layer_groups[grp]['layers'] = [LayerSelectForm(layers=layers['layers'])]
 
-            #layer_groups[grp] = [LayerSelectForm(layers=layers)]
         self.layer_data['layer_groups'] = layer_groups
 
+    def prepare_label_data(self):
+        self.label_data['panels'] = LABELS['panels']
 
 class SourcesView(TemplateView):
     template_name = 'stemp_abw/sources.html'
