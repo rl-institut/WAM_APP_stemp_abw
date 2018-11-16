@@ -19,6 +19,18 @@
   </head>
   <body>
 
+    <!-- START LOADER -->
+    <!-- Is displayed only when a layer is loading -->
+    <div class="grid-x loader-wrapper loader-wrapper--hide">
+      <div class="cell">
+        <div class="loader"></div>
+        <div class="loader__text">
+          <p>Fläche wird geladen</p>
+        </div>
+      </div>
+    </div>
+    <!-- END LOADER -->
+
     <div class="l-bg-color-w u-vh--100">
 
         <!-- TOP NAVIGATION START -->
@@ -102,12 +114,21 @@
                             <i class ="icon ion-help-circled" title="{{ panels.scenarios.text }}"></i>
                           </p>
                         <div class="grid-x">
+                          <div class="cell" id="scenarios-wrap">
+                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                              <li class="tabs-title is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
+                              <li class="tabs-title"><a href="#scenario-panel2">User-Szenarien</a></li>
+                            </ul>
+
+                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                              <div class="tabs-panel is-active" id="scenario-panel1">
+                                <div class="grid-x grid-margin-x">
                           <div class="cell">
                           <form>
                             <fieldset>
-                              <!--<legend>Szenario auswählen -->
-                                <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="Informationen zum Inhalt"></i>-->
-                              <!--</legend>-->
+                                        <legend>Vorgegebene Szenarien auswählen
+                                          <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                        </legend>
                                 <label class="control control--radio">Status Quo
                                   <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
                                   <div class="control__indicator"></div>
@@ -122,6 +143,27 @@
                                 </label>
                             </fieldset>
                           </form>
+                          </div>
+                        </div>
+                              </div>
+                              <div class="tabs-panel" id="scenario-panel2">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell">
+                                    <form>
+                                      <fieldset>
+                                        <legend>Nutzer-Szenarien ansehen oder erstellen
+                                          <i class ="icon ion-information-circled icon--small" title="Nutzer-Szenarien ansehen oder erstellen"></i>
+                                        </legend>
+                                        <label class="control control--radio">Neues Szenario
+                                          <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
+                                          <div class="control__indicator"></div>
+                                        </label>
+                                      </fieldset>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div class="panel-desc panel-desc--highlighted">
@@ -545,9 +587,9 @@
               </button>
 
               <!-- MAP -->
-              <!--<div id="mapid">-->
-                {% leaflet_map "mapid" callback="window.main_map_init" %}
-              <!--</div>-->
+              <div id="mapid" data-open="resultsModal">
+                {% leaflet_map "mapid" callback="window.main_map_init" creatediv=False %}
+              </div>
 
             </div>
           </main>
@@ -589,11 +631,12 @@
               </ul>
             </div>
 
+            <!-- START SIMULATION BTNS -->
             <!--<div class="cell" id="simulation-save-btn" style="display: none;">-->
             <div class="cell" id="simulation-save-btn">
               <div class="grid-x">
                 <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
-                  <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="btnAction(this.id)" value="simulate">
+                  <button type="submit" class="btn btn-cta" id="simulation-btn" data-open="saveSimulation" onclick="btnAction(this.id)" value="simulate"> <!-- Move data-open="saveSimulation" to other btn -->
                     Simulation
                     <i class ="icon ion-android-arrow-dropright-circle icon--small"></i>
                   </button>
@@ -605,10 +648,32 @@
               </div>
             </div>
 
+            <div class="tiny reveal" id="saveSimulation" data-reveal>
+              <p>Geben Sie dem Szenario einen Namen</p>
+              <label>
+                <input type="text" placeholder="Szenarioname">
+              </label>
+              <button type="submit" class="btn btn-apply btn-apply--secondary" disabled>
+                Speichern
+              </button>
+              <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- END SIMULATION BTNS -->
+
           </div>
         </footer>
 
       </div>
+
+        <!-- START POP-UP RESULTS -->
+    <div class="large reveal" id="resultsModal" data-reveal>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- END POP-UP RESULTS -->
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
     <script type="text/javascript">

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -14576,7 +14576,7 @@ var _foundationSites2 = _interopRequireDefault(_foundationSites);
 
 __webpack_require__(39);
 
-__webpack_require__(41);
+__webpack_require__(40);
 
 __webpack_require__(42);
 
@@ -14584,7 +14584,13 @@ __webpack_require__(43);
 
 __webpack_require__(44);
 
-__webpack_require__(40);
+__webpack_require__(45);
+
+__webpack_require__(46);
+
+__webpack_require__(47);
+
+__webpack_require__(41);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22413,6 +22419,34 @@ var footerHidden = false;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// after simulation is done
+// replace click event with appropriate event
+(0, _jquery2.default)('#simulation-btn').on('click', function () {
+
+  // if user has already results panel open
+  if (!(0, _jquery2.default)('#tabsResults').is('.is-active')) {
+    (0, _jquery2.default)('#tabsResults > a').addClass('results-highlighted');
+  }
+});
+
+// when user clicks on results tab
+(0, _jquery2.default)('#tabsResults').on('click', function () {
+  (0, _jquery2.default)('#tabsResults > a').removeClass('results-highlighted');
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // Ion.RangeSlider
@@ -24885,7 +24919,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42703,7 +42737,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42731,7 +42765,26 @@ if (document.getElementById('mapid')) {
 }*/
 
 /***/ }),
-/* 43 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// change event
+(0, _jquery2.default)('#exampleSwitch').on('click', function () {
+  (0, _jquery2.default)('.loader-wrapper').toggleClass("loader-wrapper--hide");
+  (0, _jquery2.default)('body').toggleClass("body--nopointer");
+});
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42822,7 +42875,7 @@ if ((0, _jquery2.default)(window).width() >= 640) {
 }
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42850,7 +42903,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 45 */
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(20);
