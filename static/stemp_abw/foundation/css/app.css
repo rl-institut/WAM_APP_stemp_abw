@@ -984,7 +984,7 @@ button[type="button"].tabs-btn--right {
 /* --------------------------------------- tabs in offcanvas ---------------------------------------- */
 #scenarios-wrap,
 #results-wrap {
-  margin-top: 1.55rem; }
+  margin-top: 0.1rem; }
   #scenarios-wrap .tabs,
   #results-wrap .tabs {
     background-color: transparent; }
