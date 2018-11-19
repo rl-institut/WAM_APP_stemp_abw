@@ -25,7 +25,8 @@
       <div class="cell">
         <div class="loader"></div>
         <div class="loader__text">
-          <p>Fläche wird geladen</p>
+          <p>Daten werden geladen</p>
+          <p id="loader-detail-text"></p>
         </div>
       </div>
     </div>
@@ -679,6 +680,9 @@
     <script type="text/javascript">
 
         function main_map_init (map, options) {
+            // show load spinner
+            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+            $('.body').toggleClass("body--nopointer");
 
             // Parse layer style JSON
             var style_data = JSON.parse('{{ layer_style | escapejs }}');
@@ -757,6 +761,8 @@
             layer_count = {{ layer_list|length }};
             var layer_ctr = 0;
 
+            var loader_text = $('#loader-detail-text');
+
             // Load GeoJsons via Ajax and add layers to map
             {% for layer, show in layer_list.items %}
                 // Build data URL
@@ -773,13 +779,28 @@
                     layers["{{ layer }}"] = layer;
                     layer_ctr++;
 
-                    console.log('Layer ' +
-                                String(layer_ctr) + '/' + String(layer_count) +
-                                ' loaded: ' + '{{ layer }}');
+                    //console.log('Layer ' +
+                    //            String(layer_ctr) + '/' + String(layer_count) +
+                    //            ' loaded: ' + '{{ layer }}');
 
                     {% if show == '1' %}
                         map.addLayer(layer);
                     {% endif %}
+
+                    loader_text.text('Layer ' +
+                                     String(layer_ctr) + '/' + String(layer_count) +
+                                     ': ' + '{{ layer }}');
+
+                    // hide load spinner
+                    if (layer_ctr == layer_count) {
+                        loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                        //loader_text[0].style.font-weight = 'bold';
+                        loader_text.text('Fertig!');
+                        setTimeout(function(){
+                            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+                            $('.body').toggleClass("body--nopointer");
+                        }, 1000);
+                    };
                 });
             {% endfor %}
 

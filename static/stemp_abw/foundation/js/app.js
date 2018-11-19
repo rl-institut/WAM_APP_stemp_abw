@@ -42777,12 +42777,6 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// change event
-(0, _jquery2.default)('#exampleSwitch').on('click', function () {
-  (0, _jquery2.default)('.loader-wrapper').toggleClass("loader-wrapper--hide");
-  (0, _jquery2.default)('body').toggleClass("body--nopointer");
-});
-
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
