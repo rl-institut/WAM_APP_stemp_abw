@@ -51,7 +51,8 @@ class MapView(TemplateView):
     def post(self, request):
         print(request.POST)
 
-        results = self.simulation.run()
+        #results = self.simulation.run()
+        results = None
         print(results)
 
         return HttpResponse(json.dumps({'hallo': 'test'}))
