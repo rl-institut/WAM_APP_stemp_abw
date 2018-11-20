@@ -687,7 +687,7 @@
         function main_map_init (map, options) {
             // show load spinner
             $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-            $('.body').toggleClass("body--nopointer");
+            $('body').toggleClass("body--nopointer");
 
             // Parse layer style JSON
             var style_data = JSON.parse('{{ layer_style | escapejs }}');
@@ -803,7 +803,7 @@
                         loader_text.text('Fertig!');
                         setTimeout(function(){
                             $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                            $('.body').toggleClass("body--nopointer");
+                            $('body').toggleClass("body--nopointer");
                         }, 1000);
                     };
                 });
