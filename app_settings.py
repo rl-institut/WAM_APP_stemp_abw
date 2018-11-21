@@ -21,7 +21,7 @@ DB_URL = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}'
 
 def build_db_url(db_name):
     conf = settings.config['DATABASES'][db_name]
-    conf['ENGINE'] = 'postgresql+oedialect'
+    #conf['ENGINE'] = 'postgresql+oedialect'
     db_url = DB_URL + '/{NAME}' if 'NAME' in conf else DB_URL
     return db_url.format(**conf)
 
@@ -31,15 +31,15 @@ def build_db_url(db_name):
 # sqlahelper.add_engine(engine, 'oemof_results')
 # oemof_results.Base.metadata.bind = engine
 
-# Add local DB:
-engine = sqlalchemy.create_engine(build_db_url('DEFAULT'))
-sqlahelper.add_engine(engine, 'lokal')
-oep_models.Base.metadata.bind = engine
+# # Add local DB:
+# engine = sqlalchemy.create_engine(build_db_url('DEFAULT'))
+# sqlahelper.add_engine(engine, 'lokal')
+# oep_models.Base.metadata.bind = engine
 
-# Add OEP:
-engine = sqlalchemy.create_engine(build_db_url('OEP'))
-sqlahelper.add_engine(engine, 'oep')
-oep_models.Base.metadata.bind = engine
+# # Add OEP:
+# engine = sqlalchemy.create_engine(build_db_url('OEP'))
+# sqlahelper.add_engine(engine, 'oep')
+# oep_models.Base.metadata.bind = engine
 
 # # Add reiner:
 # engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
