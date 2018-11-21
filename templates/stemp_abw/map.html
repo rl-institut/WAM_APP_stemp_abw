@@ -807,6 +807,9 @@
                                 $('body').toggleClass("body--nopointer");
                             }, 1000);
                         };
+                    },
+                    error: function(page) {
+                        console.log('Fehler beim Laden der Daten!');
                     }
                 });
 
