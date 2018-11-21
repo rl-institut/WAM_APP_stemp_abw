@@ -774,39 +774,42 @@
                 var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
 
                 // Load data via Ajax
-                $.getJSON(dataurl, function (data) {
-                    // Add GeoJSON layer
-                    var layer = new L.geoJson(data, {style: getLayerStyle("{{ layer }}"),
-                                                     onEachFeature: onEachFeature("{{ layer }}"),
-                                                     pointToLayer: pointToLayer
-                                                     }
-                                             );
-                    layers["{{ layer }}"] = layer;
-                    layer_ctr++;
+                $.ajax({
+                    url: dataurl,
+                    dataType: 'json',
+                    async: true,
+                    success: function(json){
+                        // Add GeoJSON layer
+                        var layer = new L.geoJson(json, {style: getLayerStyle("{{ layer }}"),
+                                                         onEachFeature: onEachFeature("{{ layer }}"),
+                                                         pointToLayer: pointToLayer
+                                                         }
+                                                 );
+                        layers["{{ layer }}"] = layer;
+                        layer_ctr++;
 
-                    //console.log('Layer ' +
-                    //            String(layer_ctr) + '/' + String(layer_count) +
-                    //            ' loaded: ' + '{{ layer }}');
+                        {% if show == '1' %}
+                            map.addLayer(layer);
+                        {% endif %}
 
-                    {% if show == '1' %}
-                        map.addLayer(layer);
-                    {% endif %}
+                        // Show progress
+                        loader_text.text('Layer ' +
+                                         String(layer_ctr) + '/' + String(layer_count) +
+                                         ': ' + '{{ layer }}');
 
-                    loader_text.text('Layer ' +
-                                     String(layer_ctr) + '/' + String(layer_count) +
-                                     ': ' + '{{ layer }}');
-
-                    // hide load spinner
-                    if (layer_ctr == layer_count) {
-                        loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        //loader_text[0].style.font-weight = 'bold';
-                        loader_text.text('Fertig!');
-                        setTimeout(function(){
-                            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                            $('body').toggleClass("body--nopointer");
-                        }, 1000);
-                    };
+                        // hide load spinner
+                        if (layer_ctr == layer_count) {
+                            loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                            //loader_text[0].style.font-weight = 'bold';
+                            loader_text.text('Fertig!');
+                            setTimeout(function(){
+                                $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+                                $('body').toggleClass("body--nopointer");
+                            }, 1000);
+                        };
+                    }
                 });
+
             {% endfor %}
 
             // Move zoom control
