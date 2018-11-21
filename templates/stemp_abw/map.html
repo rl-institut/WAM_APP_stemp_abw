@@ -810,6 +810,8 @@
                     },
                     error: function(page) {
                         console.log('Fehler beim Laden der Daten!');
+                        loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                        loader_text.text('Fehler beim Laden der Daten!');
                     }
                 });
 
