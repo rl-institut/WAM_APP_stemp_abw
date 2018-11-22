@@ -55,8 +55,8 @@ class RegNatureProtAreaDetailView(MasterDetailView):
     model = models.RegNatureProtArea
 
 
-class RegLandscProtAreaDetailView(MasterDetailView):
-    model = models.RegLandscProtArea
+class RegLandscProtAreaPartsDetailView(MasterDetailView):
+    model = models.RegLandscProtAreaParts
 
 
 class RegResidAreaDetailView(MasterDetailView):

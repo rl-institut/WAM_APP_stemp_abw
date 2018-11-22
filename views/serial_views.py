@@ -79,8 +79,8 @@ class RegNatureProtAreaData(GeoJSONLayerView):
     precision = 5
 
 
-class RegLandscProtAreaData(GeoJSONLayerView):
-    model = models.RegLandscProtArea
+class RegLandscProtAreaPartsData(GeoJSONLayerView):
+    model = models.RegLandscProtAreaParts
     properties = ['popup_content', 'name']
     srid = 4326
     geometry_field = 'geom'
