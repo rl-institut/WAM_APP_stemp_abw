@@ -133,8 +133,8 @@ class RegNatureProtArea(LayerModel):
     info_konta = models.CharField(max_length=254, null=True)
 
 
-class RegLandscProtArea(LayerModel):
-    name = 'reg_landsc_prot_area'
+class RegLandscProtAreaParts(LayerModel):
+    name = 'reg_landsc_prot_area_parts'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
     gebietsnam = models.CharField(max_length=254, null=True)
     gebietsnum = models.CharField(max_length=254, null=True)
