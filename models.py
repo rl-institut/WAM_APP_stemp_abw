@@ -89,13 +89,6 @@ class RegMun(LayerModel):
     nuts = models.CharField(max_length=254, null=True)
 
 
-class RegPrioAreaRes(LayerModel):
-    name = 'reg_prio_area_res'
-    geom = geomodels.MultiPolygonField(srid=3035, null=True)
-    bezeich_2 = models.CharField(max_length=254, null=True)
-    bezeich_3 = models.CharField(max_length=254, null=True)
-
-
 class RegWaterProtArea(LayerModel):
     name = 'reg_water_prot_area'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
@@ -207,3 +200,81 @@ class RegDeadZoneSoft(LayerModel):
     name = 'reg_dead_zone_soft'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
+
+# TODO: New layers below -> insert data into DB!
+
+class RegFFHProtAreaB(LayerModel):
+    name = 'reg_ffh_prot_area_b'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegLandscProtArea(LayerModel):
+    name = 'reg_landsc_prot_area'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegNaturePark(LayerModel):
+    name = 'reg_nature_park'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegBioReserve(LayerModel):
+    name = 'reg_bio_reserve'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegRetentAreaEcosys(LayerModel):
+    name = 'reg_retent_area_ecosys'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegPrioAreaNature(LayerModel):
+    name = 'reg_prio_area_nature'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegNatureMonum(LayerModel):
+    name = 'reg_nature_monum'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegPrioAreaWater(LayerModel):
+    name = 'reg_prio_area_water'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegPrioAreaAgri(LayerModel):
+    name = 'reg_prio_area_agri'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegRetentAreaAgri(LayerModel):
+    name = 'reg_retent_area_agri'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegPrioAreaRes(LayerModel):
+    name = 'reg_prio_area_res'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
+    bezeich_3 = models.CharField(max_length=254, null=True)
+
+
+class RegInfrasRailway(LayerModel):
+    name = 'reg_infras_railway'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegInfrasRoad(LayerModel):
+    name = 'reg_infras_road'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegInfrasHvgrid(LayerModel):
+    name = 'reg_infras_hvgrid'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+class RegInfrasAviation(LayerModel):
+    name = 'reg_infras_aviation'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)

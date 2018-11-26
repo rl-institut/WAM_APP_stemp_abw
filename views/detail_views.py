@@ -102,3 +102,62 @@ class RegDeadZoneHardDetailView(MasterDetailView):
 class RegDeadZoneSoftDetailView(MasterDetailView):
     model = models.RegDeadZoneSoft
 
+
+class RegFFHProtAreaBDetailView(MasterDetailView):
+    model = models.RegFFHProtAreaB
+
+
+class RegLandscProtAreaDetailView(MasterDetailView):
+    model = models.RegLandscProtArea
+
+
+class RegNatureParkDetailView(MasterDetailView):
+    model = models.RegNaturePark
+
+
+class RegBioReserveDetailView(MasterDetailView):
+    model = models.RegBioReserve
+
+
+class RegRetentAreaEcosysDetailView(MasterDetailView):
+    model = models.RegRetentAreaEcosys
+
+
+class RegPrioAreaNatureDetailView(MasterDetailView):
+    model = models.RegPrioAreaNature
+
+
+class RegNatureMonumDetailView(MasterDetailView):
+    model = models.RegNatureMonum
+
+
+class RegPrioAreaWaterDetailView(MasterDetailView):
+    model = models.RegPrioAreaWater
+
+
+class RegPrioAreaAgriDetailView(MasterDetailView):
+    model = models.RegPrioAreaAgri
+
+
+class RegRetentAreaAgriDetailView(MasterDetailView):
+    model = models.RegRetentAreaAgri
+
+
+class RegPrioAreaResDetailView(MasterDetailView):
+    model = models.RegPrioAreaRes
+
+
+class RegInfrasRailwayDetailView(MasterDetailView):
+    model = models.RegInfrasRailway
+
+
+class RegInfrasRoadDetailView(MasterDetailView):
+    model = models.RegInfrasRoad
+
+
+class RegInfrasHvgridDetailView(MasterDetailView):
+    model = models.RegInfrasHvgrid
+
+
+class RegInfrasAviationDetailView(MasterDetailView):
+    model = models.RegInfrasAviation
