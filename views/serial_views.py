@@ -39,14 +39,6 @@ class RegMunData(GeoJSONLayerView):
     precision = 5
 
 
-class RegPrioAreaResData(GeoJSONLayerView):
-    model = models.RegPrioAreaRes
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
 class RegWaterProtAreaData(GeoJSONLayerView):
     model = models.RegWaterProtArea
     properties = ['popup_content', 'name']
@@ -173,3 +165,124 @@ class RegDeadZoneSoftData(GeoJSONLayerView):
     srid = 4326
     geometry_field = 'geom'
     precision = 5
+
+
+class RegFFHProtAreaBData(GeoJSONLayerView):
+    model = models.RegFFHProtAreaB
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegLandscProtAreaData(GeoJSONLayerView):
+    model = models.RegLandscProtArea
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegNatureParkData(GeoJSONLayerView):
+    model = models.RegNaturePark
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegBioReserveData(GeoJSONLayerView):
+    model = models.RegBioReserve
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegRetentAreaEcosysData(GeoJSONLayerView):
+    model = models.RegRetentAreaEcosys
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegPrioAreaNatureData(GeoJSONLayerView):
+    model = models.RegPrioAreaNature
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegNatureMonumData(GeoJSONLayerView):
+    model = models.RegNatureMonum
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegPrioAreaWaterData(GeoJSONLayerView):
+    model = models.RegPrioAreaWater
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegPrioAreaAgriData(GeoJSONLayerView):
+    model = models.RegPrioAreaAgri
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegRetentAreaAgriData(GeoJSONLayerView):
+    model = models.RegRetentAreaAgri
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegPrioAreaResData(GeoJSONLayerView):
+    model = models.RegPrioAreaRes
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegInfrasRailwayData(GeoJSONLayerView):
+    model = models.RegInfrasRailway
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegInfrasRoadData(GeoJSONLayerView):
+    model = models.RegInfrasRoad
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegInfrasHvgridData(GeoJSONLayerView):
+    model = models.RegInfrasHvgrid
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class RegInfrasAviationData(GeoJSONLayerView):
+    model = models.RegInfrasAviation
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
