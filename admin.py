@@ -1,7 +1,7 @@
-from django.contrib import admin
+from wam.admin import wam_admin_site
 from leaflet.admin import LeafletGeoAdmin
 
 from .models import HvMvSubst
 
 
-admin.site.register(HvMvSubst, LeafletGeoAdmin)
+wam_admin_site.register(HvMvSubst, LeafletGeoAdmin)
