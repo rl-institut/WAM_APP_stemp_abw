@@ -56,6 +56,7 @@
                   <a class="anchor-text--light" href="#">Menu</a>
                   <ul class="menu vertical">
                     <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
+                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>
                     <li><a class="anchor-text--light" href="#">Kontakt</a></li>
                     <li><a class="anchor-text--light" href="#">Impressum</a></li>
                     <li><a class="anchor-text--light" href="#">Datenschutz</a></li>
@@ -79,22 +80,22 @@
                 <div class="grid-x">
                   <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
                     <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
-                      <li class="tabs-title is-active" id="tabsScenarios">
-                        <a href="#panel-scenarios" aria-selected="true">
+                      <li class="tabs-title is-active" id="tabsRegion">
+                        <a href="#panel-region" aria-selected="true">
+                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
+                          <h2 class="tabs-title__head">Region</h2>
+                        </a>
+                      </li>
+                      <li class="tabs-title" id="tabsScenarios">
+                        <a href="#panel-scenarios">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                          <h2 class="tabs-title__head">Szenario</h2>
+                          <h2 class="tabs-title__head">Szenarien</h2>
                         </a>
                       </li>
                       <li class="tabs-title" id="tabsEnergy">
                         <a href="#panel-energy">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
                           <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsAreas">
-                        <a href="#panel-areas">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                          <h2 class="tabs-title__head">Flächen</h2>
                         </a>
                       </li>
                       <li class="tabs-results tabs-title" id="tabsResults">
@@ -108,78 +109,155 @@
                   <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
                     <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-                        <!-- First panel content -->
-                        <div class="tabs-panel is-active" id="panel-scenarios">
-                          <p class="lead">
-                            {{ panels.scenarios.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.scenarios.text }}"></i>
-                          </p>
+                     <!-- First panel content -->
+                      <div class="tabs-panel is-active" id="panel-region">
+                        <p class="lead">
+                          {{ panels.areas.title }}
+                          <i class ="icon ion-help-circled" title="{{ panels.areas.text }}"></i>
+                        </p>
                         <div class="grid-x">
-                          <div class="cell" id="scenarios-wrap">
+                          <div class="cell" id="region-wrap">
                             <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
-                              <li class="tabs-title"><a href="#scenario-panel2">User-Szenarien</a></li>
+                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#region-panel1" aria-selected="true">Regionale Informationen</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#region-panel2">Flächen</a></li>
                             </ul>
 
                             <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                              <div class="tabs-panel is-active" id="scenario-panel1">
-                                <div class="grid-x grid-margin-x">
-                          <div class="cell">
-                          <form>
-                            <fieldset>
-                                        <legend>Vorgegebene Szenarien auswählen
-                                          <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                                        </legend>
-                                <label class="control control--radio">Status Quo
-                                  <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                                <label class="control control--radio">Deutsches Klimaschutzziel
-                                  <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                                <label class="control control--radio">100% erneuerbar
-                                  <input type="radio" name="scenario" value="100" id="scenario100"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                            </fieldset>
-                          </form>
-                          </div>
-                        </div>
-                              </div>
-                              <div class="tabs-panel" id="scenario-panel2">
+                              <div class="tabs-panel is-active" id="region-panel1">
                                 <div class="grid-x grid-margin-x">
                                   <div class="cell">
-                                    <form>
-                                      <fieldset>
-                                        <legend>Nutzer-Szenarien ansehen oder erstellen
-                                          <i class ="icon ion-information-circled icon--small" title="Nutzer-Szenarien ansehen oder erstellen"></i>
-                                        </legend>
-                                        <label class="control control--radio">Neues Szenario
-                                          <input type="radio" name="scenario" value="new" id="scenarioNew" required checked="checked"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                        <label class="control control--radio">Reiners Superlösung
-                                          <input type="radio" name="scenario" value="reiner" id="scenarioReiner"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                      </fieldset>
+                                    <p>Layers</p>
                                     </form>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="region-panel2">
+
+                                <form>
+                                  <div class="grid-x">
+                                    <div class="cell small-11">
+                                      <p>Alle Ebenen anzeigen</p>
+                                    </div>
+                                    <div class="cell small-1">
+                                      <div class="switch tiny master">
+                                        <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
+                                        <label class="switch-paddle" for="cb_all_layers">
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+
+                                <form>
+                                  {% include "forms/layer_select.html" %}
+                                </form>
+
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell">
+
+                                    <span class="has-tip--no-border">
+                                      Layer Beispiel
+                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
+                                    </span>
+
+                                    <div class="reveal" id="modal-example" data-reveal>
+                                      <div class="grid-x">
+                                        <div class="cell">
+                                          <h2 style="font-size: 1.2rem">Layer Beispiel</h2>
+                                        </div>
+                                        <div class="cell">
+                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
+                                          <a href="quellen.html#source-2" class="anchor-text">> Quelle ansehen</a>
+                                        </div>
+                                      </div>
+                                      <button class="close-button" data-close aria-label="Schließen" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <div class="switch">
+                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
+                                      <label class="switch-paddle" for="exampleSwitch">
+                                        <span class="show-for-sr">Download Kittens</span>
+                                      </label>
+                                    </div>
+
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="panel-desc panel-desc--highlighted">
+                      </div>
+
+                        <!-- Second panel content -->
+                        <div class="tabs-panel" id="panel-scenarios">
+                          <p class="lead">
+                            {{ panels.scenarios.title }}
+                            <i class ="icon ion-help-circled" title="{{ panels.scenarios.text }}"></i>
+                          </p>
+                          <div class="grid-x">
+                            <div class="cell" id="scenarios-wrap">
+                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                                <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
+                                <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
+                              </ul>
+
+                              <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                                <div class="tabs-panel is-active" id="scenario-panel1">
+                                  <div class="grid-x grid-margin-x">
+                                    <div class="cell">
+                                      <form>
+                                        <fieldset>
+                                            <legend>Vorgegebenes Szenario auswählen
+                                              <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                            </legend>
+                                            <label class="control control--radio">Status Quo
+                                              <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                            <label class="control control--radio">Deutsches Klimaschutzziel
+                                              <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                            <label class="control control--radio">100% erneuerbar
+                                              <input type="radio" name="scenario" value="100" id="scenario100"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                        </fieldset>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="tabs-panel" id="scenario-panel2">
+                                  <div class="grid-x grid-margin-x">
+                                    <div class="cell">
+                                      <form class="select-menu">
+                                        <label>
+                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                          <select>
+                                            <option value="husker">Husker</option>
+                                            <option value="starbuck">Starbuck</option>
+                                            <option value="hotdog">Hot Dog</option>
+                                            <option value="apollo">Apollo</option>
+                                          </select>
+                                        </label>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="panel-desc">
                             <p id="scenarioPanelText">
                             <span class="panel-desc__header">Status Quo</span>
                             <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
                             </p>
-                          </div>
                         </div>
+                      </div>
 
-                        <!-- Second panel content -->
+                      <!-- Third panel content -->
                         <div class="tabs-panel" id="panel-energy">
                           <p class="lead">
                             {{ panels.esys.title }}
@@ -384,35 +462,6 @@
                           <!--</div>-->
                         </div>
 
-                        <!-- Third panel content -->
-                        <div class="tabs-panel" id="panel-areas">
-                          <!--<span class="lead">Flächen</span><i class ="icon ion-help-circled"></i>-->
-                          <p class="lead">
-                            {{ panels.areas.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.areas.text }}"></i>
-                          </p>
-
-                          <form>
-                            <div class="grid-x">
-                              <div class="cell small-11">
-                                <p>Alle Ebenen anzeigen</p>
-                              </div>
-                              <div class="cell small-1">
-                                <div class="switch tiny master">
-                                  <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
-                                  <label class="switch-paddle" for="cb_all_layers">
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-
-                          <form>
-                            {% include "forms/layer_select.html" %}
-                          </form>
-
-                        </div>
-
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
                           <p class="lead">
@@ -420,24 +469,26 @@
                             <i class ="icon ion-help-circled" title="{{ panels.results.text }}"></i>
                           </p>
                           <div class="grid-x">
-                            <!-- Button expand -->
-                            <!--
-                            <div class="cell u-text--center">
-                            <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                                Mehr Ergebnisse
-                                <i class ="icon ion-android-add icon--small"></i>
-                              </button>
-                            </div>
-                            -->
 
-                          <div class="cell" id="results-wrap">
+                          <div class="cell u-text--center">
+                            <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                              Mehr Ergebnisse
+                              <i class ="icon ion-android-add icon--small"></i>
+                            </button>
+                          </div>
+
+                          <div class="cell" id="results-collapsed">
+                            <p>Some results</p>
+                          </div>
+
+                          <div class="cell" id="results-wrap" class="results-display-none">
                             <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title is-active"><a href="#results-panel1" aria-selected="true">Erneuerbare Energien</a></li>
-                              <li class="tabs-title"><a href="#results-panel2">Konventionelle Kraftwerke</a></li>
-                              <li class="tabs-title"><a href="#results-panel3">Wärmebedarf</a></li>
-                              <li class="tabs-title"><a href="#results-panel4">Strombedarf</a></li>
-                              <li class="tabs-title"><a href="#results-panel5">eMobilität</a></li>
-                              <li class="tabs-title"><a href="#results-panel6">Flexibilitäten</a></li>
+                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">Erneuerbare Energien</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">Konventionelle Kraftwerke</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#results-panel3">Wärmebedarf</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#results-panel4">Strombedarf</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#results-panel5">eMobilität</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#results-panel6">Flexibilitäten</a></li>
                               <!--<li class="tabs-title"><a href="#results-panel7">eMobilität</a></li>-->
                               <!--<li class="tabs-title"><a href="#results-panel8">Demand-Side-Management</a></li>-->
                               <!--<li class="tabs-title"><a href="#results-panel9">Batterie</a></li>-->

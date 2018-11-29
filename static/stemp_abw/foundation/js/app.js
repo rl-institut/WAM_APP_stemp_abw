@@ -42813,48 +42813,45 @@ if ((0, _jquery2.default)(window).width() >= 640) {
     }
   };
 
-  /*
-  // expands or reduces off-canvas width
-    $('#btnExpand').on('click', function() {
+  var reducePanel = function reducePanel() {
+    toggleWidth('35rem', '30rem');
+    expanded = false;
+    (0, _jquery2.default)('#results-collapsed').removeClass('results-display-none');
+    (0, _jquery2.default)('#results-wrap').addClass('results-display-none');
+  };
+
+  // collapse or expand results panel
+  (0, _jquery2.default)('#btnExpand').on('click', function () {
 
     if (!expanded) {
       toggleWidth('100%', '100%');
       expanded = true;
+      (0, _jquery2.default)('#results-collapsed').addClass('results-display-none');
+      (0, _jquery2.default)('#results-wrap').removeClass('results-display-none');
     } else {
       toggleWidth('35rem', '30rem');
       expanded = false;
+      (0, _jquery2.default)('#results-collapsed').removeClass('results-display-none');
+      (0, _jquery2.default)('#results-wrap').addClass('results-display-none');
     }
 
     // changes btn text
     btnExpandText(expanded);
-    })
-    */
-
-  (0, _jquery2.default)('#tabsScenarios').on('click', function () {
-    toggleWidth('35rem', '30rem');
   });
 
-  (0, _jquery2.default)('#tabsEnergy').on('click', function () {
-    toggleWidth('35rem', '30rem');
-  });
+  // always reduce results panel after click on offcanvas tab
+  (0, _jquery2.default)('#tabsRegion').on('click', reducePanel);
+  (0, _jquery2.default)('#tabsScenarios').on('click', reducePanel);
+  (0, _jquery2.default)('#tabsEnergy').on('click', reducePanel);
+  (0, _jquery2.default)('#tabsResults').on('click', reducePanel);
 
-  (0, _jquery2.default)('#tabsAreas').on('click', function () {
-    toggleWidth('35rem', '30rem');
-  });
-
-  (0, _jquery2.default)('#tabsResults').on('click', function () {
-    toggleWidth('100%', '100%');
-  });
-
-  /*
     // makes sure that clicking on another nav tab will reduce the off-canvas width if the off-canvas is expanded to 100%
-    $("[data-tabs]#offcanvas-tabs").on('change.zf.tabs', function(){
+  (0, _jquery2.default)("[data-tabs]#offcanvas-tabs").on('change.zf.tabs', function () {
     toggleWidth('35rem', '30rem');
 
     // changes btn text if needed
     btnExpandText(false);
   });
-    */
 
   // some elements were not disappearing completely when clicking on expanded off-canvas close button (x)
   // makes sure all elements fade away
