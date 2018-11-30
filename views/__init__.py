@@ -10,6 +10,9 @@ from stemp_abw import results
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
+from utils.widgets import InfoButton
+import os
+import stemp_abw
 
 
 class IndexView(TemplateView):
@@ -45,6 +48,17 @@ class MapView(TemplateView):
                           for t, c in labels2.items()]
         context['visualizations1'] = visualizations1
         context['visualizations2'] = visualizations2
+
+        # Trial: new info button
+        # TODO: Move
+        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'settings', 'text', 'test.md')
+        f = open(file, 'r', encoding='utf-8')
+        context['info'] = InfoButton(text=f.read(),
+                                     tooltip='tooltip hahaha',
+                                     is_markdown=True,
+                                     ionicon_type='ion-help-circled',
+                                     ionicon_size='medium')
+        f.close()
 
         return context
 
