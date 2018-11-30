@@ -5,6 +5,7 @@ from djgeojson.views import GeoJSONLayerView
 
 from . import views
 import inspect
+from meta.views import SourcesView
 
 app_name = 'stemp_abw'
 
@@ -12,7 +13,9 @@ app_name = 'stemp_abw'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
-    path('sources/', views.SourcesView.as_view(), name='sources')
+    path('sources/', views.SourcesView.as_view(), name='sources'),
+    # TODO: Integrate new sources, split page to base and rest first!
+    path('sources2/', SourcesView.as_view(app_name='stemp_abw')) # new page
     ]
 
 # search detail views classes and append to URLs
