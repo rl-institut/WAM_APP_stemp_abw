@@ -4,10 +4,12 @@ from .widgets import LayerSelectWidget
 
 
 class LayerSelectForm(forms.Form):
+    """Form for layer group"""
 
     def __init__(self, layers=None, *args, **kwargs):
         if layers is None:
-            raise ValueError('No layers given. Please add some in app_settings.')
+            raise ValueError('No layers given. '
+                             'Please add some in layers.cfg.')
         super(LayerSelectForm, self).__init__(*args, **kwargs)
 
         for name, data in layers.items():
