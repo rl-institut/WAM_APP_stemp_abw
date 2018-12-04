@@ -33,7 +33,7 @@ class RpAbwBoundData(GeoJSONLayerView):
 
 class RegMunData(GeoJSONLayerView):
     model = models.RegMun
-    properties = ['popup_content', 'name']
+    properties = ['popup_content', 'name', 'gen', 'pop_km2']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
