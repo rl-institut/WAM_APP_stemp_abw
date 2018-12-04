@@ -33,6 +33,7 @@ class RpAbwBoundDetailView(MasterDetailView):
 
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
+    template_name = 'stemp_abw/layer_popup_reg_mun.html'
 
 
 class RegPrioAreaResDetailView(MasterDetailView):
