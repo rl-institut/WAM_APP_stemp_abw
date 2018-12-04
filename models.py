@@ -87,6 +87,7 @@ class RegMun(LayerModel):
     gen = models.CharField(max_length=254, null=True)
     bez = models.CharField(max_length=254, null=True)
     nuts = models.CharField(max_length=254, null=True)
+    pop_km2 = models.FloatField(null=True)
 
 
 class RegWaterProtArea(LayerModel):
