@@ -685,24 +685,24 @@
     <script type="text/javascript">
 
         // Colorizing schema
-        function getColor(d) {
+        function getColorByDensity(d) {
         return d > 400 ? '#800026' :
-               d > 300  ? '#BD0026' :
-               d > 200  ? '#E31A1C' :
-               d > 100  ? '#FC4E2A' :
-               d > 50   ? '#FD8D3C' :
-               d > 20   ? '#FEB24C' :
-               d > 10   ? '#FED976' :
+               d > 300 ? '#BD0026' :
+               d > 200 ? '#E31A1C' :
+               d > 100 ? '#FC4E2A' :
+               d > 50  ? '#FD8D3C' :
+               d > 20  ? '#FEB24C' :
+               d > 10  ? '#FED976' :
                           '#FFEDA0';
         }
 
         // Colorize features by population density
         function density_style(feature) {
             return {
-                fillColor: getColor(feature.properties.pop_km2),
+                fillColor: getColorByDensity(feature.properties.pop_km2),
                 weight: 2,
                 opacity: 1,
-                color: 'white',
+                color: 'gray',
                 dashArray: '3',
                 fillOpacity: 0.7
             };
@@ -749,8 +749,7 @@
             // feature: normal style
             function setNormalFeatureStyle(layerName, feature) {
               return function _(e) {
-                // var style = getLayerStyle(layerName);
-                style = (layerName === 'reg_mun') ? density_style(feature) : getLayerStyle(layerName);
+                var style = (layerName === 'reg_mun') ? density_style(feature) : getLayerStyle(layerName);
                 var layer = e.target;
                 layer.setStyle(style);
             };
