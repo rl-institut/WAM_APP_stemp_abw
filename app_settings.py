@@ -60,3 +60,8 @@ LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'settings',
                                 'labels.cfg'))
+
+LAYER_CHOROPLETH = ConfigObj(os.path.join(settings.BASE_DIR,
+                                'stemp_abw',
+                                'settings',
+                                'layer_choropleth.cfg'))
