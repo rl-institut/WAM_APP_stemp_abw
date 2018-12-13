@@ -4,7 +4,7 @@ import json
 from collections import OrderedDict
 #import sqlahelper
 from stemp_abw.forms import LayerSelectForm
-from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, LABELS
+from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, LABELS, LAYER_CHOROPLETH
 from stemp_abw.simulation import Simulation
 from stemp_abw import results
 
@@ -69,6 +69,10 @@ class MapView(TemplateView):
         layer_style = {l:a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
         layer_style.update(LAYER_DEFAULT_STYLES)
         layer_data['layer_style'] = json.dumps(layer_style)
+
+        # create JSON for choropleth layers
+        choropleth_data = {layer: values['choropleth'] for layer, values in LAYER_CHOROPLETH.items()}
+        layer_data['choropleth_data'] = json.dumps(choropleth_data)
 
         # update layer and layer group labels using labels config
         layer_metadata = OrderedDict()
