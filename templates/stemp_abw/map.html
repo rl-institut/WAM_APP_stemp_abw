@@ -562,6 +562,22 @@
     <!-- END POP-UP RESULTS -->
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
+
+    <!-- LOAD SLIDER DATA -->
+    <script type="text/javascript">
+        {% for group, data in comp_groups.items %}
+            {% for comp in data.comps %}
+                $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                    min: {{comp.field.widget.attrs.min}},
+                    max: {{comp.field.widget.attrs.max}},
+                    from: {{comp.field.widget.attrs.from}},
+                    step: {{comp.field.widget.attrs.step}},
+                    grid: true
+                });
+            {% endfor %}
+        {% endfor %}
+    </script>
+
     <script type="text/javascript">
 
         function main_map_init (map, options) {
