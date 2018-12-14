@@ -56,6 +56,11 @@ LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'settings',
                                               'layer_default_styles.cfg'))
 
+ESYS_COMPONENTS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                                  'stemp_abw',
+                                                  'settings',
+                                                  'esys_components.cfg'))
+
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'settings',
