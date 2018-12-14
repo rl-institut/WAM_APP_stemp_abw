@@ -3,8 +3,10 @@ from django.shortcuts import HttpResponse
 import json
 from collections import OrderedDict
 #import sqlahelper
-from stemp_abw.forms import LayerSelectForm
-from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, LABELS
+from stemp_abw.forms import LayerGroupForm, ComponentGroupForm
+
+from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, \
+    ESYS_COMPONENTS_METADATA, LABELS
 from stemp_abw.simulation import Simulation
 from stemp_abw import results
 
@@ -30,6 +32,7 @@ class MapView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
         context.update(self.prepare_layer_data())
+        context.update(self.prepare_component_data())
         context.update(self.prepare_label_data())
 
         # TODO: Temp stuff for WS
@@ -97,10 +100,32 @@ class MapView(TemplateView):
         # create layer groups for layer menu using layers config
         layer_groups = layer_metadata.copy()
         for grp, layers in layer_metadata.items():
-            layer_groups[grp]['layers'] = [LayerSelectForm(layers=layers['layers'])]
+            layer_groups[grp]['layers'] = [LayerGroupForm(layers=layers['layers'])]
         layer_data['layer_groups'] = layer_groups
 
         return layer_data
+
+    def prepare_component_data(self):
+
+        component_data = {}
+        # update component and component group labels using labels config
+        comp_metadata = OrderedDict()
+        for (grp, comps) in ESYS_COMPONENTS_METADATA.items():
+            comp_metadata.update({grp: {'comps': comps}})
+            comp_metadata[grp]['title'] = LABELS['component_groups'][grp]['title']
+            comp_metadata[grp]['text'] = LABELS['component_groups'][grp]['text']
+            for l, v in comps.items():
+                comp_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
+                comp_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+
+        # create component groups for esys menu using components config
+        comp_groups = comp_metadata.copy()
+        for grp, comps in comp_groups.items():
+            comp_groups[grp]['comps'] = ComponentGroupForm(components=comps['comps'])
+        component_data['comp_groups'] = comp_groups
+
+        return component_data
+
 
     def prepare_label_data(self):
         return {'panels':  LABELS['panels']}
