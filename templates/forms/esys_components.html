@@ -1,21 +1,23 @@
-{% csrf_token %}
-<ul class="accordion" data-accordion>
-  {% for group, data in comp_groups.items %}
+<form>
+  {% csrf_token %}
+  <ul class="accordion" data-accordion>
+    {% for group, data in comp_groups.items %}
 
-    <li class="accordion-item {% if data.title == 'Stromerzeugung' %}accordion-item--no-border is-active{% endif %}" data-accordion-item>
-      <a href="#" class="accordion-title accordion-title--100">{{ data.title }}</a>
+      <li class="accordion-item {% if data.title == 'Stromerzeugung' %}accordion-item--no-border is-active{% endif %}" data-accordion-item>
+        <a href="#" class="accordion-title accordion-title--100">{{ data.title }}</a>
 
-      {% if data.comps.fields|length > 0 %}
-        {% for comp in data.comps %}
-          <div class="accordion-content parameter" data-tab-content>
-            {{ comp }}
-          </div>
-        {% endfor %}
-      {% else %}
-         <div class="accordion-content" data-tab-content>
-         </div>
-      {% endif %}
+        {% if data.comps.fields|length > 0 %}
+          {% for comp in data.comps %}
+            <div class="accordion-content parameter" data-tab-content>
+              {{ comp }}
+            </div>
+          {% endfor %}
+        {% else %}
+           <div class="accordion-content" data-tab-content>
+           </div>
+        {% endif %}
 
-    </li>
-  {% endfor %}
-</ul>
+      </li>
+    {% endfor %}
+  </ul>
+</form>
