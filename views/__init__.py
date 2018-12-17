@@ -74,7 +74,8 @@ class MapView(TemplateView):
 
         return HttpResponse(json.dumps({'hallo': 'test'}))
 
-    def prepare_layer_data(self):
+    @staticmethod
+    def prepare_layer_data():
 
         layer_data = {}
 
@@ -105,7 +106,8 @@ class MapView(TemplateView):
 
         return layer_data
 
-    def prepare_component_data(self):
+    @staticmethod
+    def prepare_component_data():
 
         component_data = {}
         # update component and component group labels using labels config
@@ -126,8 +128,8 @@ class MapView(TemplateView):
 
         return component_data
 
-
-    def prepare_label_data(self):
+    @staticmethod
+    def prepare_label_data():
         return {'panels':  LABELS['panels']}
 
 
