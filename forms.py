@@ -47,7 +47,7 @@ class ComponentGroupForm(forms.Form):
                     widget=SliderWidget(
                         attrs={'id': 'sl_{}'.format(name),
                                'name': name,
-                               'title': data['title'],
+                               'title': f'{data["title"]} [{data["unit"]}]',
                                'text': data['text'],
                                'min': data['min'],
                                'max': data['max'],
@@ -71,3 +71,6 @@ class ComponentGroupForm(forms.Form):
                     ),
                     required = False
                 )
+            else:
+                raise TypeError(
+                    f'Unknown value for "type" in esys_components.cfg at {name}')
