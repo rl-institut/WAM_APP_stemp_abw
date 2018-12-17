@@ -1,6 +1,6 @@
 from django import forms
 
-from .widgets import LayerSelectWidget, SliderWidget
+from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 
 class LayerGroupForm(forms.Form):
     """Form for layer group"""
@@ -54,6 +54,20 @@ class ComponentGroupForm(forms.Form):
                                'from': data['value'],
                                'step': data['step'],
                                #'name': name
+                               }
+                    ),
+                    #initial = 1,
+                    required = False
+                )
+            elif data['type'] == 'bool':
+                self.fields[name] = forms.TypedChoiceField(
+                    label='sw_{}'.format(name),
+                    coerce=lambda x: bool(int(x)),
+                    widget=SwitchWidget(
+                        attrs={'id': 'cb_{}'.format(name),
+                               'title': data['title'],
+                               'text': data['text'],
+                               'checked': True if data['value'] == '1' else False
                                }
                     ),
                     #initial = 1,

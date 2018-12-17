@@ -567,13 +567,15 @@
     <script type="text/javascript">
         {% for group, data in comp_groups.items %}
             {% for comp in data.comps %}
-                $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                    min: {{comp.field.widget.attrs.min}},
-                    max: {{comp.field.widget.attrs.max}},
-                    from: {{comp.field.widget.attrs.from}},
-                    step: {{comp.field.widget.attrs.step}},
-                    grid: true
-                });
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true
+                    });
+                {% endif %}
             {% endfor %}
         {% endfor %}
     </script>

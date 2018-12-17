@@ -10,7 +10,7 @@ class LayerSelectWidget(CheckboxInput):
 
 class SliderWidget(NumberInput):
     input_type = 'number'
-    template_name = 'widgets/esys_component.html'
+    template_name = 'widgets/esys_component_slider.html'
 
     # def __init__(self, step_size=1, attrs=None):
     #     super(SliderWidget, self).__init__(attrs)
@@ -27,3 +27,6 @@ class SliderWidget(NumberInput):
     #     context['widget']['step_size'] = self.step_size
     #     #context['widget']['precision'] = self.__get_precision()
     #     return context
+
+class SwitchWidget(NumberInput):
+    template_name = 'widgets/esys_component_switch.html'
