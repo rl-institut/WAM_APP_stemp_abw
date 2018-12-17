@@ -2,6 +2,7 @@ from django import forms
 
 from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 
+
 class LayerGroupForm(forms.Form):
     """Form for layer group"""
 

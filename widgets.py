@@ -9,7 +9,6 @@ class LayerSelectWidget(CheckboxInput):
 
 
 class SliderWidget(NumberInput):
-    input_type = 'number'
     template_name = 'widgets/slider.html'
 
     # def __init__(self, step_size=1, attrs=None):
