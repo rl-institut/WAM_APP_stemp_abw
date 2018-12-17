@@ -6,9 +6,11 @@
       <a href="#" class="accordion-title accordion-title--100">{{ data.title }}</a>
 
       {% if data.comps.fields|length > 0 %}
-          {% for comp in data.comps %}
+        {% for comp in data.comps %}
+          <div class="accordion-content parameter" data-tab-content>
             {{ comp }}
-          {% endfor %}
+          </div>
+        {% endfor %}
       {% else %}
          <div class="accordion-content" data-tab-content>
          </div>

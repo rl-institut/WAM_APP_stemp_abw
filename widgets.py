@@ -2,7 +2,7 @@ from django.forms.widgets import CheckboxInput, NumberInput
 
 
 class LayerSelectWidget(CheckboxInput):
-    template_name = 'widgets/layer_select.html'
+    template_name = 'widgets/layer_switch.html'
 
     # def __init__(self, attrs=None):
     #     super(CheckboxInput, self).__init__(attrs)
@@ -10,7 +10,7 @@ class LayerSelectWidget(CheckboxInput):
 
 class SliderWidget(NumberInput):
     input_type = 'number'
-    template_name = 'widgets/esys_component_slider.html'
+    template_name = 'widgets/slider.html'
 
     # def __init__(self, step_size=1, attrs=None):
     #     super(SliderWidget, self).__init__(attrs)
@@ -29,4 +29,4 @@ class SliderWidget(NumberInput):
     #     return context
 
 class SwitchWidget(NumberInput):
-    template_name = 'widgets/esys_component_switch.html'
+    template_name = 'widgets/switch.html'
