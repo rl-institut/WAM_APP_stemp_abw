@@ -682,7 +682,57 @@
     <!-- END POP-UP RESULTS -->
 
     <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script type="text/javascript">
+
+      // Get color and step values as associated array.
+      function getColorValues(schema, min, max, step, reverse) {
+
+        // Get the sum of steps by step (intervall)
+        var sumSteps = parseInt((max - min) / step);
+        // Get the cleaned intervall step by steps
+        // This is necessary, if "((max - min) / step)" produced rest
+        var stepInterval = (max - min) / sumSteps;
+
+        // Get colors for schema
+        colors = chroma.scale(schema).colors(sumSteps + 1);
+
+        // Reverse coloes if reverse value is true
+        if (reverse == true) {
+            colors = colors.reverse();
+        }
+
+        // Combine colors and values of step intervals
+        var colorsAndStepValues = {};
+        colorsAndStepValues['values'] = [];
+        var base = min;
+        for(var i = 0; i < colors.length; i++) {
+            colorsAndStepValues['values'][parseInt(base)] = colors[i];
+            base = parseFloat(base) + stepInterval;
+        }
+
+        // Add max value.
+        colorsAndStepValues['max'] = max;
+
+        return colorsAndStepValues;
+      }
+
+      // Get explicit color value from associated array and
+      // supplied averaged value
+      function getColor(colorVals, averagedValue) {
+        for (var stepVal in colorVals['values']) {
+          if (averagedValue <= stepVal) {
+            return colorVals['values'][stepVal];
+          }
+          // Check if averageValue exceeds max value.
+          if (averagedValue > colorVals['max']) {
+            return colorVals['values'][colorVals['max']];
+          }
+        }
+        // No color found - return '#FFFFFF'.
+        // This should never happen.
+        return '#FFFFFF';
+      }
 
         function main_map_init (map, options) {
             // show load spinner
@@ -691,6 +741,9 @@
 
             // Parse layer style JSON
             var style_data = JSON.parse('{{ layer_style | escapejs }}');
+
+            // Parse choropleth data JSON
+            var choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
 
             // popup style
             var customPopup =
@@ -723,9 +776,9 @@
             }
 
             // feature: normal style
-            function setNormalFeatureStyle(layerName) {
+            function setNormalFeatureStyle(layerName, feature) {
               return function _(e) {
-                var style = getLayerStyle(layerName);
+                var style = getLayerStyle(layerName, feature);
                 var layer = e.target;
                 layer.setStyle(style);
             };
@@ -740,7 +793,7 @@
                     layer.on({
                         click: execClickAction,
                         mouseover: setHighlightFeatureStyle,
-                        mouseout: setNormalFeatureStyle(layerName)
+                        mouseout: setNormalFeatureStyle(layerName, feature)
                     });
             };
             }
@@ -752,12 +805,28 @@
 
             // Create layer style from style_data json obj
             // if it does not exist, use default
-            function getLayerStyle (name) {
-                if (style_data.hasOwnProperty(name)) {
-                    return style_data[name];
-                } else {
-                    return style_data._default;
-                }
+            function getLayerStyle(name, feature) {
+              if (style_data.hasOwnProperty(name) && choropleth_data.hasOwnProperty(name)) {
+                var column = choropleth_data[name].data_column;
+                var schema = choropleth_data[name].color_schema;
+                var min = choropleth_data[name].min;
+                var max = choropleth_data[name].max;
+                var step = choropleth_data[name].step;
+                var reverse = choropleth_data[name].false;
+                var colorVals = getColorValues(schema, min, max, step, reverse);
+                var fill = getColor(colorVals, feature.properties[column]);
+                return {
+                  fillColor: fill,
+                  weight: style_data[name].weight,
+                  opacity: style_data[name].opacity,
+                  color: style_data[name].color,
+                  fillOpacity: style_data[name].fillOpacity,
+                };
+              } else if (style_data.hasOwnProperty(name)) {
+                return style_data[name];
+              } else {
+                return style_data._default;
+              }
 
             }
 
@@ -780,7 +849,9 @@
                     async: true,
                     success: function(json){
                         // Add GeoJSON layer
-                        var layer = new L.geoJson(json, {style: getLayerStyle("{{ layer }}"),
+                        var layer = new L.geoJson(json, {style: function(feature) {
+                                                            return getLayerStyle("{{ layer }}", feature);
+                                                         },
                                                          onEachFeature: onEachFeature("{{ layer }}"),
                                                          pointToLayer: pointToLayer
                                                          }
