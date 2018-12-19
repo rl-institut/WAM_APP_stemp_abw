@@ -101,7 +101,7 @@ class MapView(TemplateView):
         # create layer groups for layer menu using layers config
         layer_groups = layer_metadata.copy()
         for grp, layers in layer_metadata.items():
-            layer_groups[grp]['layers'] = [LayerGroupForm(layers=layers['layers'])]
+            layer_groups[grp]['layers'] = LayerGroupForm(layers=layers['layers'])
         layer_data['layer_groups'] = layer_groups
 
         return layer_data
