@@ -161,12 +161,21 @@
 
                                     <div class="reveal" id="modal-example" data-reveal>
                                       <div class="grid-x">
-                                        <div class="cell">
-                                          <h2 style="font-size: 1.2rem">Layer Beispiel</h2>
+                                        <div class="cell reveal__header">
+                                          <h2>Layer Beispiel</h2>
                                         </div>
-                                        <div class="cell">
+                                        <div class="cell reveal__img">
+                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
+                                          <figcaption>Figure caption</figcaption>
+                                        </div>
+                                        <div class="cell reveal__text">
                                           <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                          <a href="quellen.html#source-2" class="anchor-text">> Quelle ansehen</a>
+                                        </div>
+                                        <div class="cell reveal__source">
+                                          <a href="quellen.html#source-2" class="anchor-text linkto-source" id="linkto-source-2">
+                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
+                                            Quelle ansehen
+                                          </a>
                                         </div>
                                       </div>
                                       <button class="close-button" data-close aria-label="Schließen" type="button">
@@ -381,7 +390,6 @@
             </div>
 
             <!-- START SIMULATION BTNS -->
-            <!--<div class="cell" id="simulation-save-btn" style="display: none;">-->
             <div class="cell" id="simulation-save-btn">
               <div class="grid-x">
                 <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
