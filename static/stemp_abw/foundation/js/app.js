@@ -22188,7 +22188,7 @@ window.$ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation(); // forces offcanvas to open when page has loaded
 
-if (window.location.href.indexOf("map.html") > -1) {
+if (window.location.href.indexOf("app/") > -1) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvas').foundation('open');
 }
 
