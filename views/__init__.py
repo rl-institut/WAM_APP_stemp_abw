@@ -7,7 +7,7 @@ from stemp_abw.forms import LayerGroupForm, ComponentGroupForm
 
 from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, \
     ESYS_COMPONENTS_METADATA, LABELS
-from stemp_abw.simulation import Simulation
+from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw import results
 
 from stemp_abw.views.detail_views import *
@@ -27,7 +27,7 @@ class MapView(TemplateView):
     def __init__(self):
         super(MapView, self).__init__()
 
-        self.simulation = Simulation()
+        #self.simulation = Simulation()
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
@@ -68,9 +68,11 @@ class MapView(TemplateView):
     def post(self, request):
         print(request.POST)
 
+        result, param_result = simulate_energysystem()
         #results = self.simulation.run()
-        results = None
-        print(results)
+        #results = None
+        print('Results:', results)
+        print('Params:', param_result)
 
         return HttpResponse(json.dumps({'hallo': 'test'}))
 
