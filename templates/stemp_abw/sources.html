@@ -1,54 +1,7 @@
-{% load static %}
+{% extends "stemp_abw/base.html" %}
 
-<!doctype html>
-<html class="no-js" lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stemp Tool Anhalt - Quellen</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
-    <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
-  </head>
-  <body>
-
+{% block content %}
     <div class="l-bg-color-w u-vh--100">
-    
-        <!-- TOP NAVIGATION START -->
-        <!-- MAIN NAVIGATION START -->
-            
-        <nav>
-          <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
-            <button class="menu-icon" type="button" data-toggle></button>
-            <div class="title-bar-title"></div>
-          </div>
-          
-          <div class="top-bar" id="simple-menu">
-            <div class="top-bar-left show-for-large">
-              <ul class="menu">
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-              </ul>
-            </div>
-            <div class="top-bar-right">
-              <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
-                <li>
-                  <a class="anchor-text--light" href="#">Menu</a>
-                  <ul class="menu vertical">
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>
-                    <li><a class="anchor-text--light" href="#">Kontakt</a></li>
-                    <li><a class="anchor-text--light" href="#">Impressum</a></li>
-                    <li><a class="anchor-text--light" href="#">Datenschutz</a></li>
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-            
-        <!-- MAIN NAVIGATION END -->    <!-- TOP NAVIGATION END -->
         
         <div class="grid-container u-padding-top--xl">
           <div class="grid-x">
@@ -99,8 +52,5 @@
           </div>
         </div>
       
-      </div>
-
-    <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
-  </body>
-</html>
+    </div>
+{% endblock %}

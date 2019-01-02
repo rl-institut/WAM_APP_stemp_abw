@@ -13,9 +13,8 @@ app_name = 'stemp_abw'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
-    path('sources/', views.SourcesView.as_view(), name='sources'),
-    # TODO: Integrate new sources, split page to base and rest first!
-    path('sources2/', SourcesView.as_view(app_name='stemp_abw')) # new page
+    path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
+    path('sources/', SourcesView.as_view(app_name='stemp_abw'), name='sources') # new page
     ]
 
 # search detail views classes and append to URLs

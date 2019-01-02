@@ -1,74 +1,18 @@
-{% load static %}
+{% extends "stemp_abw/base.html" %}
+
+{% load staticfiles %}
+
 {% load leaflet_tags %}
 {% load geojson_tags %}
 
-<!doctype html>
-<html class="no-js" lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stemp Tool Anhalt</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
-    <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
-    <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+{% block header %}
+  {% leaflet_css %}
+  {% leaflet_js %}
+  <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+{% endblock %}
 
-    {% leaflet_css %}
-    {% leaflet_js %}
-
-  </head>
-  <body>
-
-    <!-- START LOADER -->
-    <!-- Is displayed only when a layer is loading -->
-    <div class="grid-x loader-wrapper loader-wrapper--hide">
-      <div class="cell">
-        <div class="loader"></div>
-        <div class="loader__text">
-          <p>Daten werden geladen</p>
-          <p id="loader-detail-text"></p>
-        </div>
-      </div>
-    </div>
-    <!-- END LOADER -->
-
+{% block content %}
     <div class="l-bg-color-w u-vh--100">
-
-        <!-- TOP NAVIGATION START -->
-        <!-- MAIN NAVIGATION START -->
-
-        <nav>
-          <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
-            <button class="menu-icon" type="button" data-toggle></button>
-            <div class="title-bar-title"></div>
-          </div>
-
-          <div class="top-bar" id="simple-menu">
-            <div class="top-bar-left show-for-large">
-              <ul class="menu">
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-              </ul>
-            </div>
-            <div class="top-bar-right">
-              <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
-                <li>
-                  <a class="anchor-text--light" href="#">Menu</a>
-                  <ul class="menu vertical">
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>
-                    <li><a class="anchor-text--light" href="#">Kontakt</a></li>
-                    <li><a class="anchor-text--light" href="#">Impressum</a></li>
-                    <li><a class="anchor-text--light" href="#">Datenschutz</a></li>
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <!-- MAIN NAVIGATION END -->    <!-- TOP NAVIGATION END -->
 
         <div class="off-canvas-wrapper off-canvas-wrapper--left">
 
@@ -422,18 +366,32 @@
           </div>
         </footer>
 
-      </div>
+    </div>
 
-        <!-- START POP-UP RESULTS -->
+
+    <!-- START LOADER -->
+    <!-- Is displayed only when a layer is loading -->
+    <div class="grid-x loader-wrapper loader-wrapper--hide">
+      <div class="cell">
+        <div class="loader"></div>
+        <div class="loader__text">
+          <p>Daten werden geladen</p>
+          <p id="loader-detail-text"></p>
+        </div>
+      </div>
+    </div>
+    <!-- END LOADER -->
+
+    <!-- START POP-UP RESULTS -->
     <div class="large reveal" id="resultsModal" data-reveal>
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <!-- END POP-UP RESULTS -->
+{% endblock %}
 
-    <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
-
+{% block scripts %}
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
         {% for group, data in comp_groups.items %}
@@ -655,5 +613,4 @@
         };
 
     </script>
-  </body>
-</html>
+{% endblock %}
