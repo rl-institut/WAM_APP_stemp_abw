@@ -688,17 +688,17 @@
       // Get color and step values as associated array.
       function getColorValues(schema, min, max, step, reverse) {
 
-        // Get the sum of steps by step (intervall)
+        // Get the sum of steps by step (interval)
         var sumSteps = parseInt((max - min) / step);
-        // Get the cleaned intervall step by steps
+        // Get dividable interval step from steps
         // This is necessary, if "((max - min) / step)" produced rest
         var stepInterval = (max - min) / sumSteps;
 
         // Get colors for schema
-        colors = chroma.scale(schema).colors(sumSteps + 1);
+        var colors = chroma.scale(schema).colors(sumSteps + 1);
 
-        // Reverse coloes if reverse value is true
-        if (reverse == true) {
+        // Reverse colors if reverse value is true
+        if (reverse == "true") {
             colors = colors.reverse();
         }
 
@@ -812,7 +812,7 @@
                 var min = choropleth_data[name].min;
                 var max = choropleth_data[name].max;
                 var step = choropleth_data[name].step;
-                var reverse = choropleth_data[name].false;
+                var reverse = choropleth_data[name].reverse;
                 var colorVals = getColorValues(schema, min, max, step, reverse);
                 var fill = getColor(colorVals, feature.properties[column]);
                 return {
