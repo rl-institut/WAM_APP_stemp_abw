@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 from wam import settings
-from stemp_abw.sessions import SessionData
+from wam.sessions import SessionData
 
 
 class StempAbwConfig(AppConfig):

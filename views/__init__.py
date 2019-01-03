@@ -12,6 +12,7 @@ from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
+from stemp_abw.sessions import UserSession
 import os
 import stemp_abw
 
@@ -76,7 +77,7 @@ class MapView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         # Start session (if there's none):
-        SESSION_DATA.start_session(request)
+        SESSION_DATA.start_session(request, UserSession)
         session = SESSION_DATA.get_session(request)
 
         context = self.get_context_data()
