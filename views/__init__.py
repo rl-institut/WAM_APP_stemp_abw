@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 import json
 from collections import OrderedDict
 #import sqlahelper
@@ -13,8 +13,19 @@ from stemp_abw import results
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
 from utils.widgets import InfoButton
+from wam.settings import SESSION_DATA
 import os
 import stemp_abw
+
+
+def check_session(func):
+    def func_wrapper(self, request, *args, **kwargs):
+        try:
+            session = SESSION_DATA.get_session(request)
+        except KeyError:
+            return render(request, 'stemp_abw/session_not_found.html')
+        return func(self, request, session=session, *args, **kwargs)
+    return func_wrapper
 
 
 class IndexView(TemplateView):
@@ -65,12 +76,20 @@ class MapView(TemplateView):
 
         return context
 
-    def post(self, request):
+    def get(self, request, *args, **kwargs):
+        # Start session (if there's none):
+        SESSION_DATA.start_session(request)
+        session = SESSION_DATA.get_session(request)
+
+        context = self.get_context_data()
+        return self.render_to_response(context)
+
+    @check_session
+    def post(self, request, session):
         print(request.POST)
 
         result, param_result = simulate_energysystem()
-        #results = self.simulation.run()
-        #results = None
+
         print('Results:', results)
         print('Params:', param_result)
 

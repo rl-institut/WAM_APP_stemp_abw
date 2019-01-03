@@ -1,7 +1,7 @@
 import pandas as pd
 import oemof.solph as solph
 from oemof import outputlib
-from numpy.random import random
+#from numpy.random import random
 
 
 def simulation_fct_test():
@@ -17,8 +17,10 @@ def simulation_fct_test():
                                    end=cfg['date_to'],
                                    freq=cfg['freq'])
 
-    feedin_el = random(len(datetime_index))
-    demand_el = random(len(datetime_index))
+    #feedin_el = random(len(datetime_index))
+    feedin_el = [1,2,3,4]
+    #demand_el = random(len(datetime_index))
+    demand_el = [4,3,2,1]
 
     esys = solph.EnergySystem(timeindex=datetime_index)
 
@@ -27,7 +29,7 @@ def simulation_fct_test():
     nodes.append(bus_el)
 
     nodes.append(solph.Source(label='wind',
-                              outputs={bus_el: solph.Flow(nominal_value=10,
+                              outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=1,
                                                           actual_value=feedin_el,
                                                           fixed=True
@@ -41,7 +43,7 @@ def simulation_fct_test():
                  )
 
     nodes.append(solph.Sink(label='demand_el',
-                            inputs={bus_el: solph.Flow(nominal_value=10,
+                            inputs={bus_el: solph.Flow(nominal_value=1,
                                                        actual_value=demand_el,
                                                        fixed=True
                                                        )})
@@ -59,6 +61,7 @@ def simulation_fct_test():
 
     param_results = outputlib.processing.parameter_as_dict(
             om, exclude_none=True)
+    
     return map(
         outputlib.processing.convert_keys_to_strings,
         (results, param_results)
