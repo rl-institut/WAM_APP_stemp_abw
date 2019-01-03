@@ -48,20 +48,20 @@ def build_db_url(db_name):
 # TODO: Verify configs after import / make failsafe!
 LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                         'stemp_abw',
-                                        'settings',
+                                        'config',
                                         'layers.cfg'))
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
-                                              'settings',
+                                              'config',
                                               'layer_default_styles.cfg'))
 
 ESYS_COMPONENTS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                                   'stemp_abw',
-                                                  'settings',
+                                                  'config',
                                                   'esys_components.cfg'))
 
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
-                                'settings',
+                                'config',
                                 'labels.cfg'))

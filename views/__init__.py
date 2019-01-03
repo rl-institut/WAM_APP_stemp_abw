@@ -65,7 +65,7 @@ class MapView(TemplateView):
 
         # Trial: new info button
         # TODO: Move
-        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'settings', 'text', 'test.md')
+        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'config', 'text', 'test.md')
         f = open(file, 'r', encoding='utf-8')
         context['info'] = InfoButton(text=f.read(),
                                      tooltip='tooltip hahaha',
