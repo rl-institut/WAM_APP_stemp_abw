@@ -42448,6 +42448,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
+// DETAILS ON HIGHLIGHT SEE BL's COMMIT 328089858052ee7336043cca636bf5b50f44bc99
+
 jquery__WEBPACK_IMPORTED_MODULE_0___default()('.linkto-source').on('click', function linkToSource() {
   var toSourceID = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
   toSourceID = toSourceID.replace('linkto-', '');
@@ -42461,7 +42463,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   if (window.location.href.indexOf("#source") > -1) {
     var URL = window.location.href;
     var sourceID = URL.split('#')[1];
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + sourceID).effect("highlight", {}, 3000);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + sourceID).effect("highlight", {}, 5000);
   }
 });
 
