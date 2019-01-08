@@ -412,11 +412,9 @@
     <script type="text/javascript">
 
         function main_map_init (map, options) {
-            /*
             // show load spinner
             $('.loader-wrapper').toggleClass("loader-wrapper--hide");
             $('body').toggleClass("body--nopointer");
-            */
 
             // Parse layer style JSON
             var style_data = JSON.parse('{{ layer_style | escapejs }}');
@@ -526,7 +524,6 @@
                                          String(layer_ctr) + '/' + String(layer_count) +
                                          ': ' + '{{ layer }}');
 
-                        /*
                         // hide load spinner
                         if (layer_ctr == layer_count) {
                             loader_text[0].style = 'color: #62f476; font-weight: bold';
@@ -537,7 +534,6 @@
                                 $('body').toggleClass("body--nopointer");
                             }, 1000);
                         };
-                        */
                     },
                     error: function(page) {
                         console.log('Fehler beim Laden der Daten!');
