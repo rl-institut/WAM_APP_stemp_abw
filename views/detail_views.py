@@ -33,7 +33,12 @@ class RpAbwBoundDetailView(MasterDetailView):
 
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
-    template_name = 'stemp_abw/layer_popup_reg_mun.html'
+
+
+class RegMunPopDensityDetailView(MasterDetailView):
+    model = models.RegMun
+    model_name = 'reg_mun_pop_density'
+    template_name = 'stemp_abw/layer_popup_reg_mun_pop_density.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):

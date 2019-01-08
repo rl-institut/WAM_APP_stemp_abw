@@ -23,7 +23,7 @@ for name, obj in inspect.getmembers(views.detail_views):
     if inspect.isclass(obj):
         if issubclass(obj, views.detail_views.MasterDetailView):
             if obj.model is not None:
-                detail_views[obj.model.name] = obj
+                detail_views[obj.model_name if hasattr(obj, 'model_name') else obj.model.name] = obj
 urlpatterns.extend(
     path('popup/{}/<int:pk>/'.format(name), dview.as_view(), name='{}-detail'.format(name))
     for name, dview in detail_views.items()
@@ -36,7 +36,7 @@ for name, obj in inspect.getmembers(views.serial_views):
     if inspect.isclass(obj):
         if issubclass(obj, GeoJSONLayerView):
             if obj.model is not None:
-                data_views[obj.model.name] = obj
+                data_views[obj.model_name if hasattr(obj, 'model_name') else obj.model.name] = obj
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name), sview.as_view(), name='{}.data'.format(name))
     for name, sview in data_views.items()
