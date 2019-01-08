@@ -36,10 +36,6 @@ class RegMunDetailView(MasterDetailView):
     template_name = 'stemp_abw/layer_popup_reg_mun.html'
 
 
-class RegPrioAreaResDetailView(MasterDetailView):
-    model = models.RegPrioAreaRes
-
-
 class RegWaterProtAreaDetailView(MasterDetailView):
     model = models.RegWaterProtArea
 
