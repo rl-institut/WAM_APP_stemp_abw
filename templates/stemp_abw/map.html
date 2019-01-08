@@ -12,6 +12,20 @@
 {% endblock %}
 
 {% block content %}
+
+    <!-- START LOADER -->
+    <!-- Is displayed only when a layer is loading -->
+    <div class="grid-x loader-wrapper loader-wrapper--hide">
+      <div class="cell">
+        <div class="loader"></div>
+        <div class="loader__text">
+          <p>Daten werden geladen</p>
+          <p id="loader-detail-text"></p>
+        </div>
+      </div>
+    </div>
+    <!-- END LOADER -->
+
     <div class="l-bg-color-w u-vh--100">
 
         <div class="off-canvas-wrapper off-canvas-wrapper--left">
@@ -367,20 +381,6 @@
         </footer>
 
     </div>
-
-
-    <!-- START LOADER -->
-    <!-- Is displayed only when a layer is loading -->
-    <div class="grid-x loader-wrapper loader-wrapper--hide">
-      <div class="cell">
-        <div class="loader"></div>
-        <div class="loader__text">
-          <p>Daten werden geladen</p>
-          <p id="loader-detail-text"></p>
-        </div>
-      </div>
-    </div>
-    <!-- END LOADER -->
 
     <!-- START POP-UP RESULTS -->
     <div class="large reveal" id="resultsModal" data-reveal>
