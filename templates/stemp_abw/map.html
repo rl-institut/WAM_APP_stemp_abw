@@ -496,7 +496,7 @@
             var loader_text = $('#loader-detail-text');
 
             // Load GeoJsons via Ajax and add layers to map
-            {% for layer, show in layer_list.items %}
+            {% for layer, data in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
 
@@ -515,14 +515,14 @@
                         layers["{{ layer }}"] = layer;
                         layer_ctr++;
 
-                        {% if show == '1' %}
+                        {% if data.show == '1' %}
                             map.addLayer(layer);
                         {% endif %}
 
-                        // Show progress
+                        // show progress
                         loader_text.text('Layer ' +
                                          String(layer_ctr) + '/' + String(layer_count) +
-                                         ': ' + '{{ layer }}');
+                                         ': ' + '{{ data.title }}');
 
                         // hide load spinner
                         if (layer_ctr == layer_count) {
