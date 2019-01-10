@@ -36,8 +36,7 @@ class RegMunDetailView(MasterDetailView):
 
 
 class RegMunPopDensityDetailView(MasterDetailView):
-    model = models.RegMun
-    model_name = 'reg_mun_pop_density'
+    model = models.RegMunPopDensity
     template_name = 'stemp_abw/layer_popup_reg_mun_pop_density.html'
 
 
