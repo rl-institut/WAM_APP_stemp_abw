@@ -42448,16 +42448,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  // if there is '#source' in URL, find source ID and highlight source
-  if (window.location.href.indexOf("#source") > -1) {
-    var URL = window.location.href;
-    var sourceID = URL.split('#')[1];
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + sourceID).effect("highlight", {}, 5000);
-  }
-});
-
 /***/ }),
 
 /***/ 0:

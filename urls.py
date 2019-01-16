@@ -14,7 +14,10 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
     path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
-    path('sources/', SourcesView.as_view(app_name='stemp_abw'), name='sources') # new page
+    # Source views from WAM with highlighting
+    path('sources/', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
+    path('sources/source-<int:source>', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
+    path('sources/category-<int:category>', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
     ]
 
 # search detail views classes and append to URLs
