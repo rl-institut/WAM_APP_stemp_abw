@@ -11,6 +11,9 @@ import sqlahelper
 #     caption = models.CharField(max_length=50)
 #     description = models.CharField(max_length=100)
 
+####################
+### Layer models ###
+####################
 
 class LayerModel(models.Model):
 
@@ -28,6 +31,7 @@ class LayerModel(models.Model):
         return 'popup/'
 
 
+# TODO: This model is for testing puorposes only, to be removed!
 class HvMvSubst(LayerModel):
     name = 'subst'
     geom = geomodels.PointField(srid=4326, null=True)
@@ -81,12 +85,9 @@ class RpAbwBound(LayerModel):
 
 class RegMun(LayerModel):
     name = 'reg_mun'
-    geom = geomodels.MultiPolygonField(srid=3035, null=True)
-    rs = models.CharField(max_length=254, null=True)
-    ags = models.CharField(max_length=254, null=True)
-    gen = models.CharField(max_length=254, null=True)
-    bez = models.CharField(max_length=254, null=True)
-    nuts = models.CharField(max_length=254, null=True)
+    ags = models.IntegerField(primary_key=True)
+    geom = geomodels.MultiPolygonField(srid=3035)
+    gen = models.CharField(max_length=254)
 
 
 class RegWaterProtArea(LayerModel):
