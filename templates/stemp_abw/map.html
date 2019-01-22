@@ -413,7 +413,7 @@
 
     <script type="text/javascript">
 
-      // Get color and step values as associated array.
+      // Get color and step values as associated array
       function getColorValues(schema, min, max, step, reverse) {
 
         // Get the sum of steps by step (interval)
@@ -439,7 +439,7 @@
             base = parseFloat(base) + stepInterval;
         }
 
-        // Add max value.
+        // Add max value
         colorsAndStepValues['max'] = max;
 
         return colorsAndStepValues;
@@ -559,6 +559,7 @@
             }
 
             var layers = {};
+            var legends = {};
 
             layer_count = {{ layer_list|length }};
             var layer_ctr = 0;
@@ -587,6 +588,47 @@
                         layers["{{ layer }}"] = layer;
                         layer_ctr++;
 
+                        // Add legend to map
+                        if (choropleth_data.hasOwnProperty('{{ layer }}')) {
+                          var name = '{{ layer }}';
+                          var schema = choropleth_data[name].color_schema;
+                          var min = choropleth_data[name].min;
+                          var max = choropleth_data[name].max;
+                          var step = choropleth_data[name].step;
+                          var reverse = choropleth_data[name].reverse;
+                          var colorVals = getColorValues(schema, min, max, step, reverse);
+                          var grades_list = [];
+                          for (var key in colorVals['values']){
+                            grades_list.push(key)
+                          }
+
+                          var legend = L.control({position: 'bottomright'});
+
+                          legend.onAdd = function (map) {
+                            var div = L.DomUtil.create('div', 'choropleth_legend'),
+                                    grades = grades_list,
+                                    labels = [],
+                                    from, to;
+
+                            labels.push(choropleth_data[name].unit);
+
+                            for (var i = 0; i < grades.length; i++) {
+                              from = grades[i];
+                              to = grades[i + 1];
+
+                              labels.push(
+                                      '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
+                                      from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                          };
+
+                          legends["{{ layer }}"] = legend;
+                        }
+
+                        // Show layer or not
                         {% if show == '1' %}
                             map.addLayer(layer);
                         {% endif %}
@@ -613,7 +655,6 @@
                         loader_text.text('Fehler beim Laden der Daten!');
                     }
                 });
-
             {% endfor %}
 
             // Move zoom control
@@ -646,7 +687,35 @@
                 if (this.checked) map.addLayer(l);
                 else map.removeLayer(l);
               };
-            })
+            });
+
+            // Control legend visibility via checkboxes
+            $( '.switch-input-layer-select' ).click( function () {
+              var id = $(this).attr('id');
+
+              // Master switch for all legends
+              if (id == "cb_all_layers") {
+                for (var l in legends) {
+                  if (legends.hasOwnProperty(l)) {
+                    if (this.checked) map.removeControl(legends[l]);
+                  }
+                $( '.switch-input-layer-select' ).prop('checked', this.checked);
+                }
+              }
+
+              // Individual legend switches
+              else {
+                for (var name in legends) {
+                  if (name !== id.replace('cb_', '')) {
+                    map.removeControl(legends[name]);
+                  } else {
+                    l = legends[id.replace('cb_','')];
+                    if (this.checked) l.addTo(map);
+                    else map.removeControl(l);
+                  }
+                }
+              }
+            });
 
         };
 
