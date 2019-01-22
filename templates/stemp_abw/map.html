@@ -534,7 +534,7 @@
             // Create layer style from style_data json obj
             // if it does not exist, use default
             function getLayerStyle(name, feature) {
-              if (style_data.hasOwnProperty(name) && choropleth_data.hasOwnProperty(name)) {
+              if (choropleth_data.hasOwnProperty(name)) {
                 var column = choropleth_data[name].data_column;
                 var schema = choropleth_data[name].color_schema;
                 var min = choropleth_data[name].min;
