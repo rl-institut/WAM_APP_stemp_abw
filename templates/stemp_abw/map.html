@@ -708,7 +708,7 @@
                 id = id.replace('cb_', '');
                 for (var l in legends) {
                   if (l !== id && choropleth_data.hasOwnProperty(id)) {
-                    map.removeControl(legends[l]);
+                    if (this.checked) map.removeControl(legends[l]);
                   } else if (l === id) {
                     l = legends[id];
                     if (this.checked) l.addTo(map);
