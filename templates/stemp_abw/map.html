@@ -697,7 +697,7 @@
               if (id == "cb_all_layers") {
                 for (var l in legends) {
                   if (legends.hasOwnProperty(l)) {
-                    if (this.checked) map.removeControl(legends[l]);
+                    map.removeControl(legends[l]);
                   }
                 $( '.switch-input-layer-select' ).prop('checked', this.checked);
                 }
@@ -705,11 +705,12 @@
 
               // Individual legend switches
               else {
-                for (var name in legends) {
-                  if (name !== id.replace('cb_', '')) {
-                    map.removeControl(legends[name]);
-                  } else {
-                    l = legends[id.replace('cb_','')];
+                id = id.replace('cb_', '');
+                for (var l in legends) {
+                  if (l !== id && choropleth_data.hasOwnProperty(id)) {
+                    map.removeControl(legends[l]);
+                  } else if (l === id) {
+                    l = legends[id];
                     if (this.checked) l.addTo(map);
                     else map.removeControl(l);
                   }
