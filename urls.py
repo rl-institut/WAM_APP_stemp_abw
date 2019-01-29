@@ -2,6 +2,7 @@ from collections import namedtuple
 
 from django.urls import path, re_path
 from djgeojson.views import GeoJSONLayerView
+from django.views.decorators.cache import cache_page
 
 from . import views
 import inspect
@@ -38,6 +39,6 @@ for name, obj in inspect.getmembers(views.serial_views):
             if obj.model is not None:
                 data_views[obj.model.name] = obj
 urlpatterns.extend(
-    re_path(r'^{}.data/'.format(name), sview.as_view(), name='{}.data'.format(name))
+    re_path(r'^{}.data/'.format(name), cache_page(60 * 60)(sview.as_view()), name='{}.data'.format(name))
     for name, sview in data_views.items()
 )
