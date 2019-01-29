@@ -555,7 +555,96 @@
               } else {
                 return style_data._default;
               }
+            }
 
+            function add_layer(layer, show) {
+
+              // Load data via Ajax
+              $.ajax({
+                url: dataurl,
+                dataType: 'json',
+                async: true,
+                success: function (json) {
+                  // Add GeoJSON layer
+                  var geo_layer = new L.geoJson(json, {
+                            style: function (feature) {
+                              return getLayerStyle(layer, feature);
+                            },
+                            onEachFeature: onEachFeature(layer),
+                            pointToLayer: pointToLayer
+                          }
+                  );
+                  layers[layer] = geo_layer;
+                  layer_ctr++;
+
+                  // Add legend to map
+                  if (choropleth_data.hasOwnProperty(layer)) {
+                    var name = layer;
+                    var schema = choropleth_data[name].color_schema;
+                    var min = choropleth_data[name].min;
+                    var max = choropleth_data[name].max;
+                    var step = choropleth_data[name].step;
+                    var reverse = choropleth_data[name].reverse;
+                    var colorVals = getColorValues(schema, min, max, step, reverse);
+                    var grades_list = [];
+                    for (var key in colorVals['values']) {
+                      grades_list.push(key)
+                    }
+
+                    var legend = L.control({position: 'bottomright'});
+
+                    legend.onAdd = function (map) {
+                      var div = L.DomUtil.create('div', 'choropleth_legend'),
+                              grades = grades_list,
+                              labels = [],
+                              from, to;
+
+                      labels.push(choropleth_data[name].unit);
+
+                      for (var i = 0; i < grades.length; i++) {
+                        from = grades[i];
+                        to = grades[i + 1];
+
+                        labels.push(
+                                '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
+                                from + (to ? '&ndash;' + to : '+'));
+                      }
+
+                      div.innerHTML = labels.join('<br>');
+                      return div;
+                    };
+
+                    legends[layer] = legend;
+                  }
+
+                  // Show layer or not
+                  if (show == 1) {
+                    map.addLayer(geo_layer);
+                  }
+
+                  // Show progress
+                  loader_text.text('Layer ' +
+                          String(layer_ctr) + '/' + String(layer_count) +
+                          ': ' + '{{ layer }}');
+
+                  // hide load spinner
+                  if (layer_ctr == layer_count) {
+                    loader_text[0].style = 'color: #62f476; font-weight: bold';
+                    //loader_text[0].style.font-weight = 'bold';
+                    loader_text.text('Fertig!');
+                    setTimeout(function () {
+                      $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+                      $('body').toggleClass("body--nopointer");
+                    }, 1000);
+                  }
+                  ;
+                },
+                error: function (page) {
+                  console.log('Fehler beim Laden der Daten!');
+                  loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                  loader_text.text('Fehler beim Laden der Daten!');
+                }
+              });
             }
 
             var layers = {};
@@ -566,96 +655,21 @@
 
             var loader_text = $('#loader-detail-text');
 
-            // Load GeoJsons via Ajax and add layers to map
+            // Put layer and show from context in layer_list
+            var layer_list = [];
             {% for layer, show in layer_list.items %}
-                // Build data URL
-                var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
+                layer_list['{{ layer }}'] =  {{ show }};
+            {% endfor%}
 
-                // Load data via Ajax
-                $.ajax({
-                    url: dataurl,
-                    dataType: 'json',
-                    async: true,
-                    success: function(json){
-                        // Add GeoJSON layer
-                        var layer = new L.geoJson(json, {style: function(feature) {
-                                                            return getLayerStyle("{{ layer }}", feature);
-                                                         },
-                                                         onEachFeature: onEachFeature("{{ layer }}"),
-                                                         pointToLayer: pointToLayer
-                                                         }
-                                                 );
-                        layers["{{ layer }}"] = layer;
-                        layer_ctr++;
+            layer_ctr = 0;
 
-                        // Add legend to map
-                        if (choropleth_data.hasOwnProperty('{{ layer }}')) {
-                          var name = '{{ layer }}';
-                          var schema = choropleth_data[name].color_schema;
-                          var min = choropleth_data[name].min;
-                          var max = choropleth_data[name].max;
-                          var step = choropleth_data[name].step;
-                          var reverse = choropleth_data[name].reverse;
-                          var colorVals = getColorValues(schema, min, max, step, reverse);
-                          var grades_list = [];
-                          for (var key in colorVals['values']){
-                            grades_list.push(key)
-                          }
-
-                          var legend = L.control({position: 'bottomright'});
-
-                          legend.onAdd = function (map) {
-                            var div = L.DomUtil.create('div', 'choropleth_legend'),
-                                    grades = grades_list,
-                                    labels = [],
-                                    from, to;
-
-                            labels.push(choropleth_data[name].unit);
-
-                            for (var i = 0; i < grades.length; i++) {
-                              from = grades[i];
-                              to = grades[i + 1];
-
-                              labels.push(
-                                      '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
-                                      from + (to ? '&ndash;' + to : '+'));
-                            }
-
-                            div.innerHTML = labels.join('<br>');
-                            return div;
-                          };
-
-                          legends["{{ layer }}"] = legend;
-                        }
-
-                        // Show layer or not
-                        {% if show == '1' %}
-                            map.addLayer(layer);
-                        {% endif %}
-
-                        // Show progress
-                        loader_text.text('Layer ' +
-                                         String(layer_ctr) + '/' + String(layer_count) +
-                                         ': ' + '{{ layer }}');
-
-                        // hide load spinner
-                        if (layer_ctr == layer_count) {
-                            loader_text[0].style = 'color: #62f476; font-weight: bold';
-                            //loader_text[0].style.font-weight = 'bold';
-                            loader_text.text('Fertig!');
-                            setTimeout(function(){
-                                $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                                $('body').toggleClass("body--nopointer");
-                            }, 1000);
-                        };
-                    },
-                    error: function(page) {
-                        console.log('Fehler beim Laden der Daten!');
-                        loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        loader_text.text('Fehler beim Laden der Daten!');
-                    }
-                });
-            {% endfor %}
+            // Load GeoJsons via Ajax and add layers to map
+            for (var layer in layer_list) {
+              var show = layer_list[layer];
+              // Data URL
+              var dataurl = '/stemp_abw/' + layer + '.data/';
+              add_layer(layer, show);
+            }
 
             // Move zoom control
             map.removeControl(map.zoomControl);
