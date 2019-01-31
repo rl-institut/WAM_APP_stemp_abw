@@ -661,8 +661,6 @@
                 layer_list['{{ layer }}'] =  {{ show }};
             {% endfor%}
 
-            layer_ctr = 0;
-
             // Load GeoJsons via Ajax and add layers to map
             for (var layer in layer_list) {
               var show = layer_list[layer];
