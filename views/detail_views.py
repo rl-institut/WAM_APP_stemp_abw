@@ -35,10 +35,6 @@ class RegMunDetailView(MasterDetailView):
     model = models.RegMun
 
 
-class RegPrioAreaResDetailView(MasterDetailView):
-    model = models.RegPrioAreaRes
-
-
 class RegWaterProtAreaDetailView(MasterDetailView):
     model = models.RegWaterProtArea
 

@@ -1,23 +1,17 @@
-{% load static %}
+{% extends "stemp_abw/base.html" %}
+
+{% load staticfiles %}
+
 {% load leaflet_tags %}
 {% load geojson_tags %}
 
-<!doctype html>
-<html class="no-js" lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stemp Tool Anhalt</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'stemp_abw/img/ionicons-2.0.1/css/ionicons.css' %}">
-    <link rel="stylesheet" href="{% static 'stemp_abw/foundation/css/app.css' %}">
-    <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+{% block header %}
+  {% leaflet_css %}
+  {% leaflet_js %}
+  <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+{% endblock %}
 
-    {% leaflet_css %}
-    {% leaflet_js %}
-
-  </head>
-  <body>
+{% block content %}
 
     <!-- START LOADER -->
     <!-- Is displayed only when a layer is loading -->
@@ -34,41 +28,6 @@
 
     <div class="l-bg-color-w u-vh--100">
 
-        <!-- TOP NAVIGATION START -->
-        <!-- MAIN NAVIGATION START -->
-
-        <nav>
-          <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
-            <button class="menu-icon" type="button" data-toggle></button>
-            <div class="title-bar-title"></div>
-          </div>
-
-          <div class="top-bar" id="simple-menu">
-            <div class="top-bar-left show-for-large">
-              <ul class="menu">
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-              </ul>
-            </div>
-            <div class="top-bar-right">
-              <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-                <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
-                <li>
-                  <a class="anchor-text--light" href="#">Menu</a>
-                  <ul class="menu vertical">
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-                    <li><a class="anchor-text--light" href="#">Kontakt</a></li>
-                    <li><a class="anchor-text--light" href="#">Impressum</a></li>
-                    <li><a class="anchor-text--light" href="#">Datenschutz</a></li>
-                    <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <!-- MAIN NAVIGATION END -->    <!-- TOP NAVIGATION END -->
-
         <div class="off-canvas-wrapper off-canvas-wrapper--left">
 
           <!-- OFF CANVAS START -->
@@ -79,22 +38,22 @@
                 <div class="grid-x">
                   <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
                     <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
-                      <li class="tabs-title is-active" id="tabsScenarios">
-                        <a href="#panel-scenarios" aria-selected="true">
+                      <li class="tabs-title is-active" id="tabsRegion">
+                        <a href="#panel-region" aria-selected="true">
+                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
+                          <h2 class="tabs-title__head">Region</h2>
+                        </a>
+                      </li>
+                      <li class="tabs-title" id="tabsScenarios">
+                        <a href="#panel-scenarios">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                          <h2 class="tabs-title__head">Szenario</h2>
+                          <h2 class="tabs-title__head">Szenarien</h2>
                         </a>
                       </li>
                       <li class="tabs-title" id="tabsEnergy">
                         <a href="#panel-energy">
                           <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
                           <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsAreas">
-                        <a href="#panel-areas">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                          <h2 class="tabs-title__head">Flächen</h2>
                         </a>
                       </li>
                       <li class="tabs-results tabs-title" id="tabsResults">
@@ -108,259 +67,171 @@
                   <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
                     <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-                        <!-- First panel content -->
-                        <div class="tabs-panel is-active" id="panel-scenarios">
-                          <p class="lead">
-                            {{ panels.scenarios.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.scenarios.text }}"></i>
-                          </p>
+                     <!-- First panel content -->
+                      <div class="tabs-panel is-active" id="panel-region">
+                        <p class="lead" style="margin-bottom: 0;">
+                          {{ panels.region.title }}
+                          <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
+                          {{ info }}
+                        </p>
                         <div class="grid-x">
-                          <div class="cell" id="scenarios-wrap">
+                          <div class="cell" id="region-wrap">
                             <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
-                              <li class="tabs-title"><a href="#scenario-panel2">User-Szenarien</a></li>
+                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#region-panel1" aria-selected="true">Regionale Informationen</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#region-panel2">Flächen</a></li>
                             </ul>
 
                             <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                              <div class="tabs-panel is-active" id="scenario-panel1">
-                                <div class="grid-x grid-margin-x">
-                          <div class="cell">
-                          <form>
-                            <fieldset>
-                                        <legend>Vorgegebene Szenarien auswählen
-                                          <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                                        </legend>
-                                <label class="control control--radio">Status Quo
-                                  <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                                <label class="control control--radio">Deutsches Klimaschutzziel
-                                  <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                                <label class="control control--radio">100% erneuerbar
-                                  <input type="radio" name="scenario" value="100" id="scenario100"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                            </fieldset>
-                          </form>
-                          </div>
-                        </div>
-                              </div>
-                              <div class="tabs-panel" id="scenario-panel2">
+                              <div class="tabs-panel is-active" id="region-panel1">
                                 <div class="grid-x grid-margin-x">
                                   <div class="cell">
-                                    <form>
-                                      <fieldset>
-                                        <legend>Nutzer-Szenarien ansehen oder erstellen
-                                          <i class ="icon ion-information-circled icon--small" title="Nutzer-Szenarien ansehen oder erstellen"></i>
-                                        </legend>
-                                        <label class="control control--radio">Neues Szenario
-                                          <input type="radio" name="scenario" value="new" id="scenarioNew" required checked="checked"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                        <label class="control control--radio">Reiners Superlösung
-                                          <input type="radio" name="scenario" value="reiner" id="scenarioReiner"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                      </fieldset>
+                                    <p>Layers</p>
                                     </form>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="region-panel2">
+
+                                <form>
+                                  <div class="grid-x">
+                                    <div class="cell small-11">
+                                      <p>Alle Ebenen anzeigen</p>
+                                    </div>
+                                    <div class="cell small-1">
+                                      <div class="switch tiny master">
+                                        <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
+                                        <label class="switch-paddle" for="cb_all_layers">
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+
+                                {% include "forms/layer_select.html" %}
+
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell">
+
+                                    <span class="has-tip--no-border">
+                                      Layer Beispiel
+                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
+                                    </span>
+
+                                    <div class="reveal" id="modal-example" data-reveal>
+                                      <div class="grid-x">
+                                        <div class="cell reveal__header">
+                                          <h2>Layer Beispiel</h2>
+                                        </div>
+                                        <div class="cell reveal__img">
+                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
+                                          <figcaption>Figure caption</figcaption>
+                                        </div>
+                                        <div class="cell reveal__text">
+                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
+                                        </div>
+                                        <div class="cell reveal__source">
+                                          <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
+                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
+                                            Quelle ansehen
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <button class="close-button" data-close aria-label="Schließen" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <div class="switch">
+                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
+                                      <label class="switch-paddle" for="exampleSwitch">
+                                        <span class="show-for-sr">Download Kittens</span>
+                                      </label>
+                                    </div>
+
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="panel-desc panel-desc--highlighted">
+                      </div>
+
+                        <!-- Second panel content -->
+                        <div class="tabs-panel" id="panel-scenarios">
+                          <p class="lead" style="margin-bottom: 0;">
+                            {{ panels.scenarios.title }}
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}"></i>
+                          </p>
+                          <div class="grid-x">
+                            <div class="cell" id="scenarios-wrap">
+                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                                <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
+                                <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
+                              </ul>
+
+                              <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                                <div class="tabs-panel is-active" id="scenario-panel1">
+                                  <div class="grid-x grid-margin-x">
+                                    <div class="cell">
+                                      <form>
+                                        <fieldset>
+                                            <legend>Vorgegebenes Szenario auswählen
+                                              <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                            </legend>
+                                            <label class="control control--radio">Status Quo
+                                              <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                            <label class="control control--radio">Deutsches Klimaschutzziel
+                                              <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                            <label class="control control--radio">100% erneuerbar
+                                              <input type="radio" name="scenario" value="100" id="scenario100"/>
+                                              <div class="control__indicator"></div>
+                                            </label>
+                                        </fieldset>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="tabs-panel" id="scenario-panel2">
+                                  <div class="grid-x grid-margin-x">
+                                    <div class="cell">
+                                      <form class="select-menu">
+                                        <label>
+                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                          <select>
+                                            <option value="husker">Husker</option>
+                                            <option value="starbuck">Starbuck</option>
+                                            <option value="hotdog">Hot Dog</option>
+                                            <option value="apollo">Apollo</option>
+                                          </select>
+                                        </label>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="panel-desc">
                             <p id="scenarioPanelText">
                             <span class="panel-desc__header">Status Quo</span>
                             <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
                             </p>
-                          </div>
                         </div>
+                      </div>
 
-                        <!-- Second panel content -->
+                      <!-- Third panel content -->
                         <div class="tabs-panel" id="panel-energy">
-                          <p class="lead">
+                          <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
                             {{ panels.esys.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.esys.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
                           </p>
-                          <ul class="accordion" data-accordion>
 
-                            <li class="accordion-item accordion-item--no-border is-active" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Stromerzeugung</a>
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Leistung Windkraftanlagen [MW]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="capacityWindPower" value="" />
-                              </div>
 
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Leistung Photovoltaik (Dachanlagen) [MW]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="capacityPVroofPower" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Leistung Photovoltaik (Freiflächenanlagen) [MW]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="capacityPVgroundPower" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Leistung Biomasse/-gas [MW]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="capacityBioPower" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Leistung konventionelle Kraftwerke [MW]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="capacityConvPower" value="" />
-                              </div>
-                            </li>
-
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Stromverbrauch</a>
-                              <!--<div class="accordion-content" data-tab-content>-->
-                              <!--</div>-->
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Einsparung Haushalte (Status Quo = 0) [%]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="demandRedHH" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Einsparung GHD (Status Quo = 0) [%]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="demandRedGHD" value="" />
-                              </div>
-                            </li>
-
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Wärmeerzeugung</a>
-                              <div class="accordion-content" data-tab-content>
-                              </div>
-                            </li>
-
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Wärmeverbrauch</a>
-                              <div class="accordion-content" data-tab-content>
-                              </div>
-                            </li>
-
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Flexibilität</a>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Batteriekapazität [GWh]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="flexBat" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Demand-Side-Management (Anteil Haushalte) [%]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="flexDSMHH" value="" />
-                              </div>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Elektromobilität (Anteil privater Fahrzeuge) [%]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="flexEmob" value="" />
-                              </div>
-                            </li>
-
-                            <li class="accordion-item" data-accordion-item>
-                              <a href="#" class="accordion-title accordion-title--100">Potenzialflächen und Restriktionen</a>
-
-                              <div class="accordion-content parameter" data-tab-content >
-                              <p class="parameter__label">
-                                Abstand zu Siedlungen [m]
-                                <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                              </p>
-                              <input id="potDistSettle" value="" />
-                              </div>
-
-                              <div class="accordion-content" data-tab-content>
-                                <div class="grid-x">
-                                  <div class="cell small-1"></div>
-                                  <div class="cell small-8">
-                                    Wald verwenden
-                                  </div>
-                                  <div class="cell small-1">
-                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                                  </div>
-                                  <div class="cell small-1">
-                                    <div class="switch tiny">
-                                      <input class="switch-input" id="potUseForest" type="checkbox" checked>
-                                      <label class="switch-paddle" for="potUseForest">
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div class="cell small-1"></div>
-                                </div>
-
-                                <div class="grid-x">
-                                  <div class="cell small-1"></div>
-                                  <div class="cell small-8">
-                                    FFH-Gebiete verwenden
-                                  </div>
-                                  <div class="cell small-1">
-                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                                  </div>
-                                  <div class="cell small-1">
-                                    <div class="switch tiny">
-                                      <input class="switch-input" id="potUseFFH" type="checkbox" checked>
-                                      <label class="switch-paddle" for="potUseFFH">
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div class="cell small-1"></div>
-                                </div>
-
-                                <div class="grid-x">
-                                  <div class="cell small-1"></div>
-                                  <div class="cell small-8">
-                                    UNESCO-Welterbegebiet verwenden
-                                  </div>
-                                  <div class="cell small-1">
-                                    <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
-                                  </div>
-                                  <div class="cell small-1">
-                                    <div class="switch tiny">
-                                      <input class="switch-input" id="potUseUNESCO" type="checkbox" checked>
-                                      <label class="switch-paddle" for="potUseUNESCO">
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div class="cell small-1"></div>
-                                </div>
-                              </div>
-
-                            </li>
-                          </ul>
+                          {% include "forms/esys_components.html" %}
 
                           <!--<div class="grid-x">-->
 
@@ -384,187 +255,26 @@
                           <!--</div>-->
                         </div>
 
-                        <!-- Third panel content -->
-                        <div class="tabs-panel" id="panel-areas">
-                          <!--<span class="lead">Flächen</span><i class ="icon ion-help-circled"></i>-->
-                          <p class="lead">
-                            {{ panels.areas.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.areas.text }}"></i>
-                          </p>
-
-                          <form>
-                            <div class="grid-x">
-                              <div class="cell small-11">
-                                <p>Alle Ebenen anzeigen</p>
-                              </div>
-                              <div class="cell small-1">
-                                <div class="switch tiny master">
-                                  <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
-                                  <label class="switch-paddle" for="cb_all_layers">
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-
-                          <form>
-                            {% include "forms/layer_select.html" %}
-                          </form>
-
-                        </div>
-
                         <!-- Fourth panel content -->
                         <div class="tabs-panel" id="panel-results">
                           <p class="lead">
                             {{ panels.results.title }}
-                            <i class ="icon ion-help-circled" title="{{ panels.results.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}"></i>
                           </p>
                           <div class="grid-x">
-                            <!-- Button expand -->
-                            <!--
-                            <div class="cell u-text--center">
+
+                          <div class="cell u-text--center">
                             <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                                Mehr Ergebnisse
-                                <i class ="icon ion-android-add icon--small"></i>
-                              </button>
-                            </div>
-                            -->
-
-                          <div class="cell" id="results-wrap">
-                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title is-active"><a href="#results-panel1" aria-selected="true">Erneuerbare Energien</a></li>
-                              <li class="tabs-title"><a href="#results-panel2">Konventionelle Kraftwerke</a></li>
-                              <li class="tabs-title"><a href="#results-panel3">Wärmebedarf</a></li>
-                              <li class="tabs-title"><a href="#results-panel4">Strombedarf</a></li>
-                              <li class="tabs-title"><a href="#results-panel5">eMobilität</a></li>
-                              <li class="tabs-title"><a href="#results-panel6">Flexibilitäten</a></li>
-                              <!--<li class="tabs-title"><a href="#results-panel7">eMobilität</a></li>-->
-                              <!--<li class="tabs-title"><a href="#results-panel8">Demand-Side-Management</a></li>-->
-                              <!--<li class="tabs-title"><a href="#results-panel9">Batterie</a></li>-->
-                            </ul>
-
-                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                              <div class="tabs-panel is-active" id="results-panel1">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">
-                                    <p class="lead">Windenergie</p>
-                                    <table>
-                                      <tbody>
-                                        <tr>
-                                          <td>Installierte Gesamtleistung</td>
-                                          <td width="25%">650 MW</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Anzahl Windenergieanlagen</td>
-                                          <td width="25%">412</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Jährlich erzeugte Energiemenge</td>
-                                          <td width="25%">1040 GWh</td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-
-                                  <div class="cell small-4">
-                                    <p class="lead">Photovoltaik</p>
-                                    <table>
-                                      <tbody>
-                                        <tr>
-                                          <td>Installierte Gesamtleistung</td>
-                                          <td width="25%">470 MW</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Anzahl Photovoltaikanlagen</td>
-                                          <td width="25%">6018</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Jährlich erzeugte Energiemenge</td>
-                                          <td width="25%">470 GWh</td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-
-                                  <div class="cell small-4">
-                                    <p class="lead">Biomasse und Biogas</p>
-                                    <table>
-                                      <tbody>
-                                        <tr>
-                                          <td>Installierte Gesamtleistung</td>
-                                          <td width="25%">70 MW</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Anzahl Biomasse- und Biogasanlagen</td>
-                                          <td width="25%">50</td>
-                                        </tr>
-                                        <tr>
-                                          <td>Jährlich erzeugte Energiemenge</td>
-                                          <td width="25%">210 GWh</td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-
-                                  {% include "stemp_abw/results.html" %}
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="results-panel2">
-                                <div class="grid-x grid-margin-x">
-                                  {% include "stemp_abw/results2.html" %}
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="results-panel3">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4                                  ">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="results-panel4">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="results-panel5">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="results-panel6">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                  <div class="cell small-4">Insert results here</div>
-                                </div>
-                              </div>
-                              <!--<div class="tabs-panel" id="results-panel7">-->
-                                <!--<div class="grid-x grid-margin-x">-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="tabs-panel" id="results-panel8">-->
-                                <!--<div class="grid-x grid-margin-x">-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="tabs-panel" id="results-panel9">-->
-                                <!--<div class="grid-x grid-margin-x">-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                  <!--<div class="cell small-4">Insert results here</div>-->
-                                <!--</div>-->
-                              <!--</div>-->
-                            </div>
+                              Mehr Ergebnisse
+                              <i class ="icon ion-android-add icon--small"></i>
+                            </button>
                           </div>
+
+                          <div class="cell" id="results-collapsed">
+                            <p>Some results</p>
+                          </div>
+
+                          {% include "stemp_abw/results_full.html" %}
 
                         </div>
                       </div>
@@ -638,7 +348,6 @@
             </div>
 
             <!-- START SIMULATION BTNS -->
-            <!--<div class="cell" id="simulation-save-btn" style="display: none;">-->
             <div class="cell" id="simulation-save-btn">
               <div class="grid-x">
                 <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
@@ -671,17 +380,35 @@
           </div>
         </footer>
 
-      </div>
+    </div>
 
-        <!-- START POP-UP RESULTS -->
+    <!-- START POP-UP RESULTS -->
     <div class="large reveal" id="resultsModal" data-reveal>
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <!-- END POP-UP RESULTS -->
+{% endblock %}
 
-    <script src="{% static 'stemp_abw/foundation/js/app.js' %}"></script>
+{% block scripts %}
+    <!-- LOAD SLIDER DATA -->
+    <script type="text/javascript">
+        {% for group, data in comp_groups.items %}
+            {% for comp in data.comps %}
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </script>
+
     <script type="text/javascript">
 
         function main_map_init (map, options) {
@@ -769,44 +496,52 @@
             var loader_text = $('#loader-detail-text');
 
             // Load GeoJsons via Ajax and add layers to map
-            {% for layer, show in layer_list.items %}
+            {% for layer, data in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
 
                 // Load data via Ajax
-                $.getJSON(dataurl, function (data) {
-                    // Add GeoJSON layer
-                    var layer = new L.geoJson(data, {style: getLayerStyle("{{ layer }}"),
-                                                     onEachFeature: onEachFeature("{{ layer }}"),
-                                                     pointToLayer: pointToLayer
-                                                     }
-                                             );
-                    layers["{{ layer }}"] = layer;
-                    layer_ctr++;
+                $.ajax({
+                    url: dataurl,
+                    dataType: 'json',
+                    async: true,
+                    success: function(json){
+                        // Add GeoJSON layer
+                        var layer = new L.geoJson(json, {style: getLayerStyle("{{ layer }}"),
+                                                         onEachFeature: onEachFeature("{{ layer }}"),
+                                                         pointToLayer: pointToLayer
+                                                         }
+                                                 );
+                        layers["{{ layer }}"] = layer;
+                        layer_ctr++;
 
-                    //console.log('Layer ' +
-                    //            String(layer_ctr) + '/' + String(layer_count) +
-                    //            ' loaded: ' + '{{ layer }}');
+                        {% if data.show == '1' %}
+                            map.addLayer(layer);
+                        {% endif %}
 
-                    {% if show == '1' %}
-                        map.addLayer(layer);
-                    {% endif %}
+                        // show progress
+                        loader_text.text('Layer ' +
+                                         String(layer_ctr) + '/' + String(layer_count) +
+                                         ': ' + '{{ data.title }}');
 
-                    loader_text.text('Layer ' +
-                                     String(layer_ctr) + '/' + String(layer_count) +
-                                     ': ' + '{{ layer }}');
-
-                    // hide load spinner
-                    if (layer_ctr == layer_count) {
+                        // hide load spinner
+                        if (layer_ctr == layer_count) {
+                            loader_text[0].style = 'color: #62f476; font-weight: bold';
+                            //loader_text[0].style.font-weight = 'bold';
+                            loader_text.text('Fertig!');
+                            setTimeout(function(){
+                                $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+                                $('body').toggleClass("body--nopointer");
+                            }, 1000);
+                        };
+                    },
+                    error: function(page) {
+                        console.log('Fehler beim Laden der Daten!');
                         loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        //loader_text[0].style.font-weight = 'bold';
-                        loader_text.text('Fertig!');
-                        setTimeout(function(){
-                            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                            $('body').toggleClass("body--nopointer");
-                        }, 1000);
-                    };
+                        loader_text.text('Fehler beim Laden der Daten!');
+                    }
                 });
+
             {% endfor %}
 
             // Move zoom control
@@ -874,5 +609,4 @@
         };
 
     </script>
-  </body>
-</html>
+{% endblock %}
