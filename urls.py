@@ -5,7 +5,8 @@ from djgeojson.views import GeoJSONLayerView
 
 from . import views
 import inspect
-from meta.views import SourcesView
+from meta.models import Source
+from meta.views import AppListView
 
 app_name = 'stemp_abw'
 
@@ -15,9 +16,7 @@ urlpatterns = [
     path('app/', views.MapView.as_view(), name='map'),
     path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
     # Source views from WAM with highlighting
-    path('sources/', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
-    path('sources/source-<int:source>', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
-    path('sources/category-<int:category>', SourcesView.as_view(app_name='stemp_abw'), name='sources'),
+    path('sources/', AppListView.as_view(app_name='stemp_abw', model=Source), name='sources'),
     ]
 
 # search detail views classes and append to URLs
