@@ -21,6 +21,10 @@ def prepare_layer_data():
     layer_style.update(LAYER_DEFAULT_STYLES)
     layer_data['layer_style'] = json.dumps(layer_style)
 
+    # create JSON for choropleth layers
+    choropleth_data = {l: a['choropleth'] for v in LAYER_METADATA.values() for l, a in v.items() if 'choropleth' in a}
+    layer_data['choropleth_data'] = json.dumps(choropleth_data)
+
     # update layer and layer group labels using labels config
     layer_metadata = OrderedDict()
     for (grp, layers) in LAYER_METADATA.items():
