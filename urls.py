@@ -6,7 +6,8 @@ from django.views.decorators.cache import cache_page
 
 from . import views
 import inspect
-from meta.views import SourcesView
+from meta.models import Source
+from meta.views import AppListView, AssumptionsView
 
 app_name = 'stemp_abw'
 
@@ -15,7 +16,9 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
     path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
-    path('sources/', SourcesView.as_view(app_name='stemp_abw'), name='sources') # new page
+    # Source views from WAM with highlighting
+    path('sources/', AppListView.as_view(app_name='stemp_abw', model=Source), name='sources'),
+    path('assumptions/', AssumptionsView.as_view(app_name='stemp_abw'), name='assumptions'),
     ]
 
 # search detail views classes and append to URLs

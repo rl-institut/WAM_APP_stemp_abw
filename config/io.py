@@ -9,8 +9,11 @@ from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, \
 def prepare_layer_data():
     layer_data = {}
 
-    # create layer list for AJAX data urls
-    layer_list = {l: d['show'] for ls in LAYER_METADATA.values() for l, d in ls.items()}
+    # create layer list for AJAX data urls,
+    # include show (initial showup) and title (for spinner)
+    layer_list = {l: {'show': d['show']} for ls in LAYER_METADATA.values() for l, d in ls.items()}
+    for l, v in layer_list.items():
+        layer_list[l]['title'] = LABELS['layers'][l]['title']
     layer_data['layer_list'] = layer_list
 
     # create JSON for layer styles
