@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.gis.db import models as geomodels
 # from geoalchemy2.types import Geometry
 from stemp_abw import oep_models
+from stemp_abw.app_settings import LABELS
 import sqlahelper
 
 
@@ -17,9 +18,6 @@ import sqlahelper
 
 class LayerModel(models.Model):
 
-    class Meta:
-        abstract = True
-
     @property
     def name(self):
         raise NotImplementedError
@@ -30,6 +28,15 @@ class LayerModel(models.Model):
         #return '<p>'+self.name+'</p>'
         return 'popup/'
 
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return '{name} Objekt ({pk_name}={pk})'.format(
+            name=LABELS['layers'][self.name]['title'],
+            pk_name=self._meta.pk.name,
+            pk=self.pk)
+
 
 # TODO: This model is for testing puorposes only, to be removed!
 class HvMvSubst(LayerModel):
@@ -37,15 +44,10 @@ class HvMvSubst(LayerModel):
     geom = geomodels.PointField(srid=4326, null=True)
     subst_id = models.IntegerField()
 
-    objects = geomodels.Manager()
-
     # @property
     # def popup_content(self):
     #     return '<p>{text}</p>'.format(
     #         text='Substation ' + str(self.subst_id))
-
-    def __unicode__(self):
-        return 'subst {}'.format(self.subst_id)
 
     # def get_data(self):
     #     session = sqlahelper.get_session()
@@ -59,15 +61,10 @@ class OsmPowerGen(LayerModel):
     subst_id = models.IntegerField()
     osm_id = models.IntegerField()
 
-    objects = geomodels.Manager()
-
     # @property
     # def popup_content(self):
     #     return '<p>{text}</p>'.format(
     #         text='Generator ' + str(self.osm_id))
-
-    def __unicode__(self):
-        return 'gen {}'.format(self.osm_id)
 
 
 class RpAbwBound(LayerModel):
@@ -78,9 +75,6 @@ class RpAbwBound(LayerModel):
     # def popup_content(self):
     #     return '<p>{text}</p>'.format(
     #         text='PR ABW Grenze des Planungsraumes')
-
-    def __unicode__(self):
-        return 'PR ABW Grenze des Planungsraumes'
 
 
 class RegMun(LayerModel):
