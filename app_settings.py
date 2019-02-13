@@ -65,3 +65,5 @@ LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'config',
                                 'labels.cfg'))
+
+MAP_DATA_CACHE_TIMEOUT = 60 * 60
