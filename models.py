@@ -55,18 +55,6 @@ class HvMvSubst(LayerModel):
     #     data = query.all()
 
 
-class OsmPowerGen(LayerModel):
-    name = 'gen'
-    geom = geomodels.PointField(srid=4326, null=True)
-    subst_id = models.IntegerField()
-    osm_id = models.IntegerField()
-
-    # @property
-    # def popup_content(self):
-    #     return '<p>{text}</p>'.format(
-    #         text='Generator ' + str(self.osm_id))
-
-
 class RpAbwBound(LayerModel):
     name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)

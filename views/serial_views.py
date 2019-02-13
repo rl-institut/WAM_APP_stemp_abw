@@ -15,14 +15,6 @@ class SubstData(GeoJSONLayerView):
     precision = 5
 
 
-class OsmPowerGenData(GeoJSONLayerView):
-    model = models.OsmPowerGen
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
 class RpAbwBoundData(GeoJSONLayerView):
     model = models.RpAbwBound
     properties = ['popup_content', 'name']

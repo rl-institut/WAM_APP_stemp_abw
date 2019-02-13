@@ -23,10 +23,6 @@ class SubstDetailView(MasterDetailView):
     model = models.HvMvSubst
 
 
-class OsmPowerGenDetailView(MasterDetailView):
-    model = models.OsmPowerGen
-
-
 class RpAbwBoundDetailView(MasterDetailView):
     model = models.RpAbwBound
 
