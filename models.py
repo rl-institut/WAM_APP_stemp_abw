@@ -529,3 +529,54 @@ class Powerplant(models.Model):
     coastdat2 = models.FloatField(blank=True, null=True)
     capacity_in = models.FloatField(blank=True, null=True)
     federal_state = models.TextField(blank=True, null=True)
+
+
+
+class DemandTs(models.Model):
+    """Demand timeseries (normalized)
+
+    Attributes
+    ----------
+    id :
+        DB id
+    timestamp :
+        timestamp
+    ags :
+        Municipality key (Amtlicher Gemeindeschlüssel),
+        refers to :class:`stemp_abw.models.RegMun`
+    el_hh :
+        El. demand of households
+    el_rca :
+        El. demand of retail, commercial and agricultural sector
+    el_ind :
+        El. demand of industry
+    th_hh :
+        Heat demand of households
+    th_rca :
+        Heat demand of retail, commercial and agricultural sector
+    th_ind :
+        Heat demand of industry
+    """
+    id = models.BigAutoField(primary_key=True)
+    timestamp = models.DateTimeField(db_index=True)
+    ags = models.ForeignKey(RegMun, on_delete=models.DO_NOTHING)
+
+    el_hh = models.FloatField(blank=True, null=True)
+    el_rca = models.FloatField(blank=True, null=True)
+    el_ind = models.FloatField(blank=True, null=True)
+    th_hh = models.FloatField(blank=True, null=True)
+    th_rca = models.FloatField(blank=True, null=True)
+    th_ind = models.FloatField(blank=True, null=True)
+
+
+# class Emission(models.Model):
+#     """Emissions of technologies in kg/MWh"""
+#     technology = models.CharField(max_length=254, null=True)
+#     emissions_fix = models.FloatField()
+#     emissions_variable = models.FloatField()
+#
+# class Costs(models.Model):
+#     """Costs of technologies in €/MWh"""
+#     technology = models.CharField(max_length=254, null=True)
+#     costs_fix = models.FloatField()
+#     costs_variable = models.FloatField()
