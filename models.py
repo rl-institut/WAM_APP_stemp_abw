@@ -288,61 +288,99 @@ class MunData(models.Model):
 
     Attributes
     ----------
-    ags : Municipality key (Amtlicher Gemeindeschlüssel)
+    ags :
+        Municipality key (Amtlicher Gemeindeschlüssel),
         refers to :class:`stemp_abw.models.RegMun`
-    area : Total area in square kilometers
+    area :
+        Total area in square kilometers
 
-    pop_2011 : Population (2011) according to Zensus
-    pop_2017 : Population (2017) according to GV-ISys
-    pop_2030 : Population (2030) forecast according to MLV Sachsen-Anhalt
-    pop_2050 : Population (2050), linearly extrapolated using 2017 and 2030
+    pop_2011 :
+        Population (2011) according to Zensus
+    pop_2017 :
+        Population (2017) according to GV-ISys
+    pop_2030 :
+        Population (2030) forecast according to MLV Sachsen-Anhalt
+    pop_2050 :
+        Population (2050), linearly extrapolated using 2017 and 2030
 
-    gen_count_wind : Count of wind turbines
-    gen_count_pv_roof_small : Count of small (<=30 kVA) roof-mounted PV systems
-    gen_count_pv_roof_large : Count of large (>30 kVA, <=300 kVA) roof-mounted
-        PV systems
-    gen_count_pv_ground : Count of ground-mounted PV systems (>300 kVA)
-    gen_count_hydro : Count of run-of-river systems
-    gen_count_bio : Count of biogas/biomass systems
-    gen_count_steam_turbine : Count of steam turbines
-    gen_count_combined_cycle : Count of combined cycle systems
-    gen_count_sewage_landfill_gas : Count of sewage/landfill gas systems
-    gen_count_storage : Count of storages
+    gen_count_wind :
+        Count of wind turbines
+    gen_count_pv_roof_small :
+        Count of small (<=30 kVA) roof-mounted PV systems
+    gen_count_pv_roof_large :
+        Count of large (>30 kVA, <=300 kVA) roof-mounted PV systems
+    gen_count_pv_ground :
+        Count of ground-mounted PV systems (>300 kVA)
+    gen_count_hydro :
+        Count of run-of-river systems
+    gen_count_bio :
+        Count of biogas/biomass systems
+    gen_count_steam_turbine :
+        Count of steam turbines
+    gen_count_combined_cycle :
+        Count of combined cycle systems
+    gen_count_sewage_landfill_gas :
+        Count of sewage/landfill gas systems
+    gen_count_storage :
+        Count of storages
 
-    gen_capacity_wind : Total nominal power of wind turbines in MVA
-    gen_capacity_pv_roof_small : Total nominal power of small roof-mounted
-        PV systems in MVA
-    gen_capacity_pv_roof_large : Total nominal power of large roof-mounted
-        PV systems in MVA
-    gen_capacity_pv_ground : Total nominal power of ground-mounted PV
-        systems in MVA
-    gen_capacity_hydro : Total nominal power of run-of-river systems  in MVA
-    gen_capacity_bio : Total nominal power of biogas/biomass PV systems  in MVA
-    gen_capacity_steam_turbine : Total nominal power of steam turbine systems
-        in MVA
-    gen_capacity_combined_cycle : Total nominal power of combined cycle systems
-        in MVA
-    gen_capacity_sewage_landfill_gas : Total nominal power of sewage/landfill
-        gas systems in MVA
-    gen_capacity_storage : Total storage capacity of storages in MWh
+    gen_capacity_wind :
+        Total nominal power of wind turbines in MVA
+    gen_capacity_pv_roof_small :
+        Total nominal power of small roof-mounted PV systems in MW
+    gen_capacity_pv_roof_large :
+        Total nominal power of large roof-mounted PV systems in MW
+    gen_capacity_pv_ground :
+        Total nominal power of ground-mounted PV systems in MW
+    gen_capacity_hydro :
+        Total nominal power of run-of-river systems  in MW
+    gen_capacity_bio :
+        Total nominal power of biogas/biomass PV systems  in MW
+    gen_capacity_steam_turbine :
+        Total nominal power of steam turbine systems in MW
+    gen_capacity_combined_cycle :
+        Total nominal power of combined cycle systems in MW
+    gen_capacity_sewage_landfill_gas :
+        Total nominal power of sewage/landfill gas systems in MW
+    gen_capacity_storage :
+        Total storage capacity of storages in MWh
 
-    gen_el_energy_wind : Annual el. energy fed in by wind turbines in MWh
-    gen_el_energy_pv_roof : Annual el. energy fed in by roof-mounted PV systems
-        in MWh
-    gen_el_energy_pv_ground: Annual el. energy fed in by ground-mounted PV
-        systems in MWh
-    gen_el_energy_hydro : Annual el. energy fed in by run-of-river systems in
+    gen_el_energy_wind :
+        Annual el. energy fed in by wind turbines in MWh
+    gen_el_energy_pv_roof :
+        Annual el. energy fed in by roof-mounted PV systems in MWh
+    gen_el_energy_pv_ground:
+        Annual el. energy fed in by ground-mounted PV systems in MWh
+    gen_el_energy_hydro :
+        Annual el. energy fed in by run-of-river systems in MWh
+
+    dem_el_capacity_hh :
+        El. peak demand of households in MW
+    dem_el_capacity_rca :
+        El. peak demand of retail, commercial and agricultural sector in MW
+    dem_el_capacity_ind :
+        El. peak demand of industry in MW
+    dem_th_capacity_hh :
+        Heat peak demand of households in MW
+    dem_th_capacity_rca :
+        Heat peak demand of retail, commercial and agricultural sector in MW
+    dem_th_capacity_ind :
+        Heat peak demand of industry in MW
+
+    dem_el_energy_hh :
+        Annual el. energy consumed by households in MWh
+    dem_el_energy_rca :
+        Annual el. energy consumed by retail, commercial and agricultural
+        sector in MWh
+    dem_el_energy_ind :
+        Annual el. energy consumed by industry in MWh
+    dem_th_energy_hh :
+        Annual heat consumed by households in MWh
+    dem_th_energy_rca :
+        Annual heat consumed by retail, commercial and agricultural sector in
         MWh
-
-    dem_el_energy_hh : Annual el. energy consumed by households in MWh
-    dem_el_energy_rca : Annual el. energy consumed by retail, commercial and
-        agricultural sector in MWh
-    dem_el_energy_ind : Annual el. energy consumed by industry in MWh
-    dem_th_energy_hh : Annual heat consumed by households in MWh
-    dem_th_energy_rca : Annual heat consumed by retail, commercial and
-        agricultural sector in MWh
-    dem_th_energy_ind : Annual heat consumed by industry in MWh
-
+    dem_th_energy_ind :
+        Annual heat consumed by industry in MWh
     """
     """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
@@ -379,6 +417,13 @@ class MunData(models.Model):
     gen_el_energy_pv_roof = models.FloatField(null=True)
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
+
+    dem_el_capacity_hh = models.FloatField(null=True)
+    dem_el_capacity_rca = models.FloatField(null=True)
+    dem_el_capacity_ind = models.FloatField(null=True)
+    dem_th_capacity_hh = models.FloatField(null=True)
+    dem_th_capacity_rca = models.FloatField(null=True)
+    dem_th_capacity_ind = models.FloatField(null=True)
 
     dem_el_energy_hh = models.FloatField(null=True)
     dem_el_energy_rca = models.FloatField(null=True)
