@@ -287,10 +287,10 @@ class MunData(models.Model):
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
     area = models.FloatField(null=True)
 
-    pop_2011 = models.FloatField(null=True)
-    pop_2017 = models.FloatField(null=True)
-    pop_2030 = models.FloatField(null=True)
-    pop_2050 = models.FloatField(null=True)
+    pop_2011 = models.IntegerField(null=True)
+    pop_2017 = models.IntegerField(null=True)
+    pop_2030 = models.IntegerField(null=True)
+    pop_2050 = models.IntegerField(null=True)
     
     gen_count_wind = models.FloatField(null=True)
     gen_count_pv_roof_small = models.FloatField(null=True)
