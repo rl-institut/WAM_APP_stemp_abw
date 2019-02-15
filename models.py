@@ -275,3 +275,88 @@ class RegInfrasHvgrid(LayerModel):
 class RegInfrasAviation(LayerModel):
     name = 'reg_infras_aviation'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
+# ###################
+# ### Data models ###
+# ###################
+# The following tables contain initial data only, data that result from
+# adjustments in the tool are not saved to these tables.
+
+class MunData(models.Model):
+    ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
+    area = models.FloatField(null=True)
+
+    pop_2011 = models.FloatField(null=True)
+    pop_2017 = models.FloatField(null=True)
+    pop_2030 = models.FloatField(null=True)
+    pop_2050 = models.FloatField(null=True)
+    
+    gen_count_wind = models.FloatField(null=True)
+    gen_count_pv_roof_small = models.FloatField(null=True)
+    gen_count_pv_roof_large = models.FloatField(null=True)
+    gen_count_pv_ground = models.FloatField(null=True)
+    gen_count_hydro = models.FloatField(null=True)
+    gen_count_bio = models.FloatField(null=True)
+    gen_count_steam_turbine = models.FloatField(null=True)
+    gen_count_combined_cycle = models.FloatField(null=True)
+    gen_count_sewage_landfill_gas = models.FloatField(null=True)
+    gen_count_storage = models.FloatField(null=True)
+
+    gen_capacity_wind = models.FloatField(null=True)
+    gen_capacity_pv_roof_small = models.FloatField(null=True)
+    gen_capacity_pv_roof_large = models.FloatField(null=True)
+    gen_capacity_pv_ground = models.FloatField(null=True)
+    gen_capacity_hydro = models.FloatField(null=True)
+    gen_capacity_bio = models.FloatField(null=True)
+    gen_capacity_steam_turbine = models.FloatField(null=True)
+    gen_capacity_combined_cycle = models.FloatField(null=True)
+    gen_capacity_sewage_landfill_gas = models.FloatField(null=True)
+    gen_capacity_storage = models.FloatField(null=True)
+
+    gen_el_energy_wind = models.FloatField(null=True)
+    gen_el_energy_pv_roof = models.FloatField(null=True)
+    gen_el_energy_pv_ground = models.FloatField(null=True)
+    gen_el_energy_hydro = models.FloatField(null=True)
+
+    dem_el_energy_hh = models.FloatField(null=True)
+    dem_el_energy_rca = models.FloatField(null=True)
+    dem_el_energy_ind = models.FloatField(null=True)
+    dem_th_energy_hh = models.FloatField(null=True)
+    dem_th_energy_rca = models.FloatField(null=True)
+    dem_th_energy_ind = models.FloatField(null=True)
+
+
+class FeedinTs(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    timestamp = models.DateTimeField(db_index=True)
+    ags = models.ForeignKey(RegMun, on_delete=models.DO_NOTHING)
+    pv_ground = models.FloatField(blank=True, null=True)
+    pv_roof = models.FloatField(blank=True, null=True)
+    hydro = models.FloatField(blank=True, null=True)
+    wind_sq = models.FloatField(blank=True, null=True)
+    wind_fs = models.FloatField(blank=True, null=True)
+
+
+class Powerplant(models.Model):
+    """Power plants (status quo)"""
+    id = models.BigIntegerField(primary_key=True)
+    ags = models.ForeignKey(RegMun, on_delete=models.DO_NOTHING)
+    capacity = models.FloatField(blank=True, null=True)
+    chp = models.TextField(blank=True, null=True)
+    com_month = models.FloatField(blank=True, null=True)
+    com_year = models.FloatField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
+    decom_month = models.BigIntegerField(blank=True, null=True)
+    decom_year = models.BigIntegerField(blank=True, null=True)
+    efficiency = models.FloatField(blank=True, null=True)
+    energy_source_level_1 = models.TextField(blank=True, null=True)
+    energy_source_level_2 = models.TextField(blank=True, null=True)
+    energy_source_level_3 = models.TextField(blank=True, null=True)
+    geometry = geomodels.PointField(blank=True, null=True)
+    state = models.TextField(blank=True, null=True)
+    technology = models.TextField(blank=True, null=True)
+    thermal_capacity = models.FloatField(blank=True, null=True)
+    coastdat2 = models.FloatField(blank=True, null=True)
+    capacity_in = models.FloatField(blank=True, null=True)
+    federal_state = models.TextField(blank=True, null=True)
