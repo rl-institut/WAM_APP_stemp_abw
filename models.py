@@ -438,15 +438,23 @@ class FeedinTs(models.Model):
 
     Attributes
     ----------
-    id : DB id
-    timestamp : timestamp
-    ags : Municipality key (Amtlicher Gemeindeschlüssel)
+    id :
+        DB id
+    timestamp :
+        timestamp
+    ags :
+        Municipality key (Amtlicher Gemeindeschlüssel),
         refers to :class:`stemp_abw.models.RegMun`
-    pv_ground : Photovoltaics (ground-mounted systems)
-    pv_roof : Photovoltaics (roof-mounted systems)
-    hydro : Run-of-river plants
-    wind_sq : Wind turbines (status quo)
-    wind_fs : Wind turbines (future scenarios)
+    pv_ground :
+        Photovoltaics (ground-mounted systems)
+    pv_roof :
+        Photovoltaics (roof-mounted systems)
+    hydro :
+        Run-of-river plants
+    wind_sq :
+        Wind turbines (status quo)
+    wind_fs :
+        Wind turbines (future scenarios)
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
