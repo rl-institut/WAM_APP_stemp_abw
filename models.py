@@ -292,7 +292,7 @@ class MunData(models.Model):
         Municipality key (Amtlicher Gemeindeschlüssel),
         refers to :class:`stemp_abw.models.RegMun`
     area :
-        Total area in square kilometers
+        Total area in km^2
 
     pop_2011 :
         Population (2011) according to Zensus
@@ -357,13 +357,15 @@ class MunData(models.Model):
     dem_el_capacity_hh :
         El. peak demand of households in MW
     dem_el_capacity_rca :
-        El. peak demand of retail, commercial and agricultural sector in MW
+        El. peak demand of retail, commercial and agricultural sector (GHD)
+        in MW
     dem_el_capacity_ind :
         El. peak demand of industry in MW
     dem_th_capacity_hh :
         Heat peak demand of households in MW
     dem_th_capacity_rca :
-        Heat peak demand of retail, commercial and agricultural sector in MW
+        Heat peak demand of retail, commercial and agricultural sector (GHD)
+        in MW
     dem_th_capacity_ind :
         Heat peak demand of industry in MW
 
@@ -371,14 +373,14 @@ class MunData(models.Model):
         Annual el. energy consumed by households in MWh
     dem_el_energy_rca :
         Annual el. energy consumed by retail, commercial and agricultural
-        sector in MWh
+        sector (GHD) in MWh
     dem_el_energy_ind :
         Annual el. energy consumed by industry in MWh
     dem_th_energy_hh :
         Annual heat consumed by households in MWh
     dem_th_energy_rca :
-        Annual heat consumed by retail, commercial and agricultural sector in
-        MWh
+        Annual heat consumed by retail, commercial and agricultural sector
+        (GHD) in MWh
     dem_th_energy_ind :
         Annual heat consumed by industry in MWh
     """
@@ -434,7 +436,7 @@ class MunData(models.Model):
 
 
 class FeedinTs(models.Model):
-    """Renewable feedin timeseries (normalized)
+    """Renewable feedin timeseries (normalized, hourly)
 
     Attributes
     ----------
@@ -541,7 +543,7 @@ class Powerplant(models.Model):
 
 
 class DemandTs(models.Model):
-    """Demand timeseries (normalized)
+    """Demand timeseries (normalized, hourly)
 
     Attributes
     ----------
@@ -555,13 +557,23 @@ class DemandTs(models.Model):
     el_hh :
         El. demand of households
     el_rca :
-        El. demand of retail, commercial and agricultural sector
+        El. demand of retail, commercial and agricultural sector (GHD)
     el_ind :
         El. demand of industry
-    th_hh :
-        Heat demand of households
+    th_hh_efh :
+        Heat demand of households in single-family houses (Einfamilienhäuser),
+        absolute
+    th_hh_mfh :
+        Heat demand of households in multi-family houses (Mehrfamilienhäuser),
+        absolute
+    th_hh_efh_spec :
+        Heat demand of households in single-family houses (Einfamilienhäuser),
+        area-specific in kWh/m^2
+    th_hh_mfh_spec :
+        Heat demand of households in multi-family houses (Mehrfamilienhäuser),
+        area-specific in kWh/m^2
     th_rca :
-        Heat demand of retail, commercial and agricultural sector
+        Heat demand of retail, commercial and agricultural sector (GHD)
     th_ind :
         Heat demand of industry
     """
@@ -572,7 +584,10 @@ class DemandTs(models.Model):
     el_hh = models.FloatField(blank=True, null=True)
     el_rca = models.FloatField(blank=True, null=True)
     el_ind = models.FloatField(blank=True, null=True)
-    th_hh = models.FloatField(blank=True, null=True)
+    th_hh_efh = models.FloatField(blank=True, null=True)
+    th_hh_mfh = models.FloatField(blank=True, null=True)
+    th_hh_efh_spec = models.FloatField(blank=True, null=True)
+    th_hh_mfh_spec = models.FloatField(blank=True, null=True)
     th_rca = models.FloatField(blank=True, null=True)
     th_ind = models.FloatField(blank=True, null=True)
 
