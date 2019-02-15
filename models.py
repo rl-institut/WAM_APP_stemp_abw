@@ -284,7 +284,7 @@ class RegInfrasAviation(LayerModel):
 # adjustments in the tool are not saved to these tables.
 
 class MunData(models.Model):
-    """Statistical data of municipalities
+    """Statistical data of municipalities (status quo)
 
     Attributes
     ----------
@@ -451,6 +451,7 @@ class FeedinTs(models.Model):
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
     ags = models.ForeignKey(RegMun, on_delete=models.DO_NOTHING)
+
     pv_ground = models.FloatField(blank=True, null=True)
     pv_roof = models.FloatField(blank=True, null=True)
     hydro = models.FloatField(blank=True, null=True)
@@ -463,26 +464,46 @@ class Powerplant(models.Model):
 
     Attributes
     ----------
-    id : DB id
-    ags : Municipality key (Amtlicher Gemeindeschlüssel)
+    id :
+        DB id
+    ags :
+        Municipality key (Amtlicher Gemeindeschlüssel),
         refers to :class:`stemp_abw.models.RegMun`
-    capacity : Nominal power in MVA
-    chp : indicates if plant is of type CHP (combined heat and power)
-    com_month : Month of commissioning
-    com_year : Year of commissioning
-    comment : Comment
-    decom_month : Month of decommissioning
-    decom_year : Year of decommissioning
-    efficiency : Efficiency
-    energy_source_level_1 : Renewable or conventional
-    energy_source_level_2 : Indicates energy source
-    energy_source_level_3 : More specific energy source
-    geometry : Geometry, SRID: EPSG:4326 (WGS84)
-    technology : Technology
-    thermal_capacity : Nominal thermal nominal power, if applicable
-    coastdat2 : No. of weather cell of coastdat2
-    capacity_in : Capacity of inflow
-    federal_state : Abbreviation of federal state name (2 letters according to ISO 3166-2:DE)
+    capacity :
+        Nominal power in MW
+    chp :
+        Indicates if plant is of type CHP (combined heat and power)
+    com_month :
+        Month of commissioning
+    com_year :
+        Year of commissioning
+    comment :
+        Comment
+    decom_month :
+        Month of decommissioning
+    decom_year :
+        Year of decommissioning
+    efficiency :
+        Efficiency
+    energy_source_level_1 :
+        Indicates if renewable or conventional
+    energy_source_level_2 :
+        Indicates energy source
+    energy_source_level_3 :
+        More specific energy source
+    geometry : Geometry
+        SRID: EPSG:4326 (WGS84)
+    technology :
+        Technology
+    thermal_capacity :
+        Nominal thermal nominal power, if applicable
+    coastdat2 :
+        No. of coastdat2 weather cell (reegis)
+    capacity_in :
+        Capacity of inflow
+    federal_state :
+        Abbreviation of federal state name (2 letters according to ISO
+        3166-2:DE)
 
     Notes
     -----
