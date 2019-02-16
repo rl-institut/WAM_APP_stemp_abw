@@ -562,10 +562,10 @@ class DemandTs(models.Model):
         El. demand of industry
     th_hh_efh :
         Heat demand of households in single-family houses (Einfamilienhäuser),
-        absolute
+        absolute, in MW
     th_hh_mfh :
         Heat demand of households in multi-family houses (Mehrfamilienhäuser),
-        absolute
+        absolute, in MW
     th_hh_efh_spec :
         Heat demand of households in single-family houses (Einfamilienhäuser),
         area-specific in kWh/m^2
@@ -573,9 +573,9 @@ class DemandTs(models.Model):
         Heat demand of households in multi-family houses (Mehrfamilienhäuser),
         area-specific in kWh/m^2
     th_rca :
-        Heat demand of retail, commercial and agricultural sector (GHD)
+        Heat demand of retail, commercial and agricultural sector (GHD) in MW
     th_ind :
-        Heat demand of industry
+        Heat demand of industry in MW
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
