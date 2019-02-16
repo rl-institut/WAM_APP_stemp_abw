@@ -302,6 +302,8 @@ class MunData(models.Model):
         Population (2030) forecast according to MLV Sachsen-Anhalt
     pop_2050 :
         Population (2050), linearly extrapolated using 2017 and 2030
+    total_living_space :
+        Total living space (Wohnfläche) in m^2
 
     gen_count_wind :
         Count of wind turbines
@@ -378,11 +380,29 @@ class MunData(models.Model):
         Heat peak demand of industry in MW
     dem_th_energy_hh :
         Annual heat consumed by households in MWh
+    dem_th_energy_hh_efh :
+        Annual heat consumed by single-family households (Einfamilienhäuser)
+        in MWh
+    dem_th_energy_hh_mfh :
+        Annual heat consumed by multi-family households (Mehrfamilienhäuser)
+        in MWh
+    dem_th_energy_hh_efh_spec :
+        Annual heat consumed by single-family households (Einfamilienhäuser),
+        area-specific in kWh/m^2
+    dem_th_energy_hh_mfh_spec :
+        Annual heat consumed by multi-family households (Mehrfamilienhäuser),
+        area-specific in kWh/m^2
     dem_th_energy_rca :
         Annual heat consumed by retail, commercial and agricultural sector
         (GHD) in MWh
     dem_th_energy_ind :
         Annual heat consumed by industry in MWh
+
+    dem_th_energy_hh_per_capita :
+        Annual heat demand of households per capita in MWh
+    dem_th_energy_total_per_capita :
+        Annual heat demand of households, retail, commercial and agricultural
+        sector per capita in MWh
     """
     """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
@@ -392,6 +412,7 @@ class MunData(models.Model):
     pop_2017 = models.IntegerField(null=True)
     pop_2030 = models.IntegerField(null=True)
     pop_2050 = models.IntegerField(null=True)
+    total_living_space = models.FloatField(null=True)
     
     gen_count_wind = models.FloatField(null=True)
     gen_count_pv_roof_small = models.FloatField(null=True)
@@ -431,8 +452,15 @@ class MunData(models.Model):
     dem_th_peak_load_rca = models.FloatField(null=True)
     dem_th_peak_load_ind = models.FloatField(null=True)
     dem_th_energy_hh = models.FloatField(null=True)
+    dem_th_energy_hh_efh = models.FloatField(null=True)
+    dem_th_energy_hh_mfh = models.FloatField(null=True)
+    dem_th_energy_hh_efh_spec = models.FloatField(null=True)
+    dem_th_energy_hh_mfh_spec = models.FloatField(null=True)
     dem_th_energy_rca = models.FloatField(null=True)
     dem_th_energy_ind = models.FloatField(null=True)
+
+    dem_th_energy_hh_per_capita = models.FloatField(null=True)
+    dem_th_energy_total_per_capita = models.FloatField(null=True)
 
 
 class FeedinTs(models.Model):
