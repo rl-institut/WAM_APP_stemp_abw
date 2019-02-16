@@ -354,21 +354,13 @@ class MunData(models.Model):
     gen_el_energy_hydro :
         Annual el. energy fed in by run-of-river systems in MWh
 
-    dem_el_capacity_hh :
+    dem_el_peak_load_hh :
         El. peak demand of households in MW
-    dem_el_capacity_rca :
+    dem_el_peak_load_rca :
         El. peak demand of retail, commercial and agricultural sector (GHD)
         in MW
-    dem_el_capacity_ind :
+    dem_el_peak_load_ind :
         El. peak demand of industry in MW
-    dem_th_capacity_hh :
-        Heat peak demand of households in MW
-    dem_th_capacity_rca :
-        Heat peak demand of retail, commercial and agricultural sector (GHD)
-        in MW
-    dem_th_capacity_ind :
-        Heat peak demand of industry in MW
-
     dem_el_energy_hh :
         Annual el. energy consumed by households in MWh
     dem_el_energy_rca :
@@ -376,6 +368,14 @@ class MunData(models.Model):
         sector (GHD) in MWh
     dem_el_energy_ind :
         Annual el. energy consumed by industry in MWh
+
+    dem_th_peak_load_hh :
+        Heat peak demand of households in MW
+    dem_th_peak_load_rca :
+        Heat peak demand of retail, commercial and agricultural sector (GHD)
+        in MW
+    dem_th_peak_load_ind :
+        Heat peak demand of industry in MW
     dem_th_energy_hh :
         Annual heat consumed by households in MWh
     dem_th_energy_rca :
@@ -423,13 +423,13 @@ class MunData(models.Model):
     dem_el_peak_load_hh = models.FloatField(null=True)
     dem_el_peak_load_rca = models.FloatField(null=True)
     dem_el_peak_load_ind = models.FloatField(null=True)
-    dem_th_peak_load_hh = models.FloatField(null=True)
-    dem_th_peak_load_rca = models.FloatField(null=True)
-    dem_th_peak_load_ind = models.FloatField(null=True)
-
     dem_el_energy_hh = models.FloatField(null=True)
     dem_el_energy_rca = models.FloatField(null=True)
     dem_el_energy_ind = models.FloatField(null=True)
+
+    dem_th_peak_load_hh = models.FloatField(null=True)
+    dem_th_peak_load_rca = models.FloatField(null=True)
+    dem_th_peak_load_ind = models.FloatField(null=True)
     dem_th_energy_hh = models.FloatField(null=True)
     dem_th_energy_rca = models.FloatField(null=True)
     dem_th_energy_ind = models.FloatField(null=True)
