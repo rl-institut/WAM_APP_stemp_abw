@@ -420,12 +420,12 @@ class MunData(models.Model):
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
 
-    dem_el_capacity_hh = models.FloatField(null=True)
-    dem_el_capacity_rca = models.FloatField(null=True)
-    dem_el_capacity_ind = models.FloatField(null=True)
-    dem_th_capacity_hh = models.FloatField(null=True)
-    dem_th_capacity_rca = models.FloatField(null=True)
-    dem_th_capacity_ind = models.FloatField(null=True)
+    dem_el_peak_load_hh = models.FloatField(null=True)
+    dem_el_peak_load_rca = models.FloatField(null=True)
+    dem_el_peak_load_ind = models.FloatField(null=True)
+    dem_th_peak_load_hh = models.FloatField(null=True)
+    dem_th_peak_load_rca = models.FloatField(null=True)
+    dem_th_peak_load_ind = models.FloatField(null=True)
 
     dem_el_energy_hh = models.FloatField(null=True)
     dem_el_energy_rca = models.FloatField(null=True)
