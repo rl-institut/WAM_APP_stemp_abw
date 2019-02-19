@@ -1,14 +1,15 @@
-from utils.highcharts import Highchart, RLI_THEME
+from utils.highcharts import Highchart
 
 
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, data=None, **kwargs):
-        super(HCStemp, self).__init__(data,
-                                      theme=RLI_THEME,
-                                      setup=self.setup,
-                                      **kwargs)
+    def __init__(self, data=None, title='New Highchart', **kwargs):
+        super(HCStemp, self).__init__(**kwargs)
+        self.set_dict_options(self.setup)
+        self.set_options('title', {'text': title})
+        if data is not None:
+            self.add_pandas_data_set(data)
 
 
 class HCTimeseries(HCStemp):
