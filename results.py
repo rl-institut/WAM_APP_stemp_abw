@@ -23,7 +23,9 @@ class ResultAnalysisVisualization(object):
         #self.data = pd.Series(random(10), name='test')
 
     def visualize(self):
-        visualization = visualizations.HCTimeseries(data=self.data,
-                                                    title=self.title)
-        div_kwargs = {'style': 'display: inline-block'}
-        return visualization.render(div_kwargs=div_kwargs)
+        visualization = visualizations.HCTimeseries(
+            data=self.data,
+            title=self.title,
+            style='display: inline-block'
+        )
+        return visualization
