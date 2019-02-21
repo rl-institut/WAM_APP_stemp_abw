@@ -662,10 +662,12 @@
             });
 
             // Control legend visibility via checkboxes
-            $( '.switch-input-layer-select' ).click( function () {
+            $( '.switch-input-layer-select-region' ).click( function () {
               var id = $(this).attr('id');
 
               // Master switch for all legends
+              // (CURRENTLY DISABLED AS ONLY REGION LAYER LIST CONTAINS CHORO MAPS)
+              /*
               if (id == "cb_all_areas_layers") {
                 for (var l in legends) {
                   if (legends.hasOwnProperty(l)) {
@@ -674,10 +676,11 @@
                 $( '.switch-input-layer-select' ).prop('checked', this.checked);
                 }
               }
+              */
 
               // Individual legend switches
-              else {
-                id = id.replace('cb_', '');
+              //else {
+                id = id.replace('cb_region_', '');
                 for (var l in legends) {
                   if (l !== id && choropleth_data.hasOwnProperty(id)) {
                     if (this.checked) map.removeControl(legends[l]);
@@ -687,7 +690,7 @@
                     else map.removeControl(l);
                   }
                 }
-              }
+              //}
             });
         };
 
