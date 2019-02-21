@@ -81,19 +81,20 @@ class RegMunPopDensity(RegMun):
     See Also: https://github.com/rl-institut/WAM_APP_stemp_abw/issues/2
     """
     name = 'reg_mun_pop_density'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunStats(RegMun):
-    name = 'reg_mun_stats'
     class Meta:
         proxy = True
 
     @property
     def density(self):
-        return self.mundata.pop_2017 / self.mundata.area
+        return round(self.mundata.pop_2017 / self.mundata.area)
+
+    @property
+    def gen_capacity_re(self):
+        return round(self.mundata.gen_capacity_wind +
+                     self.mundata.gen_capacity_pv_roof_large +
+                     self.mundata.gen_capacity_pv_ground +
+                     self.mundata.gen_capacity_hydro +
+                     self.mundata.gen_capacity_bio)
 
 
 class RegWaterProtArea(LayerModel):
