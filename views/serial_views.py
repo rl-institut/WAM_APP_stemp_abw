@@ -33,14 +33,6 @@ class RegMunData(GeoJSONLayerView):
 
 class RegMunPopDensityData(GeoJSONLayerView):
     model = models.RegMunPopDensity
-    properties = ['popup_content', 'name', 'gen', 'pop_km2']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
-class RegMunStatsData(GeoJSONLayerView):
-    model = models.RegMunStats
     properties = ['popup_content', 'name', 'gen', 'density']
     srid = 4326
     geometry_field = 'geom'
