@@ -188,21 +188,18 @@
                             {{ panels.results.title }}
                             <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}"></i>
                           </p>
+
                           <div class="grid-x">
-
-                          <div class="cell u-text--center">
-                            <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                              Mehr Ergebnisse
-                              <i class ="icon ion-android-add icon--small"></i>
-                            </button>
-                          </div>
-
-                          <div class="cell" id="results-collapsed">
-                            <p>Some results</p>
-                          </div>
-
-                          {% include "stemp_abw/results_full.html" %}
-
+                            <div class="cell u-text--center">
+                              <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                                Mehr Ergebnisse
+                                <i class ="icon ion-android-add icon--small"></i>
+                              </button>
+                            </div>
+                            <div class="cell" id="results-collapsed">
+                              <p>Some results</p>
+                            </div>
+                            {% include "stemp_abw/results_full.html" %}
                           </div>
                         </div>
 
