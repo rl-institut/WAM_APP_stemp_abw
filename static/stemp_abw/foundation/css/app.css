@@ -1559,6 +1559,9 @@ footer {
 #tabs-icon--results {
   height: 1rem; }
 
+#tabs-icon--areas {
+  height: 1rem; }
+
 footer.map-footer {
   height: 6.5rem;
   padding: 0;
@@ -1813,45 +1816,45 @@ footer.map-footer {
 /* --------------------------------------- tabs in offcanvas ---------------------------------------- */
 #scenarios-wrap,
 #results-wrap,
-#region-wrap {
+#areas-wrap {
   margin-top: 1.55rem; }
   #scenarios-wrap .tabs,
   #results-wrap .tabs,
-  #region-wrap .tabs {
+  #areas-wrap .tabs {
     background-color: transparent; }
   #scenarios-wrap .tabs-title a,
   #results-wrap .tabs-title a,
-  #region-wrap .tabs-title a {
+  #areas-wrap .tabs-title a {
     font-size: .875rem;
     font-weight: 700; }
   #scenarios-wrap .tabs-title.is-active a,
   #results-wrap .tabs-title.is-active a,
-  #region-wrap .tabs-title.is-active a {
+  #areas-wrap .tabs-title.is-active a {
     background-color: #006494 !important;
     color: #EBF2FA !important; }
   #scenarios-wrap ul li:first-child a,
   #results-wrap ul li:first-child a,
-  #region-wrap ul li:first-child a {
+  #areas-wrap ul li:first-child a {
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px; }
   #scenarios-wrap ul li:last-child a,
   #results-wrap ul li:last-child a,
-  #region-wrap ul li:last-child a {
+  #areas-wrap ul li:last-child a {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px; }
   #scenarios-wrap li,
   #results-wrap li,
-  #region-wrap li {
+  #areas-wrap li {
     border-top: 0;
     letter-spacing: .5px; }
     #scenarios-wrap li a,
     #results-wrap li a,
-    #region-wrap li a {
+    #areas-wrap li a {
       color: #EBF2FA;
       height: 3.5rem; }
 
 #scenarios-wrap li,
-#region-wrap li {
+#areas-wrap li {
   width: 50%; }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */

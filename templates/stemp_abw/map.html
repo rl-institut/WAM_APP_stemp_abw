@@ -62,6 +62,12 @@
                           <h2 class="tabs-title__head">Ergebnisse</h2>
                         </a>
                       </li>
+                      <li class="tabs-title" id="tabsAreas">
+                        <a href="#panel-areas">
+                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
+                          <h2 class="tabs-title__head">Flächen</h2>
+                        </a>
+                      </li>
                     </ul>
                   </nav>
                   <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
@@ -74,86 +80,7 @@
                           <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
                           {{ info }}
                         </p>
-                        <div class="grid-x">
-                          <div class="cell" id="region-wrap">
-                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#region-panel1" aria-selected="true">Regionale Informationen</a></li>
-                              <li class="tabs-title tabs-title--horizontal"><a href="#region-panel2">Flächen</a></li>
-                            </ul>
 
-                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                              <div class="tabs-panel is-active" id="region-panel1">
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell">
-                                    <p>Layers</p>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="tabs-panel" id="region-panel2">
-
-                                <form>
-                                  <div class="grid-x">
-                                    <div class="cell small-11">
-                                      <p>Alle Ebenen anzeigen</p>
-                                    </div>
-                                    <div class="cell small-1">
-                                      <div class="switch tiny master">
-                                        <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
-                                        <label class="switch-paddle" for="cb_all_layers">
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </form>
-
-                                {% include "forms/layer_select.html" %}
-
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell">
-
-                                    <span class="has-tip--no-border">
-                                      Layer Beispiel
-                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
-                                    </span>
-
-                                    <div class="reveal" id="modal-example" data-reveal>
-                                      <div class="grid-x">
-                                        <div class="cell reveal__header">
-                                          <h2>Layer Beispiel</h2>
-                                        </div>
-                                        <div class="cell reveal__img">
-                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
-                                          <figcaption>Figure caption</figcaption>
-                                        </div>
-                                        <div class="cell reveal__text">
-                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                        </div>
-                                        <div class="cell reveal__source">
-                                          <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
-                                            Quelle ansehen
-                                          </a>
-                                        </div>
-                                      </div>
-                                      <button class="close-button" data-close aria-label="Schließen" type="button">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-
-                                    <div class="switch">
-                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
-                                      <label class="switch-paddle" for="exampleSwitch">
-                                        <span class="show-for-sr">Download Kittens</span>
-                                      </label>
-                                    </div>
-
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </div>
 
                         <!-- Second panel content -->
@@ -276,6 +203,95 @@
 
                           {% include "stemp_abw/results_full.html" %}
 
+                          </div>
+                        </div>
+
+                     <!-- Fifth panel content -->
+                      <div class="tabs-panel" id="panel-areas">
+                        <p class="lead" style="margin-bottom: 0;">
+                          {{ panels.areas.title }}
+                          <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}"></i>
+                        </p>
+
+                        <div class="grid-x">
+                          <div class="cell" id="areas-wrap">
+                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
+                              <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
+                            </ul>
+
+                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                              <div class="tabs-panel is-active" id="areas-panel1">
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell">
+                                    <p>Layers</p>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="tabs-panel" id="areas-panel2">
+
+                                <form>
+                                  <div class="grid-x">
+                                    <div class="cell small-11">
+                                      <p>Alle Ebenen anzeigen</p>
+                                    </div>
+                                    <div class="cell small-1">
+                                      <div class="switch tiny master">
+                                        <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
+                                        <label class="switch-paddle" for="cb_all_layers">
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+
+                                {% include "forms/layer_select.html" %}
+
+                                <div class="grid-x grid-margin-x">
+                                  <div class="cell">
+
+                                    <span class="has-tip--no-border">
+                                      Layer Beispiel
+                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
+                                    </span>
+
+                                    <div class="reveal" id="modal-example" data-reveal>
+                                      <div class="grid-x">
+                                        <div class="cell reveal__header">
+                                          <h2>Layer Beispiel</h2>
+                                        </div>
+                                        <div class="cell reveal__img">
+                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
+                                          <figcaption>Figure caption</figcaption>
+                                        </div>
+                                        <div class="cell reveal__text">
+                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
+                                        </div>
+                                        <div class="cell reveal__source">
+                                          <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
+                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
+                                            Quelle ansehen
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <button class="close-button" data-close aria-label="Schließen" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <div class="switch">
+                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
+                                      <label class="switch-paddle" for="exampleSwitch">
+                                        <span class="show-for-sr">Download Kittens</span>
+                                      </label>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
