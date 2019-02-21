@@ -2,44 +2,79 @@ from collections import OrderedDict
 import json
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm
 
-from stemp_abw.app_settings import LAYER_METADATA, LAYER_DEFAULT_STYLES, \
-    ESYS_COMPONENTS_METADATA, LABELS
+from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
+    LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA, LABELS
 
 
 def prepare_layer_data():
-    layer_data = {}
 
-    # create layer list for AJAX data urls,
-    # include show (initial showup) and title (for spinner)
-    layer_list = {l: {'show': d['show']} for ls in LAYER_METADATA.values() for l, d in ls.items()}
-    for l, v in layer_list.items():
-        layer_list[l]['title'] = LABELS['layers'][l]['title']
-    layer_data['layer_list'] = layer_list
+    def _config2layer(cat_name, layer_cfg_metadata):
+        layer_data = {}
 
-    # create JSON for layer styles
-    layer_style = {l: a['style'] for v in LAYER_METADATA.values() for l, a in v.items()}
-    layer_style.update(LAYER_DEFAULT_STYLES)
-    layer_data['layer_style'] = json.dumps(layer_style)
+        # create layer list for AJAX data urls,
+        # include show (initial showup) and title (for spinner)
+        layer_list = {l: {'show': d['show']}
+                      for ls in layer_cfg_metadata.values()
+                      for l, d in ls.items()}
+        for l, v in layer_list.items():
+            layer_list[l]['title'] = LABELS['layers'][l]['title']
+        #layer_data['layer_list'] = layer_list
 
-    # create JSON for choropleth layers
-    choropleth_data = {l: a['choropleth'] for v in LAYER_METADATA.values() for l, a in v.items() if 'choropleth' in a}
-    layer_data['choropleth_data'] = json.dumps(choropleth_data)
+        # create JSON for layer styles
+        layer_style = {l: a['style']
+                       for v in layer_cfg_metadata.values()
+                       for l, a in v.items()}
+        layer_style.update(LAYER_DEFAULT_STYLES)
+        #layer_data['layer_style'] = json.dumps(layer_style)
 
-    # update layer and layer group labels using labels config
-    layer_metadata = OrderedDict()
-    for (grp, layers) in LAYER_METADATA.items():
-        layer_metadata.update({grp: {'layers': layers}})
-        layer_metadata[grp]['title'] = LABELS['layer_groups'][grp]['title']
-        layer_metadata[grp]['text'] = LABELS['layer_groups'][grp]['text']
-        for l, v in layers.items():
-            layer_metadata[grp]['layers'][l]['title'] = LABELS['layers'][l]['title']
-            layer_metadata[grp]['layers'][l]['text'] = LABELS['layers'][l]['text']
+        # create JSON for choropleth layers
+        choropleth_data = {l: a['choropleth']
+                           for v in layer_cfg_metadata.values()
+                           for l, a in v.items() if 'choropleth' in a}
+        #layer_data['choropleth_data'] = json.dumps(choropleth_data)
 
-    # create layer groups for layer menu using layers config
-    layer_groups = layer_metadata.copy()
-    for grp, layers in layer_metadata.items():
-        layer_groups[grp]['layers'] = LayerGroupForm(layers=layers['layers'])
-    layer_data['layer_groups'] = layer_groups
+        # update layer and layer group labels using labels config
+        layer_metadata = OrderedDict()
+        for (grp, layers) in layer_cfg_metadata.items():
+            layer_metadata.update({grp: {'layers': layers}})
+            layer_metadata[grp]['title'] = LABELS['layer_groups'][grp]['title']
+            layer_metadata[grp]['text'] = LABELS['layer_groups'][grp]['text']
+            for l, v in layers.items():
+                layer_metadata[grp]['layers'][l]['title'] = LABELS['layers'][l]['title']
+                layer_metadata[grp]['layers'][l]['text'] = LABELS['layers'][l]['text']
+
+        # create layer groups for layer menu using layers config
+        layer_groups = layer_metadata.copy()
+        for grp, layers in layer_metadata.items():
+            layer_groups[grp]['layers'] = LayerGroupForm(layers=layers['layers'],
+                                                         cat_name=cat_name)
+        layer_data['layer_groups'] = layer_groups
+
+        return layer_data, layer_list, layer_style, choropleth_data
+
+    # categories are different lists of layers, e.g.
+    # 'region' is for the info layers of the status quo (region panel)
+    # 'areas' is for areas that put restrictions on use for e.g. wind turbines
+    layer_categories = {'areas': LAYER_AREAS_METADATA,
+                        'region': LAYER_REGION_METADATA}
+
+    # init data dict
+    layer_data = {'layer_list': {},
+                  'layer_style': {},
+                  'choropleth_data': {}
+                  }
+
+    # prepare and fill
+    for cat, metadata in layer_categories.items():
+        ld, ll, ls, cd = _config2layer(cat, metadata)
+        layer_data.update({'layer_{cat}'.format(cat=cat): ld})
+        layer_data['layer_list'].update(ll)
+        layer_data['layer_style'].update(ls)
+        layer_data['choropleth_data'].update(cd)
+
+    # serialize style data
+    layer_data['layer_style'] = json.dumps(layer_data['layer_style'])
+    layer_data['choropleth_data'] = json.dumps(layer_data['choropleth_data'])
 
     return layer_data
 

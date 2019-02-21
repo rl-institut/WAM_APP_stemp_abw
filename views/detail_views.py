@@ -10,7 +10,7 @@ class MasterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
-    
+
         context['bla'] = 'Some substation content'
     
         return context

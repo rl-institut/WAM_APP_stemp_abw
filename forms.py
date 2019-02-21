@@ -6,10 +6,13 @@ from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 class LayerGroupForm(forms.Form):
     """Form for layer group"""
 
-    def __init__(self, layers=None, *args, **kwargs):
+    def __init__(self, cat_name=None, layers=None, *args, **kwargs):
         if layers is None:
             raise ValueError('No layers given. '
                              'Please add some in layers.cfg.')
+        if cat_name is None:
+            raise ValueError('No category name specified.')
+
         super(LayerGroupForm, self).__init__(*args, **kwargs)
 
         for name, data in layers.items():
@@ -17,7 +20,9 @@ class LayerGroupForm(forms.Form):
                 label='',
                 coerce=lambda x: bool(int(x)),
                 widget=LayerSelectWidget(
-                    attrs={'id': 'cb_{}'.format(name),
+                    attrs={'id': 'cb_{grp}_{name}'.format(grp=cat_name,
+                                                          name=name),
+                           'category': cat_name,
                            'name': name,
                            'title': data['title'],
                            'text': data['text'],
