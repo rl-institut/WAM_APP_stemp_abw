@@ -73,14 +73,14 @@ class RegMun(LayerModel):
     pop_km2 = models.FloatField(null=True)
 
 
-class RegMunPopDensity(RegMun):
+class RegMunStats(RegMun):
     """This is a proxy model for RegMun which got same relations to the DB
     table but changes the model name. This is needed to load the appropriate
     DetailView when clicking on a map feature (serialized property in the data
     view).
     See Also: https://github.com/rl-institut/WAM_APP_stemp_abw/issues/2
     """
-    name = 'reg_mun_pop_density'
+    name = 'reg_mun_stats'
     class Meta:
         proxy = True
 

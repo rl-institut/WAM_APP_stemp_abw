@@ -529,7 +529,7 @@
             // Load GeoJsons via Ajax and add layers to map
             {% for layer, data in layer_list.items %}
                 // Build data URL
-                var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
+                var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
 
                 // Load data via Ajax
                 $.ajax({

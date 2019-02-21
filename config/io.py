@@ -13,7 +13,7 @@ def prepare_layer_data():
 
         # create layer list for AJAX data urls,
         # include show (initial showup) and title (for spinner)
-        layer_list = {l: {'show': d['show']}
+        layer_list = {l: {'show': d['show'], 'model': d['model']}
                       for ls in layer_cfg_metadata.values()
                       for l, d in ls.items()}
         for l, v in layer_list.items():
