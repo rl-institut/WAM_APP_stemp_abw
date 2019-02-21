@@ -520,6 +520,7 @@
             // Setup layer and legend stores
             var layers = {};
             var legends = {};
+            var layers_cat = {};
 
             // Setup layer counter
             layer_count = {{ layer_list|length }};
@@ -546,6 +547,7 @@
                                                          }
                                                  );
                         layers["{{ layer }}"] = layer;
+                        layers_cat["{{ layer }}"] = '{{ data.cat }}';
                         layer_ctr++;
 
                         // Add legend to map
@@ -643,7 +645,7 @@
               // Master switch for all layers
               if (id == "cb_all_areas_layers") {
                 for (var l in layers) {
-                  if (layers.hasOwnProperty(l)) {
+                  if (layers.hasOwnProperty(l) && layers_cat[l] == 'areas') {
                     if (this.checked) map.addLayer(layers[l]);
                     else map.removeLayer(layers[l]);
                   }
