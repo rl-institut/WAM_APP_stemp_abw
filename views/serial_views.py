@@ -39,6 +39,14 @@ class RegMunPopDensityData(GeoJSONLayerView):
     precision = 5
 
 
+class RegMunStatsData(GeoJSONLayerView):
+    model = models.RegMunStats
+    properties = ['popup_content', 'name', 'gen', 'density']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
 class RegWaterProtAreaData(GeoJSONLayerView):
     model = models.RegWaterProtArea
     properties = ['popup_content', 'name']

@@ -86,6 +86,16 @@ class RegMunPopDensity(RegMun):
         proxy = True
 
 
+class RegMunStats(RegMun):
+    name = 'reg_mun_stats'
+    class Meta:
+        proxy = True
+
+    @property
+    def density(self):
+        return self.mundata.pop_2017 / self.mundata.area
+
+
 class RegWaterProtArea(LayerModel):
     name = 'reg_water_prot_area'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
