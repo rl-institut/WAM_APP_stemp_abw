@@ -38,7 +38,8 @@ class RegMunStatsData(GeoJSONLayerView):
                   'gen',
                   'pop',
                   'pop_density',
-                  'gen_capacity_re',
+                  'gen_cap_re',
+                  'gen_cap_re_density',
                   'gen_energy_re',
                   'gen_energy_re_per_capita',
                   'gen_energy_re_density',
@@ -46,7 +47,8 @@ class RegMunStatsData(GeoJSONLayerView):
                   'dem_el_energy_per_capita',
                   'dem_th_energy',
                   'dem_th_energy_per_capita',
-                  'energy_re_el_dem_share']
+                  'energy_re_el_dem_share',
+                  'gen_count_wind_density']
     srid = 4326
     geometry_field = 'geom'
     precision = 3

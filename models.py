@@ -92,12 +92,15 @@ class RegMunStats(RegMun):
     def pop_density(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
     @property
-    def gen_capacity_re(self):
+    def gen_cap_re(self):
         return round(self.mundata.gen_capacity_wind +
                      self.mundata.gen_capacity_pv_roof_large +
                      self.mundata.gen_capacity_pv_ground +
                      self.mundata.gen_capacity_hydro +
                      self.mundata.gen_capacity_bio)
+    @property
+    def gen_cap_re_density(self):
+        return round(self.gen_cap_re / self.mundata.area, 2)
     @property
     def gen_energy_re(self):
         return round((self.mundata.gen_el_energy_wind +
@@ -128,6 +131,9 @@ class RegMunStats(RegMun):
     @property
     def energy_re_el_dem_share(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)
+    @property
+    def gen_count_wind_density(self):
+        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
 
 
 class RegWaterProtArea(LayerModel):
