@@ -103,22 +103,28 @@ class RegMunStats(RegMun):
         return round((self.mundata.gen_el_energy_wind +
                       self.mundata.gen_el_energy_pv_roof +
                       self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1000)
+                      self.mundata.gen_el_energy_hydro) / 1e3)
     @property
     def gen_energy_re_per_capita(self):
-        return round(self.gen_energy_re * 1000 / self.mundata.pop_2017, 1)
+        return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
     @property
     def gen_energy_re_density(self):
-        return round(self.gen_energy_re * 1000 / self.mundata.area, 1)
+        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
     @property
     def dem_el_energy(self):
         return round((self.mundata.dem_el_energy_hh +
                       self.mundata.dem_el_energy_rca +
-                      self.mundata.dem_el_energy_ind) / 1000)
+                      self.mundata.dem_el_energy_ind) / 1e3)
+    @property
+    def dem_el_energy_per_capita(self):
+        return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
     @property
     def dem_th_energy(self):
         return round((self.mundata.dem_th_energy_hh +
-                      self.mundata.dem_th_energy_rca) / 1000)
+                      self.mundata.dem_th_energy_rca) / 1e3)
+    @property
+    def dem_th_energy_per_capita(self):
+        return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
     @property
     def energy_re_el_dem_share(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)

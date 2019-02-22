@@ -43,11 +43,13 @@ class RegMunStatsData(GeoJSONLayerView):
                   'gen_energy_re_per_capita',
                   'gen_energy_re_density',
                   'dem_el_energy',
+                  'dem_el_energy_per_capita',
                   'dem_th_energy',
+                  'dem_th_energy_per_capita',
                   'energy_re_el_dem_share']
     srid = 4326
     geometry_field = 'geom'
-    precision = 5
+    precision = 3
 
 
 class RegWaterProtAreaData(GeoJSONLayerView):
