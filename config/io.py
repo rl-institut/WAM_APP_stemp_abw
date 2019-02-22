@@ -27,7 +27,7 @@ def prepare_layer_data():
                        for l, a in v.items()}
         layer_style.update(LAYER_DEFAULT_STYLES)
 
-        # create JSON for choropleth layers
+        # create dict choropleth layers
         choropleth_data = {l: a['choropleth']
                            for v in layer_cfg_metadata.values()
                            for l, a in v.items() if 'choropleth' in a}
