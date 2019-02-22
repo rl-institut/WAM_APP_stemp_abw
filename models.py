@@ -81,6 +81,7 @@ class RegMunStats(RegMun):
     See Also: https://github.com/rl-institut/WAM_APP_stemp_abw/issues/2
     """
     name = 'reg_mun_stats'
+
     class Meta:
         proxy = True
 
