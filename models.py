@@ -70,7 +70,6 @@ class RegMun(LayerModel):
     ags = models.IntegerField(primary_key=True)
     geom = geomodels.MultiPolygonField(srid=3035)
     gen = models.CharField(max_length=254)
-    pop_km2 = models.FloatField(null=True)
 
 
 class RegMunStats(RegMun):
