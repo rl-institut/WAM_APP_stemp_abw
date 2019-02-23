@@ -219,6 +219,9 @@ class GenWEC(LayerModel):
     name = 'gen_wec'
     geom = geomodels.MultiPointField(srid=3035, null=True)
 
+class GenPVGround(LayerModel):
+    name = 'gen_pv_ground'
+    geom = geomodels.MultiPointField(srid=3035, null=True)
 
 class RegDeadZoneHard(LayerModel):
     name = 'reg_dead_zone_hard'

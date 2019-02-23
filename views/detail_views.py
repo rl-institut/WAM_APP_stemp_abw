@@ -83,6 +83,10 @@ class GenWECDetailView(MasterDetailView):
     model = models.GenWEC
 
 
+class GenPVGroundDetailView(MasterDetailView):
+    model = models.GenPVGround
+
+
 class RegPrioAreaWECDetailView(MasterDetailView):
     model = models.RegPrioAreaWEC
 

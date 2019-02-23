@@ -156,6 +156,14 @@ class GenWECData(GeoJSONLayerView):
     precision = 5
 
 
+class GenPVGroundData(GeoJSONLayerView):
+    model = models.GenPVGround
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
 class RegDeadZoneHardData(GeoJSONLayerView):
     model = models.RegDeadZoneHard
     properties = ['popup_content', 'name']
