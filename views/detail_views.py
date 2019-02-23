@@ -10,8 +10,7 @@ class MasterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
-    
-        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+
         context['bla'] = 'Some substation content'
     
         return context
@@ -19,14 +18,6 @@ class MasterDetailView(DetailView):
 ####################
 ### Detail Views ### for popups
 ####################
-class SubstDetailView(MasterDetailView):
-    model = models.HvMvSubst
-
-
-class OsmPowerGenDetailView(MasterDetailView):
-    model = models.OsmPowerGen
-
-
 class RpAbwBoundDetailView(MasterDetailView):
     model = models.RpAbwBound
 
@@ -36,7 +27,7 @@ class RegMunDetailView(MasterDetailView):
 
 
 class RegMunPopDensityDetailView(MasterDetailView):
-    model = models.RegMunPopDensity
+    model = models.RegMunStats
     template_name = 'stemp_abw/layer_popup_reg_mun_pop_density.html'
 
 
@@ -90,6 +81,10 @@ class RegResidAreaB1000DetailView(MasterDetailView):
 
 class GenWECDetailView(MasterDetailView):
     model = models.GenWEC
+
+
+class GenPVGroundDetailView(MasterDetailView):
+    model = models.GenPVGround
 
 
 class RegPrioAreaWECDetailView(MasterDetailView):

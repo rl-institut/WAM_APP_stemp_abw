@@ -10,5 +10,7 @@ for model in app_models:
     try:
         if issubclass(model, LayerModel):
             wam_admin_site.register(model, LeafletGeoAdmin)
+        else:
+            wam_admin_site.register(model)
     except AlreadyRegistered:
         pass

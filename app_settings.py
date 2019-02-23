@@ -46,10 +46,15 @@ def build_db_url(db_name):
 # sqlahelper.add_engine(engine, 'reiners_db')
 
 # TODO: Verify configs after import / make failsafe!
-LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                        'stemp_abw',
-                                        'config',
-                                        'layers.cfg'))
+LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                              'stemp_abw',
+                                              'config',
+                                              'layers_areas.cfg'))
+
+LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                               'stemp_abw',
+                                               'config',
+                                               'layers_region.cfg'))
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',

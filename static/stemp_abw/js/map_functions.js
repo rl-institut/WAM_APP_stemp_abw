@@ -1,8 +1,17 @@
 // Get color and step values as associated array
 function getColorValues(schema, min, max, step, reverse) {
 
+    // Convert to floats
+    min = parseFloat(min);
+    max = parseFloat(max);
+    step = parseFloat(step);
+
+    // Get number if digits to round resulting range values below
+    var numberOfDigits = Math.ceil(Math.log(step + 1) / Math.LN10);
+
     // Get the sum of steps by step (interval)
     var sumSteps = parseInt((max - min) / step);
+
     // Get dividable interval step from steps
     // This is necessary, if "((max - min) / step)" produced rest
     var stepInterval = (max - min) / sumSteps;
@@ -20,8 +29,8 @@ function getColorValues(schema, min, max, step, reverse) {
     colorsAndStepValues['values'] = [];
     var base = min;
     for (var i = 0; i < colors.length; i++) {
-        colorsAndStepValues['values'][parseInt(base)] = colors[i];
-        base = parseFloat(base) + stepInterval;
+        colorsAndStepValues['values'][parseFloat(base)] = colors[i];
+        base = parseFloat((parseFloat(base) + stepInterval).toFixed(numberOfDigits));
     }
 
     // Add max value

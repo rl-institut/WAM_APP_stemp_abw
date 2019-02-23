@@ -5,24 +5,6 @@ from djgeojson.views import GeoJSONLayerView
 #########################
 ### GeoJSONLayerViews ###
 #########################
-class SubstData(GeoJSONLayerView):
-    model = models.HvMvSubst
-    # TODO: 'name' is used to load popup content in JS from view (build url).
-    # TODO: Find smarter approach!
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
-class OsmPowerGenData(GeoJSONLayerView):
-    model = models.OsmPowerGen
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
 class RpAbwBoundData(GeoJSONLayerView):
     model = models.RpAbwBound
     properties = ['popup_content', 'name']
@@ -39,12 +21,27 @@ class RegMunData(GeoJSONLayerView):
     precision = 5
 
 
-class RegMunPopDensityData(GeoJSONLayerView):
-    model = models.RegMunPopDensity
-    properties = ['popup_content', 'name', 'gen', 'pop_km2']
+class RegMunStatsData(GeoJSONLayerView):
+    model = models.RegMunStats
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop',
+                  'pop_density',
+                  'gen_cap_re',
+                  'gen_cap_re_density',
+                  'gen_energy_re',
+                  'gen_energy_re_per_capita',
+                  'gen_energy_re_density',
+                  'dem_el_energy',
+                  'dem_el_energy_per_capita',
+                  'dem_th_energy',
+                  'dem_th_energy_per_capita',
+                  'energy_re_el_dem_share',
+                  'gen_count_wind_density']
     srid = 4326
     geometry_field = 'geom'
-    precision = 5
+    precision = 3
 
 
 class RegWaterProtAreaData(GeoJSONLayerView):
@@ -153,6 +150,14 @@ class RegPrioAreaWECData(GeoJSONLayerView):
 
 class GenWECData(GeoJSONLayerView):
     model = models.GenWEC
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class GenPVGroundData(GeoJSONLayerView):
+    model = models.GenPVGround
     properties = ['popup_content', 'name']
     srid = 4326
     geometry_field = 'geom'

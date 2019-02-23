@@ -73,15 +73,15 @@
                   <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
                     <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-                     <!-- First panel content -->
-                      <div class="tabs-panel is-active" id="panel-region">
-                        <p class="lead" style="margin-bottom: 0;">
-                          {{ panels.region.title }}
-                          <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
-                          {{ info }}
-                        </p>
-
-                      </div>
+                        <!-- First panel content -->
+                        <div class="tabs-panel is-active" id="panel-region">
+                          <p class="lead" style="margin-bottom: 0;">
+                            {{ panels.region.title }}
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
+                            {{ info }}
+                          </p>
+                          {% include "forms/layer_region_select.html" %}
+                        </div>
 
                         <!-- Second panel content -->
                         <div class="tabs-panel" id="panel-scenarios">
@@ -188,21 +188,18 @@
                             {{ panels.results.title }}
                             <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}"></i>
                           </p>
+
                           <div class="grid-x">
-
-                          <div class="cell u-text--center">
-                            <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                              Mehr Ergebnisse
-                              <i class ="icon ion-android-add icon--small"></i>
-                            </button>
-                          </div>
-
-                          <div class="cell" id="results-collapsed">
-                            <p>Some results</p>
-                          </div>
-
-                          {% include "stemp_abw/results_full.html" %}
-
+                            <div class="cell u-text--center">
+                              <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                                Mehr Ergebnisse
+                                <i class ="icon ion-android-add icon--small"></i>
+                              </button>
+                            </div>
+                            <div class="cell" id="results-collapsed">
+                              <p>Some results</p>
+                            </div>
+                            {% include "stemp_abw/results_full.html" %}
                           </div>
                         </div>
 
@@ -238,15 +235,15 @@
                                     </div>
                                     <div class="cell small-1">
                                       <div class="switch tiny master">
-                                        <input class="switch-input-layer-select" id="cb_all_layers" type="checkbox" name="all_layers">
-                                        <label class="switch-paddle" for="cb_all_layers">
+                                        <input class="switch-input-layer-select-areas" id="cb_all_areas_layers" type="checkbox" name="all_layers">
+                                        <label class="switch-paddle" for="cb_all_areas_layers">
                                         </label>
                                       </div>
                                     </div>
                                   </div>
                                 </form>
 
-                                {% include "forms/layer_select.html" %}
+                                {% include "forms/layer_areas_select.html" %}
 
                                 <div class="grid-x grid-margin-x">
                                   <div class="cell">
@@ -432,10 +429,8 @@
             $('.loader-wrapper').toggleClass("loader-wrapper--hide");
             $('body').toggleClass("body--nopointer");
 
-            // Parse layer style JSON
+            // Parse layer style JSONs
             var style_data = JSON.parse('{{ layer_style | escapejs }}');
-
-            // Parse choropleth data JSON
             var choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
 
             // popup style
@@ -525,6 +520,7 @@
             // Setup layer and legend stores
             var layers = {};
             var legends = {};
+            var layers_cat = {};
 
             // Setup layer counter
             layer_count = {{ layer_list|length }};
@@ -534,7 +530,7 @@
             // Load GeoJsons via Ajax and add layers to map
             {% for layer, data in layer_list.items %}
                 // Build data URL
-                var dataurl = "{% url 'stemp_abw:'|add:layer|add:'.data' %}"
+                var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
 
                 // Load data via Ajax
                 $.ajax({
@@ -551,6 +547,7 @@
                                                          }
                                                  );
                         layers["{{ layer }}"] = layer;
+                        layers_cat["{{ layer }}"] = '{{ data.cat }}';
                         layer_ctr++;
 
                         // Add legend to map
@@ -631,35 +628,47 @@
             // Control layer
             $(document).foundation();
 
-            // Control layer visibility via checkboxes
-            $( '.switch-input-layer-select' ).click( function () {
+            // Control layer visibility via checkboxes (region layers)
+            $( '.switch-input-layer-select-region' ).click( function () {
+              var id = $(this).attr('id');
+
+              // Individual layers switches
+              l = layers[id.replace('cb_region_','')];
+              if (this.checked) map.addLayer(l);
+              else map.removeLayer(l);
+            });
+
+            // Control layer visibility via checkboxes (areas layers)
+            $( '.switch-input-layer-select-areas' ).click( function () {
               var id = $(this).attr('id');
 
               // Master switch for all layers
-              if (id == "cb_all_layers") {
+              if (id == "cb_all_areas_layers") {
                 for (var l in layers) {
-                  if (layers.hasOwnProperty(l)) {
+                  if (layers.hasOwnProperty(l) && layers_cat[l] == 'areas') {
                     if (this.checked) map.addLayer(layers[l]);
                     else map.removeLayer(layers[l]);
                   }
-                $( '.switch-input-layer-select' ).prop('checked', this.checked);
+                $( '.switch-input-layer-select-areas' ).prop('checked', this.checked);
                 }
               }
 
               // Individual layers switches
               else {
-                l = layers[id.replace('cb_','')];
+                l = layers[id.replace('cb_areas_','')];
                 if (this.checked) map.addLayer(l);
                 else map.removeLayer(l);
               };
             });
 
             // Control legend visibility via checkboxes
-            $( '.switch-input-layer-select' ).click( function () {
+            $( '.switch-input-layer-select-region' ).click( function () {
               var id = $(this).attr('id');
 
               // Master switch for all legends
-              if (id == "cb_all_layers") {
+              // (CURRENTLY DISABLED AS ONLY REGION LAYER LIST CONTAINS CHORO MAPS)
+              /*
+              if (id == "cb_all_areas_layers") {
                 for (var l in legends) {
                   if (legends.hasOwnProperty(l)) {
                     map.removeControl(legends[l]);
@@ -667,10 +676,11 @@
                 $( '.switch-input-layer-select' ).prop('checked', this.checked);
                 }
               }
+              */
 
               // Individual legend switches
-              else {
-                id = id.replace('cb_', '');
+              //else {
+                id = id.replace('cb_region_', '');
                 for (var l in legends) {
                   if (l !== id && choropleth_data.hasOwnProperty(id)) {
                     if (this.checked) map.removeControl(legends[l]);
@@ -680,7 +690,7 @@
                     else map.removeControl(l);
                   }
                 }
-              }
+              //}
             });
         };
 

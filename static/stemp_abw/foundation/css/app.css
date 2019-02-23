@@ -6548,7 +6548,12 @@ html.is-reveal-open {
   margin-bottom: 0;
   opacity: 0; }
 
-.switch-input-layer-select {
+.switch-input-layer-select-region {
+  position: absolute;
+  margin-bottom: 0;
+  opacity: 0; }
+
+.switch-input-layer-select-areas {
   position: absolute;
   margin-bottom: 0;
   opacity: 0; }
