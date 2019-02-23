@@ -38,23 +38,6 @@ class LayerModel(models.Model):
             pk=self.pk)
 
 
-# TODO: This model is for testing puorposes only, to be removed!
-class HvMvSubst(LayerModel):
-    name = 'subst'
-    geom = geomodels.PointField(srid=4326, null=True)
-    subst_id = models.IntegerField()
-
-    # @property
-    # def popup_content(self):
-    #     return '<p>{text}</p>'.format(
-    #         text='Substation ' + str(self.subst_id))
-
-    # def get_data(self):
-    #     session = sqlahelper.get_session()
-    #     query = session.query(oep_models.WnAbwEgoDpHvmvSubstation)
-    #     data = query.all()
-
-
 class RpAbwBound(LayerModel):
     name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)

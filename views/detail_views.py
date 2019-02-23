@@ -18,10 +18,6 @@ class MasterDetailView(DetailView):
 ####################
 ### Detail Views ### for popups
 ####################
-class SubstDetailView(MasterDetailView):
-    model = models.HvMvSubst
-
-
 class RpAbwBoundDetailView(MasterDetailView):
     model = models.RpAbwBound
 

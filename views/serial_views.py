@@ -5,16 +5,6 @@ from djgeojson.views import GeoJSONLayerView
 #########################
 ### GeoJSONLayerViews ###
 #########################
-class SubstData(GeoJSONLayerView):
-    model = models.HvMvSubst
-    # TODO: 'name' is used to load popup content in JS from view (build url).
-    # TODO: Find smarter approach!
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
 class RpAbwBoundData(GeoJSONLayerView):
     model = models.RpAbwBound
     properties = ['popup_content', 'name']
