@@ -156,6 +156,15 @@
                             {{ panels.esys.title }}
                             <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
                           </p>
+                          <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 1rem;">
+                            <label>
+                              Für Marker bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i>
+                              <select>
+                                <option value="husker">Status Quo</option>
+                              </select>
+                            </label>
+                          </form>
+
 
 
                           {% include "forms/esys_components.html" %}
