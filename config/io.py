@@ -100,4 +100,5 @@ def prepare_component_data():
 
 
 def prepare_label_data():
-    return {'panels': LABELS['panels']}
+    return {'panels': LABELS['panels'],
+            'tooltips': LABELS['tooltips']}
