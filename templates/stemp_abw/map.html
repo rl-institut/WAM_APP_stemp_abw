@@ -165,8 +165,6 @@
                             </label>
                           </form>
 
-
-
                           {% include "forms/esys_components.html" %}
 
                           <!--<div class="grid-x">-->
@@ -227,6 +225,7 @@
                             </ul>
 
                             <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+
                               <div class="tabs-panel is-active" id="areas-panel1">
                                 <div class="grid-x">
                                   <div class="cell">
@@ -236,6 +235,8 @@
                                     </p>
                                   </div>
                                 </div>
+
+                                {% include "forms/esys_areas.html" %}
                               </div>
 
                               <div class="tabs-panel" id="areas-panel2">
@@ -425,6 +426,20 @@
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
         {% for group, data in comp_groups.items %}
+            {% for comp in data.comps %}
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for group, data in area_groups.items %}
             {% for comp in data.comps %}
                 {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
                     $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({

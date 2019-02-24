@@ -66,6 +66,11 @@ ESYS_COMPONENTS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                                   'config',
                                                   'esys_components.cfg'))
 
+ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                             'stemp_abw',
+                                             'config',
+                                             'esys_areas.cfg'))
+
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'config',

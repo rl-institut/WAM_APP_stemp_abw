@@ -1,0 +1,17 @@
+<form>
+  {% csrf_token %}
+  {% for group, data in area_groups.items %}
+    <fieldset>
+      <legend>
+        <small style="color: #000; border-bottom: 1px solid #000;">{{ data.title }}</small>
+        <i class ="icon ion-help-circled icon--small" title="{{data.text}}"></i>
+      </legend>
+      <div class="grid-x">
+        {% for comp in data.comps %}
+          {{ comp }}
+        {% endfor %}
+      </div>
+
+    </fieldset>
+  {% endfor %}
+</form>
