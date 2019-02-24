@@ -1643,7 +1643,8 @@ footer.map-footer {
   padding-left: 0;
   padding-right: 0; }
   #panel-energy .accordion-content {
-    padding-bottom: 1rem; }
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; }
   #panel-energy .accordion-title {
     height: 4rem; }
   #panel-energy .accordion-title--100 {
