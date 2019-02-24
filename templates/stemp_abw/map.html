@@ -103,7 +103,7 @@
                                       <form>
                                         <fieldset>
                                             <legend>Vorgegebenes Szenario auswählen
-                                              <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                              <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}"></i>
                                             </legend>
                                             <label class="control control--radio">Status Quo
                                               <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
@@ -127,7 +127,7 @@
                                     <div class="cell">
                                       <form class="select-menu">
                                         <label>
-                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="Informationen zum Inhalt"></i>
+                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}"></i>
                                           <select>
                                             <option value="husker">Husker</option>
                                             <option value="starbuck">Starbuck</option>
@@ -156,7 +156,14 @@
                             {{ panels.esys.title }}
                             <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
                           </p>
-
+                          <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 1rem;">
+                            <label>
+                              Für Marker bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i>
+                              <select>
+                                <option value="husker">Status Quo</option>
+                              </select>
+                            </label>
+                          </form>
 
                           {% include "forms/esys_components.html" %}
 
@@ -218,18 +225,29 @@
                             </ul>
 
                             <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+
                               <div class="tabs-panel is-active" id="areas-panel1">
-                                <div class="grid-x grid-margin-x">
+                                <div class="grid-x">
                                   <div class="cell">
-                                    <p>Layers</p>
-                                    </form>
+                                    <p>
+                                      Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
+                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}"></i>
+                                    </p>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="tabs-panel" id="areas-panel2">
 
+                                {% include "forms/esys_areas.html" %}
+                              </div>
+
+                              <div class="tabs-panel" id="areas-panel2">
                                 <form>
                                   <div class="grid-x">
+                                  <div class="cell">
+                                    <p>
+                                      Hier erfahren Sie mehr über Restriktionsflächen.
+                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}"></i>
+                                    </p>
+                                  </div>
                                     <div class="cell small-11">
                                       <p>Alle Ebenen anzeigen</p>
                                     </div>
@@ -408,6 +426,20 @@
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
         {% for group, data in comp_groups.items %}
+            {% for comp in data.comps %}
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for group, data in area_groups.items %}
             {% for comp in data.comps %}
                 {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
                     $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({

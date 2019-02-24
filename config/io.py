@@ -1,9 +1,9 @@
 from collections import OrderedDict
 import json
-from stemp_abw.forms import LayerGroupForm, ComponentGroupForm
+from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm
 
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
-    LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA, LABELS
+    LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA, ESYS_AREAS_METADATA, LABELS
 
 
 def prepare_layer_data():
@@ -80,8 +80,11 @@ def prepare_layer_data():
 
 def prepare_component_data():
     component_data = {}
-    # update component and component group labels using labels config
+    area_data = {};
+
+    # update component/area and group labels using labels config
     comp_metadata = OrderedDict()
+    area_metadata = OrderedDict()
     for (grp, comps) in ESYS_COMPONENTS_METADATA.items():
         comp_metadata.update({grp: {'comps': comps}})
         comp_metadata[grp]['title'] = LABELS['component_groups'][grp]['title']
@@ -90,14 +93,29 @@ def prepare_component_data():
             comp_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             comp_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
 
-    # create component groups for esys menu using components config
+    for (grp, comps) in ESYS_AREAS_METADATA.items():
+        area_metadata.update({grp: {'comps': comps}})
+        area_metadata[grp]['title'] = LABELS['component_groups'][grp]['title']
+        area_metadata[grp]['text'] = LABELS['component_groups'][grp]['text']
+        for l, v in comps.items():
+            area_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
+            area_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+
+    # create component groups for esys panel using components config
     comp_groups = comp_metadata.copy()
     for grp, comps in comp_groups.items():
         comp_groups[grp]['comps'] = ComponentGroupForm(components=comps['comps'])
     component_data['comp_groups'] = comp_groups
 
+    # create area groups for areas panel (variable areas) using components config
+    area_groups = area_metadata.copy()
+    for grp, comps in area_groups.items():
+        area_groups[grp]['comps'] = AreaGroupForm(components=comps['comps'])
+    component_data['area_groups'] = area_groups
+
     return component_data
 
 
 def prepare_label_data():
-    return {'panels': LABELS['panels']}
+    return {'panels': LABELS['panels'],
+            'tooltips': LABELS['tooltips']}

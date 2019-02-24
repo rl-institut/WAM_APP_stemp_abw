@@ -53,6 +53,7 @@ class ComponentGroupForm(forms.Form):
                     widget=SliderWidget(
                         attrs={'id': 'sl_{}'.format(name),
                                'name': name,
+                               'cell_style': '',
                                'title': f'{data["title"]} [{data["unit"]}]',
                                'text': data['text'],
                                'min': data['min'],
@@ -80,3 +81,49 @@ class ComponentGroupForm(forms.Form):
             else:
                 raise TypeError(
                     f'Unknown value for "type" in esys_components.cfg at {name}')
+
+
+class AreaGroupForm(forms.Form):
+    """Form for esys components"""
+
+    def __init__(self, components=None, *args, **kwargs):
+        if components is None:
+            raise ValueError('No areas given. '
+                             'Please add some in esys_areas.cfg.')
+        super(AreaGroupForm, self).__init__(*args, **kwargs)
+
+        for name, data in components.items():
+            if data['type'] == 'range':
+                self.fields[name] = forms.FloatField(
+                    label='',
+                    widget=SliderWidget(
+                        attrs={'id': 'sl_{}'.format(name),
+                               'name': name,
+                               'cell_style': 'margin-bottom: 1.5rem;',
+                               'title': f'{data["title"]} [{data["unit"]}]',
+                               'text': data['text'],
+                               'min': data['min'],
+                               'max': data['max'],
+                               'from': data['value'],
+                               'step': data['step']
+                               }
+                    ),
+                    required = False
+                )
+            elif data['type'] == 'bool':
+                self.fields[name] = forms.TypedChoiceField(
+                    label='',
+                    coerce=lambda x: bool(int(x)),
+                    widget=SwitchWidget(
+                        attrs={'id': 'cb_{}'.format(name),
+                               'name': name,
+                               'title': data['title'],
+                               'text': data['text'],
+                               'checked': True if data['value'] == '1' else False
+                               }
+                    ),
+                    required = False
+                )
+            else:
+                raise TypeError(
+                    f'Unknown value for "type" in esys_areas.cfg at {name}')
