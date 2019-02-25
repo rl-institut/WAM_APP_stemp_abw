@@ -2,8 +2,13 @@ from collections import namedtuple
 
 from django.urls import path, re_path
 from djgeojson.views import GeoJSONLayerView
+from django.views.decorators.cache import cache_page
+from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
 
 from . import views
+import inspect
+from meta.models import Source
+from meta.views import AppListView, AssumptionsView
 
 app_name = 'stemp_abw'
 
@@ -11,64 +16,38 @@ app_name = 'stemp_abw'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('app/', views.MapView.as_view(), name='map'),
-    path('sources/', views.SourcesView.as_view(), name='sources')
+    path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
+    # Source views from WAM with highlighting
+    path('sources/', AppListView.as_view(app_name='stemp_abw', model=Source),
+         name='sources'),
+    path('assumptions/', AssumptionsView.as_view(app_name='stemp_abw'),
+         name='assumptions'),
     ]
 
-# append detail views' URLs
-detail_views = {'subst': views.SubstDetailView,
-                'gen': views.OsmPowerGenDetailView,
-                'rpabw': views.RpAbwBoundDetailView,
-                'reg_mun': views.RegMunDetailView,
-                'reg_prio_area_res': views.RegPrioAreaResDetailView,
-                'reg_water_prot_area': views.RegWaterProtAreaDetailView,
-                'reg_bird_prot_area': views.RegBirdProtAreaDetailView,
-                'reg_bird_prot_area_b200': views.RegBirdProtAreaB200DetailView,
-                'reg_nature_prot_area': views.RegNatureProtAreaDetailView,
-                'reg_landsc_prot_area': views.RegLandscProtAreaDetailView,
-                'reg_resid_area': views.RegResidAreaDetailView,
-                'reg_resid_area_b500': views.RegResidAreaB500DetailView,
-                'reg_prio_area_flood_prot': views.RegPrioAreaFloodProtDetailView,
-                'reg_prio_area_cult': views.RegPrioAreaCultDetailView,
-                'reg_forest': views.RegForestDetailView,
-                'reg_ffh_prot_area': views.RegFFHProtAreaDetailView,
-                'reg_resid_area_b1000': views.RegResidAreaB1000DetailView,
-                'reg_prio_area_wec': views.RegPrioAreaWECDetailView,
-                'gen_wec': views.GenWECDetailView,
-                'reg_dead_zone_hard': views.RegDeadZoneHardDetailView,
-                'reg_dead_zone_soft': views.RegDeadZoneSoftDetailView
-                }
-
+# search detail views classes and append to URLs
+detail_views = {}
+for name, obj in inspect.getmembers(views.detail_views):
+    if inspect.isclass(obj):
+        if issubclass(obj, views.detail_views.MasterDetailView):
+            if obj.model is not None:
+                detail_views[obj.model.name] = obj
 urlpatterns.extend(
-    path('popup/{}/<int:pk>/'.format(name), dview.as_view(), name='{}-detail'.format(name))
+    path('popup/{}/<int:pk>/'.format(name), dview.as_view(),
+         name='{}-detail'.format(name))
     for name, dview in detail_views.items()
 )
 
 
-# append JSON data views' URLs
-data_views = {'subst': views.SubstData,
-              'gen': views.OsmPowerGenData,
-              'rpabw': views.RpAbwBoundData,
-              'reg_mun': views.RegMunData,
-              'reg_prio_area_res': views.RegPrioAreaResData,
-              'reg_water_prot_area': views.RegWaterProtAreaData,
-              'reg_bird_prot_area': views.RegBirdProtAreaData,
-              'reg_bird_prot_area_b200': views.RegBirdProtAreaB200Data,
-              'reg_nature_prot_area': views.RegNatureProtAreaData,
-              'reg_landsc_prot_area': views.RegLandscProtAreaData,
-              'reg_resid_area': views.RegResidAreaData,
-              'reg_resid_area_b500': views.RegResidAreaB500Data,
-              'reg_prio_area_flood_prot': views.RegPrioAreaFloodProtData,
-              'reg_prio_area_cult': views.RegPrioAreaCultData,
-              'reg_forest': views.RegForestData,
-              'reg_ffh_prot_area': views.RegFFHProtAreaData,
-              'reg_resid_area_b1000': views.RegResidAreaB1000Data,
-              'reg_prio_area_wec': views.RegPrioAreaWECData,
-              'gen_wec': views.GenWECData,
-              'reg_dead_zone_hard': views.RegDeadZoneHardData,
-              'reg_dead_zone_soft': views.RegDeadZoneSoftData
-              }
-
+# search JSON data views classes and append to URLs
+data_views = {}
+for name, obj in inspect.getmembers(views.serial_views):
+    if inspect.isclass(obj):
+        if issubclass(obj, GeoJSONLayerView):
+            if obj.model is not None:
+                data_views[obj.model.name] = obj
 urlpatterns.extend(
-    re_path(r'^{}.data/'.format(name), sview.as_view(), name='{}.data'.format(name))
+    re_path(r'^{}.data/'.format(name),
+            cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
+            name='{}.data'.format(name))
     for name, sview in data_views.items()
 )

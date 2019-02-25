@@ -1,34 +1,129 @@
 from django import forms
 
-from .widgets import LayerSelectWidget
+from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 
 
-class LayerSelectForm(forms.Form):
+class LayerGroupForm(forms.Form):
+    """Form for layer group"""
 
-    def __init__(self, layers=None, *args, **kwargs):
+    def __init__(self, cat_name=None, layers=None, *args, **kwargs):
         if layers is None:
-            raise ValueError('No layers given. Please add some in app_settings.')
-        super(LayerSelectForm, self).__init__(*args, **kwargs)
+            raise ValueError('No layers given. '
+                             'Please add some in layers.cfg.')
+        if cat_name is None:
+            raise ValueError('No category name specified.')
+
+        super(LayerGroupForm, self).__init__(*args, **kwargs)
 
         for name, data in layers.items():
             self.fields[name] = forms.TypedChoiceField(
-                #label = 'Layer {}'.format(name),
-                label = '',
-                # choices = (
-                #     (1, "Yes"),
-                #     (0, "No")
-                # ),
-                coerce = lambda x: bool(int(x)),
+                label='',
+                coerce=lambda x: bool(int(x)),
                 widget=LayerSelectWidget(
-                    attrs={'id': 'cb_{}'.format(name),
+                    attrs={'id': 'cb_{grp}_{name}'.format(grp=cat_name,
+                                                          name=name),
+                           'category': cat_name,
+                           'name': name,
                            'title': data['title'],
                            'text': data['text'],
                            'color': data['style']['fillColor'],
                            'geom_type': data['geom_type'],
-                           'name': name,
                            'checked': True if data['show'] == '1' else False
                            }
                 ),
-                #initial = 1,
-                required = False
+                required=False
             )
+
+
+class ComponentGroupForm(forms.Form):
+    """Form for esys components"""
+
+    def __init__(self, components=None, *args, **kwargs):
+        if components is None:
+            raise ValueError('No components given. '
+                             'Please add some in esys_components.cfg.')
+        super(ComponentGroupForm, self).__init__(*args, **kwargs)
+        # self.helper = FormHelper(self)
+        # self.helper.template = 'forms/parameter_form.html'
+
+        for name, data in components.items():
+            if data['type'] == 'range':
+                self.fields[name] = forms.FloatField(
+                    label='',
+                    widget=SliderWidget(
+                        attrs={'id': 'sl_{}'.format(name),
+                               'name': name,
+                               'cell_style': '',
+                               'title': f'{data["title"]} [{data["unit"]}]',
+                               'text': data['text'],
+                               'min': data['min'],
+                               'max': data['max'],
+                               'from': data['value'],
+                               'step': data['step']
+                               }
+                    ),
+                    required = False
+                )
+            elif data['type'] == 'bool':
+                self.fields[name] = forms.TypedChoiceField(
+                    label='',
+                    coerce=lambda x: bool(int(x)),
+                    widget=SwitchWidget(
+                        attrs={'id': 'cb_{}'.format(name),
+                               'name': name,
+                               'title': data['title'],
+                               'text': data['text'],
+                               'checked': True if data['value'] == '1' else False
+                               }
+                    ),
+                    required = False
+                )
+            else:
+                raise TypeError(
+                    f'Unknown value for "type" in esys_components.cfg at {name}')
+
+
+class AreaGroupForm(forms.Form):
+    """Form for esys components"""
+
+    def __init__(self, components=None, *args, **kwargs):
+        if components is None:
+            raise ValueError('No areas given. '
+                             'Please add some in esys_areas.cfg.')
+        super(AreaGroupForm, self).__init__(*args, **kwargs)
+
+        for name, data in components.items():
+            if data['type'] == 'range':
+                self.fields[name] = forms.FloatField(
+                    label='',
+                    widget=SliderWidget(
+                        attrs={'id': 'sl_{}'.format(name),
+                               'name': name,
+                               'cell_style': 'margin-bottom: 1.5rem;',
+                               'title': f'{data["title"]} [{data["unit"]}]',
+                               'text': data['text'],
+                               'min': data['min'],
+                               'max': data['max'],
+                               'from': data['value'],
+                               'step': data['step']
+                               }
+                    ),
+                    required = False
+                )
+            elif data['type'] == 'bool':
+                self.fields[name] = forms.TypedChoiceField(
+                    label='',
+                    coerce=lambda x: bool(int(x)),
+                    widget=SwitchWidget(
+                        attrs={'id': 'cb_{}'.format(name),
+                               'name': name,
+                               'title': data['title'],
+                               'text': data['text'],
+                               'checked': True if data['value'] == '1' else False
+                               }
+                    ),
+                    required = False
+                )
+            else:
+                raise TypeError(
+                    f'Unknown value for "type" in esys_areas.cfg at {name}')

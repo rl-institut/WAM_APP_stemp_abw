@@ -10,8 +10,7 @@ class MasterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
-    
-        # TODO: Load more context from LAYER_METADATA, e.g. label & description
+
         context['bla'] = 'Some substation content'
     
         return context
@@ -19,14 +18,6 @@ class MasterDetailView(DetailView):
 ####################
 ### Detail Views ### for popups
 ####################
-class SubstDetailView(MasterDetailView):
-    model = models.HvMvSubst
-
-
-class OsmPowerGenDetailView(MasterDetailView):
-    model = models.OsmPowerGen
-
-
 class RpAbwBoundDetailView(MasterDetailView):
     model = models.RpAbwBound
 
@@ -35,8 +26,9 @@ class RegMunDetailView(MasterDetailView):
     model = models.RegMun
 
 
-class RegPrioAreaResDetailView(MasterDetailView):
-    model = models.RegPrioAreaRes
+class RegMunPopDensityDetailView(MasterDetailView):
+    model = models.RegMunStats
+    template_name = 'stemp_abw/layer_popup_reg_mun_pop_density.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):
@@ -55,8 +47,8 @@ class RegNatureProtAreaDetailView(MasterDetailView):
     model = models.RegNatureProtArea
 
 
-class RegLandscProtAreaDetailView(MasterDetailView):
-    model = models.RegLandscProtArea
+class RegLandscProtAreaPartsDetailView(MasterDetailView):
+    model = models.RegLandscProtAreaParts
 
 
 class RegResidAreaDetailView(MasterDetailView):
@@ -91,6 +83,10 @@ class GenWECDetailView(MasterDetailView):
     model = models.GenWEC
 
 
+class GenPVGroundDetailView(MasterDetailView):
+    model = models.GenPVGround
+
+
 class RegPrioAreaWECDetailView(MasterDetailView):
     model = models.RegPrioAreaWEC
 
@@ -102,3 +98,62 @@ class RegDeadZoneHardDetailView(MasterDetailView):
 class RegDeadZoneSoftDetailView(MasterDetailView):
     model = models.RegDeadZoneSoft
 
+
+class RegFFHProtAreaBDetailView(MasterDetailView):
+    model = models.RegFFHProtAreaB
+
+
+class RegLandscProtAreaDetailView(MasterDetailView):
+    model = models.RegLandscProtArea
+
+
+class RegNatureParkDetailView(MasterDetailView):
+    model = models.RegNaturePark
+
+
+class RegBioReserveDetailView(MasterDetailView):
+    model = models.RegBioReserve
+
+
+class RegRetentAreaEcosysDetailView(MasterDetailView):
+    model = models.RegRetentAreaEcosys
+
+
+class RegPrioAreaNatureDetailView(MasterDetailView):
+    model = models.RegPrioAreaNature
+
+
+class RegNatureMonumDetailView(MasterDetailView):
+    model = models.RegNatureMonum
+
+
+class RegPrioAreaWaterDetailView(MasterDetailView):
+    model = models.RegPrioAreaWater
+
+
+class RegPrioAreaAgriDetailView(MasterDetailView):
+    model = models.RegPrioAreaAgri
+
+
+class RegRetentAreaAgriDetailView(MasterDetailView):
+    model = models.RegRetentAreaAgri
+
+
+class RegPrioAreaResDetailView(MasterDetailView):
+    model = models.RegPrioAreaRes
+
+
+class RegInfrasRailwayDetailView(MasterDetailView):
+    model = models.RegInfrasRailway
+
+
+class RegInfrasRoadDetailView(MasterDetailView):
+    model = models.RegInfrasRoad
+
+
+class RegInfrasHvgridDetailView(MasterDetailView):
+    model = models.RegInfrasHvgrid
+
+
+class RegInfrasAviationDetailView(MasterDetailView):
+    model = models.RegInfrasAviation

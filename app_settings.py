@@ -46,17 +46,34 @@ def build_db_url(db_name):
 # sqlahelper.add_engine(engine, 'reiners_db')
 
 # TODO: Verify configs after import / make failsafe!
-LAYER_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                        'stemp_abw',
-                                        'settings',
-                                        'layers.cfg'))
+LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                              'stemp_abw',
+                                              'config',
+                                              'layers_areas.cfg'))
+
+LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                               'stemp_abw',
+                                               'config',
+                                               'layers_region.cfg'))
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
-                                              'settings',
+                                              'config',
                                               'layer_default_styles.cfg'))
+
+ESYS_COMPONENTS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                                  'stemp_abw',
+                                                  'config',
+                                                  'esys_components.cfg'))
+
+ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                             'stemp_abw',
+                                             'config',
+                                             'esys_areas.cfg'))
 
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
-                                'settings',
+                                'config',
                                 'labels.cfg'))
+
+MAP_DATA_CACHE_TIMEOUT = 60 * 60
