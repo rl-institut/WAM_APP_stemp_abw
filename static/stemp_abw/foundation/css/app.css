@@ -1020,40 +1020,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .reveal__source {
   padding-bottom: 1rem; }
 
-.slider {
-  border-radius: 100px; }
-  .slider--s {
-    width: 6rem; }
-  .slider--m {
-    width: 10rem; }
-  .slider--l {
-    width: 14rem; }
-  .slider--blue {
-    background-color: rgba(0, 100, 148, 0.4) !important; }
-    .slider--blue .slider-fill {
-      background-color: #006494; }
-    .slider--blue .slider-handle {
-      border: 1px solid #006494; }
-  .slider--costs {
-    background-color: rgba(242, 153, 74, 0.4) !important; }
-    .slider--costs .slider-fill {
-      background-color: #F2994A; }
-    .slider--costs .slider-handle {
-      border: 1px solid #F2994A; }
-  .slider--technologies {
-    background-color: rgba(52, 171, 107, 0.4) !important; }
-    .slider--technologies .slider-fill {
-      background-color: #34AB6B; }
-    .slider--technologies .slider-handle {
-      border: 1px solid #34AB6B; }
-  .slider .slider-handle {
-    background-color: #fefefe;
-    border-radius: 100px; }
-    .slider .slider-handle:hover {
-      background-color: #fefefe; }
-  .slider .slider-fill {
-    border-radius: 100px 0 0 100px; }
-
 .tabs-btn ul {
   width: 100%;
   list-style: none;
@@ -6370,86 +6336,6 @@ select {
   font-weight: bold;
   color: #fefefe;
   white-space: nowrap; }
-
-.slider {
-  position: relative;
-  height: 0.5rem;
-  margin-top: 1.25rem;
-  margin-bottom: 2.25rem;
-  background-color: #e6e6e6;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -ms-touch-action: none;
-      touch-action: none; }
-
-.slider-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  max-width: 100%;
-  height: 0.5rem;
-  background-color: #cacaca;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out; }
-  .slider-fill.is-dragging {
-    -webkit-transition: all 0s linear;
-    transition: all 0s linear; }
-
-.slider-handle {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-  left: 0;
-  z-index: 1;
-  display: inline-block;
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 0;
-  background-color: #1779ba;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation; }
-  [data-whatinput='mouse'] .slider-handle {
-    outline: 0; }
-  .slider-handle:hover {
-    background-color: #14679e; }
-  .slider-handle.is-dragging {
-    -webkit-transition: all 0s linear;
-    transition: all 0s linear; }
-
-.slider.disabled,
-.slider[disabled] {
-  opacity: 0.25;
-  cursor: not-allowed; }
-
-.slider.vertical {
-  display: inline-block;
-  width: 0.5rem;
-  height: 12.5rem;
-  margin: 0 1.25rem;
-  -webkit-transform: scale(1, -1);
-      -ms-transform: scale(1, -1);
-          transform: scale(1, -1); }
-  .slider.vertical .slider-fill {
-    top: 0;
-    width: 0.5rem;
-    max-height: 100%; }
-  .slider.vertical .slider-handle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 1.4rem;
-    height: 1.4rem;
-    -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-            transform: translateX(-50%); }
 
 .sticky-container {
   position: relative; }
