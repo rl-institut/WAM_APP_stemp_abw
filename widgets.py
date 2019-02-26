@@ -9,7 +9,10 @@ class LayerSelectWidget(CheckboxInput):
 
 
 class SliderWidget(NumberInput):
-    template_name = 'widgets/slider.html'
+    # Caution: As worksround, the slider was renamed as there's a template in
+    # stemp app with the same name.
+    # For details see https://github.com/rl-institut/WAM/issues/12
+    template_name = 'widgets/slider_abw.html'
 
     # def __init__(self, step_size=1, attrs=None):
     #     super(SliderWidget, self).__init__(attrs)
