@@ -80,7 +80,6 @@ def prepare_layer_data():
 
 def prepare_component_data():
     component_data = {}
-    area_data = {};
 
     # update component/area and group labels using labels config
     comp_metadata = OrderedDict()
