@@ -356,22 +356,22 @@
             <div class="cell" id="footer-logos">
               <ul class="map-footer__logo">
                 <li>
-                  <a href="https://www.energieavantgarde.de/" target="_blank" title="Energieavantgarde Anhalt">
+                  <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="Energieavantgarde Anhalt">
                     <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
                   </a>
                 </li>
                 <li>
-                  <a href="https://reiner-lemoine-institut.de/" target="_blank" title="Reiner Lemoine Institut">
+                  <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="Reiner Lemoine Institut">
                     <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.kopernikus-projekte.de/" target="_blank" title="Kopernikus Projekte">
-                    <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/kopernikus_logo.png' %}" alt="Logo Kopernikus">
+                  <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="Kopernikus Projekte">
+                    <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="Logo Kopernikus">
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.bmbf.de/" target="_blank" title="Bundesministerium für Bildung und Forschung">
+                  <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="Bundesministerium für Bildung und Forschung">
                     <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">
                   </a>
                 </li>
@@ -425,6 +425,25 @@
 {% block scripts %}
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
+        // slider markers
+        function convertToPercent(num, min, max) {
+          var percent = (num - min) / (max - min) * 100;
+          return percent;
+        }
+
+        function addMarks($slider, min, max, marks) {
+          var html = '';
+          var left = 0;
+          var i;
+
+          for (i = 0; i < marks.length; i++) {
+            left = convertToPercent(marks[i][0], min, max);
+            html += '<div title="' + marks[i][2] + '"><div class="mark" style="left: ' + left + '%"></div><div class="mark--text" style="left: calc(' + left + '% - (10rem/2))">' + marks[i][1] + '</div></div>';
+          }
+
+          $slider.append(html);
+        }
+
         {% for group, data in comp_groups.items %}
             {% for comp in data.comps %}
                 {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
@@ -433,7 +452,12 @@
                         max: {{comp.field.widget.attrs.max}},
                         from: {{comp.field.widget.attrs.from}},
                         step: {{comp.field.widget.attrs.step}},
-                        grid: true
+                        grid: true,
+                        onStart: function onStart(data) {
+                          var marks = [[50, 'Status Quo', 'text for tooltip 1'], [100, 'Szenario 1', 'text for tooltip 2']];
+                          var toolTipText = 'Example of text for tooltip';
+                          addMarks(data.slider, data.min, data.max, marks);
+                          }
                     });
                 {% endif %}
             {% endfor %}
