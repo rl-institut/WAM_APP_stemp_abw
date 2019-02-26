@@ -59,7 +59,8 @@ class ComponentGroupForm(forms.Form):
                                'min': data['min'],
                                'max': data['max'],
                                'from': data['value'],
-                               'step': data['step']
+                               'step': data['step'],
+                               'grid_num': data['grid_count']
                                }
                     ),
                     required = False
@@ -105,7 +106,8 @@ class AreaGroupForm(forms.Form):
                                'min': data['min'],
                                'max': data['max'],
                                'from': data['value'],
-                               'step': data['step']
+                               'step': data['step'],
+                               'grid_num': data['grid_count']
                                }
                     ),
                     required = False

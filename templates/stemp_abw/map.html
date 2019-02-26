@@ -453,6 +453,7 @@
                         from: {{comp.field.widget.attrs.from}},
                         step: {{comp.field.widget.attrs.step}},
                         grid: true,
+                        grid_num: {{comp.field.widget.attrs.grid_num}},
                         onStart: function onStart(data) {
                           var marks = [[50, 'Status Quo', 'text for tooltip 1'], [100, 'Szenario 1', 'text for tooltip 2']];
                           var toolTipText = 'Example of text for tooltip';
@@ -471,7 +472,8 @@
                         max: {{comp.field.widget.attrs.max}},
                         from: {{comp.field.widget.attrs.from}},
                         step: {{comp.field.widget.attrs.step}},
-                        grid: true
+                        grid: true,
+                        grid_num: {{comp.field.widget.attrs.grid_num}}
                     });
                 {% endif %}
             {% endfor %}
