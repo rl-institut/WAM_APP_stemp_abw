@@ -1,12 +1,5 @@
-
-  <!--<div class="cell l-bg-color-w scen-create__wrapper u-text&#45;&#45;center">-->
-    <!--<div class="grid-x grid-padding-x">-->
-    {% for visualization in visualizations2 %}
-        <div class="cell small-4">
-          {{visualization.div|safe}}
-          {{visualization.script|safe}}
-        </div>
-    {% endfor %}
-
-    <!--</div>-->
-  <!--</div>-->
+{% for visualization in visualizations2 %}
+  <div class="cell small-4">
+    {{visualization|safe}}
+  </div>
+{% endfor %}

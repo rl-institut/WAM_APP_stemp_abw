@@ -7,6 +7,7 @@ from collections import OrderedDict
 from stemp_abw.config import io
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw import results
+from stemp_abw.widgets import ResultsWidget
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
@@ -59,8 +60,9 @@ class MapView(TemplateView):
                   }
         visualizations2 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
                           for t, c in labels2.items()]
-        context['visualizations1'] = visualizations1
-        context['visualizations2'] = visualizations2
+
+        # Put visualizations1 and visualizations2 in results_widget
+        context['results_widget'] = ResultsWidget(visualizations1, visualizations2)
 
         # Trial: new info button
         # TODO: Move

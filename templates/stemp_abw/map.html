@@ -91,12 +91,12 @@
                           </p>
                           <div class="grid-x">
                             <div class="cell" id="scenarios-wrap">
-                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs-1">
                                 <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
                                 <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
                               </ul>
 
-                              <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                              <div class="tabs-content" data-tabs-content="deeplinked-tabs-1">
                                 <div class="tabs-panel is-active" id="scenario-panel1">
                                   <div class="grid-x grid-margin-x">
                                     <div class="cell">
@@ -206,7 +206,7 @@
                             <div class="cell" id="results-collapsed">
                               <p>Some results</p>
                             </div>
-                            {% include "stemp_abw/results_full.html" %}
+                            {{ results_widget }}
                           </div>
                         </div>
 
@@ -219,12 +219,12 @@
 
                         <div class="grid-x">
                           <div class="cell" id="areas-wrap">
-                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs-2">
                               <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
                               <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
                             </ul>
 
-                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                            <div class="tabs-content" data-tabs-content="deeplinked-tabs-2">
 
                               <div class="tabs-panel is-active" id="areas-panel1">
                                 <div class="grid-x">
@@ -423,6 +423,9 @@
 {% endblock %}
 
 {% block scripts %}
+    <script>
+        {{ results_widget.media }}
+    </script>
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
         // slider markers
