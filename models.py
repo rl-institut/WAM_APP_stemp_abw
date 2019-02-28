@@ -520,6 +520,11 @@ class FeedinTs(models.Model):
         Wind turbines (status quo)
     wind_fs :
         Wind turbines (future scenarios)
+
+    Notes
+    -----
+    Timeseries are stored per timestep and ags -> one dataset is uniquely
+    identified by timestamp and municipality's ags.
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
@@ -639,6 +644,11 @@ class DemandTs(models.Model):
         Heat demand of retail, commercial and agricultural sector (GHD) in MW
     th_ind :
         Heat demand of industry in MW
+
+    Notes
+    -----
+    Timeseries are stored per timestep and ags -> one dataset is uniquely
+    identified by timestamp and municipality's ags.
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
