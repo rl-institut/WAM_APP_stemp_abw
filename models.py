@@ -606,7 +606,7 @@ class Powerplant(models.Model):
 
 
 class DemandTs(models.Model):
-    """Demand timeseries (normalized, hourly)
+    """Demand timeseries (hourly)
 
     Attributes
     ----------
