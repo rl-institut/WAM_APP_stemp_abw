@@ -1,10 +1,6 @@
 from django.db import models
-# from djgeojson.fields import PointField
 from django.contrib.gis.db import models as geomodels
-# from geoalchemy2.types import Geometry
-from stemp_abw import oep_models
 from stemp_abw.app_settings import LABELS
-import sqlahelper
 
 
 # class MapLayers(models.Model):
