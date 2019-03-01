@@ -16,8 +16,10 @@ class HCTimeseries(HCStemp):
     setup = {
         'chart': {
             'type': 'line',
-            'backgroundColor': '#EBF2FA',
-            'height': str(int(9 / 16 * 100)) + '%' # 16:9 ratio
+            'backgroundColor': '#EBF2FA'
+            # TODO: height attribute not set since it cuts off the graph at its
+            # bottom, needs to be revised if needed
+            #'height': str(int(9 / 16 * 100)) + '%',  # 16:9 ratio
         },
         'title': {
             'text': '',

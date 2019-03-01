@@ -3,8 +3,7 @@
     <!--<div class="grid-x grid-padding-x">-->
     {% for visualization in visualizations1 %}
         <div class="cell small-4">
-          {{visualization.div|safe}}
-          {{visualization.script|safe}}
+          {{visualization|safe}}
         </div>
     {% endfor %}
 
