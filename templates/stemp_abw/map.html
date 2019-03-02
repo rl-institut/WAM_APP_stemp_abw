@@ -722,8 +722,13 @@
             // Move zoom control
             map.removeControl(map.zoomControl);
             L.control.zoom({
-		        position: 'bottomright'
-	        }).addTo(map);
+		          position: 'bottomright'
+	          }).addTo(map);
+	          L.control.scale({
+	            position: 'topright',
+	            metric: true,
+	            imperial: false
+	          }).addTo(map);
 
             // Control layer
             $(document).foundation();
