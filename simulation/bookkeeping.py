@@ -1,13 +1,13 @@
 import multiprocessing as mp
-from stemp_abw.simulation.simulation import simulation_fct_test
+from stemp_abw.simulation.simulation import default_simulation_fct
 
 
 def simulate_energysystem():
     #energysystem = session.energysystem
-    simulation_fct = simulation_fct_test
-    result, param_result = multiprocess_energysystem(
+    simulation_fct = default_simulation_fct
+    results, parameters = multiprocess_energysystem(
         simulation_fct)
-    return result, param_result
+    return results, parameters
 
 
 # TODO: Create user-dependent pool in settings
