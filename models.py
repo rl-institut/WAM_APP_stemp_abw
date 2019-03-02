@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models as geomodels
+from django.contrib.postgres.fields import JSONField
+from django.utils import timezone
 from stemp_abw.app_settings import LABELS
 
 
@@ -672,3 +674,67 @@ class DemandTs(models.Model):
 #     technology = models.CharField(max_length=254, null=True)
 #     costs_fix = models.FloatField()
 #     costs_variable = models.FloatField()
+
+
+class REPotentialAreas(models.Model):
+    """Potential areas for renewable plants
+
+    Attributes
+    ----------
+    id :
+        DB id
+    area_params :
+        App settings for usable areas (area panel)
+    mun_data :
+        Available potentials (per technology)
+        TO BE SPECIFIED
+    geom : Geometry
+        SRID: EPSG:3035 (ETRS89/LAEA)
+    """
+    id = models.BigAutoField(primary_key=True)
+    area_params = JSONField(unique=True)
+    mun_data = JSONField()
+    geom = geomodels.MultiPolygonField(srid=3035)
+
+
+class Scenario(models.Model):
+    """Scenario (energy system configuration)
+
+    Attributes
+    ----------
+    id :
+        DB id
+    created : DateTime
+        Timestamp of creation
+    name : String
+        Name of scenario
+    is_user_scenario : Bool
+        True, if scenario was created by a user (default)
+    data : json
+        Scenario data, format as defined <HERE>
+    re_potential_areas :
+        Reference to REPotentialAreas
+    """
+    id = models.BigAutoField(primary_key=True)
+    created = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=255, unique=True)
+    is_user_scenario = models.BooleanField(default=True)
+    data = JSONField(unique=True)
+    re_potential_areas = models.ForeignKey(REPotentialAreas, on_delete=models.DO_NOTHING)
+
+
+class SimulationResults(models.Model):
+    """Results of a scenario
+
+    Attributes
+    ----------
+    id :
+        DB id
+    scenario :
+        Reference to scenario
+    data : json
+        Result data, format as defined <HERE>
+    """
+    id = models.BigAutoField(primary_key=True)
+    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
+    data = JSONField()
