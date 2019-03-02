@@ -719,6 +719,21 @@
                 });
             {% endfor %}
 
+            /*
+            var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
+              layers: 'dwd:BRD_1km_winddaten_80m',
+              format: 'image/png',
+              transparent: true,
+              attribution: "Datenbasis: Deutscher Wetterdienst"
+            }).addTo(map);
+            var dwdSolar = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
+              layers: 'dwd:SISMM_annual_map_normals_1981_30',
+              format: 'image/png',
+              transparent: true,
+              attribution: "Datenbasis: Deutscher Wetterdienst"
+            }).addTo(map);
+            */
+
             // Move zoom control
             map.removeControl(map.zoomControl);
             L.control.zoom({
