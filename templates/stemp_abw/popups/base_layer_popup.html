@@ -4,25 +4,31 @@
         <h3>{{ title }}</h3>
     </div>
     {% endblock %}
+
+    {% block gen %}
+    <div class="cell">
+        <h5>{{ layer.gen }}</h5>
+    </div>
+    {% endblock %}
+
+    {% block values %}
+    {% endblock %}
+
     {% block text %}
-    <div class="cell small-6">
+    <div class="cell">
         <p>{{ text }}</p>
     </div>
     {% endblock %}
-    {% block vis %}
-    <div class="cell small-6" style="background-color: #006494; color: white;">
-        Visualisierungen (Platzhalter)
-    </div>
-    {% endblock %}
+
     {% block links %}
     <div class="cell">
-        <p>Quellen:</p>
+        Quellen:
     </div>
     <div class="cell">
-        <p>Annahmen:</p>
+        Annahmen:
     </div>
     <div class="cell">
-        <p>Links:</p>
+        Links:
     </div>
     {% endblock %}
 </div>
