@@ -55,14 +55,15 @@ class RegMun(LayerModel):
     gen = models.CharField(max_length=254)
 
 
-class RegMunStats(RegMun):
+class RegMunPop(RegMun):
     """This is a proxy model for RegMun which got same relations to the DB
     table but changes the model name. This is needed to load the appropriate
     DetailView when clicking on a map feature (serialized property in the data
     view).
-    See Also: https://github.com/rl-institut/WAM_APP_stemp_abw/issues/2
+    - See Also: https://github.com/rl-institut/WAM_APP_stemp_abw/issues/2
+    - All other model classes which heir from RegMun work like this.
     """
-    name = 'reg_mun_stats'
+    name = 'reg_mun_pop'
 
     class Meta:
         proxy = True
@@ -70,9 +71,85 @@ class RegMunStats(RegMun):
     @property
     def pop(self):
         return self.mundata.pop_2017
+
+
+class RegMunPopDensity(RegMun):
+    name = 'reg_mun_pop_density'
+
+    class Meta:
+        proxy = True
+
     @property
     def pop_density(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
+
+
+class RegMunGenEnergyRe(RegMun):
+    name = 'reg_mun_gen_energy_re'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re(self):
+        return round((self.mundata.gen_el_energy_wind +
+                      self.mundata.gen_el_energy_pv_roof +
+                      self.mundata.gen_el_energy_pv_ground +
+                      self.mundata.gen_el_energy_hydro) / 1e3)
+
+
+class RegMunDemElEnergy(RegMun):
+    name = 'reg_mun_dem_el_energy'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy(self):
+        return round((self.mundata.dem_el_energy_hh +
+                      self.mundata.dem_el_energy_rca +
+                      self.mundata.dem_el_energy_ind) / 1e3)
+
+
+class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
+    name = 'reg_mun_energy_re_el_dem_share'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def energy_re_el_dem_share(self):
+        return round(self.gen_energy_re / self.dem_el_energy * 100)
+
+
+class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
+    name = 'reg_mun_gen_energy_re_per_capita'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_per_capita(self):
+        return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
+
+
+class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
+    name = 'reg_mun_gen_energy_re_density'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density(self):
+        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
+
+
+class RegMunGenCapRe(RegMun):
+    name = 'reg_mun_gen_cap_re'
+
+    class Meta:
+        proxy = True
+
     @property
     def gen_cap_re(self):
         return round(self.mundata.gen_capacity_wind +
@@ -80,132 +157,62 @@ class RegMunStats(RegMun):
                      self.mundata.gen_capacity_pv_ground +
                      self.mundata.gen_capacity_hydro +
                      self.mundata.gen_capacity_bio)
-    @property
-    def gen_cap_re_density(self):
-        return round(self.gen_cap_re / self.mundata.area, 2)
-    @property
-    def gen_energy_re(self):
-        return round((self.mundata.gen_el_energy_wind +
-                      self.mundata.gen_el_energy_pv_roof +
-                      self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1e3)
-    @property
-    def gen_energy_re_per_capita(self):
-        return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
-    @property
-    def gen_energy_re_density(self):
-        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
-    @property
-    def dem_el_energy(self):
-        return round((self.mundata.dem_el_energy_hh +
-                      self.mundata.dem_el_energy_rca +
-                      self.mundata.dem_el_energy_ind) / 1e3)
-    @property
-    def dem_el_energy_per_capita(self):
-        return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
-    @property
-    def dem_th_energy(self):
-        return round((self.mundata.dem_th_energy_hh +
-                      self.mundata.dem_th_energy_rca) / 1e3)
-    @property
-    def dem_th_energy_per_capita(self):
-        return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
-    @property
-    def energy_re_el_dem_share(self):
-        return round(self.gen_energy_re / self.dem_el_energy * 100)
-    @property
-    def gen_count_wind_density(self):
-        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
 
 
-class RegMunPop(RegMunStats):
-    name = 'reg_mun_pop'
-
-    class Meta:
-        proxy = True
-
-class RegMunPopDensity(RegMunStats):
-    name = 'reg_mun_pop_density'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunEnergyReElDemShare(RegMunStats):
-    name = 'reg_mun_energy_re_el_dem_share'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunGenEnergyRe(RegMunStats):
-    name = 'reg_mun_gen_energy_re'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunGenEnergyRePerCapita(RegMunStats):
-    name = 'reg_mun_gen_energy_re_per_capita'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunGenEnergyReDensity(RegMunStats):
-    name = 'reg_mun_gen_energy_re_density'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunGenCapRe(RegMunStats):
-    name = 'reg_mun_gen_cap_re'
-
-    class Meta:
-        proxy = True
-
-
-class RegMunGenCapReDensity(RegMunStats):
+class RegMunGenCapReDensity(RegMunGenCapRe):
     name = 'reg_mun_gen_cap_re_density'
 
     class Meta:
         proxy = True
 
+    @property
+    def gen_cap_re_density(self):
+        return round(self.gen_cap_re / self.mundata.area, 2)
 
-class RegMunGenCountWindDensity(RegMunStats):
+
+class RegMunGenCountWindDensity(RegMun):
     name = 'reg_mun_gen_count_wind_density'
 
     class Meta:
         proxy = True
 
-
-class RegMunDemElEnergy(RegMunStats):
-    name = 'reg_mun_dem_el_energy'
-
-    class Meta:
-        proxy = True
+    @property
+    def gen_count_wind_density(self):
+        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
 
 
-class RegMunDemElEnergyPerCapita(RegMunStats):
+class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
     name = 'reg_mun_dem_el_energy_per_capita'
 
     class Meta:
         proxy = True
 
+    @property
+    def dem_el_energy_per_capita(self):
+        return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
 
-class RegMunDemThEnergy(RegMunStats):
+
+class RegMunDemThEnergy(RegMun):
     name = 'reg_mun_dem_th_energy'
 
     class Meta:
         proxy = True
 
+    @property
+    def dem_th_energy(self):
+        return round((self.mundata.dem_th_energy_hh +
+                      self.mundata.dem_th_energy_rca) / 1e3)
 
-class RegMunDemThEnergyPerCapita(RegMunStats):
+
+class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
     name = 'reg_mun_dem_th_energy_per_capita'
 
     class Meta:
         proxy = True
+
+    @property
+    def dem_th_energy_per_capita(self):
+        return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
 
 
 class RegWaterProtArea(LayerModel):

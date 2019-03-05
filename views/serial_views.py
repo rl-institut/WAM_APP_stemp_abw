@@ -21,79 +21,108 @@ class RegMunData(GeoJSONLayerView):
     precision = 5
 
 
-class RegMunStatsData(GeoJSONLayerView):
-    model = models.RegMunStats
+class RegMunPopData(GeoJSONLayerView):
+    model = models.RegMunPop
     properties = ['popup_content',
                   'name',
                   'gen',
-                  'pop',
-                  'pop_density',
-                  'gen_cap_re',
-                  'gen_cap_re_density',
-                  'gen_energy_re',
-                  'gen_energy_re_per_capita',
-                  'gen_energy_re_density',
-                  'dem_el_energy',
-                  'dem_el_energy_per_capita',
-                  'dem_th_energy',
-                  'dem_th_energy_per_capita',
-                  'energy_re_el_dem_share',
-                  'gen_count_wind_density']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 3
+                  'pop']
 
 
-class RegMunPopData(RegMunStatsData):
-    model = models.RegMunPop
-
-
-class RegMunPopDensityData(RegMunStatsData):
+class RegMunPopDensityData(GeoJSONLayerView):
     model = models.RegMunPopDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_density']
 
 
-class RegMunEnergyReElDemShareData(RegMunStatsData):
+class RegMunEnergyReElDemShareData(GeoJSONLayerView):
     model = models.RegMunEnergyReElDemShare
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share']
 
 
-class RegMunGenEnergyReData(RegMunStatsData):
+class RegMunGenEnergyReData(GeoJSONLayerView):
     model = models.RegMunGenEnergyRe
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re']
 
 
-class RegMunGenEnergyRePerCapitaData(RegMunStatsData):
+class RegMunGenEnergyRePerCapitaData(GeoJSONLayerView):
     model = models.RegMunGenEnergyRePerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_per_capita']
 
 
-class RegMunGenEnergyReDensityData(RegMunStatsData):
+class RegMunGenEnergyReDensityData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density']
 
 
-class RegMunGenCapReData(RegMunStatsData):
+class RegMunGenCapReData(GeoJSONLayerView):
     model = models.RegMunGenCapRe
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re']
 
 
-class RegMunGenCapReDensityData(RegMunStatsData):
+class RegMunGenCapReDensityData(GeoJSONLayerView):
     model = models.RegMunGenCapReDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_density']
 
 
-class RegMunGenCountWindDensityData(RegMunStatsData):
+class RegMunGenCountWindDensityData(GeoJSONLayerView):
     model = models.RegMunGenCountWindDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density']
 
 
-class RegMunDemElEnergyData(RegMunStatsData):
+class RegMunDemElEnergyData(GeoJSONLayerView):
     model = models.RegMunDemElEnergy
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy']
 
 
-class RegMunDemElEnergyPerCapitaData(RegMunStatsData):
+class RegMunDemElEnergyPerCapitaData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyPerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita']
 
 
-class RegMunDemThEnergyData(RegMunStatsData):
+class RegMunDemThEnergyData(GeoJSONLayerView):
     model = models.RegMunDemThEnergy
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_th_energy']
 
 
-class RegMunDemThEnergyPerCapitaData(RegMunStatsData):
+class RegMunDemThEnergyPerCapitaData(GeoJSONLayerView):
     model = models.RegMunDemThEnergyPerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_th_energy_per_capita']
 
 
 class RegWaterProtAreaData(GeoJSONLayerView):
