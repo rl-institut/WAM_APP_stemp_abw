@@ -1,18 +1,18 @@
 import stemp_abw.models as models
 from django.views.generic import DetailView
-
+from stemp_abw.app_settings import LABELS
 
 
 class MasterDetailView(DetailView):
-    template_name = 'stemp_abw/popups/layer_popup.html'
+    template_name = 'stemp_abw/popups/base_layer_popup.html'
     context_object_name = 'obj'
 
 
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
-        #context['title'] = LABELS['layers'][self.model.name]['title']
-        #context['text'] = LABELS['layers'][self.model.name]['text']
+        context['title'] = LABELS['layers'][self.model.name]['title']
+        context['text'] = LABELS['layers'][self.model.name]['text']
     
         return context
 

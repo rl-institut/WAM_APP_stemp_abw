@@ -1,14 +1,20 @@
-<h3>layer_popup.html</h3>
 <div class="grid-x">
+    {% block title %}
     <div class="cell">
         <h3>{{ title }}</h3>
     </div>
+    {% endblock %}
+    {% block text %}
     <div class="cell small-6">
         <p>{{ text }}</p>
     </div>
+    {% endblock %}
+    {% block vis %}
     <div class="cell small-6" style="background-color: #006494; color: white;">
-        Visualisierungen
+        Visualisierungen (Platzhalter)
     </div>
+    {% endblock %}
+    {% block links %}
     <div class="cell">
         <p>Quellen:</p>
     </div>
@@ -18,4 +24,5 @@
     <div class="cell">
         <p>Links:</p>
     </div>
+    {% endblock %}
 </div>
