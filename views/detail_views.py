@@ -1,18 +1,16 @@
 import stemp_abw.models as models
-from django.views.generic import DetailView
-
+from django.views.generic import DetailView, TemplateView
 
 
 class MasterDetailView(DetailView):
     template_name = 'stemp_abw/layer_popup.html'
     context_object_name = 'obj'
 
-
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
         context['bla'] = 'Some substation content'
-    
+
         return context
 
 ####################
@@ -24,6 +22,14 @@ class RpAbwBoundDetailView(MasterDetailView):
 
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
+
+
+class RegMunDetailJsView(TemplateView):
+    template_name = 'stemp_abw/layer_popup_js.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDetailJsView, self).get_context_data(**kwargs)
+        context['js'] = "console.log('For a fistful of codelines, I will show this!');"
+        return context
 
 
 class RegMunPopDensityDetailView(MasterDetailView):

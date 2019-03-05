@@ -37,6 +37,14 @@ urlpatterns.extend(
     for name, dview in detail_views.items()
 )
 
+# Test JS template view
+# TODO: Generalize like above!
+urlpatterns.extend(
+    [path('popup.js/',
+          views.RegMunDetailJsView.as_view(),
+          name='popup.js')
+     ]
+)
 
 # search JSON data views classes and append to URLs
 data_views = {}
