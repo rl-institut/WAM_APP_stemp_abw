@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 
 
 class MasterDetailView(DetailView):
-    template_name = 'stemp_abw/layer_popup.html'
+    template_name = 'stemp_abw/popups/layer_popup.html'
     context_object_name = 'obj'
 
 
@@ -28,7 +28,7 @@ class RegMunDetailView(MasterDetailView):
 
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunStats
-    template_name = 'stemp_abw/layer_popup_reg_mun_pop_density.html'
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):
