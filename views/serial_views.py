@@ -44,6 +44,58 @@ class RegMunStatsData(GeoJSONLayerView):
     precision = 3
 
 
+class RegMunPopData(RegMunStatsData):
+    model = models.RegMunPop
+
+
+class RegMunPopDensityData(RegMunStatsData):
+    model = models.RegMunPopDensity
+
+
+class RegMunEnergyReElDemShareData(RegMunStatsData):
+    model = models.RegMunEnergyReElDemShare
+
+
+class RegMunGenEnergyReData(RegMunStatsData):
+    model = models.RegMunGenEnergyRe
+
+
+class RegMunGenEnergyRePerCapitaData(RegMunStatsData):
+    model = models.RegMunGenEnergyRePerCapita
+
+
+class RegMunGenEnergyReDensityData(RegMunStatsData):
+    model = models.RegMunGenEnergyReDensity
+
+
+class RegMunGenCapReData(RegMunStatsData):
+    model = models.RegMunGenCapRe
+
+
+class RegMunGenCapReDensityData(RegMunStatsData):
+    model = models.RegMunGenCapReDensity
+
+
+class RegMunGenCountWindDensityData(RegMunStatsData):
+    model = models.RegMunGenCountWindDensity
+
+
+class RegMunDemElEnergyData(RegMunStatsData):
+    model = models.RegMunDemElEnergy
+
+
+class RegMunDemElEnergyPerCapitaData(RegMunStatsData):
+    model = models.RegMunDemElEnergyPerCapita
+
+
+class RegMunDemThEnergyData(RegMunStatsData):
+    model = models.RegMunDemThEnergy
+
+
+class RegMunDemThEnergyPerCapitaData(RegMunStatsData):
+    model = models.RegMunDemThEnergyPerCapita
+
+
 class RegWaterProtAreaData(GeoJSONLayerView):
     model = models.RegWaterProtArea
     properties = ['popup_content', 'name']

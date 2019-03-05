@@ -11,7 +11,8 @@ class MasterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
-        context['bla'] = 'Some substation content'
+        #context['title'] = LABELS['layers'][self.model.name]['title']
+        #context['text'] = LABELS['layers'][self.model.name]['text']
     
         return context
 
@@ -26,9 +27,69 @@ class RegMunDetailView(MasterDetailView):
     model = models.RegMun
 
 
+class RegMunPopDetailView(MasterDetailView):
+    model = models.RegMunPop
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
+
+
 class RegMunPopDensityDetailView(MasterDetailView):
-    model = models.RegMunStats
+    model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
+
+
+class RegMunEnergyReElDemShareDetailView(MasterDetailView):
+    model = models.RegMunEnergyReElDemShare
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenEnergyReDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyRe
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyRePerCapita
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenEnergyReDensityDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyReDensity
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenCapReDetailView(MasterDetailView):
+    model = models.RegMunGenCapRe
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenCapReDensityDetailView(MasterDetailView):
+    model = models.RegMunGenCapReDensity
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunGenCountWindDensityDetailView(MasterDetailView):
+    model = models.RegMunGenCountWindDensity
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunDemElEnergyDetailView(MasterDetailView):
+    model = models.RegMunDemElEnergy
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
+    model = models.RegMunDemElEnergyPerCapita
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunDemThEnergyDetailView(MasterDetailView):
+    model = models.RegMunDemThEnergy
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+
+
+class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
+    model = models.RegMunDemThEnergyPerCapita
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):

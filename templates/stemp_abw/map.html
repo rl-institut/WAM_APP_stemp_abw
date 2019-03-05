@@ -550,7 +550,7 @@
                 layer._map.panTo(e.latlng, {duration: 1});
 
                 // load popup content from detail view
-                var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id)
+                var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
                 $.get( url, function( data ) {
                   layer.setPopupContent(data);
                 });

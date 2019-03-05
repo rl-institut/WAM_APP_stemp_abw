@@ -118,6 +118,96 @@ class RegMunStats(RegMun):
         return round(self.mundata.gen_count_wind / self.mundata.area, 2)
 
 
+class RegMunPop(RegMunStats):
+    name = 'reg_mun_pop'
+
+    class Meta:
+        proxy = True
+
+class RegMunPopDensity(RegMunStats):
+    name = 'reg_mun_pop_density'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunEnergyReElDemShare(RegMunStats):
+    name = 'reg_mun_energy_re_el_dem_share'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenEnergyRe(RegMunStats):
+    name = 'reg_mun_gen_energy_re'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenEnergyRePerCapita(RegMunStats):
+    name = 'reg_mun_gen_energy_re_per_capita'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenEnergyReDensity(RegMunStats):
+    name = 'reg_mun_gen_energy_re_density'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenCapRe(RegMunStats):
+    name = 'reg_mun_gen_cap_re'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenCapReDensity(RegMunStats):
+    name = 'reg_mun_gen_cap_re_density'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunGenCountWindDensity(RegMunStats):
+    name = 'reg_mun_gen_count_wind_density'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunDemElEnergy(RegMunStats):
+    name = 'reg_mun_dem_el_energy'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunDemElEnergyPerCapita(RegMunStats):
+    name = 'reg_mun_dem_el_energy_per_capita'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunDemThEnergy(RegMunStats):
+    name = 'reg_mun_dem_th_energy'
+
+    class Meta:
+        proxy = True
+
+
+class RegMunDemThEnergyPerCapita(RegMunStats):
+    name = 'reg_mun_dem_th_energy_per_capita'
+
+    class Meta:
+        proxy = True
+
+
 class RegWaterProtArea(LayerModel):
     name = 'reg_water_prot_area'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
