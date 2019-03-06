@@ -1,3 +1,26 @@
+from collections import OrderedDict
+from stemp_abw import results
+
+
+# TODO: Temp stuff for WS
+labels1 = OrderedDict((
+    ('Windenergie Erzeugung', ['Wind']),
+    ('Photovoltaik Erzeugung', ['PV']),
+    ('Bioenergie Erzeugung', ['Biomasse', 'Biogas'])
+))
+visualizations1 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
+                   for t, c in labels1.items()]
+
+
+labels2 = {'Erzeugung': ['Strom', 'Wärme'],
+           'Bedarf': ['Strom', 'Wärme'],
+           'Erneuerbare Energien': ['Wind', 'Solar']
+           }
+visualizations2 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
+                   for t, c in labels2.items()]
+
+
+
 reg_mun_detail_js = """
     console.log("For a fistful of codelines, I will show RegMun's JS!");
     setTimeout(function() {

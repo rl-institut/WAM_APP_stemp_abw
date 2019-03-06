@@ -2,9 +2,8 @@ import stemp_abw.models as models
 from django.views.generic import DetailView, TemplateView
 from stemp_abw.app_settings import LABELS
 
-from stemp_abw.views.charts_data import reg_mun_detail_js
-from stemp_abw.views.charts_data import reg_mun_pop_detail_js
-from stemp_abw.views.charts_data import reg_mun_pop_density_detail_js
+from stemp_abw.views.charts_data import visualizations2
+
 
 class MasterDetailView(DetailView):
     template_name = 'stemp_abw/popups/base_layer_popup.html'
@@ -28,39 +27,51 @@ class RpAbwBoundDetailView(MasterDetailView):
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
     template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDetailView, self).get_context_data(**kwargs)
+        context['vis2'] = visualizations2
+        return context
 
 
 class RegMunDetailJsView(TemplateView):
-    template_name = 'stemp_abw/popups/js_layer_popup.html'
+    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun.html'
     def get_context_data(self, **kwargs):
         context = super(RegMunDetailJsView, self).get_context_data(**kwargs)
-        context['js'] = reg_mun_detail_js
+        context['vis2'] = visualizations2
         return context
 
 
 class RegMunPopDetailView(MasterDetailView):
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopDetailView, self).get_context_data(**kwargs)
+        context['vis2'] = visualizations2
+        return context
 
 
 class RegMunPopDetailJsView(TemplateView):
-    template_name = 'stemp_abw/popups/js_layer_popup.html'
+    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
     def get_context_data(self, **kwargs):
         context = super(RegMunPopDetailJsView, self).get_context_data(**kwargs)
-        context['js'] = reg_mun_pop_detail_js
+        context['vis2'] = visualizations2
         return context
 
 
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopDensityDetailView, self).get_context_data(**kwargs)
+        context['vis2'] = visualizations2
+        return context
 
 
 class RegMunPopDensityDetailJsView(TemplateView):
-    template_name = 'stemp_abw/popups/js_layer_popup.html'
+    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop_density.html'
     def get_context_data(self, **kwargs):
         context = super(RegMunPopDensityDetailJsView, self).get_context_data(**kwargs)
-        context['js'] = reg_mun_pop_density_detail_js
+        context['vis2'] = visualizations2
         return context
 
 
