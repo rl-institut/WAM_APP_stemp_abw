@@ -1,4 +1,4 @@
-<div class="grid-x">
+<div class="grid-x" style="width: 300px">
     {% block title %}
     <div class="cell">
         <h3>{{ title }}</h3>
@@ -19,6 +19,9 @@
         <p>{{ text }}</p>
     </div>
     {% endblock %}
+
+    {% block vis %}
+    {% endblock%}
 
     {% block links %}
     <div class="cell">

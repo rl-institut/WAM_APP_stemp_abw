@@ -2,6 +2,9 @@ import stemp_abw.models as models
 from django.views.generic import DetailView, TemplateView
 from stemp_abw.app_settings import LABELS
 
+from stemp_abw.views.charts_data import reg_mun_detail_js
+from stemp_abw.views.charts_data import reg_mun_pop_detail_js
+from stemp_abw.views.charts_data import reg_mun_pop_density_detail_js
 
 class MasterDetailView(DetailView):
     template_name = 'stemp_abw/popups/base_layer_popup.html'
@@ -24,13 +27,14 @@ class RpAbwBoundDetailView(MasterDetailView):
 
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
+    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
 
 
 class RegMunDetailJsView(TemplateView):
-    template_name = 'stemp_abw/layer_popup_js.html'
+    template_name = 'stemp_abw/popups/js_layer_popup.html'
     def get_context_data(self, **kwargs):
         context = super(RegMunDetailJsView, self).get_context_data(**kwargs)
-        context['js'] = "console.log('For a fistful of codelines, I will show this!');"
+        context['js'] = reg_mun_detail_js
         return context
 
 
@@ -39,9 +43,25 @@ class RegMunPopDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
 
 
+class RegMunPopDetailJsView(TemplateView):
+    template_name = 'stemp_abw/popups/js_layer_popup.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopDetailJsView, self).get_context_data(**kwargs)
+        context['js'] = reg_mun_pop_detail_js
+        return context
+
+
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
+
+
+class RegMunPopDensityDetailJsView(TemplateView):
+    template_name = 'stemp_abw/popups/js_layer_popup.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopDensityDetailJsView, self).get_context_data(**kwargs)
+        context['js'] = reg_mun_pop_density_detail_js
+        return context
 
 
 class RegMunEnergyReElDemShareDetailView(MasterDetailView):

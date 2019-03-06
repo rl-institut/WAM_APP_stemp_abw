@@ -40,10 +40,9 @@ urlpatterns.extend(
 # Test JS template view
 # TODO: Generalize like above!
 urlpatterns.extend(
-    [path('popup.js/',
-          views.RegMunDetailJsView.as_view(),
-          name='popup.js')
-     ]
+    [path('popupjs/reg_mun/', views.RegMunDetailJsView.as_view(), name='reg_mun_popupjs'),
+     path('popupjs/reg_mun_pop/', views.RegMunPopDetailJsView.as_view(), name='reg_mun_pop_popupjs'),
+     path('popupjs/reg_mun_pop_density/', views.RegMunPopDensityDetailJsView.as_view(), name='reg_mun_pop_density_popupjs')]
 )
 
 # search JSON data views classes and append to URLs
