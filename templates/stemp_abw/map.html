@@ -554,6 +554,13 @@
                 $.get( url, function( data ) {
                   layer.setPopupContent(data);
                 });
+
+                // load js content from JS detail view
+                // TODO: Generalize like above!
+                var url_js = "../popup.js"
+                $.get( url_js, function( data ) {
+                  eval(data);
+                });
             }
 
             // feature: mousover style
