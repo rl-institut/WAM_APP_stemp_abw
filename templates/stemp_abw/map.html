@@ -553,6 +553,7 @@
                 if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
                     var url_js = "../popupjs/" + layer.feature.properties.name + "/"
                     $.get( url_js, function( data ) {
+                      console.log(data);
                       eval(data);
                     });
                 }
