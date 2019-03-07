@@ -424,19 +424,7 @@
 
 {% block scripts %}
     <!-- LOAD HIGHCHART DATA -->
-    <script>
-      $('#btnExpand').on('click', function(e) {
-        if ($('#panel-results').hasClass('is-collapsed')) {
-          setTimeout(function() {
-            {% for visualization in visualizations1 %}
-                  {{visualization.media}}
-            {% endfor %}
-            {% for visualization in visualizations2 %}
-                  {{visualization.media}}
-            {% endfor %}
-          }, 750);
-      }});
-    </script>
+
 
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
