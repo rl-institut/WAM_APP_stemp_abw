@@ -156,14 +156,25 @@
                             {{ panels.esys.title }}
                             <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
                           </p>
-                          <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 1rem;">
-                            <label>
-                              Für Marker bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i>
-                              <select>
-                                <option value="husker">Status Quo</option>
-                              </select>
-                            </label>
-                          </form>
+                          <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i></p>
+                          <div class="grid-x">
+                            <div class="cell small-9">
+                              <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 0.5rem;">
+                                <label>
+                                  <select>
+                                    <option value="status_quo">Status Quo</option>
+                                    <option value="status_quo">Status Quo 2</option>
+                                  </select>
+                                </label>
+                              </form>
+                            </div>
+                            <div class="cell small-2">
+                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="select-scn-btn" data-open="selectScenario" data-tooltip title="{{ tooltips.scn_button_esys.text }}" data-position="right" data-alignment="center">
+                                Übernehmen
+                              </button>
+                            </div>
+                            <div class="cell small-1"></div>
+                          </div>
 
                           {% include "forms/esys_components.html" %}
 

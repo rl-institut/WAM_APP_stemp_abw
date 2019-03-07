@@ -374,6 +374,19 @@ select {
       color: #0a0a0a;
       background-color: #f4a662;
       border: 1px solid #f4a662; }
+  .btn-rect-small {
+    color: #EBF2FA;
+    border: 1px solid #EBF2FA;
+    border-radius: 0px;
+    background-color: #002E4F;
+    height: 2.4375rem;
+    font-size: 0.875rem;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in; }
+    .btn-small:hover {
+      color: #0a0a0a;
+      background-color: #f4a662;
+      border: 1px solid #f4a662; }
   @media print, screen and (min-width: 40em) {
     .btn--small {
       width: 10rem; }
