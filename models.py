@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.postgres.fields import JSONField
@@ -720,8 +722,11 @@ class Scenario(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=255, null=True)
     is_user_scenario = models.BooleanField(default=True)
-    data = JSONField(unique=True)
-    re_potential_areas = models.ForeignKey(REPotentialAreas, on_delete=models.DO_NOTHING)
+    data = JSONField()
+    data_uuid = models.UUIDField(default=uuid4, editable=False,
+                                 unique=True, null=False)
+    re_potential_areas = models.ForeignKey(REPotentialAreas,
+                                           on_delete=models.DO_NOTHING)
 
 
 class SimulationResults(models.Model):
