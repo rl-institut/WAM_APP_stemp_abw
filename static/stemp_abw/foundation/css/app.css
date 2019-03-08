@@ -6805,12 +6805,13 @@ a.thumbnail {
   position: absolute;
   top: calc(100% + 0.6495rem);
   z-index: 9999999999;
-  max-width: 20rem;
+  max-width: 30rem;
   padding: 0.75rem;
   border-radius: 0;
   background-color: #fefefe;
   font-size: 1rem;
-  color: #002E4F; }
+  color: #002E4F;
+  /*white-space: pre-line;*/}
   .tooltip::before {
     position: absolute; }
   .tooltip.bottom::before {
