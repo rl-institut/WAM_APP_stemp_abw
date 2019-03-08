@@ -1659,14 +1659,14 @@ footer.map-footer {
     padding-top: 0.5rem;
     padding-bottom: 1.5rem; }
   #panel-energy .accordion-title {
-    height: 4rem; }
+    height: 3rem; }
   #panel-energy .accordion-title--100 {
     width: 100%; }
   #panel-energy .accordion-item--no-border {
     border-top: none; }
 
 .tabs-panel .accordion-item .accordion-title {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
