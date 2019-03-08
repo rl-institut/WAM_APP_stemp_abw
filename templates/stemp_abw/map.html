@@ -77,7 +77,7 @@
                         <div class="tabs-panel is-active" id="panel-region">
                           <p class="lead" style="margin-bottom: 0;">
                             {{ panels.region.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                             {{ info }}
                           </p>
                           {% include "forms/layer_region_select.html" %}
@@ -87,7 +87,7 @@
                         <div class="tabs-panel" id="panel-scenarios">
                           <p class="lead" style="margin-bottom: 0;">
                             {{ panels.scenarios.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                           </p>
                           <div class="grid-x">
                             <div class="cell" id="scenarios-wrap">
@@ -103,7 +103,7 @@
                                       <form>
                                         <fieldset>
                                             <legend>Vorgegebenes Szenario auswählen
-                                              <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}"></i>
+                                              <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                             </legend>
                                             <label class="control control--radio">Status Quo
                                               <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
@@ -127,7 +127,7 @@
                                     <div class="cell">
                                       <form class="select-menu">
                                         <label>
-                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}"></i>
+                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                           <select>
                                             <option value="husker">Husker</option>
                                             <option value="starbuck">Starbuck</option>
@@ -154,9 +154,9 @@
                         <div class="tabs-panel" id="panel-energy">
                           <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
                             {{ panels.esys.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                           </p>
-                          <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i></p>
+                          <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
                           <div class="grid-x">
                             <div class="cell small-9">
                               <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 0.5rem;">
@@ -169,7 +169,7 @@
                               </form>
                             </div>
                             <div class="cell small-2">
-                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="select-scn-btn" data-open="selectScenario" data-tooltip title="{{ tooltips.scn_button_esys.text }}" data-position="right" data-alignment="center">
+                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="select-scn-btn" data-open="selectScenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
                                 Übernehmen
                               </button>
                             </div>
@@ -185,7 +185,7 @@
                                 <!--{% csrf_token %}-->
                                 <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="btnAction(this.id)" value="simulate" disabled>-->
                                   <!--Simulieren-->
-                                  <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small"></i>-->
+                                  <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
                                 <!--</button>-->
                               <!--</form>-->
                             <!--</div>-->
@@ -204,14 +204,14 @@
                         <div class="tabs-panel" id="panel-results">
                           <p class="lead">
                             {{ panels.results.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}"></i>
+                            <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                           </p>
 
                           <div class="grid-x">
                             <div class="cell u-text--center">
                               <button href="map.html" class="btn btn--hollow" id="btnExpand">
                                 Mehr Ergebnisse
-                                <i class ="icon ion-android-add icon--small"></i>
+                                <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                               </button>
                             </div>
                             <div class="cell" id="results-collapsed">
@@ -225,7 +225,7 @@
                       <div class="tabs-panel" id="panel-areas">
                         <p class="lead" style="margin-bottom: 0;">
                           {{ panels.areas.title }}
-                          <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}"></i>
+                          <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                         </p>
 
                         <div class="grid-x">
@@ -242,7 +242,7 @@
                                   <div class="cell">
                                     <p>
                                       Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}"></i>
+                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                     </p>
                                   </div>
                                 </div>
@@ -256,7 +256,7 @@
                                   <div class="cell">
                                     <p>
                                       Hier erfahren Sie mehr über Restriktionsflächen.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}"></i>
+                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                     </p>
                                   </div>
                                     <div class="cell small-11">
@@ -279,7 +279,7 @@
 
                                     <span class="has-tip--no-border">
                                       Layer Beispiel
-                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
+                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>
                                     </span>
 
                                     <div class="reveal" id="modal-example" data-reveal>
@@ -296,7 +296,7 @@
                                         </div>
                                         <div class="cell reveal__source">
                                           <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
+                                            <i class ="icon ion-android-arrow-dropright icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                                             Quelle ansehen
                                           </a>
                                         </div>
@@ -340,7 +340,7 @@
             <div class="map-wrapper">
 
               <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
-                <i class="icon ion-android-options"></i>
+                <i class="icon ion-android-options" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
 
               <!-- MAP -->
@@ -395,11 +395,11 @@
                 <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
                   <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="btnAction(this.id)" value="simulate">
                     Simulation
-                    <i class ="icon ion-android-arrow-dropright-circle icon--small"></i>
+                    <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                   </button>
                   <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
                     Speichern
-                    <i class ="icon ion-archive icon--small"></i>
+                    <i class ="icon ion-archive icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                   </button>
                 </div>
               </div>
