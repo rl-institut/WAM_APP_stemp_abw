@@ -6797,7 +6797,7 @@ a.thumbnail {
 .has-tip {
   position: relative;
   display: inline-block;
-  border-bottom: dotted 1px #8a8a8a;
+  border-bottom: 0px;
   font-weight: 700;
   cursor: help; }
 
