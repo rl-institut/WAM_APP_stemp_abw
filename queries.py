@@ -53,11 +53,13 @@ def insert_status_quo_scenario():
                      'gen_count_wind',
                      'gen_el_energy_hydro', 'gen_el_energy_pv_ground',
                      'gen_el_energy_pv_roof', 'gen_el_energy_wind',
-                     'pop']
+                     'pop'
+                     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
     global_params = {'resid_save_el': 0, 'crt_save_el': 0, 'battery': 0,
                      'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
-                     'crt_save_th': 0}
+                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0
+                     }
     scn_data = json.dumps(
         order_dict(
             {'region_data': mun_data_filtered.sum(axis=0).round(decimals=1).to_dict(),
