@@ -86,13 +86,21 @@ class MapView(TemplateView):
     @check_session
     def post(self, request, session):
         print(request.POST)
+        
+        action = request.POST['action']
+        data = request.POST['data']
 
-        result, param_result = simulate_energysystem()
+        if action == 'select_scenario':
+            ret_data = session.scenarios[data].data
+        elif action == 'apply_scenario':
+            ret_data = {'apply': 'scn'}
+        elif action == 'simulate':
+            result, param_result = simulate_energysystem()
+            print('Results:', results)
+            print('Params:', param_result)
+            ret_data = {'simulation': 'successful'}
 
-        print('Results:', results)
-        print('Params:', param_result)
-
-        return HttpResponse(json.dumps({'hallo': 'test'}))
+        return HttpResponse(json.dumps(ret_data))
 
 
 class SourcesView(TemplateView):
