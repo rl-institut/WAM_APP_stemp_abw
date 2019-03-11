@@ -728,6 +728,9 @@ class Scenario(models.Model):
     re_potential_areas = models.ForeignKey(REPotentialAreas,
                                            on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return self.name
+
 
 class SimulationResults(models.Model):
     """Results of a scenario
