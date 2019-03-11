@@ -43,6 +43,7 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
         context.update(io.prepare_layer_data())
         context.update(io.prepare_component_data())
+        context.update(io.prepare_scenario_data())
         context.update(io.prepare_label_data())
 
         # TODO: Temp stuff for WS

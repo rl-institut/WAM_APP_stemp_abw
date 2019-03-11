@@ -1,0 +1,10 @@
+<form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 0.5rem;">
+  {% csrf_token %}
+  <label>
+    <select id="select-scn-frm" onchange="btnAction(this.id)">
+        {% for choice in scenarios.scn %}
+          {{ choice }}
+        {% endfor %}
+    </select>
+  </label>
+</form>

@@ -1,6 +1,7 @@
 from collections import OrderedDict
 import json
-from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm
+from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
+    ScenarioDropdownForm
 
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
     LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA, ESYS_AREAS_METADATA, LABELS
@@ -115,6 +116,11 @@ def prepare_component_data():
     return component_data
 
 
+def prepare_scenario_data():
+    # create scenarios for scenario dropdown menu
+    return {'scenarios': ScenarioDropdownForm(scenarios=['x', 'y', 'z'])}
+
+    
 def prepare_label_data():
     return {'panels': LABELS['panels'],
             'tooltips': LABELS['tooltips']}

@@ -1,6 +1,7 @@
 from django import forms
-
 from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
+
+from stemp_abw.models import Scenario
 
 
 class LayerGroupForm(forms.Form):
@@ -129,3 +130,17 @@ class AreaGroupForm(forms.Form):
             else:
                 raise TypeError(
                     f'Unknown value for "type" in esys_areas.cfg at {name}')
+
+
+class ScenarioDropdownForm(forms.Form):
+    """Form for scneario dropdown menu (predefined scenarios only)"""
+
+    def __init__(self, scenarios=None, *args, **kwargs):
+        if scenarios is None:
+            raise ValueError('No scenarios given. '
+                             'Please add some in esys_components.cfg.')
+        super(ScenarioDropdownForm, self).__init__(*args, **kwargs)
+
+        self.fields['scn'] = forms.ChoiceField(
+            choices=[(scn.id, str(scn))
+                     for scn in Scenario.objects.filter(is_user_scenario=False)])
