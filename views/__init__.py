@@ -8,8 +8,11 @@ from stemp_abw.config import io
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw import results
 
+from stemp_abw.models import Scenario
+
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
+
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
@@ -92,7 +95,9 @@ class MapView(TemplateView):
         data = request.POST['data']
 
         if action == 'select_scenario':
-            ret_data = session.scenarios[data].data
+            ret_data = {'scenario_list': dict(Scenario.objects.filter(
+                is_user_scenario=False).values_list('id', 'name')),
+                        'scenario_data': session.scenarios[int(data)].data}
         elif action == 'apply_scenario':
             ret_data = {'apply': 'scn'}
         elif action == 'simulate':

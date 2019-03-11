@@ -10,7 +10,7 @@ class UserSession(object):
 
     def init_default_scenarios(self):
         scns = Scenario.objects.filter(is_user_scenario=False).all()
-        return {scn.name: scn for scn in scns}
+        return {scn.id: scn for scn in scns}
 
 
 class Simulation(object):

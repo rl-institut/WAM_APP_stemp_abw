@@ -860,10 +860,27 @@
                 } else if (element_id == 'select-scn-frm') {
                   var scn_data = JSON.parse(returned_data);
                   console.log(scn_data);
+                  updateScenarioList(scn_data['scenario_list']);
                 } else if (element_id == 'apply-scn-btn') {
                   console.log(returned_data);
                 }
             });
+        };
+
+        // Update scenario list
+        function updateScenarioList(scenarios) {
+          var select_scn_frm = $('#select-scn-frm');
+          // Refresh list
+          var current_value = select_scn_frm.val();
+          select_scn_frm.find('option').remove();
+          for (var index in scenarios) {
+              select_scn_frm.append($('<option>', {
+                value: index,
+                text: scenarios[index]
+              }));
+          };
+          // Reset selected value
+          $(select_scn_frm).val(current_value);
         };
 
         // Update simulation progress bar
