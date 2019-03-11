@@ -511,6 +511,7 @@
         {% endfor %}
 
         // test some upcoming features with wind slider
+        /*
         var test_slider = $("#sl_wind").data("ionRangeSlider");
         test_slider.reset();
         test_slider.update({
@@ -521,12 +522,14 @@
           from_shadow: true,
           to_shadow: true
         });
+        */
 
         //var xxx = $('.irs-hidden-input');
 
     </script>
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
     <script type="text/javascript">
         function main_map_init (map, options) {
             // show load spinner
@@ -852,7 +855,6 @@
                     console.log('error');
                 }
             }).done(function(returned_data){
-                //console.log(returned_data);
                 //updateSimProgressBar(25);
 
                 if (element.val() == 'simulate') {
@@ -865,22 +867,6 @@
                   console.log(returned_data);
                 }
             });
-        };
-
-        // Update scenario list
-        function updateScenarioList(scenarios) {
-          var select_scn_frm = $('#select-scn-frm');
-          // Refresh list
-          var current_value = select_scn_frm.val();
-          select_scn_frm.find('option').remove();
-          for (var index in scenarios) {
-              select_scn_frm.append($('<option>', {
-                value: index,
-                text: scenarios[index]
-              }));
-          };
-          // Reset selected value
-          $(select_scn_frm).val(current_value);
         };
 
         // Update simulation progress bar
