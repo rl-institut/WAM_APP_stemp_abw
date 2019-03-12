@@ -1,9 +1,11 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
 {% block values %}
-<div class="cell">
-    <p>{{ layer.pop_density }} EinwohnerInnen je km²</p>
-</div>
+    <div class="cell">
+        <p>{{ layer.pop_density }} EinwohnerInnen je km²</p>
+    </div>
 {% endblock %}
 {% block vis %}
-    {{ vis2.2 }}
+    <div class="cell">
+        {{ vis2.2 }}
+    </div>
 {% endblock%}

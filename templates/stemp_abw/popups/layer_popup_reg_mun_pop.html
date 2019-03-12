@@ -1,9 +1,11 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
 {% block values %}
-<div class="cell">
-    <p>{{ layer.pop }} EinwohnerInnen</p>
-</div>
+    <div class="cell">
+        <p>{{ layer.pop }} EinwohnerInnen</p>
+    </div>
 {% endblock %}
 {% block vis %}
-    {{ vis2.1 }}
+    <div class="cell">
+        {{ vis2.1 }}
+    </div>
 {% endblock%}
