@@ -24,11 +24,14 @@ function updateScenarioControls(scn_data, mode) {
   for (var index in esys_sliders) {
     var slider = $('#' + esys_sliders[index].id).data("ionRangeSlider");
     slider.reset();
+
     if (mode == 'marker') {
-      console.log('marker');
-      //var marks = [[50, 'Status Quo', 'text for tooltip 1']];
-      //var toolTipText = 'Example of text for tooltip';
-      //addMarks(data.slider, data.min, data.max, marks);
+      //console.log('marker');
+      //console.log(slider);
+      var marks = [[50, 'Status quo', 'Status quo']];
+      var toolTipText = 'Example of text for tooltip';
+      addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
+
     } else if (mode == 'apply') {
       slider.update({
         from: 50
