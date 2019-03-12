@@ -524,8 +524,6 @@
         });
         */
 
-        //var xxx = $('.irs-hidden-input');
-
     </script>
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
@@ -863,8 +861,11 @@
                   var scn_data = JSON.parse(returned_data);
                   console.log(scn_data);
                   updateScenarioList(scn_data['scenario_list']);
+                  updateScenarioControls(scn_data['scenario_data'], 'marker');
                 } else if (element_id == 'apply-scn-btn') {
+                  var scn_data = JSON.parse(returned_data)
                   console.log(returned_data);
+                  updateScenarioControls(scn_data['scenario_data'], 'apply');
                 }
             });
         };

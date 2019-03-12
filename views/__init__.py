@@ -99,7 +99,7 @@ class MapView(TemplateView):
                 is_user_scenario=False).values_list('id', 'name')),
                         'scenario_data': session.scenarios[int(data)].data}
         elif action == 'apply_scenario':
-            ret_data = {'apply': 'scn'}
+            ret_data = {'scenario_data': session.scenarios[int(data)].data}
         elif action == 'simulate':
             result, param_result = simulate_energysystem()
             print('Results:', results)
