@@ -554,22 +554,25 @@
                 var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
                 $.get( url, function( data ) {
                   layer.setPopupContent(data);
+
+                  // load js content from JS detail view
+                  // TODO: Find more general solution than whitelist
+                  whitelist = [
+                      'reg_mun',
+                      'reg_mun_pop',
+                      'reg_mun_pop_density',
+                  ]
+                  if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
+                      var url_js = "../popupjs/" + layer.feature.properties.name + "/"
+                      $.get( url_js, function( data ) {
+                        setTimeout(function() {
+                            eval(data);
+                        }, 250);
+                      });
+                  }
                 });
 
-                // load js content from JS detail view
-                // TODO: Generalize like above!
-                whitelist = [
-                    'reg_mun',
-                    'reg_mun_pop',
-                    'reg_mun_pop_density',
-                ]
-                if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
-                    var url_js = "../popupjs/" + layer.feature.properties.name + "/"
-                    $.get( url_js, function( data ) {
-                      console.log(data);
-                      eval(data);
-                    });
-                }
+
             }
 
             // feature: mousover style
