@@ -427,6 +427,10 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
+
     <!-- LOAD HIGHCHART DATA -->
     <script>
       $('#btnExpand').on('click', function(e) {
@@ -444,24 +448,6 @@
 
     <!-- LOAD SLIDER DATA -->
     <script type="text/javascript">
-        // slider markers
-        function convertToPercent(num, min, max) {
-          var percent = (num - min) / (max - min) * 100;
-          return percent;
-        }
-
-        function addMarks($slider, min, max, marks) {
-          var html = '';
-          var left = 0;
-          var i;
-
-          for (i = 0; i < marks.length; i++) {
-            left = convertToPercent(marks[i][0], min, max);
-            html += '<div title="' + marks[i][2] + '"><div class="mark" style="left: ' + left + '%"></div><div class="mark--text" style="left: calc(' + left + '% - (10rem/2))">' + marks[i][1] + '</div></div>';
-          }
-
-          $slider.append(html);
-        }
 
         // load sliders
         {% for group, data in comp_groups.items %}
@@ -475,11 +461,13 @@
                         step: {{comp.field.widget.attrs.step}},
                         grid: true,
                         grid_num: {{comp.field.widget.attrs.grid_num}},
+                        /*
                         onStart: function onStart(data) {
                           var marks = [[50, 'Status Quo', 'text for tooltip 1'], [100, 'Szenario 1', 'text for tooltip 2']];
                           var toolTipText = 'Example of text for tooltip';
                           addMarks(data.slider, data.min, data.max, marks);
                         },
+                        */
                         onFinish: function onFinish(data) {
                           var from_max = $(this).attr("from_max");
                           var from_min = $(this).attr("from_min");
@@ -525,9 +513,6 @@
         */
 
     </script>
-    <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
-    <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
-    <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
     <script type="text/javascript">
         function main_map_init (map, options) {
             // show load spinner
