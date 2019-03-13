@@ -61,7 +61,7 @@ function addMarks($slider, min, max, marks) {
 
   for (i = 0; i < marks.length; i++) {
     left = convertToPercent(marks[i][0], min, max);
-    html += '<div title="' + marks[i][2] + '"><div class="mark" style="left: ' + left + '%"></div><div class="mark--text" style="left: calc(' + left + '% - (10rem/2))">' + marks[i][1] + '</div></div>';
+    html += '<div title="' + marks[i][2] + '"><div class="mark" style="left: ' + left + '%"></div><div class="mark--text" style="left: calc(' + left + '% + 1rem - (10rem/2))">' + marks[i][1] + '</div></div>';
   }
 
   $slider.append(html);
