@@ -866,5 +866,10 @@
             $('#progressBar').prop('aria-valuenow', value);
             $('#progressMeter').prop('style', 'width: ' + String(value) + '%');
         };
+
+        $(document).ready(function () {
+          // Set controls for Status quo scenario on startup
+          ctrlAction('apply-scn-btn');
+        });
     </script>
 {% endblock %}
