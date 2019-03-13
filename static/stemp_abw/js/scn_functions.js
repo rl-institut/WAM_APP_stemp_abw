@@ -29,7 +29,6 @@ function updateScenarioControls(scn_data, mode) {
       //console.log('marker');
       //console.log(slider);
       var marks = [[50, scn_data['name'], scn_data['desc']]];
-      var toolTipText = 'Example of text for tooltip';
       addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
 
     } else if (mode == 'apply') {
