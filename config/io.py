@@ -117,8 +117,8 @@ def prepare_component_data():
 
 
 def prepare_scenario_data():
-    # create scenarios for scenario dropdown menu
-    return {'scenarios': ScenarioDropdownForm(scenarios=['x', 'y', 'z'])}
+    # create scenarios for scenario dropdown menu (tool initialization only)
+    return {'scenarios': ScenarioDropdownForm()}
 
     
 def prepare_label_data():

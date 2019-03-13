@@ -24,6 +24,7 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
     slider.reset();
     slider_val = controls[esys_sliders[index].id];
 
+    // Set values
     if (apply == true) {
       slider.update({
         from: slider_val
@@ -43,7 +44,6 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   
   // Switches
   var esys_switches = $('.switch-input.esys').get();
-
   for (var index in esys_switches) {
     id = esys_switches[index].id;
     $('#' + id).prop('checked', controls[id]);
