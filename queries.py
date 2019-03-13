@@ -17,7 +17,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 application = get_wsgi_application()
 
 from stemp_abw.dataio.load_static import load_mun_data
-from stemp_abw.models import Scenario, REPotentialAreas
+from stemp_abw.models import Scenario, ScenarioData, REPotentialAreas
 from stemp_abw.helpers import order_dict
 
 
@@ -31,9 +31,9 @@ def insert_status_quo_scenario():
     repot_area_params = {'repot_area_params': 0}
     repot_mun_data = {'repot_mun_data': 0}
     mpoly_wkt = 'MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))'
-    repot_areas = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),
-                                                  mun_data=json.dumps(repot_mun_data),
-                                                  geom=mpoly_wkt)
+    repot_areas_obj = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),
+                                                      mun_data=json.dumps(repot_mun_data),
+                                                      geom=mpoly_wkt)
 
     # prepare scenario data
     mun_data.rename(columns={'pop_2017': 'pop'}, inplace=True)
@@ -68,17 +68,25 @@ def insert_status_quo_scenario():
         )
     )
     uuid = UUID(hashlib.md5(scn_data.encode('utf-8')).hexdigest())
-    print(uuid)
 
+    scn_data_obj = ScenarioData.objects.create(data=scn_data,
+                                               data_uuid=uuid)
+    print('Scenario data hash UUID:', uuid)
 
     scn = Scenario.objects.create(name='Status quo',
                                   description='Dieses Szenario enthält den aktuellen Zustand '
                                               'der Energieversorgung und Flächennutzung in '
                                               'der Region.',
                                   is_user_scenario=False,
-                                  data=scn_data,
-                                  data_uuid=uuid,
-                                  re_potential_areas=repot_areas)
+                                  data=scn_data_obj,
+                                  re_potential_areas=repot_areas_obj)
+    scn = Scenario.objects.create(name='Status quo 2',
+                                  description='Dieses Szenario enthält den aktuellen Zustand '
+                                              'der Energieversorgung und Flächennutzung in '
+                                              'der Region.',
+                                  is_user_scenario=False,
+                                  data=scn_data_obj,
+                                  re_potential_areas=repot_areas_obj)
 
 
 insert_status_quo_scenario()
