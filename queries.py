@@ -59,8 +59,8 @@ def insert_status_quo_scenario():
     global_params = {'resid_save_el': 0, 'crt_save_el': 0, 'battery': 0,
                      'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
                      'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
-                     'dist_resid': 500, 'use_forest': False,
-                     'use_ffh_areas': True, 'use_cult_areas': False
+                     'dist_resid': 1000, 'use_forest': False,
+                     'use_ffh_areas': False, 'use_cult_areas': False
                      }
     scn_data = json.dumps(
         order_dict(
