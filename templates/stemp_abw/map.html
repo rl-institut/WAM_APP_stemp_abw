@@ -802,7 +802,12 @@
                 id = id.replace('cb_region_', '');
                 for (var l in legends) {
                   if (l !== id && choropleth_data.hasOwnProperty(id)) {
-                    if (this.checked) map.removeControl(legends[l]);
+                    if (this.checked) {
+                        map.removeLayer(layers[l]);
+                        map.removeControl(legends[l]);
+                        var el = document.getElementById('cb_region_' + l);
+                        el.checked = false;
+                    }
                   } else if (l === id) {
                     l = legends[id];
                     if (this.checked) l.addTo(map);
