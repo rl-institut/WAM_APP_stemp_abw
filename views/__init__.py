@@ -95,9 +95,12 @@ class MapView(TemplateView):
         data = request.POST['data']
 
         if action == 'select_scenario':
+            scn = session.scenarios[int(data)]
             ret_data = {'scenario_list': dict(Scenario.objects.filter(
                 is_user_scenario=False).values_list('id', 'name')),
-                        'scenario_data': session.scenarios[int(data)].data}
+                        'scenario': {'name': scn.name,
+                                     'desc': scn.description,
+                                     'data': scn.data}}
         elif action == 'apply_scenario':
             ret_data = {'scenario_data': session.scenarios[int(data)].data}
         elif action == 'simulate':

@@ -28,7 +28,7 @@ function updateScenarioControls(scn_data, mode) {
     if (mode == 'marker') {
       //console.log('marker');
       //console.log(slider);
-      var marks = [[50, 'Status quo', 'Status quo']];
+      var marks = [[50, scn_data['name'], scn_data['desc']]];
       var toolTipText = 'Example of text for tooltip';
       addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
 
