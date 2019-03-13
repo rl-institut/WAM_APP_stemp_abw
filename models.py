@@ -699,6 +699,24 @@ class REPotentialAreas(models.Model):
     geom = geomodels.MultiPolygonField(srid=3035)
 
 
+class ScenarioData(models.Model):
+    """Scenario data
+
+    Attributes
+    ----------
+    id :
+        DB id
+    data : json
+        Scenario data, format as defined <HERE>
+    data_uuid :
+        UUID for scenario data to quickly compare settings
+    """
+    id = models.BigAutoField(primary_key=True)
+    data = JSONField()
+    data_uuid = models.UUIDField(default=uuid4, editable=False,
+                                 unique=True, null=False)
+
+
 class Scenario(models.Model):
     """Scenario (energy system configuration)
 
@@ -712,8 +730,8 @@ class Scenario(models.Model):
         Name of scenario
     is_user_scenario : Bool
         True, if scenario was created by a user (default)
-    data : json
-        Scenario data, format as defined <HERE>
+    data :
+        Reference to ScenarioData
     re_potential_areas :
         Reference to REPotentialAreas
     """
@@ -722,9 +740,7 @@ class Scenario(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=255, null=True)
     is_user_scenario = models.BooleanField(default=True)
-    data = JSONField()
-    data_uuid = models.UUIDField(default=uuid4, editable=False,
-                                 unique=True, null=False)
+    data = models.ForeignKey(ScenarioData, on_delete=models.DO_NOTHING)
     re_potential_areas = models.ForeignKey(REPotentialAreas,
                                            on_delete=models.DO_NOTHING)
 
