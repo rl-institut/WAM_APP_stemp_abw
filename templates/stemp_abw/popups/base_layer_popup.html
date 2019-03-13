@@ -1,0 +1,37 @@
+<div class="grid-x" style="width: 300px">
+    {% block title %}
+    <div class="cell">
+        <h3>{{ title }}</h3>
+    </div>
+    {% endblock %}
+
+    {% block gen %}
+    <div class="cell">
+        <h5>{{ layer.gen }}</h5>
+    </div>
+    {% endblock %}
+
+    {% block values %}
+    {% endblock %}
+
+    {% block text %}
+    <div class="cell">
+        <p>{{ text }}</p>
+    </div>
+    {% endblock %}
+
+    {% block vis %}
+    {% endblock%}
+
+    {% block links %}
+    <div class="cell">
+        Quellen:
+    </div>
+    <div class="cell">
+        Annahmen:
+    </div>
+    <div class="cell">
+        Links:
+    </div>
+    {% endblock %}
+</div>
