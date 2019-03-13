@@ -16,7 +16,7 @@ function updateScenarioList(scenarios) {
   $(select_scn_frm).val(current_value);
 };
 
-function updateScenarioControls(scn_data, mode) {
+function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   var esys_sliders = $('.irs-hidden-input').get();
   //console.log(esys_sliders);
   
@@ -24,16 +24,11 @@ function updateScenarioControls(scn_data, mode) {
   for (var index in esys_sliders) {
     var slider = $('#' + esys_sliders[index].id).data("ionRangeSlider");
     slider.reset();
+    slider_val = controls[esys_sliders[index].id];
 
-    if (mode == 'marker') {
-      //console.log('marker');
-      //console.log(slider);
-      var marks = [[50, scn_data['name'], scn_data['desc']]];
-      addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
-
-    } else if (mode == 'apply') {
+    if (apply == true) {
       slider.update({
-        from: 50
+        from: slider_val
         //min: 0
         //max: 10,
         //from_min: 1,
@@ -42,6 +37,10 @@ function updateScenarioControls(scn_data, mode) {
         //to_shadow: true
       });
     }
+
+    // add marker
+    var marks = [[slider_val, scn_name, scn_desc]];
+    addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
   };
   
   // Switches
