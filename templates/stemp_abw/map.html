@@ -162,7 +162,7 @@
                               {% include "forms/scenario_menu.html" %}
                             </div>
                             <div class="cell small-2">
-                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="btnAction(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlAction(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
                                 Übernehmen
                               </button>
                             </div>
@@ -176,7 +176,7 @@
                             <!--<div class="cell u-text&#45;&#45;center">-->
                               <!--<form method="post" id="frmSimulate">-->
                                 <!--{% csrf_token %}-->
-                                <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="btnAction(this.id)" value="simulate" disabled>-->
+                                <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlAction(this.id)" value="simulate" disabled>-->
                                   <!--Simulieren-->
                                   <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
                                 <!--</button>-->
@@ -386,7 +386,7 @@
             <div class="cell" id="simulation-save-btn">
               <div class="grid-x">
                 <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
-                  <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="btnAction(this.id)" value="simulate">
+                  <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlAction(this.id)" value="simulate">
                     Simulation
                     <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                   </button>
@@ -807,7 +807,7 @@
         };
 
         // Post to view if button is clicked without reloading page
-        function btnAction(element_id) {
+        function ctrlAction(element_id) {
             element = $('#' + element_id);
             var action = element.val();
             var data = '';
