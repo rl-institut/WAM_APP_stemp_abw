@@ -58,7 +58,9 @@ def insert_status_quo_scenario():
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
     global_params = {'resid_save_el': 0, 'crt_save_el': 0, 'battery': 0,
                      'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
-                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0
+                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
+                     'dist_resid': 500, 'use_forest': False,
+                     'use_ffh_areas': True, 'use_cult_areas': False
                      }
     scn_data = json.dumps(
         order_dict(

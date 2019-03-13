@@ -57,6 +57,10 @@ class UserSession(object):
                           'sl_battery': global_params['battery'],
                           'sl_dsm_resid': global_params['dsm_resid'],
                           'sl_emobility': global_params['emobility'],
+                          'sl_dist_resid': global_params['dist_resid'],
+                          'cb_use_forest': global_params['use_forest'],
+                          'cb_use_ffh_areas': global_params['use_ffh_areas'],
+                          'cb_use_cult_areas': global_params['use_cult_areas']
                           }
         return control_values
 

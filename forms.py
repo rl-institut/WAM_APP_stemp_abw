@@ -5,7 +5,7 @@ from stemp_abw.models import Scenario
 
 
 class LayerGroupForm(forms.Form):
-    """Form for layer group"""
+    """Form for layer group (regional info)"""
 
     def __init__(self, cat_name=None, layers=None, *args, **kwargs):
         if layers is None:
@@ -86,7 +86,7 @@ class ComponentGroupForm(forms.Form):
 
 
 class AreaGroupForm(forms.Form):
-    """Form for esys components"""
+    """Form for layer group (variable layers)"""
 
     def __init__(self, components=None, *args, **kwargs):
         if components is None:
@@ -119,6 +119,7 @@ class AreaGroupForm(forms.Form):
                     coerce=lambda x: bool(int(x)),
                     widget=SwitchWidget(
                         attrs={'id': 'cb_{}'.format(name),
+                               'class': 'esys',
                                'name': name,
                                'title': data['title'],
                                'text': data['text'],
