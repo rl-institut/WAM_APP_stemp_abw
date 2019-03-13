@@ -1,7 +1,6 @@
-from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
-from collections import OrderedDict
+
 #import sqlahelper
 
 from stemp_abw.config import io
@@ -10,6 +9,7 @@ from stemp_abw import results
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
+from stemp_abw.charts_data import visualizations1, visualizations2
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
@@ -46,19 +46,6 @@ class MapView(TemplateView):
         context.update(io.prepare_label_data())
 
         # TODO: Temp stuff for WS
-        labels1 = OrderedDict((
-            ('Windenergie Erzeugung', ['Wind']),
-            ('Photovoltaik Erzeugung', ['PV']),
-            ('Bioenergie Erzeugung', ['Biomasse', 'Biogas'])
-        ))
-        visualizations1 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
-                          for t, c in labels1.items()]
-        labels2 = {'Erzeugung': ['Strom', 'Wärme'],
-                  'Bedarf': ['Strom', 'Wärme'],
-                  'Erneuerbare Energien': ['Wind', 'Solar']
-                  }
-        visualizations2 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
-                          for t, c in labels2.items()]
         context['visualizations1'] = visualizations1
         context['visualizations2'] = visualizations2
 

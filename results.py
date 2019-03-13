@@ -25,11 +25,7 @@ class ResultAnalysisVisualization(object):
     def visualize(self):
         visualization = visualizations.HCTimeseries(
             data=self.data,
-            title=self.title
-            # Note: inline-block originally used to make sure the graph is
-            # scaled correctly even if the expansion of the result panel has
-            # not finished before the HC graphs are loaded. Deactivated since
-            # the graphs do not scale properly if window is resized.
-            #style='display: inline-block'
+            title=self.title,
+            style='display: inline-block'
         )
         return visualization
