@@ -1,5 +1,5 @@
 from uuid import uuid4
-
+from django.utils import timezone
 from stemp_abw.models import Scenario
 
 
@@ -22,6 +22,8 @@ class UserSession(object):
         scn.name = 'User Scenario {uuid}'.format(uuid=str(uuid4()))
         scn.description = ''
         scn.id = None
+        scn.is_user_scenario = True
+        scn.created = timezone.now()
         # scn.save()
         return scn
     
