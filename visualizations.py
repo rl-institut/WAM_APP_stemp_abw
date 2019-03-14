@@ -69,3 +69,37 @@ class HCPiechart(HCStemp):
             'verticalAlign': 'middle'
         },
     }
+
+# TODO: Proper pie chart below doesn't work. Only pie chart above works,
+#  which is a line chart (even if titled 'pie' chart)
+# class HCPiechart(HCStemp):
+#     setup = {
+#         'chart': {
+#             'plotBackgroundColor': 'null',
+#             'plotBorderWidth': 'null',
+#             'plotShadow': 'false',
+#             'type': 'pie'
+#         },
+#         'title': {
+#             'text': '',
+#         },
+#         'subtitle': {
+#             'text': 'in GW'
+#         },
+#         'tooltip': {
+#             'pointFormat': '{series.name}: <b>{point.percentage:.1f}%</b>'
+#         },
+#         'plotOptions': {
+#             'pie': {
+#                 'allowPointSelect': 'true',
+#                 'cursor': 'pointer',
+#                 'dataLabels': {
+#                     'enabled': 'true',
+#                     'format': '<b>{point.name}</b>: {point.percentage:.1f} %',
+#                     'style': {
+#                         'color': "(Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'"
+#                     }
+#                 }
+#             }
+#         },
+#     }

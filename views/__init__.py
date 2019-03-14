@@ -9,7 +9,7 @@ from stemp_abw import results
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from stemp_abw.charts_data import visualizations1, visualizations2
+from stemp_abw.charts_data import visualizations1, visualizations2, visualizations4
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
@@ -48,6 +48,7 @@ class MapView(TemplateView):
         # TODO: Temp stuff for WS
         context['visualizations1'] = visualizations1
         context['visualizations2'] = visualizations2
+        context['visualizations4'] = visualizations4
 
         # Trial: new info button
         # TODO: Move
