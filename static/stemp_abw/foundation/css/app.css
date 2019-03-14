@@ -5,6 +5,9 @@
 .l-bg-color--w {
   background-color: #EBF2FA; }
 
+.l-bg-color--white {
+  background-color: #fff; }
+
 .l-bg-color--light {
   background-color: #D8E2ED; }
 
@@ -335,6 +338,15 @@ select {
   .anchor-text--dark:hover, .anchor-text--dark:active, .anchor-text--dark:visited:hover, .anchor-text--dark:visited:active {
     color: rgba(0, 46, 79, 0.5); }
 
+.delete-btn {
+  color: #e23434;
+  -webkit-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
+  cursor: pointer;
+  margin: .5rem; }
+  .delete-btn:hover, .delete-btn:active {
+    color: #f2a4a4; }
+
 .btn {
   display: inline-block;
   vertical-align: middle;
@@ -389,28 +401,32 @@ select {
       border: 1px solid #f4a662; }
   @media print, screen and (min-width: 40em) {
     .btn--small {
-      width: 10rem; }
+      min-width: 10rem; }
     .btn--medium {
-      width: 12rem; }
+      min-width: 12rem; }
     .btn--large {
-      width: 15rem; } }
+      min-width: 15rem; } }
 
 [type="submit"].btn-submit,
 [type="button"].btn-submit,
 [type="submit"].btn-apply,
 [type="button"].btn-apply,
+[type="submit"].btn-hollow,
+[type="button"].btn-hollow,
 [type="submit"].btn-cta,
 [type="button"].btn-cta {
   border-radius: 100px !important;
-  width: 8rem; }
+  min-width: 8rem; }
   @media print, screen and (min-width: 40em) {
     [type="submit"].btn-submit,
     [type="button"].btn-submit,
     [type="submit"].btn-apply,
     [type="button"].btn-apply,
+    [type="submit"].btn-hollow,
+    [type="button"].btn-hollow,
     [type="submit"].btn-cta,
     [type="button"].btn-cta {
-      width: 10rem; } }
+      min-width: 10rem; } }
 
 [type="submit"].btn-apply,
 [type="button"].btn-apply {
@@ -437,7 +453,7 @@ select {
   border-style: solid;
   border-width: 1px;
   color: #0a0a0a;
-  width: 8rem;
+  min-width: 8rem;
   background-color: #fefefe;
   -webkit-transition: color 0.2s ease-in, background-color 0.2s ease-in;
   transition: color 0.2s ease-in, background-color 0.2s ease-in; }
@@ -448,7 +464,7 @@ select {
   @media print, screen and (min-width: 40em) {
     [type="submit"].btn-calc,
     [type="button"].btn-calc {
-      width: 10rem; } }
+      min-width: 10rem; } }
 
 [type="submit"].btn-calc-highlighted,
 [type="button"].btn-calc-highlighted {
@@ -833,9 +849,11 @@ input::-webkit-inner-spin-button {
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden
 }
 */
+/*
 input[type=number] {
-  -moz-appearance: textfield; }
-
+  -moz-appearance:textfield;
+}
+*/
 /* --------------------- */
 .plus-minus-input .input-group-button button {
   height: 2.4375rem;
@@ -852,6 +870,9 @@ input[type=number] {
 .input-group.input-disabled span {
   background-color: #e6e6e6;
   color: #c7c7c7; }
+
+fieldset legend {
+  font-weight: 700; }
 
 .loader-wrapper {
   position: absolute;
@@ -1104,7 +1125,7 @@ button[type="button"].tabs-btn--right {
 
 footer {
   width: 100%;
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0; }
   footer:not(.footer-hp) {
@@ -1151,34 +1172,122 @@ footer {
           margin: 1rem;
           font-size: 1rem; } }
 
-.hp__wrapper {
+@media screen and (max-width: 39.99875em) {
+  .hp-hero,
+  .hp-info,
+  .hp-features,
+  .hp-how {
+    padding-right: 1rem;
+    padding-left: 1rem; } }
+
+.hp-hero {
   position: relative;
-  top: 10vh; }
+  width: 100%;
+  padding-top: 10vh;
+  padding-bottom: 3rem; }
   @media print, screen and (min-width: 40em) {
-    .hp__wrapper {
-      top: 15vh; } }
-  @media print, screen and (min-width: 64em) {
-    .hp__wrapper {
-      width: 50rem; } }
-  .hp__wrapper nav {
+    .hp-hero {
+      padding-top: 15vh;
+      padding-bottom: 6rem; } }
+  .hp-hero nav {
     width: 100%; }
-
-.hp__header {
+  .hp-hero__header {
   color: #EBF2FA; }
-
-.hp__subheader {
+  .hp-hero__subheader {
   color: #EBF2FA;
   font-weight: 300;
   opacity: .7;
   margin-bottom: 2rem;
   font-size: 1rem; }
   @media print, screen and (min-width: 40em) {
-    .hp__subheader {
+      .hp-hero__subheader {
       font-size: 1.5rem;
       margin-bottom: 3rem; } }
-
-.hp__btn .btn {
+  .hp-hero__btn .btn {
   width: 15rem; }
+
+.hp-info {
+  padding-top: 4rem;
+  padding-bottom: 4rem; }
+  @media print, screen and (min-width: 40em) {
+    .hp-info {
+      padding-top: 6rem;
+      padding-bottom: 6rem; } }
+  .hp-info__text p {
+    font-weight: 400; }
+    @media print, screen and (min-width: 40em) {
+      .hp-info__text p {
+        font-size: 1.25rem; } }
+    .hp-info__text p span {
+      font-weight: 700; }
+
+.hp-features {
+  padding-top: 1rem;
+  padding-bottom: 2rem; }
+  @media print, screen and (min-width: 40em) {
+    .hp-features {
+      padding-top: 2rem;
+      padding-bottom: 4rem; } }
+  .hp-features__header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.25rem; }
+    @media print, screen and (min-width: 40em) {
+      .hp-features__header {
+        font-size: 1.5rem; } }
+  .hp-features__subheader {
+    font-size: 1rem; }
+    @media print, screen and (min-width: 40em) {
+      .hp-features__subheader {
+        font-size: 1.25rem; } }
+  .hp-features__card {
+    padding: 1rem 1rem 1rem;
+    max-width: 35rem; }
+
+.hp-how {
+  padding-top: 1rem;
+  padding-bottom: 2rem; }
+  @media print, screen and (min-width: 40em) {
+    .hp-how {
+      padding-top: 2rem;
+      padding-bottom: 4rem; } }
+  .hp-how__section {
+    margin-bottom: 2rem; }
+  .hp-how__header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.25rem; }
+    @media print, screen and (min-width: 40em) {
+      .hp-how__header {
+        font-size: 1.5rem; } }
+  .hp-how__text {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 1rem; }
+    .hp-how__text-nb {
+      position: relative;
+      margin: 0 auto; }
+      .hp-how__text-nb div {
+        background-color: #002E4F;
+        color: #EBF2FA;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding-top: .4rem;
+        text-align: center;
+        border-radius: 100px;
+        font-size: 1.25rem;
+        font-weight: 700; }
 
 /* Ion.RangeSlider
 // css version 2.0.3
@@ -1640,10 +1749,8 @@ footer.map-footer {
 .panel-desc {
   background-color: #dde4ea;
   padding: .5rem; }
-
 .panel-desc__header {
   font-weight: 700; }
-
 .panel-desc__text {
   display: inline-block; }
 
@@ -1785,12 +1892,15 @@ footer.map-footer {
   #panel-results.tabs-panel.is-active a, #panel-results.tabs-panel.is-active a:link {
     background-color: #81C3D7;
     color: #002E4F; }
+
   #panel-results.tabs-panel.is-active a:hover {
     background-color: #00101c;
     color: #EBF2FA; }
+
   #panel-results.tabs-panel.is-active a:focus {
     background-color: #002E4F;
     color: #EBF2FA; }
+
   #panel-results.tabs-panel.is-active a:focus,
   #panel-results.tabs-panel.is-active button:focus,
   #panel-results.tabs-panel.is-active input:focus,
@@ -1961,6 +2071,7 @@ button,
   [type="submit"]::-moz-focus-inner {
     border-style: none;
     padding: 0; }
+
   button:-moz-focusring,
   [type="button"]:-moz-focusring,
   [type="reset"]:-moz-focusring,
@@ -6797,23 +6908,24 @@ a.thumbnail {
 .has-tip {
   position: relative;
   display: inline-block;
-  border-bottom: 0px;
+  border-left: none !important;
   font-weight: 700;
   cursor: help; }
 
 .tooltip {
   position: absolute;
   top: calc(100% + 0.6495rem);
-  z-index: 9999999999;
+  z-index: 99999999999999999 !important;
   max-width: 30rem;
   padding: 0.75rem;
   border-radius: 0;
-  background-color: #fefefe;
+  background-color: #81C3D7 !important;
   font-size: 1rem;
-  color: #002E4F;
+  color: #0a0a0a !important;
   /*white-space: pre-line;*/}
   .tooltip::before {
-    position: absolute; }
+    position: absolute;
+    border-color: transparent #81C3D7 transparent !important; }
   .tooltip.bottom::before {
     display: block;
     width: 0;

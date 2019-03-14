@@ -14,11 +14,19 @@ app_name = 'stemp_abw'
 
 # regular URLs
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('app/', views.MapView.as_view(), name='map'),
-    path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
+    path('', views.IndexView.as_view(),
+         name='index'),
+    path('app/', views.MapView.as_view(),
+         name='map'),
+    path('imprint/', views.ImprintView.as_view(),
+         name='imprint'),
+    path('privacy_policy/', views.PrivacyPolicyView.as_view(),
+         name='privacy_policy'),
+    path('sources_old/', views.SourcesView.as_view(),
+         name='sources_old'),
     # Source views from WAM with highlighting
-    path('sources/', AppListView.as_view(app_name='stemp_abw', model=Source),
+    path('sources/', AppListView.as_view(app_name='stemp_abw',
+                                         model=Source),
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name='stemp_abw'),
          name='assumptions'),

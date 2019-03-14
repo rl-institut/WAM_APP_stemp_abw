@@ -35,6 +35,14 @@ class IndexView(TemplateView):
     template_name = 'stemp_abw/index.html'
 
 
+class ImprintView(TemplateView):
+    template_name = 'stemp_abw/imprint.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'stemp_abw/privacy_policy.html'
+    
+
 class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
 
