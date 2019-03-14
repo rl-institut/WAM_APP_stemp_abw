@@ -38,3 +38,34 @@ class HCTimeseries(HCStemp):
             'verticalAlign': 'middle'
         },
     }
+
+
+class HCPiechart(HCStemp):
+    setup = {
+        'chart': {
+            'type': 'pie',
+            'plotBackgroundColor': 'null'
+            #'backgroundColor': '#EBF2FA'
+        },
+        'title': {
+            'text': '',
+        },
+        'subtitle': {
+            'text': 'in GW'
+        },
+        'tooltip': {
+            'pointFormat': '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        'xAxis': {
+            'type': 'datetime'
+        },
+        'yAxis': {
+            'min': 0,
+            'title': {'text': 'GW'}
+        },
+        'legend': {
+            'layout': 'vertical',
+            'align': 'right',
+            'verticalAlign': 'middle'
+        },
+    }
