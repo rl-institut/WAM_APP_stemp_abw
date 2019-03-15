@@ -1125,7 +1125,7 @@ button[type="button"].tabs-btn--right {
 
 footer {
   width: 100%;
-  position: relative;
+  position: absolute;
   bottom: 0;
   left: 0; }
   footer:not(.footer-hp) {
