@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29167"
+   version="1.1"
+   id="svg1054">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     style="fill:none;stroke-width:0.82453036"
+     id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_"
+     transform="matrix(0.32088974,0,0,0.32088974,0.21111797,33.326983)">
+    <g
+       style="fill:none;stroke-width:0.55775899"
+       transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+       id="ic_x5F_16_Laufwasserkraftwerk">
+      <g
+         transform="matrix(0.75557175,0,0,0.7572401,8.878526,68.394288)"
+         id="ic_x5F_80_Haushalt_als_Stromverbraucher"
+         style="fill:none">
+        <g
+           transform="matrix(0.74101282,0,0,0.73938022,53.672072,12.031946)"
+           id="ic_x5F_81_Industrieller_Stromverbraucher"
+           style="fill:none">
+          <g
+             id="layer1"
+             transform="matrix(0.83694993,0,0,0.83694994,-387.23069,-0.0622627)">
+            <g
+               style="display:inline"
+               id="layer0-74-1"
+               transform="matrix(1.4755408,0,0,1.4755408,233.55283,-238.12766)">
+              <g
+                 style="fill:none"
+                 id="ic_x5F_81_Industrieller_Stromverbraucher-5"
+                 transform="translate(91.9249,156.362)">
+                <g
+                   style="fill:none"
+                   id="g1935-6">
+                  <g
+                     style="fill:#002e4f;fill-opacity:1"
+                     id="polygon1945-2">
+                    <path
+                       style="fill:#002e4f;fill-opacity:1"
+                       id="shape0-60-2"
+                       transform="matrix(2.13619,0,0,1.82632,5.18452,4.9895)"
+                       d="M 0,100.531 V 34.675 L 32.503,53.699 V 34.675 L 65.006,53.699 V 34.666 L 97.402,53.736 98.646,0 h 11.705 l 1.391,100.531 z" />
+                  </g>
+                </g>
+                <path
+                   style="fill:#002e4f;fill-opacity:1"
+                   id="shape2-83-1"
+                   transform="translate(295.079,120.374)"
+                   d="M 9.378,0 0,34.059 12.178,28.561 V 41.819 L 8.946,41.063 11.64,51.734 17.569,42.143 14.226,42.134 20.909,18.539 5.928,26.838 17.784,0 Z" />
+                <g
+                   style="fill:none"
+                   id="group0-8-4"
+                   transform="translate(266.408,107.117)">
+                  <path
+                     style="fill:#002e4f;fill-opacity:1"
+                     id="shape3-06-7"
+                     transform="translate(0.625,0.625)"
+                     d="M 38.5,5 C 56.972,5 72,20.028 72,38.5 72,56.972 56.972,72 38.5,72 20.028,72 5,56.972 5,38.5 5,20.028 20.028,5 38.5,5 m 0,-5 C 17.237,0 0,17.236 0,38.5 0,59.763 17.237,77 38.5,77 59.763,77 77,59.763 77,38.5 77,17.236 59.763,0 38.5,0 Z" />
+                </g>
+                <path
+                   style="fill:none;stroke:#002e4f;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+                   id="shape4-5-3"
+                   transform="translate(238.075,147.138)"
+                   d="M 29,0 H 0" />
+              </g>
+            </g>
+            <path
+               style="display:inline;fill:none;stroke:#002e4f;stroke-width:7.37770367;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               id="shape2-5-2-5-7-52"
+               d="M 769.26037,75.40362 H 742.00374 720.26342" />
+            <g
+               style="display:inline;fill:#000000;fill-opacity:1"
+               id="group0-3-1-7-7-4"
+               transform="matrix(1.4755408,0,0,1.4755408,762.30289,14.722)">
+              <path
+                 style="fill:#002e4f;fill-opacity:1"
+                 id="shape1-1-1-2-5-2"
+                 transform="translate(0.625,0.625)"
+                 d="M 38.5,5 C 56.972,5 72,20.028 72,38.5 72,56.972 56.972,72 38.5,72 20.028,72 5,56.972 5,38.5 5,20.028 20.028,5 38.5,5 m 0,-5 C 17.237,0 0,17.236 0,38.5 0,59.763 17.237,77 38.5,77 59.763,77 77,59.763 77,38.5 77,17.236 59.763,0 38.5,0 Z" />
+            </g>
+            <g
+               style="display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+               id="layer0-2-8-48"
+               transform="matrix(0.12680203,0,0,0.12680203,587.7887,-71.086311)">
+              <g
+                 style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+                 id="ic_x5F_108_Wärme-9-2"
+                 transform="matrix(1.4755408,0,0,1.4755408,1687.6053,865.47216)">
+                <g
+                   style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+                   id="group0-7-1-6">
+                  <path
+                     style="fill:#002e4f;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+                     id="shape0-48-1-8"
+                     transform="translate(0.625,220.089)"
+                     d="m 140.542,70.271 c 0,38.811 -31.467,70.265 -70.271,70.265 C 31.453,140.536 0,109.082 0,70.271 0,31.458 31.454,0 70.271,0 c 38.805,0 70.271,31.459 70.271,70.271 z" />
+                  <g
+                     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+                     id="group1-3-9-3"
+                     transform="translate(32.787)">
+                    <path
+                       style="fill:#002e4f;fill-opacity:1;stroke:#002e4f;stroke-opacity:1"
+                       id="shape1-3-1-8"
+                       transform="translate(0.625,0.625)"
+                       d="m 37.484,19.424 c 9.95,0 18.046,8.099 18.046,18.055 V 220.334 H 19.425 V 37.479 C 19.424,27.523 27.526,19.424 37.484,19.424 M 37.484,0 C 16.791,0 0,16.777 0,37.479 v 202.28 H 74.955 V 37.479 C 74.955,16.777 58.177,0 37.484,0 Z" />
+                  </g>
+                  <rect
+                     style="fill:#002e4f;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+                     id="shape2-3-8-9"
+                     transform="translate(33.411,127.955)"
+                     y="0"
+                     x="0"
+                     height="112.429"
+                     width="74.955002" />
+                  <path
+                     style="fill:#000000;fill-opacity:1;stroke:#002e4f;stroke-width:25.89959908;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                     id="shape3-7-8-62"
+                     transform="translate(150.306,66.25)"
+                     d="M 0,0 H 31.232" />
+                  <path
+                     style="fill:#000000;fill-opacity:1;stroke:#002e4f;stroke-width:25.89959908;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                     id="shape4-1-6-7"
+                     transform="translate(150.306,128.188)"
+                     d="M 0,0 H 31.232" />
+                  <path
+                     style="fill:#000000;fill-opacity:1;stroke:#002e4f;stroke-width:25.89959908;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                     id="shape5-64-8-7"
+                     transform="translate(150.306,190.128)"
+                     d="M 0,0 H 31.232" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

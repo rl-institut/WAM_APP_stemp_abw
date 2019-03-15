@@ -22155,10 +22155,18 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn').on('click', fun
 jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').on('click', function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').removeClass('results-highlighted');
 }); // ************** TOOLTIP ************** //
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rc-tooltip-test-trigger').on('click', function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rc-tooltip-test').foundation('show');
-}); // ************** OPEN TAB ************** //
+// function toggleToolTip() {
+//   console.log('toggleToolTip');
+//   $('rc-#tooltip-test').foundation('show');
+//   setTimeout(function(){
+//     $(document).on('click', function() {
+//       console.log('setTimeout');
+//       $('#rc-tooltip-test').foundation('hide');
+//     });
+//   }, 50);
+// };
+// $('#rc-tooltip-test-trigger').on('click', toggleToolTip);
+// ************** OPEN TAB ************** //
 // initialize the Foundation javascript
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
