@@ -1125,7 +1125,7 @@ button[type="button"].tabs-btn--right {
 
 footer {
   width: 100%;
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0; }
   footer:not(.footer-hp) {
@@ -1704,6 +1704,7 @@ footer.map-footer {
   height: 6.5rem;
   padding: 0;
   width: 100%;
+  position: absolute;
   text-align: right; }
   @media print, screen and (min-width: 40em) {
     footer.map-footer {
