@@ -26,396 +26,396 @@
     </div>
     <!-- END LOADER -->
 
-    <div class="l-bg-color-w u-vh--100">
+    <div class="off-canvas-wrapper off-canvas-wrapper--left">
 
-        <div class="off-canvas-wrapper off-canvas-wrapper--left">
+      <!-- OFF CANVAS START -->
+      <aside class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap">
 
-          <!-- OFF CANVAS START -->
-          <aside class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap">
+        <div class="grid-y medium-grid-frame">
+          <div class="cell medium-auto medium-cell-block-container">
+            <div class="grid-x">
+              <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
+                <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
+                  <li class="tabs-title is-active" id="tabsRegion">
+                    <a href="#panel-region" aria-selected="true">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
+                      <h2 class="tabs-title__head">Region</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-title" id="tabsScenarios">
+                    <a href="#panel-scenarios">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
+                      <h2 class="tabs-title__head">Szenarien</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-title" id="tabsEnergy">
+                    <a href="#panel-energy">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
+                      <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-results tabs-title" id="tabsResults">
+                    <a href="#panel-results">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
+                      <h2 class="tabs-title__head">Ergebnisse</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-title" id="tabsAreas">
+                    <a href="#panel-areas">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
+                      <h2 class="tabs-title__head">Flächen</h2>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
+                <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-            <div class="grid-y medium-grid-frame">
-              <div class="cell medium-auto medium-cell-block-container">
-                <div class="grid-x">
-                  <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
-                    <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
-                      <li class="tabs-title is-active" id="tabsRegion">
-                        <a href="#panel-region" aria-selected="true">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
-                          <h2 class="tabs-title__head">Region</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsScenarios">
-                        <a href="#panel-scenarios">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                          <h2 class="tabs-title__head">Szenarien</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsEnergy">
-                        <a href="#panel-energy">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
-                          <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-results tabs-title" id="tabsResults">
-                        <a href="#panel-results">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
-                          <h2 class="tabs-title__head">Ergebnisse</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsAreas">
-                        <a href="#panel-areas">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                          <h2 class="tabs-title__head">Flächen</h2>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                  <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
-                    <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
-
-                        <!-- First panel content -->
-                        <div class="tabs-panel is-active" id="panel-region">
-                          <p class="lead" style="margin-bottom: 0;">
-                            {{ panels.region.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                            {{ info }}
-                          </p>
-                          {% include "forms/layer_region_select.html" %}
-                        </div>
-
-                        <!-- Second panel content -->
-                        <div class="tabs-panel" id="panel-scenarios">
-                          <p class="lead" style="margin-bottom: 0;">
-                            {{ panels.scenarios.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                          </p>
-                          <div class="grid-x">
-                            <div class="cell" id="scenarios-wrap">
-                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                                <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
-                                <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
-                              </ul>
-
-                              <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                                <div class="tabs-panel is-active" id="scenario-panel1">
-                                  <div class="grid-x grid-margin-x">
-                                    <div class="cell">
-                                      <form>
-                                        <fieldset>
-                                            <legend>Vorgegebenes Szenario auswählen
-                                              <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                            </legend>
-                                            <label class="control control--radio">Status Quo
-                                              <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Deutsches Klimaschutzziel
-                                              <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">100% erneuerbar
-                                              <input type="radio" name="scenario" value="100" id="scenario100"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                        </fieldset>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="tabs-panel" id="scenario-panel2">
-                                  <div class="grid-x grid-margin-x">
-                                    <div class="cell">
-                                      <form class="select-menu">
-                                        <label>
-                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                          <select>
-                                            <option value="husker">Husker</option>
-                                            <option value="starbuck">Starbuck</option>
-                                            <option value="hotdog">Hot Dog</option>
-                                            <option value="apollo">Apollo</option>
-                                          </select>
-                                        </label>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        <div class="panel-desc">
-                            <p id="scenarioPanelText">
-                            <span class="panel-desc__header">Status Quo</span>
-                            <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
-                            </p>
-                        </div>
-                      </div>
-
-                      <!-- Third panel content -->
-                        <div class="tabs-panel" id="panel-energy">
-                          <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
-                            {{ panels.esys.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                          </p>
-                          <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
-                          <div class="grid-x">
-                            <div class="cell small-9">
-                              {% include "forms/scenario_menu.html" %}
-                            </div>
-                            <div class="cell small-2">
-                              <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlAction(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
-                                Übernehmen
-                              </button>
-                            </div>
-                            <div class="cell small-1"></div>
-                          </div>
-
-                          {% include "forms/esys_components.html" %}
-
-                          <!--<div class="grid-x">-->
-
-                            <!--<div class="cell u-text&#45;&#45;center">-->
-                              <!--<form method="post" id="frmSimulate">-->
-                                <!--{% csrf_token %}-->
-                                <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlAction(this.id)" value="simulate" disabled>-->
-                                  <!--Simulieren-->
-                                  <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
-                                <!--</button>-->
-                              <!--</form>-->
-                            <!--</div>-->
-
-                            <!--<div class="cell small-1"></div>-->
-                            <!--<div class="cell small-2">Fortschritt</div>-->
-                              <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
-                                <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
-                              <!--</div>-->
-                            <!--<div class="cell small-1"></div>-->
-
-                          <!--</div>-->
-                        </div>
-
-                        <!-- Fourth panel content -->
-                        <div class="tabs-panel" id="panel-results">
-                          <p class="lead">
-                            {{ panels.results.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                          </p>
-
-                          <div class="grid-x">
-                            <div class="cell u-text--center">
-                              <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                                Mehr Ergebnisse
-                                <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                              </button>
-                            </div>
-                            <div class="cell" id="results-collapsed">
-                              <p>Some results</p>
-                            </div>
-                            {% include "stemp_abw/results_full.html" %}
-                          </div>
-                        </div>
-
-                     <!-- Fifth panel content -->
-                      <div class="tabs-panel" id="panel-areas">
-                        <p class="lead" style="margin-bottom: 0;">
-                          {{ panels.areas.title }}
-                          <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                        </p>
-
-                        <div class="grid-x">
-                          <div class="cell" id="areas-wrap">
-                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
-                              <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
-                            </ul>
-
-                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-
-                              <div class="tabs-panel is-active" id="areas-panel1">
-                                <div class="grid-x">
-                                  <div class="cell">
-                                    <p>
-                                      Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                    </p>
-                                  </div>
-                                </div>
-
-                                {% include "forms/esys_areas.html" %}
-                              </div>
-
-                              <div class="tabs-panel" id="areas-panel2">
-                                <form>
-                                  <div class="grid-x">
-                                  <div class="cell">
-                                    <p>
-                                      Hier erfahren Sie mehr über Restriktionsflächen.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                    </p>
-                                  </div>
-                                    <div class="cell small-11">
-                                      <p>Alle Ebenen anzeigen</p>
-                                    </div>
-                                    <div class="cell small-1">
-                                      <div class="switch tiny master">
-                                        <input class="switch-input-layer-select-areas" id="cb_all_areas_layers" type="checkbox" name="all_layers">
-                                        <label class="switch-paddle" for="cb_all_areas_layers">
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </form>
-
-                                {% include "forms/layer_areas_select.html" %}
-
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell">
-
-                                    <span class="has-tip--no-border">
-                                      Layer Beispiel
-                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>
-                                    </span>
-
-                                    <div class="reveal" id="modal-example" data-reveal>
-                                      <div class="grid-x">
-                                        <div class="cell reveal__header">
-                                          <h2>Layer Beispiel</h2>
-                                        </div>
-                                        <div class="cell reveal__img">
-                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
-                                          <figcaption>Figure caption</figcaption>
-                                        </div>
-                                        <div class="cell reveal__text">
-                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                        </div>
-                                        <div class="cell reveal__source">
-                                          <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                            <i class ="icon ion-android-arrow-dropright icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                                            Quelle ansehen
-                                          </a>
-                                        </div>
-                                      </div>
-                                      <button class="close-button" data-close aria-label="Schließen" type="button">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-
-                                    <div class="switch">
-                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
-                                      <label class="switch-paddle" for="exampleSwitch">
-                                        <span class="show-for-sr">Download Kittens</span>
-                                      </label>
-                                    </div>
-
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
+                    <!-- First panel content -->
+                    <div class="tabs-panel is-active" id="panel-region">
+                      <p class="lead" style="margin-bottom: 0;">
+                        {{ panels.region.title }}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                        {{ info }}
+                      </p>
+                      {% include "forms/layer_region_select.html" %}
                     </div>
 
-                  </section>
+                    <!-- Second panel content -->
+                    <div class="tabs-panel" id="panel-scenarios">
+                      <p class="lead" style="margin-bottom: 0;">
+                        {{ panels.scenarios.title }}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      </p>
+                      <div class="grid-x">
+                        <div class="cell" id="scenarios-wrap">
+                          <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                            <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
+                            <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
+                          </ul>
+
+                          <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                            <div class="tabs-panel is-active" id="scenario-panel1">
+                              <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                  <form>
+                                    <fieldset>
+                                        <legend>Vorgegebenes Szenario auswählen
+                                          <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                        </legend>
+                                        <label class="control control--radio">Status Quo
+                                          <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
+                                          <div class="control__indicator"></div>
+                                        </label>
+                                        <label class="control control--radio">Deutsches Klimaschutzziel
+                                          <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
+                                          <div class="control__indicator"></div>
+                                        </label>
+                                        <label class="control control--radio">100% erneuerbar
+                                          <input type="radio" name="scenario" value="100" id="scenario100"/>
+                                          <div class="control__indicator"></div>
+                                        </label>
+                                    </fieldset>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tabs-panel" id="scenario-panel2">
+                              <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                  <form class="select-menu">
+                                    <label>
+                                      Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                      <select>
+                                        <option value="husker">Husker</option>
+                                        <option value="starbuck">Starbuck</option>
+                                        <option value="hotdog">Hot Dog</option>
+                                        <option value="apollo">Apollo</option>
+                                      </select>
+                                    </label>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="panel-desc">
+                        <p id="scenarioPanelText">
+                        <span class="panel-desc__header">Status Quo</span>
+                        <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
+                        </p>
+                    </div>
+                  </div>
+
+                  <!-- Third panel content -->
+                    <div class="tabs-panel" id="panel-energy">
+                      <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
+                        {{ panels.esys.title }}
+                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-test" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      </p>
+                      <p id="rc-tooltip-test-trigger">Click on me to show tooltip!</p>
+                      <a class="btn btn-cta" id="openTabExample">
+                        Zu Flächen springen
+                      </a>
+                      <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
+                      <div class="grid-x">
+                        <div class="cell small-9">
+                          {% include "forms/scenario_menu.html" %}
+                        </div>
+                        <div class="cell small-2">
+                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlAction(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                            Übernehmen
+                          </button>
+                        </div>
+                        <div class="cell small-1"></div>
+                      </div>
+
+                      {% include "forms/esys_components.html" %}
+
+                      <!--<div class="grid-x">-->
+
+                        <!--<div class="cell u-text&#45;&#45;center">-->
+                          <!--<form method="post" id="frmSimulate">-->
+                            <!--{% csrf_token %}-->
+                            <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlAction(this.id)" value="simulate" disabled>-->
+                              <!--Simulieren-->
+                              <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                            <!--</button>-->
+                          <!--</form>-->
+                        <!--</div>-->
+
+                        <!--<div class="cell small-1"></div>-->
+                        <!--<div class="cell small-2">Fortschritt</div>-->
+                          <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
+                            <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
+                          <!--</div>-->
+                        <!--<div class="cell small-1"></div>-->
+
+                      <!--</div>-->
+                    </div>
+
+                    <!-- Fourth panel content -->
+                    <div class="tabs-panel" id="panel-results">
+                      <p class="lead">
+                        {{ panels.results.title }}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      </p>
+
+                      <div class="grid-x">
+                        <div class="cell u-text--center">
+                          <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                            Mehr Ergebnisse
+                            <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                          </button>
+                        </div>
+                        <div class="cell" id="results-collapsed">
+                          <p>Some results</p>
+                        </div>
+                        {% include "stemp_abw/results_full.html" %}
+                      </div>
+                    </div>
+
+                 <!-- Fifth panel content -->
+                  <div class="tabs-panel" id="panel-areas">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.areas.title }}
+                      <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                    </p>
+
+                    <div class="grid-x">
+                      <div class="cell" id="areas-wrap">
+                        <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                          <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
+                          <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
+                        </ul>
+
+                        <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+
+                          <div class="tabs-panel is-active" id="areas-panel1">
+                            <div class="grid-x">
+                              <div class="cell">
+                                <p>
+                                  Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
+                                  <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                </p>
+                              </div>
+                            </div>
+
+                            {% include "forms/esys_areas.html" %}
+                          </div>
+
+                          <div class="tabs-panel" id="areas-panel2">
+                            <form>
+                              <div class="grid-x">
+                              <div class="cell">
+                                <p>
+                                  Hier erfahren Sie mehr über Restriktionsflächen.
+                                  <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                </p>
+                              </div>
+                                <div class="cell small-11">
+                                  <p>Alle Ebenen anzeigen</p>
+                                </div>
+                                <div class="cell small-1">
+                                  <div class="switch tiny master">
+                                    <input class="switch-input-layer-select-areas" id="cb_all_areas_layers" type="checkbox" name="all_layers">
+                                    <label class="switch-paddle" for="cb_all_areas_layers">
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+
+                            {% include "forms/layer_areas_select.html" %}
+
+                            <div class="grid-x grid-margin-x">
+                              <div class="cell">
+
+                                <span class="has-tip--no-border">
+                                  Layer Beispiel
+                                  <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>
+                                </span>
+
+                                <div class="reveal" id="modal-example" data-reveal>
+                                  <div class="grid-x">
+                                    <div class="cell reveal__header">
+                                      <h2>Layer Beispiel</h2>
+                                    </div>
+                                    <div class="cell reveal__img">
+                                      <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
+                                      <figcaption>Figure caption</figcaption>
+                                    </div>
+                                    <div class="cell reveal__text">
+                                      <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
+                                    </div>
+                                    <div class="cell reveal__source">
+                                      <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
+                                        <i class ="icon ion-android-arrow-dropright icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                                        Quelle ansehen
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <button class="close-button" data-close aria-label="Schließen" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+
+                                <div class="switch">
+                                  <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
+                                  <label class="switch-paddle" for="exampleSwitch">
+                                    <span class="show-for-sr">Download Kittens</span>
+                                  </label>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-              </div>
+
+              </section>
             </div>
-
-            <button class="close-button" aria-label="Close menu" type="button" data-close id="btnCloseOffcanvas">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-          </aside>
-          <!-- OFF CANVAS END -->
-
-          <!-- CONTENT (MAP + FOOTER) START -->
-          <main class="off-canvas-content" data-off-canvas-content>
-            <div class="map-wrapper">
-
-              <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
-                <i class="icon ion-android-options" data-tooltip data-position="right" data-alignment="center"></i>
-              </button>
-
-              <!-- MAP -->
-              <!--<div id="mapid"> data-open="resultsModal">-->
-                <!--{% leaflet_map "mapid" callback="window.main_map_init" creatediv=False %}-->
-              <!--</div>-->
-              {% leaflet_map "mapid" callback="window.main_map_init" %}
-
-            </div>
-          </main>
-          <!-- CONTENT (MAP + FOOTER) END -->
-
+          </div>
         </div>
 
-        <footer class="map-footer">
-          <div class="grid-x">
+        <button class="close-button" aria-label="Close menu" type="button" data-close id="btnCloseOffcanvas">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-            <div class="cell u-text--center" id="footer--hide">
-              <div>
-                <i class="icon ion-chevron-down" id="footer--hide__icon"></i>
-              </div>
-            </div>
+      </aside>
+      <!-- OFF CANVAS END -->
 
-            <div class="cell" id="footer-logos">
-              <ul class="map-footer__logo">
-                <li>
-                  <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="Energieavantgarde Anhalt">
-                    <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="Reiner Lemoine Institut">
-                    <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="Kopernikus Projekte">
-                    <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="Logo Kopernikus">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="Bundesministerium für Bildung und Forschung">
-                    <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">
-                  </a>
-                </li>
-              </ul>
-            </div>
+      <!-- CONTENT (MAP + FOOTER) START -->
+      <main class="off-canvas-content" data-off-canvas-content>
+        <div class="map-wrapper">
 
-            <!-- START SIMULATION BTNS -->
-            <div class="cell" id="simulation-save-btn">
-              <div class="grid-x">
-                <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
-                  <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlAction(this.id)" value="simulate">
-                    Simulation
-                    <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                  </button>
-                  <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
-                    Speichern
-                    <i class ="icon ion-archive icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+          <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
+            <i class="icon ion-android-options" data-tooltip data-position="right" data-alignment="center"></i>
+          </button>
 
-            <div class="tiny reveal" id="saveSimulation" data-reveal>
-              <p>Geben Sie dem Szenario einen Namen</p>
-              <label>
-                <input type="text" placeholder="Szenarioname">
-              </label>
-              <button type="submit" class="btn btn-apply btn-apply--secondary">
-                Speichern
-              </button>
-              <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <!-- END SIMULATION BTNS -->
+          <!-- MAP -->
+          <!--<div id="mapid"> data-open="resultsModal">-->
+            <!--{% leaflet_map "mapid" callback="window.main_map_init" creatediv=False %}-->
+          <!--</div>-->
+          {% leaflet_map "mapid" callback="window.main_map_init" %}
 
-          </div>
-        </footer>
+        </div>
+      </main>
+      <!-- CONTENT (MAP + FOOTER) END -->
 
     </div>
+
+    <footer class="map-footer">
+      <div class="grid-x">
+
+        <div class="cell u-text--center" id="footer--hide">
+          <div>
+            <i class="icon ion-chevron-down" id="footer--hide__icon"></i>
+          </div>
+        </div>
+
+        <div class="cell" id="footer-logos">
+          <ul class="map-footer__logo">
+            <li>
+              <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="Energieavantgarde Anhalt">
+                <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
+              </a>
+            </li>
+            <li>
+              <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="Reiner Lemoine Institut">
+                <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="Kopernikus Projekte">
+                <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="Logo ENavi">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="Bundesministerium für Bildung und Forschung">
+                <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- START SIMULATION BTNS -->
+        <div class="cell" id="simulation-save-btn">
+          <div class="grid-x">
+            <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
+              <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlAction(this.id)" value="simulate">
+                Simulation
+                <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+              </button>
+              <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
+                Speichern
+                <i class ="icon ion-archive icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny reveal" id="saveSimulation" data-reveal>
+          <p>Geben Sie dem Szenario einen Namen</p>
+          <label>
+            <input type="text" placeholder="Szenarioname">
+          </label>
+          <button type="submit" class="btn btn-apply btn-apply--secondary">
+            Speichern
+          </button>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- END SIMULATION BTNS -->
+
+      </div>
+    </footer>
 
     <!-- START POP-UP RESULTS -->
     <div class="large reveal" id="resultsModal" data-reveal>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.32088974,0,0,0.32088974,0.21111797,50.260327)"
+     id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_"
+     style="fill:none;stroke-width:0.82453036">
+    <g
+       id="ic_x5F_16_Laufwasserkraftwerk"
+       transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+       style="fill:none;stroke-width:0.55775899">
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.31696007;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2"
+         d="M 118.15665,231.42158 C 89.664126,219.10829 47.600374,193.10574 47.600374,130.1586 c 0,-79.697139 101.758476,-132.7412143 101.758476,-132.7412143 0,0 -11.01959,53.3014743 14.75421,79.2993433 25.77854,26.002531 43.57637,61.650751 43.57637,82.177621 0,58.95034 -59.69449,72.52723 -59.69449,72.52723 0,0 18.16445,-23.90585 14.04869,-47.1565 -4.45841,-25.31459 -35.34525,-51.37327 -35.34525,-51.37327 0,0 -30.353168,29.59684 -27.643644,52.86154 2.709934,23.25998 19.101914,45.66823 19.101914,45.66823 z"
+         stroke-miterlimit="2.00000000000"
+         id="shape12" />
+    </g>
+  </g>
+</svg>

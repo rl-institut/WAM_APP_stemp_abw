@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-164.70832)"
+     id="layer1">
+    <g
+       transform="matrix(0.24817282,0,0,0.24817282,76.226291,191.14807)"
+       id="ic_x5F_108_Wärme"
+       style="fill:none;stroke-width:1.06612539">
+      <g
+         id="group1"
+         style="fill:none;stroke-width:1.06612539">
+        <g
+           style="fill:none;stroke-width:0.71493858"
+           id="ic_x5F_25_Dampfturbine"
+           transform="matrix(1.5898194,0,0,1.5898194,-204.80557,-103.9337)">
+          <g
+             style="fill:none;stroke-width:0.71493858"
+             id="group3" />
+          <g
+             style="fill:none;stroke-width:0.44085887"
+             id="ic_x5F_74_Elektromotor"
+             transform="matrix(1.0845898,0,0,1.0904198,-74.182753,45.51704)">
+            <g
+               style="fill:none;stroke-width:0.44085887"
+               id="group1-0">
+              <g
+                 style="fill:none;stroke-width:0.29977489"
+                 id="ic_x5F_26_Gasturbine"
+                 transform="matrix(0.90928347,0,0,0.90442193,70.028729,-41.089626)">
+                <g
+                   style="fill:none;stroke-width:0.29977489"
+                   id="group1-3"
+                   transform="translate(24.0628,17.1051)">
+                  <g
+                     style="fill:none;stroke-width:0.18693571"
+                     id="ic_x5F_27_Gas-_Dampfturbine"
+                     transform="matrix(1.0904321,0,0,1.0904321,-90.155558,40.032633)">
+                    <g
+                       style="fill:none;stroke-width:0.12409734"
+                       id="group1-9"
+                       transform="matrix(0.93934867,0,0,0.93934867,-2.025386,23.641553)">
+                      <g
+                         style="fill:none;stroke-width:0.12409734"
+                         id="ic_x5F_124_Thermisches_Kraftwerk__x28_technologie-neutral_x29_"
+                         transform="translate(2.1581419,-1.8450614)">
+                        <g
+                           style="fill:none;stroke-width:0.12409734"
+                           id="g1875"
+                           transform="translate(-26.379685,83.40316)" />
+                        <g
+                           transform="translate(167.05432,267.38923)"
+                           id="g1881"
+                           style="fill:none;stroke-width:0.12409734" />
+                        <g
+                           transform="matrix(1.0608358,0,0,1.0608358,-106.32153,-186.59814)"
+                           id="g3012"
+                           style="stroke-width:0.07765769">
+                          <g
+                             style="fill:none;stroke-width:0.04849297"
+                             id="ic_x5F_33_Biomasse"
+                             transform="matrix(1.0021384,0,0,1.0021384,99.810246,99.622731)">
+                            <g
+                               style="fill:none;stroke-width:0.0302812"
+                               id="ic_x5F_30_Erdgas"
+                               transform="translate(-5.3749973,2.5113704e-6)">
+                              <g
+                                 style="fill:none;stroke-width:0.0302812"
+                                 id="group1-00"
+                                 transform="translate(5.375)" />
+                              <g
+                                 style="fill:none;stroke-width:0.01881106"
+                                 id="ic_x5F_01_Sonne"
+                                 transform="matrix(1.0052037,0,0,1.0052037,4.9042607,-0.72662602)">
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="ic_x5F_87_Wärmespeicher"
+                                   transform="matrix(1.4790776,0,0,1.4790776,-0.93990168,-0.68534274)">
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="group1-7">
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="group2">
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="group3-5">
+                                <path
+                                   style="fill:#002e4f;stroke-width:0.01881107;fill-opacity:1"
+                                   d="M 29.412109 0 C 13.235919 9.4739026e-15 2.3684758e-15 13.235924 0 29.412109 L 0 470.58789 C -4.7369516e-15 486.76408 13.235919 500 29.412109 500 L 470.58789 500 C 486.76408 500 500 486.76408 500 470.58789 L 500 29.412109 C 500 13.235924 486.76408 2.6053234e-14 470.58789 0 L 29.412109 0 z M 248.80469 88.095703 C 266.31731 88.095703 280.51367 102.57595 280.51367 120.44141 L 280.51367 197.57422 L 280.51367 285.93945 C 297.35407 296.52421 308.55664 315.25442 308.55664 336.61328 C 308.55664 369.65852 281.76485 396.4375 248.72461 396.4375 C 215.67271 396.4375 188.89258 369.65852 188.89258 336.61328 C 188.89258 315.18963 200.15846 296.40896 217.08398 285.8418 L 217.08398 197.57422 L 217.08398 120.44141 C 217.08398 102.57595 231.29193 88.095703 248.80469 88.095703 z M 248.80469 104.86133 C 240.37752 104.86133 233.52108 111.84886 233.52344 120.44336 L 233.52344 197.57422 L 264.07617 197.57422 L 264.07617 120.44336 C 264.07617 111.85126 257.22707 104.86133 248.80469 104.86133 z M 317.58789 139.84375 L 344.43945 139.84375 A 4.6781999 4.6782 0 0 1 344.43945 149.19922 L 317.58789 149.19922 A 4.6781999 4.6782 0 0 1 317.58789 139.84375 z M 317.58789 193.0957 L 344.43945 193.0957 A 4.6781999 4.6782 0 0 1 344.43945 202.45117 L 317.58789 202.45117 A 4.6781999 4.6782 0 0 1 317.58789 193.0957 z M 317.58789 246.34766 L 344.43945 246.34766 A 4.6781999 4.6782 0 0 1 344.43945 255.70508 L 317.58789 255.70508 A 4.6781999 4.6782 0 0 1 317.58789 246.34766 z "
+                                   transform="matrix(0.42000001,0,0,0.42,0.62500001,0.625)"
+                                   id="shape1" />
+                                </g>
+                                </g>
+                                </g>
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="group4"
+                                   transform="translate(79.335,37)">
+                                <g
+                                   style="fill:none;stroke-width:0.00790065"
+                                   id="group5"
+                                   transform="translate(11.84)" />
+                                </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

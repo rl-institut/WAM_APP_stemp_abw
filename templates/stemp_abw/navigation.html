@@ -2,7 +2,7 @@
       <nav>
         <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
           <button class="menu-icon" type="button" data-toggle></button>
-          <div class="title-bar-title"></div>
+          <div class="title-bar-title">Menu</div>
         </div>
 
         <div class="top-bar" id="simple-menu">
@@ -13,15 +13,14 @@
           </div>
           <div class="top-bar-right">
             <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-              <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
+              <li><a class="anchor-text--light" href="{% url 'stemp_abw:privacy_policy' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
               <li>
                 <a class="anchor-text--light" href="#">Menu</a>
                 <ul class="menu vertical">
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>
                   <li><a class="anchor-text--light" href="#">Kontakt</a></li>
-                  <li><a class="anchor-text--light" href="#">Impressum</a></li>
-                  <li><a class="anchor-text--light" href="#">Datenschutz</a></li>
+                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:imprint' %}">Impressum</a></li>
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:assumptions' %}">Annahmen</a></li>
                 </ul>
