@@ -21,11 +21,11 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   var esys_sliders = $('.irs-hidden-input').get();
   for (var index in esys_sliders) {
     var slider = $('#' + esys_sliders[index].id).data("ionRangeSlider");
-    slider.reset();
-    slider_val = controls[esys_sliders[index].id];
+    var slider_vals_old = slider.options;
+    var slider_val = controls[esys_sliders[index].id];
 
     // Set values
-    if (apply == true) {
+    if (apply === true) {
       slider.update({
         from: slider_val
         //min: 0
@@ -35,6 +35,8 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
         //from_shadow: true,
         //to_shadow: true
       });
+    } else {
+      slider.update(slider_vals_old);
     }
 
     // add marker
@@ -67,4 +69,17 @@ function addMarks($slider, min, max, marks) {
   }
 
   $slider.append(html);
+}
+
+function changeScenarioControl(data) {
+  console.log(data.from);
+  /*
+  var from_max = $(this).attr("from_max");
+  var from_min = $(this).attr("from_min");
+  if (data.from == from_max) {
+    console.log('max erreicht');
+  } else if (data.from == from_min) {
+    console.log('min erreicht');
+  }
+  */
 }
