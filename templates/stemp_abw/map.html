@@ -152,9 +152,9 @@
                     <div class="tabs-panel" id="panel-energy">
                       <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
                         {{ panels.esys.title }}
-                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-test" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                       </p>
-                      <p id="rc-tooltip-test-trigger">Click on me to show tooltip!</p>
+                      <p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>
                       <a class="btn btn-cta" id="openTabExample">
                         Zu Flächen springen
                       </a>
@@ -430,6 +430,7 @@
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
     <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/ui_helpers.js' %}"></script>
 
     <!-- LOAD HIGHCHART DATA -->
     <script>
