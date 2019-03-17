@@ -9,7 +9,9 @@ class HCStemp(Highchart):
         self.set_dict_options(self.setup)
         self.set_options('title', {'text': title})
         if data is not None:
-            self.add_pandas_data_set(data)
+            series_type = self.setup.get('chart').get('type')
+            self.add_pandas_data_set(data=data,
+                                     series_type=series_type)
 
 
 class HCTimeseries(HCStemp):
