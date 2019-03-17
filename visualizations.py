@@ -18,7 +18,7 @@ class HCTimeseries(HCStemp):
     setup = {
         'chart': {
             'type': 'line',
-            'backgroundColor': '#EBF2FA',
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
             'height': str(int(9 / 16 * 100)) + '%',  # 16:9 ratio
         },
         'title': {
@@ -46,8 +46,8 @@ class HCPiechart(HCStemp):
     setup = {
         'chart': {
             'type': 'pie',
-            'plotBackgroundColor': 'null'
-            #'backgroundColor': '#EBF2FA'
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
+            'height': str(int(9 / 16 * 100)) + '%',
         },
         'title': {
             'text': '',
