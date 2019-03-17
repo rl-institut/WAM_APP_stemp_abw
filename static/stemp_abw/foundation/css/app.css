@@ -1304,6 +1304,9 @@ footer {
         border-radius: 100px;
         font-size: 1.25rem;
         font-weight: 700; }
+    .hp-how ul {
+      font-weight: 300;
+      margin-top: 0.5rem;}
 
 /* Ion.RangeSlider
 // css version 2.0.3
