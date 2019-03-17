@@ -164,7 +164,7 @@
                           {% include "forms/scenario_menu.html" %}
                         </div>
                         <div class="cell small-2">
-                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlAction(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlScenario(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
                             Übernehmen
                           </button>
                         </div>
@@ -178,7 +178,7 @@
                         <!--<div class="cell u-text&#45;&#45;center">-->
                           <!--<form method="post" id="frmSimulate">-->
                             <!--{% csrf_token %}-->
-                            <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlAction(this.id)" value="simulate" disabled>-->
+                            <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlSimulation(this.id)" value="simulate" disabled>-->
                               <!--Simulieren-->
                               <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
                             <!--</button>-->
@@ -388,7 +388,7 @@
         <div class="cell" id="simulation-save-btn">
           <div class="grid-x">
             <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
-              <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlAction(this.id)" value="simulate">
+              <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlSimulate()" value="simulate">
                 Simulation
                 <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
@@ -831,17 +831,37 @@
             });
         };
 
-        // Post to view if button is clicked without reloading page
-        function ctrlAction(element_id) {
+        // Simulate (post to view without reloading page)
+        function ctrlSimulate() {
+          console.log('simulation started');
+          //element.prop("disabled", true);
+          //$('#simulation-save-btn').show();
+
+          $.ajax({
+              url : '{% url 'stemp_abw:map' %}',
+              type : "POST",
+              data : {action: 'simulate',
+                      data: '',
+                      csrfmiddlewaretoken: '{{ csrf_token }}'},
+              success: function(page) {
+                  console.log('success');
+              },
+              error: function(page) {
+                  console.log('error');
+              }
+          }).done(function(returned_data){
+              //updateSimProgressBar(25);
+              console.log(returned_data);
+          });
+        };
+
+        // Scenario select and apply (post to view without reloading page)
+        function ctrlScenario(element_id) {
             element = $('#' + element_id);
             var action = element.val();
             var data = '';
 
-            if (element.val() == 'simulate') {
-              console.log('sim btn');
-              //element.prop("disabled", true);
-              //$('#simulation-save-btn').show();
-            } else if (element_id == 'select-scn-frm') {
+            if (element_id == 'select-scn-frm') {
               console.log('change scn dropdown');
               action = 'select_scenario';
               data = element.val();
@@ -862,12 +882,8 @@
                 error: function(page) {
                     console.log('error');
                 }
-            }).done(function(returned_data){
-                //updateSimProgressBar(25);
-
-                if (element.val() == 'simulate') {
-                  console.log(returned_data);
-                } else if (element_id == 'select-scn-frm') {
+            }).done(function(returned_data) {
+                if (element_id == 'select-scn-frm') {
                   var scn_data = JSON.parse(returned_data);
                   console.log(scn_data);
                   updateScenarioList(scn_data['scenario_list']);
@@ -894,7 +910,7 @@
 
         $(document).ready(function () {
           // Set controls for Status quo scenario on startup
-          ctrlAction('apply-scn-btn');
+          ctrlScenario('apply-scn-btn');
         });
     </script>
 {% endblock %}

@@ -90,8 +90,8 @@ class MapView(TemplateView):
         action = request.POST['action']
         data = request.POST['data']
 
-        scn = session.scenarios[int(data)]
         if action == 'select_scenario':
+            scn = session.scenarios[int(data)]
             ret_data = {'scenario_list': dict(Scenario.objects.filter(
                 is_user_scenario=False).values_list('id', 'name')),
                         'scenario': {'name': scn.name,
@@ -100,6 +100,7 @@ class MapView(TemplateView):
                         'controls': session.get_control_values(scn)
                         }
         elif action == 'apply_scenario':
+            scn = session.scenarios[int(data)]
             ret_data = {'scenario': {'name': scn.name,
                                      'desc': scn.description,
                                      'data': scn.data.data},
