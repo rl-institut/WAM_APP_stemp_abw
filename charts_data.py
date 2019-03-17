@@ -27,7 +27,7 @@ labels3 = {'Erzeugung': ['Strom', 'Wärme'],
            'Bedarf': ['Strom', 'Wärme'],
            'Erneuerbare Energien': ['Wind', 'Solar']
            }
-visualizations3 = [results.ResultAnalysisVisualization(title=t, captions=c, type='line').visualize()
+visualizations3 = [results.ResultAnalysisVisualization(title=t, captions=c, type='pie').visualize()
                    for t, c in labels3.items()]
 
 
@@ -37,5 +37,5 @@ labels4 = {'Erzeugung': ['Strom', 'Wärme'],
            'Bedarf': ['Strom', 'Wärme'],
            'Erneuerbare Energien': ['Wind', 'Solar']
            }
-visualizations4 = [results.ResultAnalysisVisualization(title=t, captions=c, type='pie').visualize()
+visualizations4 = [results.ResultAnalysisVisualization(title='PIE CHART TEST', captions=c, type='pie').visualize()
                    for t, c in labels4.items()]
