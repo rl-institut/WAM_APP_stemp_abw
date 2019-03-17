@@ -20,8 +20,6 @@ class ResultAnalysisVisualization(object):
                                  data={c: (random(timesteps)*10).round(2) for c in captions})
         self.title = title
         self.type = type
-        #self.data = random(100)
-        #self.data = pd.Series(random(10), name='test')
 
     def visualize(self):
         if self.type == 'line':
@@ -31,8 +29,15 @@ class ResultAnalysisVisualization(object):
                 style='display: inline-block'
             )
         elif self.type == 'pie':
+            # temp data
+            data = pd.DataFrame({'name': ['a', 'b', 'c'], 'y': [50, 30, 20]})
+            data.set_index('name', inplace=True)
+
+            # convert data to appropriate format for pie chart
+            data = data.reset_index().to_dict(orient='records')
+
             visualization = visualizations.HCPiechart(
-                data=self.data,
+                data=data,
                 title=self.title,
                 style='display: inline-block'
             )
