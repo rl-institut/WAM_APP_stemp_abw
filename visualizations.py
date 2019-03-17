@@ -4,7 +4,7 @@ from utils.highcharts import Highchart
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, data=None, title='New Highchart', **kwargs):
+    def __init__(self, data=None, title='', **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_options('title', {'text': title})
@@ -55,21 +55,20 @@ class HCPiechart(HCStemp):
         'subtitle': {
             'text': 'in GW'
         },
+        'plotOptions': {
+            'pie': {
+                'allowPointSelect': False,
+                'cursor': 'pointer',
+                'dataLabels': {
+                    'enabled': True,
+                    'format': '<b>{point.name}</b>: {point.percentage:.1f} %',
+                }
+            }
+        },
         'tooltip': {
-            'pointFormat': '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        'xAxis': {
-            'type': 'datetime'
-        },
-        'yAxis': {
-            'min': 0,
-            'title': {'text': 'GW'}
-        },
-        'legend': {
-            'layout': 'vertical',
-            'align': 'right',
-            'verticalAlign': 'middle'
-        },
+            'headerFormat': None,
+            'pointFormat': '{point.name}: <b>{point.percentage:.1f}%</b>'
+        }
     }
 
 # TODO: Proper pie chart below doesn't work. Only pie chart above works,
