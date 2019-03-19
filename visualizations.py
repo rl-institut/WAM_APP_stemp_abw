@@ -61,7 +61,7 @@ class HCPiechart(HCStemp):
                 'cursor': 'pointer',
                 'dataLabels': {
                     'enabled': True,
-                    'format': '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    'format': '<b>{point.name}</b>: {point.y}<br>({point.percentage:.1f} %)',
                 }
             }
         },
