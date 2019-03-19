@@ -4,10 +4,10 @@ from utils.highcharts import Highchart
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, data=None, title='', **kwargs):
+    def __init__(self, data=None, setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
-        self.set_options('title', {'text': title})
+        self.set_dict_options(setup_labels)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
@@ -21,18 +21,11 @@ class HCTimeseries(HCStemp):
             'backgroundColor': 'rgba(255, 255, 255, 0.0)',
             'height': str(int(9 / 16 * 100)) + '%',  # 16:9 ratio
         },
-        'title': {
-            'text': '',
-        },
-        'subtitle': {
-            'text': 'in GW'
-        },
         'xAxis': {
             'type': 'datetime'
         },
         'yAxis': {
-            'min': 0,
-            'title': {'text': 'GW'}
+            'min': 0
         },
         'legend': {
             'layout': 'vertical',
@@ -49,12 +42,6 @@ class HCPiechart(HCStemp):
             'backgroundColor': 'rgba(255, 255, 255, 0.0)',
             'height': str(int(9 / 16 * 100)) + '%',
         },
-        'title': {
-            'text': '',
-        },
-        'subtitle': {
-            'text': 'in GW'
-        },
         'plotOptions': {
             'pie': {
                 'allowPointSelect': False,
@@ -68,5 +55,30 @@ class HCPiechart(HCStemp):
         'tooltip': {
             'headerFormat': None,
             'pointFormat': '{point.name}: <b>{point.percentage:.1f}%</b>'
+        }
+    }
+
+
+
+class HCStackedColumn(HCStemp):
+    setup = {
+        'chart': {
+            'type': 'column',
+            'height': str(int(9 / 16 * 100)) + '%',
+        },
+        'yAxis': {
+            'min': 0
+        },
+        'tooltip': {
+            'headerFormat': '<b>{point.x}</b><br/>',
+            'pointFormat': '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+        },
+        'plotOptions': {
+            'column': {
+                'stacking': 'normal',
+                'dataLabels': {
+                    'enabled': False
+                }
+            }
         }
     }

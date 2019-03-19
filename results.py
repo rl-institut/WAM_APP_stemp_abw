@@ -10,22 +10,22 @@ class ResultAnalysisVisualization(object):
 
     Implements the Facade Pattern.
     """
-    def __init__(self, title, captions, type):
+    def __init__(self, setup_labels, data_labels, type):
         # datetime_index = [d.strftime('%m') for d in pd.date_range(start='2017-01-01 00:00:00',
         #                                end='2017-12-31 23:00:00',
         #                                freq='1m')]
         index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         timesteps = len(index)
         self.data = pd.DataFrame(index=index,
-                                 data={c: (random(timesteps)*10).round(2) for c in captions})
-        self.title = title
+                                 data={dl: (random(timesteps)*10).round(2) for dl in data_labels})
+        self.setup_labels = setup_labels
         self.type = type
 
     def visualize(self):
         if self.type == 'line':
             visualization = visualizations.HCTimeseries(
                 data=self.data,
-                title=self.title,
+                setup_labels=self.setup_labels,
                 style='display: inline-block'
             )
         elif self.type == 'pie':
@@ -38,7 +38,13 @@ class ResultAnalysisVisualization(object):
 
             visualization = visualizations.HCPiechart(
                 data=data,
-                title=self.title,
+                setup_labels=self.setup_labels,
+                style='display: inline-block'
+            )
+        elif self.type == 'column':
+            visualization = visualizations.HCStackedColumn(
+                data=self.data,
+                setup_labels=self.setup_labels,
                 style='display: inline-block'
             )
         else:
