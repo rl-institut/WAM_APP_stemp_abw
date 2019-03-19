@@ -10,7 +10,6 @@ class UserSession(object):
     def __init__(self):
         self.user_scenario = self.__scenario_to_user_scenario()
         self.simulation = Simulation()
-        #self.xxx = self.get_control_values(self.user_scenario)
 
     @property
     def scenarios(self):
@@ -99,19 +98,16 @@ class UserSession(object):
             raise ValueError('Data dict not specified or empty!')
         # if section is None:
         #     raise ValueError('Section must be "mun_data" or "region_data')
-        print('in: ', data)
         scn_data = json.loads(self.user_scenario.data.data)
         for c_name, val in data.items():
             if isinstance(CONTROL_VALUES_MAP[c_name], str):
                 scn_data['reg_data'][c_name] = val
-                print('out: ', scn_data['reg_data'][c_name])
             elif isinstance(CONTROL_VALUES_MAP[c_name], list):
                 val_sum = sum([scn_data['reg_data'][d_name]
                                for d_name in CONTROL_VALUES_MAP[c_name]])
                 for d_name in CONTROL_VALUES_MAP[c_name]:
                     scn_data['reg_data'][d_name] = \
                         val * scn_data['reg_data'][d_name] / val_sum
-                    print('out: ', d_name, scn_data['reg_data'][d_name])
 
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
