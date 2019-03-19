@@ -20,7 +20,7 @@ from stemp_abw.sessions import UserSession
 import os
 import stemp_abw
 
-
+# TODO: use WAM's + Test it
 def check_session(func):
     def func_wrapper(self, request, *args, **kwargs):
         try:
@@ -110,17 +110,12 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
-            session.update_user_scenario(scn_id=scn_id)
+            session.set_user_scenario(scn_id=scn_id)
+
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
-            #print(json.loads(data))
-            # scn_data = json.loads(scn.data.data)
-            ctrl_data = json.loads(data)
-            for name, val in ctrl_data.items():
-                print(name, val)
-
+            session.update_scenario_data(data=json.loads(data))
             ret_data = {'scenario': 'updated'}
-
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':
