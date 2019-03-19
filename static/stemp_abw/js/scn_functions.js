@@ -45,14 +45,16 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   };
   
   // Switches
-  var esys_switches = $('.switch-input.esys').get();
-  for (var index in esys_switches) {
-    id = esys_switches[index].id;
-    $('#' + id).prop('checked', controls[id]);
-  };
+  if (apply === true) {
+    var esys_switches = $('.switch-input.esys').get();
+    for (var index in esys_switches) {
+      id = esys_switches[index].id;
+      $('#' + id).prop('checked', controls[id]);
+    };
+  }
 };
 
-// slider markers
+// Slider markers
 function convertToPercent(num, min, max) {
   var percent = (num - min) / (max - min) * 100;
   return percent;
@@ -71,8 +73,10 @@ function addMarks($slider, min, max, marks) {
   $slider.append(html);
 }
 
-function changeScenarioControl(data) {
+// Fired when scenario slider is changed
+function changeScenarioControlSlider(data) {
   var ctrl_id = data.input.prop('id');
+  console.log(ctrl_id);
   ctrlScenarioPost({[ctrl_id]: data.from});
 
   /*
@@ -85,3 +89,8 @@ function changeScenarioControl(data) {
   }
   */
 }
+
+// Fired when scenario switch is changed
+$('.switch-input.esys').click( function () {
+  ctrlScenarioPost({[$(this).prop('id')]: $(this).prop('checked')});
+})
