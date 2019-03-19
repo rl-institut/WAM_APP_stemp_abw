@@ -747,7 +747,7 @@
             $(document).foundation();
 
             // Control layer visibility via checkboxes (region layers)
-            $( '.switch-input-layer-select-region' ).click( function () {
+            $('.switch-input-layer-select-region').click( function () {
               var id = $(this).attr('id');
 
               // Individual layers switches
@@ -757,7 +757,7 @@
             });
 
             // Control layer visibility via checkboxes (areas layers)
-            $( '.switch-input-layer-select-areas' ).click( function () {
+            $('.switch-input-layer-select-areas').click( function () {
               var id = $(this).attr('id');
 
               // Master switch for all layers
@@ -767,7 +767,7 @@
                     if (this.checked) map.addLayer(layers[l]);
                     else map.removeLayer(layers[l]);
                   }
-                $( '.switch-input-layer-select-areas' ).prop('checked', this.checked);
+                $('.switch-input-layer-select-areas').prop('checked', this.checked);
                 }
               }
 
@@ -780,7 +780,7 @@
             });
 
             // Control legend visibility via checkboxes
-            $( '.switch-input-layer-select-region' ).click( function () {
+            $('.switch-input-layer-select-region').click( function () {
               var id = $(this).attr('id');
 
               // Master switch for all legends
@@ -791,7 +791,7 @@
                   if (legends.hasOwnProperty(l)) {
                     map.removeControl(legends[l]);
                   }
-                $( '.switch-input-layer-select' ).prop('checked', this.checked);
+                $('.switch-input-layer-select').prop('checked', this.checked);
                 }
               }
               */
