@@ -72,7 +72,9 @@ function addMarks($slider, min, max, marks) {
 }
 
 function changeScenarioControl(data) {
-  console.log(data.from);
+  var ctrl_id = data.input.prop('id');
+  ctrlScenarioPost({[ctrl_id]: data.from});
+
   /*
   var from_max = $(this).attr("from_max");
   var from_min = $(this).attr("from_min");

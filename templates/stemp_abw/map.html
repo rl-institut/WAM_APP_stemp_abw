@@ -164,7 +164,7 @@
                           {% include "forms/scenario_menu.html" %}
                         </div>
                         <div class="cell small-2">
-                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlScenario(this.id)" value="apply_scenario" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlScenario(this.id)" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
                             Übernehmen
                           </button>
                         </div>
@@ -817,7 +817,7 @@
             });
         };
 
-        // Simulate (post to view without reloading page)
+        // Control simulation
         function ctrlSimulate() {
           console.log('simulation started');
           //element.prop("disabled", true);
@@ -841,10 +841,9 @@
           });
         };
 
-        // Scenario select and apply (post to view without reloading page)
+        // Control scenario select and apply
         function ctrlScenario(element_id) {
             element = $('#' + element_id);
-            var action = element.val();
             var data = '';
 
             if (element_id == 'select-scn-frm') {
@@ -853,6 +852,7 @@
               data = element.val();
             } else if (element_id == 'apply-scn-btn') {
               console.log('apply scn btn');
+              action = 'apply_scenario';
               data = $('#select-scn-frm').val();
             }
 
@@ -885,6 +885,26 @@
                                          scn_data['controls'],
                                          true);
                 }
+            });
+        };
+
+        // Post scenario settings
+        function ctrlScenarioPost (data) {
+            console.log(data);
+            $.ajax({
+                url : '{% url 'stemp_abw:map' %}',
+                type : "POST",
+                data : {action: 'update_scenario',
+                        data: JSON.stringify(data),
+                        csrfmiddlewaretoken: '{{ csrf_token }}'},
+                success: function(page) {
+                    console.log('success');
+                },
+                error: function(page) {
+                    console.log('error');
+                }
+            }).done(function(returned_data) {
+                console.log(returned_data);
             });
         };
 

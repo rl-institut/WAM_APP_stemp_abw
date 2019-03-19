@@ -1,12 +1,13 @@
 import json
 from uuid import uuid4
 from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
 from stemp_abw.models import Scenario
 
 
 class UserSession(object):
     def __init__(self):
-        self.user_scenario = self.__init_user_scenario()
+        self.user_scenario = self.__scenario_to_user_scenario()
         self.simulation = Simulation()
         #self.xxx = self.get_control_values(self.user_scenario)
 
@@ -16,11 +17,25 @@ class UserSession(object):
                 for scn in Scenario.objects.filter(
                     is_user_scenario=False).all()
                 }
+        
+    def __scenario_to_user_scenario(self, scn_id=None):
+        """Make a copy of a scenario and return as user scenario
 
-    @staticmethod
-    def __init_user_scenario():
-        """Make a copy of status quo scenario for user scenario"""
-        scn = Scenario.objects.get(name='Status quo')
+        At startup, use status quo scenario as user scenario. This may change
+        when a different scenario is applied in the tool (apply button).
+
+        Parameters
+        ----------
+        scn_id : obj:`int`
+          id of scenario. If not provided, status quo scenario from DB is used
+        """
+        if scn_id is None:
+            try:
+                scn = Scenario.objects.get(name='Status quo')
+            except ObjectDoesNotExist:
+                raise ObjectDoesNotExist('Szenario "Status quo" nicht gefunden!')
+        else:
+            scn = self.scenarios[int(scn_id)]
         scn.name = 'User Scenario {uuid}'.format(uuid=str(uuid4()))
         scn.description = ''
         scn.id = None
@@ -28,6 +43,16 @@ class UserSession(object):
         scn.created = timezone.now()
         # scn.save()
         return scn
+    
+    def update_user_scenario(self, scn_id):
+        """Set user scenario to scenario from DB
+        
+        Parameters
+        ----------
+        scn_id : obj:`int`
+          id of scenario
+        """
+        self.user_scenario = self.__scenario_to_user_scenario(scn_id=scn_id)
 
     @staticmethod
     def get_control_values(scenario):

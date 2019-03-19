@@ -89,7 +89,8 @@ class MapView(TemplateView):
         
         action = request.POST['action']
         data = request.POST['data']
-
+        
+        # get scnenario values (trigger: scenario dropdown)
         if action == 'select_scenario':
             scn = session.scenarios[int(data)]
             ret_data = {'scenario_list': dict(Scenario.objects.filter(
@@ -99,13 +100,29 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+        
+        # apply scenario (trigger: scn button) -> set as user scenario
         elif action == 'apply_scenario':
-            scn = session.scenarios[int(data)]
+            scn_id = int(data)
+            scn = session.scenarios[scn_id]
             ret_data = {'scenario': {'name': scn.name,
                                      'desc': scn.description,
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+            session.update_user_scenario(scn_id=scn_id)
+        # change scenario/control value (trigger: control)
+        elif action == 'update_scenario':
+            #print(json.loads(data))
+            # scn_data = json.loads(scn.data.data)
+            ctrl_data = json.loads(data)
+            for name, val in ctrl_data.items():
+                print(name, val)
+
+            ret_data = {'scenario': 'updated'}
+
+
+        # start simulation (trigger: sim button)
         elif action == 'simulate':
             result, param_result = simulate_energysystem()
             print('Results:', results)
