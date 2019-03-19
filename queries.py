@@ -18,7 +18,7 @@ application = get_wsgi_application()
 
 from stemp_abw.dataio.load_static import load_mun_data
 from stemp_abw.models import Scenario, ScenarioData, REPotentialAreas
-from stemp_abw.helpers import order_dict
+#from stemp_abw.helpers import order_dict
 
 
 def insert_status_quo_scenario():
@@ -63,11 +63,10 @@ def insert_status_quo_scenario():
                      'use_ffh_areas': False, 'use_cult_areas': False
                      }
     scn_data = json.dumps(
-        order_dict(
-            {'region_data': mun_data_filtered.sum(axis=0).round(decimals=1).to_dict(),
-             'mun_data': mun_data_filtered.to_dict(orient='index'),
-             'global_params': global_params}
-        )
+        {'region_data': mun_data_filtered.sum(axis=0).round(decimals=1).to_dict(),
+        'mun_data': mun_data_filtered.to_dict(orient='index'),
+        'global_params': global_params},
+        sort_keys=True
     )
     uuid = UUID(hashlib.md5(scn_data.encode('utf-8')).hexdigest())
 
