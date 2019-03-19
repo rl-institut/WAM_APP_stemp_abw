@@ -62,10 +62,13 @@ def insert_status_quo_scenario():
                      'dist_resid': 1000, 'use_forest': False,
                      'use_ffh_areas': False, 'use_cult_areas': False
                      }
+    region_data = mun_data_filtered.sum(axis=0).round(decimals=1).to_dict()
+    region_data.update(global_params)
     scn_data = json.dumps(
-        {'region_data': mun_data_filtered.sum(axis=0).round(decimals=1).to_dict(),
-        'mun_data': mun_data_filtered.to_dict(orient='index'),
-        'global_params': global_params},
+        {
+            'reg_data': region_data,
+            'mun_data': mun_data_filtered.to_dict(orient='index')
+        },
         sort_keys=True
     )
     uuid = UUID(hashlib.md5(scn_data.encode('utf-8')).hexdigest())
