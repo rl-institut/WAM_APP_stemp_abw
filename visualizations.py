@@ -64,6 +64,7 @@ class HCStackedColumn(HCStemp):
     setup = {
         'chart': {
             'type': 'column',
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
             'height': str(int(9 / 16 * 100)) + '%',
         },
         'yAxis': {

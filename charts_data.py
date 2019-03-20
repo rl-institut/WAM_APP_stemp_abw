@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from stemp_abw import results
 
 
@@ -70,7 +69,7 @@ visualizations2 = [results.ResultAnalysisVisualization(
     type='line').visualize() for l in labels2]
 
 # TODO: Temp stuff for WS
-# Chart: used in popups as placeholder charts
+# ColumnChart: used in popups as placeholder charts
 labels3 = [
     {
         'setup_labels': {
@@ -135,3 +134,37 @@ visualizations4 = [results.ResultAnalysisVisualization(
     setup_labels=l['setup_labels'],
     data_labels=l['data_labels'],
     type='pie').visualize() for l in labels4]
+
+
+# TODO: Temp stuff for WS
+# StackedGroupedColumnChart: used in popups as placeholder charts
+labels5 = [
+    {
+        'setup_labels': {
+            'title': {'text': 'Erzeugung'},
+            'subtitle': {'text': 'in GW'},
+            'yAxis': {'title': {'text': 'GW'}}
+        },
+        'data_labels': ['Anhalt', 'Bitterfeld', 'Wolfen', 'Dessau', 'Zerbst']
+    },
+    {
+        'setup_labels': {
+            'title': {'text': 'Bedarf'},
+            'subtitle': {'text': 'in GW'},
+            'yAxis': {'title': {'text': 'GW'}}
+        },
+        'data_labels': ['Anhalt', 'Bitterfeld', 'Wolfen', 'Dessau', 'Zerbst']
+    },
+    {
+        'setup_labels': {
+            'title': {'text': 'Erneuerbare Energien'},
+            'subtitle': {'text': 'in GW'},
+            'yAxis': {'title': {'text': 'GW'}}
+        },
+        'data_labels': ['Anhalt', 'Bitterfeld', 'Wolfen', 'Dessau', 'Zerbst']
+    }
+]
+visualizations5 = [results.ResultAnalysisVisualization(
+    setup_labels=l['setup_labels'],
+    data_labels=l['data_labels'],
+    type='column').visualize() for l in labels5]
