@@ -66,7 +66,7 @@ def insert_status_quo_scenario():
     region_data.update(global_params)
     scn_data = json.dumps(
         {
-            'reg_data': region_data,
+            'reg_params': global_params,
             'mun_data': mun_data_filtered.to_dict(orient='index')
         },
         sort_keys=True

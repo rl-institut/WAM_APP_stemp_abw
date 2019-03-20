@@ -66,15 +66,21 @@ def prepare_demand_timeseries(mun_data):
     return demand_agg
 
 
-def create_nodes(reg_data, mun_data):
+def create_nodes(mun_data, reg_params):
 
     feedin = prepare_feedin_timeseries(mun_data)
     demand = prepare_demand_timeseries(mun_data)
 
+    feedin_sum=0
+    demand_sum=0
     for _ in feedin.keys():
         print(f'Feedin sum of {_}: ', sum(feedin[_]))
+        feedin_sum += sum(feedin[_])
     for _ in demand.keys():
         print(f'Demand sum of {_}: ', sum(demand[_]))
+        demand_sum += sum(demand[_])
+    print('Total feedin sum: ', feedin_sum)
+    print('Total demand sum: ', demand_sum)
 
     nodes = []
 
