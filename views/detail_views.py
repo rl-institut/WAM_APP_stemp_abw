@@ -16,7 +16,27 @@ class MasterDetailView(DetailView):
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
+        context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
+
         return context
+
+    def build_vis_line_chart(self, context):
+        pop_2017 = context.mundata.pop_2017
+        pop_2030 = context.mundata.pop_2030
+        pop_2050 = context.mundata.pop_2050
+        index = ['2017', '2030', '2050']
+        data = pd.DataFrame(index=index, data={'2017': pop_2017, '2030': pop_2030, '2050': pop_2050})
+        setup_labels = {
+            'title': {'text': 'EinwohnerInnen'},
+            'subtitle': {'text': 'in Gemeinde'},
+            'yAxis': {'title': {'text': 'Gemeinde'}}
+        }
+        vis_line_chart = visualizations.HCTimeseries(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_line_chart
 
 ####################
 ### Detail Views ### for popups
@@ -45,48 +65,10 @@ class RegMunDetailJsView(TemplateView):
 class RegMunPopDetailView(MasterDetailView):
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopDetailView, self).get_context_data(**kwargs)
-        pop_2017 = context['layer'].mundata.pop_2017
-        pop_2030 = context['layer'].mundata.pop_2030
-        pop_2050 = context['layer'].mundata.pop_2050
-        index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'2017': pop_2017, '2030': pop_2030, '2050': pop_2050})
-        setup_labels = {
-            'title': {'text': 'EinwohnerInnen'},
-            'subtitle': {'text': 'in Gemeinde'},
-            'yAxis': {'title': {'text': 'Gemeinde'}}
-        }
-        vis_line_chart = visualizations.HCTimeseries(
-            data=data,
-            setup_labels=setup_labels,
-            style='display: inline-block'
-        )
-        context['vis_line_chart'] = vis_line_chart
-        return context
 
 
 class RegMunPopDetailJsView(TemplateView):
     template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopDetailJsView, self).get_context_data(**kwargs)
-        pop_2017 = context['layer'].mundata.pop_2017
-        pop_2030 = context['layer'].mundata.pop_2030
-        pop_2050 = context['layer'].mundata.pop_2050
-        index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'2017': pop_2017, '2030': pop_2030, '2050': pop_2050})
-        setup_labels = {
-            'title': {'text': 'EinwohnerInnen'},
-            'subtitle': {'text': 'in Gemeinde'},
-            'yAxis': {'title': {'text': 'Gemeinde'}}
-        }
-        vis_line_chart = visualizations.HCTimeseries(
-            data=data,
-            setup_labels=setup_labels,
-            style='display: inline-block'
-        )
-        context['vis_line_chart'] = vis_line_chart
-        return context
 
 
 class RegMunPopDensityDetailView(MasterDetailView):
