@@ -229,8 +229,9 @@ class UserSession(object):
         """
         mun_data_upd = pd.DataFrame()
         for param in reg_data.keys():
-            mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
-                                   reg_data[param]).round(decimals=1)
+            if param in self.mun_to_reg_ratios.columns:
+                mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
+                                       reg_data[param]).round(decimals=1)
         return mun_data_upd.to_dict(orient='index')
 
 
