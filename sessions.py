@@ -20,6 +20,13 @@ class UserSession(object):
         User's scenario (data updated continuously during tool operation)
     simulation : :class:`stemp_abw.sessions.Simulation`
         Holds data related to energy system
+    mun_to_reg_ratios : :obj:`dict`
+        Capacity ratios of municipality to regional values, for details see
+        :meth:`stemp_abw.sessions.UserSession.create_mun_data_ratio_for_aggregation`
+    mun_to_reg_ratios : :pandas:`pandas.DataFrame<dataframe>`
+        Capacity ratios of specific technologies in the region belonging to the
+        same category from status quo scenario, for details see
+        :meth:`stemp_abw.sessions.UserSession.create_reg_tech_ratios`
 
     Notes
     -----
@@ -28,7 +35,9 @@ class UserSession(object):
     def __init__(self):
         self.user_scenario = self.__scenario_to_user_scenario()
         self.simulation = Simulation(session=self)
-        
+        self.mun_to_reg_ratios = self.create_mun_data_ratio_for_aggregation()
+        self.tech_ratios = self.create_reg_tech_ratios()
+
     @property
     def scenarios(self):
         """Return all default scenarios (not created by user)"""
@@ -48,7 +57,7 @@ class UserSession(object):
         return self.region_data_for_scenario(self.user_scenario)
 
     def region_data_for_scenario(self, scenario):
-        """Aggregate municipal data and return region data for scenario
+        """Aggregate municipal data and return region data for given scenario
 
         Notes
         -----
@@ -125,20 +134,46 @@ class UserSession(object):
                                               in CONTROL_VALUES_MAP[c_name]])
         return control_values
 
-    def __disaggregate_to_muns(self, reg_data):
-        """Disaggregate given regional data to municipal data
+    def create_mun_data_ratio_for_aggregation(self):
+        """Create table of technology shares for municipalities from status
+        quo scenario.
 
-        Parameters
-        ----------
-        reg_data : :obj:`dict`
-            Regional data
+        The scenario holds data for every municipality. In contrast, the UI
+        uses values for the entire region. Hence, the capacity ratio of a
+        certain parameter between municipality and entire region is needed for
+        aggregation (mun->region) or disaggragation (region->mun).
+        An instantaneous calculation is inappropriate as it leads to error
+        propagation.
         """
-        if not isinstance(reg_data, dict) or len(reg_data) == 0:
-            raise ValueError('Data dict not specified or empty!')
+        scn = Scenario.objects.get(name='Status quo')
+        scn_data = pd.DataFrame.from_dict(
+            json.loads(scn.data.data)['mun_data'],
+            orient='index')
+        return scn_data / scn_data.sum(axis=0)
 
-        scn_data = json.loads(self.user_scenario.data.data)
+    def create_reg_tech_ratios(self):
+        """Create table with share of specific technologies belonging to the
+        same category from status quo scenario.
 
-        # check data integrity
+        The scenario holds data for specific sub-technonogies. In contrast,
+        the UI uses values for a superior technology (e.g. 'pv_roof' is split
+        into 'gen_capacity_pv_roof_large' and 'gen_capacity_pv_roof_small').
+        Hence, the capacity ratio of a certain sub-technology and its superior
+        technology is needed to determine when mapping between these two data
+        models.
+        An instantaneous calculation is inappropriate as it leads to error
+        propagation.
+        """
+        reg_data = self.region_data_for_scenario(
+            Scenario.objects.get(name='Status quo'))
+        tech_ratios = {}
+        # find needed params for the mapping
+        for c_name, d_name in CONTROL_VALUES_MAP.items():
+            if isinstance(d_name, list):
+                for subtech in d_name:
+                    tech_ratios[subtech] = reg_data[subtech] /\
+                                           sum([reg_data[_] for _ in d_name])
+        return tech_ratios
 
     def update_scenario_data(self, data=None):
         """Update municipal data of user scenario
@@ -170,46 +205,33 @@ class UserSession(object):
             # 'sl_pv_roof' needs changes of 'gen_capacity_pv_roof_large' and
             # 'gen_capacity_pv_roof_small')
             elif isinstance(CONTROL_VALUES_MAP[c_name], list):
-                val_sum = sum([reg_data[d_name]
-                               for d_name in CONTROL_VALUES_MAP[c_name]])
                 for d_name in CONTROL_VALUES_MAP[c_name]:
-                    if val_sum == 0:
-                        reg_data_upd[d_name] = 0
-                    else:
-                        reg_data_upd[d_name] = \
-                            val * reg_data[d_name] / val_sum
+                    reg_data_upd[d_name] = val * self.tech_ratios[d_name]
 
 
         scn_data = json.loads(self.user_scenario.data.data)
         # update regional data
         reg_data.update(reg_data_upd)
         # update municipal data
-        scn_data['mun_data'].update(
-            self.__disaggregate_reg_to_mun_data(reg_data,
-                                                scn_data['mun_data']))
+        for mun, data in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
+            scn_data['mun_data'][mun].update(data)
 
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
 
-    def __disaggregate_reg_to_mun_data(self, reg_data, mun_data):
-        """Disaggregate regional data to municipal data in user scenario
+    def __disaggregate_reg_to_mun_data(self, reg_data):
+        """Disaggregate given regional data to given municipal data
         
         Parameters
         ----------
         reg_data : :obj:`dict`
             Regional data (updated)
-        mun_data : :obj:`dict`
-            Municipal data (current)
         """
-        mun_data = pd.DataFrame.from_dict(mun_data, orient='index')
-        for param in list(mun_data.columns):
-            if mun_data[param].sum(axis=0) == 0:
-                mun_data[param] = 0
-            else:
-                mun_data[param] = (mun_data[param] *
-                                   (reg_data[param] /
-                                    mun_data[param].sum(axis=0))).round(decimals=1)
-        return mun_data.to_dict(orient='index')
+        mun_data_upd = pd.DataFrame()
+        for param in reg_data.keys():
+            mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
+                                   reg_data[param]).round(decimals=1)
+        return mun_data_upd.to_dict(orient='index')
 
 
 class Simulation(object):
