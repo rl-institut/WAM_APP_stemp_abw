@@ -41,28 +41,12 @@ def prepare_feedin_timeseries(mun_data):
                         inplace=True)
     re_cap_per_mun['wind_fs'] = 0
 
-    # # prepare RE capacities of status quo
-    # re_cap_per_mun2 = MUN_DATA[['gen_capacity_wind',
-    #                            'gen_capacity_pv_ground',
-    #                            'gen_capacity_pv_roof_small',
-    #                            'gen_capacity_pv_roof_large',
-    #                            'gen_capacity_hydro']] \
-    #     .rename(columns=tech_mapping)
-    # re_cap_per_mun2['pv_roof'] = \
-    #     re_cap_per_mun2['gen_capacity_pv_roof_small'] + \
-    #     re_cap_per_mun2['gen_capacity_pv_roof_large']
-    # re_cap_per_mun2.drop(columns=['gen_capacity_pv_roof_small',
-    #                              'gen_capacity_pv_roof_large'],
-    #                     inplace=True)
-    # re_cap_per_mun2['wind_fs'] = 0
-
     # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region
-    feedin = {}
+    feedin_agg = {}
     for tech in list(re_cap_per_mun.columns):
-        #feedin_agg[tech] = list((TIMESERIES['feedin'][tech] * re_cap_per_mun[tech]).sum(axis=1))
-        feedin[tech] = (TIMESERIES['feedin'][tech] * re_cap_per_mun[tech])
+        feedin_agg[tech] = list((TIMESERIES['feedin'][tech] * re_cap_per_mun[tech]).sum(axis=1))
 
-    return feedin
+    return feedin_agg
 
 
 def prepare_demand_timeseries(mun_data):
@@ -74,19 +58,23 @@ def prepare_demand_timeseries(mun_data):
         Aggregated feedin timeseries
     """
 
-    # # aggregated:
-    # demand_agg = TIMESERIES['demand'] \
-    #     .sum(axis=1, level=0) \
-    #     .to_dict(orient='list')
-    #
-    # return demand_agg
-    return TIMESERIES['demand']
+    # aggregated:
+    demand_agg = TIMESERIES['demand'] \
+        .sum(axis=1, level=0) \
+        .to_dict(orient='list')
+
+    return demand_agg
 
 
 def create_nodes(reg_data, mun_data):
 
     feedin = prepare_feedin_timeseries(mun_data)
     demand = prepare_demand_timeseries(mun_data)
+
+    for _ in feedin.keys():
+        print(f'Feedin sum of {_}: ', sum(feedin[_]))
+    for _ in demand.keys():
+        print(f'Demand sum of {_}: ', sum(demand[_]))
 
     nodes = []
 
@@ -97,28 +85,28 @@ def create_nodes(reg_data, mun_data):
     nodes.append(solph.Source(label='gen_el_wind',
                               outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=0,
-                                                          actual_value=feedin['wind_sq'][15082440],
+                                                          actual_value=feedin['wind_sq'],
                                                           fixed=True
                                                           )})
                  )
     nodes.append(solph.Source(label='gen_el_pv_roof',
                               outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=0,
-                                                          actual_value=feedin['pv_roof'][15082440],
+                                                          actual_value=feedin['pv_roof'],
                                                           fixed=True
                                                           )})
                  )
     nodes.append(solph.Source(label='gen_el_pv_ground',
                               outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=0,
-                                                          actual_value=feedin['pv_ground'][15082440],
+                                                          actual_value=feedin['pv_ground'],
                                                           fixed=True
                                                           )})
                  )
     nodes.append(solph.Source(label='gen_el_hydro',
                               outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=0,
-                                                          actual_value=feedin['hydro'][15082440],
+                                                          actual_value=feedin['hydro'],
                                                           fixed=True
                                                           )})
                  )
@@ -129,19 +117,19 @@ def create_nodes(reg_data, mun_data):
     # fixed demand (electrical)
     nodes.append(solph.Sink(label='dem_el_hh',
                             inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_hh'][15082440],
+                                                       actual_value=demand['el_hh'],
                                                        fixed=True
                                                        )})
                  )
     nodes.append(solph.Sink(label='dem_el_rca',
                             inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_rca'][15082440],
+                                                       actual_value=demand['el_rca'],
                                                        fixed=True
                                                        )})
                  )
     nodes.append(solph.Sink(label='dem_el_ind',
                             inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_ind'][15082440],
+                                                       actual_value=demand['el_ind'],
                                                        fixed=True
                                                        )})
                  )
