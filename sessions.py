@@ -61,7 +61,7 @@ class UserSession(object):
 
     @staticmethod
     def get_control_values(scenario):
-        """Returns a JSON with values for the UI controls (e,g, sliders)
+        """Return a JSON with values for the UI controls (e,g, sliders)
 
         Parameters
         ----------
@@ -70,8 +70,9 @@ class UserSession(object):
 
         Notes
         -----
-        Data is taken from user scenario, CONTROL_VALUES_MAP defines the
-        mapping from controls' ids to the data entry.
+        Data is taken from aggregated regional data of user scenario,
+        CONTROL_VALUES_MAP defines the mapping from controls' ids to the data
+        entry.
         """
         scn_data = json.loads(scenario.data.data)
 
@@ -87,7 +88,7 @@ class UserSession(object):
         return control_values
 
     def update_scenario_data(self, data=None):
-        """Updates the regional parameters of the user scenario
+        """Update parameters of user scenario
 
         Parameters
         ----------
@@ -96,16 +97,23 @@ class UserSession(object):
 
         Notes
         -----
-        Keys of dictionary must be ids of UI controls (contained in
-        CONTROL_VALUES_MAP).
+        Keys of dictionary must be ids of UI controls (contained in mapping
+        dict CONTROL_VALUES_MAP). According to this mapping dict, some params
+        require changes of multiple entries in scenario data. This is done by
+        capacity-proportional change of those entries (see 2 below).
         """
         if not isinstance(data, dict) or len(data) == 0:
             raise ValueError('Data dict not specified or empty!')
-        
+
+        # update regional params
         scn_data = json.loads(self.user_scenario.data.data)
         for c_name, val in data.items():
+            # 1) value to be set refers to a single entry (e.g. 'sl_wind')
             if isinstance(CONTROL_VALUES_MAP[c_name], str):
-                scn_data['reg_data'][c_name] = val
+                scn_data['reg_data'][CONTROL_VALUES_MAP[c_name]] = val
+            # 2) value to be set refers to a list of entries (e.g. a change of
+            # 'sl_pv_roof' needs changes of 'gen_capacity_pv_roof_large' and
+            # 'gen_capacity_pv_roof_small')
             elif isinstance(CONTROL_VALUES_MAP[c_name], list):
                 val_sum = sum([scn_data['reg_data'][d_name]
                                for d_name in CONTROL_VALUES_MAP[c_name]])
@@ -113,8 +121,23 @@ class UserSession(object):
                     scn_data['reg_data'][d_name] = \
                         val * scn_data['reg_data'][d_name] / val_sum
 
+        # update municipal params
+        scn_data['mun_data'].update(
+            self.__disaggregate_reg_to_mun_data(scn_data))
+
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
+
+    def __disaggregate_reg_to_mun_data(self, scn_data):
+        """Disaggregate regional data to municipal data in user scenario"""
+        # for mun_param in next(iter(scn_data['mun_data'].values())).keys():
+        mun_data = pd.DataFrame.from_dict(scn_data['mun_data'], orient='index')
+        mun_data2 = mun_data.copy()
+        for param in list(mun_data.columns):
+            mun_data[param] = (mun_data[param] *
+                               (scn_data['reg_data'][param] /
+                                mun_data[param].sum(axis=0))).round(decimals=1)
+        return mun_data.to_dict(orient='index')
 
 
 class Simulation(object):
