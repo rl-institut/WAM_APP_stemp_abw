@@ -105,3 +105,11 @@ CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
                       'cb_use_ffh_areas': 'use_ffh_areas',
                       'cb_use_cult_areas': 'use_cult_areas'
                       }
+
+SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
+                  'date_to': '2017-01-07 23:00:00',
+                  'freq': '60min',
+                  'solver': 'cbc',
+                  'verbose': True,
+                  'keepfiles': False
+                  }

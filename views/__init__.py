@@ -5,7 +5,6 @@ from collections import OrderedDict
 #import sqlahelper
 
 from stemp_abw.config import io
-from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw import results
 
 from stemp_abw.models import Scenario
@@ -78,7 +77,6 @@ class MapView(TemplateView):
     def get(self, request, *args, **kwargs):
         # Start session (if there's none):
         SESSION_DATA.start_session(request, UserSession)
-        session = SESSION_DATA.get_session(request)
 
         context = self.get_context_data()
         return self.render_to_response(context)
@@ -119,9 +117,9 @@ class MapView(TemplateView):
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':
-            result, param_result = simulate_energysystem()
-            print('Results:', results)
-            print('Params:', param_result)
+            session.simulation.create_esys()
+            session.simulation.simulate()
+
             ret_data = {'simulation': 'successful'}
 
         return HttpResponse(json.dumps(ret_data))

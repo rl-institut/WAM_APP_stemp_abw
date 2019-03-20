@@ -1,16 +1,21 @@
 import json
 from uuid import uuid4
+import pandas as pd
+import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 from stemp_abw.models import Scenario
 from stemp_abw.app_settings import CONTROL_VALUES_MAP
+from stemp_abw.simulation.bookkeeping import simulate_energysystem
+from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
+from stemp_abw.simulation.esys import create_nodes
 
 
 class UserSession(object):
     def __init__(self):
         self.user_scenario = self.__scenario_to_user_scenario()
-        self.simulation = Simulation()
-
+        self.simulation = Simulation(session=self)
+        
     @property
     def scenarios(self):
         return {scn.id: scn
@@ -81,7 +86,7 @@ class UserSession(object):
                                               in CONTROL_VALUES_MAP[c_name]])
         return control_values
 
-    def update_scenario_data(self, data=None):#, section=None):
+    def update_scenario_data(self, data=None):
         """Updates the regional parameters of the user scenario
 
         Parameters
@@ -96,8 +101,7 @@ class UserSession(object):
         """
         if not isinstance(data, dict) or len(data) == 0:
             raise ValueError('Data dict not specified or empty!')
-        # if section is None:
-        #     raise ValueError('Section must be "mun_data" or "region_data')
+        
         scn_data = json.loads(self.user_scenario.data.data)
         for c_name, val in data.items():
             if isinstance(CONTROL_VALUES_MAP[c_name], str):
@@ -113,7 +117,24 @@ class UserSession(object):
                                                   sort_keys=True)
 
 
-
 class Simulation(object):
-    def __init__(self):
+    def __init__(self, session):
         self.esys = None
+        self.session = session
+        #self.create_esys()
+        #self.simulate()
+    
+    def create_esys(self):
+        # create esys
+        self.esys = solph.EnergySystem(
+            timeindex=pd.date_range(start=SIM_CFG['date_from'],
+                                    end=SIM_CFG['date_to'],
+                                    freq=SIM_CFG['freq']))
+        self.esys.add(*create_nodes(**json.loads(self.session.user_scenario.data.data)))
+    
+    def simulate(self):
+        self.store_values(*simulate_energysystem(self.esys))
+
+    def store_values(self, results, param_results):
+        print('Results:', results)
+        print('Params:', param_results)
