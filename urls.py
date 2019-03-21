@@ -46,7 +46,12 @@ urlpatterns.extend(
           'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
           views.RegMunEnergyReElDemShareDetailJsView.as_view(),
           name='reg_mun_energy_re_el_dem_share_popupjs'
-          )
+     ),
+     path(
+          'popupjs/reg_mun_gen_energy_re/<int:pk>/',
+          views.RegMunGenEnergyReDetailJsView.as_view(),
+          name='reg_mun_gen_energy_re_popupjs'
+     )
     ]
 )
 

@@ -130,9 +130,57 @@ class RegMunEnergyReElDemShareDetailJsView(RegMunEnergyReElDemShareMasterDetailV
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
-class RegMunGenEnergyReDetailView(MasterDetailView):
+class RegMunGenEnergyReMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenEnergyReMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart(context['layer'])
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self, context):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_el_energy_wind / 1e3), 1)
+        pv_roof = round((mun_data.gen_el_energy_pv_roof / 1e3), 1)
+        pv_ground = round((mun_data.gen_el_energy_pv_ground / 1e3), 1)
+        hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach', 'PV Boden', 'Hydro'],
+            'y': [wind, pv_roof, pv_ground, hydro]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Gewonnene Energie aus EE'},
+            'subtitle': {'text': 'nach Quelle'}
+        }
+        vis_column_chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_column_chart
+
+
+class RegMunGenEnergyReDetailView(RegMunGenEnergyReMasterDetailView):
     model = models.RegMunGenEnergyRe
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re.html'
+
+
+class RegMunGenEnergyReDetailJsView(RegMunGenEnergyReMasterDetailView):
+    model = models.RegMunGenEnergyRe
+    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
