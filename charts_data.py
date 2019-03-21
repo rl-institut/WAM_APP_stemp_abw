@@ -68,39 +68,6 @@ visualizations2 = [results.ResultAnalysisVisualization(
     data_labels=l['data_labels'],
     type='line').visualize() for l in labels2]
 
-# TODO: Temp stuff for WS
-# ColumnChart: used in popups as placeholder charts
-labels3 = [
-    {
-        'setup_labels': {
-            'title': {'text': 'Erzeugung'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
-        },
-        'data_labels': ['Strom', 'Wärme']
-    },
-    {
-        'setup_labels': {
-            'title': {'text': 'Bedarf'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
-        },
-        'data_labels': ['Strom', 'Wärme']
-    },
-    {
-        'setup_labels': {
-            'title': {'text': 'Erneuerbare Energien'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
-        },
-        'data_labels': ['Wind', 'Solar']
-    }
-]
-visualizations3 = [results.ResultAnalysisVisualization(
-    setup_labels=l['setup_labels'],
-    data_labels=l['data_labels'],
-    type='column').visualize() for l in labels3]
-
 
 # TODO: Temp stuff for WS
 # PieChart: used in popups as placeholder charts

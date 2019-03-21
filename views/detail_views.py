@@ -1,7 +1,6 @@
 import stemp_abw.models as models
 from django.views.generic import DetailView, TemplateView
 from stemp_abw.app_settings import LABELS
-from stemp_abw.charts_data import visualizations3
 from stemp_abw import visualizations
 from wam.settings import SESSION_DATA
 import pandas as pd
@@ -30,19 +29,6 @@ class RpAbwBoundDetailView(MasterDetailView):
 
 class RegMunDetailView(MasterDetailView):
     model = models.RegMun
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunDetailView, self).get_context_data(**kwargs)
-        context['vis3'] = visualizations3
-        return context
-
-
-class RegMunDetailJsView(TemplateView):
-    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunDetailJsView, self).get_context_data(**kwargs)
-        context['vis3'] = visualizations3
-        return context
 
 
 class RegMunPopMasterDetailView(MasterDetailView):
@@ -94,18 +80,6 @@ class RegMunPopDetailJsView(RegMunPopMasterDetailView):
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopDensityDetailView, self).get_context_data(**kwargs)
-        context['vis3'] = visualizations3
-        return context
-
-
-class RegMunPopDensityDetailJsView(TemplateView):
-    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop_density.html'
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopDensityDetailJsView, self).get_context_data(**kwargs)
-        context['vis3'] = visualizations3
-        return context
 
 
 class RegMunEnergyReElDemShareDetailView(MasterDetailView):
