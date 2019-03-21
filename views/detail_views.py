@@ -21,11 +21,12 @@ class MasterDetailView(DetailView):
         # backup current HC to session if view for html is requested,
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
-        if self.mode == 'html':
+        if session.highcharts_temp is None:
             context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
             session.highcharts_temp = context['vis_line_chart']
-        elif self.mode == 'js':
+        else:
             context['vis_line_chart'] = session.highcharts_temp
+            session.highcharts_temp = None
         print(context['vis_line_chart'])
 
         return context
@@ -72,13 +73,11 @@ class RegMunDetailJsView(TemplateView):
 
 
 class RegMunPopDetailView(MasterDetailView):
-    mode = 'html'
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
 
 
 class RegMunPopDetailJsView(MasterDetailView):
-    mode = 'js'
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
 
