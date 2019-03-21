@@ -3,10 +3,12 @@ from django.views.generic import DetailView, TemplateView
 from stemp_abw.app_settings import LABELS
 from stemp_abw.charts_data import visualizations3
 from stemp_abw import visualizations
+from wam.settings import SESSION_DATA
 import pandas as pd
 
 
 class MasterDetailView(DetailView):
+    mode = None
     template_name = 'stemp_abw/popups/base_layer_popup.html'
     context_object_name = 'layer'
 
@@ -16,7 +18,15 @@ class MasterDetailView(DetailView):
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if self.mode == 'html':
+            context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
+            session.highcharts_temp = context['vis_line_chart']
+        elif self.mode == 'js':
+            context['vis_line_chart'] = session.highcharts_temp
+        print(context['vis_line_chart'])
 
         return context
 
@@ -24,8 +34,7 @@ class MasterDetailView(DetailView):
         pop_2017 = context.mundata.pop_2017
         pop_2030 = context.mundata.pop_2030
         pop_2050 = context.mundata.pop_2050
-        index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'2017': pop_2017, '2030': pop_2030, '2050': pop_2050})
+        data = pd.DataFrame.from_dict({'2017': [pop_2017], '2030': [pop_2030], '2050': [pop_2050]})
         setup_labels = {
             'title': {'text': 'EinwohnerInnen'},
             'subtitle': {'text': 'in Gemeinde'},
@@ -63,11 +72,14 @@ class RegMunDetailJsView(TemplateView):
 
 
 class RegMunPopDetailView(MasterDetailView):
+    mode = 'html'
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
 
 
-class RegMunPopDetailJsView(TemplateView):
+class RegMunPopDetailJsView(MasterDetailView):
+    mode = 'js'
+    model = models.RegMunPop
     template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
 
 

@@ -41,7 +41,7 @@ urlpatterns.extend(
 # TODO: Generalize like above!
 urlpatterns.extend(
     [path('popupjs/reg_mun/', views.RegMunDetailJsView.as_view(), name='reg_mun_popupjs'),
-     path('popupjs/reg_mun_pop/', views.RegMunPopDetailJsView.as_view(), name='reg_mun_pop_popupjs'),
+     path('popupjs/reg_mun_pop/<int:pk>/', views.RegMunPopDetailJsView.as_view(), name='reg_mun_pop_popupjs'),
      path('popupjs/reg_mun_pop_density/', views.RegMunPopDensityDetailJsView.as_view(), name='reg_mun_pop_density_popupjs')]
 )
 
