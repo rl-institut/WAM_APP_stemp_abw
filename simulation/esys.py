@@ -49,7 +49,7 @@ def prepare_feedin_timeseries(mun_data):
     return feedin_agg
 
 
-def prepare_demand_timeseries(mun_data):
+def prepare_demand_timeseries(reg_params):
     """Calculate aggregated feedin timeseries per sector for entire region
 
     Returns
@@ -58,8 +58,13 @@ def prepare_demand_timeseries(mun_data):
         Aggregated feedin timeseries
     """
 
+    # apply savings
+    demand = TIMESERIES['demand'].copy()
+    demand['el_hh'] = demand['el_hh'] * (1 - reg_params['resid_save_el'] / 100)
+    demand['el_rca'] = demand['el_rca'] * (1 - reg_params['crt_save_el'] / 100)
+
     # aggregated:
-    demand_agg = TIMESERIES['demand'] \
+    demand_agg = demand \
         .sum(axis=1, level=0) \
         .to_dict(orient='list')
 
@@ -69,7 +74,7 @@ def prepare_demand_timeseries(mun_data):
 def create_nodes(mun_data, reg_params):
 
     feedin = prepare_feedin_timeseries(mun_data)
-    demand = prepare_demand_timeseries(mun_data)
+    demand = prepare_demand_timeseries(reg_params)
 
     # debug
     feedin_sum=0
@@ -124,22 +129,25 @@ def create_nodes(mun_data, reg_params):
 
     # fixed demand (electrical)
     nodes.append(solph.Sink(label='dem_el_hh',
-                            inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_hh'],
-                                                       fixed=True
-                                                       )})
+                            inputs={bus_el: solph.Flow(
+                                nominal_value=1,
+                                actual_value=demand['el_hh'],
+                                fixed=True
+                            )})
                  )
     nodes.append(solph.Sink(label='dem_el_rca',
-                            inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_rca'],
-                                                       fixed=True
-                                                       )})
+                            inputs={bus_el: solph.Flow(
+                                nominal_value=1,
+                                actual_value=demand['el_rca'],
+                                fixed=True
+                            )})
                  )
     nodes.append(solph.Sink(label='dem_el_ind',
-                            inputs={bus_el: solph.Flow(nominal_value=1,
-                                                       actual_value=demand['el_ind'],
-                                                       fixed=True
-                                                       )})
+                            inputs={bus_el: solph.Flow(
+                                nominal_value=1,
+                                actual_value=demand['el_ind'],
+                                fixed=True
+                            )})
                  )
 
     # excess and shortage (electrical)
