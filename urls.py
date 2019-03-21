@@ -75,6 +75,11 @@ urlpatterns.extend(
             'popupjs/reg_mun_gen_cap_re_density/<int:pk>/',
             views.RegMunGenCapReDensityDetailJsView.as_view(),
             name='reg_mun_gen_cap_re_density_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_dem_el_energy/<int:pk>/',
+            views.RegMunDemElEnergyDetailJsView.as_view(),
+            name='reg_mun_dem_el_energy_popupjs'
         )
     ]
 )
