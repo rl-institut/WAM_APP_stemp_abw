@@ -110,7 +110,10 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
         setup_labels = {
             'title': {'text': 'EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zu Strombedarf'},
-            'yAxis': {'title': {'text': 'Prozent'}}
+            'yAxis': {'title': {'text': 'Prozent'}},
+            'tooltip': {
+                'pointFormat': 'Bedarf: {point.stackTotal} %'
+            }
         }
         vis_column_chart = visualizations.HCStackedColumn(
             data=data,
@@ -163,7 +166,17 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'nach Quelle'}
+            'subtitle': {'text': 'nach Quelle'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+            }
         }
         vis_column_chart = visualizations.HCPiechart(
             data=data,
