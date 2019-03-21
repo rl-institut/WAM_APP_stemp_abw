@@ -74,7 +74,7 @@ class RegMunPopDetailView(RegMunPopMasterDetailView):
 
 class RegMunPopDetailJsView(RegMunPopMasterDetailView):
     model = models.RegMunPop
-    template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
+    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunPopDensityDetailView(MasterDetailView):
@@ -82,9 +82,52 @@ class RegMunPopDensityDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
 
 
-class RegMunEnergyReElDemShareDetailView(MasterDetailView):
+class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunEnergyReElDemShareMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart(context['layer'])
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self, context):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
+        wind = round(((mun_data.gen_el_energy_wind / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        data = pd.DataFrame(data={'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof, 'PV Boden': pv_ground, 'Hydro': hydro}})
+        setup_labels = {
+            'title': {'text': 'EE-Erzeugung'},
+            'subtitle': {'text': 'in Prozent zu Strombedarf'},
+            'yAxis': {'title': {'text': 'Prozent'}}
+        }
+        vis_column_chart = visualizations.HCStackedColumn(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_column_chart
+
+
+class RegMunEnergyReElDemShareDetailView(RegMunEnergyReElDemShareMasterDetailView):
     model = models.RegMunEnergyReElDemShare
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_energy_re_el_dem_share.html'
+
+
+class RegMunEnergyReElDemShareDetailJsView(RegMunEnergyReElDemShareMasterDetailView):
+    model = models.RegMunEnergyReElDemShare
+    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenEnergyReDetailView(MasterDetailView):
