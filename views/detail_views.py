@@ -35,11 +35,12 @@ class MasterDetailView(DetailView):
         pop_2017 = context.mundata.pop_2017
         pop_2030 = context.mundata.pop_2030
         pop_2050 = context.mundata.pop_2050
-        data = pd.DataFrame.from_dict({'2017': [pop_2017], '2030': [pop_2030], '2050': [pop_2050]})
+        index = ['2017', '2030', '2050']
+        data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
-            'title': {'text': 'EinwohnerInnen'},
-            'subtitle': {'text': 'in Gemeinde'},
-            'yAxis': {'title': {'text': 'Gemeinde'}}
+            'title': {'text': 'Einwohner, je Gemeinde'},
+            'subtitle': {'text': 'Jahresstrahl'},
+            'yAxis': {'title': {'text': 'Vorhersage'}}
         }
         vis_line_chart = visualizations.HCTimeseries(
             data=data,
