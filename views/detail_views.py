@@ -512,8 +512,6 @@ class RegMunDemElEnergyDetailJsView(RegMunDemElEnergyMasterDetailView):
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
-
-
 class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
@@ -575,11 +573,62 @@ class RegMunDemElEnergyPerCapitaDetailJsView(RegMunDemElEnergyPerCapitaMasterDet
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
+class RegMunDemThEnergyMasterDetailView(MasterDetailView):
 
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDemThEnergyMasterDetailView, self).get_context_data(**kwargs)
 
-class RegMunDemThEnergyDetailView(MasterDetailView):
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        hh = round((mun_data.dem_th_energy_hh / 1e3), 1)
+        rca = round((mun_data.dem_th_energy_rca / 1e3), 1)
+        data = pd.DataFrame({
+            'name': ['Haushalte', 'GHD und Landw.'],
+            'y': [hh, rca]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': ' Wärmebedarf'},
+            'subtitle': {'text': 'nach Verbrauchergruppe'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
+
+class RegMunDemThEnergyDetailView(RegMunDemThEnergyMasterDetailView):
     model = models.RegMunDemThEnergy
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy.html'
+
+class RegMunDemThEnergyDetailJsView(RegMunDemThEnergyMasterDetailView):
+    model = models.RegMunDemThEnergy
+    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
