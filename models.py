@@ -535,6 +535,11 @@ class MunData(models.Model):
     dem_th_energy_total_per_capita :
         Annual heat demand of households, retail, commercial and agricultural
         sector per capita in MWh
+
+    reg_prio_area_wec_area :
+        Area sum of priority areas (parts) in ha
+    reg_prio_area_wec_count :
+        Count of priority area (parts)
     """
     """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
@@ -593,6 +598,9 @@ class MunData(models.Model):
 
     dem_th_energy_hh_per_capita = models.FloatField(null=True)
     dem_th_energy_total_per_capita = models.FloatField(null=True)
+
+    reg_prio_area_wec_area = models.FloatField(null=True)
+    reg_prio_area_wec_count = models.IntegerField(null=True)
 
 
 class FeedinTs(models.Model):
