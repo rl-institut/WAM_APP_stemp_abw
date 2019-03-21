@@ -40,15 +40,15 @@ class RegMunPopMasterDetailView(MasterDetailView):
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
-            context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
-            session.highcharts_temp = context['vis_line_chart']
+            context['chart'] = self.build_chart(context['layer'])
+            session.highcharts_temp = context['chart']
         else:
-            context['vis_line_chart'] = session.highcharts_temp
+            context['chart'] = session.highcharts_temp
             session.highcharts_temp = None
 
         return context
 
-    def build_vis_line_chart(self, context):
+    def build_chart(self, context):
         pop_2017 = context.mundata.pop_2017
         pop_2030 = context.mundata.pop_2030
         pop_2050 = context.mundata.pop_2050
