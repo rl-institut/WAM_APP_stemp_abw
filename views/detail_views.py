@@ -40,7 +40,7 @@ class RegMunPopMasterDetailView(MasterDetailView):
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
-            context['chart'] = self.build_chart(context['layer'])
+            context['chart'] = self.build_chart()
             session.highcharts_temp = context['chart']
         else:
             context['chart'] = session.highcharts_temp
@@ -48,10 +48,11 @@ class RegMunPopMasterDetailView(MasterDetailView):
 
         return context
 
-    def build_chart(self, context):
-        pop_2017 = context.mundata.pop_2017
-        pop_2030 = context.mundata.pop_2030
-        pop_2050 = context.mundata.pop_2050
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        pop_2017 = mun_data.pop_2017
+        pop_2030 = mun_data.pop_2030
+        pop_2050 = mun_data.pop_2050
         index = ['2017', '2030', '2050']
         data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
@@ -91,7 +92,7 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
-            context['chart'] = self.build_chart(context['layer'])
+            context['chart'] = self.build_chart()
             session.highcharts_temp = context['chart']
         else:
             context['chart'] = session.highcharts_temp
@@ -99,7 +100,7 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
 
         return context
 
-    def build_chart(self, context):
+    def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
         reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
         wind = round(((mun_data.gen_el_energy_wind / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
@@ -109,7 +110,7 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
         data = pd.DataFrame(data={'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof, 'PV Boden': pv_ground, 'Hydro': hydro}})
         setup_labels = {
             'title': {'text': 'EE-Erzeugung'},
-            'subtitle': {'text': 'in Prozent zu Strombedarf'},
+            'subtitle': {'text': 'in Prozent zum Strombedarf'},
             'yAxis': {'title': {'text': 'Prozent'}},
             'tooltip': {
                 'pointFormat': 'Bedarf: {point.stackTotal} %'
@@ -133,6 +134,8 @@ class RegMunEnergyReElDemShareDetailJsView(RegMunEnergyReElDemShareMasterDetailV
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
+
+
 class RegMunGenEnergyReMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
@@ -142,7 +145,7 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
-            context['chart'] = self.build_chart(context['layer'])
+            context['chart'] = self.build_chart()
             session.highcharts_temp = context['chart']
         else:
             context['chart'] = session.highcharts_temp
@@ -150,9 +153,8 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
 
         return context
 
-    def build_chart(self, context):
+    def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
         wind = round((mun_data.gen_el_energy_wind / 1e3), 1)
         pv_roof = round((mun_data.gen_el_energy_pv_roof / 1e3), 1)
         pv_ground = round((mun_data.gen_el_energy_pv_ground / 1e3), 1)
@@ -196,14 +198,134 @@ class RegMunGenEnergyReDetailJsView(RegMunGenEnergyReMasterDetailView):
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
-class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
+
+
+class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenEnergyRePerCapitaMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_el_energy_wind / mun_data.pop_2017), 1)
+        pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.pop_2017), 1)
+        pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.pop_2017), 1)
+        hydro = round((mun_data.gen_el_energy_hydro / mun_data.pop_2017), 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach', 'PV Boden', 'Hydro'],
+            'y': [wind, pv_roof, pv_ground, hydro]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Gewonnene Energie aus EE'},
+            'subtitle': {'text': 'je EinwohnerIn'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        vis_column_chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_column_chart
+
+
+class RegMunGenEnergyRePerCapitaDetailView(RegMunGenEnergyRePerCapitaMasterDetailView):
     model = models.RegMunGenEnergyRePerCapita
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_per_capita.html'
 
 
-class RegMunGenEnergyReDensityDetailView(MasterDetailView):
+class RegMunGenEnergyRePerCapitaDetailJsView(RegMunGenEnergyRePerCapitaMasterDetailView):
+    model = models.RegMunGenEnergyRePerCapita
+    template_name = 'stemp_abw/popups/js_popup.html'
+
+
+
+
+class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenEnergyReDensityMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_el_energy_wind / mun_data.area), 1)
+        pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.area), 1)
+        pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.area), 1)
+        hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach', 'PV Boden', 'Hydro'],
+            'y': [wind, pv_roof, pv_ground, hydro]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Gewonnene Energie aus EE'},
+            'subtitle': {'text': 'je km²'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        vis_column_chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_column_chart
+
+
+class RegMunGenEnergyReDensityDetailView(RegMunGenEnergyReDensityMasterDetailView):
     model = models.RegMunGenEnergyReDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_density.html'
+
+
+class RegMunGenEnergyReDensityDetailJsView(RegMunGenEnergyReDensityMasterDetailView):
+    model = models.RegMunGenEnergyReDensity
+    template_name = 'stemp_abw/popups/js_popup.html'
+
+
 
 
 class RegMunGenCapReDetailView(MasterDetailView):

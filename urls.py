@@ -41,17 +41,31 @@ urlpatterns.extend(
 # TODO: Generalize like above!
 urlpatterns.extend(
     [
-     path('popupjs/reg_mun_pop/<int:pk>/', views.RegMunPopDetailJsView.as_view(), name='reg_mun_pop_popupjs'),
-     path(
-          'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
-          views.RegMunEnergyReElDemShareDetailJsView.as_view(),
-          name='reg_mun_energy_re_el_dem_share_popupjs'
-     ),
-     path(
-          'popupjs/reg_mun_gen_energy_re/<int:pk>/',
-          views.RegMunGenEnergyReDetailJsView.as_view(),
-          name='reg_mun_gen_energy_re_popupjs'
-     )
+        path(
+            'popupjs/reg_mun_pop/<int:pk>/',
+            views.RegMunPopDetailJsView.as_view(),
+            name='reg_mun_pop_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
+            views.RegMunEnergyReElDemShareDetailJsView.as_view(),
+            name='reg_mun_energy_re_el_dem_share_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re/<int:pk>/',
+            views.RegMunGenEnergyReDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re_per_capita/<int:pk>/',
+            views.RegMunGenEnergyRePerCapitaDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re_density/<int:pk>/',
+            views.RegMunGenEnergyReDensityDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_popupjs'
+        )
     ]
 )
 

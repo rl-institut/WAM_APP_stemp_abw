@@ -566,8 +566,10 @@
                   whitelist = [
                       'reg_mun_pop',
                       'reg_mun_energy_re_el_dem_share',
-                      'reg_mun_gen_energy_re'
-                  ]
+                      'reg_mun_gen_energy_re',
+                      'reg_mun_gen_energy_re_per_capita',
+                      'reg_mun_gen_energy_re_density'
+                  ];
                   if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
                       var url_js = "../popupjs/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
                       $.get( url_js, function( data ) {
