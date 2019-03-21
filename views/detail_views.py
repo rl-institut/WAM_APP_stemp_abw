@@ -60,12 +60,12 @@ class RegMunPopMasterDetailView(MasterDetailView):
             'subtitle': {'text': 'Prognose'},
             'yAxis': {'title': {'text': 'Personen'}}
         }
-        vis_line_chart = visualizations.HCTimeseries(
+        chart = visualizations.HCTimeseries(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_line_chart
+        return chart
 
 
 class RegMunPopDetailView(RegMunPopMasterDetailView):
@@ -116,12 +116,12 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
                 'pointFormat': 'Bedarf: {point.stackTotal} %'
             }
         }
-        vis_column_chart = visualizations.HCStackedColumn(
+        chart = visualizations.HCStackedColumn(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunEnergyReElDemShareDetailView(RegMunEnergyReElDemShareMasterDetailView):
@@ -178,12 +178,12 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunGenEnergyReDetailView(RegMunGenEnergyReMasterDetailView):
@@ -240,12 +240,12 @@ class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunGenEnergyRePerCapitaDetailView(RegMunGenEnergyRePerCapitaMasterDetailView):
@@ -302,12 +302,12 @@ class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunGenEnergyReDensityDetailView(RegMunGenEnergyReDensityMasterDetailView):
@@ -365,12 +365,12 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunGenCapReDetailView(RegMunGenCapReMasterDetailView):
@@ -428,12 +428,12 @@ class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunGenCapReDensityDetailView(RegMunGenCapReDensityDetailMasterView):
@@ -470,7 +470,6 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
 
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
         hh = round((mun_data.dem_el_energy_hh / 1e3), 1)
         rca = round((mun_data.dem_el_energy_rca / 1e3), 1)
         ind = round((mun_data.dem_el_energy_ind / 1e3), 1)
@@ -495,12 +494,12 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
                 'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
             }
         }
-        vis_column_chart = visualizations.HCPiechart(
+        chart = visualizations.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
         )
-        return vis_column_chart
+        return chart
 
 
 class RegMunDemElEnergyDetailView(RegMunDemElEnergyMasterDetailView):
@@ -513,9 +512,69 @@ class RegMunDemElEnergyDetailJsView(RegMunDemElEnergyMasterDetailView):
     template_name = 'stemp_abw/popups/js_popup.html'
 
 
-class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
+
+
+class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDemElEnergyPerCapitaMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        hh = round((mun_data.dem_el_energy_hh * 1000 / mun_data.pop_2017))
+        rca = round((mun_data.dem_el_energy_rca * 1000 / mun_data.pop_2017))
+        ind = round((mun_data.dem_el_energy_ind * 1000 / mun_data.pop_2017))
+        data = pd.DataFrame({
+            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'y': [hh, rca, ind]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Strombedarf'},
+            'subtitle': {'text': 'je EinwohnerIn nach Verbrauchergruppe'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
+
+
+class RegMunDemElEnergyPerCapitaDetailView(RegMunDemElEnergyPerCapitaMasterDetailView):
     model = models.RegMunDemElEnergyPerCapita
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy_per_capita.html'
+
+
+class RegMunDemElEnergyPerCapitaDetailJsView(RegMunDemElEnergyPerCapitaMasterDetailView):
+    model = models.RegMunDemElEnergyPerCapita
+    template_name = 'stemp_abw/popups/js_popup.html'
+
+
 
 
 class RegMunDemThEnergyDetailView(MasterDetailView):
