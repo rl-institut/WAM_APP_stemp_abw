@@ -38,9 +38,9 @@ class MasterDetailView(DetailView):
         index = ['2017', '2030', '2050']
         data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
-            'title': {'text': 'Einwohner, je Gemeinde'},
-            'subtitle': {'text': 'Jahresstrahl'},
-            'yAxis': {'title': {'text': 'Vorhersage'}}
+            'title': {'text': 'Bevölkerungsentwicklung'},
+            'subtitle': {'text': 'Prognose'},
+            'yAxis': {'title': {'text': 'Personen'}}
         }
         vis_line_chart = visualizations.HCTimeseries(
             data=data,
