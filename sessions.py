@@ -211,7 +211,7 @@ class UserSession(object):
 
         scn_data = json.loads(self.user_scenario.data.data)
         # update regional data
-        reg_data.update(reg_data_upd)
+        scn_data['reg_params'].update(reg_data_upd)
         # update municipal data
         for mun, data in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
             scn_data['mun_data'][mun].update(data)
