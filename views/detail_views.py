@@ -18,36 +18,8 @@ class MasterDetailView(DetailView):
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
-            session.highcharts_temp = context['vis_line_chart']
-        else:
-            context['vis_line_chart'] = session.highcharts_temp
-            session.highcharts_temp = None
-        print(context['vis_line_chart'])
-
         return context
 
-    def build_vis_line_chart(self, context):
-        pop_2017 = context.mundata.pop_2017
-        pop_2030 = context.mundata.pop_2030
-        pop_2050 = context.mundata.pop_2050
-        index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
-        setup_labels = {
-            'title': {'text': 'Bevölkerungsentwicklung'},
-            'subtitle': {'text': 'Prognose'},
-            'yAxis': {'title': {'text': 'Personen'}}
-        }
-        vis_line_chart = visualizations.HCTimeseries(
-            data=data,
-            setup_labels=setup_labels,
-            style='display: inline-block'
-        )
-        return vis_line_chart
 
 ####################
 ### Detail Views ### for popups
@@ -73,12 +45,48 @@ class RegMunDetailJsView(TemplateView):
         return context
 
 
-class RegMunPopDetailView(MasterDetailView):
+class RegMunPopMasterDetailView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopMasterDetailView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['vis_line_chart'] = self.build_vis_line_chart(context['layer'])
+            session.highcharts_temp = context['vis_line_chart']
+        else:
+            context['vis_line_chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_vis_line_chart(self, context):
+        pop_2017 = context.mundata.pop_2017
+        pop_2030 = context.mundata.pop_2030
+        pop_2050 = context.mundata.pop_2050
+        index = ['2017', '2030', '2050']
+        data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
+        setup_labels = {
+            'title': {'text': 'Bevölkerungsentwicklung'},
+            'subtitle': {'text': 'Prognose'},
+            'yAxis': {'title': {'text': 'Personen'}}
+        }
+        vis_line_chart = visualizations.HCTimeseries(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_line_chart
+
+
+class RegMunPopDetailView(RegMunPopMasterDetailView):
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
 
 
-class RegMunPopDetailJsView(MasterDetailView):
+class RegMunPopDetailJsView(RegMunPopMasterDetailView):
     model = models.RegMunPop
     template_name = 'stemp_abw/popups/js_layer_popup_reg_mun_pop.html'
 
