@@ -61,7 +61,8 @@ class ComponentGroupForm(forms.Form):
                                'max': data['max'],
                                'from': data['value'],
                                'step': data['step'],
-                               'grid_num': data['grid_count']
+                               'grid_num': data['grid_count'],
+                               'disable': True if data.get('disable') == '1' else False
                                }
                     ),
                     required = False
@@ -108,7 +109,8 @@ class AreaGroupForm(forms.Form):
                                'max': data['max'],
                                'from': data['value'],
                                'step': data['step'],
-                               'grid_num': data['grid_count']
+                               'grid_num': data['grid_count'],
+                               'disable': True if data.get('disable') == '1' else False
                                }
                     ),
                     required = False

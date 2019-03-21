@@ -463,6 +463,9 @@
                         step: {{comp.field.widget.attrs.step}},
                         grid: true,
                         grid_num: {{comp.field.widget.attrs.grid_num}},
+                        {% if comp.field.widget.attrs.disable %}
+                          disable: true,
+                        {% endif %}
                         onFinish: changeScenarioControlSlider
                     });
                 {% endif %}
@@ -480,6 +483,9 @@
                         step: {{comp.field.widget.attrs.step}},
                         grid: true,
                         grid_num: {{comp.field.widget.attrs.grid_num}},
+                        {% if comp.field.widget.attrs.disable %}
+                          disable: true,
+                        {% endif %}
                         onFinish: changeScenarioControlSlider
                     });
                 {% endif %}
