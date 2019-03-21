@@ -59,12 +59,17 @@ urlpatterns.extend(
         path(
             'popupjs/reg_mun_gen_energy_re_per_capita/<int:pk>/',
             views.RegMunGenEnergyRePerCapitaDetailJsView.as_view(),
-            name='reg_mun_gen_energy_re_popupjs'
+            name='reg_mun_gen_energy_re_per_capita_popupjs'
         ),
         path(
             'popupjs/reg_mun_gen_energy_re_density/<int:pk>/',
             views.RegMunGenEnergyReDensityDetailJsView.as_view(),
-            name='reg_mun_gen_energy_re_popupjs'
+            name='reg_mun_gen_energy_re_density_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_cap_re/<int:pk>/',
+            views.RegMunGenCapReDetailJsView.as_view(),
+            name='reg_mun_gen_cap_re_popupjs'
         )
     ]
 )
