@@ -390,27 +390,28 @@
             <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
               <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="ctrlSimulate()" value="simulate">
                 Simulation
-                <i class ="icon ion-android-arrow-dropright-circle icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                <i class ="icon ion-android-arrow-dropright-circle icon--small" title="{{ tooltips.simulation_button.text }}" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
               <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
                 Speichern
-                <i class ="icon ion-archive icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                <i class ="icon ion-archive icon--small" title="{{ tooltips.scn_button_esys_save.text }}" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
             </div>
           </div>
         </div>
 
         <div class="tiny reveal" id="saveSimulation" data-reveal>
-          <p>Geben Sie dem Szenario einen Namen</p>
-          <label>
-            <input type="text" placeholder="Szenarioname">
-          </label>
-          <button type="submit" class="btn btn-apply btn-apply--secondary">
-            Speichern
-          </button>
-          <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          Dieses Feature ist derzeit noch nicht verfügbar.
+          <!--<p>Geben Sie dem Szenario einen Namen</p>-->
+          <!--<label>-->
+            <!--<input type="text" placeholder="Szenarioname">-->
+          <!--</label>-->
+          <!--<button type="submit" class="btn btn-apply btn-apply&#45;&#45;secondary">-->
+            <!--Speichern-->
+          <!--</button>-->
+          <!--<button class="close-button" data-close aria-label="Close modal" type="button">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
         </div>
         <!-- END SIMULATION BTNS -->
 
