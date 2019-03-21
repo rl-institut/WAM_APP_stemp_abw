@@ -339,11 +339,11 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
 
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        wind = round((mun_data.gen_capacity_wind), 1)
-        pv_roof = round((mun_data.gen_capacity_pv_roof_large), 1)
-        pv_ground = round((mun_data.gen_capacity_pv_ground), 1)
-        hydro = round((mun_data.gen_capacity_hydro), 1)
-        bio = round((mun_data.gen_capacity_bio), 1)
+        wind = round(mun_data.gen_capacity_wind, 1)
+        pv_roof = round(mun_data.gen_capacity_pv_roof_large, 1)
+        pv_ground = round(mun_data.gen_capacity_pv_ground, 1)
+        hydro = round(mun_data.gen_capacity_hydro, 1)
+        bio = round(mun_data.gen_capacity_bio, 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach, groß', 'PV Boden', 'Hydro', 'Bio'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
@@ -382,9 +382,68 @@ class RegMunGenCapReDetailJsView(RegMunGenCapReMasterDetailView):
     model = models.RegMunGenCapRe
     template_name = 'stemp_abw/popups/js_popup.html'
 
-class RegMunGenCapReDensityDetailView(MasterDetailView):
+
+class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenCapReDensityDetailMasterView, self).get_context_data(**kwargs)
+
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_capacity_wind / mun_data.area), 2)
+        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area), 2)
+        pv_ground = round((mun_data.gen_capacity_pv_ground / mun_data.area), 2)
+        hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
+        bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach, groß', 'PV Boden', 'Hydro', 'Bio'],
+            'y': [wind, pv_roof, pv_ground, hydro, bio]
+        })
+        data.set_index('name', inplace=True)
+        # convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Installierte Leistung EE'},
+            'subtitle': {'text': 'je km²'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
+            }
+        }
+        vis_column_chart = visualizations.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return vis_column_chart
+
+
+class RegMunGenCapReDensityDetailView(RegMunGenCapReDensityDetailMasterView):
     model = models.RegMunGenCapReDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re_density.html'
+
+
+class RegMunGenCapReDensityDetailJsView(RegMunGenCapReDensityDetailMasterView):
+    model = models.RegMunGenCapReDensity
+    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenCountWindDensityDetailView(MasterDetailView):
