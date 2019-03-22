@@ -822,6 +822,10 @@ span.has-tip--no-border {
 .form__select {
   color: #002E4F; }
 
+#select-repowering-frm-cell .cell {
+  padding-bottom: 0;
+}
+
 input[type].input--s {
   width: 4rem; }
 

@@ -72,6 +72,7 @@ def prepare_demand_timeseries(reg_params):
 
 
 def create_nodes(mun_data, reg_params):
+    """Creates and return nodes for energy system"""
 
     feedin = prepare_feedin_timeseries(mun_data)
     demand = prepare_demand_timeseries(reg_params)

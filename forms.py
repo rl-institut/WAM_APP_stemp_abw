@@ -49,22 +49,30 @@ class ComponentGroupForm(forms.Form):
 
         for name, data in components.items():
             if data['type'] == 'range':
+                rep = {1: 'Kein',
+                       2: 'Verhältnis 1:1'}
+                attrs = {'id': 'sl_{}'.format(name),
+                         'name': name,
+                         'cell_style': '',
+                         'title': f'{data["title"]} [{data["unit"]}]',
+                         'text': data['text'],
+                         'min': data['min'],
+                         'max': data['max'],
+                         'from': data['value'],
+                         'step': data['step'],
+                         'grid_num': data['grid_count'],
+                         'disable': True if data.get('disable') == '1' else False
+                         }
+                # If slider is wind, add dropdown data.
+                # It is required to provide data via widget as a new <select>
+                # element cannot be added to the slider list
+                if attrs.get('id') == 'sl_wind':
+                    attrs['dropdown'] = ['<option value="{id}">{val}</option>'
+                                             .format(id=c[0], val=c[1])
+                                         for c in rep.items()]
                 self.fields[name] = forms.FloatField(
                     label='',
-                    widget=SliderWidget(
-                        attrs={'id': 'sl_{}'.format(name),
-                               'name': name,
-                               'cell_style': '',
-                               'title': f'{data["title"]} [{data["unit"]}]',
-                               'text': data['text'],
-                               'min': data['min'],
-                               'max': data['max'],
-                               'from': data['value'],
-                               'step': data['step'],
-                               'grid_num': data['grid_count'],
-                               'disable': True if data.get('disable') == '1' else False
-                               }
-                    ),
+                    widget=SliderWidget(attrs=attrs),
                     required = False
                 )
             elif data['type'] == 'bool':

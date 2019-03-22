@@ -117,7 +117,7 @@ def prepare_component_data():
 
 
 def prepare_scenario_data():
-    # create scenarios for scenario dropdown menu (tool initialization only)
+    """create scenarios for scenario dropdown menu (tool initialization only)"""
     return {'scenarios': ScenarioDropdownForm()}
 
     

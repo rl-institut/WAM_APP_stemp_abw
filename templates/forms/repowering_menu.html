@@ -1,0 +1,5 @@
+  <select id="select-repowering-frm" onchange="ctrlScenario(this.id)">
+      {% for rep in widget.attrs.dropdown %}
+        {{ rep|safe }}
+      {% endfor %}
+  </select>
