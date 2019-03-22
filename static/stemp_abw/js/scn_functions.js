@@ -108,5 +108,22 @@ $('.switch-input.esys').click( function () {
 
 // Fired when repowering dropdown is changed
 function changeScenarioControlDropdown(element_id) {
-  ctrlScenarioPost({[element_id]: $('#' + element_id).prop('value')});
+  var dd_value = $('#' + element_id).prop('value');
+
+  // Disable wind slider if repowering is chosen
+  var wind_slider = $('#sl_wind').data("ionRangeSlider");
+  if (dd_value != 0) {
+    wind_slider.update({
+      from: 1840,
+      disable: true,
+    });
+  } else {
+    wind_slider.update({
+      from: 1000,
+      disable: false,
+    });
+  }
+
+  // Rpdate scenario
+  ctrlScenarioPost({[element_id]: dd_value});
 }
