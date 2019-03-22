@@ -17,7 +17,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 application = get_wsgi_application()
 
 from stemp_abw.dataio.load_static import load_mun_data
-from stemp_abw.models import Scenario, ScenarioData, REPotentialAreas
+from stemp_abw.models import \
+    Scenario, ScenarioData, REPotentialAreas, RepoweringScenario
 
 
 def insert_status_quo_scenario():
@@ -25,7 +26,7 @@ def insert_status_quo_scenario():
     #     return WKTElement(geom, srid=3035)
 
     mun_data = load_mun_data()
-    
+
     # test RE area object
     repot_area_params = {'repot_area_params': 0}
     repot_mun_data = {'repot_mun_data': 0}
@@ -74,6 +75,9 @@ def insert_status_quo_scenario():
 
     scn_data_obj = ScenarioData.objects.create(data=scn_data,
                                                data_uuid=uuid)
+
+    repowering_scenario = RepoweringScenario.objects.get(name='1:1-Repowering')
+
     print('Scenario data hash UUID:', uuid)
 
     scn = Scenario.objects.create(name='Status quo',
@@ -82,14 +86,43 @@ def insert_status_quo_scenario():
                                               'der Region.',
                                   is_user_scenario=False,
                                   data=scn_data_obj,
-                                  re_potential_areas=repot_areas_obj)
+                                  re_potential_areas=repot_areas_obj,
+                                  repowering_scenario=repowering_scenario)
     scn = Scenario.objects.create(name='Status quo 2',
                                   description='Dieses Szenario enthält den aktuellen Zustand '
                                               'der Energieversorgung und Flächennutzung in '
                                               'der Region.',
                                   is_user_scenario=False,
                                   data=scn_data_obj,
-                                  re_potential_areas=repot_areas_obj)
+                                  re_potential_areas=repot_areas_obj,
+                                  repowering_scenario=repowering_scenario)
 
+
+def insert_repowering_scenarios():
+
+    # insert 1:1 scenario
+    mun_data = load_mun_data()[['gen_count_wind', 'gen_capacity_wind']]
+    mun_data['gen_count_wind'] = mun_data['gen_count_wind'].astype(int)
+    mun_data['gen_capacity_wind'] = (mun_data['gen_count_wind'] * 4.2).round(decimals=1)
+
+    scn = {
+        'name': '1:1-Repowering',
+        'description': 'Standorttreues Repowering aller heute in Betrieb '
+                       'befindlichen Altanlagen durch eine neue Anlage.',
+        'data': json.dumps(mun_data.to_dict(orient='index'), sort_keys=True)
+    }
+
+    RepoweringScenario.objects.create(**scn)
+
+# def insert_potential_areas():
+#     # test RE area object
+#     repot_area_params = {'repot_area_params': 0}
+#     repot_mun_data = {'repot_mun_data': 0}
+#     mpoly_wkt = 'MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))'
+#     repot_areas_obj = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),
+#                                                       mun_data=json.dumps(repot_mun_data),
+#                                                       geom=mpoly_wkt)
 
 insert_status_quo_scenario()
+#insert_repowering_scenarios()
+#insert_potential_areas()
