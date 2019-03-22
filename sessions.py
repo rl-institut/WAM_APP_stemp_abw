@@ -178,12 +178,12 @@ class UserSession(object):
                                            sum([reg_data[_] for _ in d_name])
         return tech_ratios
 
-    def update_scenario_data(self, data=None):
+    def update_scenario_data(self, ctrl_data=None):
         """Update municipal data of user scenario
 
         Parameters
         ----------
-        data : :obj:`dict`
+        ctrl_data : :obj:`dict`
             Data to update in the scenario, e.g. {'sl_wind': 500}
 
         Notes
@@ -193,14 +193,14 @@ class UserSession(object):
         require changes of multiple entries in scenario data. This is done by
         capacity-proportional change of those entries (see 2 below).
         """
-        if not isinstance(data, dict) or len(data) == 0:
+        if not isinstance(ctrl_data, dict) or len(ctrl_data) == 0:
             raise ValueError('Data dict not specified or empty!')
 
         reg_data = self.region_data
         reg_data_upd = {}
 
         # calculate new regional params
-        for c_name, val in data.items():
+        for c_name, val in ctrl_data.items():
             # 1) value to be set refers to a single entry (e.g. 'sl_wind')
             if isinstance(CONTROL_VALUES_MAP[c_name], str):
                 reg_data_upd[CONTROL_VALUES_MAP[c_name]] = val
@@ -214,13 +214,15 @@ class UserSession(object):
 
         scn_data = json.loads(self.user_scenario.data.data)
         # update regional data
-        scn_data['reg_params'].update(reg_data_upd)
+        for k, v in reg_data_upd.items():
+            if k in scn_data['reg_params']:
+                scn_data['reg_params'][k] = v
         # update municipal data
-        for mun, data in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
-            scn_data['mun_data'][mun].update(data)
+        for mun, v in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
+            scn_data['mun_data'][mun].update(v)
 
         # update repowering scenario if necessary
-        if 'dd_repowering' in data.keys():
+        if 'dd_repowering' in ctrl_data.keys():
             self.user_scenario.repowering_scenario =\
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])

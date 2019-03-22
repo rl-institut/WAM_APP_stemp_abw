@@ -111,7 +111,7 @@ class MapView(TemplateView):
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
             sl_wind_repower_pot = session.update_scenario_data(
-                data=json.loads(data))
+                ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
 
         # start simulation (trigger: sim button)
