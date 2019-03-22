@@ -76,7 +76,7 @@ def insert_status_quo_scenario():
     scn_data_obj = ScenarioData.objects.create(data=scn_data,
                                                data_uuid=uuid)
 
-    repowering_scenario = RepoweringScenario.objects.get(name='Kein Repowering')
+    repowering_scenario = RepoweringScenario.objects.get(id=0)
 
     print('Scenario data hash UUID:', uuid)
 
@@ -102,7 +102,7 @@ def insert_repowering_scenarios():
 
     # insert no-repowering-scenario
     RepoweringScenario.objects.create(id=0,
-                                      name='Kein Repowering',
+                                      name='Kein Repowering (heute)',
                                       description='Es wird kein Repowering vorgenommen.',
                                       data=None)
 
@@ -129,6 +129,6 @@ def insert_repowering_scenarios():
 #                                                       mun_data=json.dumps(repot_mun_data),
 #                                                       geom=mpoly_wkt)
 
-insert_status_quo_scenario()
-#insert_repowering_scenarios()
+insert_repowering_scenarios()
 #insert_potential_areas()
+insert_status_quo_scenario()
