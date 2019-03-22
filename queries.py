@@ -76,7 +76,7 @@ def insert_status_quo_scenario():
     scn_data_obj = ScenarioData.objects.create(data=scn_data,
                                                data_uuid=uuid)
 
-    repowering_scenario = RepoweringScenario.objects.get(name='1:1-Repowering')
+    repowering_scenario = RepoweringScenario.objects.get(name='Kein Repowering')
 
     print('Scenario data hash UUID:', uuid)
 
@@ -99,6 +99,12 @@ def insert_status_quo_scenario():
 
 
 def insert_repowering_scenarios():
+
+    # insert no-repowering-scenario
+    RepoweringScenario.objects.create(id=0,
+                                      name='Kein Repowering',
+                                      description='Es wird kein Repowering vorgenommen.',
+                                      data=None)
 
     # insert 1:1 scenario
     mun_data = load_mun_data()[['gen_count_wind', 'gen_capacity_wind']]
