@@ -857,6 +857,8 @@ class Scenario(models.Model):
     data = models.ForeignKey(ScenarioData, on_delete=models.DO_NOTHING)
     re_potential_areas = models.ForeignKey(REPotentialAreas,
                                            on_delete=models.DO_NOTHING)
+    repowering_scenario = models.ForeignKey(RepoweringScenario,
+                                            on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
