@@ -99,25 +99,30 @@ def insert_status_quo_scenario():
 
 
 def insert_repowering_scenarios():
-
-    # insert no-repowering-scenario
-    RepoweringScenario.objects.create(id=0,
-                                      name='Kein Repowering (heute)',
-                                      description='Es wird kein Repowering vorgenommen.',
-                                      data=None)
-
-    # insert 1:1 scenario
+    # get data
     mun_data = load_mun_data()[['gen_count_wind', 'gen_capacity_wind']]
     mun_data['gen_count_wind'] = mun_data['gen_count_wind'].astype(int)
+
+    # insert no-repowering-scenario
+    scn = {
+        'id': 0,
+        'name': 'Kein Repowering/aktuell',
+        'description': 'Es wird kein Repowering vorgenommen.',
+        'data': json.dumps(mun_data.round(decimals=1).to_dict(orient='index'), sort_keys=True)
+    }
+    RepoweringScenario.objects.create(**scn)
+
+    # insert 1:1 scenario
     mun_data['gen_capacity_wind'] = (mun_data['gen_count_wind'] * 4.2).round(decimals=1)
 
     scn = {
         'name': '1:1-Repowering',
         'description': 'Standorttreues Repowering aller heute in Betrieb '
-                       'befindlichen Altanlagen durch eine neue Anlage.',
+                       'befindlichen Altanlagen durch eine neue Anlage, '
+                       'sowohl innerhalb als auch außerhalb von '
+                       'Vorranggebieten (VR/EG) für Windenergie.',
         'data': json.dumps(mun_data.to_dict(orient='index'), sort_keys=True)
     }
-
     RepoweringScenario.objects.create(**scn)
 
 # def insert_potential_areas():
