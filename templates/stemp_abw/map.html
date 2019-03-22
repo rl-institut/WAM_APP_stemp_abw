@@ -896,13 +896,13 @@
         };
 
         // Post scenario settings
-        function ctrlScenarioPost(data) {
-            console.log(data);
+        function ctrlScenarioPost(element_id, data) {
+            //console.log(element_id + ': ' + data);
             $.ajax({
                 url : '{% url 'stemp_abw:map' %}',
                 type : "POST",
                 data : {action: 'update_scenario',
-                        data: JSON.stringify(data),
+                        data: JSON.stringify({[element_id]: data}),
                         csrfmiddlewaretoken: '{{ csrf_token }}'},
                 success: function(page) {
                     console.log('success');
@@ -911,7 +911,10 @@
                     console.log('error');
                 }
             }).done(function(returned_data) {
-                console.log(returned_data);
+                data = JSON.parse(returned_data);
+                if (element_id == 'dd_repowering') {
+                  updateScenarioControlRepDropdown(data['sl_wind_repower_pot']);
+                }
             });
         };
 

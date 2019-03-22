@@ -83,8 +83,6 @@ class MapView(TemplateView):
 
     @check_session
     def post(self, request, session):
-        print(request.POST)
-        
         action = request.POST['action']
         data = request.POST['data']
         
@@ -112,8 +110,9 @@ class MapView(TemplateView):
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
-            session.update_scenario_data(data=json.loads(data))
-            ret_data = {'scenario': 'updated'}
+            sl_wind_repower_pot = session.update_scenario_data(
+                data=json.loads(data))
+            ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':

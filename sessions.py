@@ -4,7 +4,7 @@ import pandas as pd
 import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
-from stemp_abw.models import Scenario
+from stemp_abw.models import Scenario, RepoweringScenario
 from stemp_abw.app_settings import CONTROL_VALUES_MAP
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
@@ -219,8 +219,22 @@ class UserSession(object):
         for mun, data in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
             scn_data['mun_data'][mun].update(data)
 
+        # update repowering scenario if necessary
+        if 'dd_repowering' in data.keys():
+            self.user_scenario.repowering_scenario =\
+                RepoweringScenario.objects.get(
+                    id=scn_data['reg_params']['repowering_scn'])
+            sl_wind_repower_pot =\
+                int(sum([_['gen_capacity_wind']
+                         for _ in json.loads(
+                        self.user_scenario.repowering_scenario.data).values()]))
+        else:
+            sl_wind_repower_pot = None
+
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
+
+        return sl_wind_repower_pot
 
     def __disaggregate_reg_to_mun_data(self, reg_data):
         """Disaggregate given regional data to given municipal data

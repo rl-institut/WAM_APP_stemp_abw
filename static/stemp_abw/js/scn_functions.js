@@ -88,7 +88,7 @@ function addMarks($slider, min, max, marks) {
 function changeScenarioControlSlider(data) {
   var ctrl_id = data.input.prop('id');
   console.log(ctrl_id);
-  ctrlScenarioPost({[ctrl_id]: data.from});
+  ctrlScenarioPost(ctrl_id, data.from);
 
   /*
   var from_max = $(this).attr("from_max");
@@ -103,27 +103,33 @@ function changeScenarioControlSlider(data) {
 
 // Fired when scenario switch is changed
 $('.switch-input.esys').click( function () {
-  ctrlScenarioPost({[$(this).prop('id')]: $(this).prop('checked')});
+  ctrlScenarioPost($(this).prop('id'), $(this).prop('checked'));
 })
 
-// Fired when repowering dropdown is changed
-function changeScenarioControlDropdown(element_id) {
-  var dd_value = $('#' + element_id).prop('value');
+// Fired when repowering dropdown is changed (prior to POST)
+function changeScenarioControlRepDropdown(element_id) {
+  ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+}
 
-  // Disable wind slider if repowering is chosen
+// Fired when repowering dropdown is changed (after POST)
+function updateScenarioControlRepDropdown(sl_wind_value) {
+  /*
+    Disable wind slider if repowering is chosen and
+    set slider value max. wind power potential of
+    repowering scenario.
+  */
   var wind_slider = $('#sl_wind').data("ionRangeSlider");
+  var dd_value = $('#dd_repowering').prop('value');
+
   if (dd_value != 0) {
     wind_slider.update({
-      from: 1840,
+      from: sl_wind_value,
       disable: true,
     });
   } else {
     wind_slider.update({
-      from: 1000,
+      from: sl_wind_value,
       disable: false,
     });
   }
-
-  // Rpdate scenario
-  ctrlScenarioPost({[element_id]: dd_value});
 }
