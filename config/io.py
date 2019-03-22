@@ -92,6 +92,8 @@ def prepare_component_data():
         for l, v in comps.items():
             comp_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             comp_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+            if LABELS['components'][l].get('text2') is not None:
+                comp_metadata[grp]['comps'][l]['text2'] = LABELS['components'][l]['text2']
 
     for (grp, comps) in ESYS_AREAS_METADATA.items():
         area_metadata.update({grp: {'comps': comps}})
