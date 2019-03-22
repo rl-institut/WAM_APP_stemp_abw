@@ -42,12 +42,12 @@
                       <h2 class="tabs-title__head">Region</h2>
                     </a>
                   </li>
-                  <li class="tabs-title" id="tabsScenarios">
-                    <a href="#panel-scenarios">
-                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                      <h2 class="tabs-title__head">Szenarien</h2>
-                    </a>
-                  </li>
+                  <!--<li class="tabs-title" id="tabsScenarios">-->
+                    <!--<a href="#panel-scenarios">-->
+                      <!--<img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon&#45;&#45;scenarios">-->
+                      <!--<h2 class="tabs-title__head">Szenarien</h2>-->
+                    <!--</a>-->
+                  <!--</li>-->
                   <li class="tabs-title" id="tabsEnergy">
                     <a href="#panel-energy">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
@@ -82,71 +82,71 @@
                     </div>
 
                     <!-- Second panel content -->
-                    <div class="tabs-panel" id="panel-scenarios">
-                      <p class="lead" style="margin-bottom: 0;">
-                        {{ panels.scenarios.title }}
-                        <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                      </p>
-                      <div class="grid-x">
-                        <div class="cell" id="scenarios-wrap">
-                          <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                            <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
-                            <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
-                          </ul>
+                    <!--<div class="tabs-panel" id="panel-scenarios">-->
+                      <!--<p class="lead" style="margin-bottom: 0;">-->
+                        <!--{{ panels.scenarios.title }}-->
+                        <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                      <!--</p>-->
+                      <!--<div class="grid-x">-->
+                        <!--<div class="cell" id="scenarios-wrap">-->
+                          <!--<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">-->
+                            <!--<li class="tabs-title tabs-title&#45;&#45;horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>-->
+                            <!--<li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>-->
+                          <!--</ul>-->
 
-                          <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                            <div class="tabs-panel is-active" id="scenario-panel1">
-                              <div class="grid-x grid-margin-x">
-                                <div class="cell">
-                                  <form>
-                                    <fieldset>
-                                        <legend>Vorgegebenes Szenario auswählen
-                                          <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                        </legend>
-                                        <label class="control control--radio">Status Quo
-                                          <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                        <label class="control control--radio">Deutsches Klimaschutzziel
-                                          <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                        <label class="control control--radio">100% erneuerbar
-                                          <input type="radio" name="scenario" value="100" id="scenario100"/>
-                                          <div class="control__indicator"></div>
-                                        </label>
-                                    </fieldset>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="tabs-panel" id="scenario-panel2">
-                              <div class="grid-x grid-margin-x">
-                                <div class="cell">
-                                  <form class="select-menu">
-                                    <label>
-                                      Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                                      <select>
-                                        <option value="husker">Husker</option>
-                                        <option value="starbuck">Starbuck</option>
-                                        <option value="hotdog">Hot Dog</option>
-                                        <option value="apollo">Apollo</option>
-                                      </select>
-                                    </label>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <div class="panel-desc">
-                        <p id="scenarioPanelText">
-                        <span class="panel-desc__header">Status Quo</span>
-                        <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
-                        </p>
-                    </div>
-                  </div>
+                          <!--<div class="tabs-content" data-tabs-content="deeplinked-tabs">-->
+                            <!--<div class="tabs-panel is-active" id="scenario-panel1">-->
+                              <!--<div class="grid-x grid-margin-x">-->
+                                <!--<div class="cell">-->
+                                  <!--<form>-->
+                                    <!--<fieldset>-->
+                                        <!--<legend>Vorgegebenes Szenario auswählen-->
+                                          <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                        <!--</legend>-->
+                                        <!--<label class="control control&#45;&#45;radio">Status Quo-->
+                                          <!--<input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>-->
+                                          <!--<div class="control__indicator"></div>-->
+                                        <!--</label>-->
+                                        <!--<label class="control control&#45;&#45;radio">Deutsches Klimaschutzziel-->
+                                          <!--<input type="radio" name="scenario" value="germany" id="scenarioGermany"/>-->
+                                          <!--<div class="control__indicator"></div>-->
+                                        <!--</label>-->
+                                        <!--<label class="control control&#45;&#45;radio">100% erneuerbar-->
+                                          <!--<input type="radio" name="scenario" value="100" id="scenario100"/>-->
+                                          <!--<div class="control__indicator"></div>-->
+                                        <!--</label>-->
+                                    <!--</fieldset>-->
+                                  <!--</form>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="tabs-panel" id="scenario-panel2">-->
+                              <!--<div class="grid-x grid-margin-x">-->
+                                <!--<div class="cell">-->
+                                  <!--<form class="select-menu">-->
+                                    <!--<label>-->
+                                      <!--Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                      <!--<select>-->
+                                        <!--<option value="husker">Husker</option>-->
+                                        <!--<option value="starbuck">Starbuck</option>-->
+                                        <!--<option value="hotdog">Hot Dog</option>-->
+                                        <!--<option value="apollo">Apollo</option>-->
+                                      <!--</select>-->
+                                    <!--</label>-->
+                                  <!--</form>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--<div class="panel-desc">-->
+                        <!--<p id="scenarioPanelText">-->
+                        <!--<span class="panel-desc__header">Status Quo</span>-->
+                        <!--<span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
 
                   <!-- Third panel content -->
                     <div class="tabs-panel" id="panel-energy">
