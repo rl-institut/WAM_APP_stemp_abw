@@ -196,7 +196,6 @@ class UserSession(object):
         if not isinstance(ctrl_data, dict) or len(ctrl_data) == 0:
             raise ValueError('Data dict not specified or empty!')
 
-        reg_data = self.region_data
         reg_data_upd = {}
 
         # calculate new regional params
@@ -211,8 +210,8 @@ class UserSession(object):
                 for d_name in CONTROL_VALUES_MAP[c_name]:
                     reg_data_upd[d_name] = val * self.tech_ratios[d_name]
 
-
         scn_data = json.loads(self.user_scenario.data.data)
+
         # update regional data
         for k, v in reg_data_upd.items():
             if k in scn_data['reg_params']:
@@ -221,15 +220,22 @@ class UserSession(object):
         for mun, v in self.__disaggregate_reg_to_mun_data(reg_data_upd).items():
             scn_data['mun_data'][mun].update(v)
 
-        # update repowering scenario if necessary
+        # updates at change of repowering scenario
         if 'dd_repowering' in ctrl_data:
-            self.user_scenario.repowering_scenario =\
+            # 1) change repowering scn DB entry for scenario
+            self.user_scenario.repowering_scenario = \
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])
-            sl_wind_repower_pot =\
+            # 2) mun data update
+            repower_data = json.loads(self.user_scenario.repowering_scenario.data)
+            for mun in scn_data['mun_data']:
+                scn_data['mun_data'][mun]['gen_capacity_wind'] =\
+                    repower_data[mun]['gen_capacity_wind']
+            # 3) calculate potential for wind slider update
+            sl_wind_repower_pot = \
                 int(sum([_['gen_capacity_wind']
-                         for _ in json.loads(
-                        self.user_scenario.repowering_scenario.data).values()]))
+                         for _ in repower_data.values()]))
+
         else:
             sl_wind_repower_pot = None
 
