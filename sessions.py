@@ -23,10 +23,12 @@ class UserSession(object):
     mun_to_reg_ratios : :obj:`dict`
         Capacity ratios of municipality to regional values, for details see
         :meth:`stemp_abw.sessions.UserSession.create_mun_data_ratio_for_aggregation`
-    mun_to_reg_ratios : :pandas:`pandas.DataFrame<dataframe>`
+    tech_ratios : :pandas:`pandas.DataFrame<dataframe>`
         Capacity ratios of specific technologies in the region belonging to the
         same category from status quo scenario, for details see
         :meth:`stemp_abw.sessions.UserSession.create_reg_tech_ratios`
+    tracker : :class:`stemp_abw.sessions.Tracker`
+        Holds tool usage data
 
     Notes
     -----
@@ -37,6 +39,7 @@ class UserSession(object):
         self.simulation = Simulation(session=self)
         self.mun_to_reg_ratios = self.create_mun_data_ratio_for_aggregation()
         self.tech_ratios = self.create_reg_tech_ratios()
+        self.tracker = Tracker(session=self)
 
     @property
     def scenarios(self):
@@ -236,6 +239,7 @@ class UserSession(object):
 
 
 class Simulation(object):
+    """Simulation data"""
     def __init__(self, session):
         self.esys = None
         self.session = session
@@ -258,3 +262,19 @@ class Simulation(object):
         #print('Results:', results)
         #print('Params:', param_results)
         pass
+
+
+class Tracker(object):
+    """Tracker to store certain user activity
+
+    E.g. to show popups for features if the user has not visited a certain
+    part in the session.
+    """
+    def __init__(self, session):
+        self.session = session
+        self.visited = self.__init_data()
+
+    def __init_data(self):
+        visited = {'esys': False,
+                   'areas': False}
+        return visited
