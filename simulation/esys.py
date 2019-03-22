@@ -80,10 +80,10 @@ def create_nodes(mun_data, reg_params):
     # debug
     feedin_sum=0
     demand_sum=0
-    for _ in feedin.keys():
+    for _ in feedin:
         print(f'Feedin sum of {_}: ', sum(feedin[_]))
         feedin_sum += sum(feedin[_])
-    for _ in demand.keys():
+    for _ in demand:
         print(f'Demand sum of {_}: ', sum(demand[_]))
         demand_sum += sum(demand[_])
     print('Total feedin sum: ', feedin_sum)

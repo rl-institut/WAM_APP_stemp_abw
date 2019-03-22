@@ -222,7 +222,7 @@ class UserSession(object):
             scn_data['mun_data'][mun].update(v)
 
         # update repowering scenario if necessary
-        if 'dd_repowering' in ctrl_data.keys():
+        if 'dd_repowering' in ctrl_data:
             self.user_scenario.repowering_scenario =\
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])
@@ -247,7 +247,7 @@ class UserSession(object):
             Regional data (updated)
         """
         mun_data_upd = pd.DataFrame()
-        for param in reg_data.keys():
+        for param in reg_data:
             if param in self.mun_to_reg_ratios.columns:
                 mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
                                        reg_data[param]).round(decimals=1)
