@@ -17,6 +17,7 @@ function updateScenarioList(scenarios) {
 };
 
 function updateScenarioControls(scn_name, scn_desc, controls, apply) {
+  //console.log(controls);
   // Sliders
   var esys_sliders = $('.irs-hidden-input').get();
   for (var index in esys_sliders) {
@@ -51,6 +52,10 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
       id = esys_switches[index].id;
       $('#' + id).prop('checked', controls[id]);
     };
+  }
+  // Repowering dropdown
+  if (apply === true) {
+    rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
   }
 };
 
@@ -94,3 +99,8 @@ function changeScenarioControlSlider(data) {
 $('.switch-input.esys').click( function () {
   ctrlScenarioPost({[$(this).prop('id')]: $(this).prop('checked')});
 })
+
+// Fired when repowering dropdown is changed
+function changeScenarioControlDropdown(element_id) {
+  ctrlScenarioPost({[element_id]: $('#' + element_id).prop('value')});
+}

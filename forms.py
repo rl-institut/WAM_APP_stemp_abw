@@ -2,7 +2,7 @@ from django import forms
 from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 
 from stemp_abw.models import Scenario
-
+from stemp_abw.app_settings import REPOWERING_SCENARIOS
 
 class LayerGroupForm(forms.Form):
     """Form for layer group (regional info)"""
@@ -49,8 +49,6 @@ class ComponentGroupForm(forms.Form):
 
         for name, data in components.items():
             if data['type'] == 'range':
-                rep = {1: 'Kein',
-                       2: 'Verhältnis 1:1'}
                 attrs = {'id': 'sl_{}'.format(name),
                          'name': name,
                          'cell_style': '',
@@ -69,7 +67,7 @@ class ComponentGroupForm(forms.Form):
                 if attrs.get('id') == 'sl_wind':
                     attrs['dropdown'] = ['<option value="{id}">{val}</option>'
                                              .format(id=c[0], val=c[1])
-                                         for c in rep.items()]
+                                         for c in REPOWERING_SCENARIOS.items()]
                 self.fields[name] = forms.FloatField(
                     label='',
                     widget=SliderWidget(attrs=attrs),
