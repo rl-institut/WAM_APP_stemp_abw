@@ -789,7 +789,7 @@ class RepoweringScenario(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=255, null=True)
-    data = JSONField()
+    data = JSONField(default=None, null=True)
 
 
 class REPotentialAreas(models.Model):
