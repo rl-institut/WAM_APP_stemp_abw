@@ -18,13 +18,12 @@ application = get_wsgi_application()
 
 from stemp_abw.dataio.load_static import load_mun_data
 from stemp_abw.models import Scenario, ScenarioData, REPotentialAreas
-#from stemp_abw.helpers import order_dict
 
 
 def insert_status_quo_scenario():
     # def create_wkt_element(geom):
     #     return WKTElement(geom, srid=3035)
-    
+
     mun_data = load_mun_data()
     
     # test RE area object
@@ -60,8 +59,8 @@ def insert_status_quo_scenario():
                      'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
                      'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
                      'dist_resid': 1000, 'use_forest': False,
-                     'use_ffh_areas': False, 'use_cult_areas': False
-                     }
+                     'use_ffh_areas': False, 'use_cult_areas': False,
+                     'repowering_scn': 0}
     region_data = mun_data_filtered.sum(axis=0).round(decimals=1).to_dict()
     region_data.update(global_params)
     scn_data = json.dumps(
