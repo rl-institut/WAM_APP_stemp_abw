@@ -783,6 +783,15 @@ class DemandTs(models.Model):
 #     costs_variable = models.FloatField()
 
 
+class RepoweringScenario(models.Model):
+    """Repowering scenario"""
+
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, null=True)
+    data = JSONField()
+
+
 class REPotentialAreas(models.Model):
     """Potential areas for renewable plants
 
