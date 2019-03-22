@@ -107,9 +107,6 @@ CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
                       'dd_repowering': 'repowering_scn'
                       }
 
-REPOWERING_SCENARIOS = {0: 'Kein',
-                        1: 'Verhältnis 1:1'}
-
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
                   'date_to': '2017-01-07 23:00:00',
                   'freq': '60min',

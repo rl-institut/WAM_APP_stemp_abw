@@ -1,5 +1,5 @@
 import pandas as pd
-from stemp_abw.models import FeedinTs, DemandTs, MunData
+from stemp_abw.models import FeedinTs, DemandTs, MunData, RepoweringScenario
 
 
 def load_timeseries():
@@ -50,3 +50,8 @@ def load_mun_data():
             .values())).set_index('ags_id')
 
     return mun_data
+
+
+def load_repowering_scenarios():
+    """Load repowering scenarios"""
+    return RepoweringScenario.objects.order_by('id').all()

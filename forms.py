@@ -2,7 +2,9 @@ from django import forms
 from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
 
 from stemp_abw.models import Scenario
-from stemp_abw.app_settings import REPOWERING_SCENARIOS
+from stemp_abw.dataio.load_static import load_repowering_scenarios
+
+REPOWERING_SCENARIOS = load_repowering_scenarios()
 
 class LayerGroupForm(forms.Form):
     """Form for layer group (regional info)"""
@@ -46,7 +48,6 @@ class ComponentGroupForm(forms.Form):
         super(ComponentGroupForm, self).__init__(*args, **kwargs)
         # self.helper = FormHelper(self)
         # self.helper.template = 'forms/parameter_form.html'
-
         for name, data in components.items():
             if data['type'] == 'range':
                 attrs = {'id': 'sl_{}'.format(name),
@@ -67,8 +68,8 @@ class ComponentGroupForm(forms.Form):
                 # element cannot be added to the slider list
                 if attrs.get('id') == 'sl_wind':
                     attrs['dropdown'] = ['<option value="{id}">{val}</option>'
-                                             .format(id=c[0], val=c[1])
-                                         for c in REPOWERING_SCENARIOS.items()]
+                                             .format(id=c.id, val=c.name)
+                                         for c in REPOWERING_SCENARIOS]
                 self.fields[name] = forms.FloatField(
                     label='',
                     widget=SliderWidget(attrs=attrs),
