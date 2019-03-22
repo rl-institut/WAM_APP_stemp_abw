@@ -7,7 +7,7 @@ TIMESERIES = load_timeseries()
 MUN_DATA = load_mun_data()
 
 
-def prepare_feedin_timeseries(mun_data):
+def prepare_feedin_timeseries(mun_data, reg_params):
     """Calculate capacity(mun)-weighted aggregated feedin timeseries per
     technology for entire region
 
@@ -24,10 +24,15 @@ def prepare_feedin_timeseries(mun_data):
             'gen_capacity_pv_roof_large',
             'gen_capacity_hydro']
 
+
     # mapping for RE capacity columns to RE timeseries columns
-    tech_mapping = {'gen_capacity_wind': 'wind_sq',
-                    'gen_capacity_pv_ground': 'pv_ground',
-                    'gen_capacity_hydro': 'hydro'}
+    # if repowering scenario present, use wind_fs time series
+    tech_mapping = {
+        'gen_capacity_wind':
+            'wind_sq' if reg_params['repowering_scn'] == 0 else 'wind_fs',
+        'gen_capacity_pv_ground': 'pv_ground',
+        'gen_capacity_hydro': 'hydro'
+    }
 
     # prepare RE capacities
     re_cap_per_mun = pd.DataFrame.from_dict(mun_data, orient='index')[cols]\
@@ -39,12 +44,17 @@ def prepare_feedin_timeseries(mun_data):
     re_cap_per_mun.drop(columns=['gen_capacity_pv_roof_small',
                                  'gen_capacity_pv_roof_large'],
                         inplace=True)
-    re_cap_per_mun['wind_fs'] = 0
 
     # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region
     feedin_agg = {}
     for tech in list(re_cap_per_mun.columns):
         feedin_agg[tech] = list((TIMESERIES['feedin'][tech] * re_cap_per_mun[tech]).sum(axis=1))
+
+    # if repowering scenario present, rename wind_fs time series to wind
+    if reg_params['repowering_scn'] == 0:
+        feedin_agg['wind'] = feedin_agg.pop('wind_sq')
+    else:
+        feedin_agg['wind'] = feedin_agg.pop('wind_fs')
 
     return feedin_agg
 
@@ -74,7 +84,7 @@ def prepare_demand_timeseries(reg_params):
 def create_nodes(mun_data, reg_params):
     """Creates and return nodes for energy system"""
 
-    feedin = prepare_feedin_timeseries(mun_data)
+    feedin = prepare_feedin_timeseries(mun_data, reg_params)
     demand = prepare_demand_timeseries(reg_params)
 
     # debug
@@ -99,7 +109,7 @@ def create_nodes(mun_data, reg_params):
     nodes.append(solph.Source(label='gen_el_wind',
                               outputs={bus_el: solph.Flow(nominal_value=1,
                                                           variable_costs=0,
-                                                          actual_value=feedin['wind_sq'],
+                                                          actual_value=feedin['wind'],
                                                           fixed=True
                                                           )})
                  )
