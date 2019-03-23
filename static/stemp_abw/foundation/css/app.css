@@ -6946,7 +6946,7 @@ a.thumbnail {
   background-color: #81C3D7 !important;
   font-size: 1rem;
   color: #0a0a0a !important;
-  /*white-space: pre-line;*/}
+  white-space: pre;}
   .tooltip::before {
     position: absolute;
     border-color: transparent #81C3D7 transparent !important; }
