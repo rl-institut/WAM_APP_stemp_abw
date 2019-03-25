@@ -4,3 +4,9 @@
     <p>{{ layer.dem_el_energy_per_capita }} kWh pro EinwohnerIn</p>
 </div>
 {% endblock %}
+{% block vis %}
+    <div class="cell" style="height: 168px;">
+        {{ chart }}
+    </div>
+
+{% endblock%}

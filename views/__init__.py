@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
-from collections import OrderedDict
+
 #import sqlahelper
 
 from stemp_abw.config import io
@@ -11,7 +11,7 @@ from stemp_abw.models import Scenario
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from stemp_abw.charts_data import visualizations1, visualizations2
+from stemp_abw.charts_data import visualizations1, visualizations2, visualizations4, visualizations5
 
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
@@ -60,6 +60,8 @@ class MapView(TemplateView):
         # TODO: Temp stuff for WS
         context['visualizations1'] = visualizations1
         context['visualizations2'] = visualizations2
+        context['visualizations4'] = visualizations4
+        context['visualizations5'] = visualizations5
 
         # Trial: new info button
         # TODO: Move

@@ -40,6 +40,7 @@ class UserSession(object):
         self.mun_to_reg_ratios = self.create_mun_data_ratio_for_aggregation()
         self.tech_ratios = self.create_reg_tech_ratios()
         self.tracker = Tracker(session=self)
+        self.highcharts_temp = None
 
     @property
     def scenarios(self):
