@@ -810,7 +810,7 @@ class REPotentialAreas(models.Model):
     id = models.BigAutoField(primary_key=True)
     area_params = JSONField(default=None, null=True)
     mun_data = JSONField(default=None, null=True)
-    geom = geomodels.MultiPolygonField(srid=3035)
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
 class ScenarioData(models.Model):
