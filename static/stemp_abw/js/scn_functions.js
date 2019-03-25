@@ -21,9 +21,13 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   // Repowering dropdown
   if (apply === true) {
     rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
-    if (controls['dd_repowering'] == 0) {
+    if (controls['dd_repowering'] != 0) {
       $('#sl_wind').data("ionRangeSlider").update({
         disable: false,
+      });
+    } else {
+      $('#sl_wind').data("ionRangeSlider").update({
+        disable: true,
       });
     }
   }
@@ -121,7 +125,7 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
   var wind_slider = $('#sl_wind').data("ionRangeSlider");
   var dd_value = $('#dd_repowering').prop('value');
 
-  if (dd_value != 0) {
+  if (dd_value == 0) {
     wind_slider.update({
       from: sl_wind_value,
       disable: true,
