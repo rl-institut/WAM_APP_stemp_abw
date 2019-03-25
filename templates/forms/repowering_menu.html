@@ -1,0 +1,5 @@
+  <select id="dd_repowering" onchange="changeScenarioControlRepDropdown(this.id)">
+      {% for rep in widget.attrs.dropdown %}
+        {{ rep|safe }}
+      {% endfor %}
+  </select>

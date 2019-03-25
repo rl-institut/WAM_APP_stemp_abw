@@ -3,27 +3,159 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="l-bg-color u-vh--100">
+
       <!-- HERO SECTION START -->
-      <main class="grid-container hp__wrapper">
+      <main>
         <div class="grid-x">
 
+          <section class="grid-x l-bg-color hp-hero">
           <div class="cell u-text--center">
-            <h1 class="hp__header">Stakeholder Empowerment Tool</h1>
+              <h1 class="hp-hero__header">Regionaler Energiebalancekreis Anhalt-Bitterfeld-Wittenberg</h1>
           </div>
           <div class="cell u-text--center hp-subheader">
-            <h2 class="hp__subheader">Flächennutzung für Regionalen Energiebalancekreis</h2>
+              <h2 class="hp-hero__subheader">Szenarien unter dem Aspekt einer abgestimmten Flächennutzung</h2>
           </div>
-          <div class="cell u-text--center hp__btn">
+        <div class="cell u-text--center hp-hero__img">
+          <img src="{% static 'stemp_abw/img/HP_Anhalt_map_w.png' %}" alt="Anhalt Karte als Bild">
+        </div>
+          <div class="cell u-text--center hp-hero__btn">
             <a href="{% url 'stemp_abw:map' %}" class="btn btn-cta">
               Zum Tool
               <i class ="icon ion-chevron-right icon--small"></i>
             </a>
           </div>
+          </section>
 
+          <section class="grid-x align-center l-bg-color--w hp-info">
+            <div class="cell medium-8 large-6 hp-info__text">
+              <p>Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die Partizipation der Bürger und Bürgerinnen. Allerdings erschwert die Komplexität von Energiesystemen und damit verbundenen Fragestellungen den Partizipationsprozess oft erheblich.</p>
+              <p>Der Szenarienrechner schafft die Möglichkeit, allen interessierten Anspruchsgruppen ein besseres Verständnis über verschiedene Szenarien des regionalen Energiebalancekreises zu vermitteln und die Auswirkungen von Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige Diskussion geschaffen und eine gemeinsame Planung ermöglicht.</p>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--light hp-features">
+            <div class="cell large-10">
+              <div class="grid-x align-center">
+                <div class="cell">
+                  <h2 class="hp-features__header">Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in Zukunft aussehen?</h2>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">Partizipation</h3>
+                  <p>Regionale Akteure, insbesondere BürgerInnen, sollen ermutigt werden, seriös und real an der Mitgestaltung der Energiewende in ABW teilzunehmen. Durch anschauliches Design und geeignete Moderation werden die komplexen Zusammenhänge erfahr- und diskutierbar.</p>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">Effizientere Arbeitsweise</h3>
+                  <p>Die regionale Energiewende kann mit besser verhandelten Ergebnissen effizienter vorangetrieben werden. Es wird, in der Gesamtheit, eine bessere Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht.</p>
+                </div>
+              </div>
+              <div class="grid-x align-center">
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">Tieferes Verständnis</h3>
+                  <p>Dieses Tool wird nicht nur dabei helfen, die Zusammenhänge zwischen verschiedenen Systemen der Energiewirtschaft, Ökologie und Kulturlandschaft besser zu erklären, auch die Interessen und Werte der regionalen Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis wächst - auch und gerade bei unterschiedlichen Meinungen.</p>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">Open Science</h3>
+                  <p>Daten und Quellcodes werden für alle Interessenten bereitgestellt. Das schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher Tools somit erleichtert werden.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--white hp-how">
+            <div class="cell large-10">
+              <div class="grid-x align-center">
+                <div class="cell">
+                  <h2 class="hp-how__header">Wie funktioniert das Tool?</h2>
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>1</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    Verschaffe dir einen Überblick über deine Region
+                    <ul>
+                      <li>Wieviele Menschen leben in den Gemeinden?</li>
+                      <li>Wieviel Strom kommt aus Erneuerbaren Energien?</li>
+                      <li>Wieviele Windkraftanlagen stehen in den Gemeinden?</li>
+                      <li>Welcher Flächenbelastung entspricht das?</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Screenshot_Tool_1.png' %}" alt="Bild von der Karte">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>2</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    Definiere dein eigenes Szenario / Energiesystem
+                    <ul>
+                      <li>Variiere den Zubau von Windenergie- Photovoltaik- und Biomasseanlagen oder konventionellen Kraftwerken</li>
+                      <li>Setze Energieeinsparziele für die Region</li>
+                      <li>Wähle den Einsatz von Batterien</li>
+                      <li>Oder wähle ein vorberechnetes Szenario</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Screenshot_Tool_1.png' %}" alt="Bild von der Karte">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>3</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    Passe Flächen für Windenergie an
+                    <ul>
+                      <li>Sieh dir vorhandene Vorrangflächen für Windenergie an</li>
+                      <li>Sieh dir die Tabuzonen für Windenergie in der Region an</li>
+                      <li>Entscheide ob der Mindestabstand zu Siedlungen verändert werden soll, um mehr Windenergieanlagen bauen zu können</li>
+                      <li>Entscheide ob Wald-, FFH- und UNESCO-Welterbegebiete zum Bau von Windenergieanlagen zur Verfügung stehen sollen</li>
+                      <li>Beobachte die Auswirkungen in der Karte und auf die mögliche Stromerzeugung des Energiesystems</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Screenshot_Tool_1.png' %}" alt="Bild von der Karte">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>4</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    Vergleiche die Ergebnisse mit dem Status Quo
+                    <ul>
+                      <li>Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der Region?</li>
+                      <li>Wie viele Windkraftanlagen pro km² kommen hinzu?</li>
+                      <li>Wie verändert sich der Im- und Export von Strom?</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Screenshot_Tool_1.png' %}" alt="Bild von der Karte">
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
-      <!-- HERO SECTION END -->
 
 
       <footer class="footer-hp l-bg-color--w">
@@ -43,7 +175,7 @@
               </li>
               <li>
                 <a href="https://www.energieavantgarde.de/" target="_blank" rel="noopener" title="Kopernikus Projekte">
-                  <img class="footer-hp__logo-kopernikus" src="{% static 'stemp_abw/img/kopernikus_logo.png' %}" alt="Logo Kopernikus Projekte">
+                  <img class="footer-hp__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="Logo ENavi">
                 </a>
               </li>
               <li>
@@ -68,5 +200,4 @@
 
         </div>
       </footer>
-    </div>
 {% endblock %}

@@ -4,3 +4,8 @@
     <p>{{ layer.dem_th_energy }} GWh</p>
 </div>
 {% endblock %}
+{% block vis %}
+    <div class="cell" style="height: 168px;">
+        {{ chart }}
+    </div>
+{% endblock%}

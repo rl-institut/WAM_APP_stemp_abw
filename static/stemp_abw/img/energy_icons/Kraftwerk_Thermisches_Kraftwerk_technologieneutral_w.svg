@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29167"
+   version="1.1"
+   id="svg1054">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(0,-164.70832)">
+    <g
+       style="fill:none;stroke-width:1.06612539"
+       id="ic_x5F_108_Wärme"
+       transform="matrix(0.24817282,0,0,0.24817282,76.226291,191.14807)">
+      <g
+         style="fill:none;stroke-width:1.06612539"
+         id="group1">
+        <g
+           transform="matrix(1.5898194,0,0,1.5898194,-204.80557,-103.9337)"
+           id="ic_x5F_25_Dampfturbine"
+           style="fill:none;stroke-width:0.71493858">
+          <g
+             id="group3"
+             style="fill:none;stroke-width:0.71493858" />
+          <g
+             transform="matrix(1.0845898,0,0,1.0904198,-74.182753,45.51704)"
+             id="ic_x5F_74_Elektromotor"
+             style="fill:none;stroke-width:0.44085887">
+            <g
+               id="group1-0"
+               style="fill:none;stroke-width:0.44085887">
+              <g
+                 transform="matrix(0.90928347,0,0,0.90442193,70.028729,-41.089626)"
+                 id="ic_x5F_26_Gasturbine"
+                 style="fill:none;stroke-width:0.29977489">
+                <g
+                   transform="translate(24.0628,17.1051)"
+                   id="group1-3"
+                   style="fill:none;stroke-width:0.29977489">
+                  <g
+                     transform="matrix(1.0904321,0,0,1.0904321,-90.155558,40.032633)"
+                     id="ic_x5F_27_Gas-_Dampfturbine"
+                     style="fill:none;stroke-width:0.18693571">
+                    <g
+                       transform="matrix(0.93934867,0,0,0.93934867,-2.025386,23.641553)"
+                       id="group1-9"
+                       style="fill:none;stroke-width:0.12409734">
+                      <g
+                         transform="translate(2.1581419,-1.8450614)"
+                         id="ic_x5F_124_Thermisches_Kraftwerk__x28_technologie-neutral_x29_"
+                         style="fill:none;stroke-width:0.12409734">
+                        <path
+                           id="shape1"
+                           transform="matrix(0.66385038,0,0,0.66385037,1.6991711,-98.691877)"
+                           d="M 147.64453,80.080078 140.07617,269.50195 H 194.625 L 187.05664,80.080078 Z"
+                           style="fill:#ffffff;stroke-width:0.18693571;fill-opacity:1" />
+                        <path
+                           id="shape2"
+                           transform="matrix(0.66385038,0,0,0.66385037,1.6991711,-98.691877)"
+                           d="m 242.09766,155.42188 c 12.74961,25.8796 19.89029,67.85567 21.5,114.08007 h 59.89257 V 474.60352 H 493.79297 C 452.80331,397.36021 448.2511,222.43969 481.26758,155.42188 Z"
+                           style="fill:#ffffff;stroke-width:0.18693571;fill-opacity:1" />
+                        <g
+                           style="fill:none;stroke-width:0.12490103"
+                           id="g1847"
+                           transform="matrix(0.98261717,0,0,1.0046354,-53.867377,256.13894)">
+                          <path
+                             id="rect1843"
+                             transform="matrix(0.67559411,0,0,0.66078736,56.549539,-353.19362)"
+                             d="m 316.50977,268.44336 v 7.45117 199.57813 16.58593 H 301.11328 7.1894531 0.14257812 v 5.97071 H 329.49023 V 268.44336 Z M 7.1894531,275.54297 V 475.4043 H 300.10547 V 275.54297 Z M 161.9043,307.73438 c 38.67468,0 70.0332,31.35326 70.0332,70.03124 0,38.6783 -31.35852,70.03126 -70.0332,70.03126 -38.6801,0 -70.035159,-31.35296 -70.035159,-70.03126 0,-38.67798 31.355059,-70.03125 70.035159,-70.03124 z m 0,5.49218 c -35.58905,0 -64.542972,28.95124 -64.542972,64.53906 0,35.58664 28.954532,64.53907 64.542972,64.53907 35.58768,0 64.54101,-28.95243 64.54101,-64.53907 0,-35.58782 -28.95333,-64.53906 -64.54101,-64.53906 z m 0.99023,6.36524 6.82617,0.39258 8.77149,45.68164 35.72265,-16.56446 2.9668,5.87305 -35.72656,30.09961 32.87695,22.1914 -3.66992,5.40626 -43.33984,-15.01563 -4.13868,39.32227 -6.82617,-0.39063 -8.74219,-45.53711 -36.14062,16.75977 -2.9668,-5.87305 36.13672,-30.44922 -33.18945,-22.40234 3.66797,-5.40625 43.64453,15.12304 z"
+                             style="fill:#ffffff;stroke-width:0.18693569;fill-opacity:1" />
+                        </g>
+                        <g
+                           transform="translate(-26.379685,83.40316)"
+                           id="g1875"
+                           style="fill:none;stroke-width:0.12409734" />
+                        <g
+                           style="fill:none;stroke-width:0.12409734"
+                           id="g1881"
+                           transform="translate(167.05432,267.38923)" />
+                      </g>
+                      <g
+                         style="fill:none;stroke-width:0.12409734"
+                         id="g1869"
+                         transform="translate(40.885938,93.107724)">
+                        <g
+                           style="fill:none;stroke-width:0.12409734"
+                           id="g1863"
+                           transform="translate(7.05116,4.98257)">
+                          <path
+                             style="fill:#f9fef8;stroke:#fdfbfc;stroke-width:0.76212245;stroke-linecap:round;stroke-linejoin:round"
+                             id="path1861"
+                             transform="translate(60.1884,48.943)"
+                             d="M 7.34039,3.67019 C 7.34039,1.6432 5.69719,0 3.67019,0 1.6432,0 0,1.6432 0,3.67019 c 0,2.027 1.6432,3.6702 3.67019,3.6702 2.027,0 3.6702,-1.6432 3.6702,-3.6702" />
+                        </g>
+                        <g
+                           style="fill:none;stroke-width:0.12409734"
+                           id="g1867" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

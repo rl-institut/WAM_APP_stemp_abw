@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.39395669,0,0,0.39395669,0.23519297,32.279248)"
+     id="ic_x5F_05_Photovoltaik_Dachanlage_1_"
+     style="fill:none;stroke-width:0.67160511">
+    <path
+       d="M 26.2861,166.945 H 149.215 V 88.1994 h 28.22 L 89.1024,0 0,88.9721 h 26.2861 z"
+       transform="translate(156.97,0.442274)"
+       id="shape1"
+       style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+    <g
+       transform="translate(0,0.719274)"
+       id="group1"
+       style="fill:none;stroke-width:0.67160511">
+      <path
+         d="M 52.6141,0 H 19.2196 L 0,20 h 33.3944 z"
+         transform="translate(45.8307,22.625)"
+         id="shape2"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6121,0 H 19.2183 L 0,20 h 33.3938 z"
+         transform="translate(83.3357,22.625)"
+         id="shape3"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6121,0 H 19.2183 L 0,20 h 33.3948 z"
+         transform="translate(120.839,22.625)"
+         id="shape4"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6141,0 H 19.2196 L 0,20 h 33.3954 z"
+         transform="translate(158.342,22.625)"
+         id="shape5"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9351,0 H 19.4399 L 0,19.2533 h 33.4981 z"
+         transform="translate(68.5207,0.625)"
+         id="shape6"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9331,0 H 19.4376 L 0,19.2533 h 33.4955 z"
+         transform="translate(106.026,0.625)"
+         id="shape7"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9371,0 H 19.4403 L 0,19.2533 h 33.4968 z"
+         transform="translate(143.529,0.625)"
+         id="shape8"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9351,0 H 19.4399 L 0,19.2533 h 33.4981 z"
+         transform="translate(181.032,0.625)"
+         id="shape9"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6121,0 H 19.2193 L 0,20 h 33.3928 z"
+         transform="translate(0.45065,68.625)"
+         id="shape10"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6141,0 H 19.2186 L 0,20 h 33.3934 z"
+         transform="translate(37.9547,68.625)"
+         id="shape11"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.616,0 H 19.221 L 0,20 h 33.3951 z"
+         transform="translate(75.4567,68.625)"
+         id="shape12"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.6141,0 H 19.2196 L 0,20 h 33.3944 z"
+         transform="translate(112.962,68.625)"
+         id="shape13"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9351,0 H 19.438 L 0,19.2533 h 33.4962 z"
+         transform="translate(23.1407,46.625)"
+         id="shape14"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9351,0 H 19.438 L 0,19.2533 h 33.4972 z"
+         transform="translate(60.6437,46.625)"
+         id="shape15"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9351,0 H 19.4389 L 0,19.2533 h 33.4972 z"
+         transform="translate(98.1477,46.625)"
+         id="shape16"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+      <path
+         d="M 52.9371,0 H 19.4393 L 0,19.2533 h 33.4958 z"
+         transform="translate(135.652,46.625)"
+         id="shape17"
+         style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+    </g>
+    <path
+       d="M 20,36.5067 V 0 H 0 v 16.7733"
+       transform="translate(286.937,13.3443)"
+       id="shape18"
+       style="fill:#ffffff;stroke-width:0.67160511;fill-opacity:1" />
+  </g>
+</svg>

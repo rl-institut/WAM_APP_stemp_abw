@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29167"
+   version="1.1"
+   id="svg1054">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     style="fill:none;stroke-width:0.82453036"
+     id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_"
+     transform="matrix(0.32088974,0,0,0.32088974,0.21111797,33.326983)">
+    <g
+       style="fill:none;stroke-width:0.55775899"
+       transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+       id="ic_x5F_16_Laufwasserkraftwerk">
+      <g
+         transform="matrix(0.75557175,0,0,0.7572401,8.878526,68.394288)"
+         id="ic_x5F_80_Haushalt_als_Stromverbraucher"
+         style="fill:none">
+        <g
+           transform="matrix(0.74101282,0,0,0.73938022,53.672072,12.031946)"
+           id="ic_x5F_81_Industrieller_Stromverbraucher"
+           style="fill:none">
+          <g
+             id="layer1"
+             transform="matrix(0.83694993,0,0,0.83694994,-387.23069,-0.0622627)">
+            <g
+               transform="translate(560.0883,-90.646774)"
+               id="ic_x5F_108_Wärme"
+               style="fill:none">
+              <g
+                 id="group1"
+                 style="fill:none">
+                <g
+                   transform="matrix(1.6892076,0,0,1.6892076,-173.40667,-15.8903)"
+                   id="group1-1"
+                   style="fill:none">
+                  <g
+                     transform="translate(243.076,71.0563)"
+                     id="group2"
+                     style="fill:none">
+                    <g
+                       transform="translate(0,103.635)"
+                       id="group3"
+                       style="fill:none">
+                      <g
+                         transform="matrix(0.7649128,0,0,0.76491278,-249.37922,-98.265706)"
+                         id="ic_x5F_85_Wärmepumpe-Luft"
+                         style="fill:none">
+                        <g
+                           transform="matrix(1.0735155,0,0,1.0735155,264.45969,21.058795)"
+                           id="group2-8"
+                           style="fill:none;stroke-width:21.62808091;stroke-miterlimit:4;stroke-dasharray:none">
+                          <g
+                             transform="translate(-66.962463,-120.19452)"
+                             id="group3-5"
+                             style="fill:#004000;fill-opacity:1;stroke-width:21.62808091;stroke-miterlimit:4;stroke-dasharray:none" />
+                          <g
+                             transform="translate(11.841)"
+                             id="group4"
+                             style="fill:none;stroke-width:21.62808091;stroke-miterlimit:4;stroke-dasharray:none" />
+                        </g>
+                        <path
+                           d="M 103.70879,15.60093 76.229376,115.91567 111.9174,99.725078 v 39.041062 l -9.47429,-2.22165 7.89755,31.42785 17.37056,-28.24796 -9.79421,-0.0228 19.5782,-69.496796 -43.89413,24.440348 34.74228,-79.044162 z"
+                           id="shape2"
+                           style="fill:#002e4f;stroke-width:0.70389795;fill-opacity:1" />
+                        <g
+                           transform="matrix(1.262011,0,0,1.262011,-0.16375651,-22.280856)"
+                           id="group1-0"
+                           style="fill:none;stroke-width:0.55775899">
+                          <path
+                             d="m 89.7775,9.02029 c 44.5305,0 80.7575,36.22751 80.7575,80.75871 0,44.529 -36.227,80.757 -80.7575,80.757 -44.53,0 -80.75726,-36.226 -80.75726,-80.757 0,-44.5312 36.22726,-80.75871 80.75726,-80.75871 M 89.7775,0 C 40.1952,0 0,40.1944 0,89.779 c 0,49.582 40.1952,89.777 89.7775,89.777 49.5825,0 89.7775,-40.194 89.7775,-89.777 C 179.555,40.1944 139.36,0 89.7775,0 Z"
+                             transform="translate(0.625,0.625)"
+                             id="shape3"
+                             style="fill:#002e4f;fill-opacity:1" />
+                          <path
+                             style="fill:#002e4f;fill-opacity:1"
+                             id="path3261"
+                             d="m 217.47557,9.64529 c 44.5305,0 80.7575,36.22751 80.7575,80.75871 0,44.529 -36.227,80.757 -80.7575,80.757 -44.53,0 -80.75726,-36.226 -80.75726,-80.757 0,-44.5312 36.22726,-80.75871 80.75726,-80.75871 m 0,-9.02029 c -49.5823,0 -89.7775,40.1944 -89.7775,89.779 0,49.582 40.1952,89.777 89.7775,89.777 49.5825,0 89.7775,-40.194 89.7775,-89.777 0,-49.5846 -40.195,-89.779 -89.7775,-89.779 z" />
+                        </g>
+                        <g
+                           transform="matrix(0.37593216,0,0,0.37593217,203.27159,53.640814)"
+                           id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_-8"
+                           style="fill:none;stroke-width:0.82453036">
+                          <g
+                             id="ic_x5F_16_Laufwasserkraftwerk-1"
+                             transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+                             style="fill:none;stroke-width:0.55775899">
+                            <g
+                               style="fill:none"
+                               id="ic_x5F_80_Haushalt_als_Stromverbraucher-3"
+                               transform="matrix(0.75557175,0,0,0.7572401,8.878526,68.394288)">
+                              <g
+                                 style="fill:none"
+                                 id="ic_x5F_81_Industrieller_Stromverbraucher-1"
+                                 transform="matrix(0.74101282,0,0,0.73938022,53.672072,12.031946)">
+                                <g
+                                   transform="matrix(0.83694993,0,0,0.83694994,-387.23069,-0.0622627)"
+                                   id="layer1-1">
+                                <g
+                                   style="fill:none"
+                                   id="ic_x5F_108_Wärme-0"
+                                   transform="translate(560.0883,-90.646774)">
+                                <g
+                                   style="fill:none"
+                                   id="group1-3">
+                                <path
+                                   style="fill:#002e4f;stroke-width:0.77350926;fill-opacity:1"
+                                   id="shape1"
+                                   d="m 140.4152,385.69402 c 0,54.03037 -43.80953,97.81771 -97.831569,97.81771 -54.041741,0 -97.830191,-43.78734 -97.830191,-97.81771 0,-54.03258 43.78984,-97.82602 97.830191,-97.82602 54.023429,0 97.831569,43.79483 97.831569,97.82602 z" />
+                                <g
+                                   style="fill:none"
+                                   id="group2-4"
+                                   transform="matrix(1.3868164,0,0,1.3868164,-10.64377,-17.355029)">
+                                <path
+                                   style="fill:#002e4f;fill-opacity:1"
+                                   id="shape2-0"
+                                   transform="translate(0.625,0.625)"
+                                   d="m 37.4615,19.4045 c 9.944,0 18.0352,8.0909 18.0352,18.0369 V 220.112 H 19.4133 V 37.4414 c -0.001,-9.946 8.0962,-18.0369 18.0482,-18.0369 M 37.4615,0 C 16.7809,0 0,16.7602 0,37.4414 V 239.518 H 74.91 V 37.4414 C 74.91,16.7602 58.1421,0 37.4615,0 Z" />
+                                </g>
+                                <rect
+                                   style="fill:#002e4f;stroke-width:0.71318203;fill-opacity:1"
+                                   y="160.09506"
+                                   x="-9.7783966"
+                                   id="shape3-3"
+                                   width="70.693459pt"
+                                   height="124.7347pt" />
+                                <path
+                                   style="fill:none;stroke:#002e4f;stroke-width:35.91798782;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                                   id="shape4"
+                                   stroke-miterlimit="2.00000000000"
+                                   d="m 152.3335,74.521557 h 43.31305" />
+                                <path
+                                   style="fill:none;stroke:#002e4f;stroke-width:35.91798782;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                                   id="shape5"
+                                   stroke-miterlimit="2.00000000000"
+                                   d="m 152.3335,160.41819 h 43.31305" />
+                                <path
+                                   style="fill:none;stroke:#002e4f;stroke-width:35.91798782;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                                   id="shape6"
+                                   stroke-miterlimit="2.00000000000"
+                                   d="m 152.3335,246.31759 h 43.31305" />
+                                </g>
+                                </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

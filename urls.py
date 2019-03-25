@@ -14,11 +14,19 @@ app_name = 'stemp_abw'
 
 # regular URLs
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('app/', views.MapView.as_view(), name='map'),
-    path('sources_old/', views.SourcesView.as_view(), name='sources_old'),
+    path('', views.IndexView.as_view(),
+         name='index'),
+    path('app/', views.MapView.as_view(),
+         name='map'),
+    path('imprint/', views.ImprintView.as_view(),
+         name='imprint'),
+    path('privacy_policy/', views.PrivacyPolicyView.as_view(),
+         name='privacy_policy'),
+    path('sources_old/', views.SourcesView.as_view(),
+         name='sources_old'),
     # Source views from WAM with highlighting
-    path('sources/', AppListView.as_view(app_name='stemp_abw', model=Source),
+    path('sources/', AppListView.as_view(app_name='stemp_abw',
+                                         model=Source),
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name='stemp_abw'),
          name='assumptions'),
@@ -40,9 +48,63 @@ urlpatterns.extend(
 # Test JS template view
 # TODO: Generalize like above!
 urlpatterns.extend(
-    [path('popupjs/reg_mun/', views.RegMunDetailJsView.as_view(), name='reg_mun_popupjs'),
-     path('popupjs/reg_mun_pop/', views.RegMunPopDetailJsView.as_view(), name='reg_mun_pop_popupjs'),
-     path('popupjs/reg_mun_pop_density/', views.RegMunPopDensityDetailJsView.as_view(), name='reg_mun_pop_density_popupjs')]
+    [
+        path(
+            'popupjs/reg_mun_pop/<int:pk>/',
+            views.RegMunPopDetailJsView.as_view(),
+            name='reg_mun_pop_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
+            views.RegMunEnergyReElDemShareDetailJsView.as_view(),
+            name='reg_mun_energy_re_el_dem_share_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re/<int:pk>/',
+            views.RegMunGenEnergyReDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re_per_capita/<int:pk>/',
+            views.RegMunGenEnergyRePerCapitaDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_per_capita_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_energy_re_density/<int:pk>/',
+            views.RegMunGenEnergyReDensityDetailJsView.as_view(),
+            name='reg_mun_gen_energy_re_density_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_cap_re/<int:pk>/',
+            views.RegMunGenCapReDetailJsView.as_view(),
+            name='reg_mun_gen_cap_re_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_gen_cap_re_density/<int:pk>/',
+            views.RegMunGenCapReDensityDetailJsView.as_view(),
+            name='reg_mun_gen_cap_re_density_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_dem_el_energy/<int:pk>/',
+            views.RegMunDemElEnergyDetailJsView.as_view(),
+            name='reg_mun_dem_el_energy_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_dem_el_energy_per_capita/<int:pk>/',
+            views.RegMunDemElEnergyPerCapitaDetailJsView.as_view(),
+            name='reg_mun_dem_el_energy_per_capita_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_dem_th_energy/<int:pk>/',
+            views.RegMunDemThEnergyDetailJsView.as_view(),
+            name='reg_mun_dem_th_energy_popupjs'
+        ),
+        path(
+            'popupjs/reg_mun_dem_th_energy_per_capita/<int:pk>/',
+            views.RegMunDemThEnergyPerCapitaDetailJsView.as_view(),
+            name='reg_mun_dem_th_energy_per_capita_popupjs'
+        )
+    ]
 )
 
 # search JSON data views classes and append to URLs

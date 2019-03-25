@@ -1,10 +1,10 @@
+from uuid import uuid4
+
 from django.db import models
-# from djgeojson.fields import PointField
 from django.contrib.gis.db import models as geomodels
-# from geoalchemy2.types import Geometry
-from stemp_abw import oep_models
+from django.contrib.postgres.fields import JSONField
+from django.utils import timezone
 from stemp_abw.app_settings import LABELS
-import sqlahelper
 
 
 # class MapLayers(models.Model):
@@ -535,6 +535,11 @@ class MunData(models.Model):
     dem_th_energy_total_per_capita :
         Annual heat demand of households, retail, commercial and agricultural
         sector per capita in MWh
+
+    reg_prio_area_wec_area :
+        Area sum of priority areas (parts) in ha
+    reg_prio_area_wec_count :
+        Count of priority area (parts)
     """
     """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
@@ -594,6 +599,9 @@ class MunData(models.Model):
     dem_th_energy_hh_per_capita = models.FloatField(null=True)
     dem_th_energy_total_per_capita = models.FloatField(null=True)
 
+    reg_prio_area_wec_area = models.FloatField(null=True)
+    reg_prio_area_wec_count = models.IntegerField(null=True)
+
 
 class FeedinTs(models.Model):
     """Renewable feedin timeseries (normalized, hourly)
@@ -617,6 +625,11 @@ class FeedinTs(models.Model):
         Wind turbines (status quo)
     wind_fs :
         Wind turbines (future scenarios)
+
+    Notes
+    -----
+    Timeseries are stored per timestep and ags -> one dataset is uniquely
+    identified by timestamp and municipality's ags.
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
@@ -703,7 +716,7 @@ class Powerplant(models.Model):
 
 
 class DemandTs(models.Model):
-    """Demand timeseries (normalized, hourly)
+    """Demand timeseries (hourly)
 
     Attributes
     ----------
@@ -736,6 +749,11 @@ class DemandTs(models.Model):
         Heat demand of retail, commercial and agricultural sector (GHD) in MW
     th_ind :
         Heat demand of industry in MW
+
+    Notes
+    -----
+    Timeseries are stored per timestep and ags -> one dataset is uniquely
+    identified by timestamp and municipality's ags.
     """
     id = models.BigAutoField(primary_key=True)
     timestamp = models.DateTimeField(db_index=True)
@@ -763,3 +781,101 @@ class DemandTs(models.Model):
 #     technology = models.CharField(max_length=254, null=True)
 #     costs_fix = models.FloatField()
 #     costs_variable = models.FloatField()
+
+
+class RepoweringScenario(models.Model):
+    """Repowering scenario"""
+
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, null=True)
+    data = JSONField(default=None, null=True)
+
+
+class REPotentialAreas(models.Model):
+    """Potential areas for renewable plants
+
+    Attributes
+    ----------
+    id :
+        DB id
+    area_params :
+        App settings for usable areas (area panel)
+    mun_data :
+        Available potentials (per technology)
+        TO BE SPECIFIED
+    geom : Geometry
+        SRID: EPSG:3035 (ETRS89/LAEA)
+    """
+    id = models.BigAutoField(primary_key=True)
+    area_params = JSONField(unique=True)
+    mun_data = JSONField()
+    geom = geomodels.MultiPolygonField(srid=3035)
+
+
+class ScenarioData(models.Model):
+    """Scenario data
+
+    Attributes
+    ----------
+    id :
+        DB id
+    data : json
+        Scenario data, format as defined <HERE>
+    data_uuid :
+        UUID for scenario data to quickly compare settings
+    """
+    id = models.BigAutoField(primary_key=True)
+    data = JSONField()
+    data_uuid = models.UUIDField(default=uuid4, editable=False,
+                                 unique=True, null=False)
+
+
+class Scenario(models.Model):
+    """Scenario (energy system configuration)
+
+    Attributes
+    ----------
+    id :
+        DB id
+    created : DateTime
+        Timestamp of creation
+    name : String
+        Name of scenario
+    is_user_scenario : Bool
+        True, if scenario was created by a user (default)
+    data :
+        Reference to ScenarioData
+    re_potential_areas :
+        Reference to REPotentialAreas
+    """
+    id = models.BigAutoField(primary_key=True)
+    created = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, null=True)
+    is_user_scenario = models.BooleanField(default=True)
+    data = models.ForeignKey(ScenarioData, on_delete=models.DO_NOTHING)
+    re_potential_areas = models.ForeignKey(REPotentialAreas,
+                                           on_delete=models.DO_NOTHING)
+    repowering_scenario = models.ForeignKey(RepoweringScenario,
+                                            on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.name
+
+
+class SimulationResults(models.Model):
+    """Results of a scenario
+
+    Attributes
+    ----------
+    id :
+        DB id
+    scenario :
+        Reference to scenario
+    data : json
+        Result data, format as defined <HERE>
+    """
+    id = models.BigAutoField(primary_key=True)
+    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
+    data = JSONField()

@@ -4,3 +4,8 @@
     <p>{{ layer.gen_energy_re_per_capita }} MWh pro EinwohnerIn</p>
 </div>
 {% endblock %}
+{% block vis %}
+    <div class="cell" style="height: 168px;">
+        {{ chart }}
+    </div>
+{% endblock%}
