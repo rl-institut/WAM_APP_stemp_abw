@@ -76,7 +76,7 @@
                       <p class="lead" style="margin-bottom: 0;">
                         {{ panels.region.title }}
                         <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                        {{ info }}
+                        <!--{{ info }}-->
                       </p>
                       {% include "forms/layer_region_select.html" %}
                     </div>
@@ -210,7 +210,35 @@
                           </button>
                         </div>
                         <div class="cell" id="results-collapsed">
-                          <p>Some results</p>
+                          <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
+                          <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
+                          <!--<form>-->
+                            <!--<fieldset>-->
+                              <!--<legend>-->
+                                <!--<small style="color: #000; border-bottom: 1px solid #000;">Gruppe 1</small>-->
+                                <!--<i class ="icon ion-help-circled icon&#45;&#45;small" title="{{data.text}}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                              <!--</legend>-->
+                              <!--<div class="grid-x">-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<i class ="icon ion-stop icon&#45;&#45;small" style="color: #ff0000;"></i>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-9">-->
+                                  <!--<p>Anteil Energie aus EE an Strombedarf</p>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="TOOLTIP" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<div class="switch tiny">-->
+                                    <!--<input class="switch-input-layer-select-results" id="sw1" type="checkbox" name="harharhar">-->
+                                    <!--<label class="switch-paddle" for="sw1">-->
+                                    <!--</label>-->
+                                  <!--</div>-->
+                                <!--</div>-->
+                              <!--</div>-->
+
+                            <!--</fieldset>-->
+                          <!--</form>-->
                         </div>
                         {% include "stemp_abw/results_full.html" %}
                       </div>
@@ -269,47 +297,49 @@
 
                             {% include "forms/layer_areas_select.html" %}
 
-                            <div class="grid-x grid-margin-x">
-                              <div class="cell">
+                            <p style="height: 2rem;"></p>
 
-                                <span class="has-tip--no-border">
-                                  Layer Beispiel
-                                  <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>
-                                </span>
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
 
-                                <div class="reveal" id="modal-example" data-reveal>
-                                  <div class="grid-x">
-                                    <div class="cell reveal__header">
-                                      <h2>Layer Beispiel</h2>
-                                    </div>
-                                    <div class="cell reveal__img">
-                                      <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
-                                      <figcaption>Figure caption</figcaption>
-                                    </div>
-                                    <div class="cell reveal__text">
-                                      <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                    </div>
-                                    <div class="cell reveal__source">
-                                      <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                        <i class ="icon ion-android-arrow-dropright icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                                        Quelle ansehen
-                                      </a>
-                                    </div>
-                                  </div>
-                                  <button class="close-button" data-close aria-label="Schließen" type="button">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
+                                <!--<span class="has-tip&#45;&#45;no-border">-->
+                                  <!--Layer Beispiel-->
+                                  <!--<i data-open="modal-example" class ="icon ion-information-circled icon&#45;&#45;small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                <!--</span>-->
 
-                                <div class="switch">
-                                  <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
-                                  <label class="switch-paddle" for="exampleSwitch">
-                                    <span class="show-for-sr">Download Kittens</span>
-                                  </label>
-                                </div>
+                                <!--<div class="reveal" id="modal-example" data-reveal>-->
+                                  <!--<div class="grid-x">-->
+                                    <!--<div class="cell reveal__header">-->
+                                      <!--<h2>Layer Beispiel</h2>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__img">-->
+                                      <!--<img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">-->
+                                      <!--<figcaption>Figure caption</figcaption>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__text">-->
+                                      <!--<p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__source">-->
+                                      <!--<a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">-->
+                                        <!--<i class ="icon ion-android-arrow-dropright icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                        <!--Quelle ansehen-->
+                                      <!--</a>-->
+                                    <!--</div>-->
+                                  <!--</div>-->
+                                  <!--<button class="close-button" data-close aria-label="Schließen" type="button">-->
+                                    <!--<span aria-hidden="true">&times;</span>-->
+                                  <!--</button>-->
+                                <!--</div>-->
 
-                              </div>
-                            </div>
+                                <!--<div class="switch">-->
+                                  <!--<input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">-->
+                                  <!--<label class="switch-paddle" for="exampleSwitch">-->
+                                    <!--<span class="show-for-sr">Download Kittens</span>-->
+                                  <!--</label>-->
+                                <!--</div>-->
+
+                              <!--</div>-->
+                            <!--</div>-->
                           </div>
                         </div>
                       </div>
