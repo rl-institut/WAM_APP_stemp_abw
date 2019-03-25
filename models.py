@@ -808,8 +808,8 @@ class REPotentialAreas(models.Model):
         SRID: EPSG:3035 (ETRS89/LAEA)
     """
     id = models.BigAutoField(primary_key=True)
-    area_params = JSONField(unique=True)
-    mun_data = JSONField()
+    area_params = JSONField(default=None, null=True)
+    mun_data = JSONField(default=None, null=True)
     geom = geomodels.MultiPolygonField(srid=3035)
 
 
