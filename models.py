@@ -879,3 +879,94 @@ class SimulationResults(models.Model):
     id = models.BigAutoField(primary_key=True)
     scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
     data = JSONField()
+
+
+######################################
+# Proxy views for RE potential areas #
+######################################
+# use manager to filter data (needed since 1 feature/row is used per serial
+# data view)
+# TODO: Replace with dynamic classes
+
+class REPotentialAreasManager1(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager1, self).get_queryset().filter(
+            id=1)
+
+
+class REPotentialAreas1(REPotentialAreas):
+    name = 're_pot_areas_1'
+    objects = REPotentialAreasManager1()
+
+    class Meta:
+        proxy = True
+
+
+class REPotentialAreasManager2(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager2, self).get_queryset().filter(
+            id=2)
+
+
+class REPotentialAreas2(REPotentialAreas):
+    name = 're_pot_areas_2'
+    objects = REPotentialAreasManager2()
+
+    class Meta:
+        proxy = True
+
+
+class REPotentialAreasManager3(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager3, self).get_queryset().filter(
+            id=3)
+
+
+class REPotentialAreas3(REPotentialAreas):
+    name = 're_pot_areas_3'
+    objects = REPotentialAreasManager3()
+
+    class Meta:
+        proxy = True
+
+
+class REPotentialAreasManager4(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager4, self).get_queryset().filter(
+            id=4)
+
+
+class REPotentialAreas4(REPotentialAreas):
+    name = 're_pot_areas_4'
+    objects = REPotentialAreasManager4()
+
+    class Meta:
+        proxy = True
+
+
+class REPotentialAreasManager5(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager5, self).get_queryset().filter(
+            id=5)
+
+
+class REPotentialAreas5(REPotentialAreas):
+    name = 're_pot_areas_5'
+    objects = REPotentialAreasManager5()
+
+    class Meta:
+        proxy = True
+
+
+class REPotentialAreasManager6(models.Manager):
+    def get_queryset(self):
+        return super(REPotentialAreasManager6, self).get_queryset().filter(
+            id=6)
+
+
+class REPotentialAreas6(REPotentialAreas):
+    name = 're_pot_areas_6'
+    objects = REPotentialAreasManager6()
+
+    class Meta:
+        proxy = True
