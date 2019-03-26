@@ -154,10 +154,10 @@
                         {{ panels.esys.title }}
                         <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                       </p>
-                      <p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>
-                      <a class="btn btn-cta" id="openTabExample">
-                        Zu Flächen springen
-                      </a>
+                      <!--<p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>-->
+                      <!--<a class="btn btn-cta" id="openTabExample">-->
+                        <!--Zu Flächen springen-->
+                      <!--</a>-->
                       <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
                       <div class="grid-x">
                         <div class="cell small-9">
@@ -468,82 +468,17 @@
       $('#btnExpand').on('click', function(e) {
         if ($('#panel-results').hasClass('is-collapsed')) {
           setTimeout(function() {
-            {% for visualization in visualizations1 %}
-                  {{visualization.media}}
-            {% endfor %}
-            {% for visualization in visualizations2 %}
-                  {{visualization.media}}
-            {% endfor %}
+
             {% for visualization in visualizations4 %}
                   {{visualization.media}}
             {% endfor %}
-            {% for visualization in visualizations5 %}
-                  {{visualization.media}}
-            {% endfor %}
+
           }, 750);
       }});
     </script>
 
 
-    <!-- LOAD SLIDER DATA -->
-    <script type="text/javascript">
 
-        // load sliders
-        {% for group, data in comp_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        type: "single",
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true,
-                        grid_num: {{comp.field.widget.attrs.grid_num}},
-                        {% if comp.field.widget.attrs.disable %}
-                          disable: true,
-                        {% endif %}
-                        onFinish: changeScenarioControlSlider
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        {% for group, data in area_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        type: "single",
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true,
-                        grid_num: {{comp.field.widget.attrs.grid_num}},
-                        {% if comp.field.widget.attrs.disable %}
-                          disable: true,
-                        {% endif %}
-                        onFinish: changeScenarioControlSlider
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        // test some upcoming features with wind slider
-        /*
-        var test_slider = $("#sl_wind").data("ionRangeSlider");
-        test_slider.reset();
-        test_slider.update({
-          min: 0,
-          max: 1000,
-          from_min: 250,
-          from_max: 750,
-          from_shadow: true,
-          to_shadow: true
-        });
-        */
-
-    </script>
     <script type="text/javascript">
         function main_map_init (map, options) {
             // show load spinner
@@ -674,7 +609,7 @@
             var layer_ctr = 0;
             var loader_text = $('#loader-detail-text');
 
-            // Load GeoJsons via Ajax and add layers to map
+            // Load GeoJsons via Ajax and add layers to map (region and area info)
             {% for layer, data in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
@@ -766,6 +701,91 @@
                 });
             {% endfor %}
 
+            // Load GeoJsons via Ajax and add layers to map (RE potential areas)
+            var layers_re_pot = {};
+            {% for layer_name in re_pot_layer_list %}
+                // Build data URL
+                var dataurl = "{% url 'stemp_abw:'|add:layer_name|add:'.data' %}"
+
+                // Load data via Ajax
+                $.ajax({
+                    url: dataurl,
+                    dataType: 'json',
+                    async: true,
+                    success: function(json){
+                        // Add GeoJSON layer
+                        var layer = new L.geoJson(json, {style: function(feature) {
+                                                            return getLayerStyle("{{ layer }}", feature);
+                                                           }
+                                                         }
+                                                 );
+                        layers_re_pot["{{ layer_name }}"] = layer;
+                        //map.addLayer(layer);
+                        }
+                });
+            {% endfor %}
+
+            // temp for RE pot layer control
+            function addRePotAreaLayer () {
+              // Delete all layers
+              for (var l in layers_re_pot) {
+                map.removeLayer(layers_re_pot[l]);
+              }
+
+              // Get controls' status
+              sl_val = Math.round($('#sl_dist_resid').data("ionRangeSlider").result.from);
+              sw_val = $('#cb_use_forest').prop('checked');
+
+              // Add needed layer
+              if (sl_val == 1000) {
+                if (sw_val == false) {
+                  map.addLayer(layers_re_pot['re_pot_areas_1']);
+                  wec_count = 788;
+                } else {
+                  map.addLayer(layers_re_pot['re_pot_areas_2']);
+                  wec_count = 1761;
+                }
+              } else if (sl_val == 1500) {
+                if (sw_val == false) {
+                  map.addLayer(layers_re_pot['re_pot_areas_3']);
+                  wec_count = 186;
+                } else {
+                  map.addLayer(layers_re_pot['re_pot_areas_4']);
+                  wec_count = 651;
+                }
+              } else if (sl_val == 500) {
+                if (sw_val == false) {
+                  map.addLayer(layers_re_pot['re_pot_areas_5']);
+                  wec_count = 2242;
+                } else {
+                  map.addLayer(layers_re_pot['re_pot_areas_6']);
+                  wec_count = 3751;
+                }
+              }
+
+              $('#sl_wind').data("ionRangeSlider").update({
+                  max: Math.round(wec_count*4.2)
+              });
+
+              // mapping from properties to layer
+
+              // Add GeoJSON layer
+
+            }
+
+            // temp for RE pot layer control
+            $('#cb_use_forest').click( function () {
+              addRePotAreaLayer();
+            })
+
+            function SliderUpdate (data) {
+              changeScenarioControlSlider(data);
+              if (data.input.prop('id') == 'sl_dist_resid') {
+                addRePotAreaLayer();
+              }
+            }
+
+
             /*
             var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
               layers: 'dwd:BRD_1km_winddaten_80m',
@@ -830,6 +850,18 @@
               };
             });
 
+            // Control layer visibility via checkboxes (result layers)
+            $('.switch-input-layer-select-results').click( function () {
+              var id = $(this).attr('id');
+              console.log(id);
+
+              // Individual layers switches
+              /*l = layers[id.replace('cb_region_','')];
+              if (this.checked) map.addLayer(l);
+              else map.removeLayer(l);*/
+            });
+
+
             // Control legend visibility via checkboxes
             $('.switch-input-layer-select-region').click( function () {
               var id = $(this).attr('id');
@@ -866,6 +898,64 @@
                 }
               //}
             });
+
+
+        // load sliders
+        {% for group, data in comp_groups.items %}
+            {% for comp in data.comps %}
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        type: "single",
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true,
+                        grid_num: {{comp.field.widget.attrs.grid_num}},
+                        {% if comp.field.widget.attrs.disable %}
+                          disable: true,
+                        {% endif %}
+                        onFinish: changeScenarioControlSlider
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for group, data in area_groups.items %}
+            {% for comp in data.comps %}
+                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                        type: "single",
+                        min: {{comp.field.widget.attrs.min}},
+                        max: {{comp.field.widget.attrs.max}},
+                        from: {{comp.field.widget.attrs.from}},
+                        step: {{comp.field.widget.attrs.step}},
+                        grid: true,
+                        grid_num: {{comp.field.widget.attrs.grid_num}},
+                        {% if comp.field.widget.attrs.disable %}
+                          disable: true,
+                        {% endif %}
+                        onFinish: SliderUpdate
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        // test some upcoming features with wind slider
+        /*
+        var test_slider = $("#sl_wind").data("ionRangeSlider");
+        test_slider.reset();
+        test_slider.update({
+          min: 0,
+          max: 1000,
+          from_min: 250,
+          from_max: 750,
+          from_shadow: true,
+          to_shadow: true
+        });
+        */
+
+
         };
 
         // Control simulation
@@ -873,6 +963,8 @@
           console.log('simulation started');
           //element.prop("disabled", true);
           //$('#simulation-save-btn').show();
+          //jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-wrapper').toggleClass("loader-wrapper--hide");
+          //jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').toggleClass("body--nopointer");
 
           $.ajax({
               url : '{% url 'stemp_abw:map' %}',
@@ -972,5 +1064,7 @@
           // Set controls for Status quo scenario on startup
           ctrlScenario('apply-scn-btn');
         });
+
     </script>
+
 {% endblock %}

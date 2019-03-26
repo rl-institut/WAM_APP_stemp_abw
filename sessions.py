@@ -5,7 +5,7 @@ import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 from stemp_abw.models import Scenario, RepoweringScenario
-from stemp_abw.app_settings import CONTROL_VALUES_MAP
+from stemp_abw.app_settings import CONTROL_VALUES_MAP, RE_POT_CONTROLS
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 from stemp_abw.simulation.esys import create_nodes
@@ -228,14 +228,19 @@ class UserSession(object):
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])
             # 2) mun data update
-            repower_data = json.loads(self.user_scenario.repowering_scenario.data)
-            for mun in scn_data['mun_data']:
-                scn_data['mun_data'][mun]['gen_capacity_wind'] =\
-                    repower_data[mun]['gen_capacity_wind']
-            # 3) calculate potential for wind slider update
-            sl_wind_repower_pot = \
-                int(sum([_['gen_capacity_wind']
-                         for _ in repower_data.values()]))
+            # free sceario
+            if int(ctrl_data['dd_repowering']) == -1:
+                sl_wind_repower_pot = None
+            # other scenarios
+            else:
+                repower_data = json.loads(self.user_scenario.repowering_scenario.data)
+                for mun in scn_data['mun_data']:
+                    scn_data['mun_data'][mun]['gen_capacity_wind'] =\
+                        repower_data[mun]['gen_capacity_wind']
+                # 3) calculate potential for wind slider update
+                sl_wind_repower_pot = \
+                    int(sum([_['gen_capacity_wind']
+                             for _ in repower_data.values()]))
 
         else:
             sl_wind_repower_pot = None
@@ -259,6 +264,8 @@ class UserSession(object):
                 mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
                                        reg_data[param]).round(decimals=1)
         return mun_data_upd.to_dict(orient='index')
+
+    # def __prepare_re_potential_
 
 
 class Simulation(object):

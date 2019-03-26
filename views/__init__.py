@@ -16,6 +16,8 @@ from stemp_abw.charts_data import visualizations1, visualizations2, visualizatio
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
+from stemp_abw.app_settings import RE_POT_LAYER_LIST
+
 import os
 import stemp_abw
 
@@ -56,6 +58,7 @@ class MapView(TemplateView):
         context.update(io.prepare_component_data())
         context.update(io.prepare_scenario_data())
         context.update(io.prepare_label_data())
+        context['re_pot_layer_list'] = RE_POT_LAYER_LIST
 
         # TODO: Temp stuff for WS
         context['visualizations1'] = visualizations1
@@ -112,6 +115,7 @@ class MapView(TemplateView):
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
+            print(json.loads(data))
             sl_wind_repower_pot = session.update_scenario_data(
                 ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}

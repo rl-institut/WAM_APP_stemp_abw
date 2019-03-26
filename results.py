@@ -30,7 +30,8 @@ class ResultAnalysisVisualization(object):
             )
         elif self.type == 'pie':
             # temp data
-            data = pd.DataFrame({'name': ['a', 'b', 'c'], 'y': [100, 30, 20]})
+            data = pd.DataFrame({'name': ['Windenergie', 'Photovoltaik', 'Biogas', 'fossil', 'IMPORT'],
+                                 'y': [100, 30, 20, 10, 50]})
             data.set_index('name', inplace=True)
 
             # convert data to appropriate format for pie chart

@@ -107,6 +107,18 @@ CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
                       'dd_repowering': 'repowering_scn'
                       }
 
+RE_POT_CONTROLS = ['sl_dist_resid',
+                   'cb_use_forest',
+                   'cb_use_ffh_areas',
+                   'cb_use_cult_areas']
+
+RE_POT_LAYER_LIST = ['re_pot_areas_1',
+                     're_pot_areas_2',
+                     're_pot_areas_3',
+                     're_pot_areas_4',
+                     're_pot_areas_5',
+                     're_pot_areas_6']
+
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
                   'date_to': '2017-01-07 23:00:00',
                   'freq': '60min',
