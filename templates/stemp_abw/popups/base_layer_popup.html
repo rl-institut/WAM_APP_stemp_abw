@@ -26,6 +26,12 @@
     {% block links %}
     <div class="cell">
         Quellen:
+        {% for source in sources %}
+            <a href="{% url 'stemp_abw:sources' %}?source={{ source }}"
+               class="anchor-text linkto-source"
+               id="linkto-source-{{ source }}">{{ source }}</a>
+            {% if not forloop.last %}, {% else %}{% endif %}
+        {% endfor %}
     </div>
     <div class="cell">
         Annahmen:
