@@ -1,5 +1,6 @@
 import stemp_abw.models as models
-from djgeojson.views import GeoJSONLayerView
+from django.views.generic import DetailView
+from djgeojson.views import GeoJSONLayerView, GeoJSONResponseMixin
 
 
 #########################
@@ -381,51 +382,25 @@ class RegInfrasAviationData(GeoJSONLayerView):
     precision = 5
 
 
-###################
-# ESys area views #
-###################
-# TODO: Replace with dynamic classes
-class REPotentialAreas1Data(GeoJSONLayerView):
-    model = models.REPotentialAreas1
-    properties = ['name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
+###############################
+# GeoJSON serial detail views #
+###############################
+
+class GeoJSONSingleDatasetLayerView(GeoJSONResponseMixin, DetailView):
+    """View for single objects of djgeojson's GeoJSON response
+
+    Modified version of GeoJSONResponseMixin - filter queryset before creating
+    GeoJSON response.
+    """
+    def render_to_response(self, context, **response_kwargs):
+        self.queryset = self.model.objects.filter(id=context['object'].id)
+        return super(GeoJSONSingleDatasetLayerView, self)\
+            .render_to_response(context, **response_kwargs)
 
 
-class REPotentialAreas2Data(GeoJSONLayerView):
-    model = models.REPotentialAreas2
-    properties = ['name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-class REPotentialAreas3Data(GeoJSONLayerView):
-    model = models.REPotentialAreas3
-    properties = ['name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
-class REPotentialAreas4Data(GeoJSONLayerView):
-    model = models.REPotentialAreas4
-    properties = ['name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-class REPotentialAreas5Data(GeoJSONLayerView):
-    model = models.REPotentialAreas5
-    properties = ['name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
-class REPotentialAreas6Data(GeoJSONLayerView):
-    model = models.REPotentialAreas6
-    properties = ['name']
+class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
+    model = models.REPotentialAreas
+    properties = ['popup_content', 'name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
