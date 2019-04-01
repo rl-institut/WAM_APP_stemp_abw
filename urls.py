@@ -132,8 +132,8 @@ urlpatterns.extend(
 )
 # append serial detail views' URLs
 urlpatterns.extend(
-    path('{}/<int:pk>/'.format(name),
+    path('{}.data/<int:pk>/'.format(name),
             cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
-            name='{}.data-detail'.format(name))
+            name='{}.data'.format(name))
     for name, sview in single_data_views.items()
 )

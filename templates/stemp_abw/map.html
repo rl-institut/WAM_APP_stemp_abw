@@ -703,9 +703,11 @@
 
             // Load GeoJsons via Ajax and add layers to map (RE potential areas)
             var layers_re_pot = {};
-            {% for layer_name in re_pot_layer_list %}
+            {% for layer_id in re_pot_layer_id_list %}
+
                 // Build data URL
-                var dataurl = "{% url 'stemp_abw:'|add:layer_name|add:'.data' %}"
+                var dataurl = "{% url 'stemp_abw:re_pot_areas.data' pk=layer_id %}";
+                console.log(dataurl);
 
                 // Load data via Ajax
                 $.ajax({
@@ -719,7 +721,7 @@
                                                            }
                                                          }
                                                  );
-                        layers_re_pot["{{ layer_name }}"] = layer;
+                        layers_re_pot["{{ layer_id }}"] = layer;
                         //map.addLayer(layer);
                         }
                 });
@@ -739,26 +741,26 @@
               // Add needed layer
               if (sl_val == 1000) {
                 if (sw_val == false) {
-                  map.addLayer(layers_re_pot['re_pot_areas_1']);
+                  map.addLayer(layers_re_pot['1']);
                   wec_count = 788;
                 } else {
-                  map.addLayer(layers_re_pot['re_pot_areas_2']);
+                  map.addLayer(layers_re_pot['2']);
                   wec_count = 1761;
                 }
               } else if (sl_val == 1500) {
                 if (sw_val == false) {
-                  map.addLayer(layers_re_pot['re_pot_areas_3']);
+                  map.addLayer(layers_re_pot['3']);
                   wec_count = 186;
                 } else {
-                  map.addLayer(layers_re_pot['re_pot_areas_4']);
+                  map.addLayer(layers_re_pot['4']);
                   wec_count = 651;
                 }
               } else if (sl_val == 500) {
                 if (sw_val == false) {
-                  map.addLayer(layers_re_pot['re_pot_areas_5']);
+                  map.addLayer(layers_re_pot['5']);
                   wec_count = 2242;
                 } else {
-                  map.addLayer(layers_re_pot['re_pot_areas_6']);
+                  map.addLayer(layers_re_pot['6']);
                   wec_count = 3751;
                 }
               }
