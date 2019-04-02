@@ -24,20 +24,17 @@
     {% endblock%}
 
     {% block links %}
-    <div class="cell map-popup__footer">
-        Quellen:
-        {% for source in sources %}
-            <a href="{% url 'stemp_abw:sources' %}?source={{ source }}"
-               class="anchor-text linkto-source"
-               id="linkto-source-{{ source }}">{{ source }}</a>
-            {% if not forloop.last %}, {% else %}{% endif %}
-        {% endfor %}
-    </div>
-    <div class="cell map-popup__footer">
-        Annahmen:
-    </div>
-    <div class="cell map-popup__footer">
-        Links:
-    </div>
+      {% if "0" in sources %}
+      {% else %}
+        <div class="cell map-popup__footer">
+            Quellen:
+            {% for source in sources %}
+                <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
+                   class="anchor-text linkto-source"
+                   id="linkto-source-{{ source.id }}">{{ source.infos.title }}</a>
+                {% if not forloop.last %}, {% else %}{% endif %}
+            {% endfor %}
+        </div>
+      {% endif %}
     {% endblock %}
 </div>

@@ -3,6 +3,7 @@ from django.views.generic import DetailView, TemplateView
 from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, LAYER_AREAS_METADATA
 from stemp_abw import visualizations
 from wam.settings import SESSION_DATA
+from meta.models import Source
 import pandas as pd
 
 
@@ -22,14 +23,22 @@ class MasterDetailView(DetailView):
                 if layer['model'] == self.model.name:
                     sources = []
                     for source in layer['sources']:
-                        sources.append(source)
+                        if source == '0':
+                            sources.append(source)
+                            break
+                        else:
+                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
                     context['sources'] = sources
         for layer_group in LAYER_AREAS_METADATA.values():
             for layer in layer_group.values():
                 if layer['model'] == self.model.name:
                     sources = []
                     for source in layer['sources']:
-                        sources.append(source)
+                        if source == '0':
+                            sources.append(source)
+                            break
+                        else:
+                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
                     context['sources'] = sources
 
         return context
