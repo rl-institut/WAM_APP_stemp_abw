@@ -245,8 +245,8 @@ class UserSession(object):
                         repower_data[mun]['gen_capacity_wind']
                 # 3) calculate potential for wind slider update
                 sl_wind_repower_pot = \
-                    int(sum([_['gen_capacity_wind']
-                             for _ in repower_data.values()]))
+                    round(sum([_['gen_capacity_wind']
+                               for _ in repower_data.values()]))
 
         else:
             sl_wind_repower_pot = None
