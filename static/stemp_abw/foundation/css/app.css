@@ -6627,6 +6627,11 @@ html.is-reveal-open {
   margin-bottom: 0;
   opacity: 0; }
 
+.switch-input-layer-select-results {
+  position: absolute;
+  margin-bottom: 0;
+  opacity: 0; }
+
 .switch-paddle {
   position: relative;
   display: block;

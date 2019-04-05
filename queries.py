@@ -4,8 +4,6 @@ import os
 import json
 import hashlib
 from uuid import UUID
-from shapely.wkt import loads as wkt_loads
-from geoalchemy2 import Geometry, WKTElement
 from django.core.wsgi import get_wsgi_application
 
 
@@ -27,13 +25,13 @@ def insert_status_quo_scenario():
 
     mun_data = load_mun_data()
 
-    # test RE area object
-    repot_area_params = {'repot_area_params': 0}
-    repot_mun_data = {'repot_mun_data': 0}
-    mpoly_wkt = 'MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))'
-    repot_areas_obj = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),
-                                                      mun_data=json.dumps(repot_mun_data),
-                                                      geom=mpoly_wkt)
+    # # test RE area object
+    # repot_area_params = {'repot_area_params': 0}
+    # repot_mun_data = {'repot_mun_data': 0}
+    # mpoly_wkt = 'MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))'
+    # repot_areas_obj = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),
+    #                                                   mun_data=json.dumps(repot_mun_data),
+    #                                                   geom=mpoly_wkt)
 
     # prepare scenario data
     mun_data.rename(columns={'pop_2017': 'pop'}, inplace=True)
@@ -76,6 +74,8 @@ def insert_status_quo_scenario():
     scn_data_obj = ScenarioData.objects.create(data=scn_data,
                                                data_uuid=uuid)
 
+    # no RE potential area or repowering scenario for status quo
+    re_potential_areas = REPotentialAreas.objects.get(id=0)
     repowering_scenario = RepoweringScenario.objects.get(id=0)
 
     print('Scenario data hash UUID:', uuid)
@@ -86,16 +86,16 @@ def insert_status_quo_scenario():
                                               'der Region.',
                                   is_user_scenario=False,
                                   data=scn_data_obj,
-                                  re_potential_areas=repot_areas_obj,
+                                  re_potential_areas=re_potential_areas,
                                   repowering_scenario=repowering_scenario)
-    scn = Scenario.objects.create(name='Status quo 2',
-                                  description='Dieses Szenario enthält den aktuellen Zustand '
-                                              'der Energieversorgung und Flächennutzung in '
-                                              'der Region.',
-                                  is_user_scenario=False,
-                                  data=scn_data_obj,
-                                  re_potential_areas=repot_areas_obj,
-                                  repowering_scenario=repowering_scenario)
+    # scn = Scenario.objects.create(name='Status quo 2',
+    #                               description='Dieses Szenario enthält den aktuellen Zustand '
+    #                                           'der Energieversorgung und Flächennutzung in '
+    #                                           'der Region.',
+    #                               is_user_scenario=False,
+    #                               data=scn_data_obj,
+    #                               re_potential_areas=re_potential_areas,
+    #                               repowering_scenario=repowering_scenario)
 
 
 def insert_repowering_scenarios():
@@ -125,9 +125,25 @@ def insert_repowering_scenarios():
     }
     RepoweringScenario.objects.create(**scn)
 
+    # insert free scenario
+    # TODO: Insert data
+    scn = {
+        'id': -1,
+        'name': 'Freier Zubau',
+        'description': 'In diesem Szenario können Windenergieanlagen unter '
+                       'Verwendung zusätzlicher Potenzialflächen frei zugebaut '
+                       'werden.',
+        #'data': json.dumps(mun_data.to_dict(orient='index'), sort_keys=True
+        'data': json.dumps({})
+    }
+    RepoweringScenario.objects.create(**scn)
+
 # def insert_potential_areas():
 #     # test RE area object
-#     repot_area_params = {'repot_area_params': 0}
+#     repot_area_params = {'repot_area_params': {'dist_resid': 1000,
+#                                                'use_forest': False,
+#                                                'use_ffh_areas': False,
+#                                                'use_cult_areas': False}}
 #     repot_mun_data = {'repot_mun_data': 0}
 #     mpoly_wkt = 'MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))'
 #     repot_areas_obj = REPotentialAreas.objects.create(area_params=json.dumps(repot_area_params),

@@ -1,14 +1,7 @@
 leaflet
-shapely
 pandas
 numpy
 configobj
-requests
-psycopg2
-sqlalchemy
-geoalchemy2
-sqlahelper
-oedialect
 django
 django-postgresql
 django-leaflet

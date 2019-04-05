@@ -714,7 +714,6 @@ class Powerplant(models.Model):
     federal_state = models.TextField(blank=True, null=True)
 
 
-
 class DemandTs(models.Model):
     """Demand timeseries (hourly)
 
@@ -807,10 +806,12 @@ class REPotentialAreas(models.Model):
     geom : Geometry
         SRID: EPSG:3035 (ETRS89/LAEA)
     """
+    name = 're_pot_areas'
+
     id = models.BigAutoField(primary_key=True)
-    area_params = JSONField(unique=True)
-    mun_data = JSONField()
-    geom = geomodels.MultiPolygonField(srid=3035)
+    area_params = JSONField(default=None, null=True)
+    mun_data = JSONField(default=None, null=True)
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
 class ScenarioData(models.Model):

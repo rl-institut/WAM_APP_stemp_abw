@@ -1,11 +1,25 @@
 
   <!--<div class="cell l-bg-color-w scen-create__wrapper u-text&#45;&#45;center">-->
     <!--<div class="grid-x grid-padding-x">-->
+    <div class="cell small-12">
+      <p>Hier folgen in Kürze die tatsächlichen Ergebnisse der Simulation Ihres Energiesystems.</p>
+    </div>
     {% for visualization in visualizations4 %}
-        <div class="cell small-4">
+        <div class="cell small-6">
           {{visualization|safe}}
         </div>
     {% endfor %}
+    <div class="cell small-12">
+      <p>Weitere Grafiken folgen zu den Themen</p>
+      <ul>
+        <li style="width: 600px;">Energieerzeugung in den Bereichen Strom und Wärme</li>
+        <li style="width: 600px;">Energiebedarf in den Bereichen Strom und Wärme</li>
+        <li style="width: 600px;">Eigenversorgung der Region ABW (bilanziell)</li>
+        <li style="width: 600px;">Eigenversorgung der Region ABW (tatsächliche Stunden im Jahr)</li>
+        <li style="width: 600px;">Zeitreihen</li>
+        <li style="width: 600px;">...</li>
+      </ul>
+    </div>
 
 
     <!--</div>-->

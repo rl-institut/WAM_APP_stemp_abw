@@ -6,9 +6,10 @@ from django.views.decorators.cache import cache_page
 from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
 
 from . import views
-import inspect
+from inspect import getmembers, isclass
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
+#from stemp_abw.views.serial_views import SplitDataView
 
 app_name = 'stemp_abw'
 
@@ -34,8 +35,8 @@ urlpatterns = [
 
 # search detail views classes and append to URLs
 detail_views = {}
-for name, obj in inspect.getmembers(views.detail_views):
-    if inspect.isclass(obj):
+for name, obj in getmembers(views.detail_views):
+    if isclass(obj):
         if issubclass(obj, views.detail_views.MasterDetailView):
             if obj.model is not None:
                 detail_views[obj.model.name] = obj
@@ -109,14 +110,30 @@ urlpatterns.extend(
 
 # search JSON data views classes and append to URLs
 data_views = {}
-for name, obj in inspect.getmembers(views.serial_views):
-    if inspect.isclass(obj):
-        if issubclass(obj, GeoJSONLayerView):
-            if obj.model is not None:
+single_data_views = {}
+detail_views_list = {mem[0]: mem[1]
+                     for mem in getmembers(views.serial_views, isclass)
+                     if mem[1].__module__ == views.serial_views.__name__}
+for name, obj in detail_views_list.items():
+    if isclass(obj):
+        if obj.model is not None:
+            # data detail view
+            if issubclass(obj, views.GeoJSONSingleDatasetLayerView):
+                single_data_views[obj.model.name] = obj
+            # data view
+            elif issubclass(obj, GeoJSONLayerView):
                 data_views[obj.model.name] = obj
+# append data views' URLs
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name),
             cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
             name='{}.data'.format(name))
     for name, sview in data_views.items()
+)
+# append serial detail views' URLs
+urlpatterns.extend(
+    path('{}.data/<int:pk>/'.format(name),
+            cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
+            name='{}.data'.format(name))
+    for name, sview in single_data_views.items()
 )

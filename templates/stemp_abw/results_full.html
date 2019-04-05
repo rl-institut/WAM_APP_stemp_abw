@@ -1,7 +1,7 @@
               <div class="cell" id="results-wrap" class="results-display-none">
                 <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                  <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">Erneuerbare Energien</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">Konventionelle Kraftwerke</a></li>
+                  <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">Übersicht</a></li>
+                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">Energieerzeugung</a></li>
                   <li class="tabs-title tabs-title--horizontal"><a href="#results-panel3">Wärmebedarf</a></li>
                   <li class="tabs-title tabs-title--horizontal"><a href="#results-panel4">Strombedarf</a></li>
                   <li class="tabs-title tabs-title--horizontal"><a href="#results-panel5">eMobilität</a></li>
@@ -14,118 +14,105 @@
                 <div class="tabs-content" data-tabs-content="deeplinked-tabs">
                   <div class="tabs-panel is-active" id="results-panel1">
                     <div class="grid-x grid-margin-x">
-                      <div class="cell small-4">
-                        <p class="lead">Windenergie</p>
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td>Installierte Gesamtleistung</td>
-                              <td width="25%">650 MW</td>
-                            </tr>
-                            <tr>
-                              <td>Anzahl Windenergieanlagen</td>
-                              <td width="25%">412</td>
-                            </tr>
-                            <tr>
-                              <td>Jährlich erzeugte Energiemenge</td>
-                              <td width="25%">1040 GWh</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Windenergie</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">650 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Windenergieanlagen</td>-->
+                              <!--<td width="25%">412</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">1040 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
 
-                      <div class="cell small-4">
-                        <p class="lead">Photovoltaik</p>
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td>Installierte Gesamtleistung</td>
-                              <td width="25%">470 MW</td>
-                            </tr>
-                            <tr>
-                              <td>Anzahl Photovoltaikanlagen</td>
-                              <td width="25%">6018</td>
-                            </tr>
-                            <tr>
-                              <td>Jährlich erzeugte Energiemenge</td>
-                              <td width="25%">470 GWh</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Photovoltaik</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">470 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Photovoltaikanlagen</td>-->
+                              <!--<td width="25%">6018</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">470 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
 
-                      <div class="cell small-4">
-                        <p class="lead">Biomasse und Biogas</p>
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td>Installierte Gesamtleistung</td>
-                              <td width="25%">70 MW</td>
-                            </tr>
-                            <tr>
-                              <td>Anzahl Biomasse- und Biogasanlagen</td>
-                              <td width="25%">50</td>
-                            </tr>
-                            <tr>
-                              <td>Jährlich erzeugte Energiemenge</td>
-                              <td width="25%">210 GWh</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Biomasse und Biogas</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">70 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Biomasse- und Biogasanlagen</td>-->
+                              <!--<td width="25%">50</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">210 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
 
-                      {% include "stemp_abw/results.html" %}
+
+                      {% include "stemp_abw/results4.html" %}
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel2">
+
                     <div class="grid-x grid-margin-x">
-                      {% include "stemp_abw/results2.html" %}
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel3">
                     <div class="grid-x grid-margin-x">
-                      {% include "stemp_abw/results4.html" %}
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel4">
                     <div class="grid-x grid-margin-x">
-                      {% include "stemp_abw/results5.html" %}
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel5">
                     <div class="grid-x grid-margin-x">
-                      <div class="cell small-4">Insert results here</div>
-                      <div class="cell small-4">Insert results here</div>
-                      <div class="cell small-4">Insert results here</div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel6">
                     <div class="grid-x grid-margin-x">
-                      <div class="cell small-4">Insert results here</div>
-                      <div class="cell small-4">Insert results here</div>
-                      <div class="cell small-4">Insert results here</div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
+                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
                     </div>
                   </div>
-                  <!--<div class="tabs-panel" id="results-panel7">-->
-                    <!--<div class="grid-x grid-margin-x">-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div class="tabs-panel" id="results-panel8">-->
-                    <!--<div class="grid-x grid-margin-x">-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div class="tabs-panel" id="results-panel9">-->
-                    <!--<div class="grid-x grid-margin-x">-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                      <!--<div class="cell small-4">Insert results here</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
                 </div>
               </div>

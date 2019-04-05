@@ -74,27 +74,19 @@ visualizations2 = [results.ResultAnalysisVisualization(
 labels4 = [
     {
         'setup_labels': {
-            'title': {'text': 'Erzeugung'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
+            'title': {'text': 'Ihr Szenario'},
+            'subtitle': {'text': 'in GWh'},
+            'yAxis': {'title': {'text': 'GWh'}}
         },
         'data_labels': ['Strom', 'Wärme']
     },
     {
         'setup_labels': {
-            'title': {'text': 'Bedarf'},
+            'title': {'text': 'Status quo'},
             'subtitle': {'text': 'in GW'},
             'yAxis': {'title': {'text': 'GW'}}
         },
         'data_labels': ['Strom', 'Wärme']
-    },
-    {
-        'setup_labels': {
-            'title': {'text': 'Erneuerbare Energien'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
-        },
-        'data_labels': ['Wind', 'Solar']
     }
 ]
 visualizations4 = [results.ResultAnalysisVisualization(

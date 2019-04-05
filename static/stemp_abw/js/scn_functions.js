@@ -21,10 +21,17 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   // Repowering dropdown
   if (apply === true) {
     rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
-    if (controls['dd_repowering'] == 0) {
+    if (controls['dd_repowering'] == -1) {
       $('#sl_wind').data("ionRangeSlider").update({
         disable: false,
       });
+      activateRePotScenarioControls(true);
+    } else {
+      $('#sl_wind').data("ionRangeSlider").update({
+        disable: true,
+      });
+      activateRePotScenarioControls(false);
+      removeRePotAreaLayers();
     }
   }
 
@@ -70,7 +77,6 @@ function convertToPercent(num, min, max) {
   var percent = (num - min) / (max - min) * 100;
   return percent;
 }
-
 function addMarks($slider, min, max, marks) {
   var html = '';
   var left = 0;
@@ -87,7 +93,6 @@ function addMarks($slider, min, max, marks) {
 // Fired when scenario slider is changed
 function changeScenarioControlSlider(data) {
   var ctrl_id = data.input.prop('id');
-  console.log(ctrl_id);
   ctrlScenarioPost(ctrl_id, data.from);
 
   /*
@@ -108,7 +113,12 @@ $('.switch-input.esys').click( function () {
 
 // Fired when repowering dropdown is changed (prior to POST)
 function changeScenarioControlRepDropdown(element_id) {
-  ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+  if (element_id == 'dd_repowering') {
+    //ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
+    ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+  } else {
+    ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+  }
 }
 
 // Fired when repowering dropdown is changed (after POST)
@@ -121,15 +131,28 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
   var wind_slider = $('#sl_wind').data("ionRangeSlider");
   var dd_value = $('#dd_repowering').prop('value');
 
-  if (dd_value != 0) {
-    wind_slider.update({
-      from: sl_wind_value,
-      disable: true,
-    });
+  // free scenario
+  if (dd_value == -1) {
+      activateRePotScenarioControls(true);
+      wind_slider.update({
+        from: sl_wind_value,
+        disable: false
+      });
+  // repowering scenarios and SQ scenario
   } else {
+    activateRePotScenarioControls(false);
     wind_slider.update({
       from: sl_wind_value,
-      disable: false,
+      max: 2000,
+      disable: true
     });
   }
+
+}
+
+function activateRePotScenarioControls(enable) {
+  $('#cb_use_forest').prop('disabled', !enable);
+  $('#sl_dist_resid').data("ionRangeSlider").update({
+    disable: !enable,
+  });
 }

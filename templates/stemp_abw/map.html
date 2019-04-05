@@ -76,7 +76,7 @@
                       <p class="lead" style="margin-bottom: 0;">
                         {{ panels.region.title }}
                         <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                        {{ info }}
+                        <!--{{ info }}-->
                       </p>
                       {% include "forms/layer_region_select.html" %}
                     </div>
@@ -154,10 +154,10 @@
                         {{ panels.esys.title }}
                         <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                       </p>
-                      <p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>
-                      <a class="btn btn-cta" id="openTabExample">
-                        Zu Flächen springen
-                      </a>
+                      <!--<p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>-->
+                      <!--<a class="btn btn-cta" id="openTabExample">-->
+                        <!--Zu Flächen springen-->
+                      <!--</a>-->
                       <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
                       <div class="grid-x">
                         <div class="cell small-9">
@@ -210,7 +210,35 @@
                           </button>
                         </div>
                         <div class="cell" id="results-collapsed">
-                          <p>Some results</p>
+                          <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
+                          <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
+                          <!--<form>-->
+                            <!--<fieldset>-->
+                              <!--<legend>-->
+                                <!--<small style="color: #000; border-bottom: 1px solid #000;">Gruppe 1</small>-->
+                                <!--<i class ="icon ion-help-circled icon&#45;&#45;small" title="{{data.text}}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                              <!--</legend>-->
+                              <!--<div class="grid-x">-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<i class ="icon ion-stop icon&#45;&#45;small" style="color: #ff0000;"></i>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-9">-->
+                                  <!--<p>Anteil Energie aus EE an Strombedarf</p>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="TOOLTIP" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                <!--</div>-->
+                                <!--<div class="cell small-1">-->
+                                  <!--<div class="switch tiny">-->
+                                    <!--<input class="switch-input-layer-select-results" id="sw1" type="checkbox" name="harharhar">-->
+                                    <!--<label class="switch-paddle" for="sw1">-->
+                                    <!--</label>-->
+                                  <!--</div>-->
+                                <!--</div>-->
+                              <!--</div>-->
+
+                            <!--</fieldset>-->
+                          <!--</form>-->
                         </div>
                         {% include "stemp_abw/results_full.html" %}
                       </div>
@@ -269,47 +297,49 @@
 
                             {% include "forms/layer_areas_select.html" %}
 
-                            <div class="grid-x grid-margin-x">
-                              <div class="cell">
+                            <p style="height: 2rem;"></p>
 
-                                <span class="has-tip--no-border">
-                                  Layer Beispiel
-                                  <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>
-                                </span>
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
 
-                                <div class="reveal" id="modal-example" data-reveal>
-                                  <div class="grid-x">
-                                    <div class="cell reveal__header">
-                                      <h2>Layer Beispiel</h2>
-                                    </div>
-                                    <div class="cell reveal__img">
-                                      <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
-                                      <figcaption>Figure caption</figcaption>
-                                    </div>
-                                    <div class="cell reveal__text">
-                                      <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                    </div>
-                                    <div class="cell reveal__source">
-                                      <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                        <i class ="icon ion-android-arrow-dropright icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                                        Quelle ansehen
-                                      </a>
-                                    </div>
-                                  </div>
-                                  <button class="close-button" data-close aria-label="Schließen" type="button">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
+                                <!--<span class="has-tip&#45;&#45;no-border">-->
+                                  <!--Layer Beispiel-->
+                                  <!--<i data-open="modal-example" class ="icon ion-information-circled icon&#45;&#45;small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                <!--</span>-->
 
-                                <div class="switch">
-                                  <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
-                                  <label class="switch-paddle" for="exampleSwitch">
-                                    <span class="show-for-sr">Download Kittens</span>
-                                  </label>
-                                </div>
+                                <!--<div class="reveal" id="modal-example" data-reveal>-->
+                                  <!--<div class="grid-x">-->
+                                    <!--<div class="cell reveal__header">-->
+                                      <!--<h2>Layer Beispiel</h2>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__img">-->
+                                      <!--<img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">-->
+                                      <!--<figcaption>Figure caption</figcaption>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__text">-->
+                                      <!--<p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__source">-->
+                                      <!--<a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">-->
+                                        <!--<i class ="icon ion-android-arrow-dropright icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                        <!--Quelle ansehen-->
+                                      <!--</a>-->
+                                    <!--</div>-->
+                                  <!--</div>-->
+                                  <!--<button class="close-button" data-close aria-label="Schließen" type="button">-->
+                                    <!--<span aria-hidden="true">&times;</span>-->
+                                  <!--</button>-->
+                                <!--</div>-->
 
-                              </div>
-                            </div>
+                                <!--<div class="switch">-->
+                                  <!--<input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">-->
+                                  <!--<label class="switch-paddle" for="exampleSwitch">-->
+                                    <!--<span class="show-for-sr">Download Kittens</span>-->
+                                  <!--</label>-->
+                                <!--</div>-->
+
+                              <!--</div>-->
+                            <!--</div>-->
                           </div>
                         </div>
                       </div>
@@ -392,7 +422,7 @@
                 Simulation
                 <i class ="icon ion-android-arrow-dropright-circle icon--small" title="{{ tooltips.simulation_button.text }}" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
-              <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
+              <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation" disabled>
                 Speichern
                 <i class ="icon ion-archive icon--small" title="{{ tooltips.scn_button_esys_save.text }}" data-tooltip data-position="right" data-alignment="center"></i>
               </button>
@@ -428,9 +458,16 @@
 {% endblock %}
 
 {% block scripts %}
+    // Set
+    <script>
+      var csrf_token = '{{ csrf_token }}';
+    </script>
+
+    // Load required scripts
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
     <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/data_functions.js' %}"></script>
     <script src="{% static 'stemp_abw/js/ui_helpers.js' %}"></script>
 
     <!-- LOAD HIGHCHART DATA -->
@@ -438,213 +475,41 @@
       $('#btnExpand').on('click', function(e) {
         if ($('#panel-results').hasClass('is-collapsed')) {
           setTimeout(function() {
-            {% for visualization in visualizations1 %}
-                  {{visualization.media}}
-            {% endfor %}
-            {% for visualization in visualizations2 %}
-                  {{visualization.media}}
-            {% endfor %}
+
             {% for visualization in visualizations4 %}
                   {{visualization.media}}
             {% endfor %}
-            {% for visualization in visualizations5 %}
-                  {{visualization.media}}
-            {% endfor %}
+
           }, 750);
       }});
     </script>
 
 
-    <!-- LOAD SLIDER DATA -->
-    <script type="text/javascript">
 
-        // load sliders
-        {% for group, data in comp_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        type: "single",
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true,
-                        grid_num: {{comp.field.widget.attrs.grid_num}},
-                        {% if comp.field.widget.attrs.disable %}
-                          disable: true,
-                        {% endif %}
-                        onFinish: changeScenarioControlSlider
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        {% for group, data in area_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        type: "single",
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true,
-                        grid_num: {{comp.field.widget.attrs.grid_num}},
-                        {% if comp.field.widget.attrs.disable %}
-                          disable: true,
-                        {% endif %}
-                        onFinish: changeScenarioControlSlider
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        // test some upcoming features with wind slider
-        /*
-        var test_slider = $("#sl_wind").data("ionRangeSlider");
-        test_slider.reset();
-        test_slider.update({
-          min: 0,
-          max: 1000,
-          from_min: 250,
-          from_max: 750,
-          from_shadow: true,
-          to_shadow: true
-        });
-        */
-
-    </script>
     <script type="text/javascript">
         function main_map_init (map, options) {
+            // make map global
+            lmap = map;
+
             // show load spinner
             $('.loader-wrapper').toggleClass("loader-wrapper--hide");
             $('body').toggleClass("body--nopointer");
 
-            // Parse layer style JSONs
-            var style_data = JSON.parse('{{ layer_style | escapejs }}');
-            var choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
+            // Parse layer style JSONs and make global
+            style_data = JSON.parse('{{ layer_style | escapejs }}');
+            choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
 
-            // popup style
-            var customPopup =
-                {
-                'maxWidth': '500',
-                'className' : 'custom_popup'
-                }
-
-            // feature: click style
-            function execClickAction(e) {
-                var style = getLayerStyle("_click");
-                var layer = e.target;
-                layer.setStyle(style);
-
-                // center map to clicked entity
-                layer._map.panTo(e.latlng, {duration: 1});
-
-                // load popup content from detail view
-                var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
-                $.get( url, function( data ) {
-                  layer.setPopupContent(data);
-
-                  // load js content from JS detail view
-                  // TODO: Find more general solution than whitelist
-                  whitelist = [
-                      'reg_mun_pop',
-                      'reg_mun_energy_re_el_dem_share',
-                      'reg_mun_gen_energy_re',
-                      'reg_mun_gen_energy_re_per_capita',
-                      'reg_mun_gen_energy_re_density',
-                      'reg_mun_gen_cap_re',
-                      'reg_mun_gen_cap_re_density',
-                      'reg_mun_dem_el_energy',
-                      'reg_mun_dem_el_energy_per_capita',
-                      'reg_mun_dem_th_energy',
-                      'reg_mun_dem_th_energy_per_capita'
-                  ];
-                  if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
-                      var url_js = "../popupjs/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
-                      $.get( url_js, function( data ) {
-                        setTimeout(function() {
-                            eval(data);
-                        }, 250);
-                      });
-                  }
-                });
-
-
-            }
-
-            // feature: mousover style
-            function setHighlightFeatureStyle(e) {
-                var style = getLayerStyle("_highlight");
-                var layer = e.target;
-                layer.setStyle(style);
-            }
-
-            // feature: normal style
-            function setNormalFeatureStyle(layerName, feature) {
-              return function _(e) {
-                var style = getLayerStyle(layerName, feature);
-                var layer = e.target;
-                layer.setStyle(style);
-            };
-            }
-
-            // bind popups for each feature and define event actions
-            function onEachFeature(layerName) {
-            return function(feature, layer) {
-                if (feature.properties && feature.properties.popup_content) {
-                    layer.bindPopup('', customPopup);
-                    };
-                    layer.on({
-                        click: execClickAction,
-                        mouseover: setHighlightFeatureStyle,
-                        mouseout: setNormalFeatureStyle(layerName, feature)
-                    });
-            };
-            }
-
-            function pointToLayer(feature, latlng) {
-                var marker = L.circleMarker(latlng)
-                return marker;
-            }
-
-            // Create layer style from style_data json obj
-            // if it does not exist, use default
-            function getLayerStyle(name, feature) {
-              if (choropleth_data.hasOwnProperty(name)) {
-                var column = choropleth_data[name].data_column;
-                var schema = choropleth_data[name].color_schema;
-                var min = choropleth_data[name].min;
-                var max = choropleth_data[name].max;
-                var step = choropleth_data[name].step;
-                var reverse = choropleth_data[name].reverse;
-                var colorVals = getColorValues(schema, min, max, step, reverse);
-                var fill = getColor(colorVals, feature.properties[column]);
-                return {
-                  fillColor: fill,
-                  weight: style_data[name].weight,
-                  opacity: style_data[name].opacity,
-                  color: style_data[name].color,
-                  fillOpacity: style_data[name].fillOpacity,
-                };
-              } else if (style_data.hasOwnProperty(name)) {
-                return style_data[name];
-              } else {
-                return style_data._default;
-              }
-            }
-
-            // Setup layer and legend stores
-            var layers = {};
-            var legends = {};
-            var layers_cat = {};
+            // Setup layer and legend stores (global)
+            layers = {};
+            legends = {};
+            layers_cat = {};
 
             // Setup layer counter
             layer_count = {{ layer_list|length }};
             var layer_ctr = 0;
             var loader_text = $('#loader-detail-text');
 
-            // Load GeoJsons via Ajax and add layers to map
+            // Load GeoJsons via Ajax and add layers to map (region and area info)
             {% for layer, data in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
@@ -657,7 +522,8 @@
                     success: function(json){
                         // Add GeoJSON layer
                         var layer = new L.geoJson(json, {style: function(feature) {
-                                                            return getLayerStyle("{{ layer }}", feature);
+                                                            return getLayerStyle("{{ layer }}",
+                                                                                 feature);
                                                          },
                                                          onEachFeature: onEachFeature("{{ layer }}"),
                                                          pointToLayer: pointToLayer
@@ -736,6 +602,44 @@
                 });
             {% endfor %}
 
+            // Load GeoJsons via Ajax and add layers to map (RE potential areas)
+            // Setup layer store (global)
+            layers_re_pot = {};
+            {% for layer_id in re_pot_layer_id_list %}
+
+                // Build data URL
+                var dataurl = "{% url 'stemp_abw:re_pot_areas.data' pk=layer_id %}";
+
+                // Load data via Ajax
+                $.ajax({
+                    url: dataurl,
+                    dataType: 'json',
+                    async: true,
+                    success: function(json){
+                        // Add GeoJSON layer
+                        var layer = new L.geoJson(json, {style: function(feature) {
+                                                            return getLayerStyle("{{ layer }}",
+                                                                                 feature);
+                                                           }
+                                                         }
+                                                 );
+                        layers_re_pot["{{ layer_id }}"] = layer;
+                        }
+                });
+            {% endfor %}
+
+            // temp for RE pot layer control
+            $('#cb_use_forest').click( function () {
+              addRePotAreaLayer();
+            })
+
+            function SliderUpdate (data) {
+              changeScenarioControlSlider(data);
+              if (data.input.prop('id') == 'sl_dist_resid') {
+                addRePotAreaLayer();
+              }
+            }
+
             /*
             var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
               layers: 'dwd:BRD_1km_winddaten_80m',
@@ -754,7 +658,7 @@
             // Move zoom control
             map.removeControl(map.zoomControl);
             L.control.zoom({
-		          position: 'bottomright'
+		          position: 'topright'
 	          }).addTo(map);
 
 	          // Move scale control
@@ -764,172 +668,61 @@
 	            imperial: false
 	          }).addTo(map);
 
-            // Control layer
-            $(document).foundation();
+            // load sliders
+            {% for group, data in comp_groups.items %}
+                {% for comp in data.comps %}
+                    {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                        $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                            type: "single",
+                            min: {{comp.field.widget.attrs.min}},
+                            max: {{comp.field.widget.attrs.max}},
+                            from: {{comp.field.widget.attrs.from}},
+                            step: {{comp.field.widget.attrs.step}},
+                            grid: true,
+                            grid_num: {{comp.field.widget.attrs.grid_num}},
+                            {% if comp.field.widget.attrs.disable %}
+                              disable: true,
+                            {% endif %}
+                            onFinish: changeScenarioControlSlider
+                        });
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
 
-            // Control layer visibility via checkboxes (region layers)
-            $('.switch-input-layer-select-region').click( function () {
-              var id = $(this).attr('id');
+            {% for group, data in area_groups.items %}
+                {% for comp in data.comps %}
+                    {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                        $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                            type: "single",
+                            min: {{comp.field.widget.attrs.min}},
+                            max: {{comp.field.widget.attrs.max}},
+                            from: {{comp.field.widget.attrs.from}},
+                            step: {{comp.field.widget.attrs.step}},
+                            grid: true,
+                            grid_num: {{comp.field.widget.attrs.grid_num}},
+                            {% if comp.field.widget.attrs.disable %}
+                              disable: true,
+                            {% endif %}
+                            onFinish: SliderUpdate
+                        });
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
 
-              // Individual layers switches
-              l = layers[id.replace('cb_region_','')];
-              if (this.checked) map.addLayer(l);
-              else map.removeLayer(l);
+            // test some upcoming features with wind slider
+            /*
+            var test_slider = $("#sl_wind").data("ionRangeSlider");
+            test_slider.reset();
+            test_slider.update({
+              min: 0,
+              max: 1000,
+              from_min: 250,
+              from_max: 750,
+              from_shadow: true,
+              to_shadow: true
             });
+            */
 
-            // Control layer visibility via checkboxes (areas layers)
-            $('.switch-input-layer-select-areas').click( function () {
-              var id = $(this).attr('id');
-
-              // Master switch for all layers
-              if (id == "cb_all_areas_layers") {
-                for (var l in layers) {
-                  if (layers.hasOwnProperty(l) && layers_cat[l] == 'areas') {
-                    if (this.checked) map.addLayer(layers[l]);
-                    else map.removeLayer(layers[l]);
-                  }
-                $('.switch-input-layer-select-areas').prop('checked', this.checked);
-                }
-              }
-
-              // Individual layers switches
-              else {
-                l = layers[id.replace('cb_areas_','')];
-                if (this.checked) map.addLayer(l);
-                else map.removeLayer(l);
-              };
-            });
-
-            // Control legend visibility via checkboxes
-            $('.switch-input-layer-select-region').click( function () {
-              var id = $(this).attr('id');
-
-              // Master switch for all legends
-              // (CURRENTLY DISABLED AS ONLY REGION LAYER LIST CONTAINS CHORO MAPS)
-              /*
-              if (id == "cb_all_areas_layers") {
-                for (var l in legends) {
-                  if (legends.hasOwnProperty(l)) {
-                    map.removeControl(legends[l]);
-                  }
-                $('.switch-input-layer-select').prop('checked', this.checked);
-                }
-              }
-              */
-
-              // Individual legend switches
-              //else {
-                id = id.replace('cb_region_', '');
-                for (var l in legends) {
-                  if (l !== id && choropleth_data.hasOwnProperty(id)) {
-                    if (this.checked) {
-                        map.removeLayer(layers[l]);
-                        map.removeControl(legends[l]);
-                        var el = document.getElementById('cb_region_' + l);
-                        el.checked = false;
-                    }
-                  } else if (l === id) {
-                    l = legends[id];
-                    if (this.checked) l.addTo(map);
-                    else map.removeControl(l);
-                  }
-                }
-              //}
-            });
-        };
-
-        // Control simulation
-        function ctrlSimulate() {
-          console.log('simulation started');
-          //element.prop("disabled", true);
-          //$('#simulation-save-btn').show();
-
-          $.ajax({
-              url : '{% url 'stemp_abw:map' %}',
-              type : "POST",
-              data : {action: 'simulate',
-                      data: '',
-                      csrfmiddlewaretoken: '{{ csrf_token }}'},
-              success: function(page) {
-                  console.log('success');
-              },
-              error: function(page) {
-                  console.log('error');
-              }
-          }).done(function(returned_data){
-              //updateSimProgressBar(25);
-              console.log(returned_data);
-          });
-        };
-
-        // Control scenario select and apply
-        function ctrlScenario(element_id) {
-            element = $('#' + element_id);
-            var data = '';
-
-            if (element_id == 'select-scn-frm') {
-              console.log('change scn dropdown');
-              action = 'select_scenario';
-              data = element.val();
-            } else if (element_id == 'apply-scn-btn') {
-              console.log('apply scn btn');
-              action = 'apply_scenario';
-              data = $('#select-scn-frm').val();
-            }
-
-            $.ajax({
-                url : '{% url 'stemp_abw:map' %}',
-                type : "POST",
-                data : {action: action,
-                        data: data,
-                        csrfmiddlewaretoken: '{{ csrf_token }}'},
-                success: function(page) {
-                    console.log('success');
-                },
-                error: function(page) {
-                    console.log('error');
-                }
-            }).done(function(returned_data) {
-                if (element_id == 'select-scn-frm') {
-                  var scn_data = JSON.parse(returned_data);
-                  //console.log(scn_data);
-                  updateScenarioList(scn_data['scenario_list']);
-                  updateScenarioControls(scn_data['scenario']['name'],
-                                         scn_data['scenario']['desc'],
-                                         scn_data['controls'],
-                                         false);
-                } else if (element_id == 'apply-scn-btn') {
-                  var scn_data = JSON.parse(returned_data)
-                  //console.log(returned_data);
-                  updateScenarioControls(scn_data['scenario']['name'],
-                                         scn_data['scenario']['desc'],
-                                         scn_data['controls'],
-                                         true);
-                }
-            });
-        };
-
-        // Post scenario settings
-        function ctrlScenarioPost(element_id, data) {
-            //console.log(element_id + ': ' + data);
-            $.ajax({
-                url : '{% url 'stemp_abw:map' %}',
-                type : "POST",
-                data : {action: 'update_scenario',
-                        data: JSON.stringify({[element_id]: data}),
-                        csrfmiddlewaretoken: '{{ csrf_token }}'},
-                success: function(page) {
-                    console.log('success');
-                },
-                error: function(page) {
-                    console.log('error');
-                }
-            }).done(function(returned_data) {
-                data = JSON.parse(returned_data);
-                if (element_id == 'dd_repowering') {
-                  updateScenarioControlRepDropdown(data['sl_wind_repower_pot']);
-                }
-            });
         };
 
         // Update simulation progress bar
@@ -942,5 +735,7 @@
           // Set controls for Status quo scenario on startup
           ctrlScenario('apply-scn-btn');
         });
+
     </script>
+
 {% endblock %}

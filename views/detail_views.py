@@ -1,5 +1,5 @@
 import stemp_abw.models as models
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView
 from stemp_abw.app_settings import LABELS
 from stemp_abw import visualizations
 from wam.settings import SESSION_DATA
