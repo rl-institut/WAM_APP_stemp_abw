@@ -1,12 +1,12 @@
-<div class="grid-x" style="width: 300px">
+<div class="grid-x map-popup" style="width: 450px">
     {% block title %}
-    <div class="cell">
+    <div class="cell map-popup__header">
         <h3>{{ title }}</h3>
     </div>
     {% endblock %}
 
     {% block gen %}
-    <div class="cell">
+    <div class="cell map-popup__region">
         <h5>{{ layer.gen }}</h5>
     </div>
     {% endblock %}
@@ -15,7 +15,7 @@
     {% endblock %}
 
     {% block text %}
-    <div class="cell">
+    <div class="cell map-popup__desc">
         <p>{{ text }}</p>
     </div>
     {% endblock %}
@@ -24,14 +24,17 @@
     {% endblock%}
 
     {% block links %}
-    <!--<div class="cell">-->
-        <!--Quellen:-->
-    <!--</div>-->
-    <!--<div class="cell">-->
-        <!--Annahmen:-->
-    <!--</div>-->
-    <!--<div class="cell">-->
-        <!--Links:-->
-    <!--</div>-->
+      {% if "0" in sources %}
+      {% else %}
+        <div class="cell map-popup__footer">
+            Quellen:
+            {% for source in sources %}
+                <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
+                   class="anchor-text linkto-source"
+                   id="linkto-source-{{ source.id }}">{{ source.infos.title }}</a>
+                {% if not forloop.last %}, {% else %}{% endif %}
+            {% endfor %}
+        </div>
+      {% endif %}
     {% endblock %}
 </div>
