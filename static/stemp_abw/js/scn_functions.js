@@ -143,7 +143,7 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
     activateRePotScenarioControls(false);
     wind_slider.update({
       from: sl_wind_value,
-      max: 2000,
+      max: sl_wind_value,
       disable: true
     });
   }

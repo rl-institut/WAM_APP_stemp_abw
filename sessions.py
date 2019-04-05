@@ -231,7 +231,12 @@ class UserSession(object):
             # 2) mun data update
             # free sceario
             if int(ctrl_data['dd_repowering']) == -1:
-                sl_wind_repower_pot = None
+                print(self.user_scenario)
+                sl_wind_repower_pot = round(
+                    sum([scn_data['mun_data'][mun]['gen_capacity_wind']
+                         for mun in scn_data['mun_data'].keys()]
+                        )
+                )
             # other scenarios
             else:
                 repower_data = json.loads(self.user_scenario.repowering_scenario.data)
