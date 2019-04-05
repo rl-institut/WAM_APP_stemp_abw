@@ -630,13 +630,13 @@
 
             // temp for RE pot layer control
             $('#cb_use_forest').click( function () {
-              addRePotAreaLayer(map, layers_re_pot);
+              addRePotAreaLayer();
             })
 
             function SliderUpdate (data) {
               changeScenarioControlSlider(data);
               if (data.input.prop('id') == 'sl_dist_resid') {
-                addRePotAreaLayer(map, layers_re_pot);
+                addRePotAreaLayer();
               }
             }
 

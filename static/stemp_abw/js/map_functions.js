@@ -248,9 +248,9 @@ $('.switch-input-layer-select-region').click( function () {
 });
 
 // temp for RE pot layer control
-function addRePotAreaLayer (map, layers_re_pot) {
+function addRePotAreaLayer () {
   // Remove all layers
-  removeRePotAreaLayers(map, layers_re_pot);
+  removeRePotAreaLayers();
 
   // Get controls' status
   sl_val = Math.round($('#sl_dist_resid').data("ionRangeSlider").result.from);
@@ -261,26 +261,26 @@ function addRePotAreaLayer (map, layers_re_pot) {
   // Add needed layer
   if (sl_val == 1000) {
     if (sw_val == false) {
-      map.addLayer(layers_re_pot['1']);
+      lmap.addLayer(layers_re_pot['1']);
       wec_count = 788;
     } else {
-      map.addLayer(layers_re_pot['2']);
+      lmap.addLayer(layers_re_pot['2']);
       wec_count = 1761;
     }
   } else if (sl_val == 1500) {
     if (sw_val == false) {
-      map.addLayer(layers_re_pot['3']);
+      lmap.addLayer(layers_re_pot['3']);
       wec_count = 186;
     } else {
-      map.addLayer(layers_re_pot['4']);
+      lmap.addLayer(layers_re_pot['4']);
       wec_count = 651;
     }
   } else if (sl_val == 500) {
     if (sw_val == false) {
-      map.addLayer(layers_re_pot['5']);
+      lmap.addLayer(layers_re_pot['5']);
       wec_count = 2242;
     } else {
-      map.addLayer(layers_re_pot['6']);
+      lmap.addLayer(layers_re_pot['6']);
       wec_count = 3751;
     }
   }
@@ -292,8 +292,8 @@ function addRePotAreaLayer (map, layers_re_pot) {
 }
 
 // Remove all RE pot layers
-function removeRePotAreaLayers (map, layers_re_pot) {
+function removeRePotAreaLayers () {
   for (var l in layers_re_pot) {
-    map.removeLayer(layers_re_pot[l]);
+    lmap.removeLayer(layers_re_pot[l]);
   }
 }

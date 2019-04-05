@@ -30,18 +30,14 @@ function ctrlScenario(element_id) {
       var scn_data = JSON.parse(returned_data);
       //console.log(scn_data);
       updateScenarioList(scn_data['scenario_list']);
-      updateScenarioControls(lmap,
-                             layers_re_pot,
-                             scn_data['scenario']['name'],
+      updateScenarioControls(scn_data['scenario']['name'],
                              scn_data['scenario']['desc'],
                              scn_data['controls'],
                              false);
     } else if (element_id == 'apply-scn-btn') {
       var scn_data = JSON.parse(returned_data)
       //console.log(returned_data);
-      updateScenarioControls(lmap,
-                             layers_re_pot,
-                             scn_data['scenario']['name'],
+      updateScenarioControls(scn_data['scenario']['name'],
                              scn_data['scenario']['desc'],
                              scn_data['controls'],
                              true);

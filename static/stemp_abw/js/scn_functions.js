@@ -17,7 +17,7 @@ function updateScenarioList(scenarios) {
 };
 
 // Update all control elements in UI according to scenario data
-function updateScenarioControls(map, layers_re_pot, scn_name, scn_desc, controls, apply) {
+function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   // Repowering dropdown
   if (apply === true) {
     rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
@@ -31,7 +31,7 @@ function updateScenarioControls(map, layers_re_pot, scn_name, scn_desc, controls
         disable: true,
       });
       activateRePotScenarioControls(false);
-      removeRePotAreaLayers(map, layers_re_pot);
+      removeRePotAreaLayers();
     }
   }
 
