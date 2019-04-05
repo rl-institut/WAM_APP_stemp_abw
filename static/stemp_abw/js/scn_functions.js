@@ -17,7 +17,7 @@ function updateScenarioList(scenarios) {
 };
 
 // Update all control elements in UI according to scenario data
-function updateScenarioControls(scn_name, scn_desc, controls, apply) {
+function updateScenarioControls(map, layers_re_pot, scn_name, scn_desc, controls, apply) {
   // Repowering dropdown
   if (apply === true) {
     rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
@@ -31,6 +31,7 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
         disable: true,
       });
       activateRePotScenarioControls(false);
+      removeRePotAreaLayers(map, layers_re_pot);
     }
   }
 
@@ -76,7 +77,6 @@ function convertToPercent(num, min, max) {
   var percent = (num - min) / (max - min) * 100;
   return percent;
 }
-
 function addMarks($slider, min, max, marks) {
   var html = '';
   var left = 0;
@@ -114,7 +114,7 @@ $('.switch-input.esys').click( function () {
 // Fired when repowering dropdown is changed (prior to POST)
 function changeScenarioControlRepDropdown(element_id) {
   if (element_id == 'dd_repowering') {
-    ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
+    //ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
     ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
   } else {
     ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
