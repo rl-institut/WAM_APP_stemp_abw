@@ -48,9 +48,10 @@ class HCPiechart(HCStemp):
                 'allowPointSelect': False,
                 'cursor': 'pointer',
                 'dataLabels': {
-                    'enabled': True,
+                    'enabled': False,
                     'format': '<b>{point.name}</b>: {point.y}<br>({point.percentage:.1f} %)',
-                }
+                    },
+                'showInLegend': True
             }
         },
         'tooltip': {
