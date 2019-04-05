@@ -138,7 +138,8 @@ class UserSession(object):
                                               in CONTROL_VALUES_MAP[c_name]])
         return control_values
 
-    def create_mun_data_ratio_for_aggregation(self):
+    @staticmethod
+    def create_mun_data_ratio_for_aggregation():
         """Create table of technology shares for municipalities from status
         quo scenario.
 
