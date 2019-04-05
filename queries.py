@@ -4,8 +4,6 @@ import os
 import json
 import hashlib
 from uuid import UUID
-from shapely.wkt import loads as wkt_loads
-from geoalchemy2 import Geometry, WKTElement
 from django.core.wsgi import get_wsgi_application
 
 

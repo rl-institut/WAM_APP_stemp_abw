@@ -2,8 +2,6 @@ from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-#import sqlahelper
-
 from stemp_abw.config import io
 from stemp_abw import results
 
