@@ -62,7 +62,8 @@ class ComponentGroupForm(forms.Form):
                          'from': data['value'],
                          'step': data['step'],
                          'grid_num': data['grid_count'],
-                         'disable': True if data.get('disable') == '1' else False
+                         'disable': True if data.get('disable') == '1' else False,
+                         'extra_classes': ''
                          }
                 # If slider is wind, add dropdown data.
                 # It is required to provide data via widget as a new <select>
@@ -120,7 +121,8 @@ class AreaGroupForm(forms.Form):
                                'from': data['value'],
                                'step': data['step'],
                                'grid_num': data['grid_count'],
-                               'disable': True if data.get('disable') == '1' else False
+                               'disable': True if data.get('disable') == '1' else False,
+                               'extra_classes': 'rc-tooltip-trigger-override'
                                }
                     ),
                     required = False

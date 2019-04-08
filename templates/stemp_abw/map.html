@@ -661,7 +661,7 @@
 	            imperial: false
 	          }).addTo(map);
 
-            // load sliders
+            // Load sliders (layers)
             {% for group, data in comp_groups.items %}
                 {% for comp in data.comps %}
                     {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
@@ -676,12 +676,14 @@
                             {% if comp.field.widget.attrs.disable %}
                               disable: true,
                             {% endif %}
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
                             onFinish: changeScenarioControlSlider
                         });
                     {% endif %}
                 {% endfor %}
             {% endfor %}
 
+            // Load sliders (esys)
             {% for group, data in area_groups.items %}
                 {% for comp in data.comps %}
                     {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
@@ -696,6 +698,7 @@
                             {% if comp.field.widget.attrs.disable %}
                               disable: true,
                             {% endif %}
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
                             onFinish: changeScenarioControlSlider
                         });
                     {% endif %}
