@@ -87,7 +87,7 @@ function openEnergyTab() {
   $("#tabsAreas").toggleClass("is-active");
 }
 
-$('#openEnergyTab').on('click', openEnergyTab);
+$('.openEnergyTab').on('click', openEnergyTab);
 
 
 

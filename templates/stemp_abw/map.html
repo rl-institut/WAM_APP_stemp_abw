@@ -51,14 +51,15 @@
                   <li class="tabs-title" id="tabsEnergy">
                     <a href="#panel-energy">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
+                      <div style="float: right;" id="rc-tooltip-esys" title="{{ tooltips.tabs_esys_changes.text }} <a class='btn btn-rect-small openEnergyTab' style='float: right;'>Zum Energiesystem springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
                       <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
                     </a>
                   </li>
                   <li class="tabs-title" id="tabsAreas">
                     <a href="#panel-areas">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                      <div style="float: right;" id="rc-tooltip-areas-enabled" title="{{ tooltips.tabs_area_changes_enabled.text }} <a class='btn btn-rect-small openAreaTab' style='float: right;'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
-                      <div style="float: right;" id="rc-tooltip-areas-disabled" title="{{ tooltips.tabs_area_changes_disabled.text }} <a class='btn btn-rect-small openAreaTab' style='float: right;'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <div style="float: right;" id="rc-tooltip-areas-enabled" title="{{ tooltips.tabs_areas_changes_enabled.text }} <a class='btn btn-rect-small openAreaTab' style='float: right;'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <div style="float: right;" id="rc-tooltip-areas-disabled" title="{{ tooltips.tabs_areas_changes_disabled.text }} <a class='btn btn-rect-small openAreaTab' style='float: right;'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
                       <h2 class="tabs-title__head">Flächen</h2>
                     </a>
                   </li>
@@ -224,6 +225,10 @@
                             </div>
 
                             {% include "forms/esys_areas.html" %}
+
+                            <!--<a class="btn btn-cta" id="openEnergyTab">-->
+                              <!--Zum Esys springen-->
+                            <!--</a>-->
                           </div>
 
                           <div class="tabs-panel" id="areas-panel2">
@@ -631,14 +636,12 @@
             {% endfor %}
 
             // temp for RE pot layer control
-            $('#cb_use_forest').click( function () {
-              addRePotAreaLayer();
-            })
-
             function SliderUpdate (data) {
               changeScenarioControlSlider(data);
               if (data.input.prop('id') == 'sl_dist_resid') {
                 addRePotAreaLayer();
+                $('#rc-tooltip-esys').foundation('show');
+                highlightPanelTab('tabsEnergy');
               }
             }
 

@@ -106,9 +106,12 @@ function changeScenarioControlSlider(data) {
   */
 }
 
-// Fired when scenario switch is changed
+// Fired when an esys areas switch is changed
 $('.switch-input.esys').click( function () {
   ctrlScenarioPost($(this).prop('id'), $(this).prop('checked'));
+  addRePotAreaLayer();
+  $('#rc-tooltip-esys').foundation('show');
+  highlightPanelTab('tabsEnergy');
 })
 
 // Fired when repowering dropdown is changed (prior to POST)
@@ -151,7 +154,6 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
   }
 
   highlightPanelTab('tabsAreas');
-
 }
 
 function activateRePotScenarioControls(enable) {

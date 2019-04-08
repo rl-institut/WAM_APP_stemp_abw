@@ -6,6 +6,7 @@ from stemp_abw.dataio.load_static import load_repowering_scenarios
 
 REPOWERING_SCENARIOS = load_repowering_scenarios()
 
+
 class LayerGroupForm(forms.Form):
     """Form for layer group (regional info)"""
 
