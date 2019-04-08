@@ -96,7 +96,6 @@ function changeScenarioControlSlider(data) {
   ctrlScenarioPost(ctrl_id, data.from);
 
   // Add RE potential areas if slider belong to esys areas
-  console.log(data.input.prop('class'));
   if (data.input.prop('id') == 'sl_dist_resid') {
     addRePotAreaLayer();
     $('#rc-tooltip-esys').foundation('show');
