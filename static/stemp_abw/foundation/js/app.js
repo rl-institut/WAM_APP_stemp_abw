@@ -22142,34 +22142,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer--hide').click(function ()
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-// after simulation is done
-// replace click event with appropriate event
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn').on('click', function () {
-  // if user has already results panel open
-  if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').is('.is-active')) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').addClass('results-highlighted');
-  }
-}); // when user clicks on results tab
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').on('click', function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').removeClass('results-highlighted');
-});
 // ************** OPEN TAB ************** //
 // initialize the Foundation javascript
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
 
-function openTab() {
-  // open/collapse tab content
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#deeplinked-tabs').foundation('_openTab', jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-areas'));
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#deeplinked-tabs').foundation('_collapseTab', jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-energy')); // activate/deactivate tab highlight
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#tabsEnergy").toggleClass("is-active");
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#tabsAreas").toggleClass("is-active");
-}
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#openTabExample').on('click', openTab);
 
 /***/ }),
 

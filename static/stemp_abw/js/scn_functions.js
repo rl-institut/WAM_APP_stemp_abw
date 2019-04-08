@@ -133,11 +133,12 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
 
   // free scenario
   if (dd_value == -1) {
-      activateRePotScenarioControls(true);
-      wind_slider.update({
-        from: sl_wind_value,
-        disable: false
-      });
+    activateRePotScenarioControls(true);
+    wind_slider.update({
+      from: sl_wind_value,
+      disable: false
+    });
+    $('#rc-tooltip-areas-enabled').foundation('show');
   // repowering scenarios and SQ scenario
   } else {
     activateRePotScenarioControls(false);
@@ -146,7 +147,10 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
       max: sl_wind_value,
       disable: true
     });
+    $('#rc-tooltip-areas-disabled').foundation('show');
   }
+
+  highlightPanelTab('tabsAreas');
 
 }
 

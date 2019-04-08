@@ -1,4 +1,4 @@
-  <select id="dd_repowering" onchange="changeScenarioControlRepDropdown(this.id)">
+  <select class="rc-tooltip-trigger-override" id="dd_repowering" onchange="changeScenarioControlRepDropdown(this.id)">
       {% for rep in widget.attrs.dropdown %}
         {{ rep|safe }}
       {% endfor %}
