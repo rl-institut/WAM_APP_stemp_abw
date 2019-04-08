@@ -1,5 +1,5 @@
 from django import forms
-from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
+from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
 
 from stemp_abw.models import Scenario
 from stemp_abw.dataio.load_static import load_repowering_scenarios
@@ -80,7 +80,7 @@ class ComponentGroupForm(forms.Form):
                 self.fields[name] = forms.TypedChoiceField(
                     label='',
                     coerce=lambda x: bool(int(x)),
-                    widget=SwitchWidget(
+                    widget=EsysSwitchWidget(
                         attrs={'id': 'cb_{}'.format(name),
                                'name': name,
                                'title': data['title'],
@@ -129,7 +129,7 @@ class AreaGroupForm(forms.Form):
                 self.fields[name] = forms.TypedChoiceField(
                     label='',
                     coerce=lambda x: bool(int(x)),
-                    widget=SwitchWidget(
+                    widget=EsysSwitchWidget(
                         attrs={'id': 'cb_{}'.format(name),
                                'class': 'esys',
                                'name': name,
