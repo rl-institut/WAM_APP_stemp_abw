@@ -95,6 +95,14 @@ function changeScenarioControlSlider(data) {
   var ctrl_id = data.input.prop('id');
   ctrlScenarioPost(ctrl_id, data.from);
 
+  // Add RE potential areas if slider belong to esys areas
+  console.log(data.input.prop('class'));
+  if (data.input.prop('id') == 'sl_dist_resid') {
+    addRePotAreaLayer();
+    $('#rc-tooltip-esys').foundation('show');
+    highlightPanelTab('tabsEnergy');
+  }
+
   /*
   var from_max = $(this).attr("from_max");
   var from_min = $(this).attr("from_min");

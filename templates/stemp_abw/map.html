@@ -635,16 +635,6 @@
                 });
             {% endfor %}
 
-            // temp for RE pot layer control
-            function SliderUpdate (data) {
-              changeScenarioControlSlider(data);
-              if (data.input.prop('id') == 'sl_dist_resid') {
-                addRePotAreaLayer();
-                $('#rc-tooltip-esys').foundation('show');
-                highlightPanelTab('tabsEnergy');
-              }
-            }
-
             /*
             var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
               layers: 'dwd:BRD_1km_winddaten_80m',
@@ -708,7 +698,7 @@
                             {% if comp.field.widget.attrs.disable %}
                               disable: true,
                             {% endif %}
-                            onFinish: SliderUpdate
+                            onFinish: changeScenarioControlSlider
                         });
                     {% endif %}
                 {% endfor %}
