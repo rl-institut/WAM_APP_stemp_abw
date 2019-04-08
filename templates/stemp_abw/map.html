@@ -465,12 +465,12 @@
 {% endblock %}
 
 {% block scripts %}
-    // Set
+    <!--Get CSRF token and make it global-->
     <script>
       var csrf_token = '{{ csrf_token }}';
     </script>
 
-    // Load required scripts
+    <!--Load required helper scripts-->
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
     <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
@@ -490,8 +490,6 @@
           }, 750);
       }});
     </script>
-
-
 
     <script type="text/javascript">
         function main_map_init (map, options) {
