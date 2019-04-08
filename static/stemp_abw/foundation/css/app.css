@@ -395,10 +395,13 @@ select {
     font-size: 0.875rem;
     -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-in;
     transition: background-color 0.2s ease-in, color 0.2s ease-in; }
-    .btn-small:hover {
+    .btn-rect-small:hover {
       color: #0a0a0a;
       background-color: #f4a662;
       border: 1px solid #f4a662; }
+  .btn-tooltip {
+    float: right;
+    margin: 0.5rem 0 0 0; }
   @media print, screen and (min-width: 40em) {
     .btn--small {
       min-width: 10rem; }
