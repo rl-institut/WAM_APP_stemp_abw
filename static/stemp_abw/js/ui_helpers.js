@@ -25,15 +25,15 @@ $('.rc-tooltip-trigger').click( function () {
 });
 // Add listener to hide tooltips if the clicked element isn't a tooltip trigger (document)
 document.addEventListener("click", function(event) {
-  var element_class = $(event.target).attr('class');
-	if (element_class != 'rc-tooltip-trigger' && element_class != 'rc-tooltip-trigger-override') {
+  var el = $(event.target);
+	if (!el.hasClass('rc-tooltip-trigger') && !el.hasClass('rc-tooltip-trigger-override')) {
 	  $('.tooltip').foundation().hide();
 	};
 });
 // Add listener to hide tooltips if the clicked element isn't a tooltip trigger (tabs in offcanvas menu)
 $('.tabs-title').click( function(event) {
-  var element_class = $(event.target).attr('class');
-	if (element_class != 'rc-tooltip-trigger' && element_class != 'rc-tooltip-trigger-override') {
+  var el = $(event.target);
+	if (!el.hasClass('rc-tooltip-trigger') && !el.hasClass('rc-tooltip-trigger-override')) {
 	  $('.tooltip').foundation().hide();
 	};
 });
