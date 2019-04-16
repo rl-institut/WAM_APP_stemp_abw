@@ -36,8 +36,10 @@ class MasterDetailView(DetailView):
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        context['sources'] = self.get_source_data(LAYER_REGION_METADATA, 'stemp_abw')
-        context['sources'] = self.get_source_data(LAYER_AREAS_METADATA, 'stemp_abw')
+        # get app_name from request
+        app_name = self.request.resolver_match.app_name
+        context['sources'] = self.get_source_data(LAYER_REGION_METADATA, app_name)
+        context['sources'] = self.get_source_data(LAYER_AREAS_METADATA, app_name)
 
         return context
 
