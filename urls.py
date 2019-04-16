@@ -26,10 +26,10 @@ urlpatterns = [
     path('sources_old/', views.SourcesView.as_view(),
          name='sources_old'),
     # Source views from WAM with highlighting
-    path('sources/', AppListView.as_view(app_name='stemp_abw',
+    path('sources/', AppListView.as_view(app_name=app_name,
                                          model=Source),
          name='sources'),
-    path('assumptions/', AssumptionsView.as_view(app_name='stemp_abw'),
+    path('assumptions/', AssumptionsView.as_view(app_name=app_name),
          name='assumptions'),
     ]
 
