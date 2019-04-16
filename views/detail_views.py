@@ -12,34 +12,32 @@ class MasterDetailView(DetailView):
     template_name = 'stemp_abw/popups/base_layer_popup.html'
     context_object_name = 'layer'
 
+    def get_source_data(self, metadata, app_name):
+        for layer_group in metadata.values():
+            for layer in layer_group.values():
+                if layer['model'] == self.model.name:
+                    sources = []
+                    for source in layer['sources']:
+                        if source == '0':
+                            sources.append(source)
+                            break
+                        else:
+                            sources.append(Source.objects
+                                           .filter(app_name=app_name)
+                                           .get(pk=source))
+                    return sources
+                else:
+                    pass
+
+
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        for layer_group in LAYER_REGION_METADATA.values():
-            for layer in layer_group.values():
-                if layer['model'] == self.model.name:
-                    sources = []
-                    for source in layer['sources']:
-                        if source == '0':
-                            sources.append(source)
-                            break
-                        else:
-                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
-                    context['sources'] = sources
-        for layer_group in LAYER_AREAS_METADATA.values():
-            for layer in layer_group.values():
-                if layer['model'] == self.model.name:
-                    sources = []
-                    for source in layer['sources']:
-                        if source == '0':
-                            sources.append(source)
-                            break
-                        else:
-                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
-                    context['sources'] = sources
+        context['sources'] = self.get_source_data(LAYER_REGION_METADATA, 'stemp_abw')
+        context['sources'] = self.get_source_data(LAYER_AREAS_METADATA, 'stemp_abw')
 
         return context
 
