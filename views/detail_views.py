@@ -21,7 +21,7 @@ class MasterDetailView(DetailView):
 
         :param metadata: ConfigObj
         :param app_name: str
-        :return:
+        :return: None, list with element 0 (int) or list of sources PK (int)
         """
         for layer_group in metadata.values():
             for layer in layer_group.values():
@@ -46,10 +46,15 @@ class MasterDetailView(DetailView):
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        # get app_name from request
+        # Get app_name from request
         app_name = self.request.resolver_match.app_name
-        context['sources'] = self.get_source_data(LAYER_REGION_METADATA, app_name)
-        context['sources'] = self.get_source_data(LAYER_AREAS_METADATA, app_name)
+        # Gather all layer metadata ConfigObj objects
+        layers_metadata = [LAYER_REGION_METADATA, LAYER_AREAS_METADATA]
+        # Put sources PKs into context
+        for layer_metadata in layers_metadata:
+            source_layer_metadata = self.get_source_data(layer_metadata, app_name)
+            if source_layer_metadata is not None:
+                context['sources'] = source_layer_metadata
 
         return context
 
