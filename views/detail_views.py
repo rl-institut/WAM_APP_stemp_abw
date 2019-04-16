@@ -13,6 +13,16 @@ class MasterDetailView(DetailView):
     context_object_name = 'layer'
 
     def get_source_data(self, metadata, app_name):
+        """
+        Takes a metadata ConfigObj and returns 0 or
+        multiple values, if provided by the ConfigObj object.
+        Values of ConfigObj should correspond to PK of sources
+        in the database.
+
+        :param metadata: ConfigObj
+        :param app_name: str
+        :return:
+        """
         for layer_group in metadata.values():
             for layer in layer_group.values():
                 if layer['model'] == self.model.name:
