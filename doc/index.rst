@@ -5,7 +5,8 @@ StEmp-ABW ist ein Stakeholder-Empowerment-Tool für die Region Anhalt-Bitterfeld
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   api
 
 
 
