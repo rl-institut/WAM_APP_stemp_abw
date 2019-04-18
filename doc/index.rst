@@ -1,10 +1,7 @@
-.. StEmp-ABW documentation master file, created by
-   sphinx-quickstart on Thu Apr 18 23:18:17 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to StEmp-ABW's documentation!
 =====================================
+
+StEmp-ABW ist ein Stakeholder-Empowerment-Tool für die Region Anhalt-Bitterfeld-Wittenberg (ABW).
 
 .. toctree::
    :maxdepth: 2
