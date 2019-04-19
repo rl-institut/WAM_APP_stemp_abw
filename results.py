@@ -1,5 +1,9 @@
 import pandas as pd
+
 from numpy.random import random
+# needed to suppress source code of random as it has no __module__ attribute
+random.__module__ = "numpy"
+
 from stemp_abw import visualizations
 
 
