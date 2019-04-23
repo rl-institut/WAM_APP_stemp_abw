@@ -4,7 +4,8 @@ from django.views.generic import DetailView
 import stemp_abw.models as models
 from meta.models import Source
 from stemp_abw import visualizations
-from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, LAYER_AREAS_METADATA
+from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
+    LAYER_AREAS_METADATA
 from wam.settings import SESSION_DATA
 
 
@@ -52,14 +53,15 @@ class MasterDetailView(DetailView):
         layers_metadata = [LAYER_REGION_METADATA, LAYER_AREAS_METADATA]
         # Put sources PKs into context
         for layer_metadata in layers_metadata:
-            source_layer_metadata = self.get_source_data(layer_metadata, app_name)
+            source_layer_metadata = self.get_source_data(layer_metadata,
+                                                         app_name)
             if source_layer_metadata is not None:
                 context['sources'] = source_layer_metadata
 
         return context
 
     def chart_session_store(self, context):
-        # backup current HC to session if view for html is requested,
+        # Backup current HC to session if view for html is requested,
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
@@ -70,9 +72,9 @@ class MasterDetailView(DetailView):
             session.highcharts_temp = None
 
 
-####################
-### Detail Views ### for popups
-####################
+###########################
+# Detail Views for popups #
+###########################
 class RpAbwBoundDetailView(MasterDetailView):
     model = models.RpAbwBound
 
@@ -97,7 +99,8 @@ class RegMunPopDetailView(MasterDetailView):
         pop_2030 = mun_data.pop_2030
         pop_2050 = mun_data.pop_2050
         index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
+        data = pd.DataFrame(index=index,
+                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
             'title': {'text': 'Bevölkerungsentwicklung'},
             'subtitle': {'text': 'Prognose'},
@@ -121,19 +124,27 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/energy_re_el_dem_share.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunEnergyReElDemShareDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunEnergyReElDemShareDetailView,
+                        self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
         return context
 
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
-        wind = round(((mun_data.gen_el_energy_wind / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        data = pd.DataFrame(data={'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof, 'PV Freifläche': pv_ground, 'Hydro': hydro}})
+        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(
+            pk=self.kwargs['pk'])
+        wind = round(((mun_data.gen_el_energy_wind / 1e3) /
+                      reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) /
+                         reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) /
+                           reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) /
+                       reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        data = pd.DataFrame(data={
+            'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
+                          'PV Freifläche': pv_ground, 'Hydro': hydro}})
         setup_labels = {
             'title': {'text': 'EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zum Strombedarf'},
@@ -155,7 +166,8 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/gen_energy_re.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyReDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunGenEnergyReDetailView, self).get_context_data(
+            **kwargs)
         self.chart_session_store(context)
 
         return context
@@ -171,7 +183,7 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -179,12 +191,14 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -200,7 +214,8 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/gen_energy_re_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyRePerCapitaDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunGenEnergyRePerCapitaDetailView,
+                        self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
         return context
@@ -209,14 +224,15 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
         wind = round((mun_data.gen_el_energy_wind / mun_data.pop_2017), 1)
         pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.pop_2017), 1)
-        pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.pop_2017), 1)
+        pv_ground = round(
+            (mun_data.gen_el_energy_pv_ground / mun_data.pop_2017), 1)
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.pop_2017), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -224,12 +240,14 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -245,7 +263,8 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/gen_energy_re_density.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyReDensityDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunGenEnergyReDensityDetailView,
+                        self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
         return context
@@ -261,7 +280,7 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -269,12 +288,14 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -290,7 +311,8 @@ class RegMunGenCapReDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/gen_cap_re.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenCapReDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunGenCapReDetailView, self).get_context_data(
+            **kwargs)
         self.chart_session_store(context)
 
         return context
@@ -307,7 +329,7 @@ class RegMunGenCapReDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Installierte Leistung EE'},
@@ -315,12 +337,14 @@ class RegMunGenCapReDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -336,7 +360,8 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/gen_cap_re_density.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenCapReDensityDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunGenCapReDensityDetailView, self).get_context_data(
+            **kwargs)
         self.chart_session_store(context)
 
         return context
@@ -344,7 +369,8 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
         wind = round((mun_data.gen_capacity_wind / mun_data.area), 2)
-        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area), 2)
+        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area),
+                        2)
         pv_ground = round((mun_data.gen_capacity_pv_ground / mun_data.area), 2)
         hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
@@ -353,7 +379,7 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Installierte Leistung EE'},
@@ -361,12 +387,14 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -387,7 +415,8 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/dem_el_energy.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemElEnergyDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunDemElEnergyDetailView, self).get_context_data(
+            **kwargs)
         self.chart_session_store(context)
 
         return context
@@ -402,7 +431,7 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Strombedarf'},
@@ -410,12 +439,14 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -431,7 +462,8 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/dem_el_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemElEnergyPerCapitaDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunDemElEnergyPerCapitaDetailView,
+                        self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
         return context
@@ -446,7 +478,7 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Strombedarf'},
@@ -454,12 +486,14 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        KWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                KWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -475,7 +509,8 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/dem_th_energy.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemThEnergyDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunDemThEnergyDetailView, self).get_context_data(
+            **kwargs)
         self.chart_session_store(context)
 
         return context
@@ -489,7 +524,7 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': ' Wärmebedarf'},
@@ -497,12 +532,14 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -518,7 +555,8 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
     template_name = 'stemp_abw/popups/dem_th_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemThEnergyPerCapitaDetailView, self).get_context_data(**kwargs)
+        context = super(RegMunDemThEnergyPerCapitaDetailView,
+                        self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
         return context
@@ -532,7 +570,7 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Wärmebedarf'},
@@ -540,12 +578,14 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        KWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                KWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
