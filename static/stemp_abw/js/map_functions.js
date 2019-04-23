@@ -69,23 +69,7 @@ function execClickAction(e) {
     var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
     $.get( url, function( data ) {
       layer.setPopupContent(data);
-
-      // load js content from JS detail view
-      // TODO: Find more general solution than whitelist
-      whitelist = [
-          'reg_mun_pop',
-          'reg_mun_energy_re_el_dem_share',
-          'reg_mun_gen_energy_re',
-          'reg_mun_gen_energy_re_per_capita',
-          'reg_mun_gen_energy_re_density',
-          'reg_mun_gen_cap_re',
-          'reg_mun_gen_cap_re_density',
-          'reg_mun_dem_el_energy',
-          'reg_mun_dem_el_energy_per_capita',
-          'reg_mun_dem_th_energy',
-          'reg_mun_dem_th_energy_per_capita'
-      ];
-      if ($.inArray(layer.feature.properties.name, whitelist) != -1) {
+      if (data.indexOf('id="hc_') !== -1) {
           var url_js = "../popupjs/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
           $.get( url_js, function( data ) {
             setTimeout(function() {
