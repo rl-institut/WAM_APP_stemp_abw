@@ -39,7 +39,6 @@ class MasterDetailView(DetailView):
                 else:
                     pass
 
-
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
@@ -58,6 +57,17 @@ class MasterDetailView(DetailView):
 
         return context
 
+    def chart_session_store(self, context):
+        # backup current HC to session if view for html is requested,
+        # load from session if subsequent view for js is requested.
+        session = SESSION_DATA.get_session(self.request)
+        if session.highcharts_temp is None:
+            context['chart'] = self.build_chart()
+            session.highcharts_temp = context['chart']
+        else:
+            context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
+
 
 ####################
 ### Detail Views ### for popups
@@ -74,16 +84,7 @@ class RegMunPopMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunPopMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -126,16 +127,7 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunEnergyReElDemShareMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -177,16 +169,7 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyReMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -239,16 +222,7 @@ class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyRePerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -301,16 +275,7 @@ class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyReDensityMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -363,16 +328,7 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenCapReMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -426,16 +382,7 @@ class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenCapReDensityDetailMasterView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -494,16 +441,7 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemElEnergyMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -555,16 +493,7 @@ class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemElEnergyPerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -616,16 +545,7 @@ class RegMunDemThEnergyMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemThEnergyMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
@@ -674,16 +594,7 @@ class RegMunDemThEnergyPerCapitaMasterDetailView(MasterDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemThEnergyPerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        self.chart_session_store(context)
 
         return context
 
