@@ -46,55 +46,17 @@ urlpatterns.extend(
     for name, dview in detail_views.items()
 )
 
-# Test JS template view
-# TODO: Generalize like above!
+# search JS detail views classes and append to URLs
+detail_views = {}
+for name, obj in getmembers(views.detail_views):
+    if isclass(obj):
+        if issubclass(obj, views.detail_views.MasterDetailView):
+            if obj.model is not None:
+                detail_views[obj.model.name] = obj
 urlpatterns.extend(
-    [
-        path(
-            'popupjs/reg_mun_pop/<int:pk>/',
-            views.RegMunPopDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
-            views.RegMunEnergyReElDemShareDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_gen_energy_re/<int:pk>/',
-            views.RegMunGenEnergyReDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_gen_energy_re_per_capita/<int:pk>/',
-            views.RegMunGenEnergyRePerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_gen_energy_re_density/<int:pk>/',
-            views.RegMunGenEnergyReDensityDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_gen_cap_re/<int:pk>/',
-            views.RegMunGenCapReDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_gen_cap_re_density/<int:pk>/',
-            views.RegMunGenCapReDensityDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_dem_el_energy/<int:pk>/',
-            views.RegMunDemElEnergyDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_dem_el_energy_per_capita/<int:pk>/',
-            views.RegMunDemElEnergyPerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_dem_th_energy/<int:pk>/',
-            views.RegMunDemThEnergyDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        ),
-        path(
-            'popupjs/reg_mun_dem_th_energy_per_capita/<int:pk>/',
-            views.RegMunDemThEnergyPerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
-        )
-    ]
+    path('popupjs/{}/<int:pk>/'.format(name), dview.as_view(template_name='stemp_abw/popups/js_popup.html'),
+         name='{}-js'.format(name))
+    for name, dview in detail_views.items()
 )
 
 # search JSON data views classes and append to URLs
@@ -112,6 +74,7 @@ for name, obj in detail_views_list.items():
             # data view
             elif issubclass(obj, GeoJSONLayerView):
                 data_views[obj.model.name] = obj
+
 # append data views' URLs
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name),
@@ -119,6 +82,7 @@ urlpatterns.extend(
             name='{}.data'.format(name))
     for name, sview in data_views.items()
 )
+
 # append serial detail views' URLs
 urlpatterns.extend(
     path('{}.data/<int:pk>/'.format(name),
