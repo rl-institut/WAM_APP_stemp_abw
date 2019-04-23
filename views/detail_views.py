@@ -83,7 +83,7 @@ class RegMunDetailView(MasterDetailView):
 
 class RegMunPopDetailView(MasterDetailView):
     model = models.RegMunPop
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
+    template_name = 'stemp_abw/popups/pop.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunPopDetailView, self).get_context_data(**kwargs)
@@ -113,12 +113,12 @@ class RegMunPopDetailView(MasterDetailView):
 
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
+    template_name = 'stemp_abw/popups/pop_density.html'
 
 
 class RegMunEnergyReElDemShareDetailView(MasterDetailView):
     model = models.RegMunEnergyReElDemShare
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_energy_re_el_dem_share.html'
+    template_name = 'stemp_abw/popups/energy_re_el_dem_share.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunEnergyReElDemShareDetailView, self).get_context_data(**kwargs)
@@ -152,7 +152,7 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
 
 class RegMunGenEnergyReDetailView(MasterDetailView):
     model = models.RegMunGenEnergyRe
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re.html'
+    template_name = 'stemp_abw/popups/gen_energy_re.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyReDetailView, self).get_context_data(**kwargs)
@@ -197,7 +197,7 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
 
 class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
     model = models.RegMunGenEnergyRePerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_per_capita.html'
+    template_name = 'stemp_abw/popups/gen_energy_re_per_capita.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyRePerCapitaDetailView, self).get_context_data(**kwargs)
@@ -242,7 +242,7 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
 
 class RegMunGenEnergyReDensityDetailView(MasterDetailView):
     model = models.RegMunGenEnergyReDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_density.html'
+    template_name = 'stemp_abw/popups/gen_energy_re_density.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenEnergyReDensityDetailView, self).get_context_data(**kwargs)
@@ -287,7 +287,7 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
 
 class RegMunGenCapReDetailView(MasterDetailView):
     model = models.RegMunGenCapRe
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re.html'
+    template_name = 'stemp_abw/popups/gen_cap_re.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenCapReDetailView, self).get_context_data(**kwargs)
@@ -333,7 +333,7 @@ class RegMunGenCapReDetailView(MasterDetailView):
 
 class RegMunGenCapReDensityDetailView(MasterDetailView):
     model = models.RegMunGenCapReDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re_density.html'
+    template_name = 'stemp_abw/popups/gen_cap_re_density.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunGenCapReDensityDetailView, self).get_context_data(**kwargs)
@@ -379,12 +379,12 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
 
 class RegMunGenCountWindDensityDetailView(MasterDetailView):
     model = models.RegMunGenCountWindDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_count_wind_density.html'
+    template_name = 'stemp_abw/popups/gen_count_wind_density.html'
 
 
 class RegMunDemElEnergyDetailView(MasterDetailView):
     model = models.RegMunDemElEnergy
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy.html'
+    template_name = 'stemp_abw/popups/dem_el_energy.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemElEnergyDetailView, self).get_context_data(**kwargs)
@@ -428,7 +428,7 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
 
 class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
     model = models.RegMunDemElEnergyPerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy_per_capita.html'
+    template_name = 'stemp_abw/popups/dem_el_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemElEnergyPerCapitaDetailView, self).get_context_data(**kwargs)
@@ -472,7 +472,7 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
 
 class RegMunDemThEnergyDetailView(MasterDetailView):
     model = models.RegMunDemThEnergy
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy.html'
+    template_name = 'stemp_abw/popups/dem_th_energy.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemThEnergyDetailView, self).get_context_data(**kwargs)
@@ -515,7 +515,7 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
 
 class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
     model = models.RegMunDemThEnergyPerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy_per_capita.html'
+    template_name = 'stemp_abw/popups/dem_th_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunDemThEnergyPerCapitaDetailView, self).get_context_data(**kwargs)
