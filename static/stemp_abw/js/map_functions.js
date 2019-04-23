@@ -1,92 +1,96 @@
 // Get color and step values as associated array
 function getColorValues(schema, min, max, step, reverse) {
 
-    // Convert to floats
-    min = parseFloat(min);
-    max = parseFloat(max);
-    step = parseFloat(step);
+  // Convert to floats
+  min = parseFloat(min);
+  max = parseFloat(max);
+  step = parseFloat(step);
 
-    // Get number if digits to round resulting range values below
-    var numberOfDigits = Math.ceil(Math.log(step + 1) / Math.LN10);
+  // Get number if digits to round resulting range values below
+  var numberOfDigits = Math.ceil(Math.log(step + 1) / Math.LN10);
 
-    // Get the sum of steps by step (interval)
-    var sumSteps = parseInt((max - min) / step);
+  // Get the sum of steps by step (interval)
+  var sumSteps = parseInt((max - min) / step);
 
-    // Get dividable interval step from steps
-    // This is necessary, if "((max - min) / step)" produced rest
-    var stepInterval = (max - min) / sumSteps;
+  // Get dividable interval step from steps
+  // This is necessary, if "((max - min) / step)" produced rest
+  var stepInterval = (max - min) / sumSteps;
 
-    // Get colors for schema
-    var colors = chroma.scale(schema).colors(sumSteps + 1);
+  // Get colors for schema
+  var colors = chroma.scale(schema).colors(sumSteps + 1);
 
-    // Reverse colors if reverse value is true
-    if (reverse == "true") {
-        colors = colors.reverse();
-    }
+  // Reverse colors if reverse value is true
+  if (reverse == "true") {
+    colors = colors.reverse();
+  }
 
-    // Combine colors and values of step intervals
-    var colorsAndStepValues = {};
-    colorsAndStepValues['values'] = [];
-    var base = min;
-    for (var i = 0; i < colors.length; i++) {
-        colorsAndStepValues['values'][parseFloat(base)] = colors[i];
-        base = parseFloat((parseFloat(base) + stepInterval).toFixed(numberOfDigits));
-    }
+  // Combine colors and values of step intervals
+  var colorsAndStepValues = {};
+  colorsAndStepValues['values'] = [];
+  var base = min;
+  for (var i = 0; i < colors.length; i++) {
+    colorsAndStepValues['values'][parseFloat(base)] = colors[i];
+    base = parseFloat(
+        (parseFloat(base) + stepInterval).toFixed(numberOfDigits)
+    );
+  }
 
-    // Add max value
-    colorsAndStepValues['max'] = max;
+  // Add max value
+  colorsAndStepValues['max'] = max;
 
-    return colorsAndStepValues;
+  return colorsAndStepValues;
 }
 
 // Get explicit color value from associated array and
 // supplied averaged value
 function getColor(colorVals, averagedValue) {
-    for (var stepVal in colorVals['values']) {
-        if (averagedValue <= stepVal) {
-            return colorVals['values'][stepVal];
-        }
-        // Check if averageValue exceeds max value.
-        if (averagedValue > colorVals['max']) {
-            return colorVals['values'][colorVals['max']];
-        }
+  for (var stepVal in colorVals['values']) {
+    if (averagedValue <= stepVal) {
+      return colorVals['values'][stepVal];
     }
-    // No color found - return '#FFFFFF'.
-    // This should never happen.
-    return '#FFFFFF';
+    // Check if averageValue exceeds max value.
+    if (averagedValue > colorVals['max']) {
+      return colorVals['values'][colorVals['max']];
+    }
+  }
+  // No color found - return '#FFFFFF'.
+  // This should never happen.
+  return '#FFFFFF';
 }
 
 // feature: click style
 function execClickAction(e) {
-    var style = getLayerStyle("_click");
-    var layer = e.target;
-    layer.setStyle(style);
+  var style = getLayerStyle("_click");
+  var layer = e.target;
+  layer.setStyle(style);
 
-    // center map to clicked entity
-    layer._map.panTo(e.latlng, {duration: 1});
+  // center map to clicked entity
+  layer._map.panTo(e.latlng, {duration: 1});
 
-    // load popup content from detail view
-    var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
-    $.get( url, function( data ) {
-      layer.setPopupContent(data);
-      if (data.indexOf('id="hc_') !== -1) {
-          var url_js = "../popupjs/" + layer.feature.properties.name + "/" + String(layer.feature.id) + "/"
-          $.get( url_js, function( data ) {
-            setTimeout(function() {
-                eval(data);
-            }, 250);
-          });
-      }
-    });
+  // load popup content from detail view
+  var url = "../popup/" + layer.feature.properties.name + "/"
+            + String(layer.feature.id) + "/"
+  $.get(url, function (data) {
+    layer.setPopupContent(data);
+    if (data.indexOf('id="hc_') !== -1) {
+      var url_js = "../popupjs/" + layer.feature.properties.name + "/"
+                   + String(layer.feature.id) + "/"
+      $.get(url_js, function (data) {
+        setTimeout(function () {
+          eval(data);
+        }, 250);
+      });
+    }
+  });
 
 
 }
 
 // feature: mousover style
 function setHighlightFeatureStyle(e) {
-    var style = getLayerStyle("_highlight");
-    var layer = e.target;
-    layer.setStyle(style);
+  var style = getLayerStyle("_highlight");
+  var layer = e.target;
+  layer.setStyle(style);
 }
 
 // feature: normal style
@@ -95,32 +99,33 @@ function setNormalFeatureStyle(layerName, feature) {
     var style = getLayerStyle(layerName, feature);
     var layer = e.target;
     layer.setStyle(style);
-};
+  };
 }
 
 // bind popups for each feature and define event actions
 function onEachFeature(layerName) {
-return function(feature, layer) {
+  return function (feature, layer) {
     // popup style
     var customPopup =
         {
-        'maxWidth': '500',
-        'className' : 'custom_popup'
+          'maxWidth': '500',
+          'className': 'custom_popup'
         }
     if (feature.properties && feature.properties.popup_content) {
-        layer.bindPopup('', customPopup);
-        };
-        layer.on({
-            click: execClickAction,
-            mouseover: setHighlightFeatureStyle,
-            mouseout: setNormalFeatureStyle(layerName, feature)
-        });
-};
+      layer.bindPopup('', customPopup);
+    }
+    ;
+    layer.on({
+      click: execClickAction,
+      mouseover: setHighlightFeatureStyle,
+      mouseout: setNormalFeatureStyle(layerName, feature)
+    });
+  };
 }
 
 function pointToLayer(feature, latlng) {
-    var marker = L.circleMarker(latlng)
-    return marker;
+  var marker = L.circleMarker(latlng)
+  return marker;
 }
 
 // Create layer style from style_data json obj
@@ -150,17 +155,17 @@ function getLayerStyle(name, feature) {
 }
 
 // Control layer visibility via checkboxes (region layers)
-$('.switch-input-layer-select-region').click( function () {
+$('.switch-input-layer-select-region').click(function () {
   var id = $(this).attr('id');
 
   // Individual layers switches
-  l = layers[id.replace('cb_region_','')];
+  l = layers[id.replace('cb_region_', '')];
   if (this.checked) lmap.addLayer(l);
   else lmap.removeLayer(l);
 });
 
 // Control layer visibility via checkboxes (areas layers)
-$('.switch-input-layer-select-areas').click( function () {
+$('.switch-input-layer-select-areas').click(function () {
   var id = $(this).attr('id');
 
   // Master switch for all layers
@@ -170,20 +175,21 @@ $('.switch-input-layer-select-areas').click( function () {
         if (this.checked) lmap.addLayer(layers[l]);
         else lmap.removeLayer(layers[l]);
       }
-    $('.switch-input-layer-select-areas').prop('checked', this.checked);
+      $('.switch-input-layer-select-areas').prop('checked', this.checked);
     }
   }
 
   // Individual layers switches
   else {
-    l = layers[id.replace('cb_areas_','')];
+    l = layers[id.replace('cb_areas_', '')];
     if (this.checked) lmap.addLayer(l);
     else lmap.removeLayer(l);
-  };
+  }
+  ;
 });
 
 // Control layer visibility via checkboxes (result layers)
-$('.switch-input-layer-select-results').click( function () {
+$('.switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
   console.log(id);
 
@@ -195,7 +201,7 @@ $('.switch-input-layer-select-results').click( function () {
 
 
 // Control legend visibility via checkboxes
-$('.switch-input-layer-select-region').click( function () {
+$('.switch-input-layer-select-region').click(function () {
   var id = $(this).attr('id');
 
   // Master switch for all legends
@@ -213,26 +219,26 @@ $('.switch-input-layer-select-region').click( function () {
 
   // Individual legend switches
   //else {
-    id = id.replace('cb_region_', '');
-    for (var l in legends) {
-      if (l !== id && choropleth_data.hasOwnProperty(id)) {
-        if (this.checked) {
-            lmap.removeLayer(layers[l]);
-            lmap.removeControl(legends[l]);
-            var el = document.getElementById('cb_region_' + l);
-            el.checked = false;
-        }
-      } else if (l === id) {
-        l = legends[id];
-        if (this.checked) l.addTo(lmap);
-        else lmap.removeControl(l);
+  id = id.replace('cb_region_', '');
+  for (var l in legends) {
+    if (l !== id && choropleth_data.hasOwnProperty(id)) {
+      if (this.checked) {
+        lmap.removeLayer(layers[l]);
+        lmap.removeControl(legends[l]);
+        var el = document.getElementById('cb_region_' + l);
+        el.checked = false;
       }
+    } else if (l === id) {
+      l = legends[id];
+      if (this.checked) l.addTo(lmap);
+      else lmap.removeControl(l);
     }
+  }
   //}
 });
 
 // temp for RE pot layer control
-function addRePotAreaLayer () {
+function addRePotAreaLayer() {
   // Remove all layers
   removeRePotAreaLayers();
 
@@ -270,13 +276,13 @@ function addRePotAreaLayer () {
   }
 
   $('#sl_wind').data("ionRangeSlider").update({
-      max: Math.round(wec_count*4.2)
+    max: Math.round(wec_count * 4.2)
   });
 
 }
 
 // Remove all RE pot layers
-function removeRePotAreaLayers () {
+function removeRePotAreaLayers() {
   for (var l in layers_re_pot) {
     lmap.removeLayer(layers_re_pot[l]);
   }
