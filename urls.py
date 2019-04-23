@@ -33,7 +33,7 @@ urlpatterns = [
          name='assumptions'),
     ]
 
-# search detail views classes and append to URLs
+# Search detail views classes and append to URLs
 detail_views = {}
 for name, obj in getmembers(views.detail_views):
     if isclass(obj):
@@ -45,16 +45,9 @@ urlpatterns.extend(
          name='{}-detail'.format(name))
     for name, dview in detail_views.items()
 )
-
-# search JS detail views classes and append to URLs
-detail_views = {}
-for name, obj in getmembers(views.detail_views):
-    if isclass(obj):
-        if issubclass(obj, views.detail_views.MasterDetailView):
-            if obj.model is not None:
-                detail_views[obj.model.name] = obj
 urlpatterns.extend(
-    path('popupjs/{}/<int:pk>/'.format(name), dview.as_view(template_name='stemp_abw/popups/js_popup.html'),
+    path('popupjs/{}/<int:pk>/'.format(name), dview.as_view(
+        template_name='stemp_abw/popups/js_popup.html'),
          name='{}-js'.format(name))
     for name, dview in detail_views.items()
 )
