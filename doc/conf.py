@@ -33,7 +33,7 @@ settings.configure(
         'leaflet',
         'djgeojson',
         'stemp_abw',
-        'meta'
+        #'meta',
     ],
     DATABASES = {
     'default': {
@@ -45,7 +45,8 @@ settings.configure(
 
 django.setup()
 
-autodoc_mock_imports = ['stemp_abw.migrations']
+# autodoc_mock_imports = ['stemp_abw.migrations']
+autodoc_mock_imports = ['meta']
 
 # -- Project information -----------------------------------------------------
 
