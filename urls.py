@@ -1,19 +1,17 @@
-from collections import namedtuple
+from inspect import getmembers, isclass
 
 from django.urls import path, re_path
-from djgeojson.views import GeoJSONLayerView
 from django.views.decorators.cache import cache_page
-from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
+from djgeojson.views import GeoJSONLayerView
 
-from . import views
-from inspect import getmembers, isclass
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
-#from stemp_abw.views.serial_views import SplitDataView
+from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
+from . import views
 
 app_name = 'stemp_abw'
 
-# regular URLs
+# Regular URLs
 urlpatterns = [
     path('', views.IndexView.as_view(),
          name='index'),
@@ -33,7 +31,7 @@ urlpatterns = [
          name='assumptions'),
     ]
 
-# Search detail views classes and append to URLs
+# Search detail-view-classes and append to URLs
 detail_views = {}
 for name, obj in getmembers(views.detail_views):
     if isclass(obj):
@@ -52,7 +50,7 @@ urlpatterns.extend(
     for name, dview in detail_views.items()
 )
 
-# search JSON data views classes and append to URLs
+# Search JSON data-view-classes and append to URLs
 data_views = {}
 single_data_views = {}
 detail_views_list = {mem[0]: mem[1]
@@ -67,16 +65,14 @@ for name, obj in detail_views_list.items():
             # data view
             elif issubclass(obj, GeoJSONLayerView):
                 data_views[obj.model.name] = obj
-
-# append data views' URLs
+# Append data-views' URLs
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name),
             cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
             name='{}.data'.format(name))
     for name, sview in data_views.items()
 )
-
-# append serial detail views' URLs
+# Append serial detail-views' URLs
 urlpatterns.extend(
     path('{}.data/<int:pk>/'.format(name),
             cache_page(MAP_DATA_CACHE_TIMEOUT)(sview.as_view()),
