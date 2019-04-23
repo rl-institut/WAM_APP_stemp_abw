@@ -1,10 +1,11 @@
-import stemp_abw.models as models
-from django.views.generic import DetailView
-from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, LAYER_AREAS_METADATA
-from stemp_abw import visualizations
-from wam.settings import SESSION_DATA
-from meta.models import Source
 import pandas as pd
+from django.views.generic import DetailView
+
+import stemp_abw.models as models
+from meta.models import Source
+from stemp_abw import visualizations
+from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, LAYER_AREAS_METADATA
+from wam.settings import SESSION_DATA
 
 
 class MasterDetailView(DetailView):
