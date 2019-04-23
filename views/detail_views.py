@@ -69,6 +69,7 @@ class MasterDetailView(DetailView):
             session.highcharts_temp = context['chart']
         else:
             context['chart'] = session.highcharts_temp
+            session.highcharts_temp = None
 
 
 ###########################
