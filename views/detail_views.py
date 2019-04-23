@@ -111,10 +111,6 @@ class RegMunPopDetailView(MasterDetailView):
         return chart
 
 
-class RegMunPopDetailJsView(RegMunPopDetailView):
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
@@ -152,10 +148,6 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-
-class RegMunEnergyReElDemShareDetailJsView(RegMunEnergyReElDemShareDetailView):
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenEnergyReDetailView(MasterDetailView):
@@ -203,11 +195,6 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenEnergyReDetailJsView(RegMunGenEnergyReDetailView):
-    model = models.RegMunGenEnergyRe
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
     model = models.RegMunGenEnergyRePerCapita
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_per_capita.html'
@@ -251,10 +238,6 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-class RegMunGenEnergyRePerCapitaDetailJsView(RegMunGenEnergyRePerCapitaDetailView):
-    model = models.RegMunGenEnergyRePerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenEnergyReDensityDetailView(MasterDetailView):
@@ -300,11 +283,6 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-
-class RegMunGenEnergyReDensityDetailJsView(RegMunGenEnergyReDensityDetailView):
-    model = models.RegMunGenEnergyReDensity
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenCapReDetailView(MasterDetailView):
@@ -353,11 +331,6 @@ class RegMunGenCapReDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenCapReDetailJsView(RegMunGenCapReDetailView):
-    model = models.RegMunGenCapRe
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunGenCapReDensityDetailView(MasterDetailView):
     model = models.RegMunGenCapReDensity
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re_density.html'
@@ -402,11 +375,6 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-
-class RegMunGenCapReDensityDetailJsView(RegMunGenCapReDensityDetailView):
-    model = models.RegMunGenCapReDensity
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunGenCountWindDensityDetailView(MasterDetailView):
@@ -458,11 +426,6 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
         return chart
 
 
-class RegMunDemElEnergyDetailJsView(RegMunDemElEnergyDetailView):
-    model = models.RegMunDemElEnergy
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
     model = models.RegMunDemElEnergyPerCapita
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy_per_capita.html'
@@ -505,11 +468,6 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-
-class RegMunDemElEnergyPerCapitaDetailJsView(RegMunDemElEnergyPerCapitaDetailView):
-    model = models.RegMunDemElEnergyPerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegMunDemThEnergyDetailView(MasterDetailView):
@@ -555,11 +513,6 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
         return chart
 
 
-class RegMunDemThEnergyDetailJsView(RegMunDemThEnergyDetailView):
-    model = models.RegMunDemThEnergy
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
     model = models.RegMunDemThEnergyPerCapita
     template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy_per_capita.html'
@@ -601,11 +554,6 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-
-class RegMunDemThEnergyPerCapitaDetailJsView(RegMunDemThEnergyPerCapitaDetailView):
-    model = models.RegMunDemThEnergyPerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):

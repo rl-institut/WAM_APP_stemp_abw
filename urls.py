@@ -52,47 +52,47 @@ urlpatterns.extend(
     [
         path(
             'popupjs/reg_mun_pop/<int:pk>/',
-            views.RegMunPopDetailJsView.as_view()
+            views.RegMunPopDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_energy_re_el_dem_share/<int:pk>/',
-            views.RegMunEnergyReElDemShareDetailJsView.as_view()
+            views.RegMunEnergyReElDemShareDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_gen_energy_re/<int:pk>/',
-            views.RegMunGenEnergyReDetailJsView.as_view()
+            views.RegMunGenEnergyReDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_gen_energy_re_per_capita/<int:pk>/',
-            views.RegMunGenEnergyRePerCapitaDetailJsView.as_view()
+            views.RegMunGenEnergyRePerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_gen_energy_re_density/<int:pk>/',
-            views.RegMunGenEnergyReDensityDetailJsView.as_view()
+            views.RegMunGenEnergyReDensityDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_gen_cap_re/<int:pk>/',
-            views.RegMunGenCapReDetailJsView.as_view()
+            views.RegMunGenCapReDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_gen_cap_re_density/<int:pk>/',
-            views.RegMunGenCapReDensityDetailJsView.as_view()
+            views.RegMunGenCapReDensityDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_dem_el_energy/<int:pk>/',
-            views.RegMunDemElEnergyDetailJsView.as_view()
+            views.RegMunDemElEnergyDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_dem_el_energy_per_capita/<int:pk>/',
-            views.RegMunDemElEnergyPerCapitaDetailJsView.as_view()
+            views.RegMunDemElEnergyPerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_dem_th_energy/<int:pk>/',
-            views.RegMunDemThEnergyDetailJsView.as_view()
+            views.RegMunDemThEnergyDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         ),
         path(
             'popupjs/reg_mun_dem_th_energy_per_capita/<int:pk>/',
-            views.RegMunDemThEnergyPerCapitaDetailJsView.as_view()
+            views.RegMunDemThEnergyPerCapitaDetailView.as_view(template_name='stemp_abw/popups/js_popup.html')
         )
     ]
 )
