@@ -14,39 +14,39 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../'))
 
 # -- Configure Django --------------------------------------------------------
-import django
-from django.conf import settings
-
-settings.configure(
-    INSTALLED_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.gis',
-        'django.forms',
-        'leaflet',
-        'djgeojson',
-        'stemp_abw',
-        #'meta',
-    ],
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'kopernikus'
-    }
-}
-)
-
-django.setup()
+# import django
+# from django.conf import settings
+#
+# settings.configure(
+#     INSTALLED_APPS = [
+#         'django.contrib.admin',
+#         'django.contrib.auth',
+#         'django.contrib.contenttypes',
+#         'django.contrib.sessions',
+#         'django.contrib.messages',
+#         'django.contrib.staticfiles',
+#         'django.contrib.gis',
+#         'django.forms',
+#         'leaflet',
+#         'djgeojson',
+#         'stemp_abw',
+#         #'meta',
+#     ],
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'kopernikus'
+#     }
+# }
+# )
+#
+# django.setup()
 
 # autodoc_mock_imports = ['stemp_abw.migrations']
-autodoc_mock_imports = ['meta']
+# autodoc_mock_imports = ['meta']
 
 # -- Project information -----------------------------------------------------
 
