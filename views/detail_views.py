@@ -16,14 +16,22 @@ class MasterDetailView(DetailView):
 
     def get_source_data(self, metadata, app_name):
         """
-        Takes a metadata ConfigObj and returns 0 or
-        multiple values, if provided by the ConfigObj object.
-        Values of ConfigObj should correspond to PK of sources
-        in the database.
+        This method takes a metadata ConfigObj and returns a list
+        with 0 OR n-amount of Source objects, if primary keys (PK)s
+        of sources records in database are provided in ConfigObj object.
+        Values in the metadata config file should correspond to PKs
+        as list of values (1,2,3,...n). if the sole value 0 is provided
+        in the metadata config file then the returned list is empty.
 
-        :param metadata: ConfigObj
-        :param app_name: str
-        :return: None, list with element 0 (int) or list of sources PK (int)
+        Parameters
+        ----------
+        metadata : :obj:`ConfigObj`
+        app_name : :obj:`str`
+
+        Returns
+        -------
+        :obj:`list` of :obj:`Source`
+            List with 0 OR n-amount of Source objects.
         """
         for layer_group in metadata.values():
             for layer in layer_group.values():
@@ -31,7 +39,6 @@ class MasterDetailView(DetailView):
                     sources = []
                     for source in layer['sources']:
                         if source == '0':
-                            sources.append(source)
                             break
                         else:
                             sources.append(Source.objects
