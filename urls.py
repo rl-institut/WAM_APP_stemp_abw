@@ -50,7 +50,7 @@ urlpatterns.extend(
     for name, dview in detail_views.items()
 )
 
-# Search JSON data-view-classes and append to URLs
+# Search JSON data-view classes and append to URLs
 data_views = {}
 single_data_views = {}
 detail_views_list = {mem[0]: mem[1]

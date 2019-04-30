@@ -30,7 +30,7 @@ class MasterDetailView(DetailView):
 
         Returns
         -------
-        :obj:`list` of :obj:`Source`
+        :obj:`list` of :obj:`wam.meta.models.Source`
             List with 0 OR n-amount of Source objects.
         """
         for layer_group in metadata.values():
