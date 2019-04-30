@@ -21,7 +21,7 @@
   {% endblock%}
 
   {% block links %}
-  {% if "0" in sources %}
+  {% if sources|length == 0 %}
   {% else %}
   <div class="cell">
     Quellen:
