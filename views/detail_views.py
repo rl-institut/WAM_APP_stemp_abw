@@ -1,10 +1,12 @@
-import stemp_abw.models as models
-from django.views.generic import DetailView
-from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, LAYER_AREAS_METADATA
-from stemp_abw import visualizations
-from wam.settings import SESSION_DATA
-from meta.models import Source
 import pandas as pd
+from django.views.generic import DetailView
+
+import stemp_abw.models as models
+from meta.models import Source
+from stemp_abw import visualizations
+from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
+    LAYER_AREAS_METADATA
+from wam.settings import SESSION_DATA
 
 
 class MasterDetailView(DetailView):
@@ -12,55 +14,61 @@ class MasterDetailView(DetailView):
     template_name = 'stemp_abw/popups/base_layer_popup.html'
     context_object_name = 'layer'
 
+    def get_source_data(self, metadata, app_name):
+        """
+        This method takes a metadata ConfigObj and returns a list
+        with 0 OR n-amount of Source objects, if primary keys (PK)s
+        of sources records in database are provided in ConfigObj object.
+        Values in the metadata config file should correspond to PKs
+        as list of values (1,2,3,...n). if the sole value 0 is provided
+        in the metadata config file then the returned list is empty.
+
+        Parameters
+        ----------
+        metadata : :obj:`ConfigObj`
+        app_name : :obj:`str`
+
+        Returns
+        -------
+        :obj:`list` of :obj:`wam.meta.models.Source`
+            List with 0 OR n-amount of Source objects.
+        """
+        for layer_group in metadata.values():
+            for layer in layer_group.values():
+                if layer['model'] == self.model.name:
+                    sources = []
+                    for source in layer['sources']:
+                        if source == '0':
+                            break
+                        else:
+                            sources.append(Source.objects
+                                           .filter(app_name=app_name)
+                                           .get(pk=source))
+                    return sources
+                else:
+                    pass
+
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
         context['title'] = LABELS['layers'][self.model.name]['title']
         context['text'] = LABELS['layers'][self.model.name]['text']
 
-        for layer_group in LAYER_REGION_METADATA.values():
-            for layer in layer_group.values():
-                if layer['model'] == self.model.name:
-                    sources = []
-                    for source in layer['sources']:
-                        if source == '0':
-                            sources.append(source)
-                            break
-                        else:
-                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
-                    context['sources'] = sources
-        for layer_group in LAYER_AREAS_METADATA.values():
-            for layer in layer_group.values():
-                if layer['model'] == self.model.name:
-                    sources = []
-                    for source in layer['sources']:
-                        if source == '0':
-                            sources.append(source)
-                            break
-                        else:
-                            sources.append(Source.objects.filter(app_name='stemp_abw').get(pk=source))
-                    context['sources'] = sources
+        # Get app_name from request
+        app_name = self.request.resolver_match.app_name
+        # Gather all layer metadata ConfigObj objects
+        layers_metadata = [LAYER_REGION_METADATA, LAYER_AREAS_METADATA]
+        # Put sources PKs into context
+        for layer_metadata in layers_metadata:
+            source_layer_metadata = self.get_source_data(layer_metadata,
+                                                         app_name)
+            if source_layer_metadata is not None:
+                context['sources'] = source_layer_metadata
 
         return context
 
-
-####################
-### Detail Views ### for popups
-####################
-class RpAbwBoundDetailView(MasterDetailView):
-    model = models.RpAbwBound
-
-
-class RegMunDetailView(MasterDetailView):
-    model = models.RegMun
-
-
-class RegMunPopMasterDetailView(MasterDetailView):
-
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
+    def chart_session_store(self, context):
+        # Backup current HC to session if view for html is requested,
         # load from session if subsequent view for js is requested.
         session = SESSION_DATA.get_session(self.request)
         if session.highcharts_temp is None:
@@ -70,6 +78,26 @@ class RegMunPopMasterDetailView(MasterDetailView):
             context['chart'] = session.highcharts_temp
             session.highcharts_temp = None
 
+
+###########################
+# Detail Views for popups #
+###########################
+class RpAbwBoundDetailView(MasterDetailView):
+    model = models.RpAbwBound
+
+
+class RegMunDetailView(MasterDetailView):
+    model = models.RegMun
+
+
+class RegMunPopDetailView(MasterDetailView):
+    model = models.RegMunPop
+    template_name = 'stemp_abw/popups/pop.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopDetailView, self).get_context_data(**kwargs)
+        self.chart_session_store(context)
+
         return context
 
     def build_chart(self):
@@ -78,7 +106,8 @@ class RegMunPopMasterDetailView(MasterDetailView):
         pop_2030 = mun_data.pop_2030
         pop_2050 = mun_data.pop_2050
         index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index, data={'Personen': [pop_2017, pop_2030, pop_2050]})
+        data = pd.DataFrame(index=index,
+                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
             'title': {'text': 'Bevölkerungsentwicklung'},
             'subtitle': {'text': 'Prognose'},
@@ -92,46 +121,37 @@ class RegMunPopMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunPopDetailView(RegMunPopMasterDetailView):
-    model = models.RegMunPop
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop.html'
-
-
-class RegMunPopDetailJsView(RegMunPopMasterDetailView):
-    model = models.RegMunPop
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_pop_density.html'
+    template_name = 'stemp_abw/popups/pop_density.html'
 
 
-class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
+class RegMunEnergyReElDemShareDetailView(MasterDetailView):
+    model = models.RegMunEnergyReElDemShare
+    template_name = 'stemp_abw/popups/energy_re_el_dem_share.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunEnergyReElDemShareMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunEnergyReElDemShareDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
 
         return context
 
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(pk=self.kwargs['pk'])
-        wind = round(((mun_data.gen_el_energy_wind / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) / reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
-        data = pd.DataFrame(data={'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof, 'PV Freifläche': pv_ground, 'Hydro': hydro}})
+        reg_mun_dem_el_energy = models.RegMunDemElEnergy.objects.get(
+            pk=self.kwargs['pk'])
+        wind = round(((mun_data.gen_el_energy_wind / 1e3) /
+                      reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) /
+                         reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) /
+                           reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) /
+                       reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        data = pd.DataFrame(data={
+            'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
+                          'PV Freifläche': pv_ground, 'Hydro': hydro}})
         setup_labels = {
             'title': {'text': 'EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zum Strombedarf'},
@@ -148,30 +168,14 @@ class RegMunEnergyReElDemShareMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunEnergyReElDemShareDetailView(RegMunEnergyReElDemShareMasterDetailView):
-    model = models.RegMunEnergyReElDemShare
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_energy_re_el_dem_share.html'
-
-
-class RegMunEnergyReElDemShareDetailJsView(RegMunEnergyReElDemShareMasterDetailView):
-    model = models.RegMunEnergyReElDemShare
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunGenEnergyReMasterDetailView(MasterDetailView):
+class RegMunGenEnergyReDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyRe
+    template_name = 'stemp_abw/popups/gen_energy_re.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyReMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunGenEnergyReDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -186,7 +190,7 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -194,12 +198,14 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -210,30 +216,14 @@ class RegMunGenEnergyReMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenEnergyReDetailView(RegMunGenEnergyReMasterDetailView):
-    model = models.RegMunGenEnergyRe
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re.html'
-
-
-class RegMunGenEnergyReDetailJsView(RegMunGenEnergyReMasterDetailView):
-    model = models.RegMunGenEnergyRe
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
+class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyRePerCapita
+    template_name = 'stemp_abw/popups/gen_energy_re_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyRePerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunGenEnergyRePerCapitaDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -241,14 +231,15 @@ class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
         wind = round((mun_data.gen_el_energy_wind / mun_data.pop_2017), 1)
         pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.pop_2017), 1)
-        pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.pop_2017), 1)
+        pv_ground = round(
+            (mun_data.gen_el_energy_pv_ground / mun_data.pop_2017), 1)
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.pop_2017), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -256,12 +247,14 @@ class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -272,30 +265,14 @@ class RegMunGenEnergyRePerCapitaMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenEnergyRePerCapitaDetailView(RegMunGenEnergyRePerCapitaMasterDetailView):
-    model = models.RegMunGenEnergyRePerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_per_capita.html'
-
-
-class RegMunGenEnergyRePerCapitaDetailJsView(RegMunGenEnergyRePerCapitaMasterDetailView):
-    model = models.RegMunGenEnergyRePerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
+class RegMunGenEnergyReDensityDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyReDensity
+    template_name = 'stemp_abw/popups/gen_energy_re_density.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenEnergyReDensityMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunGenEnergyReDensityDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -310,7 +287,7 @@ class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Gewonnene Energie aus EE'},
@@ -318,12 +295,14 @@ class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -334,30 +313,14 @@ class RegMunGenEnergyReDensityMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenEnergyReDensityDetailView(RegMunGenEnergyReDensityMasterDetailView):
-    model = models.RegMunGenEnergyReDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_energy_re_density.html'
-
-
-class RegMunGenEnergyReDensityDetailJsView(RegMunGenEnergyReDensityMasterDetailView):
-    model = models.RegMunGenEnergyReDensity
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunGenCapReMasterDetailView(MasterDetailView):
+class RegMunGenCapReDetailView(MasterDetailView):
+    model = models.RegMunGenCapRe
+    template_name = 'stemp_abw/popups/gen_cap_re.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenCapReMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunGenCapReDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -373,7 +336,7 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Installierte Leistung EE'},
@@ -381,12 +344,14 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -397,37 +362,22 @@ class RegMunGenCapReMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunGenCapReDetailView(RegMunGenCapReMasterDetailView):
-    model = models.RegMunGenCapRe
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re.html'
-
-
-class RegMunGenCapReDetailJsView(RegMunGenCapReMasterDetailView):
-    model = models.RegMunGenCapRe
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
+class RegMunGenCapReDensityDetailView(MasterDetailView):
+    model = models.RegMunGenCapReDensity
+    template_name = 'stemp_abw/popups/gen_cap_re_density.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunGenCapReDensityDetailMasterView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunGenCapReDensityDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
 
         return context
 
     def build_chart(self):
         mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
         wind = round((mun_data.gen_capacity_wind / mun_data.area), 2)
-        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area), 2)
+        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area),
+                        2)
         pv_ground = round((mun_data.gen_capacity_pv_ground / mun_data.area), 2)
         hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
@@ -436,7 +386,7 @@ class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Installierte Leistung EE'},
@@ -444,12 +394,14 @@ class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} MW<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -460,35 +412,19 @@ class RegMunGenCapReDensityDetailMasterView(MasterDetailView):
         return chart
 
 
-class RegMunGenCapReDensityDetailView(RegMunGenCapReDensityDetailMasterView):
-    model = models.RegMunGenCapReDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_cap_re_density.html'
-
-
-class RegMunGenCapReDensityDetailJsView(RegMunGenCapReDensityDetailMasterView):
-    model = models.RegMunGenCapReDensity
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
 class RegMunGenCountWindDensityDetailView(MasterDetailView):
     model = models.RegMunGenCountWindDensity
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_gen_count_wind_density.html'
+    template_name = 'stemp_abw/popups/gen_count_wind_density.html'
 
 
-class RegMunDemElEnergyMasterDetailView(MasterDetailView):
+class RegMunDemElEnergyDetailView(MasterDetailView):
+    model = models.RegMunDemElEnergy
+    template_name = 'stemp_abw/popups/dem_el_energy.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemElEnergyMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunDemElEnergyDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -502,7 +438,7 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Strombedarf'},
@@ -510,12 +446,14 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -526,30 +464,14 @@ class RegMunDemElEnergyMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunDemElEnergyDetailView(RegMunDemElEnergyMasterDetailView):
-    model = models.RegMunDemElEnergy
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy.html'
-
-
-class RegMunDemElEnergyDetailJsView(RegMunDemElEnergyMasterDetailView):
-    model = models.RegMunDemElEnergy
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
+class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
+    model = models.RegMunDemElEnergyPerCapita
+    template_name = 'stemp_abw/popups/dem_el_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemElEnergyPerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunDemElEnergyPerCapitaDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -563,7 +485,7 @@ class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Strombedarf'},
@@ -571,12 +493,14 @@ class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        KWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                KWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -587,30 +511,14 @@ class RegMunDemElEnergyPerCapitaMasterDetailView(MasterDetailView):
         return chart
 
 
-class RegMunDemElEnergyPerCapitaDetailView(RegMunDemElEnergyPerCapitaMasterDetailView):
-    model = models.RegMunDemElEnergyPerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_el_energy_per_capita.html'
-
-
-class RegMunDemElEnergyPerCapitaDetailJsView(RegMunDemElEnergyPerCapitaMasterDetailView):
-    model = models.RegMunDemElEnergyPerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunDemThEnergyMasterDetailView(MasterDetailView):
+class RegMunDemThEnergyDetailView(MasterDetailView):
+    model = models.RegMunDemThEnergy
+    template_name = 'stemp_abw/popups/dem_th_energy.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemThEnergyMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunDemThEnergyDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -623,7 +531,7 @@ class RegMunDemThEnergyMasterDetailView(MasterDetailView):
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': ' Wärmebedarf'},
@@ -631,12 +539,14 @@ class RegMunDemThEnergyMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} GWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -646,29 +556,15 @@ class RegMunDemThEnergyMasterDetailView(MasterDetailView):
         )
         return chart
 
-class RegMunDemThEnergyDetailView(RegMunDemThEnergyMasterDetailView):
-    model = models.RegMunDemThEnergy
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy.html'
 
-class RegMunDemThEnergyDetailJsView(RegMunDemThEnergyMasterDetailView):
-    model = models.RegMunDemThEnergy
-    template_name = 'stemp_abw/popups/js_popup.html'
-
-
-class RegMunDemThEnergyPerCapitaMasterDetailView(MasterDetailView):
+class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
+    model = models.RegMunDemThEnergyPerCapita
+    template_name = 'stemp_abw/popups/dem_th_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemThEnergyPerCapitaMasterDetailView, self).get_context_data(**kwargs)
-
-        # backup current HC to session if view for html is requested,
-        # load from session if subsequent view for js is requested.
-        session = SESSION_DATA.get_session(self.request)
-        if session.highcharts_temp is None:
-            context['chart'] = self.build_chart()
-            session.highcharts_temp = context['chart']
-        else:
-            context['chart'] = session.highcharts_temp
-            session.highcharts_temp = None
+        context = super(RegMunDemThEnergyPerCapitaDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
 
         return context
 
@@ -681,7 +577,7 @@ class RegMunDemThEnergyPerCapitaMasterDetailView(MasterDetailView):
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
-        # convert data to appropriate format for pie chart
+        # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
             'title': {'text': 'Wärmebedarf'},
@@ -689,12 +585,14 @@ class RegMunDemThEnergyPerCapitaMasterDetailView(MasterDetailView):
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
-                        'format': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)',
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        KWh<br>({point.percentage:.1f} %)',
                     }
                 }
             },
             'tooltip': {
-                'pointFormat': '<b>{point.name}</b>: {point.y} KWh<br>({point.percentage:.1f} %)'
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                KWh<br>({point.percentage:.1f} %)'
             }
         }
         chart = visualizations.HCPiechart(
@@ -703,14 +601,6 @@ class RegMunDemThEnergyPerCapitaMasterDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
-
-class RegMunDemThEnergyPerCapitaDetailView(RegMunDemThEnergyPerCapitaMasterDetailView):
-    model = models.RegMunDemThEnergyPerCapita
-    template_name = 'stemp_abw/popups/layer_popup_reg_mun_dem_th_energy_per_capita.html'
-
-class RegMunDemThEnergyPerCapitaDetailJsView(RegMunDemThEnergyPerCapitaMasterDetailView):
-    model = models.RegMunDemThEnergyPerCapita
-    template_name = 'stemp_abw/popups/js_popup.html'
 
 
 class RegWaterProtAreaDetailView(MasterDetailView):
