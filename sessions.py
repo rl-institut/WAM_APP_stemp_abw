@@ -138,7 +138,8 @@ class UserSession(object):
                                               in CONTROL_VALUES_MAP[c_name]])
         return control_values
 
-    def create_mun_data_ratio_for_aggregation(self):
+    @staticmethod
+    def create_mun_data_ratio_for_aggregation():
         """Create table of technology shares for municipalities from status
         quo scenario.
 
@@ -230,7 +231,12 @@ class UserSession(object):
             # 2) mun data update
             # free sceario
             if int(ctrl_data['dd_repowering']) == -1:
-                sl_wind_repower_pot = None
+                print(self.user_scenario)
+                sl_wind_repower_pot = round(
+                    sum([scn_data['mun_data'][mun]['gen_capacity_wind']
+                         for mun in scn_data['mun_data'].keys()]
+                        )
+                )
             # other scenarios
             else:
                 repower_data = json.loads(self.user_scenario.repowering_scenario.data)
@@ -239,8 +245,8 @@ class UserSession(object):
                         repower_data[mun]['gen_capacity_wind']
                 # 3) calculate potential for wind slider update
                 sl_wind_repower_pot = \
-                    int(sum([_['gen_capacity_wind']
-                             for _ in repower_data.values()]))
+                    round(sum([_['gen_capacity_wind']
+                               for _ in repower_data.values()]))
 
         else:
             sl_wind_repower_pot = None

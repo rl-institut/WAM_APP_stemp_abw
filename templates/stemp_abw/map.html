@@ -51,7 +51,16 @@
                   <li class="tabs-title" id="tabsEnergy">
                     <a href="#panel-energy">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
+                      <div style="float: right;" id="rc-tooltip-esys" title="{{ tooltips.tabs_esys_changes.text }} <a class='btn btn-rect-small btn-tooltip openEnergyTab'>Zum Energiesystem springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
                       <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-title" id="tabsAreas">
+                    <a href="#panel-areas">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
+                      <div style="float: right;" id="rc-tooltip-areas-enabled" title="{{ tooltips.tabs_areas_changes_enabled.text }} <a class='btn btn-rect-small btn-tooltip openAreaTab'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <div style="float: right;" id="rc-tooltip-areas-disabled" title="{{ tooltips.tabs_areas_changes_disabled.text }} <a class='btn btn-rect-small btn-tooltip openAreaTab'>Zu Flächen springen</a>" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <h2 class="tabs-title__head">Flächen</h2>
                     </a>
                   </li>
                   <li class="tabs-results tabs-title" id="tabsResults">
@@ -60,86 +69,80 @@
                       <h2 class="tabs-title__head">Ergebnisse</h2>
                     </a>
                   </li>
-                  <li class="tabs-title" id="tabsAreas">
-                    <a href="#panel-areas">
-                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                      <h2 class="tabs-title__head">Flächen</h2>
-                    </a>
-                  </li>
                 </ul>
               </nav>
               <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
                 <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-                    <!-- First panel content -->
-                    <div class="tabs-panel is-active" id="panel-region">
-                      <p class="lead" style="margin-bottom: 0;">
-                        {{ panels.region.title }}
-                        <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                        <!--{{ info }}-->
-                      </p>
-                      {% include "forms/layer_region_select.html" %}
-                    </div>
+                  <!-- First panel content -->
+                  <div class="tabs-panel is-active" id="panel-region">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.region.title }}
+                      <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      <!--{{ info }}-->
+                    </p>
+                    {% include "forms/layer_region_select.html" %}
+                  </div>
 
-                    <!-- Second panel content -->
-                    <!--<div class="tabs-panel" id="panel-scenarios">-->
-                      <!--<p class="lead" style="margin-bottom: 0;">-->
-                        <!--{{ panels.scenarios.title }}-->
-                        <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
-                      <!--</p>-->
-                      <!--<div class="grid-x">-->
-                        <!--<div class="cell" id="scenarios-wrap">-->
-                          <!--<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">-->
-                            <!--<li class="tabs-title tabs-title&#45;&#45;horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>-->
-                            <!--<li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>-->
-                          <!--</ul>-->
+                  <!-- Second panel content -->
+                  <!--<div class="tabs-panel" id="panel-scenarios">-->
+                    <!--<p class="lead" style="margin-bottom: 0;">-->
+                      <!--{{ panels.scenarios.title }}-->
+                      <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                    <!--</p>-->
+                    <!--<div class="grid-x">-->
+                      <!--<div class="cell" id="scenarios-wrap">-->
+                        <!--<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">-->
+                          <!--<li class="tabs-title tabs-title&#45;&#45;horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>-->
+                          <!--<li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>-->
+                        <!--</ul>-->
 
-                          <!--<div class="tabs-content" data-tabs-content="deeplinked-tabs">-->
-                            <!--<div class="tabs-panel is-active" id="scenario-panel1">-->
-                              <!--<div class="grid-x grid-margin-x">-->
-                                <!--<div class="cell">-->
-                                  <!--<form>-->
-                                    <!--<fieldset>-->
-                                        <!--<legend>Vorgegebenes Szenario auswählen-->
-                                          <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
-                                        <!--</legend>-->
-                                        <!--<label class="control control&#45;&#45;radio">Status Quo-->
-                                          <!--<input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>-->
-                                          <!--<div class="control__indicator"></div>-->
-                                        <!--</label>-->
-                                        <!--<label class="control control&#45;&#45;radio">Deutsches Klimaschutzziel-->
-                                          <!--<input type="radio" name="scenario" value="germany" id="scenarioGermany"/>-->
-                                          <!--<div class="control__indicator"></div>-->
-                                        <!--</label>-->
-                                        <!--<label class="control control&#45;&#45;radio">100% erneuerbar-->
-                                          <!--<input type="radio" name="scenario" value="100" id="scenario100"/>-->
-                                          <!--<div class="control__indicator"></div>-->
-                                        <!--</label>-->
-                                    <!--</fieldset>-->
-                                  <!--</form>-->
-                                <!--</div>-->
+                        <!--<div class="tabs-content" data-tabs-content="deeplinked-tabs">-->
+                          <!--<div class="tabs-panel is-active" id="scenario-panel1">-->
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
+                                <!--<form>-->
+                                  <!--<fieldset>-->
+                                      <!--<legend>Vorgegebenes Szenario auswählen-->
+                                        <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                      <!--</legend>-->
+                                      <!--<label class="control control&#45;&#45;radio">Status Quo-->
+                                        <!--<input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                      <!--<label class="control control&#45;&#45;radio">Deutsches Klimaschutzziel-->
+                                        <!--<input type="radio" name="scenario" value="germany" id="scenarioGermany"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                      <!--<label class="control control&#45;&#45;radio">100% erneuerbar-->
+                                        <!--<input type="radio" name="scenario" value="100" id="scenario100"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                  <!--</fieldset>-->
+                                <!--</form>-->
                               <!--</div>-->
                             <!--</div>-->
-                            <!--<div class="tabs-panel" id="scenario-panel2">-->
-                              <!--<div class="grid-x grid-margin-x">-->
-                                <!--<div class="cell">-->
-                                  <!--<form class="select-menu">-->
-                                    <!--<label>-->
-                                      <!--Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
-                                      <!--<select>-->
-                                        <!--<option value="husker">Husker</option>-->
-                                        <!--<option value="starbuck">Starbuck</option>-->
-                                        <!--<option value="hotdog">Hot Dog</option>-->
-                                        <!--<option value="apollo">Apollo</option>-->
-                                      <!--</select>-->
-                                    <!--</label>-->
-                                  <!--</form>-->
-                                <!--</div>-->
+                          <!--</div>-->
+                          <!--<div class="tabs-panel" id="scenario-panel2">-->
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
+                                <!--<form class="select-menu">-->
+                                  <!--<label>-->
+                                    <!--Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                    <!--<select>-->
+                                      <!--<option value="husker">Husker</option>-->
+                                      <!--<option value="starbuck">Starbuck</option>-->
+                                      <!--<option value="hotdog">Hot Dog</option>-->
+                                      <!--<option value="apollo">Apollo</option>-->
+                                    <!--</select>-->
+                                  <!--</label>-->
+                                <!--</form>-->
                               <!--</div>-->
                             <!--</div>-->
                           <!--</div>-->
                         <!--</div>-->
                       <!--</div>-->
+                    <!--</div>-->
                     <!--<div class="panel-desc">-->
                         <!--<p id="scenarioPanelText">-->
                         <!--<span class="panel-desc__header">Status Quo</span>-->
@@ -149,102 +152,53 @@
                   <!--</div>-->
 
                   <!-- Third panel content -->
-                    <div class="tabs-panel" id="panel-energy">
-                      <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
-                        {{ panels.esys.title }}
-                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                      </p>
-                      <!--<p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>-->
-                      <!--<a class="btn btn-cta" id="openTabExample">-->
-                        <!--Zu Flächen springen-->
-                      <!--</a>-->
-                      <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
-                      <div class="grid-x">
-                        <div class="cell small-9">
-                          {% include "forms/scenario_menu.html" %}
-                        </div>
-                        <div class="cell small-2">
-                          <button type="submit" class="btn btn-rect-small btn-apply--secondary" id="apply-scn-btn" onclick="ctrlScenario(this.id)" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
-                            Übernehmen
-                          </button>
-                        </div>
-                        <div class="cell small-1"></div>
+                  <div class="tabs-panel" id="panel-energy">
+                    <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
+                      {{ panels.esys.title }}
+                      <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                    </p>
+                    <p class="rc-tooltip-trigger" id="rc-tooltip-trigger-1">Click on me to show tooltip!</p>
+                    <!--<a class="btn btn-cta" id="openAreaTab">-->
+                      <!--Zu Flächen springen-->
+                    <!--</a>-->
+                    <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
+                    <div class="grid-x">
+                      <div class="cell small-9">
+                        {% include "forms/scenario_menu.html" %}
                       </div>
+                      <div class="cell small-2">
+                        <button type="submit" class="btn btn-rect-small" id="apply-scn-btn" onclick="ctrlScenario(this.id)" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                          Übernehmen
+                        </button>
+                      </div>
+                      <div class="cell small-1"></div>
+                    </div>
 
-                      {% include "forms/esys_components.html" %}
+                    {% include "forms/esys_components.html" %}
 
-                      <!--<div class="grid-x">-->
+                    <!--<div class="grid-x">-->
 
-                        <!--<div class="cell u-text&#45;&#45;center">-->
-                          <!--<form method="post" id="frmSimulate">-->
-                            <!--{% csrf_token %}-->
-                            <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlSimulation(this.id)" value="simulate" disabled>-->
-                              <!--Simulieren-->
-                              <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
-                            <!--</button>-->
-                          <!--</form>-->
-                        <!--</div>-->
-
-                        <!--<div class="cell small-1"></div>-->
-                        <!--<div class="cell small-2">Fortschritt</div>-->
-                          <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
-                            <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
-                          <!--</div>-->
-                        <!--<div class="cell small-1"></div>-->
-
+                      <!--<div class="cell u-text&#45;&#45;center">-->
+                        <!--<form method="post" id="frmSimulate">-->
+                          <!--{% csrf_token %}-->
+                          <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlSimulation(this.id)" value="simulate" disabled>-->
+                            <!--Simulieren-->
+                            <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                          <!--</button>-->
+                        <!--</form>-->
                       <!--</div>-->
-                    </div>
 
-                    <!-- Fourth panel content -->
-                    <div class="tabs-panel" id="panel-results">
-                      <p class="lead">
-                        {{ panels.results.title }}
-                        <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                      </p>
+                      <!--<div class="cell small-1"></div>-->
+                      <!--<div class="cell small-2">Fortschritt</div>-->
+                        <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
+                          <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
+                        <!--</div>-->
+                      <!--<div class="cell small-1"></div>-->
 
-                      <div class="grid-x">
-                        <div class="cell u-text--center">
-                          <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                            Mehr Ergebnisse
-                            <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
-                          </button>
-                        </div>
-                        <div class="cell" id="results-collapsed">
-                          <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
-                          <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
-                          <!--<form>-->
-                            <!--<fieldset>-->
-                              <!--<legend>-->
-                                <!--<small style="color: #000; border-bottom: 1px solid #000;">Gruppe 1</small>-->
-                                <!--<i class ="icon ion-help-circled icon&#45;&#45;small" title="{{data.text}}" data-tooltip data-position="right" data-alignment="center"></i>-->
-                              <!--</legend>-->
-                              <!--<div class="grid-x">-->
-                                <!--<div class="cell small-1">-->
-                                  <!--<i class ="icon ion-stop icon&#45;&#45;small" style="color: #ff0000;"></i>-->
-                                <!--</div>-->
-                                <!--<div class="cell small-9">-->
-                                  <!--<p>Anteil Energie aus EE an Strombedarf</p>-->
-                                <!--</div>-->
-                                <!--<div class="cell small-1">-->
-                                  <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="TOOLTIP" data-tooltip data-position="right" data-alignment="center"></i>-->
-                                <!--</div>-->
-                                <!--<div class="cell small-1">-->
-                                  <!--<div class="switch tiny">-->
-                                    <!--<input class="switch-input-layer-select-results" id="sw1" type="checkbox" name="harharhar">-->
-                                    <!--<label class="switch-paddle" for="sw1">-->
-                                    <!--</label>-->
-                                  <!--</div>-->
-                                <!--</div>-->
-                              <!--</div>-->
+                    <!--</div>-->
+                  </div>
 
-                            <!--</fieldset>-->
-                          <!--</form>-->
-                        </div>
-                        {% include "stemp_abw/results_full.html" %}
-                      </div>
-                    </div>
-
-                 <!-- Fifth panel content -->
+                  <!-- Fourth panel content -->
                   <div class="tabs-panel" id="panel-areas">
                     <p class="lead" style="margin-bottom: 0;">
                       {{ panels.areas.title }}
@@ -271,6 +225,10 @@
                             </div>
 
                             {% include "forms/esys_areas.html" %}
+
+                            <!--<a class="btn btn-cta" id="openEnergyTab">-->
+                              <!--Zum Esys springen-->
+                            <!--</a>-->
                           </div>
 
                           <div class="tabs-panel" id="areas-panel2">
@@ -343,6 +301,55 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+
+                  <!-- Fifth panel content -->
+                  <div class="tabs-panel" id="panel-results">
+                    <p class="lead">
+                      {{ panels.results.title }}
+                      <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                    </p>
+
+                    <div class="grid-x">
+                      <div class="cell u-text--center">
+                        <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                          Mehr Ergebnisse
+                          <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                        </button>
+                      </div>
+                      <div class="cell" id="results-collapsed">
+                        <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
+                        <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
+                        <!--<form>-->
+                          <!--<fieldset>-->
+                            <!--<legend>-->
+                              <!--<small style="color: #000; border-bottom: 1px solid #000;">Gruppe 1</small>-->
+                              <!--<i class ="icon ion-help-circled icon&#45;&#45;small" title="{{data.text}}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                            <!--</legend>-->
+                            <!--<div class="grid-x">-->
+                              <!--<div class="cell small-1">-->
+                                <!--<i class ="icon ion-stop icon&#45;&#45;small" style="color: #ff0000;"></i>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-9">-->
+                                <!--<p>Anteil Energie aus EE an Strombedarf</p>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-1">-->
+                                <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="TOOLTIP" data-tooltip data-position="right" data-alignment="center"></i>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-1">-->
+                                <!--<div class="switch tiny">-->
+                                  <!--<input class="switch-input-layer-select-results" id="sw1" type="checkbox" name="harharhar">-->
+                                  <!--<label class="switch-paddle" for="sw1">-->
+                                  <!--</label>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</div>-->
+
+                          <!--</fieldset>-->
+                        <!--</form>-->
+                      </div>
+                      {% include "stemp_abw/results_full.html" %}
                     </div>
                   </div>
 
@@ -458,12 +465,12 @@
 {% endblock %}
 
 {% block scripts %}
-    // Set
+    <!--Get CSRF token and make it global-->
     <script>
       var csrf_token = '{{ csrf_token }}';
     </script>
 
-    // Load required scripts
+    <!--Load required helper scripts-->
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
     <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
@@ -483,8 +490,6 @@
           }, 750);
       }});
     </script>
-
-
 
     <script type="text/javascript">
         function main_map_init (map, options) {
@@ -628,18 +633,6 @@
                 });
             {% endfor %}
 
-            // temp for RE pot layer control
-            $('#cb_use_forest').click( function () {
-              addRePotAreaLayer();
-            })
-
-            function SliderUpdate (data) {
-              changeScenarioControlSlider(data);
-              if (data.input.prop('id') == 'sl_dist_resid') {
-                addRePotAreaLayer();
-              }
-            }
-
             /*
             var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
               layers: 'dwd:BRD_1km_winddaten_80m',
@@ -668,7 +661,7 @@
 	            imperial: false
 	          }).addTo(map);
 
-            // load sliders
+            // Load sliders (layers)
             {% for group, data in comp_groups.items %}
                 {% for comp in data.comps %}
                     {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
@@ -683,12 +676,14 @@
                             {% if comp.field.widget.attrs.disable %}
                               disable: true,
                             {% endif %}
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
                             onFinish: changeScenarioControlSlider
                         });
                     {% endif %}
                 {% endfor %}
             {% endfor %}
 
+            // Load sliders (esys)
             {% for group, data in area_groups.items %}
                 {% for comp in data.comps %}
                     {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
@@ -703,7 +698,8 @@
                             {% if comp.field.widget.attrs.disable %}
                               disable: true,
                             {% endif %}
-                            onFinish: SliderUpdate
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
+                            onFinish: changeScenarioControlSlider
                         });
                     {% endif %}
                 {% endfor %}
