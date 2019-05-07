@@ -7,7 +7,7 @@ from djgeojson.views import GeoJSONLayerView
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
 from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
-from . import views
+from stemp_abw import views
 
 app_name = 'stemp_abw'
 

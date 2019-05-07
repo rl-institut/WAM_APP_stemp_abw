@@ -1,6 +1,6 @@
 import pandas as pd
 from numpy.random import random
-from stemp_abw import visualizations
+from stemp_abw.visualizations import highcharts
 
 
 class ResultAnalysisVisualization(object):
@@ -22,7 +22,7 @@ class ResultAnalysisVisualization(object):
 
     def visualize(self):
         if self.type == 'line':
-            visualization = visualizations.HCTimeseries(
+            visualization = highcharts.HCTimeseries(
                 data=self.data,
                 setup_labels=self.setup_labels,
                 style='display: inline-block'
@@ -36,13 +36,13 @@ class ResultAnalysisVisualization(object):
             # convert data to appropriate format for pie chart
             data = data.reset_index().to_dict(orient='records')
 
-            visualization = visualizations.HCPiechart(
+            visualization = highcharts.HCPiechart(
                 data=data,
                 setup_labels=self.setup_labels,
                 style='display: inline-block'
             )
         elif self.type == 'column':
-            visualization = visualizations.HCStackedColumn(
+            visualization = highcharts.HCStackedColumn(
                 data=self.data,
                 setup_labels=self.setup_labels,
                 style='display: inline-block'

@@ -1,11 +1,10 @@
 import pandas as pd
-from django.views.generic import DetailView
-
 import stemp_abw.models as models
+from django.views.generic import DetailView
 from meta.models import Source
-from stemp_abw import visualizations
 from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
     LAYER_AREAS_METADATA
+from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
 
 
@@ -113,7 +112,7 @@ class RegMunPopDetailView(MasterDetailView):
             'subtitle': {'text': 'Prognose'},
             'yAxis': {'title': {'text': 'Personen'}}
         }
-        chart = visualizations.HCTimeseries(
+        chart = highcharts.HCTimeseries(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -160,7 +159,7 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
                 'pointFormat': 'Bedarf: {point.stackTotal} %'
             }
         }
-        chart = visualizations.HCStackedColumn(
+        chart = highcharts.HCStackedColumn(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -208,7 +207,7 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
                 GWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -257,7 +256,7 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
                 MWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -305,7 +304,7 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
                 MWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -354,7 +353,7 @@ class RegMunGenCapReDetailView(MasterDetailView):
                 MW<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -404,7 +403,7 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
                 MW<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -456,7 +455,7 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
                 GWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -503,7 +502,7 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
                 KWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -549,7 +548,7 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
                 GWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
@@ -595,7 +594,7 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
                 KWh<br>({point.percentage:.1f} %)'
             }
         }
-        chart = visualizations.HCPiechart(
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
