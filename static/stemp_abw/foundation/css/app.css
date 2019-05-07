@@ -8362,10 +8362,31 @@ a.thumbnail {
     border-right: 1px solid transparent;
     border-top: 1px solid #fff;
 }
-.custom_popup .leaflet-popup-content-wrapper p {
-    background: #ffffff;
-    color: #002E4F;
+.custom_popup .leaflet-popup-content-wrapper {
+    color: rgb(0, 46, 79);
+    background: rgb(235, 242, 250);
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
 }
+.custom_popup .leaflet-popup-content-wrapper h3 {
+    font-size: 20px;
+    font-weight: 300;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    margin-top: 0;
+}
+.custom_popup .leaflet-popup-content-wrapper p {
+    color: rgb(0, 46, 79);
+    font-weight: 400;
+}
+.custom_popup .leafleat-popup-content-wrapper, .anchor-text {
+    font-weight: 400;
+}
+
 
 /* Map legend */
 .choropleth_legend {
