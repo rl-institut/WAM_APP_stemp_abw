@@ -8386,6 +8386,10 @@ a.thumbnail {
 .custom_popup .leafleat-popup-content-wrapper, .anchor-text {
     font-weight: 400;
 }
+.custom_popup .leafleat-popup-content-wrapper, .description {
+    text-align: justify;
+}
+
 
 
 /* Map legend */
