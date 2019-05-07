@@ -28,8 +28,9 @@
     {% for source in sources %}
     <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
        class="anchor-text linkto-source"
-       id="linkto-source-{{ source.id }}">{{ source.infos.title }}</a>
-    {% if not forloop.last %}, {% else %}{% endif %}
+       id="linkto-source-{{ source.id }}">
+      {{ source.infos.title }}{% if not forloop.last %}, {% else %}{% endif %}
+    </a>
     {% endfor %}
   </div>
   {% endif %}
