@@ -1,13 +1,64 @@
 from utils.highcharts import Highchart
 
+# Custom RLI theme, overwrites main WAM RLI theme in utils/highcharts.py
+CUSTOM_RLI_THEME = {
+    'credits': {
+        'enabled': False
+    },
+    'colors': [
+        '#fc8e65', '#55aae5', '#7fadb7', '#fce288', '#f69c3a', '#c28e5e',
+        '#a27b82', '#797097'
+    ],
+    'title': {
+        'style': {
+            'color': 'rgb(0, 46, 79)',
+            'font': '1.17em Roboto, Arial, sans-serif',
+            'font-weight': '300'
+        }
+    },
+    'subtitle': {
+        'style': {
+            'color': 'rgb(0, 46, 79)',
+            'font': '1em Roboto, Arial, sans-serif',
+            'font-weight': '300'
+        }
+    },
+    'lang': {
+        'decimalPoint': ',',
+        'thousandsSep': '.'
+    },
+    'legend': {
+        'itemStyle': {
+            'font': '1em Roboto, Arial, sans-serif',
+            'color': 'rgb(0, 46, 79)',
+            'font-weight': '300'
+        },
+        'itemHoverStyle': {
+            'color': 'rgb(80, 126, 159)'
+        }
+    },
+    'plotOptions': {
+        'series': {
+            'dataLabels': {
+                'style': {
+                    'fontWeight': None,
+                    'textOutline': None
+                }
+            }
+        }
+    }
+}
+
 
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, data=None, setup_labels=None, **kwargs):
+    def __init__(self, use_rli_theme=True, data=None, setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
+        if use_rli_theme:
+            self.set_dict_options(CUSTOM_RLI_THEME)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
