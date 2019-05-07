@@ -8361,6 +8361,7 @@ a.thumbnail {
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     border-top: 1px solid #fff;
+    background: rgb(235, 242, 250);
 }
 .custom_popup .leaflet-popup-content-wrapper {
     color: rgb(0, 46, 79);
