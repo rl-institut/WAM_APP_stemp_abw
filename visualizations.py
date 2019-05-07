@@ -12,14 +12,14 @@ CUSTOM_RLI_THEME = {
     'title': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            'font': '16px Roboto, Arial, sans-serif',
+            'font': '1.17em Roboto, Arial, sans-serif',
             'font-weight': '300'
         }
     },
     'subtitle': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            'font': '12px Roboto, Arial, sans-serif',
+            'font': '1em Roboto, Arial, sans-serif',
             'font-weight': '300'
         }
     },
@@ -29,7 +29,7 @@ CUSTOM_RLI_THEME = {
     },
     'legend': {
         'itemStyle': {
-            'font': '14px Roboto, Arial, sans-serif',
+            'font': '1em Roboto, Arial, sans-serif',
             'color': 'rgb(0, 46, 79)',
             'font-weight': '300'
         },

@@ -23,7 +23,7 @@
   {% block links %}
   {% if sources|length == 0 %}
   {% else %}
-  <div class="cell">
+  <div class="cell sources">
     Quellen:
     {% for source in sources %}
     <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
