@@ -1,0 +1,9 @@
+v1.0 (26. Juni 2019)
+====================
+
+Die erste öffentliche Version des Tools!
+
+Änderungen
+----------
+
+keine
