@@ -5,15 +5,18 @@
 
 Die Energiewende kann nur gemeinsam erreicht werden. Wie aber können alle
 Interessensgruppen ihre Sichtweisen und Bedürfnisse in die Energiewendeplanung
-einbringen? Das Reiner Lemoine Institut (RLI) hat dieses Stakeholder-
-Empowerment-Tool mit Unterstützung der
-`Energieavantgarde Anhalt e.V. (EAA) <https://www.energieavantgarde.de/>`_
-entwickelt, das es Akteurinnen und Akteuren der Energiewende ermöglicht,
-sich an Planungsprozessen zu beteiligen.
+einbringen? Das `Reiner Lemoine Institut (RLI)
+<https://reiner-lemoine-institut.de/>`_ hat dieses Stakeholder-Empowerment-Tool
+mit Unterstützung der `Energieavantgarde Anhalt e.V. (EAA)
+<https://www.energieavantgarde.de/>`_ entwickelt, das es Akteurinnen und
+Akteuren der Energiewende ermöglicht, sich an Planungsprozessen zu beteiligen.
 
-Für allgemeine Informationen zu StEmp-Tools siehe :ref:`stemp_label`.
-Mehr Informationen zur Verwendung finden Sie unter :ref:`usage_label`.
-Details zum technischen Hintergrund gibt die Seite :ref:`developer_label`.
+.. 	image:: files/Anhalt_map_website.png
+   :width: 500 px
+   :alt: Karte der Region ABW
+   :align: center
+
+Über das Menü links gelangen Sie auf die entsprechenden Seiten.
 
 ENavi
 -----
