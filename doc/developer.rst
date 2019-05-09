@@ -46,6 +46,31 @@ Tutorials und Informationen zu Django:
 
 - Die Django-Design-Philosophie_
 
+WAM-Kosmos
+----------
+
+Wie im vorherigen Abschnitt *Django-Kosmos* bereits kurz angesprochen, verwendet
+dieses Projekt das RLI eigene Web-Applikationen-Framework WAM_.
+Das WAM_-Framework nutzt hierfür Django also Unterbau. Der Django-Unterbau ist
+dahingehend umgearbeitet, dass er besonders gut auf die Bedürfnisse für die
+Entwicklung von Applikationen am RLI zugeschnitten ist und er sich von Projekt
+zu Projekt als Projektbasis wiederverwenden lässt. Im Folgenden soll deshalb
+kurz auf die WAM_-Erweiterungen im Vergleich zu einer reinen Django-Projektbasis
+eingegangen werden (dies setzt Kenntnisse des Django-Frameworks voraus).
+
+Das WAM_-Framework setzt zwei grundlegende Prinzipien konsequent um:
+
+- die initiale Konfigurationsarbeit für auf der WAM_ basierende Web-Applikationen
+  soll minimiert und wenn möglich automatisiert werden.
+- das Zusammenfassen von häufig benötigten Funktionalitäten und die Integration dieser
+  Funktionalitäten in die WAM_-Projektbasis, für die einfache Verwendung von auf
+  der WAM_ basierenden Web-Applikationen.
+
+Der Grund für die Umsetzung dieser beiden Prinzipien ist die Minimierung von
+zukünftigen Aufwänden, bei der Erstellung von Web-Applikationen, welche am RLI
+und Allgemein im Bereich der Erneuerbaren-Energien-Forschung und -Entwicklung
+benötigt werden.
+
 Tool-Struktur
 -------------
 
