@@ -33,17 +33,14 @@ an einer auf Django basierenden WAM-Applikation begonnen wird. Für das Erlernen
 des Umgangs mit Django gibt es sehr viel Lernmaterial Dritter, weswegen im
 Folgenden in dieser Dokumentation auf einige dieser Anleitungen und
 Dokumentationen zum Erlernen von Django verwiesen werden soll. Anschließend
-wird im nächsten Abschnitt auf der auf Django basierenden WAM_-Projektbasis
+wird im nächsten Abschnitt auf der auf Django basierenden WAM-Projektbasis
 eingegangen.
 
 Tutorials und Informationen zu Django:
 
 - Das Django `getting started Tutorial`_
-
 - Tutorial_ einer einfachen Geo-Applikation in Django
-
 - Die offizielle Django-Dokumentation_
-
 - Die Django-Design-Philosophie_
 
 WAM-Kosmos
@@ -51,25 +48,32 @@ WAM-Kosmos
 
 Wie im vorherigen Abschnitt *Django-Kosmos* bereits kurz angesprochen, verwendet
 dieses Projekt das RLI eigene Web-Applikationen-Framework WAM_.
-Das WAM_-Framework nutzt hierfür Django also Unterbau. Der Django-Unterbau ist
+Das WAM-Framework nutzt hierfür Django also Unterbau. Der Django-Unterbau ist
 dahingehend umgearbeitet, dass er besonders gut auf die Bedürfnisse für die
 Entwicklung von Applikationen am RLI zugeschnitten ist und er sich von Projekt
 zu Projekt als Projektbasis wiederverwenden lässt. Im Folgenden soll deshalb
-kurz auf die WAM_-Erweiterungen im Vergleich zu einer reinen Django-Projektbasis
+kurz auf die WAM-Erweiterungen im Vergleich zu einer reinen Django-Projektbasis
 eingegangen werden (dies setzt Kenntnisse des Django-Frameworks voraus).
 
-Das WAM_-Framework setzt zwei grundlegende Prinzipien konsequent um:
+Das WAM-Framework setzt mehrere zugrundlegende Prinzipien konsequent um:
 
-- die initiale Konfigurationsarbeit für auf der WAM_ basierende Web-Applikationen
+- die initiale Konfigurationsarbeit für auf der WAM basierende Web-Applikationen
   soll minimiert und wenn möglich automatisiert werden.
-- das Zusammenfassen von häufig benötigten Funktionalitäten und die Integration dieser
-  Funktionalitäten in die WAM_-Projektbasis, für die einfache Verwendung von auf
-  der WAM_ basierenden Web-Applikationen.
+- das Zusammenfassen von häufig benötigten Funktionalitäten und die Integration
+  dieser Funktionalitäten in die WAM-Projektbasis, für die einfache Verwendung
+  von auf der WAM basierenden Web-Applikationen.
+- eine gemeinsame Projektbasis in der multiple Applikationen angedockt sind
+  minimieren den Wartungsaufwand des Gesamtsystems zur Laufzeit.
 
-Der Grund für die Umsetzung dieser beiden Prinzipien ist die Minimierung von
-zukünftigen Aufwänden, bei der Erstellung von Web-Applikationen, welche am RLI
-und Allgemein im Bereich der Erneuerbaren-Energien-Forschung und -Entwicklung
-benötigt werden.
+Der Grund für die Umsetzung dieser Prinzipien ist die Minimierung von Aufwänden
+bei der Erstellung und dem Betrieb von Web-Applikationen, welche am RLI und
+Allgemein im Bereich der Erneuerbaren-Energien-Forschung und -Entwicklung
+benötigt werden. Durch diese Herangehensweise profitieren bereits die beiden
+(stemp_abw_, stemp_mv_) im Rahmen des ENavi-Projektes vom RLI entwickelten
+StEmp-Tools, welche beide das WAM_-Framework als Unterbau nutzen.
+
+Für die Sichtbarmachung von Aufbau und Nutzung des WAM-Frameworks gibt es eine
+eigenständige WAM-Dokumentation_, welche weiterführende Informationen enthält.
 
 Tool-Struktur
 -------------
@@ -83,6 +87,9 @@ Infos/Diagramme z.B. zu
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
 .. _getting started Tutorial: https://www.djangoproject.com/start/
+.. _stemp_abw: https://github.com/rl-institut/WAM_APP_stemp_abw
+.. _stemp_mv: https://github.com/rl-institut/WAM_APP_stemp_mv
 .. _Tutorial: https://realpython.com/location-based-app-with-geodjango-tutorial/
-.. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
 .. _WAM: https://github.com/rl-institut/WAM
+.. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
+.. _WAM-Dokumentation: https://wam.readthedocs.io/en/latest/
