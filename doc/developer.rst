@@ -25,7 +25,7 @@ mit dem Namen WAM_ erstellt worden, andere WAM-Applikationen basieren auf andere
 Frameworks oder sind freie Implementationen ohne Framework-Basis.
 
 Diese StEmp-Web-Applikation des RLI nutzt das Git-Projekt WAM_ als Basis-Projekt.
-Das verwendete WAM-Basis-Projekt baut auf dem Django-Web-Framework auf,
+Das verwendete WAM-Basis-Projekt baut auf dem Django_-Web-Framework auf,
 welches Python als Programmiersprache verwendet. Django hat eine gewisse
 Lernkurve, deswegen kann es Sinn machen, sich bei Bedarf zuerst mit dem
 zugrunde liegenden Web-Framework Django zu beschäftigen, bevor mit der Arbeit
@@ -52,8 +52,7 @@ Das WAM-Framework nutzt hierfür Django also Unterbau. Der Django-Unterbau ist
 dahingehend umgearbeitet, dass er besonders gut auf die Bedürfnisse für die
 Entwicklung von Applikationen am RLI zugeschnitten ist und er sich von Projekt
 zu Projekt als Projektbasis wiederverwenden lässt. Im Folgenden soll deshalb
-kurz auf die WAM-Erweiterungen im Vergleich zu einer reinen Django-Projektbasis
-eingegangen werden (dies setzt Kenntnisse des Django-Frameworks voraus).
+kurz auf das WAM-Framework eingegangen werden.
 
 Das WAM-Framework setzt mehrere zugrundlegende Prinzipien konsequent um:
 
@@ -84,6 +83,7 @@ Infos/Diagramme z.B. zu
 - Datenflüsse
 - ???
 
+.. _Django: https://www.djangoproject.com/
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
 .. _getting started Tutorial: https://www.djangoproject.com/start/
