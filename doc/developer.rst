@@ -77,6 +77,51 @@ eigenständige WAM-Dokumentation_, welche weiterführende Informationen enthält
 Tool-Struktur
 -------------
 
+In den vorherigen Abschnitten wurde die Pfadabhängigkeit dieses Projektes, mit
+dem Django-Framework und dem darauf aufbauenden WAM-Framework herausgearbeitet.
+An dieser Stelle soll nun auf die eigentliche Struktur dieses Projektes
+eingegangen werden. Dies setzt unter anderem Kenntnisse des Django_-Frameworks
+und des WAM_-Frameworks voraus. Es kann deshalb Sinn machen, erst nach einer
+Einarbeitung in Django und WAM sich diesem Abschnitt verstärkt zu widmen, falls
+die Voraussetzungen zum Zeitpunkt des ersten Lesens noch nicht in ausreichender
+Tiefe vorhanden sind.
+
+Zuerst soll in diesem Abschnitt kurz daran erinnert werden, dass die WAM als
+Projektbasis dient und das auf der WAM aufbauende Applikationen im Ordner der
+WAM-Projekbasis zu finden sind. Das bedeutet, dass die WAM-Projektbasis der
+Gastgeber (Host) von multiplen WAM-Applikationen sein kann. Somit kann auf jeder
+WAM-Instanz ein bis viele WAM-Applikationen laufen. Diese Logik folgt der
+Logik von Django, also der Trennung von Projektbasis und Applikationen, welche
+auf dieser Projektbasis laufen. Eine WAM-Applikation, kann dabei auf zwei Arten
+in eine WAM-Projektbasis integriert werden:
+
+- eine WAM-Applikation wird von Grund auf neu angelegt. Dies erfolgt mit den
+  Bordmitteln von Django (Stichwort: :code:`python manage.py startapp appname`).
+- eine WAM-Applikation wird von einer bestehenden WAM-Applikation abgeleitet und
+  in dem WAM-Projektbasis-Ordner manuell angelegt.
+
+In beiden Fällen muss die neu zu erstellende Applikation konfiguriert und mit
+der WAM-Projektbasis verknüpft werden. Weitergehende Infos zur Installation und
+Inbetriebnahme einer neuen WAM-Applikation finden sich in der
+WAM-Dokumentation_. In dieser Dokumentation soll deswegen vielmehr auf die
+konkrete Struktur dieses Projektes eingegangen werden, um EntwicklerInnen an die
+konkrete Codebasis heranzuführen. Die Strukturbetrachtung findet hierbei aus
+verschiedenen Blickwinkeln statt, um die Komplexität des Projektes besser
+durchdringen zu können.
+
+In einer ersten Betrachtung widmet sich dieses Dokument im Folgenden der
+Ordnerstruktur des Projektes::
+
+    .
+    ├── config
+    ├── dataio
+    ├── doc
+    ├── migrations
+    ├── simulation
+    ├── static
+    ├── templates
+    └── views
+
 Infos/Diagramme z.B. zu
 
 - Verbindung UI-Django-oemof..
