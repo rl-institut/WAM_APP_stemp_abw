@@ -122,11 +122,44 @@ Ordnerstruktur des Projektes::
     ├── templates
     └── views
 
+Zusammenspiel UI und Backend
+----------------------------
+
 Infos/Diagramme z.B. zu
 
 - Verbindung UI-Django-oemof..
+  POST (fired by :meth:`stemp_abw.views.MapView.post`)
 - Datenflüsse
 - ???
+
+[HIER GEHIRNSCHMALZ EINFÜGEN]
+
+User Session
+------------
+
+- Wofür?
+- Cookie (stored data)
+- Initialisierung (fired by :meth:`stemp_abw.views.MapView.get`)
+
+.. graphviz::
+
+   digraph {
+      "start" -> "set default user scenario" ->
+      "init simulation" -> "set aggregation ratios" ->
+      "init tracker" -> "end";
+
+      "start" [color=red]
+      "set default user scenario" [shape=polygon,sides=4]
+      "init simulation" [shape=polygon,sides=4]
+      "set aggregation ratios" [shape=polygon,sides=4]
+      "init tracker" [shape=polygon,sides=4]
+      "end" [color=green]
+   }
+
+- Verfall
+- Verknüpfte Daten (scenario, data, results, ...)
+
+(use refs to APIdoc)
 
 .. _Django: https://www.djangoproject.com/
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
