@@ -20,6 +20,7 @@ Features in aller Kürze
 
 - Lineare Optimierung
 - Zeitraum 1 Kalenderjahr
+- Zeitintervall: 1 Stunde
 - usw.
 
 Struktur
@@ -37,13 +38,15 @@ Mehr über die Schnittstelle des Tool zum erfahren sie unter :ref:`developer_lab
 Vereinfachungen
 ---------------
 
-:Modell:
-    Perfect Foresight: Aus den gegebenen Randbedingungen wird ein Gesamtproblem
-    erstellt, der Zustand aller Komponenten des Energiesystems wie z.B. Erzeuger
-    ist zu jedem Zeitpunkt bekannt
-    Zeitliches Intervall: 1 Stunde
-    usw.
-:Daten:
-    Vereinfachungen in den Daten finden Sie in der :ref:`data_label`.
-:And so on:
+Aus verschiedenen Gründen sind Vereinfachungen notwendig, um ein sinnvolles
+Gleichgewicht aus Genauigkeit und Rechenzeit herzustellen. Methodische
+Vereinfachungen finden Sie unter :ref:`scenarios_label`.
+
+:Perfect Foresight:
+    Aus den gegebenen Randbedingungen wird ein Gesamtproblem erstellt, der
+    Zustand aller Komponenten des Energiesystems wie z.B. Erzeuger ist zu
+    jedem Zeitpunkt bekannt (im Gegensatz zu bspw. zu
+    Rolling-Horizon-Verfahren)
+
+:add more:
     Text

@@ -32,3 +32,20 @@ Daten
 Hier kommen Details zu der Erstellung der verwendeten :ref:`data_label` rein.
 
 Beispiel: Einspeisezeitreihen
+
+Vereinfachungen
+---------------
+
+Modelle, Szenarien und Daten können grundsätzlich in nahezu beliebiger
+Komplexität ausgeführt werden. Aus verschiedenen Gründen ist eine Reduktion
+der Genauigkeit jedoch notwendig:
+
+- Bei der Bedienung des Tools sollten auftretende Wartezeiten - und folglich
+  auch der Rechenaufwand - auf ein Minimum reduziert werden
+- Die Verfügbarkeit von (inbesondere offener) Eingangsdaten ist begrenzt
+- [ADD MORE]
+
+Weitere Vereinfachungen umfassen:
+
+- Keine Betrachtung des Industriesektors [BEGRÜNDUNG]
+- [ADD MORE]
