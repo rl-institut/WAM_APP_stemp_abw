@@ -15,7 +15,7 @@ Django-Kosmos
 -------------
 
 Diese StEmp-Web-Applikation ist Teil des WAM-Applikationen-Kosmos_ des
-Reiner-Lemoine-Instituts (RLI). Die Bezeichnung WAM steht hierbei für
+Reiner Lemoine Instituts (RLI). Die Bezeichnung WAM steht hierbei für
 *Web Applications and Maps* und stellt eine Kategorie von Applikationen dar,
 welche am RLI erstellt werden. Dies sind hauptsächlich Web-Applikationen,
 die mit Hilfe von Karten arbeiten und oder bei denen im Hintergrund Berechnungen
