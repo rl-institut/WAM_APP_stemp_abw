@@ -22,11 +22,13 @@ Motivation
 -----
 
 Die Energiedialoge der Energieavantgarde Anhalt haben insbesondere im direkten Gespräch mit den Bürgerinnen und Bürgern und in der Mitglieder- und Stakeholderberatung gezeigt, dass die Möglichkeiten zur Partizipation in der Entwicklung eines zukunftsweisenden regionalen Energiesystems zwar formal gegeben sind, in der Praxis aber aufwändig und häufig unbefriedigend sind. Der ganzheitliche Blick auf die Anforderungen und Chancen eines regionalen und regenerativen Energiesystems fehlt meist. Stattdessen werden landschaftliche Veränderungen (bspw. durch Windenergieanlagen oder Freiland-PV-Anlagen), lokale Auswirkungen auf Nachbarschaften, Naturschutz- und Denkmalschutzbelange sowie Auswirkungen der „Energiewende“ auf Energiepreise etc. meist unverbunden und teils konfrontativ debattiert. Die Rechtsunsicherheit im Umgang mit den Inhalten der Regionalplanung und Raumordnung ist nur ein Ausdruck dieser komplexen Problemlage.
+
 Verbesserungspotenzial sehen die Befragten in diesem Themenfeld vor allem in der Darstellung der unmittelbaren Betroffenheit einzelner Regionen unter Berücksichtigung anderer Vorgaben in der Flächennutzung, wie beispielsweise der Mindestabstand von Windenergieanlagen zu Siedlungen. Außerdem ist eine Betrachtung variabler Szenarien des regionalen Energiebalancekreises bezogen auf Energiedargebot, Anlagen der Energieumwandlung, Energiemix durch gemeinsame Beeinflussung der Ziel- und Eingangsdaten, gemeinsames Nachvollziehen und Festlegen von Restriktionen und Potenzialen gewünscht.
 
 Ziele
 -----
 Mit dem Stemp - Tool für die Region Anhalt verfolgen das Reiner Lemoine Institut und die Energieavantgarde Anhalt folgende Ziele:
+
 - Identifikation der Werte und Interessen der regionalen Anspruchsgruppen.
 - Aktivierung der regionalen Anspruchsgruppen bzgl. der Mitgestaltung der Energiewende in der Region Anhalt.
 - Verbesserung des Verständnisses von Zusammenhängen zwischen energiewirtschaftlichen, ökologischen und kulturlandschaftlichen Systemen.
