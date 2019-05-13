@@ -13,11 +13,11 @@ Für eine erfolgreiche Energiewende ist die Partizipation der Bürger und Einbez
 Entwicklungsprozess
 -------------------
 
-Die Tools wurden iterativ und in enger Zusammenarbeit mit der entsprechenden Stakeholder-Gruppe konzipiert und weiterentwickelt.
+Die Tools wurden iterativ und in enger Zusammenarbeit mit der entsprechenden Stakeholder-Gruppe konzipiert und weiterentwickelt. Wie in der Abbildung dargestellt, wurde das Tools nach dem ersten Entwurf wiederholt von den Stakeholdern getestet und Verbesserungsvorschläge angebracht. Diese wurden seitens des RLI umgesetzt, um dann einer erneuten Testphase unterzogen zu werden. Durch diese enge Einbindung der Zielgruppe ist gewährleistet, dass die erstellte Software dem Bedarf angepasst und benutzerfreundlich gestaltet ist.
 
 .. 	image:: files/180731_Grafik_Entwicklung_Stemp_Tool.png
    :width: 500 px
    :alt: Entwicklungsprozess der StEmp-Tools
    :align: center
    
-Wie in der Abbildung dargestellt, wurde das Tools nach dem ersten Entwurf wiederholt von den Stakeholdern getestet und Verbesserungsvorschläge angebracht. Diese wurden seitens des RLI umgesetzt, um dann einer erneuten Testphase unterzogen zu werden. Durch diese enge Einbindung der Zielgruppe ist gewährleistet, dass die erstellte Software dem Bedarf angepasst und benutzerfreundlich gestaltet ist.
+
