@@ -93,7 +93,7 @@ class ComponentGroupForm(forms.Form):
                     required = False
                 )
             else:
-                raise TypeError(
+                raise ValueError(
                     f'Unknown value for "type" in esys_components.cfg at {name}')
 
 
