@@ -122,6 +122,38 @@ function checkForSimulationResults() {
           data = JSON.parse(returned_data);
           console.log(data)
       };
+      getSimulationResults();
   });
 };
 
+function getSimulationResults() {
+    $.ajax({
+        url: '/stemp_abw/results/',
+        type : "GET",
+        success: function(data) {
+            //console.log(data);
+            //idx=$("#hc_0").data('highchartsChart');
+            idx=parseInt($("#hc_0")[0].getAttribute('data-highcharts-chart'))
+            if (data == null) {
+                Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
+            } else {
+                Highcharts.charts[idx].series[0].setData(data);
+                Highcharts.charts[idx].hideLoading();
+            };
+//            var series = Highcharts.charts[0].series[0],
+//                shift = series.data.length > 20; // shift if the series is
+//                                                 // longer than 20
+//
+//            // add the point
+//            chart.series[0].addPoint(point, true, shift);
+
+            // call it again after one second
+            //console.log(Highcharts.charts[0].series[0]);
+            //Highcharts.charts[0].series[0].setData(data, true);
+
+            //console.log(Highcharts.charts[0].series[0]);
+            //setTimeout(requestData, 1000);
+        },
+        cache: false
+    });
+}

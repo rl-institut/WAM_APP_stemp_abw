@@ -481,9 +481,9 @@
     <script>
       $('#btnExpand').on('click', function(e) {
         if ($('#panel-results').hasClass('is-collapsed')) {
-          setTimeout(function() {
-            console.log('FIRE');
 
+          // Load JS for highcharts
+          setTimeout(function() {
             {% for visualization in visualizations1 %}
                   {{visualization.media}}
             {% endfor %}
@@ -498,25 +498,12 @@
             {% for visualization in visualizations5 %}
                   {{visualization.media}}
             {% endfor %}
-
-            // index=$("#hc_0").data('highchartsChart');
-
-
           }, 750);
 
-          /*
-          setTimeout(function() {
-            console.log($("#hc_0"));
-            var chart1 = Highcharts.charts[0];
-            chart1.showLoading();
-          }, 1000);
-          */
-          setTimeout(checkForSimulationResults, 1000);
-
-          //for (var chart in Highcharts.charts) {
-          //  chart.showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
-          //};
-      }});
+          // Load simulation results
+          setTimeout(getSimulationResults, 1000);
+        };
+      });
     </script>
 
     <script type="text/javascript">
