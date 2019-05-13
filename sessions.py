@@ -98,6 +98,7 @@ class UserSession(object):
         scn.id = None
         scn.is_user_scenario = True
         scn.created = timezone.now()
+        # TODO: Save scenario
         # scn.save()
         return scn
     
@@ -276,24 +277,33 @@ class UserSession(object):
 
 
 class Simulation(object):
-    """Simulation data"""
+    """Simulation data
+
+    TODO: Finish docstring
+    """
     def __init__(self, session):
         self.esys = None
         self.session = session
         self.results = None
         #self.create_esys()
-        #self.simulate()
+        #self.load_or_simulate()
     
     def create_esys(self):
+        """Create energy system, parametrize and add nodes"""
+
         # create esys
         self.esys = solph.EnergySystem(
             timeindex=pd.date_range(start=SIM_CFG['date_from'],
                                     end=SIM_CFG['date_to'],
                                     freq=SIM_CFG['freq']))
-        # create nodes from user scenario and add o energy system
+        # create nodes from user scenario and add to energy system
         self.esys.add(*create_nodes(**json.loads(self.session.user_scenario.data.data)))
-    
-    def simulate(self):
+
+    def load_or_simulate(self):
+        """Load results from DB if existing, start simulation if not
+
+        Check if results are already in the DB using Scenario data's UUID
+        """
         self.store_values(*simulate_energysystem(self.esys))
 
     def store_values(self, results, param_results):
