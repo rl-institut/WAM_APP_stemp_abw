@@ -3,7 +3,6 @@ from django.shortcuts import HttpResponse, render
 import json
 
 from stemp_abw.config import io
-from stemp_abw import results
 
 from stemp_abw.models import Scenario
 
@@ -47,8 +46,6 @@ class MapView(TemplateView):
 
     def __init__(self):
         super(MapView, self).__init__()
-
-        #self.simulation = Simulation()
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
@@ -99,6 +96,7 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+            ret_data = json.dumps(ret_data)
         
         # apply scenario (trigger: scn button) -> set as user scenario
         elif action == 'apply_scenario':
@@ -109,6 +107,7 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+            ret_data = json.dumps(ret_data)
             session.set_user_scenario(scn_id=scn_id)
 
         # change scenario/control value (trigger: control)
@@ -117,15 +116,18 @@ class MapView(TemplateView):
             sl_wind_repower_pot = session.update_scenario_data(
                 ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
+            ret_data = json.dumps(ret_data)
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':
             session.simulation.create_esys()
-            session.simulation.simulate()
+            session.simulation.load_or_simulate()
+
+            ret_data = 'simulation successful'
 
             ret_data = {'simulation': 'successful'}
 
-        return HttpResponse(json.dumps(ret_data))
+        return HttpResponse(ret_data)
 
 
 class SourcesView(TemplateView):
