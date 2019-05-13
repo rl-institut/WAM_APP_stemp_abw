@@ -783,7 +783,10 @@ class DemandTs(models.Model):
 
 
 class RepoweringScenario(models.Model):
-    """Repowering scenario"""
+    """Repowering scenario
+
+    TODO: Add doctring
+    """
 
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
@@ -799,8 +802,10 @@ class REPotentialAreas(models.Model):
     id :
         DB id
     area_params :
+        TODO: Define format
         App settings for usable areas (area panel)
     mun_data :
+        TODO: Define format
         Available potentials (per technology)
         TO BE SPECIFIED
     geom : Geometry
@@ -814,6 +819,23 @@ class REPotentialAreas(models.Model):
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
+class SimulationResults(models.Model):
+    """Results of a scenario
+
+    Attributes
+    ----------
+    id :
+        DB id
+    data : json
+        Result data, format as defined <HERE>
+    """
+    id = models.BigAutoField(primary_key=True)
+    data = JSONField()
+
+    def __str__(self):
+        return self.data
+
+
 class ScenarioData(models.Model):
     """Scenario data
 
@@ -822,14 +844,19 @@ class ScenarioData(models.Model):
     id :
         DB id
     data : json
+        TODO: Define format
         Scenario data, format as defined <HERE>
     data_uuid :
-        UUID for scenario data to quickly compare settings
+        UUID for scenario data to quickly compare settings to avoid blowing
+        up postgreSQL
     """
     id = models.BigAutoField(primary_key=True)
     data = JSONField()
     data_uuid = models.UUIDField(default=uuid4, editable=False,
                                  unique=True, null=False)
+
+    def __str__(self):
+        return self.data
 
 
 class Scenario(models.Model):
@@ -847,8 +874,12 @@ class Scenario(models.Model):
         True, if scenario was created by a user (default)
     data :
         Reference to ScenarioData
+    results :
+        Reference to SimulationResults
     re_potential_areas :
         Reference to REPotentialAreas
+    repowering_scenario :
+        Reference to RepoweringScenario
     """
     id = models.BigAutoField(primary_key=True)
     created = models.DateTimeField(default=timezone.now)
@@ -856,27 +887,12 @@ class Scenario(models.Model):
     description = models.CharField(max_length=255, null=True)
     is_user_scenario = models.BooleanField(default=True)
     data = models.ForeignKey(ScenarioData, on_delete=models.DO_NOTHING)
+    results = models.ForeignKey(SimulationResults, on_delete=models.DO_NOTHING,
+                                null=True, default=None)
     re_potential_areas = models.ForeignKey(REPotentialAreas,
                                            on_delete=models.DO_NOTHING)
     repowering_scenario = models.ForeignKey(RepoweringScenario,
                                             on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.name
-
-
-class SimulationResults(models.Model):
-    """Results of a scenario
-
-    Attributes
-    ----------
-    id :
-        DB id
-    scenario :
-        Reference to scenario
-    data : json
-        Result data, format as defined <HERE>
-    """
-    id = models.BigAutoField(primary_key=True)
-    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
-    data = JSONField()
+        return f'{self.name}'
