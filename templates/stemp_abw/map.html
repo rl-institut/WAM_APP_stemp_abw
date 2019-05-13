@@ -482,10 +482,25 @@
       $('#btnExpand').on('click', function(e) {
         if ($('#panel-results').hasClass('is-collapsed')) {
           setTimeout(function() {
+            console.log('FIRE');
+
+            {% for visualization in visualizations1 %}
+                  {{visualization.media}}
+            {% endfor %}
+            {% for visualization in visualizations2 %}
+                  {{visualization.media}}
+            {% endfor %}
 
             {% for visualization in visualizations4 %}
                   {{visualization.media}}
             {% endfor %}
+
+            {% for visualization in visualizations5 %}
+                  {{visualization.media}}
+            {% endfor %}
+
+            // index=$("#hc_0").data('highchartsChart');
+
 
           }, 750);
       }});
