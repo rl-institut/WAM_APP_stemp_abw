@@ -2,6 +2,38 @@ import pandas as pd
 from numpy.random import random
 from stemp_abw.visualizations import highcharts
 
+from oemof.outputlib import views
+
+
+class Results(object):
+    """Results"""
+    def __init__(self, simulation, results_raw, param_results_raw):
+        self.results_raw = results_raw
+        self.param_results_raw = param_results_raw
+        self.simulation = simulation
+        self.results = None
+
+    def get_node_results_df(self, node_label):
+        """Return DataFrame with Checks for existence of node in energy system
+
+        Parameters
+        ----------
+        node_label : :obj:`str`
+            Label of node the data should be looked up for
+        """
+        if node_label in [str(n) for n in self.simulation.esys.nodes]:
+            return views.node(self.results_raw, node_label)
+        else:
+            raise ValueError(f'Node "{node_label}" not found in energy system!')
+
+    def get_panel_results(self):
+        """Analyze results and return data for panel display"""
+        pass
+
+    def get_layer_results(self):
+        """Analyze results and return data for layer display"""
+        pass
+
 
 class ResultAnalysisVisualization(object):
     """
@@ -25,7 +57,8 @@ class ResultAnalysisVisualization(object):
             visualization = highcharts.HCTimeseries(
                 data=self.data,
                 setup_labels=self.setup_labels,
-                style='display: inline-block'
+                style='display: inline-block',
+                #renderTo='hc_XXX'
             )
         elif self.type == 'pie':
             # temp data

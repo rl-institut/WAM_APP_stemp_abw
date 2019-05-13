@@ -9,6 +9,7 @@ from stemp_abw.app_settings import CONTROL_VALUES_MAP, RE_POT_CONTROLS
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 from stemp_abw.simulation.esys import create_nodes
+from stemp_abw.results import Results
 
 
 class UserSession(object):
@@ -279,6 +280,7 @@ class Simulation(object):
     def __init__(self, session):
         self.esys = None
         self.session = session
+        self.results = None
         #self.create_esys()
         #self.simulate()
     
@@ -295,8 +297,13 @@ class Simulation(object):
         self.store_values(*simulate_energysystem(self.esys))
 
     def store_values(self, results, param_results):
+        # TODO: use load_or_simulate
+        self.results = Results(simulation=self,
+                               results_raw=results,
+                               param_results_raw=param_results)
         #print('Results:', results)
         #print('Params:', param_results)
+
         pass
 
 
