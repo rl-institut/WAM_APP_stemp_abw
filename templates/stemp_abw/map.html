@@ -503,6 +503,19 @@
 
 
           }, 750);
+
+          /*
+          setTimeout(function() {
+            console.log($("#hc_0"));
+            var chart1 = Highcharts.charts[0];
+            chart1.showLoading();
+          }, 1000);
+          */
+          setTimeout(checkForSimulationResults, 1000);
+
+          //for (var chart in Highcharts.charts) {
+          //  chart.showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
+          //};
       }});
     </script>
 
