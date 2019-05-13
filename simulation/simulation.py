@@ -4,6 +4,10 @@ from oemof import outputlib
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 
 
+class SimulationError(Exception):
+    pass
+
+
 def default_simulation_fct(esys=None):
 
     om = solph.Model(energysystem=esys)
