@@ -1,6 +1,8 @@
 import stemp_abw.models as models
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
+from django.http import JsonResponse
 from djgeojson.views import GeoJSONLayerView, GeoJSONResponseMixin
+from wam.settings import SESSION_DATA
 
 
 #########################
@@ -404,3 +406,22 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
     srid = 4326
     geometry_field = 'geom'
     precision = 5
+
+
+########################
+# Results serial views #
+########################
+
+class JsonTest(View):
+    model = None
+
+    @staticmethod
+    def get(request):
+        session = SESSION_DATA.get_session(request)
+        results = session.simulation.results
+        if results is None:
+            data = None
+        else:
+            #print(request.session)
+            data = [1,2,3,4,5,4,3,2,1,8,0]
+        return JsonResponse(data, safe=False)
