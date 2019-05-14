@@ -29,8 +29,8 @@ urlpatterns = [
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name=app_name),
          name='assumptions'),
-    path('results/', views.JsonTest.as_view(),
-         name='results'),
+    path('results/', views.ResultsData.as_view(),
+         name='results.data'),
     ]
 
 # Search detail-view-classes and append to URLs

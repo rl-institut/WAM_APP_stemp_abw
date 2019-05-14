@@ -413,7 +413,7 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 # Results serial views #
 ########################
 
-class JsonTest(View):
+class ResultsData(View):
     model = None
 
     @staticmethod
@@ -422,8 +422,6 @@ class JsonTest(View):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
         if results is None:
-            data = None
+            return JsonResponse(None, safe=False)
         else:
-            #print(request.session)
-            data = [1,2,3,4,5,4,3,2,1,8,0]
-        return JsonResponse(data, safe=False)
+            return JsonResponse(results.get_panel_results(), safe=True)
