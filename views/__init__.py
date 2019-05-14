@@ -110,6 +110,7 @@ class MapView(TemplateView):
                         }
             ret_data = json.dumps(ret_data)
             session.set_user_scenario(scn_id=scn_id)
+            session.simulation.results = None   # delete results
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
@@ -118,6 +119,7 @@ class MapView(TemplateView):
                 ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
             ret_data = json.dumps(ret_data)
+            session.simulation.results = None  # delete results
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':
@@ -126,13 +128,13 @@ class MapView(TemplateView):
 
             ret_data = 'simulation successful'
 
-        # check if there are resuls for current scenario
-        # (trigger: open results panel)
-        elif action == 'check_results':
-            if session.simulation.results is None:
-                ret_data = 'none'
-            else:
-                ret_data = json.dumps({'results': 'found'})
+        # # check if there are resuls for current scenario
+        # # (trigger: open results panel)
+        # elif action == 'check_results':
+        #     if session.simulation.results is None:
+        #         ret_data = 'none'
+        #     else:
+        #         ret_data = json.dumps({'results': 'found'})
 
         return HttpResponse(ret_data)
 

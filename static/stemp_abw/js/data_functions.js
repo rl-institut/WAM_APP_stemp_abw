@@ -94,38 +94,39 @@ function ctrlSimulate() {
   });
 };
 
-// Control simulation
-function checkForSimulationResults() {
-  console.log('checking for results...');
+//// Control simulation
+//function checkForSimulationResults() {
+//  console.log('checking for results...');
+//
+//  $.ajax({
+//      url : '/stemp_abw/app/',
+//      type : "POST",
+//      data : {action: 'check_results',
+//              data: '',
+//              csrfmiddlewaretoken: csrf_token},
+//      success: function(page) {
+//          console.log('success');
+//      },
+//      error: function(page) {
+//          console.log('error');
+//      }
+//  }).done(function(returned_data){
+//      if (returned_data === 'none') {
+//          console.log(Highcharts.charts);
+//
+//          for (var hc_ctr = 0; hc_ctr < 11; hc_ctr++) {
+//              idx=$("#hc_" + hc_ctr.toString()).data('highchartsChart');
+//              Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
+//          };
+//      } else {
+//          data = JSON.parse(returned_data);
+//          console.log(data)
+//      };
+//      getSimulationResults();
+//  });
+//};
 
-  $.ajax({
-      url : '/stemp_abw/app/',
-      type : "POST",
-      data : {action: 'check_results',
-              data: '',
-              csrfmiddlewaretoken: csrf_token},
-      success: function(page) {
-          console.log('success');
-      },
-      error: function(page) {
-          console.log('error');
-      }
-  }).done(function(returned_data){
-      if (returned_data === 'none') {
-          console.log(Highcharts.charts);
-
-          for (var hc_ctr = 0; hc_ctr < 11; hc_ctr++) {
-              idx=$("#hc_" + hc_ctr.toString()).data('highchartsChart');
-              Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
-          };
-      } else {
-          data = JSON.parse(returned_data);
-          console.log(data)
-      };
-      getSimulationResults();
-  });
-};
-
+// Load simulation results from serial view
 function getSimulationResults() {
     $.ajax({
         url: '/stemp_abw/results/',
@@ -135,24 +136,11 @@ function getSimulationResults() {
             //idx=$("#hc_0").data('highchartsChart');
             idx=parseInt($("#hc_0")[0].getAttribute('data-highcharts-chart'))
             if (data == null) {
-                Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
+                Highcharts.charts[idx].showLoading('Daten nicht verfügbar,</br>bitte Simulation starten..');
             } else {
                 Highcharts.charts[idx].series[0].setData(data);
                 Highcharts.charts[idx].hideLoading();
             };
-//            var series = Highcharts.charts[0].series[0],
-//                shift = series.data.length > 20; // shift if the series is
-//                                                 // longer than 20
-//
-//            // add the point
-//            chart.series[0].addPoint(point, true, shift);
-
-            // call it again after one second
-            //console.log(Highcharts.charts[0].series[0]);
-            //Highcharts.charts[0].series[0].setData(data, true);
-
-            //console.log(Highcharts.charts[0].series[0]);
-            //setTimeout(requestData, 1000);
         },
         cache: false
     });
