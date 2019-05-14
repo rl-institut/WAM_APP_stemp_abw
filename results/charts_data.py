@@ -73,6 +73,7 @@ visualizations2 = [results.ResultAnalysisVisualization(
 # PieChart: used in popups as placeholder charts
 labels4 = [
     {
+        'container_id': 'hc_res_scn',
         'setup_labels': {
             'title': {'text': 'Ihr Szenario'},
             'subtitle': {'text': 'in GWh'},
@@ -81,6 +82,7 @@ labels4 = [
         'data_labels': ['Strom', 'Wärme']
     },
     {
+        'container_id': 'hc_res_sq',
         'setup_labels': {
             'title': {'text': 'Status quo'},
             'subtitle': {'text': 'in GW'},
@@ -92,7 +94,7 @@ labels4 = [
 visualizations4 = [results.ResultAnalysisVisualization(
     setup_labels=l['setup_labels'],
     data_labels=l['data_labels'],
-    type='pie').visualize() for l in labels4]
+    type='pie').visualize(renderTo=l['container_id']) for l in labels4]
 
 
 # TODO: Temp stuff for WS
@@ -127,3 +129,4 @@ visualizations5 = [results.ResultAnalysisVisualization(
     setup_labels=l['setup_labels'],
     data_labels=l['data_labels'],
     type='column').visualize() for l in labels5]
+

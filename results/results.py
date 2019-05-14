@@ -52,13 +52,13 @@ class ResultAnalysisVisualization(object):
         self.setup_labels = setup_labels
         self.type = type
 
-    def visualize(self):
+    def visualize(self, **kwargs):
         if self.type == 'line':
             visualization = highcharts.HCTimeseries(
                 data=self.data,
                 setup_labels=self.setup_labels,
                 style='display: inline-block',
-                #renderTo='hc_XXX'
+                **kwargs
             )
         elif self.type == 'pie':
             # temp data
@@ -72,13 +72,15 @@ class ResultAnalysisVisualization(object):
             visualization = highcharts.HCPiechart(
                 data=data,
                 setup_labels=self.setup_labels,
-                style='display: inline-block'
+                style='display: inline-block',
+                **kwargs
             )
         elif self.type == 'column':
             visualization = highcharts.HCStackedColumn(
                 data=self.data,
                 setup_labels=self.setup_labels,
-                style='display: inline-block'
+                style='display: inline-block',
+                **kwargs
             )
         else:
             raise ValueError
