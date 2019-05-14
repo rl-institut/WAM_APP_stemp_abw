@@ -71,7 +71,7 @@ class MapView(TemplateView):
         context['info'] = InfoButton(text=f.read(),
                                      tooltip='tooltip hahaha',
                                      is_markdown=True,
-                                     ionicon_type='ion-help-circled',
+                                     ionicon_type='ion-information-circled',
                                      ionicon_size='medium')
         f.close()
 

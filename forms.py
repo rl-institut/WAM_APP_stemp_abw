@@ -1,10 +1,11 @@
 from django import forms
-from .widgets import LayerSelectWidget, SliderWidget, SwitchWidget
+from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
 
 from stemp_abw.models import Scenario
 from stemp_abw.dataio.load_static import load_repowering_scenarios
 
 REPOWERING_SCENARIOS = load_repowering_scenarios()
+
 
 class LayerGroupForm(forms.Form):
     """Form for layer group (regional info)"""
@@ -61,7 +62,8 @@ class ComponentGroupForm(forms.Form):
                          'from': data['value'],
                          'step': data['step'],
                          'grid_num': data['grid_count'],
-                         'disable': True if data.get('disable') == '1' else False
+                         'disable': True if data.get('disable') == '1' else False,
+                         'extra_classes': ''
                          }
                 # If slider is wind, add dropdown data.
                 # It is required to provide data via widget as a new <select>
@@ -79,7 +81,7 @@ class ComponentGroupForm(forms.Form):
                 self.fields[name] = forms.TypedChoiceField(
                     label='',
                     coerce=lambda x: bool(int(x)),
-                    widget=SwitchWidget(
+                    widget=EsysSwitchWidget(
                         attrs={'id': 'cb_{}'.format(name),
                                'name': name,
                                'title': data['title'],
@@ -119,7 +121,8 @@ class AreaGroupForm(forms.Form):
                                'from': data['value'],
                                'step': data['step'],
                                'grid_num': data['grid_count'],
-                               'disable': True if data.get('disable') == '1' else False
+                               'disable': True if data.get('disable') == '1' else False,
+                               'extra_classes': 'rc-tooltip-trigger-override'
                                }
                     ),
                     required = False
@@ -128,7 +131,7 @@ class AreaGroupForm(forms.Form):
                 self.fields[name] = forms.TypedChoiceField(
                     label='',
                     coerce=lambda x: bool(int(x)),
-                    widget=SwitchWidget(
+                    widget=EsysSwitchWidget(
                         attrs={'id': 'cb_{}'.format(name),
                                'class': 'esys',
                                'name': name,

@@ -22142,34 +22142,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer--hide').click(function ()
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-// after simulation is done
-// replace click event with appropriate event
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn').on('click', function () {
-  // if user has already results panel open
-  if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').is('.is-active')) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').addClass('results-highlighted');
-  }
-}); // when user clicks on results tab
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').on('click', function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').removeClass('results-highlighted');
-});
 // ************** OPEN TAB ************** //
 // initialize the Foundation javascript
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
 
-function openTab() {
-  // open/collapse tab content
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#deeplinked-tabs').foundation('_openTab', jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-areas'));
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#deeplinked-tabs').foundation('_collapseTab', jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-energy')); // activate/deactivate tab highlight
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#tabsEnergy").toggleClass("is-active");
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#tabsAreas").toggleClass("is-active");
-}
-
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#openTabExample').on('click', openTab);
 
 /***/ }),
 
@@ -22309,8 +22287,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
   var base_html = '<span class="irs">' + '<span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' + '<span class="irs-min">0</span><span class="irs-max">1</span>' + '<span class="irs-from">0</span><span class="irs-to">0</span><span class="irs-single">0</span>' + '</span>' + '<span class="irs-grid"></span>' + '<span class="irs-bar"></span>';
-  var single_html = '<span class="irs-bar-edge"></span>' + '<span class="irs-shadow shadow-single"></span>' + '<span class="irs-slider single"></span>';
-  var double_html = '<span class="irs-shadow shadow-from"></span>' + '<span class="irs-shadow shadow-to"></span>' + '<span class="irs-slider from"></span>' + '<span class="irs-slider to"></span>';
+  var single_html = '<span class="irs-bar-edge"></span>' + '<span class="irs-shadow shadow-single"></span>' + '<span class="irs-slider single rc-tooltip-trigger-override"></span>';
+  var double_html = '<span class="irs-shadow shadow-from"></span>' + '<span class="irs-shadow shadow-to"></span>' + '<span class="irs-slider from rc-tooltip-trigger-override"></span>' + '<span class="irs-slider to rc-tooltip-trigger-override"></span>';
   var disable_html = '<span class="irs-disable-mask"></span>'; // =================================================================================================================
   // Core
 
