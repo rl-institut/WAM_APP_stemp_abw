@@ -1,11 +1,26 @@
 from utils.highcharts import Highchart
 
+# general styling options for chart (note: overrides individual chart styling!)
+HIGHCHART_SETUP = {
+    'loading': {
+        'labelStyle': {
+            'fontWeight': 'bold',
+            'position': 'relative'
+        },
+        'style': {
+            'backgroundColor': '#EBF2FA',
+            'opacity': 0.8
+        }
+    }
+}
+
 
 class HCStemp(Highchart):
     setup = {}
 
     def __init__(self, data=None, setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
+        self.setup.update(HIGHCHART_SETUP)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
         if data is not None:
