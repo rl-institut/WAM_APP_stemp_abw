@@ -1888,6 +1888,13 @@ footer.map-footer {
   #saveSimulation p {
     font-weight: 700; }
 
+#errorMessage {
+  text-align: center;}
+  #errorMessage h2 {
+    color: #ff0000;}
+  #errorMessage p {
+    font-weight: 700;}
+
 #results-wrap {
   margin-top: 1.55rem; }
   #results-wrap .tabs {

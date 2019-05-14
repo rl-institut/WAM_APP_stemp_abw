@@ -24,6 +24,7 @@ function ctrlScenario(element_id) {
     },
     error: function(page) {
         console.log('error');
+        showErrorPopup();
     }
   }).done(function(returned_data) {
     if (element_id == 'select-scn-frm') {
@@ -59,6 +60,7 @@ function ctrlScenarioPost(element_id, data) {
     },
     error: function(page) {
         console.log('error');
+        showErrorPopup();
     }
   }).done(function(returned_data) {
     data = JSON.parse(returned_data);
@@ -87,6 +89,7 @@ function ctrlSimulate() {
       },
       error: function(page) {
           console.log('error');
+          showErrorPopup();
       }
   }).done(function(returned_data){
       //updateSimProgressBar(25);
@@ -145,6 +148,10 @@ function getSimulationResults() {
                 Highcharts.charts[idx2].series[0].setData(data);
                 Highcharts.charts[idx2].hideLoading();
             };
+        },
+        error: function(page) {
+            console.log('error');
+            showErrorPopup();
         },
         cache: false
     });

@@ -103,3 +103,8 @@ $('.openEnergyTab').on('click', openEnergyTab);
 //$('.tabs-title').click( function () {
 //  $('#' + $(this).attr('id') + ' > a').removeClass('tab-highlighted');
 //});
+
+// Show a popup with error message
+function showErrorPopup() {
+  $('#errorMessage').foundation('open');
+}
