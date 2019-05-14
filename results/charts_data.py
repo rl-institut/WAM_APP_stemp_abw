@@ -1,5 +1,4 @@
-from stemp_abw import results
-
+from stemp_abw.results import results
 
 # TODO: Temp stuff for WS
 # LineChart: used in results as placeholder charts

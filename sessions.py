@@ -5,11 +5,11 @@ import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 from stemp_abw.models import Scenario, RepoweringScenario
-from stemp_abw.app_settings import CONTROL_VALUES_MAP, RE_POT_CONTROLS
+from stemp_abw.app_settings import CONTROL_VALUES_MAP
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 from stemp_abw.simulation.esys import create_nodes
-from stemp_abw.results import Results
+from stemp_abw.results.results import Results
 
 
 class UserSession(object):

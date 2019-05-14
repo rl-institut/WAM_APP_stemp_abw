@@ -8,7 +8,7 @@ from stemp_abw.models import Scenario
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from stemp_abw.charts_data import visualizations1, visualizations2, visualizations4, visualizations5
+from stemp_abw.results.charts_data import visualizations1, visualizations2, visualizations4, visualizations5
 
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
