@@ -194,9 +194,9 @@ $('.switch-input-layer-select-results').click(function () {
   console.log(id);
 
   // Individual layers switches
-  /*l = layers[id.replace('cb_region_','')];
+  l = layers[id.replace('cb_results_','')];
   if (this.checked) lmap.addLayer(l);
-  else lmap.removeLayer(l);*/
+  else lmap.removeLayer(l);
 });
 
 
