@@ -155,12 +155,11 @@ function getLayerStyle(name, feature) {
 }
 
 // Control layer visibility via checkboxes (region layers)
-$('.switch-input-layer-select-region').click(function () {
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
-    console.log('region, layer,  id: ' + id);
 
   // Individual layers switches
-  l = layers[id.replace('cb_region_', '')];
+  l = layers[id.replace(/cb_(region|results)_/, '')];
   if (this.checked) lmap.addLayer(l);
   else lmap.removeLayer(l);
 });
@@ -189,22 +188,10 @@ $('.switch-input-layer-select-areas').click(function () {
   ;
 });
 
-// Result layers: control layer visibility via checkboxes
-$('.switch-input-layer-select-results').click(function () {
-  var id = $(this).attr('id');
-  console.log('result, layer,  id: ' + id);
-
-  // Individual layers switches
-  l = layers[id.replace('cb_results_','')];
-  if (this.checked) lmap.addLayer(l);
-  else lmap.removeLayer(l);
-});
-
 
 // Region layers: control legend visibility via checkboxes
-$('.switch-input-layer-select-region').click(function () {
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
-  console.log("region, switch, id: " + id);
 
   // Master switch for all legends
   // (CURRENTLY DISABLED AS ONLY REGION LAYER LIST CONTAINS CHORO MAPS)
@@ -221,14 +208,13 @@ $('.switch-input-layer-select-region').click(function () {
 
   // Individual legend switches
   //else {
-  id = id.replace('cb_region_', '');
+  id = id.replace(/cb_(region|results)_/, '');
   for (var l in legends) {
     if (l !== id && choropleth_data.hasOwnProperty(id)) {
       if (this.checked) {
         lmap.removeLayer(layers[l]);
         lmap.removeControl(legends[l]);
-        var el = document.getElementById('cb_region_' + l);
-        console.log("region, switch, el: " + id + ", checked: " + el.checked);
+        var el = document.querySelector('#cb_region_' + l + ', ' + '#cb_results_' + l);
         el.checked = false;
       }
     } else if (l === id) {
@@ -238,29 +224,6 @@ $('.switch-input-layer-select-region').click(function () {
     }
   }
   //}
-});
-
-// Result layers: control legend visibility via checkboxes
-$('.switch-input-layer-select-results').click(function () {
-  var id = $(this).attr('id');
-  console.log('result, legend, id: ' + id);
-
-  id = id.replace('cb_results_', '');
-  for (var l in legends) {
-    if (l !== id && choropleth_data.hasOwnProperty(id)) {
-      if (this.checked) {
-        lmap.removeLayer(layers[l]);
-        lmap.removeControl(legends[l]);
-        var el = document.getElementById('cb_results_' + l);
-        console.log("result, legend, el: " + id + ", checked: " + el.checked);
-        el.checked = false;
-      }
-    } else if (l === id) {
-      l = legends[id];
-      if (this.checked) l.addTo(lmap);
-      else lmap.removeControl(l);
-    }
-  }
 });
 
 // temp for RE pot layer control
