@@ -1,40 +1,38 @@
-<div class="grid-x map-popup" style="width: 450px">
-    {% block title %}
-    <div class="cell map-popup__header">
-        <h3>{{ title }}</h3>
-    </div>
-    {% endblock %}
+<div class="grid-x" style="width: 450px">
+  {% block title %}
+  <div class="cell">
+    <h3>{{ title }}</h3>
+  </div>
+  {% endblock %}
 
-    {% block gen %}
-    <div class="cell map-popup__region">
-        <h5>{{ layer.gen }}</h5>
-    </div>
-    {% endblock %}
+  {% block text %}
+  <div class="cell description">
+    {{ text }}
+  </div>
+  {% endblock %}
 
-    {% block values %}
-    {% endblock %}
+  {% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}{% block values %}{% endblock %}</p>
+  </div>
+  {% endblock %}
 
-    {% block text %}
-    <div class="cell map-popup__desc">
-        <p>{{ text }}</p>
-    </div>
-    {% endblock %}
+  {% block vis %}
+  {% endblock %}
 
-    {% block vis %}
-    {% endblock%}
-
-    {% block links %}
-      {% if sources|length == 0 %}
-      {% else %}
-        <div class="cell map-popup__footer">
-            Quellen:
-            {% for source in sources %}
-                <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
-                   class="anchor-text linkto-source"
-                   id="linkto-source-{{ source.id }}">{{ source.infos.title }}</a>
-                {% if not forloop.last %}, {% else %}{% endif %}
-            {% endfor %}
-        </div>
-      {% endif %}
-    {% endblock %}
+  {% block links %}
+  {% if sources|length == 0 %}
+  {% else %}
+  <div class="cell sources">
+    Quellen:
+    {% for source in sources %}
+    <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
+       class="anchor-text linkto-source"
+       id="linkto-source-{{ source.id }}">
+      {{ source.infos.title }}{% if not forloop.last %}, {% else %}{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endblock %}
 </div>
