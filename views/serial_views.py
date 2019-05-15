@@ -421,7 +421,7 @@ class ResultsData(View):
     def get(request):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
-        if results is None:
-            return JsonResponse(None, safe=False)
-        else:
+        if results.is_up_to_date:
             return JsonResponse(results.get_panel_results(), safe=True)
+        else:
+            return JsonResponse(None, safe=False)

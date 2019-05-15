@@ -110,7 +110,7 @@ class MapView(TemplateView):
                         }
             ret_data = json.dumps(ret_data)
             session.set_user_scenario(scn_id=scn_id)
-            session.simulation.results = None   # delete results
+            session.simulation.results.is_up_to_date = False   # set results to outdated
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
@@ -119,7 +119,7 @@ class MapView(TemplateView):
                 ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
             ret_data = json.dumps(ret_data)
-            session.simulation.results = None  # delete results
+            session.simulation.results.is_up_to_date = False   # set results to outdated
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':

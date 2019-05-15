@@ -284,7 +284,7 @@ class Simulation(object):
     def __init__(self, session):
         self.esys = None
         self.session = session
-        self.results = None
+        self.results = Results(simulation=self)
         #self.create_esys()
         #self.load_or_simulate()
     
@@ -308,9 +308,9 @@ class Simulation(object):
 
     def store_values(self, results, param_results):
         # TODO: use load_or_simulate
-        self.results = Results(simulation=self,
-                               results_raw=results,
-                               param_results_raw=param_results)
+        # update result raw data
+        self.results.set_result_raw_data(results_raw=results,
+                                         param_results_raw=param_results)
         #print('Results:', results)
         #print('Params:', param_results)
 
