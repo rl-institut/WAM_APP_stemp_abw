@@ -4,7 +4,8 @@ from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
 
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
-    LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA, ESYS_AREAS_METADATA, LABELS
+    LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
+    ESYS_AREAS_METADATA, LABELS
 
 
 def prepare_layer_data():
@@ -56,7 +57,8 @@ def prepare_layer_data():
     # 'region' is for the info layers of the status quo (region panel)
     # 'areas' is for areas that put restrictions on use for e.g. wind turbines
     layer_categories = {'areas': LAYER_AREAS_METADATA,
-                        'region': LAYER_REGION_METADATA}
+                        'region': LAYER_REGION_METADATA,
+                        'result': LAYER_RESULT_METADATA}
 
     # init data dict
     layer_data = {'layer_list': {},
