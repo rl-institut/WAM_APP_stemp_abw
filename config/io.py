@@ -58,7 +58,7 @@ def prepare_layer_data():
     # 'areas' is for areas that put restrictions on use for e.g. wind turbines
     layer_categories = {'areas': LAYER_AREAS_METADATA,
                         'region': LAYER_REGION_METADATA,
-                        'result': LAYER_RESULT_METADATA}
+                        'results': LAYER_RESULT_METADATA}
 
     # init data dict
     layer_data = {'layer_list': {},

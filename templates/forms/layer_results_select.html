@@ -1,6 +1,6 @@
 <form style="margin-bottom: 50px">
   {% csrf_token %}
-  {% for group, data in layer_result.layer_groups.items %}
+  {% for group, data in layer_results.layer_groups.items %}
     <fieldset>
       <legend>
         <small style="color: #000; border-bottom: 1px solid #000;">{{ data.title }}</small>
