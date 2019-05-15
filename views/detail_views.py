@@ -125,7 +125,7 @@ class RegMunPopDetailView(MasterDetailView):
 # TODO: Remove/alter after test
 class RegMunPopResultDetailView(MasterDetailView):
     model = models.RegMunPopResult
-    template_name = 'stemp_abw/popups/pop.html'
+    template_name = 'stemp_abw/popups/pop_result.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunPopResultDetailView, self).get_context_data(**kwargs)
@@ -162,7 +162,7 @@ class RegMunPopDensityDetailView(MasterDetailView):
 # TODO: Remove/alter after test
 class RegMunPopDensityResultDetailView(MasterDetailView):
     model = models.RegMunPopDensityResult
-    template_name = 'stemp_abw/popups/pop_density.html'
+    template_name = 'stemp_abw/popups/pop_density_result.html'
 
 
 class RegMunEnergyReElDemShareDetailView(MasterDetailView):
