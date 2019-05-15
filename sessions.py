@@ -1,15 +1,17 @@
 import json
-from uuid import uuid4
+from uuid import uuid4, UUID
+import hashlib
 import pandas as pd
 import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
-from stemp_abw.models import Scenario, RepoweringScenario
+from stemp_abw.models import Scenario, RepoweringScenario, ScenarioData
 from stemp_abw.app_settings import CONTROL_VALUES_MAP
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 from stemp_abw.simulation.esys import create_nodes
 from stemp_abw.results.results import Results
+from stemp_abw.results.io import oemof_json_to_results
 
 
 class UserSession(object):
@@ -304,17 +306,23 @@ class Simulation(object):
 
         Check if results are already in the DB using Scenario data's UUID
         """
-        self.store_values(*simulate_energysystem(self.esys))
+        user_scn_data_uuid = UUID(hashlib.md5(
+            self.session.user_scenario.data.data.encode('utf-8')).hexdigest())
+
+        # reverse lookup for scenario
+        if Scenario.objects.filter(data__data_uuid=user_scn_data_uuid).exists():
+            print('Scenario results found, load from DB...')
+            results_json = Scenario.objects.get(
+                data__data_uuid=user_scn_data_uuid).results.data
+            self.store_values(*oemof_json_to_results(results_json))
+        else:
+            print('Scenario results not found, start simulation...')
+            self.store_values(*simulate_energysystem(self.esys))
 
     def store_values(self, results, param_results):
-        # TODO: use load_or_simulate
         # update result raw data
         self.results.set_result_raw_data(results_raw=results,
                                          param_results_raw=param_results)
-        #print('Results:', results)
-        #print('Params:', param_results)
-
-        pass
 
 
 class Tracker(object):
