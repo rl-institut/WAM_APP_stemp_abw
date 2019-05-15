@@ -19,7 +19,7 @@
       <div class="cell">
         <div class="loader"></div>
         <div class="loader__text">
-          <p>Daten werden geladen</p>
+          <p id="loader-text">Daten werden geladen</p>
           <p id="loader-detail-text"></p>
         </div>
       </div>
@@ -517,8 +517,7 @@
             lmap = map;
 
             // show load spinner
-            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-            $('body').toggleClass("body--nopointer");
+            toggleSpinnerVisibility();
 
             // Parse layer style JSONs and make global
             style_data = JSON.parse('{{ layer_style | escapejs }}');
@@ -614,8 +613,7 @@
                             //loader_text[0].style.font-weight = 'bold';
                             loader_text.text('Fertig!');
                             setTimeout(function(){
-                                $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                                $('body').toggleClass("body--nopointer");
+                                toggleSpinnerVisibility();
                             }, 500);
                         };
                     },

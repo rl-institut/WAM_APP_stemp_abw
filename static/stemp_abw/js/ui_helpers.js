@@ -108,3 +108,9 @@ $('.openEnergyTab').on('click', openEnergyTab);
 function showErrorPopup() {
   $('#errorMessage').foundation('open');
 }
+
+// Toggle spinner visibility
+function toggleSpinnerVisibility() {
+  $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+  $('body').toggleClass("body--nopointer");
+}

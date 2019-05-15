@@ -73,10 +73,14 @@ function ctrlScenarioPost(element_id, data) {
 // Control simulation
 function ctrlSimulate() {
   console.log('simulation started');
+
+  // show simulation spinner
+  $('#loader-text').text('Simuliere...');
+  $('#loader-detail-text').text('');
+  toggleSpinnerVisibility();
+
   //element.prop("disabled", true);
   //$('#simulation-save-btn').show();
-  //jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-wrapper').toggleClass("loader-wrapper--hide");
-  //jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').toggleClass("body--nopointer");
 
   $.ajax({
       url : '/stemp_abw/app/',
@@ -94,6 +98,9 @@ function ctrlSimulate() {
   }).done(function(returned_data){
       //updateSimProgressBar(25);
       console.log(returned_data);
+
+      // hide simulation spinner
+      toggleSpinnerVisibility();
   });
 };
 
