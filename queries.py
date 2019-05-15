@@ -16,7 +16,9 @@ application = get_wsgi_application()
 
 from stemp_abw.dataio.load_static import load_mun_data
 from stemp_abw.models import \
-    Scenario, ScenarioData, REPotentialAreas, RepoweringScenario
+    Scenario, ScenarioData, REPotentialAreas, RepoweringScenario, SimulationResults
+from stemp_abw.sessions import UserSession
+from stemp_abw.results.io import oemof_results_to_json
 
 
 def insert_status_quo_scenario():
@@ -150,6 +152,23 @@ def insert_repowering_scenarios():
 #                                                       mun_data=json.dumps(repot_mun_data),
 #                                                       geom=mpoly_wkt)
 
-insert_repowering_scenarios()
+
+def insert_status_quo_results():
+    session = UserSession()
+    session.simulation.create_esys()
+    session.simulation.load_or_simulate()
+
+    data = oemof_results_to_json(results=session.simulation.results.results_raw,
+                                 param_results=session.simulation.results.param_results_raw)
+
+    results = SimulationResults.objects.create(data=data)
+
+    scn = Scenario.objects.get(name='Status quo')
+    scn.results = results
+    scn.save()
+
+
+#insert_repowering_scenarios()
 #insert_potential_areas()
-insert_status_quo_scenario()
+#insert_status_quo_scenario()
+insert_status_quo_results()
