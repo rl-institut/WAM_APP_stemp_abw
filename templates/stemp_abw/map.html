@@ -489,14 +489,14 @@
 
           // Load JS for highcharts
           setTimeout(function() {
-            {% for visualization in visualizations1 %}
+            {% for visualization in results_charts_tab2_viz %}
                   {{visualization.media}}
             {% endfor %}
             {% for visualization in visualizations2 %}
                   {{visualization.media}}
             {% endfor %}
 
-            {% for visualization in visualizations4 %}
+            {% for visualization in results_charts_tab1_viz %}
                   {{visualization.media}}
             {% endfor %}
 
