@@ -63,8 +63,11 @@ $('.tabs-title').click( function () {
 /**********************/
 function openAreaTab() {
   // open/collapse tab content
+
   $('#deeplinked-tabs').foundation('_openTab', $('#panel-areas'));
   $('#deeplinked-tabs').foundation('_collapseTab', $('#panel-energy')); // activate/deactivate tab highlight
+  // New version from bmlancien
+  // $("#offcanvas-tabs").foundation('_handleTabChange', $("#tabsAreas"));
 
   // remove special tab highlight
   $('#tabsAreas > a').removeClass('tab-highlighted');
@@ -77,8 +80,11 @@ $('.openAreaTab').on('click', openAreaTab);
 
 function openEnergyTab() {
   // open/collapse tab content
+
   $('#deeplinked-tabs').foundation('_openTab', $('#panel-energy'));
   $('#deeplinked-tabs').foundation('_collapseTab', $('#panel-areas')); // activate/deactivate tab highlight
+  // New version from bmlancien
+  // $("#offcanvas-tabs").foundation('_handleTabChange', $("#tabsEnergy"));
 
   // remove special tab highlight
   $('#tabsEnergy > a').removeClass('tab-highlighted');
