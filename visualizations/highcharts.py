@@ -12,15 +12,15 @@ CUSTOM_RLI_THEME = {
     'title': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            'font': '1.17em Roboto, Arial, sans-serif',
-            'font-weight': '300'
+            #'font': '1.17em Roboto, Arial, sans-serif',
+            #'font-weight': '300'
         }
     },
     'subtitle': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            'font': '1em Roboto, Arial, sans-serif',
-            'font-weight': '300'
+            #'font': '1em Roboto, Arial, sans-serif',
+            #'font-weight': '300'
         }
     },
     'lang': {
@@ -30,8 +30,8 @@ CUSTOM_RLI_THEME = {
     'legend': {
         'itemStyle': {
             'font': '1em Roboto, Arial, sans-serif',
-            'color': 'rgb(0, 46, 79)',
-            'font-weight': '300'
+            #'color': 'rgb(0, 46, 79)',
+            #'font-weight': '300'
         },
         'itemHoverStyle': {
             'color': 'rgb(80, 126, 159)'
@@ -67,8 +67,8 @@ class HCStemp(Highchart):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
-        # if use_rli_theme:
-        #     self.set_dict_options(CUSTOM_RLI_THEME)
+        if use_rli_theme:
+            self.set_dict_options(CUSTOM_RLI_THEME)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
