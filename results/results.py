@@ -46,8 +46,23 @@ class Results(object):
                              'y': [2000, 140, 130, 250, 1000]})
         data.set_index('name', inplace=True)
 
-        # convert data to appropriate format for pie chart
-        data = {'hc_res_summary_scn': data.reset_index().to_dict(orient='records'),
+        nodes_from = ['gen_el_wind',
+                      'gen_el_pv_roof',
+                      'gen_el_pv_ground',
+                      'gen_el_hydro',
+                      'shortage_el']
+        nodes_to = ['bus_el']
+        data_user_scn = self.aggregate_sum(nodes_from, nodes_to, self.results_raw)
+        data_sq = self.aggregate_sum(nodes_from, nodes_to,
+                                     oemof_json_to_results(
+                                         Scenario.objects.get(
+                                             name='Status quo').results.data
+                                     )[0]
+                                     )
+
+        # convert data to appropriate format
+        data = {'hc_res_summary_scn': data_user_scn,
+                'hc_res_summary_sq': data_sq,
                 'hc_res_wind_time': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0]}
         return data
 
