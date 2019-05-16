@@ -67,8 +67,8 @@ class HCStemp(Highchart):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
-        if use_rli_theme:
-            self.set_dict_options(CUSTOM_RLI_THEME)
+        # if use_rli_theme:
+        #     self.set_dict_options(CUSTOM_RLI_THEME)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
@@ -109,7 +109,7 @@ class HCPiechart(HCStemp):
                 'allowPointSelect': False,
                 'cursor': 'pointer',
                 'dataLabels': {
-                    'enabled': False,
+                    'enabled': True,
                     'format': '<b>{point.name}</b>: {point.y}<br>({point.percentage:.1f} %)',
                     },
                 'showInLegend': True
