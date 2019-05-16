@@ -93,8 +93,8 @@ results_charts_tab1 = [
         'type': 'pie',
         'setup_labels': {
             'title': {'text': 'Status quo'},
-            'subtitle': {'text': 'in GW'},
-            'yAxis': {'title': {'text': 'GW'}}
+            'subtitle': {'text': 'in GWh'},
+            'yAxis': {'title': {'text': 'GWh'}}
         },
         'data_labels': ['Strom', 'Wärme']
     }
