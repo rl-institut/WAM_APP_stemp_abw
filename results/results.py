@@ -2,6 +2,8 @@ import pandas as pd
 from numpy.random import random
 from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario
+from stemp_abw.results.io import oemof_json_to_results
+from stemp_abw.app_settings import NODE_LABELS
 
 from oemof.outputlib import views
 
@@ -53,7 +55,7 @@ class Results(object):
         """Analyze results and return data for layer display"""
         pass
 
-    def aggregate_gen_energy(self, scenario):
+    def aggregate_sum(self, nodes_from, nodes_to, results):
         """Aggregate results for scenario
 
         TODO: Check if aggregation is fast enough on demand, precalculate if not
@@ -62,9 +64,18 @@ class Results(object):
         ----------
         scenario
         """
-        nodes = []
-        return None
+        if not (len(nodes_from) == 1 and len(nodes_to) >= 1) and\
+           not (len(nodes_to) == 1 and len(nodes_from) >= 1):
+            raise ValueError('One of source and target nodes '
+                             'must contain exactly 1 node, the '
+                             'other >=1 nodes.')
 
+        agg_data = [{'name': NODE_LABELS[n_from],
+                     'y': round(results[(n_from, nodes_to[0])]
+                                ['sequences']['flow'].sum()/1000)}
+                    for n_from in nodes_from]
+
+        return agg_data
 
 
 class ResultAnalysisVisualization(object):
