@@ -71,6 +71,13 @@ RE_POT_CONTROLS = ['sl_dist_resid',
                    'cb_use_ffh_areas',
                    'cb_use_cult_areas']
 
+NODE_LABELS = {'gen_el_wind': 'Windenergie',
+               'gen_el_pv_roof': 'PV Dach',
+               'gen_el_pv_ground': 'PV Freifläche',
+               'gen_el_hydro': 'Wasserkraft',
+               'shortage_el': 'Import'
+               }
+
 RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1,7)]
 
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
