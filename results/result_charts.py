@@ -85,8 +85,7 @@ results_charts_tab1 = [
             'title': {'text': 'Ihr Szenario'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
-        },
-        'data_labels': ['Strom', 'Wärme']
+        }
     },
     {
         'container_id': 'hc_res_summary_sq',
@@ -95,8 +94,7 @@ results_charts_tab1 = [
             'title': {'text': 'Status quo'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
-        },
-        'data_labels': ['Strom', 'Wärme']
+        }
     }
 ]
 
@@ -104,7 +102,6 @@ results_charts_tab1 = [
 
 results_charts_tab1_viz = [results.ResultAnalysisVisualization(
     setup_labels=chart['setup_labels'],
-    data_labels=chart['data_labels'],
     type=chart['type']).visualize(renderTo=chart['container_id'])
                    for chart in results_charts_tab1]
 

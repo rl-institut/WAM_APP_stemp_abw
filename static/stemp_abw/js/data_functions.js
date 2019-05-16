@@ -142,15 +142,12 @@ function getSimulationResults() {
         url: '/stemp_abw/results/',
         type : "GET",
         success: function(data) {
-            //console.log(data);
-            //idx=$("#hc_0").data('highchartsChart');
             idx=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
             idx2=parseInt($("#hc_res_summary_scn")[0].getAttribute('data-highcharts-chart'))
             idx3=parseInt($("#hc_res_summary_sq")[0].getAttribute('data-highcharts-chart'))
             if (data == null) {
                 Highcharts.charts[idx].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
                 Highcharts.charts[idx2].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
-                //Highcharts.charts[idx3].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
             } else {
                 Highcharts.charts[idx].series[0].setData(data['hc_res_wind_time']);
                 Highcharts.charts[idx].hideLoading();

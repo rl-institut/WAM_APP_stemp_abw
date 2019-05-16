@@ -99,10 +99,7 @@ class ResultAnalysisVisualization(object):
 
     Implements the Facade Pattern.
     """
-    def __init__(self, setup_labels, data_labels, type):
-        # datetime_index = [d.strftime('%m') for d in pd.date_range(start='2017-01-01 00:00:00',
-        #                                end='2017-12-31 23:00:00',
-        #                                freq='1m')]
+    def __init__(self, setup_labels, data_labels=[], type=None):
         index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         timesteps = len(index)
         self.data = pd.DataFrame(index=index,
