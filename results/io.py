@@ -106,8 +106,8 @@ def oemof_json_to_results(results_json):
         for n_to, val2 in val.items():
             results[(n_from, n_to)] = val2
     # convert seq to DF
-    results = {nodes: {'sequences': pd.DataFrame(results[nodes]
-                                                 ['sequences'])}
+    results = {nodes: {'sequences': pd.DataFrame(
+        {'flow': results[nodes]['sequences']})}
                for nodes, val in results.items()}
     ##########
     # Params #
