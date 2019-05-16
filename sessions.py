@@ -89,6 +89,7 @@ class UserSession(object):
           id of scenario. If not provided, status quo scenario from DB is used
         """
         if scn_id is None:
+            # TODO: Use exists() instead
             try:
                 scn = Scenario.objects.get(name='Status quo')
             except ObjectDoesNotExist:
@@ -289,6 +290,7 @@ class Simulation(object):
         self.results = Results(simulation=self)
         #self.create_esys()
         #self.load_or_simulate()
+        #self.x = self.results.get_panel_results()
     
     def create_esys(self):
         """Create energy system, parametrize and add nodes"""
@@ -323,6 +325,7 @@ class Simulation(object):
         # update result raw data
         self.results.set_result_raw_data(results_raw=results,
                                          param_results_raw=param_results)
+        # TODO: save results
 
 
 class Tracker(object):
