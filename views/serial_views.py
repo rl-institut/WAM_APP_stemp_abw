@@ -431,7 +431,7 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 # Results serial views #
 ########################
 
-class ResultsData(View):
+class ResultChartsData(View):
     model = None
 
     @staticmethod

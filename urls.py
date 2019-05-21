@@ -29,7 +29,7 @@ urlpatterns = [
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name=app_name),
          name='assumptions'),
-    path('results/', views.ResultsData.as_view(),
+    path('results/', views.ResultChartsData.as_view(),
          name='results.data'),
     ]
 
