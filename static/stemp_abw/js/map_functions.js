@@ -294,3 +294,36 @@ function removeRePotAreaLayers() {
     lmap.removeLayer(layers_re_pot[l]);
   }
 }
+
+// Lock result switches if results are null
+var result_panel_button = document.getElementById('panel-results-label');
+var result_panel = document.getElementById('panel-results');
+var result_switches = result_panel.querySelectorAll('.switch-input-layer-select-results');
+
+result_panel_button.onclick = function () {
+  // Reset switch override if given
+  result_switches.forEach(function (currentValue) {
+        if (currentValue.hasAttribute('disabled')) {
+          currentValue.removeAttribute('disabled');
+        }
+      }
+  );
+  // Check if results == null, and add switch override
+  $.ajax({
+    url: '/stemp_abw/results/',
+    type: "GET",
+    success: function (data) {
+      if (data == null) {
+        result_switches.forEach(function (currentValue) {
+              currentValue.setAttribute('disabled', '');
+            }
+        );
+      }
+    },
+    error: function (page) {
+      console.log('error');
+      showErrorPopup();
+    },
+    cache: false
+  });
+};
