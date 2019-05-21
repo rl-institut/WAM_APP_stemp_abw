@@ -12,9 +12,9 @@ from stemp_abw.app_settings import LABELS
 #     caption = models.CharField(max_length=50)
 #     description = models.CharField(max_length=100)
 
-####################
-### Layer models ###
-####################
+#############################
+# Layer models (status quo) #
+#############################
 
 class LayerModel(models.Model):
 
@@ -409,9 +409,28 @@ class RegInfrasAviation(LayerModel):
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
-# ###################
-# ### Data models ###
-# ###################
+##########################
+# Layer models (results) #
+##########################
+# Result proxy models for serial views
+import random
+random.seed(1)
+
+
+class RegMunPopResults(RegMun):
+    name = 'reg_mun_pop_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def pop(self):
+        return self.mundata.pop_2017 * random.random()
+
+
+###############
+# Data models #
+###############
 # The following tables contain initial data only, data that result from
 # adjustments in the tool are not saved to these tables.
 
