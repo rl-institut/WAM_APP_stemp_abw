@@ -15,6 +15,11 @@ LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                                'config',
                                                'layers_region.cfg'))
 
+LAYER_RESULT_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                               'stemp_abw',
+                                               'config',
+                                               'layers_results.cfg'))
+
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
                                               'config',

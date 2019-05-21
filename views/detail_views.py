@@ -3,7 +3,7 @@ import stemp_abw.models as models
 from django.views.generic import DetailView
 from meta.models import Source
 from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
-    LAYER_AREAS_METADATA
+    LAYER_RESULT_METADATA, LAYER_AREAS_METADATA
 from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
 
@@ -56,7 +56,9 @@ class MasterDetailView(DetailView):
         # Get app_name from request
         app_name = self.request.resolver_match.app_name
         # Gather all layer metadata ConfigObj objects
-        layers_metadata = [LAYER_REGION_METADATA, LAYER_AREAS_METADATA]
+        layers_metadata = [LAYER_REGION_METADATA,
+                           LAYER_RESULT_METADATA,
+                           LAYER_AREAS_METADATA]
         # Put sources PKs into context
         for layer_metadata in layers_metadata:
             source_layer_metadata = self.get_source_data(layer_metadata,
@@ -120,9 +122,47 @@ class RegMunPopDetailView(MasterDetailView):
         return chart
 
 
+# TODO: Remove/alter after test
+class RegMunPopResultDetailView(MasterDetailView):
+    model = models.RegMunPopResult
+    template_name = 'stemp_abw/popups/pop_result.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunPopResultDetailView, self).get_context_data(**kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        pop_2017 = mun_data.pop_2017
+        pop_2030 = mun_data.pop_2030
+        pop_2050 = mun_data.pop_2050
+        index = ['2017', '2030', '2050']
+        data = pd.DataFrame(index=index,
+                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
+        setup_labels = {
+            'title': {'text': 'Ergebnis Bevölkerungsentwicklung'},
+            'subtitle': {'text': 'Ergebnis'},
+            'yAxis': {'title': {'text': 'Personen'}}
+        }
+        chart = highcharts.HCTimeseries(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
+
+
 class RegMunPopDensityDetailView(MasterDetailView):
     model = models.RegMunPopDensity
     template_name = 'stemp_abw/popups/pop_density.html'
+
+
+# TODO: Remove/alter after test
+class RegMunPopDensityResultDetailView(MasterDetailView):
+    model = models.RegMunPopDensityResult
+    template_name = 'stemp_abw/popups/pop_density_result.html'
 
 
 class RegMunEnergyReElDemShareDetailView(MasterDetailView):

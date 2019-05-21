@@ -73,6 +73,18 @@ class RegMunPop(RegMun):
         return self.mundata.pop_2017
 
 
+# TODO: Remove/alter after test
+class RegMunPopResult(RegMun):
+    name = 'reg_mun_pop_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def pop_result(self):
+        return self.mundata.pop_2017
+
+
 class RegMunPopDensity(RegMun):
     name = 'reg_mun_pop_density'
 
@@ -81,6 +93,18 @@ class RegMunPopDensity(RegMun):
 
     @property
     def pop_density(self):
+        return round(self.mundata.pop_2017 / self.mundata.area)
+
+
+# TODO: Remove/alter after test
+class RegMunPopDensityResult(RegMun):
+    name = 'reg_mun_pop_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def pop_density_result(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
 
 

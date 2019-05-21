@@ -155,11 +155,11 @@ function getLayerStyle(name, feature) {
 }
 
 // Control layer visibility via checkboxes (region layers)
-$('.switch-input-layer-select-region').click(function () {
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
 
   // Individual layers switches
-  l = layers[id.replace('cb_region_', '')];
+  l = layers[id.replace(/cb_(region|results)_/, '')];
   if (this.checked) lmap.addLayer(l);
   else lmap.removeLayer(l);
 });
@@ -188,20 +188,9 @@ $('.switch-input-layer-select-areas').click(function () {
   ;
 });
 
-// Control layer visibility via checkboxes (result layers)
-$('.switch-input-layer-select-results').click(function () {
-  var id = $(this).attr('id');
-  console.log(id);
 
-  // Individual layers switches
-  /*l = layers[id.replace('cb_region_','')];
-  if (this.checked) lmap.addLayer(l);
-  else lmap.removeLayer(l);*/
-});
-
-
-// Control legend visibility via checkboxes
-$('.switch-input-layer-select-region').click(function () {
+// Region layers: control legend visibility via checkboxes
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
 
   // Master switch for all legends
@@ -219,13 +208,13 @@ $('.switch-input-layer-select-region').click(function () {
 
   // Individual legend switches
   //else {
-  id = id.replace('cb_region_', '');
+  id = id.replace(/cb_(region|results)_/, '');
   for (var l in legends) {
     if (l !== id && choropleth_data.hasOwnProperty(id)) {
       if (this.checked) {
         lmap.removeLayer(layers[l]);
         lmap.removeControl(legends[l]);
-        var el = document.getElementById('cb_region_' + l);
+        var el = document.querySelector('#cb_region_' + l + ', ' + '#cb_results_' + l);
         el.checked = false;
       }
     } else if (l === id) {

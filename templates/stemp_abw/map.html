@@ -304,13 +304,26 @@
                     </div>
                   </div>
 
+
+                  <!-- TEST START
+
+                  <div class="tabs-panel is-active" id="panel-region">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.region.title }}
+                      <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                    </p>
+                    {% include "forms/layer_region_select.html" %}
+                  </div>
+
+                  TEST END -->
+
+
                   <!-- Fifth panel content -->
                   <div class="tabs-panel" id="panel-results">
                     <p class="lead">
                       {{ panels.results.title }}
                       <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                     </p>
-
                     <div class="grid-x">
                       <div class="cell u-text--center">
                         <button href="map.html" class="btn btn--hollow" id="btnExpand">
@@ -321,6 +334,7 @@
                       <div class="cell" id="results-collapsed">
                         <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
                         <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
+                        {% include "forms/layer_results_select.html" %}
                         <!--<form>-->
                           <!--<fieldset>-->
                             <!--<legend>-->
