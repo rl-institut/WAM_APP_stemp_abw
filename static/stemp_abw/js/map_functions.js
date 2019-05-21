@@ -77,24 +77,6 @@ function execClickAction(e) {
                    + String(layer.feature.id) + "/"
       $.get(url_js, function (data) {
         setTimeout(function () {
-          var result_chart = document.querySelector('.result-chart [id^=\"hc_\"]');
-          if (result_chart !== null) {
-            $.ajax({
-              url: '/stemp_abw/results/',
-              type: "GET",
-              success: function (data) {
-                if (data == null) {
-                  var id=parseInt(result_chart.getAttribute('data-highcharts-chart'));
-                  Highcharts.charts[id].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
-                }
-              },
-              error: function (page) {
-                console.log('error');
-                showErrorPopup();
-              },
-              cache: false
-            });
-          }
           eval(data);
         }, 250);
       });
