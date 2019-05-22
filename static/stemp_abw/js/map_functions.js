@@ -64,9 +64,6 @@ function execClickAction(e) {
   var layer = e.target;
   layer.setStyle(style);
 
-  // center map to clicked entity
-  layer._map.panTo(e.latlng, {duration: 1});
-
   // load popup content from detail view
   var url = "../popup/" + layer.feature.properties.name + "/"
             + String(layer.feature.id) + "/"
@@ -83,7 +80,12 @@ function execClickAction(e) {
     }
   });
 
-
+  // center map to clicked location, consider viewport size and panel area
+  var new_center = layer._map.project(e.latlng);
+  var map_size = layer._map.getSize();
+  new_center.y -= map_size.y/4; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+  new_center.x -= map_size.x/8;
+  layer._map.panTo(layer._map.unproject(new_center), {duration: 1.5}); // pan to new center
 }
 
 // feature: mousover style
