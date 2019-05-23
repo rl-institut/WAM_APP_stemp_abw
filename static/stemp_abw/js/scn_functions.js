@@ -28,7 +28,7 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
       activateRePotScenarioControls(true);
     } else {
       $('#sl_wind').data("ionRangeSlider").update({
-        disable: true,
+        disable: true
       });
       activateRePotScenarioControls(false);
       removeRePotAreaLayers();
@@ -126,6 +126,9 @@ function changeScenarioControlRepDropdown(element_id) {
   if (element_id == 'dd_repowering') {
     //ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
     ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+    if ($('#' + element_id).prop('value') != -1) {
+      removeRePotAreaLayers();
+    };
   } else {
     ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
   }
