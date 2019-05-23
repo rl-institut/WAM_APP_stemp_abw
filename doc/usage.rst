@@ -10,8 +10,8 @@ wichtigsten Elemente und Funktionen der Benutzeroberfläche beschrieben.
 Aufbau des Tools
 ----------------
 
-Das Tool hat unterschiedliche Funktionalitäten, die in der Legende links aufgeführt sind. Es ist möglich, sich die Region, deren Energiesystem und die Flächennutzung anzeigen zu lassen. Eine weitere Funktion ist die Optimierung des Energiesystems unter selbst vorgegebenen Bedingungen, von der man sich die Ergebnisse nach der Simulation anzeigen lassen und abspeichern kann. Die einzelnen Funktionalitäten sind im weiteren näher beschrieben. Durch Hovern über die dunkelblau hinterlegten Informationsbuttons ''i'' können weitere Informationen abgefragt werden. Diese öffnen sich nach wenigen Sekunden, wenn man die Maus darüber bewegt.
-Über den Button ''Startseite'' gelangt man wieder auf die Anfangsseite der App, wo man Informationen zur App nachlesen kann. Im ''Menu'' finden sich Kontaktdaten sowie die Angabe von Quellen und Annahmen, die der Anwendung zu Grunde liegen. Außerdem kann man sich hier zurück ''Zum Tool'' navigieren lassen. 
+Das Tool hat unterschiedliche Funktionalitäten, die in der Legende links aufgeführt sind. Es ist möglich, sich die Region, deren Energiesystem und die Flächennutzung anzeigen zu lassen. Eine weitere Anwendung ist die Optimierung des Energiesystems unter selbst vorgegebenen Bedingungen. Von dieser kann man sich die Ergebnisse nach der Simulation anzeigen und abspeichern lassen. Die einzelnen Funktionen sind im Weiteren näher beschrieben. Durch Hovern über die dunkelblau hinterlegten Informationsbuttons ''i'' können weitere Informationen abgefragt werden. Diese öffnen sich nach wenigen Sekunden, wenn man die Maus darüber bewegt.
+Über den Button ''Startseite'' gelangt man wieder auf die Anfangsseite der App, wo man einige Informationen zur App nachlesen kann. Unter ''Datenschutz'' lassen sich die aktuellen diesbezüglichen Bestimmungen anzeigen. Im ''Menu'' finden sich Kontaktdaten sowie die Angabe von Quellen und Annahmen, die der Anwendung zu Grunde liegen. Außerdem kann man sich hier zurück ''Zum Tool'' navigieren lassen. 
 
 .. 	image:: files/Startbildschirm.png
    :width: 500 px
