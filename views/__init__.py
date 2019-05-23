@@ -50,7 +50,17 @@ class MapView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context.update(io.prepare_layer_data())
+
+        # prepare layer data and move result layers to separate context var
+        layer_data = io.prepare_layer_data()
+        layer_data['layer_list'] = {layer: data
+                                    for layer, data in layer_data['layer_list'].items()
+                                    if data['cat'] != 'results'}
+        layer_data['layer_list_results'] = {layer: data
+                                            for layer, data in layer_data['layer_list'].items()
+                                            if data['cat'] == 'results'}
+        context.update(layer_data)
+
         context.update(io.prepare_component_data())
         context.update(io.prepare_scenario_data())
         context.update(io.prepare_label_data())
