@@ -314,5 +314,34 @@ function resultDependentSwitchLocker() {
   });
 }
 
-// Set listener
 result_panel.onmouseenter = resultDependentSwitchLocker;
+
+
+// Hide result layers, if user goes to region, areas or energy panel
+function hideResultLayers() {
+  console.log('In panel: ' + this.id);
+  result_switches.forEach(function (currentValue) {
+      if (currentValue.checked === true) {
+        console.log('setting switch to false: ' + currentValue.id);
+        currentValue.checked = false;
+        var layer_to_remove = currentValue.id.replace('cb_results_', '');
+        console.log('remove layer of: ' + layer_to_remove);
+        lmap.removeLayer(layer_to_remove);
+      }
+    }
+  );
+};
+
+var region_panel_label = document.getElementById('panel-region-label');
+region_panel_label.onclick = hideResultLayers;
+
+var energy_panel_label = document.getElementById('panel-energy-label');
+energy_panel_label.onclick = hideResultLayers;
+
+var area_panel_label = document.getElementById('panel-areas-label');
+area_panel_label.onclick = hideResultLayers;
+
+
+
+// TODO: Load layers after simulation is finished
+
