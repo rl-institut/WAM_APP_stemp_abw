@@ -11,6 +11,7 @@ Aufbau des Tools
 ----------------
 
 Das Tool hat unterschiedliche Funktionalitäten, die in der Legende links aufgeführt sind. Es ist möglich, sich die Region, deren Energiesystem und die Flächennutzung anzeigen zu lassen. Eine weitere Funktion ist die Optimierung des Energiesystems unter selbst vorgegebenen Bedingungen, von der man sich die Ergebnisse nach der Simulation anzeigen lassen und abspeichern kann. Die einzelnen Funktionalitäten sind im weiteren näher beschrieben. Durch Hovern über die dunkelblau hinterlegten Informationsbuttons ''i'' können weitere Informationen abgefragt werden. Diese öffnen sich nach wenigen Sekunden, wenn man die Maus darüber bewegt.
+Über den Button ''Startseite'' gelangt man wieder auf die Anfangsseite der App, wo man Informationen zur App nachlesen kann. Im ''Menu'' finden sich Kontaktdaten sowie die Angabe von Quellen und Annahmen, die der Anwendung zu Grunde liegen. Außerdem kann man sich hier zurück ''Zum Tool'' navigieren lassen. 
 
 .. 	image:: files/Startbildschirm.png
    :width: 500 px
@@ -21,7 +22,7 @@ Das Tool hat unterschiedliche Funktionalitäten, die in der Legende links aufgef
 Panels
 ------
 
-Die Seite umfasst die Panels ''Region'', ''Energiesystem'', ''Ergebnisse'' und ''Flächen'', deren Aufbau und Handhabung nachfolgend beschrieben ist.
+Die App umfasst die Panels ''Region'', ''Energiesystem'',  ''Flächen'' und ''Ergebnisse'', deren Aufbau und Handhabung nachfolgend beschrieben ist.
 
 - **Region**
 
