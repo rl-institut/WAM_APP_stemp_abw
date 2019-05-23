@@ -36,14 +36,17 @@ Die Abbildung zeigt eine beispielhafte Nutzung. Links im Panel kann der Nutzer a
 
 - **Energiesystem**
 
-..    image:: files/Energiesystem.png
+.. |logo|   image:: files/Energiesystem.png
    :width: 200 px
-   :class: align-right
 
-Das Panel ''Energiesystem'' ermöglicht die Variation und Untersuchung desselben in der Region. Als erster Schritt kann ein Vergleichs-Szenario ausgewählt werden, in Relation zu welchem die Ergebnisse angezeigt werden. Danach ist es möglich, über die Reiter ''Stromerzeugung'', ''Strombedarf'', ''Wärmeerzeugung'' und ''Wärmebedarf'' die entsprechenden Größen individuell anzupassen. In den Bedarfsfällen können jeweils die prozentualen Einsparungen zum Vergleichsszenario in Haushalten sowie in Gewerbe, Handel und Dienstleistungen (GHD) definiert werden. Bei der Stromerzeugung dagegen gibt es mehr Einstellparameter. Für die einzelnen Erzeuger sind die Leistungen des Vergleichsszenarios voreingestellt. Es wird außerdem automatisch das Potenzial der erneuerbaren Erzeuger, gemessen an ausgewähltem Zubau-Szenario und Flächennutzung, errechnet. Die Regler können entsprechend verschoben werden, um die gewünschte installierte Kapazität der Erzeuger einzustellen. Bei der Wärmeerzeugung kann der prozentuale Anteil von Power-to-Heat in Haushalten und GHD verändert werden. 
+.. |longtext| replace:: Das Panel ''Energiesystem'' ermöglicht die Variation und Untersuchung desselben in der Region. Als erster Schritt kann ein Vergleichs-Szenario ausgewählt werden, in Relation zu welchem die Ergebnisse angezeigt werden. Danach ist es möglich, über die Reiter ''Stromerzeugung'', ''Strombedarf'', ''Wärmeerzeugung'' und ''Wärmebedarf'' die entsprechenden Größen individuell anzupassen. In den Bedarfsfällen können jeweils die prozentualen Einsparungen zum Vergleichsszenario in Haushalten sowie in Gewerbe, Handel und Dienstleistungen (GHD) definiert werden. Bei der Stromerzeugung dagegen gibt es mehr Einstellparameter. Für die einzelnen Erzeuger sind die Leistungen des Vergleichsszenarios voreingestellt. Es wird außerdem automatisch das Potenzial der erneuerbaren Erzeuger, gemessen an ausgewähltem Zubau-Szenario und Flächennutzung, errechnet. Die Regler können entsprechend verschoben werden, um die gewünschte installierte Kapazität der Erzeuger einzustellen. Bei der Wärmeerzeugung kann der prozentuale Anteil von Power-to-Heat in Haushalten und GHD verändert werden. 
 
-
-
+.. table::
+   :align: center
+   :widths: auto
++---------+-----------+
+| |logo|  | |longtext||
++---------+-----------+
 
 
 - Anleitung für das Tool
