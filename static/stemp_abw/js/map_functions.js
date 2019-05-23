@@ -66,12 +66,12 @@ function execClickAction(e) {
 
   // load popup content from detail view
   var url = "../popup/" + layer.feature.properties.name + "/"
-            + String(layer.feature.id) + "/"
+      + String(layer.feature.id) + "/"
   $.get(url, function (data) {
     layer.setPopupContent(data);
     if (data.indexOf('id="hc_') !== -1) {
       var url_js = "../popupjs/" + layer.feature.properties.name + "/"
-                   + String(layer.feature.id) + "/"
+          + String(layer.feature.id) + "/"
       $.get(url_js, function (data) {
         setTimeout(function () {
           eval(data);
@@ -83,8 +83,8 @@ function execClickAction(e) {
   // center map to clicked location, consider viewport size and panel area
   var new_center = layer._map.project(e.latlng);
   var map_size = layer._map.getSize();
-  new_center.y -= map_size.y/4; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-  new_center.x -= map_size.x/8;
+  new_center.y -= map_size.y / 4; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+  new_center.x -= map_size.x / 8;
   layer._map.panTo(layer._map.unproject(new_center), {duration: 1.5}); // pan to new center
 }
 
@@ -280,26 +280,28 @@ function removeRePotAreaLayers() {
 }
 
 // Lock result switches if results are null
-var result_panel_button = document.getElementById('panel-results-label');
-var result_panel = document.getElementById('panel-results');
+var result_panel = document.querySelector('#panel-results fieldset');
 var result_switches = result_panel.querySelectorAll('.switch-input-layer-select-results');
 
-result_panel_button.onclick = function () {
+function resultDependentSwitchLocker() {
+  console.log('Fired: resultDependentSwitchLocker (), ' + Date.now());
   // Reset switch override if given
-  result_switches.forEach(function (currentValue) {
-        if (currentValue.hasAttribute('disabled')) {
-          currentValue.removeAttribute('disabled');
-        }
-      }
-  );
   // Check if results == null, and add switch override
   $.ajax({
     url: '/stemp_abw/results/',
     type: "GET",
     success: function (data) {
+      console.log('Ajax success fired: resultDependentSwitchLocker (), ' + Date.now())
       if (data == null) {
         result_switches.forEach(function (currentValue) {
               currentValue.setAttribute('disabled', '');
+            }
+        );
+      } else {
+        result_switches.forEach(function (currentValue) {
+              if (currentValue.hasAttribute('disabled')) {
+                currentValue.removeAttribute('disabled');
+              }
             }
         );
       }
@@ -310,4 +312,7 @@ result_panel_button.onclick = function () {
     },
     cache: false
   });
-};
+}
+
+// Set listener
+result_panel.onmouseenter = resultDependentSwitchLocker;
