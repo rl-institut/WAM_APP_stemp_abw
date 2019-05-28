@@ -89,7 +89,11 @@ function ctrlSimulate() {
               data: '',
               csrfmiddlewaretoken: csrf_token},
       success: function(page) {
-          console.log('success');
+          console.log('simulation success');
+          console.log('hidding result layers and legends');
+          hideResultLayers();
+          console.log('calling result_map_init ...');
+          window.result_map_init(window.maps);
       },
       error: function(page) {
           console.log('error');

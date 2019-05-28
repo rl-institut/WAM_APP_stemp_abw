@@ -326,8 +326,10 @@ function hideResultLayers() {
         console.log('setting switch to false: ' + currentValue.id);
         currentValue.checked = false;
         var layer_to_remove = currentValue.id.replace('cb_results_', '');
-        console.log('remove layer of: ' + layer_to_remove);
-        lmap.removeLayer(layer_to_remove);
+        console.log('remove result layer of: ' + layer_to_remove);
+        lmap.removeLayer(layers[layer_to_remove]);
+        console.log('remove result layer of: ' + layer_to_remove);
+        lmap.removeControl(legends[layer_to_remove]);
       }
     }
   );
@@ -341,27 +343,3 @@ energy_panel_label.onclick = hideResultLayers;
 
 var area_panel_label = document.getElementById('panel-areas-label');
 area_panel_label.onclick = hideResultLayers;
-
-
-
-// TODO: Load layers after simulation is finished
-var results_panel_label = document.getElementById('panel-results-label');
-results_panel_label.onclick = function() {
-    $.ajax({
-    url: '/stemp_abw/results/',
-    type: "GET",
-    success: function (data) {
-      if (data !== null) {
-        console.log('data !== null');
-        window.result_map_init(window.maps);
-      } else {
-        console.log('data === null');
-      }
-    },
-    error: function (page) {
-      console.log('error');
-      showErrorPopup();
-    },
-    cache: false
-  });
-};

@@ -770,20 +770,9 @@
         function result_map_init (map, options) {
             console.log("Calling result_map_init");
             console.log("{{layer_list_results}}");
-            // make map global
-            //lmap = map;
 
             // show load spinner
             toggleSpinnerVisibility();
-
-            // Parse layer style JSONs and make global
-            //style_data = JSON.parse('{{ layer_style | escapejs }}');
-            //choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
-
-            // Setup layer and legend stores (global)
-            //layers = {};
-            //legends = {};
-            //layers_cat = {};
 
             // Setup layer counter
             var layer_count = {{ layer_list_results|length }};
