@@ -1228,6 +1228,37 @@ footer {
       margin-bottom: 3rem; } }
   .hp-hero__btn .btn {
   width: 15rem; }
+  .hp-hero__toinfos {
+    font-size: 1.5rem; }
+
+/* START Animation */
+#hp-chevron {
+  animation: hp-chevron 1s ease-out infinite;
+}
+
+@keyframes hp-chevron {
+  0% {
+    transform: translateY(-2px);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/* END Animation */
+/* smooth scrolling on HP (Firefox and Chrome) */
+html {
+  scroll-behavior: smooth;
+}
 
 .hp-info {
   padding-top: 4rem;

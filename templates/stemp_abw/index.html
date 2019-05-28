@@ -9,24 +9,30 @@
         <div class="grid-x">
 
           <section class="grid-x l-bg-color hp-hero">
-          <div class="cell u-text--center">
-              <h1 class="hp-hero__header">Regionaler Energiebalancekreis Anhalt-Bitterfeld-Wittenberg</h1>
-          </div>
-          <div class="cell u-text--center hp-subheader">
-              <h2 class="hp-hero__subheader">Szenarien unter dem Aspekt einer abgestimmten Flächennutzung</h2>
-          </div>
-        <div class="cell u-text--center hp-hero__img">
-          <img src="{% static 'stemp_abw/img/Anhalt_map_website_beta.png' %}" alt="Anhalt Karte als Bild">
-        </div>
-          <div class="cell u-text--center hp-hero__btn">
-            <a href="{% url 'stemp_abw:map' %}" class="btn btn-cta">
-              Zum Tool
-              <i class ="icon ion-chevron-right icon--small"></i>
-            </a>
-          </div>
+            <div class="cell u-text--center">
+                <h1 class="hp-hero__header">Regionaler Energiebalancekreis Anhalt-Bitterfeld-Wittenberg</h1>
+            </div>
+            <div class="cell u-text--center hp-subheader">
+                <h2 class="hp-hero__subheader">Szenarien unter dem Aspekt einer abgestimmten Flächennutzung</h2>
+            </div>
+            <div class="cell u-text--center hp-hero__img">
+              <img src="{% static 'stemp_abw/img/Anhalt_map_website_beta.png' %}" alt="Anhalt Karte als Bild">
+            </div>
+            <div class="cell u-text--center hp-hero__btn">
+              <a href="{% url 'stemp_abw:map' %}" class="btn btn-cta">
+                Zum Tool
+                <i class ="icon ion-chevron-right icon--small"></i>
+              </a>
+            </div>
+            <div class="cell u-text--center hp-hero__toinfos" id="hp-chevron">
+              <a href="#hp-info" class="anchor-text anchor-text--light">
+                Neu hier?
+                <i class ="icon ion-chevron-down icon--small"></i>
+              </a>
+            </div>
           </section>
 
-          <section class="grid-x align-center l-bg-color--w hp-info">
+          <section class="grid-x align-center l-bg-color--w hp-info" id="hp-info">
             <div class="cell medium-8 large-6 hp-info__text">
               <p>Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die Partizipation der Bürger und Bürgerinnen. Allerdings erschwert die Komplexität von Energiesystemen und damit verbundenen Fragestellungen den Partizipationsprozess oft erheblich.</p>
               <p>Der Szenarienrechner schafft die Möglichkeit, allen interessierten Anspruchsgruppen ein besseres Verständnis über verschiedene Szenarien des regionalen Energiebalancekreises zu vermitteln und die Auswirkungen von Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige Diskussion geschaffen und eine gemeinsame Planung ermöglicht.</p>
