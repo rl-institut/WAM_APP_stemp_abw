@@ -283,6 +283,8 @@ function removeRePotAreaLayers() {
 // Lock result switches if results are null
 var result_panel = document.querySelector('#panel-results fieldset');
 var result_switches = result_panel.querySelectorAll('.switch-input-layer-select-results');
+var simulation_info = document.getElementById('simulation-info');
+
 
 function resultDependentSwitchLocker() {
   console.log('Fired: resultDependentSwitchLocker (), ' + Date.now());
@@ -294,6 +296,9 @@ function resultDependentSwitchLocker() {
     success: function (data) {
       console.log('Ajax success fired: resultDependentSwitchLocker (), ' + Date.now())
       if (data == null) {
+        if (simulation_info.hidden === true) {
+          simulation_info.hidden = false;
+        }
         result_switches.forEach(function (currentValue) {
               currentValue.setAttribute('disabled', '');
             }
@@ -343,3 +348,6 @@ energy_panel_label.onclick = hideResultLayers;
 
 var area_panel_label = document.getElementById('panel-areas-label');
 area_panel_label.onclick = hideResultLayers;
+
+var results_panel_label = document.getElementById('panel-results-label');
+results_panel_label.onclick = resultDependentSwitchLocker;
