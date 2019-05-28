@@ -53,11 +53,12 @@ class MapView(TemplateView):
 
         # prepare layer data and move result layers to separate context var
         layer_data = io.prepare_layer_data()
+        layer_list_results = layer_data['layer_list']
         layer_data['layer_list'] = {layer: data
                                     for layer, data in layer_data['layer_list'].items()
                                     if data['cat'] != 'results'}
         layer_data['layer_list_results'] = {layer: data
-                                            for layer, data in layer_data['layer_list'].items()
+                                            for layer, data in layer_list_results.items()
                                             if data['cat'] == 'results'}
         context.update(layer_data)
 

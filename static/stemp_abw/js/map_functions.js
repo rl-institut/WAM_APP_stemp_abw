@@ -162,6 +162,7 @@ $('.switch-input-layer-select-region, .switch-input-layer-select-results').click
 
   // Individual layers switches
   l = layers[id.replace(/cb_(region|results)_/, '')];
+  console.log("Adding OR removing from lmap: " + lmap);
   if (this.checked) lmap.addLayer(l);
   else lmap.removeLayer(l);
 });
@@ -344,4 +345,23 @@ area_panel_label.onclick = hideResultLayers;
 
 
 // TODO: Load layers after simulation is finished
-
+var results_panel_label = document.getElementById('panel-results-label');
+results_panel_label.onclick = function() {
+    $.ajax({
+    url: '/stemp_abw/results/',
+    type: "GET",
+    success: function (data) {
+      if (data !== null) {
+        console.log('data !== null');
+        window.result_map_init(window.maps);
+      } else {
+        console.log('data === null');
+      }
+    },
+    error: function (page) {
+      console.log('error');
+      showErrorPopup();
+    },
+    cache: false
+  });
+};
