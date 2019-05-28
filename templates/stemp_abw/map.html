@@ -518,11 +518,9 @@
             {% for visualization in visualizations5 %}
                   {{visualization.media}}
             {% endfor %}
+            getSimulationResults();
           }, 750);
-
-          // Load simulation results
-          setTimeout(getSimulationResults, 1000);
-        };
+        }
       });
     </script>
 
