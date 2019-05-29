@@ -98,19 +98,47 @@ results_charts_tab1 = [
     }
 ]
 
-#CONTAINER_LIST = [l['container_id'] for l in labels_res_summary]
-
 results_charts_tab1_viz = [results.ResultAnalysisVisualization(
     setup_labels=chart['setup_labels'],
     type=chart['type']).visualize(renderTo=chart['container_id'])
                    for chart in results_charts_tab1]
-
 
 ####################
 ### Result Tab 2 ###
 ####################
 
 results_charts_tab2 = [
+    {
+        'container_id': 'hc_res_production_scn',
+        'type': 'pie',
+        'setup_labels': {
+            'title': {'text': 'Ihr Szenario'},
+            'subtitle': {'text': 'in GWh'},
+            'yAxis': {'title': {'text': 'GWh'}}
+        }
+    },
+    {
+        'container_id': 'hc_res_production_sq',
+        'type': 'pie',
+        'setup_labels': {
+            'title': {'text': 'Status quo'},
+            'subtitle': {'text': 'in GWh'},
+            'yAxis': {'title': {'text': 'GWh'}}
+        }
+    }
+]
+
+results_charts_tab2_viz = [results.ResultAnalysisVisualization(
+    setup_labels=chart['setup_labels'],
+    type=chart['type']).visualize(renderTo=chart['container_id'])
+                   for chart in results_charts_tab2]
+
+
+####################
+### Result Tab 3 ###
+####################
+
+results_charts_tab3 = [
     {
         'container_id': 'hc_res_wind_time',
         'type': 'line',
@@ -143,8 +171,8 @@ results_charts_tab2 = [
     }
 ]
 
-results_charts_tab2_viz = [results.ResultAnalysisVisualization(
+results_charts_tab3_viz = [results.ResultAnalysisVisualization(
     setup_labels=chart['setup_labels'],
     data_labels=chart['data_labels'],
     type=chart['type']).visualize(renderTo=chart['container_id'])
-                   for chart in results_charts_tab2]
+                   for chart in results_charts_tab3]

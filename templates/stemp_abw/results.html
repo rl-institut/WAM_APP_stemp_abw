@@ -73,8 +73,6 @@
                           <!--</tbody>-->
                         <!--</table>-->
                       <!--</div>-->
-
-
                       <div class="cell small-4">
                         <p style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;">[BETA-Version] Der Zeitraum umfasst derzeit nur 1 Monat</p>
                       </div>
@@ -85,12 +83,19 @@
                             {{visualization|safe}}
                           </div>
                       {% endfor %}
+
+
                     </div>
                   </div>
                   <div class="tabs-panel" id="results-panel2">
                     <div class="grid-x grid-margin-x">
+                      <div class="cell small-4">
+                        <p style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;">[BETA-Version] Der Zeitraum umfasst derzeit nur 1 Monat</p>
+                      </div>
+                      <div class="cell small-8">
+                      </div>
                       {% for visualization in results_charts_tab2_viz %}
-                          <div class="cell small-4">
+                          <div class="cell small-6">
                             {{visualization|safe}}
                           </div>
                       {% endfor %}
@@ -116,10 +121,11 @@
                   </div>
                   <div class="tabs-panel" id="results-panel5">
                     <div class="grid-x grid-margin-x">
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                    </div>
+                      {% for visualization in results_charts_tab3_viz %}
+                          <div class="cell small-4">
+                            {{visualization|safe}}
+                          </div>
+                      {% endfor %}
                   </div>
                   <div class="tabs-panel" id="results-panel6">
                     <div class="grid-x grid-margin-x">

@@ -8,7 +8,8 @@ from stemp_abw.models import Scenario
 
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from stemp_abw.results.result_charts import results_charts_tab1_viz, results_charts_tab2_viz, visualizations2, visualizations5
+from stemp_abw.results.result_charts import results_charts_tab1_viz,\
+    results_charts_tab2_viz, results_charts_tab3_viz, visualizations2, visualizations5
 
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
@@ -66,10 +67,10 @@ class MapView(TemplateView):
         context.update(io.prepare_label_data())
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
-        # TODO: Temp stuff for WS
-        context['results_charts_tab2_viz'] = results_charts_tab2_viz
-        context['visualizations2'] = visualizations2
         context['results_charts_tab1_viz'] = results_charts_tab1_viz
+        context['results_charts_tab2_viz'] = results_charts_tab2_viz
+        context['results_charts_tab3_viz'] = results_charts_tab3_viz
+        context['visualizations2'] = visualizations2
         context['visualizations5'] = visualizations5
 
         # Trial: new info button
