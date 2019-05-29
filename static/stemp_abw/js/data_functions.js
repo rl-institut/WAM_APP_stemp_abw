@@ -75,7 +75,7 @@ function ctrlSimulate() {
   console.log('simulation started');
 
   // show simulation spinner
-  $('#loader-text').text('Simuliere...');
+  $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
   $('#loader-detail-text').text('');
   toggleSpinnerVisibility();
 
