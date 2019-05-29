@@ -324,10 +324,17 @@
                       <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                     </p>
                     <div class="grid-x">
-                      <div class="cell u-text--center">
+                      <div class="cell large-2 u-text--center"></div>
+                      <div class="cell large-8 u-text--center">
                         <button href="map.html" class="btn btn--hollow" id="btnExpand">
                           Mehr Ergebnisgrafiken
                           <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                        </button>
+                      </div>
+                      <div class="cell large-2 u-text--right">
+                        <button type="submit" class="btn btn-cta results-display-none" id="simulation-btn2" onclick="ctrlSimulate()" value="simulate">
+                          Simulation
+                          <i class ="icon ion-android-arrow-dropright-circle icon--small" title="{{ tooltips.simulation_button.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                         </button>
                       </div>
                       <div class="cell" id="results-collapsed">

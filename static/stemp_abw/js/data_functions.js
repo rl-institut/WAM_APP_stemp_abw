@@ -101,6 +101,11 @@ function ctrlSimulate() {
 
       // hide simulation spinner
       toggleSpinnerVisibility();
+
+      // reload results if simulation was triggered from result panel
+      if ($('#panel-results').hasClass('is-collapsed')) {
+        getSimulationResults();
+      }
   });
 };
 
