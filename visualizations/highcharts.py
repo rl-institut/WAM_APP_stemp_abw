@@ -72,8 +72,7 @@ class HCStemp(Highchart):
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
-                                     series_type=series_type,
-                                     **kwargs)
+                                     series_type=series_type)
 
 
 class HCTimeseries(HCStemp):
