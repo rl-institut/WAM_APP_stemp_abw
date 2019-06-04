@@ -46,13 +46,6 @@ class Results(object):
 
     def get_panel_results(self):
         """Analyze results and return data for panel display"""
-        #sq_results = self.aggregate_gen_energy(scenario=self.simulation)
-        #self.aggregate_gen_energy(scenario=self.simulation.session.user_scenario)
-
-        # temp data
-        data = pd.DataFrame({'name': ['Windenergie', 'Photovoltaik', 'Biogas', 'fossil', 'IMPORT'],
-                             'y': [2000, 140, 130, 250, 1000]})
-        data.set_index('name', inplace=True)
 
         nodes_from = ['gen_el_wind',
                       'gen_el_pv_roof',
