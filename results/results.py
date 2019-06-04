@@ -36,6 +36,14 @@ class Results(object):
         else:
             raise ValueError(f'Node "{node_label}" not found in energy system!')
 
+    @staticmethod
+    def get_sq_results_raw():
+        """Return raw results of status quo scenario"""
+        return oemof_json_to_results(
+            Scenario.objects.get(
+                name='Status quo').results.data
+        )[0]
+
     def get_panel_results(self):
         """Analyze results and return data for panel display"""
         #sq_results = self.aggregate_gen_energy(scenario=self.simulation)
@@ -52,13 +60,15 @@ class Results(object):
                       'gen_el_hydro',
                       'shortage_el']
         nodes_to = ['bus_el']
-        data_user_scn = self.aggregate_sum(nodes_from, nodes_to, self.results_raw)
-        data_sq = self.aggregate_sum(nodes_from, nodes_to,
-                                     oemof_json_to_results(
-                                         Scenario.objects.get(
-                                             name='Status quo').results.data
-                                     )[0]
-                                     )
+        data_user_scn = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.results_raw)
+        data_sq = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.get_sq_results_raw())
+
+        # data_user_scn2 = {'Windenergie': [3,6],
+        #                   'PV': [1,2],
+        #                   'PV2': [2,1]}
+        data_user_scn2 = [{'name': 'Windenergie', 'data': [3,6]},
+                          {'name': 'PV', 'data': [1,2]},
+                          {'name': 'PV2', 'data': [2,1]}]
 
         # convert data to appropriate format
         data = {'hc_res_summary_scn': data_user_scn,
@@ -66,6 +76,7 @@ class Results(object):
                 'hc_res_production_scn': data_user_scn,
                 'hc_res_production_sq': data_sq,
                 'hc_res_wind_time': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0]}
+
         return data
 
     def get_layer_results(self):
