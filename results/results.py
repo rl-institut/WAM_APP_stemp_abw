@@ -11,13 +11,17 @@ from oemof.outputlib import views
 class Results(object):
     """Results"""
     def __init__(self, simulation):
+        self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(Scenario.objects.get(
+            name='Status quo').results.data)
+
         self.results_raw = None
         self.param_results_raw = None
-        self.sq_results_raw = oemof_json_to_results(Scenario.objects.get(
-            name='Status quo').results.data)[0]
         self.simulation = simulation
         self.is_up_to_date = False
-        self.result_id = 0
+
+        # set SQ results on startup
+        self.set_result_raw_data(self.sq_results_raw,
+                                 self.param_results_raw)
 
     def set_result_raw_data(self, results_raw, param_results_raw):
         self.results_raw = results_raw

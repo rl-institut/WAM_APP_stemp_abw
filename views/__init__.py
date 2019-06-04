@@ -111,7 +111,7 @@ class MapView(TemplateView):
             ret_data = json.dumps(ret_data)
         
         # apply scenario (trigger: scn button) -> set as user scenario
-        elif action == 'apply_scenario':
+        elif action in ['apply_scenario', 'init_sq_scenario']:
             scn_id = int(data)
             scn = session.scenarios[scn_id]
             ret_data = {'scenario': {'name': scn.name,
@@ -121,7 +121,9 @@ class MapView(TemplateView):
                         }
             ret_data = json.dumps(ret_data)
             session.set_user_scenario(scn_id=scn_id)
-            session.simulation.results.is_up_to_date = False   # set results to outdated
+            # set results to outdated (if scn is not applied on startup)
+            if action == 'apply_scenario':
+                session.simulation.results.is_up_to_date = False
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':

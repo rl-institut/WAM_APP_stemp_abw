@@ -11,6 +11,10 @@ function ctrlScenario(element_id) {
     console.log('apply scn btn');
     action = 'apply_scenario';
     data = $('#select-scn-frm').val();
+  } else if (element_id == 'init-sq-scn') {
+    console.log('init sq scn');
+    action = 'init_sq_scenario';
+    data = $('#select-scn-frm').val();
   }
 
   $.ajax({
@@ -35,7 +39,7 @@ function ctrlScenario(element_id) {
                              scn_data['scenario']['desc'],
                              scn_data['controls'],
                              false);
-    } else if (element_id == 'apply-scn-btn') {
+    } else if (element_id == 'apply-scn-btn' || element_id == 'init-sq-scn') {
       var scn_data = JSON.parse(returned_data)
       //console.log(returned_data);
       updateScenarioControls(scn_data['scenario']['name'],
