@@ -1,0 +1,38 @@
+<div class="grid-x" style="width: 450px">
+  {% block title %}
+  <div class="cell">
+    <h3>{{ title }}</h3>
+  </div>
+  {% endblock %}
+
+  {% block text %}
+  <div class="cell description">
+    {{ text }}
+  </div>
+  {% endblock %}
+
+  {% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}{% block values %}{% endblock %}</p>
+  </div>
+  {% endblock %}
+
+  {% block vis %}
+  {% endblock %}
+
+  {% block links %}
+  {% if sources|length == 0 %}
+  {% else %}
+  <div class="cell sources">
+    Quellen:
+    {% for source in sources %}
+    <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
+       class="anchor-text linkto-source"
+       id="linkto-source-{{ source.id }}">
+      {{ source.infos.title }}{% if not forloop.last %}, {% else %}{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endblock %}
+</div>

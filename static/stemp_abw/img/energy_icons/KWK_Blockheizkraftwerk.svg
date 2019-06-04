@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.9297814,0,0,0.9297814,9.2345095,-146.19146)"
+     id="layer1">
+    <g
+       transform="matrix(0.24817282,0,0,0.24817282,76.226291,191.14807)"
+       id="ic_x5F_108_Wärme"
+       style="fill:none;stroke-width:1.06612539">
+      <g
+         id="group1"
+         style="fill:none;stroke-width:1.06612539">
+        <g
+           style="fill:none;stroke-width:0.71493858"
+           id="ic_x5F_25_Dampfturbine"
+           transform="matrix(1.5898194,0,0,1.5898194,-204.80557,-103.9337)">
+          <g
+             style="fill:none;stroke-width:0.71493858"
+             id="group3" />
+          <g
+             style="fill:none;stroke-width:0.44085887"
+             id="ic_x5F_74_Elektromotor"
+             transform="matrix(1.0845898,0,0,1.0904198,-74.182753,45.51704)">
+            <g
+               style="fill:none;stroke-width:0.44085887"
+               id="group1-0">
+              <g
+                 style="fill:none;stroke-width:0.29977489"
+                 id="ic_x5F_26_Gasturbine"
+                 transform="matrix(0.90928347,0,0,0.90442193,70.028729,-41.089626)">
+                <g
+                   style="fill:none;stroke-width:0.29977489"
+                   id="group1-3"
+                   transform="translate(24.0628,17.1051)">
+                  <g
+                     style="fill:none;stroke-width:0.18693571"
+                     id="ic_x5F_27_Gas-_Dampfturbine"
+                     transform="matrix(1.0904321,0,0,1.0904321,-90.155558,40.032633)">
+                    <g
+                       style="fill:none;stroke-width:0.12409734"
+                       id="group1-9"
+                       transform="matrix(0.93934867,0,0,0.93934867,-2.025386,23.641553)">
+                      <g
+                         style="fill:none;stroke-width:0.12409734"
+                         id="ic_x5F_124_Thermisches_Kraftwerk__x28_technologie-neutral_x29_"
+                         transform="translate(2.1581419,-1.8450614)">
+                        <g
+                           style="fill:none;stroke-width:0.12409734"
+                           id="g1875"
+                           transform="translate(-26.379685,83.40316)" />
+                        <g
+                           transform="translate(167.05432,267.38923)"
+                           id="g1881"
+                           style="fill:none;stroke-width:0.12409734" />
+                        <path
+                           style="fill:#002e4f;fill-opacity:1;stroke-width:0.08238208"
+                           id="shape2"
+                           d="m 295.83973,5.4830925 -7.79911,29.0550125 10.12847,-4.688628 v 11.307287 l -2.68753,-0.643632 2.24127,9.104495 4.9304,-8.182967 -2.78143,-0.0063 5.55865,-20.130519 -12.46024,7.080702 9.86168,-22.8950007 z" />
+                        <g
+                           style="fill:none;stroke-width:0.09762252"
+                           id="group1-93"
+                           transform="matrix(0.84388383,0,0,0.84388382,263.82875,-5.7135616)">
+                          <path
+                             style="fill:#002e4f;fill-opacity:1;stroke-width:0.09762252"
+                             id="shape3"
+                             transform="translate(0.625,0.625)"
+                             d="m 38.3083,4.97142 c 18.3811,0 33.3349,14.95498 33.3349,33.33638 0,18.3823 -14.9538,33.3373 -33.3349,33.3373 -18.3821,0 -33.33695,-14.955 -33.33695,-33.3373 0,-18.3824 14.95485,-33.33638 33.33695,-33.33638 M 38.3083,0 C 17.1512,0 0,17.1504 0,38.3078 0,59.4651 17.1512,76.6165 38.3083,76.6165 59.4634,76.6165 76.6145,59.4651 76.6145,38.3078 76.6145,17.1504 59.4644,0 38.3083,0 Z" />
+                        </g>
+                        <g
+                           style="fill:none;stroke-width:0.09762252"
+                           id="group2"
+                           transform="matrix(0.84388383,0,0,0.84388382,263.61357,93.568536)">
+                          <path
+                             style="fill:#002e4f;fill-opacity:1;stroke-width:0.09762252"
+                             id="shape4"
+                             transform="translate(0.625,0.625)"
+                             d="m 38.3063,4.97142 c 18.3821,0 33.3369,14.95498 33.3369,33.33738 0,18.3813 -14.9548,33.3363 -33.3369,33.3363 C 19.9252,71.6451 4.97135,56.6901 4.97135,38.3088 4.97036,19.9264 19.9242,4.97142 38.3063,4.97142 M 38.3063,0 C 17.1512,0 0,17.1514 0,38.3088 0,59.4651 17.1512,76.6165 38.3063,76.6165 59.4634,76.6165 76.6145,59.4651 76.6145,38.3088 76.6145,17.1514 59.4634,0 38.3063,0 Z" />
+                        </g>
+                        <g
+                           style="fill:none;stroke-width:0.09762252"
+                           id="group3-3"
+                           transform="matrix(0.84388383,0,0,0.84388382,287.44653,104.47236)">
+                          <path
+                             style="fill:#002e4f;fill-opacity:1;stroke-width:0.09762252"
+                             id="shape5"
+                             transform="translate(0.625,31.82)"
+                             d="M 19.976,9.988 C 19.976,4.47178 15.5042,0 9.988,0 4.47178,0 0,4.47178 0,9.988 c 0,5.5162 4.47178,9.988 9.988,9.988 5.5162,0 9.988,-4.4718 9.988,-9.988" />
+                          <g
+                             style="fill:none;stroke-width:0.09762252"
+                             id="group4"
+                             transform="translate(4.66)">
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke-width:0.09762252"
+                               id="shape6"
+                               transform="translate(0.625,0.625)"
+                               d="m 5.04573,2.78791 c 1.33909,0 2.42912,1.16222 2.42912,2.59102 V 31.6233 H 2.61378 V 5.37893 c 0,-1.4288 1.09097,-2.59102 2.43195,-2.59102 M 5.04573,0 C 2.26054,0 0,2.40825 0,5.37893 V 34.4112 H 10.0896 V 5.37893 C 10.0896,2.40825 7.83093,0 5.04573,0 Z" />
+                          </g>
+                          <rect
+                             style="fill:#002e4f;fill-opacity:1;stroke-width:0.09762252"
+                             y="0"
+                             x="0"
+                             id="shape7"
+                             transform="translate(5.285,18.724)"
+                             width="10.0896"
+                             height="16.312201" />
+                          <path
+                             style="fill:none;stroke:#002e4f;stroke-width:2.89593434;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                             id="shape8"
+                             transform="translate(21.9,9.953)"
+                             stroke-miterlimit="2.00000000000"
+                             d="M 0,0 H 4.439" />
+                          <path
+                             style="fill:none;stroke:#002e4f;stroke-width:2.89593434;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                             id="shape9"
+                             transform="translate(21.9,18.757)"
+                             stroke-miterlimit="2.00000000000"
+                             d="M 0,0 H 4.439" />
+                          <path
+                             style="fill:none;stroke:#002e4f;stroke-width:2.89593434;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                             id="shape10"
+                             transform="translate(21.9,27.561)"
+                             stroke-miterlimit="2.00000000000"
+                             d="M 0,0 H 4.439" />
+                        </g>
+                        <path
+                           style="fill:none;stroke:#002e4f;stroke-width:3.31925154;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                           id="shape11"
+                           stroke-miterlimit="2.00000000000"
+                           d="M 264.46538,127.51291 H 223.60841" />
+                        <path
+                           style="fill:none;stroke:#002e4f;stroke-width:3.31925154;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                           id="shape12"
+                           stroke-miterlimit="2.00000000000"
+                           d="m 263.63921,25.227447 h -40.0308" />
+                        <g
+                           style="fill:none;stroke-width:0.09762252"
+                           id="ic_x5F_75_Gasantrieb"
+                           transform="matrix(0.84388383,0,0,0.84388382,-6.8794627,6.1683307)">
+                          <g
+                             style="fill:none;stroke-width:0.09762252"
+                             id="group5">
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke-width:0.12409734"
+                               d="M 95.253906,180.625 76.808594,213.83008 H 40.279297 v 92.03515 l 31.507812,0.61524 31.367191,37.1543 h 125.48047 l 36.61718,-37.23047 h 19.22852 v 33.20508 h 13.90234 l 10.81446,-32.39649 v -78.48828 l -11.54688,-31.96484 -13.16992,0.21679 v 31.94727 h -18.78516 v -22.13672 h -28.3164 L 213.80273,180.625 Z m 75.789064,26.82812 c 0,0 -4.83105,24.49598 6.46289,36.44141 11.29877,11.95356 19.0957,28.33213 19.0957,37.76758 0,27.08461 -26.1582,33.32812 -26.1582,33.32812 0,0 7.95694,-10.98797 6.1582,-21.66601 -1.95522,-11.635 -15.49023,-23.61133 -15.49023,-23.61133 0,0 -13.30346,13.60493 -12.11133,24.29492 1.1859,10.68809 8.36719,20.98242 8.36719,20.98242 -12.4848,-5.65936 -30.91797,-17.60909 -30.91797,-46.53515 0,-36.62214 44.59375,-61.00196 44.59375,-61.00196 z"
+                               transform="matrix(0.78666086,0,0,0.78666086,7.0190138,-103.80587)"
+                               id="shape13" />
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke:#002e4f;stroke-width:11.79991341;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                               id="shape14"
+                               transform="translate(15,53.2809)"
+                               stroke-miterlimit="2.00000000000"
+                               d="M 0,0 V 95.505" />
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke:#002e4f;stroke-width:11.79991341;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                               id="shape15"
+                               transform="translate(80.6736,15)"
+                               stroke-miterlimit="2.00000000000"
+                               d="M 94.8186,0 H 0" />
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke:#002e4f;stroke-width:11.79991341;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                               id="shape16"
+                               transform="translate(16.1658,99.4548)"
+                               stroke-miterlimit="2.00000000000"
+                               d="M 22.5389,0 H 0" />
+                            <path
+                               style="fill:#002e4f;fill-opacity:1;stroke:#002e4f;stroke-width:11.79991341;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1"
+                               id="shape17"
+                               transform="translate(130.803,15.3946)"
+                               stroke-miterlimit="2.00000000000"
+                               d="M 0,22.8896 V 0" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <rect
+     ry="1.8199372e-13"
+     y="36.430355"
+     x="2.5456026"
+     height="60.719368"
+     width="89.906372"
+     id="rect848"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#002e4f;stroke-width:3.69006991;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill" />
+</svg>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.32088974,0,0,0.32088974,0.21111797,33.326983)"
+     id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_"
+     style="fill:none;stroke-width:0.82453036">
+    <g
+       id="ic_x5F_16_Laufwasserkraftwerk"
+       transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+       style="fill:#000000;stroke-width:0.55775899;fill-opacity:1">
+      <g
+         style="fill:#000000;fill-opacity:1"
+         id="ic_x5F_80_Haushalt_als_Stromverbraucher"
+         transform="matrix(0.75557175,0,0,0.7572401,8.878526,68.394288)">
+        <g
+           style="fill:#000000;fill-opacity:1"
+           id="ic_x5F_81_Industrieller_Stromverbraucher"
+           transform="matrix(0.74101282,0,0,0.73938022,53.672072,12.031946)">
+          <g
+             style="fill:#000000;fill-opacity:1"
+             transform="matrix(0.83694993,0,0,0.83694994,-387.23069,-0.0622627)"
+             id="layer1">
+            <g
+               style="fill:#000000;fill-opacity:1"
+               id="ic_x5F_108_Wärme"
+               transform="translate(560.0883,-90.646774)">
+              <g
+                 style="fill:#000000;fill-opacity:1"
+                 id="group1">
+                <g
+                   style="fill:#000000;fill-opacity:1"
+                   id="group1-1"
+                   transform="matrix(1.6892076,0,0,1.6892076,-173.40667,-15.8903)">
+                  <g
+                     style="fill:#000000;fill-opacity:1"
+                     id="group2"
+                     transform="translate(243.076,71.0563)">
+                    <g
+                       style="fill:#000000;fill-opacity:1"
+                       id="group3"
+                       transform="translate(0,103.635)">
+                      <g
+                         style="fill:#000000;fill-opacity:1"
+                         id="ic_x5F_85_Wärmepumpe-Luft"
+                         transform="matrix(0.7649128,0,0,0.76491278,-249.37922,-98.265706)">
+                        <g
+                           style="fill:#000000;fill-opacity:1"
+                           id="group2-8"
+                           transform="matrix(1.0735155,0,0,1.0735155,264.45969,21.058795)">
+                          <g
+                             style="fill:#000000;fill-opacity:1"
+                             id="group3-5"
+                             transform="translate(-66.962463,-120.19452)" />
+                          <g
+                             style="fill:#000000;fill-opacity:1"
+                             id="group4"
+                             transform="translate(11.841)" />
+                        </g>
+                        <path
+                           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:14.1659708;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+                           d="m 96.750264,92.94837 v 140.8135 H 82.724193 l 20.657447,41.3013 20.65744,-41.3013 H 109.93591 V 92.94837 Z"
+                           id="path2344" />
+                        <path
+                           id="path2354"
+                           d="M 250.13145,112.93294 V -27.880567 h 14.02606 l -20.65743,-41.301291 -20.65744,41.301291 h 14.10317 V 112.93294 Z"
+                           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:14.1659708;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <path
+     id="path829"
+     d="m 124.4375,22.017578 c -4.68444,27.098708 -16.80376,55.371378 -29.210938,67.509766 -3.101794,3.034597 -6.159341,5.026017 -8.902343,5.93164 -2.743003,0.905624 -5.119456,0.865929 -7.71875,-0.259765 C 73.406881,92.947831 66.97523,85.197528 61.404297,68.957031 55.449154,51.596479 48.946799,42.4301 40.929688,39.169922 36.921132,37.539833 32.68404,37.726014 29.007812,39.076172 25.331585,40.42633 22.11285,42.802603 19.203125,45.613281 7.5642244,56.855994 0.00390625,75.865234 0.00390625,75.865234 l 7.36914065,3.035157 c 0,0 7.8251981,-18.339394 17.3652341,-27.554688 2.385009,-2.303823 4.82269,-3.985622 7.015625,-4.791015 2.192936,-0.805394 4.038494,-0.872246 6.173828,-0.0039 4.270669,1.736678 10.304169,8.569786 15.9375,24.992188 5.90751,17.22169 12.8573,27.193654 21.574219,30.968751 4.35846,1.88755 9.072279,1.93683 13.382813,0.51367 4.310533,-1.42315 8.27136,-4.177801 11.976564,-7.802734 14.82081,-14.49973 26.58615,-43.467028 31.49219,-71.847656 z"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:7.9688201;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+</svg>

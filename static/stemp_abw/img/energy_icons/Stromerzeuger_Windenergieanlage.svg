@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg1054"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500">
+  <defs
+     id="defs1048" />
+  <metadata
+     id="metadata1051">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.32088974,0,0,0.32088974,0.21111797,50.260327)"
+     id="ic_x5F_03_Photovoltaik-Freiflächenanlage__x28_nicht_nachgeführt_x29_"
+     style="fill:none;stroke-width:0.82453036">
+    <g
+       id="ic_x5F_16_Laufwasserkraftwerk"
+       transform="matrix(1.7595667,0,0,1.7595667,-16.869078,-151.83647)"
+       style="fill:none;stroke-width:0.55775899">
+      <g
+         id="ic_x5F_11_Windenergieanlage"
+         transform="matrix(0.75580406,0,0,0.75288487,8.7407791,-3.1922109)"
+         style="fill:none;stroke-width:0.34648031">
+        <g
+           id="group1"
+           transform="translate(0,296.2)"
+           style="fill:none;stroke-width:0.34648031">
+          <rect
+             id="shape1"
+             transform="translate(0.625,0.625)"
+             width="310"
+             height="15"
+             x="0"
+             y="0"
+             style="fill:#002e4f;stroke-width:0.34648031;fill-opacity:1" />
+        </g>
+        <path
+           id="shape2"
+           transform="translate(145.255,112.762)"
+           d="M 18.1831,6.81375 23.9845,185.125 H 0 L 5.50957,6.15053 C 5.68882,2.57532 8.67134,-0.172603 12.171,0.00845759 15.6707,0.19352 18.3613,3.23854 18.1831,6.81375 Z"
+           style="fill:#002e4f;stroke-width:0.34648031;fill-opacity:1" />
+        <g
+           id="group2"
+           transform="translate(59.1151)"
+           style="fill:none;stroke-width:0.34648031">
+          <path
+             id="shape3"
+             transform="translate(0.592379,114.854)"
+             d="m 100.105,6.76343 c 1.744,-1.21797 2.237,-3.53131 1.023,-5.27787 -1.2144,-1.748578 -3.3441,-1.838016 -5.2924,-0.868262 0,0 -10.1403,5.005542 -14.6645,7.296772 C 76.8254,10.1169 64.034,3.42406 54.2867,9.86464 44.5274,16.3132 1.17766,66.5334 1.17766,66.5334 -0.168964,67.9976 -0.439693,69.7552 0.778588,71.4978 1.99687,73.2443 4.24091,73.7729 5.9826,72.554 Z"
+             style="fill:#002e4f;stroke-width:0.34648031;fill-opacity:1" />
+          <path
+             id="shape4"
+             transform="translate(94.6383,114.813)"
+             d="M 5.39071,0.384436 C 3.47517,-0.517075 1.23803,0.208531 0.339184,2.1255 -0.561661,4.04346 0.422078,5.92543 2.22677,7.12578 c 0,0 9.36003,6.26662 13.58263,9.03012 4.0598,2.6565 4.671,17.0277 15.0686,22.2389 10.4097,5.2172 75.221,17.6634 75.221,17.6634 1.933,0.4358 3.578,-0.2039 4.473,-2.1238 0.896,-1.92 0.232,-4.1198 -1.686,-5.0163 z"
+             style="fill:#002e4f;stroke-width:0.34648031;fill-opacity:1" />
+          <path
+             id="shape5"
+             transform="translate(84.9774,0.623023)"
+             d="m 9.7702,118.3 c 0.17888,2.116 1.9258,3.697 4.0354,3.516 2.1107,-0.178 3.247,-1.977 3.3879,-4.148 0,0 0.7395,-11.276 1.0203,-16.335 C 18.4837,96.4719 30.6229,88.7355 29.9333,77.0847 29.2418,65.4199 7.59459,2.84262 7.59459,2.84262 7.00397,0.946097 5.62586,-0.164551 3.51521,0.0198879 1.40556,0.203326 -0.168428,1.88333 0.0144551,4.00138 Z"
+             style="fill:#002e4f;stroke-width:0.34648031;fill-opacity:1" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

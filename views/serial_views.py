@@ -1,28 +1,14 @@
 import stemp_abw.models as models
-from djgeojson.views import GeoJSONLayerView
+from django.views.generic import DetailView, View
+from django.http import JsonResponse
+from django.views.decorators.cache import never_cache
+from djgeojson.views import GeoJSONLayerView, GeoJSONResponseMixin
+from wam.settings import SESSION_DATA
 
 
 #########################
 ### GeoJSONLayerViews ###
 #########################
-class SubstData(GeoJSONLayerView):
-    model = models.HvMvSubst
-    # TODO: 'name' is used to load popup content in JS from view (build url).
-    # TODO: Find smarter approach!
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
-class OsmPowerGenData(GeoJSONLayerView):
-    model = models.OsmPowerGen
-    properties = ['popup_content', 'name']
-    srid = 4326
-    geometry_field = 'geom'
-    precision = 5
-
-
 class RpAbwBoundData(GeoJSONLayerView):
     model = models.RpAbwBound
     properties = ['popup_content', 'name']
@@ -37,6 +23,128 @@ class RegMunData(GeoJSONLayerView):
     srid = 4326
     geometry_field = 'geom'
     precision = 5
+
+
+class RegMunPopData(GeoJSONLayerView):
+    model = models.RegMunPop
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop']
+
+
+# TODO: Remove/alter after test
+class RegMunPopResultData(GeoJSONLayerView):
+    model = models.RegMunPopResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_result']
+
+
+class RegMunPopDensityData(GeoJSONLayerView):
+    model = models.RegMunPopDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_density']
+
+
+# TODO: Remove/alter after test
+class RegMunPopDensityResultData(GeoJSONLayerView):
+    model = models.RegMunPopDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_density_result']
+
+
+class RegMunEnergyReElDemShareData(GeoJSONLayerView):
+    model = models.RegMunEnergyReElDemShare
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share']
+
+
+class RegMunGenEnergyReData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyRe
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re']
+
+
+class RegMunGenEnergyRePerCapitaData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyRePerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_per_capita']
+
+
+class RegMunGenEnergyReDensityData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density']
+
+
+class RegMunGenCapReData(GeoJSONLayerView):
+    model = models.RegMunGenCapRe
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re']
+
+
+class RegMunGenCapReDensityData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_density']
+
+
+class RegMunGenCountWindDensityData(GeoJSONLayerView):
+    model = models.RegMunGenCountWindDensity
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density']
+
+
+class RegMunDemElEnergyData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergy
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy']
+
+
+class RegMunDemElEnergyPerCapitaData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyPerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita']
+
+
+class RegMunDemThEnergyData(GeoJSONLayerView):
+    model = models.RegMunDemThEnergy
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_th_energy']
+
+
+class RegMunDemThEnergyPerCapitaData(GeoJSONLayerView):
+    model = models.RegMunDemThEnergyPerCapita
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_th_energy_per_capita']
 
 
 class RegWaterProtAreaData(GeoJSONLayerView):
@@ -145,6 +253,14 @@ class RegPrioAreaWECData(GeoJSONLayerView):
 
 class GenWECData(GeoJSONLayerView):
     model = models.GenWEC
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+class GenPVGroundData(GeoJSONLayerView):
+    model = models.GenPVGround
     properties = ['popup_content', 'name']
     srid = 4326
     geometry_field = 'geom'
@@ -286,3 +402,44 @@ class RegInfrasAviationData(GeoJSONLayerView):
     geometry_field = 'geom'
     precision = 5
 
+
+###############################
+# GeoJSON serial detail views #
+###############################
+
+class GeoJSONSingleDatasetLayerView(GeoJSONResponseMixin, DetailView):
+    """View for single objects of djgeojson's GeoJSON response
+
+    Modified version of GeoJSONResponseMixin - filter queryset before creating
+    GeoJSON response.
+    """
+    def render_to_response(self, context, **response_kwargs):
+        self.queryset = self.model.objects.filter(id=context['object'].id)
+        return super(GeoJSONSingleDatasetLayerView, self)\
+            .render_to_response(context, **response_kwargs)
+
+
+class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
+    model = models.REPotentialAreas
+    properties = ['popup_content', 'name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
+
+
+########################
+# Results serial views #
+########################
+
+class ResultChartsData(View):
+    model = None
+
+    @staticmethod
+    @never_cache
+    def get(request):
+        session = SESSION_DATA.get_session(request)
+        results = session.simulation.results
+        if results.is_up_to_date:
+            return JsonResponse(results.get_panel_results(), safe=True)
+        else:
+            return JsonResponse(None, safe=False)
