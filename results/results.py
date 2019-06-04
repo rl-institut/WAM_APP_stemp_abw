@@ -64,7 +64,7 @@ class Results(object):
                           {'name': 'PV2', 'data': [2,1]}]
 
         # convert data to appropriate format
-        data = {'hc_res_summary_scn': data_user_scn,
+        data = {'hc_res_summary_scn': data_user_scn2,
                 'hc_res_summary_sq': data_sq,
                 'hc_res_production_scn': data_user_scn,
                 'hc_res_production_sq': data_sq,
