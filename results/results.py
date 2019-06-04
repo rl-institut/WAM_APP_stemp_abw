@@ -13,6 +13,8 @@ class Results(object):
     def __init__(self, simulation):
         self.results_raw = None
         self.param_results_raw = None
+        self.sq_results_raw = oemof_json_to_results(Scenario.objects.get(
+            name='Status quo').results.data)[0]
         self.simulation = simulation
         self.is_up_to_date = False
         self.result_id = 0
@@ -36,14 +38,6 @@ class Results(object):
         else:
             raise ValueError(f'Node "{node_label}" not found in energy system!')
 
-    @staticmethod
-    def get_sq_results_raw():
-        """Return raw results of status quo scenario"""
-        return oemof_json_to_results(
-            Scenario.objects.get(
-                name='Status quo').results.data
-        )[0]
-
     def get_panel_results(self):
         """Analyze results and return data for panel display"""
 
@@ -54,7 +48,7 @@ class Results(object):
                       'shortage_el']
         nodes_to = ['bus_el']
         data_user_scn = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.results_raw)
-        data_sq = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.get_sq_results_raw())
+        data_sq = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.sq_results_raw)
 
         # data_user_scn2 = {'Windenergie': [3,6],
         #                   'PV': [1,2],
