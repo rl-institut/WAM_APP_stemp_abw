@@ -737,7 +737,7 @@ class RegInfrasAviationDetailView(MasterDetailView):
 # TODO: Remove/alter after test
 class RegMunPopResultDetailView(MasterDetailView):
     model = models.RegMunPopResult
-    template_name = 'stemp_abw/popups/pop_result.html'
+    template_name = 'stemp_abw/popups/result_pop.html'
 
     def get_context_data(self, **kwargs):
         context = super(RegMunPopResultDetailView, self).get_context_data(**kwargs)
@@ -769,4 +769,4 @@ class RegMunPopResultDetailView(MasterDetailView):
 # TODO: Remove/alter after test
 class RegMunPopDensityResultDetailView(MasterDetailView):
     model = models.RegMunPopDensityResult
-    template_name = 'stemp_abw/popups/pop_density_result.html'
+    template_name = 'stemp_abw/popups/result_pop_density.html'
