@@ -1012,3 +1012,50 @@ class RegMunGenCapReDensityResultDetailView(MasterDetailView):
 class RegMunGenCountWindDensityResultDetailView(MasterDetailView):
     model = models.RegMunGenCountWindDensityResult
     template_name = 'stemp_abw/popups/result_gen_count_wind_density.html'
+
+
+class RegMunDemElEnergyResultDetailView(MasterDetailView):
+    model = models.RegMunDemElEnergyResult
+    template_name = 'stemp_abw/popups/result_dem_el_energy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunDemElEnergyResultDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        hh = round((mun_data.dem_el_energy_hh / 1e3), 1)
+        rca = round((mun_data.dem_el_energy_rca / 1e3), 1)
+        ind = round((mun_data.dem_el_energy_ind / 1e3), 1)
+        data = pd.DataFrame({
+            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'y': [hh, rca, ind]
+        })
+        data.set_index('name', inplace=True)
+        # Convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Ergebnis: Strombedarf'},
+            'subtitle': {'text': 'nach Verbrauchergruppe'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = highcharts.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
