@@ -1,7 +1,12 @@
 from utils.highcharts import Highchart
 
-# Custom RLI theme, overwrites main WAM RLI theme in utils/highcharts.py
-CUSTOM_RLI_THEME = {
+#####################
+# Custom RLI themes #
+#####################
+# (overwrite main WAM RLI theme in utils/highcharts.py)
+
+# theme for result charts
+RESULT_THEME = {
     'credits': {
         'enabled': False
     },
@@ -12,15 +17,11 @@ CUSTOM_RLI_THEME = {
     'title': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            #'font': '1.17em Roboto, Arial, sans-serif',
-            #'font-weight': '300'
         }
     },
     'subtitle': {
         'style': {
             'color': 'rgb(0, 46, 79)',
-            #'font': '1em Roboto, Arial, sans-serif',
-            #'font-weight': '300'
         }
     },
     'lang': {
@@ -30,8 +31,6 @@ CUSTOM_RLI_THEME = {
     'legend': {
         'itemStyle': {
             'font': '1em Roboto, Arial, sans-serif',
-            #'color': 'rgb(0, 46, 79)',
-            #'font-weight': '300'
         },
         'itemHoverStyle': {
             'color': 'rgb(80, 126, 159)'
@@ -40,6 +39,7 @@ CUSTOM_RLI_THEME = {
     'plotOptions': {
         'series': {
             'dataLabels': {
+                'enabled': True,
                 'style': {
                     'fontWeight': None,
                     'textOutline': None
@@ -59,16 +59,69 @@ CUSTOM_RLI_THEME = {
     }
 }
 
+# theme for popup charts
+POPUP_THEME = {
+    'credits': {
+        'enabled': False
+    },
+    'chart': {'height': str(int(9 / 16 * 100)) + '%'},  # 16:9 ratio
+    'colors': [
+        '#fc8e65', '#55aae5', '#7fadb7', '#fce288', '#f69c3a', '#c28e5e',
+        '#a27b82', '#797097'
+    ],
+    'title': {
+        'style': {
+            'color': 'rgb(0, 46, 79)',
+            'font': '1.17em Roboto, Arial, sans-serif',
+            'font-weight': '300'
+        }
+    },
+    'subtitle': {
+        'style': {
+            'color': 'rgb(0, 46, 79)',
+            'font': '1em Roboto, Arial, sans-serif',
+            'font-weight': '300'
+        }
+    },
+    'lang': {
+        'decimalPoint': ',',
+        'thousandsSep': '.'
+    },
+    'legend': {
+        'itemStyle': {
+            'font': '1em Roboto, Arial, sans-serif',
+            'color': 'rgb(0, 46, 79)',
+            'font-weight': '300'
+        },
+        'itemHoverStyle': {
+            'color': 'rgb(80, 126, 159)'
+        }
+    },
+    'plotOptions': {
+        'series': {
+            'dataLabels': {
+                'enabled': False,
+                'style': {
+                    'fontWeight': None,
+                    'textOutline': None
+                }
+            }
+        }
+    }
+}
+
 
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, use_custom_rli_theme=True, data=None, setup_labels=None, **kwargs):
+    def __init__(self, theme='results', data=None, setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
-        if use_custom_rli_theme:
-            self.set_dict_options(CUSTOM_RLI_THEME)
+        if theme == 'results':
+            self.set_dict_options(RESULT_THEME)
+        elif theme == 'popups':
+            self.set_dict_options(POPUP_THEME)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
@@ -79,8 +132,7 @@ class HCTimeseries(HCStemp):
     setup = {
         'chart': {
             'type': 'line',
-            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
-            'height': str(int(9 / 16 * 100)) + '%',  # 16:9 ratio
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)'
         },
         'xAxis': {
             'type': 'datetime'
@@ -100,15 +152,13 @@ class HCPiechart(HCStemp):
     setup = {
         'chart': {
             'type': 'pie',
-            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
-            'height': str(int(9 / 16 * 100)) + '%',
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)'
         },
         'plotOptions': {
             'pie': {
                 'allowPointSelect': False,
                 'cursor': 'pointer',
                 'dataLabels': {
-                    'enabled': True,
                     'format': '<b>{point.name}</b>: {point.y}<br>({point.percentage:.1f} %)',
                     },
                 'showInLegend': True
@@ -125,8 +175,7 @@ class HCStackedColumn(HCStemp):
     setup = {
         'chart': {
             'type': 'column',
-            'backgroundColor': 'rgba(255, 255, 255, 0.0)',
-            'height': str(int(9 / 16 * 100)) + '%',
+            'backgroundColor': 'rgba(255, 255, 255, 0.0)'
         },
         'yAxis': {
             'min': 0
