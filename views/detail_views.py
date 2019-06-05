@@ -860,3 +860,51 @@ class RegMunGenEnergyReResultDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
+
+
+class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyReDensityResult
+    template_name = 'stemp_abw/popups/result_gen_energy_re_density.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenEnergyReDensityResultDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_el_energy_wind / mun_data.area), 1)
+        pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.area), 1)
+        pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.area), 1)
+        hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
+            'y': [wind, pv_roof, pv_ground, hydro]
+        })
+        data.set_index('name', inplace=True)
+        # Convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Ergebnis: Gewonnene Energie aus EE'},
+            'subtitle': {'text': 'je km²'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = highcharts.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart

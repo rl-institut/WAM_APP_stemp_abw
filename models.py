@@ -468,6 +468,17 @@ class RegMunGenEnergyReResult(RegMun):
                       self.mundata.gen_el_energy_hydro) / 1e3)
 
 
+# TODO: Alter extended class to result class
+class RegMunGenEnergyReDensityResult(RegMunGenEnergyRe):
+    name = 'reg_mun_gen_energy_re_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density_result(self):
+        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
+
 
 ###############
 # Data models #

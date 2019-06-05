@@ -458,3 +458,11 @@ class RegMunGenEnergyReResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'gen_energy_re_result']
+
+
+class RegMunGenEnergyReDensityResultData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density_result']
