@@ -496,6 +496,18 @@ class RegMunGenCapReResult(RegMun):
                      self.mundata.gen_capacity_bio)
 
 
+# TODO: Alter extended class to result class
+class RegMunGenCapReDensityResult(RegMunGenCapRe):
+    name = 'reg_mun_gen_cap_re_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_density_result(self):
+        return round(self.gen_cap_re / self.mundata.area, 2)
+
+
 
 ###############
 # Data models #

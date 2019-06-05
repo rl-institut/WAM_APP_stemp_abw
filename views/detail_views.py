@@ -957,3 +957,53 @@ class RegMunGenCapReResultDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
+
+
+class RegMunGenCapReDensityResultDetailView(MasterDetailView):
+    model = models.RegMunGenCapReDensityResult
+    template_name = 'stemp_abw/popups/result_gen_cap_re_density.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenCapReDensityResultDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_capacity_wind / mun_data.area), 2)
+        pv_roof = round((mun_data.gen_capacity_pv_roof_large / mun_data.area),
+                        2)
+        pv_ground = round((mun_data.gen_capacity_pv_ground / mun_data.area), 2)
+        hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
+        bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche', 'Hydro', 'Bio'],
+            'y': [wind, pv_roof, pv_ground, hydro, bio]
+        })
+        data.set_index('name', inplace=True)
+        # Convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Ergebnis: Installierte Leistung EE'},
+            'subtitle': {'text': 'je km²'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = highcharts.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
