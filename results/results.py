@@ -46,15 +46,17 @@ class Results(object):
         else:
             raise ValueError(f'Node "{node_label}" not found in energy system!')
 
-    def get_panel_results(self):
+    def get_result_charts_data(self):
         """Analyze results and return data for panel display"""
 
+        #
         nodes_from = ['gen_el_wind',
                       'gen_el_pv_roof',
                       'gen_el_pv_ground',
                       'gen_el_hydro',
                       'shortage_el']
         nodes_to = ['bus_el']
+
         data_user_scn = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.results_raw)
         data_sq = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.sq_results_raw)
 

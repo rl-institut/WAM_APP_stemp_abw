@@ -440,6 +440,6 @@ class ResultChartsData(View):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
         if results.is_up_to_date:
-            return JsonResponse(results.get_panel_results(), safe=True)
+            return JsonResponse(results.get_result_charts_data(), safe=True)
         else:
             return JsonResponse(None, safe=False)

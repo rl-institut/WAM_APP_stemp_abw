@@ -290,7 +290,7 @@ class Simulation(object):
         self.results = Results(simulation=self)
         #self.create_esys()
         #self.load_or_simulate()
-        #self.x = self.results.get_panel_results()
+        #self.x = self.results.get_result_charts_data()
     
     def create_esys(self):
         """Create energy system, parametrize and add nodes"""
