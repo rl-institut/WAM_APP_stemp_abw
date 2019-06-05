@@ -451,3 +451,10 @@ class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'energy_re_el_dem_share_result']
+
+class RegMunGenEnergyReResultData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_result']

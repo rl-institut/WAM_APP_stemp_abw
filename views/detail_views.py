@@ -799,7 +799,7 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
             'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
                           'PV Freifläche': pv_ground, 'Hydro': hydro}})
         setup_labels = {
-            'title': {'text': 'Ergebnis EE-Erzeugung'},
+            'title': {'text': 'Ergebnis: EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zum Strombedarf'},
             'yAxis': {'title': {'text': 'Prozent'}},
             'tooltip': {
@@ -807,6 +807,54 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
             }
         }
         chart = highcharts.HCStackedColumn(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart
+
+
+class RegMunGenEnergyReResultDetailView(MasterDetailView):
+    model = models.RegMunGenEnergyReResult
+    template_name = 'stemp_abw/popups/result_gen_energy_re.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenEnergyReResultDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round((mun_data.gen_el_energy_wind / 1e3), 1)
+        pv_roof = round((mun_data.gen_el_energy_pv_roof / 1e3), 1)
+        pv_ground = round((mun_data.gen_el_energy_pv_ground / 1e3), 1)
+        hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
+            'y': [wind, pv_roof, pv_ground, hydro]
+        })
+        data.set_index('name', inplace=True)
+        # Convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Ergebnis: Gewonnene Energie aus EE'},
+            'subtitle': {'text': 'nach Quelle'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        GWh<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                GWh<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
             style='display: inline-block'
