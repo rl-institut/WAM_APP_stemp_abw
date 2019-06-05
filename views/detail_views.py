@@ -908,3 +908,52 @@ class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
+
+
+class RegMunGenCapReResultDetailView(MasterDetailView):
+    model = models.RegMunGenCapReResult
+    template_name = 'stemp_abw/popups/result_gen_cap_re.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunGenCapReResultDetailView, self).get_context_data(
+            **kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        wind = round(mun_data.gen_capacity_wind, 1)
+        pv_roof = round(mun_data.gen_capacity_pv_roof_large, 1)
+        pv_ground = round(mun_data.gen_capacity_pv_ground, 1)
+        hydro = round(mun_data.gen_capacity_hydro, 1)
+        bio = round(mun_data.gen_capacity_bio, 1)
+        data = pd.DataFrame({
+            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche', 'Hydro', 'Bio'],
+            'y': [wind, pv_roof, pv_ground, hydro, bio]
+        })
+        data.set_index('name', inplace=True)
+        # Convert data to appropriate format for pie chart
+        data = data.reset_index().to_dict(orient='records')
+        setup_labels = {
+            'title': {'text': 'Ergebnis: Installierte Leistung EE'},
+            'subtitle': {'text': 'nach Quelle'},
+            'plotOptions': {
+                'pie': {
+                    'dataLabels': {
+                        'format': '<b>{point.name}</b>: {point.y} \
+                        MW<br>({point.percentage:.1f} %)',
+                    }
+                }
+            },
+            'tooltip': {
+                'pointFormat': '<b>{point.name}</b>: {point.y} \
+                MW<br>({point.percentage:.1f} %)'
+            }
+        }
+        chart = highcharts.HCPiechart(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart

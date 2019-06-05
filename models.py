@@ -480,6 +480,23 @@ class RegMunGenEnergyReDensityResult(RegMunGenEnergyRe):
         return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
 
 
+# TODO: Alter extended class to result class
+class RegMunGenCapReResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_result(self):
+        return round(self.mundata.gen_capacity_wind +
+                     self.mundata.gen_capacity_pv_roof_large +
+                     self.mundata.gen_capacity_pv_ground +
+                     self.mundata.gen_capacity_hydro +
+                     self.mundata.gen_capacity_bio)
+
+
+
 ###############
 # Data models #
 ###############
