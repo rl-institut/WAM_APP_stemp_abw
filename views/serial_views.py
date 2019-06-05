@@ -412,7 +412,6 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 ########################
 # Results serial views #
 ########################
-
 class ResultChartsData(View):
     model = None
 
@@ -425,24 +424,6 @@ class ResultChartsData(View):
             return JsonResponse(results.get_panel_results(), safe=True)
         else:
             return JsonResponse(None, safe=False)
-
-
-# TODO: Remove/alter after test
-class RegMunPopResultData(GeoJSONLayerView):
-    model = models.RegMunPopResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_result']
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResultData(GeoJSONLayerView):
-    model = models.RegMunPopDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_density_result']
 
 
 class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):

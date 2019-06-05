@@ -412,35 +412,6 @@ class RegInfrasAviation(LayerModel):
 ##########################
 # Layer models (results) #
 ##########################
-# Result proxy models for serial views
-# TODO: Remove/alter after test
-import random
-random.seed(1)
-
-# TODO: Remove/alter after test
-class RegMunPopResult(RegMun):
-    name = 'reg_mun_pop_result'
-
-    class Meta:
-        proxy = True
-
-    @property
-    def pop_result(self):
-        return 80000 * random.random()
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResult(RegMun):
-    name = 'reg_mun_pop_density_result'
-
-    class Meta:
-        proxy = True
-
-    @property
-    def pop_density_result(self):
-        return round(self.mundata.pop_2017 / self.mundata.area)
-
-
 # TODO: Alter extended classes to result classes
 class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
     name = 'reg_mun_energy_re_el_dem_share_result'

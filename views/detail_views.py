@@ -732,46 +732,9 @@ class RegInfrasAviationDetailView(MasterDetailView):
     model = models.RegInfrasAviation
 
 
-# RESULT DETAIL VIEWS
-
-# TODO: Remove/alter after test
-class RegMunPopResultDetailView(MasterDetailView):
-    model = models.RegMunPopResult
-    template_name = 'stemp_abw/popups/result_pop.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(RegMunPopResultDetailView, self).get_context_data(**kwargs)
-        self.chart_session_store(context)
-
-        return context
-
-    def build_chart(self):
-        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
-        pop_2017 = mun_data.pop_2017
-        pop_2030 = mun_data.pop_2030
-        pop_2050 = mun_data.pop_2050
-        index = ['2017', '2030', '2050']
-        data = pd.DataFrame(index=index,
-                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
-        setup_labels = {
-            'title': {'text': 'Ergebnis Bevölkerungsentwicklung'},
-            'subtitle': {'text': 'Ergebnis'},
-            'yAxis': {'title': {'text': 'Personen'}}
-        }
-        chart = highcharts.HCTimeseries(
-            data=data,
-            setup_labels=setup_labels,
-            style='display: inline-block'
-        )
-        return chart
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResultDetailView(MasterDetailView):
-    model = models.RegMunPopDensityResult
-    template_name = 'stemp_abw/popups/result_pop_density.html'
-
-
+#######################
+# RESULT DETAIL VIEWS #
+#######################
 class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
     model = models.RegMunEnergyReElDemShareResult
     template_name = 'stemp_abw/popups/result_energy_re_el_dem_share.html'
