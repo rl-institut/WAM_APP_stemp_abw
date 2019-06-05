@@ -63,11 +63,11 @@ CUSTOM_RLI_THEME = {
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, use_rli_theme=True, data=None, setup_labels=None, **kwargs):
+    def __init__(self, use_custom_rli_theme=True, data=None, setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
-        if use_rli_theme:
+        if use_custom_rli_theme:
             self.set_dict_options(CUSTOM_RLI_THEME)
         if data is not None:
             series_type = self.setup.get('chart').get('type')
