@@ -1,5 +1,4 @@
 import pandas as pd
-from numpy.random import random
 from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario
 from stemp_abw.results.io import oemof_json_to_results
@@ -28,14 +27,19 @@ class Results(object):
         self.param_results_raw = param_results_raw
         self.is_up_to_date = True
 
-
     def get_node_results_df(self, node_label):
-        """Return DataFrame with Checks for existence of node in energy system
+        """Return DataFrame with optimization results (timeseries) for single
+        node.
 
         Parameters
         ----------
         node_label : :obj:`str`
             Label of node the data should be looked up for
+
+        Returns
+        -------
+        :pandas:`pandas.DataFrame<dataframe>`
+            Node results (timeseries)
         """
         if node_label in [str(n) for n in self.simulation.esys.nodes]:
             return views.node(self.results_raw, node_label)
