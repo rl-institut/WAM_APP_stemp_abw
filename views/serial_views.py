@@ -482,3 +482,11 @@ class RegMunGenCapReDensityResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'gen_cap_re_density_result']
+
+
+class RegMunGenCountWindDensityResultData(GeoJSONLayerView):
+    model = models.RegMunGenCountWindDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density_result']

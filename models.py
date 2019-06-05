@@ -508,6 +508,18 @@ class RegMunGenCapReDensityResult(RegMunGenCapRe):
         return round(self.gen_cap_re / self.mundata.area, 2)
 
 
+# TODO: Alter extended class to result class
+class RegMunGenCountWindDensityResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_count_wind_density_result(self):
+        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
+
+
 
 ###############
 # Data models #

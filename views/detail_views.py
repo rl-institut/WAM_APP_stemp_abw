@@ -1007,3 +1007,8 @@ class RegMunGenCapReDensityResultDetailView(MasterDetailView):
             style='display: inline-block'
         )
         return chart
+
+
+class RegMunGenCountWindDensityResultDetailView(MasterDetailView):
+    model = models.RegMunGenCountWindDensityResult
+    template_name = 'stemp_abw/popups/result_gen_count_wind_density.html'
