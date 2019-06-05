@@ -777,6 +777,12 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
         return chart
 
 
+# TODO: This is a test, alter after test is done
+class RegMunEnergyReElDemShareResultDeltaDetailView(MasterDetailView):
+    model = models.RegMunEnergyReElDemShareResultDelta
+    template_name = 'stemp_abw/popups/result_delta_energy_re_el_dem_share.html'
+
+
 class RegMunGenEnergyReResultDetailView(MasterDetailView):
     model = models.RegMunGenEnergyReResult
     template_name = 'stemp_abw/popups/result_gen_energy_re.html'
