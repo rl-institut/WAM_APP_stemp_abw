@@ -498,3 +498,11 @@ class RegMunDemElEnergyResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'dem_el_energy_result']
+
+
+class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyPerCapitaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita_result']
