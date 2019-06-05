@@ -851,7 +851,7 @@ class REPotentialAreas(models.Model):
 
 
 class SimulationResults(models.Model):
-    """Results of a scenario
+    """Results of a scenario simulation
 
     Attributes
     ----------
