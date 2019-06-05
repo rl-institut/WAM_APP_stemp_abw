@@ -770,3 +770,45 @@ class RegMunPopResultDetailView(MasterDetailView):
 class RegMunPopDensityResultDetailView(MasterDetailView):
     model = models.RegMunPopDensityResult
     template_name = 'stemp_abw/popups/result_pop_density.html'
+
+
+class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
+    model = models.RegMunEnergyReElDemShareResult
+    template_name = 'stemp_abw/popups/result_energy_re_el_dem_share.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegMunEnergyReElDemShareResultDetailView,
+                        self).get_context_data(**kwargs)
+        self.chart_session_store(context)
+
+        return context
+
+    def build_chart(self):
+        mun_data = models.MunData.objects.get(pk=self.kwargs['pk'])
+        reg_mun_dem_el_energy = models.RegMunEnergyReElDemShareResult.objects.get(
+            pk=self.kwargs['pk'])
+        wind = round(((mun_data.gen_el_energy_wind / 1e3) /
+                      reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_roof = round(((mun_data.gen_el_energy_pv_roof / 1e3) /
+                         reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        pv_ground = round(((mun_data.gen_el_energy_pv_ground / 1e3) /
+                           reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        hydro = round(((mun_data.gen_el_energy_hydro / 1e3) /
+                       reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        data = pd.DataFrame(data={
+            'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
+                          'PV Freifläche': pv_ground, 'Hydro': hydro}})
+        setup_labels = {
+            'title': {'text': 'Ergebnis EE-Erzeugung'},
+            'subtitle': {'text': 'in Prozent zum Strombedarf'},
+            'yAxis': {'title': {'text': 'Prozent'}},
+            'tooltip': {
+                'pointFormat': 'Bedarf: {point.stackTotal} %'
+            }
+        }
+        chart = highcharts.HCStackedColumn(
+            data=data,
+            setup_labels=setup_labels,
+            style='display: inline-block'
+        )
+        return chart

@@ -441,6 +441,18 @@ class RegMunPopDensityResult(RegMun):
         return round(self.mundata.pop_2017 / self.mundata.area)
 
 
+# TODO: Alter input params to result classes
+class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
+    name = 'reg_mun_energy_re_el_dem_share_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def energy_re_el_dem_share_result(self):
+        return round(self.gen_energy_re / self.dem_el_energy * 100)
+
+
 ###############
 # Data models #
 ###############

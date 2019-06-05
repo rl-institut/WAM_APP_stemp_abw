@@ -443,3 +443,11 @@ class RegMunPopDensityResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'pop_density_result']
+
+
+class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
+    model = models.RegMunEnergyReElDemShareResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share_result']
