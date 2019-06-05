@@ -33,30 +33,12 @@ class RegMunPopData(GeoJSONLayerView):
                   'pop']
 
 
-# TODO: Remove/alter after test
-class RegMunPopResultData(GeoJSONLayerView):
-    model = models.RegMunPopResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_result']
-
-
 class RegMunPopDensityData(GeoJSONLayerView):
     model = models.RegMunPopDensity
     properties = ['popup_content',
                   'name',
                   'gen',
                   'pop_density']
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResultData(GeoJSONLayerView):
-    model = models.RegMunPopDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_density_result']
 
 
 class RegMunEnergyReElDemShareData(GeoJSONLayerView):
@@ -443,3 +425,21 @@ class ResultChartsData(View):
             return JsonResponse(results.get_panel_results(), safe=True)
         else:
             return JsonResponse(None, safe=False)
+
+
+# TODO: Remove/alter after test
+class RegMunPopResultData(GeoJSONLayerView):
+    model = models.RegMunPopResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_result']
+
+
+# TODO: Remove/alter after test
+class RegMunPopDensityResultData(GeoJSONLayerView):
+    model = models.RegMunPopDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'pop_density_result']
