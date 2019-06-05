@@ -1154,12 +1154,12 @@ class RegMunDemThEnergyResultDetailView(MasterDetailView):
         return chart
 
 
-class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
-    model = models.RegMunDemThEnergyPerCapita
-    template_name = 'stemp_abw/popups/dem_th_energy_per_capita.html'
+class RegMunDemThEnergyPerCapitaResultDetailView(MasterDetailView):
+    model = models.RegMunDemThEnergyPerCapitaResult
+    template_name = 'stemp_abw/popups/result_dem_th_energy_per_capita.html'
 
     def get_context_data(self, **kwargs):
-        context = super(RegMunDemThEnergyPerCapitaDetailView,
+        context = super(RegMunDemThEnergyPerCapitaResultDetailView,
                         self).get_context_data(**kwargs)
         self.chart_session_store(context)
 
@@ -1177,7 +1177,7 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Wärmebedarf'},
+            'title': {'text': 'Ergebnis: Wärmebedarf'},
             'subtitle': {'text': 'je EinwohnerIn nach Verbrauchergruppe'},
             'plotOptions': {
                 'pie': {

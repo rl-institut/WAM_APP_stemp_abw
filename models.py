@@ -559,6 +559,18 @@ class RegMunDemThEnergyResult(RegMun):
                       self.mundata.dem_th_energy_rca) / 1e3)
 
 
+# TODO: Alter extended class to result class
+class RegMunDemThEnergyPerCapitaResult(RegMunDemThEnergy):
+    name = 'reg_mun_dem_th_energy_per_capita_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_th_energy_per_capita_result(self):
+        return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
+
+
 ###############
 # Data models #
 ###############
