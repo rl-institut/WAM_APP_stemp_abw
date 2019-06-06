@@ -20,14 +20,17 @@ Für das Tool wurden mehrere Szenarien entwickelt, wie in folder Tabelle dargest
 | Brian      | body row 4 |            | - blocks. |
 +------------+------------+------------+-----------+
 
-Mehr über die Integration der Szenarien im Tool erfahren sie unter
-:ref:`developer_label`.
+Mehr über die Integration der Szenarien in das Tool erfahren sie unter
+:ref:`developer_scenarios_label` (für EntwicklerInnen).
 
 Methoden
 --------
 
 Energiesystem
 .............
+
+Mehr über die Integration des Energiesystems in das Tool erfahren sie unter
+:ref:`developer_energy_system_label` (für EntwicklerInnen).
 
 Daten
 .....

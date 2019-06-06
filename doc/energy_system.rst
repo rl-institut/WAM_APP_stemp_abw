@@ -50,3 +50,11 @@ Vereinfachungen finden Sie unter :ref:`scenarios_label`.
 
 :add more:
     Text
+
+Integration
+-----------
+
+Mehr über die Integration des Energiesystems in das Tool erfahren sie unter
+:ref:`developer_energy_system_label` (für EntwicklerInnen).
+
+

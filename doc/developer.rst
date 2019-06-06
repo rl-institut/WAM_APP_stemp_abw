@@ -161,6 +161,8 @@ User Session
 
 (use refs to APIdoc)
 
+.. _developer_geo_layers_label:
+
 Geo-Ebenen (Layer)
 ------------------
 
@@ -180,16 +182,22 @@ TBD:
 - Wie werden die Endpunkte bereitgestellt (urls.py)?
 - Wie kann ich einen neuen Layer hinzufügen?
 
+.. _developer_energy_system_label:
+
 Energiesystem
 -------------
 
 - Wo werden die Komponenten definiert?
+
+.. _developer_scenarios_label:
 
 Szenarien
 ---------
 
 - Wo werden die Szenarien definiert?
 - Wie kann ich ein neues Szenario anlegen?
+
+.. _developer_help_texts_label:
 
 Hilfetexte
 ----------
