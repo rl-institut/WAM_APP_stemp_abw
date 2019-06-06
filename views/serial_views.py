@@ -490,22 +490,6 @@ class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
                   'dem_el_energy_per_capita_result']
 
 
-class RegMunDemThEnergyResultData(GeoJSONLayerView):
-    model = models.RegMunDemThEnergyResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_th_energy_result']
-
-
-class RegMunDemThEnergyPerCapitaResultData(GeoJSONLayerView):
-    model = models.RegMunDemThEnergyPerCapitaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_th_energy_per_capita_result']
-
-
 ################################
 # Results serial views (DELTA) #
 ################################
