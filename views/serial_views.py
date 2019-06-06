@@ -434,15 +434,6 @@ class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
                   'energy_re_el_dem_share_result']
 
 
-# TODO: This is a test, alter after test is done
-class RegMunEnergyReElDemShareResultDeltaData(GeoJSONLayerView):
-    model = models.RegMunEnergyReElDemShareResultDelta
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'energy_re_el_dem_share_result_delta']
-
-
 class RegMunGenEnergyReResultData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReResult
     properties = ['popup_content',

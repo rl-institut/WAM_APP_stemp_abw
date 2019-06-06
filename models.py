@@ -1,3 +1,4 @@
+import random
 from uuid import uuid4
 
 from django.db import models
@@ -423,20 +424,6 @@ class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
     @property
     def energy_re_el_dem_share_result(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)
-
-
-# TODO: This is a test, alter after test is done
-import random
-
-class RegMunEnergyReElDemShareResultDelta(RegMun):
-    name = 'reg_mun_energy_re_el_dem_share_result_delta'
-
-    class Meta:
-        proxy = True
-
-    @property
-    def energy_re_el_dem_share_result_delta(self):
-        return random.randrange(0, 500, 1)
 
 
 # TODO: Alter extended class to result class
