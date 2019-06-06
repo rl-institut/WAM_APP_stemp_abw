@@ -513,3 +513,16 @@ class RegMunDemThEnergyPerCapitaResultData(GeoJSONLayerView):
                   'name',
                   'gen',
                   'dem_th_energy_per_capita_result']
+
+
+################################
+# Results serial views (DELTA) #
+################################
+
+class RegMunGenEnergyReResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_result_delta']
+    geometry_field = 'geom_centroid'
