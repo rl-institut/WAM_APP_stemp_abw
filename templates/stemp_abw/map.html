@@ -767,8 +767,6 @@
 
     <script type="text/javascript">
         function result_map_init (map, options) {
-            console.log("Calling result_map_init");
-            console.log("{{layer_list_results}}");
 
             // show load spinner
             toggleSpinnerVisibility();
@@ -780,14 +778,9 @@
 
             // Load GeoJsons via Ajax and add layers to map (region and area info)
             {% for layer, data in layer_list_results.items %}
-                // Build data URL
-                var data_url = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}";
-                console.log('dataurl: ' + data_url);
                 var delta_data_url = "{% url 'stemp_abw:'|add:data.model|add:'_delta.data' %}";
-                console.log('delta_data_url: ' + delta_data_url);
                 $.getJSON(delta_data_url, function (delta_data) {
-                  console.log(delta_data_url);
-                  var delta_data_points = delta_data;
+                  var data_url = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}";
                   $.ajax({
                       url: data_url,
                       dataType: 'json',
@@ -797,13 +790,11 @@
                           var layer = new L.geoJson(json, {
                                 style: function (feature) {
                                   var layer_style = getLayerStyle("{{ layer }}", feature);
-                                  console.log(layer_style);
                                   return layer_style;
                                 },
                                 onEachFeature: onEachFeature("{{ layer }}"),
                                 pointToLayer: function (feature, latlng) {
                                   var delta_name = ('{{ layer }}' + '_delta').replace(/reg_mun_/g, '');
-                                  console.log('delta_name: ' + delta_name);
                                   // .bindTooltip can't use straight 'feature.properties.attribute'
                                   var label = String(feature.properties[delta_name]);
                                   return new L.CircleMarker(latlng, {
@@ -816,10 +807,7 @@
                                 }
                               }
                           );
-
-                          console.log('adding delta_data_points to layer: {{ layer }}');
-                          console.log(delta_data_points);
-                          layer.addData(delta_data_points);
+                          layer.addData(delta_data);
                           layers["{{ layer }}"] = layer;
                           layers_cat["{{ layer }}"] = '{{ data.cat }}';
                           layer_ctr++;
