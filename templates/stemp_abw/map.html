@@ -790,14 +790,25 @@
                     async: true,
                     success: function(json){
                         // Add GeoJSON layer
-                        var layer = new L.geoJson(json, {style: function(feature) {
-                                                            return getLayerStyle("{{ layer }}",
-                                                                                 feature);
-                                                         },
-                                                         onEachFeature: onEachFeature("{{ layer }}"),
-                                                         pointToLayer: pointToLayer
-                                                         }
-                                                 );
+                        var layer = new L.geoJson(json, {
+                              style: function (feature) {
+                                return getLayerStyle("{{ layer }}",
+                                    feature);
+                              },
+                              onEachFeature: onEachFeature("{{ layer }}"),
+                              pointToLayer: function (feature, latlng) {
+                                // .bindTooltip can't use straight 'feature.properties.attribute'
+                                var label = String(feature.properties.name)
+                                return new L.CircleMarker(latlng, {
+                                  radius: 0.1,
+                                }).bindTooltip(label, {
+                                  permanent: true,
+                                  direction: "center",
+                                  className: "my-delta"
+                                }).openTooltip();
+                              }
+                            }
+                        );
                         // TODO: Replace with AJAX call
                         var data_points = {
                           "type": "FeatureCollection",

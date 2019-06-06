@@ -125,21 +125,9 @@ function onEachFeature(layerName) {
   };
 }
 
-// function pointToLayer(feature, latlng) {
-//   var marker = L.circleMarker(latlng)
-//   return marker;
-// }
-
 function pointToLayer(feature, latlng) {
-  var label = String(feature.properties.name) // .bindTooltip can't use straight 'feature.properties.attribute'
-  console.log("label: " + label);
-  return new L.CircleMarker(latlng, {
-    radius: 0.1,
-  }).bindTooltip(label, {
-    permanent: true,
-    direction: "center",
-    className: "my-delta"
-  }).openTooltip();
+  var marker = L.circleMarker(latlng)
+  return marker;
 }
 
 // Create layer style from style_data json obj
