@@ -52,6 +52,7 @@ class RegMun(LayerModel):
     name = 'reg_mun'
     ags = models.IntegerField(primary_key=True)
     geom = geomodels.MultiPolygonField(srid=3035)
+    geom_centroid = geomodels.PointField(srid=3035, null=True)
     gen = models.CharField(max_length=254)
 
 
@@ -554,6 +555,21 @@ class RegMunDemThEnergyPerCapitaResult(RegMunDemThEnergy):
     @property
     def dem_th_energy_per_capita_result(self):
         return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
+
+
+################################
+# Layer models (results DELTA) #
+################################
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
 
 
 ###############
