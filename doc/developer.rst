@@ -172,6 +172,7 @@ Ebenen mit räumlichen Informationen werden an 4 Stellen im Tool verwendet:
 4. Ergebnise (Panel "Ergebnisse")
 
 TBD:
+
 - Wo liegen Daten in welchem Format und CRS/SRID?
 - Wo liegen die Metainformationen & Styles zu den Ebenen?
 - Welche Datenstrukturen sind wichtig? (Serial-/GeoJSONLayerView, DetailView)
