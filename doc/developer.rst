@@ -161,6 +161,42 @@ User Session
 
 (use refs to APIdoc)
 
+Geo-Ebenen (Layer)
+------------------
+
+Ebenen mit räumlichen Informationen werden an 4 Stellen im Tool verwendet:
+
+1. Regions-Informationen (Panel "Region")
+2. Statische Flächen (Panel "Flächen" -> "Statische Flächen")
+3. Weißflächen (Panel "Flächen" -> "Variierbare Flächen")
+4. Ergebnise (Panel "Ergebnisse")
+
+TBD:
+- Wo liegen Daten in welchem Format und CRS/SRID?
+- Wo liegen die Metainformationen & Styles zu den Ebenen?
+- Welche Datenstrukturen sind wichtig? (Serial-/GeoJSONLayerView, DetailView)
+- Wie werden Ebenen geladen und aktiviert?
+- Wie werden die Endpunkte bereitgestellt (urls.py)?
+- Wie kann ich einen neuen Layer hinzufügen?
+
+Energiesystem
+-------------
+
+- Wo werden die Komponenten definiert?
+
+Szenarien
+---------
+
+- Wo werden die Szenarien definiert?
+- Wie kann ich ein neues Szenario anlegen?
+
+Hilfetexte
+----------
+
+- Wo liegen die Hilfetexte (Tooltips)?
+- Wie werden diese eingebunden?
+
+
 .. _Django: https://www.djangoproject.com/
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
