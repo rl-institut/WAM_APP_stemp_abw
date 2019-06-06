@@ -798,6 +798,59 @@
                                                          pointToLayer: pointToLayer
                                                          }
                                                  );
+                        // TODO: Replace with AJAX call
+                        var data_points = {
+                          "type": "FeatureCollection",
+                          "name": "result delta <<layername>>",
+                          "crs": {
+                            "type": "name",
+                            "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}
+                          },
+                          "features": [
+                            {
+                              "type": "Feature",
+                              "properties": {"name": "-1"},
+                              "geometry": {
+                                "type": "Point",
+                                "coordinates": [12.226989, 51.824559]
+                              }
+                            },
+                            {
+                              "type": "Feature",
+                              "properties": {"name": "6"},
+                              "geometry": {
+                                "type": "Point",
+                                "coordinates": [11.962059, 51.754054]
+                              }
+                            },
+                            {
+                              "type": "Feature",
+                              "properties": {"name": "-12"},
+                              "geometry": {
+                                "type": "Point",
+                                "coordinates": [12.443874, 51.893259]
+                              }
+                            },
+                            {
+                              "type": "Feature",
+                              "properties": {"name": "25"},
+                              "geometry": {
+                                "type": "Point",
+                                "coordinates": [12.655190, 51.872066]
+                              }
+                            },
+                            {
+                              "type": "Feature",
+                              "properties": {"name": "28"},
+                              "geometry": {
+                                "type": "Point",
+                                "coordinates": [12.107524, 51.640847]
+                              }
+                            }
+                          ]
+                        };
+                        console.log('adding data_points to layer: {{ layer }}');
+                        layer.addData(data_points);
                         layers["{{ layer }}"] = layer;
                         layers_cat["{{ layer }}"] = '{{ data.cat }}';
                         layer_ctr++;
