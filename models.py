@@ -52,6 +52,7 @@ class RegMun(LayerModel):
     name = 'reg_mun'
     ags = models.IntegerField(primary_key=True)
     geom = geomodels.MultiPolygonField(srid=3035)
+    geom_centroid = geomodels.PointField(srid=3035, null=True)
     gen = models.CharField(max_length=254)
 
 
