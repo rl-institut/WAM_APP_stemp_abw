@@ -557,6 +557,21 @@ class RegMunDemThEnergyPerCapitaResult(RegMunDemThEnergy):
         return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
 
 
+################################
+# Layer models (results DELTA) #
+################################
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
 ###############
 # Data models #
 ###############
