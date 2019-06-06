@@ -523,6 +523,18 @@ class RegMunDemElEnergyPerCapitaResult(RegMunDemElEnergy):
 # Layer models (results DELTA) #
 ################################
 # TODO: This is a test delta layer
+class RegMunEnergyReElDemShareDeltaResult(RegMun):
+    name = 'reg_mun_energy_re_el_dem_share_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def energy_re_el_dem_share_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
 class RegMunGenEnergyReDeltaResult(RegMun):
     name = 'reg_mun_gen_energy_re_result_delta'
 
@@ -531,6 +543,78 @@ class RegMunGenEnergyReDeltaResult(RegMun):
 
     @property
     def gen_energy_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCountWindDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_count_wind_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyPerCapitaDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_per_capita_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_per_capita_result_delta(self):
         return random.randrange(-100, 100, 1)
 
 

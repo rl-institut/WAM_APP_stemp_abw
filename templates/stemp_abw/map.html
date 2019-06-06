@@ -781,156 +781,115 @@
             // Load GeoJsons via Ajax and add layers to map (region and area info)
             {% for layer, data in layer_list_results.items %}
                 // Build data URL
-                var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
+                var data_url = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}";
+                console.log('dataurl: ' + data_url);
+                var delta_data_url = "{% url 'stemp_abw:'|add:data.model|add:'_delta.data' %}";
+                console.log('delta_data_url: ' + delta_data_url);
+                $.getJSON(delta_data_url, function (delta_data) {
+                  console.log(delta_data_url);
+                  var delta_data_points = delta_data;
+                  $.ajax({
+                      url: data_url,
+                      dataType: 'json',
+                      async: true,
+                      success: function(json){
+                          // Add GeoJSON layer
+                          var layer = new L.geoJson(json, {
+                                style: function (feature) {
+                                  var layer_style = getLayerStyle("{{ layer }}", feature);
+                                  console.log(layer_style);
+                                  return layer_style;
+                                },
+                                onEachFeature: onEachFeature("{{ layer }}"),
+                                pointToLayer: function (feature, latlng) {
+                                  var delta_name = ('{{ layer }}' + '_delta').replace(/reg_mun_/g, '');
+                                  console.log('delta_name: ' + delta_name);
+                                  // .bindTooltip can't use straight 'feature.properties.attribute'
+                                  var label = String(feature.properties[delta_name]);
+                                  return new L.CircleMarker(latlng, {
+                                    radius: 0.1,
+                                  }).bindTooltip(label, {
+                                    permanent: true,
+                                    direction: "center",
+                                    className: "my-delta"
+                                  }).openTooltip();
+                                }
+                              }
+                          );
 
-                // Load data via Ajax
-                $.ajax({
-                    url: dataurl,
-                    dataType: 'json',
-                    async: true,
-                    success: function(json){
-                        // Add GeoJSON layer
-                        var layer = new L.geoJson(json, {
-                              style: function (feature) {
-                                return getLayerStyle("{{ layer }}",
-                                    feature);
-                              },
-                              onEachFeature: onEachFeature("{{ layer }}"),
-                              pointToLayer: function (feature, latlng) {
-                                // .bindTooltip can't use straight 'feature.properties.attribute'
-                                var label = String(feature.properties.name)
-                                return new L.CircleMarker(latlng, {
-                                  radius: 0.1,
-                                }).bindTooltip(label, {
-                                  permanent: true,
-                                  direction: "center",
-                                  className: "my-delta"
-                                }).openTooltip();
-                              }
-                            }
-                        );
-                        // TODO: Replace with AJAX call
-                        var data_points = {
-                          "type": "FeatureCollection",
-                          "name": "result delta <<layername>>",
-                          "crs": {
-                            "type": "name",
-                            "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}
-                          },
-                          "features": [
-                            {
-                              "type": "Feature",
-                              "properties": {"name": "-1"},
-                              "geometry": {
-                                "type": "Point",
-                                "coordinates": [12.226989, 51.824559]
-                              }
-                            },
-                            {
-                              "type": "Feature",
-                              "properties": {"name": "6"},
-                              "geometry": {
-                                "type": "Point",
-                                "coordinates": [11.962059, 51.754054]
-                              }
-                            },
-                            {
-                              "type": "Feature",
-                              "properties": {"name": "-12"},
-                              "geometry": {
-                                "type": "Point",
-                                "coordinates": [12.443874, 51.893259]
-                              }
-                            },
-                            {
-                              "type": "Feature",
-                              "properties": {"name": "25"},
-                              "geometry": {
-                                "type": "Point",
-                                "coordinates": [12.655190, 51.872066]
-                              }
-                            },
-                            {
-                              "type": "Feature",
-                              "properties": {"name": "28"},
-                              "geometry": {
-                                "type": "Point",
-                                "coordinates": [12.107524, 51.640847]
-                              }
-                            }
-                          ]
-                        };
-                        console.log('adding data_points to layer: {{ layer }}');
-                        layer.addData(data_points);
-                        layers["{{ layer }}"] = layer;
-                        layers_cat["{{ layer }}"] = '{{ data.cat }}';
-                        layer_ctr++;
+                          console.log('adding delta_data_points to layer: {{ layer }}');
+                          console.log(delta_data_points);
+                          layer.addData(delta_data_points);
+                          layers["{{ layer }}"] = layer;
+                          layers_cat["{{ layer }}"] = '{{ data.cat }}';
+                          layer_ctr++;
 
-                        // Add legend to map
-                        if (choropleth_data.hasOwnProperty('{{ layer }}')) {
-                          var name = '{{ layer }}';
-                          var schema = choropleth_data[name].color_schema;
-                          var min = choropleth_data[name].min;
-                          var max = choropleth_data[name].max;
-                          var step = choropleth_data[name].step;
-                          var reverse = choropleth_data[name].reverse;
-                          var colorVals = getColorValues(schema, min, max, step, reverse);
-                          var grades_list = [];
-                          for (var key in colorVals['values']){
-                            grades_list.push(key)
+                          // Add legend to map
+                          if (choropleth_data.hasOwnProperty('{{ layer }}')) {
+                            var name = '{{ layer }}';
+                            var schema = choropleth_data[name].color_schema;
+                            var min = choropleth_data[name].min;
+                            var max = choropleth_data[name].max;
+                            var step = choropleth_data[name].step;
+                            var reverse = choropleth_data[name].reverse;
+                            var colorVals = getColorValues(schema, min, max, step, reverse);
+                            var grades_list = [];
+                            for (var key in colorVals['values']) {
+                              grades_list.push(key)
+                            }
+
+                            var legend = L.control({position: 'bottomright'});
+
+                            legend.onAdd = function (map) {
+                              var div = L.DomUtil.create('div', 'choropleth_legend'),
+                                  grades = grades_list,
+                                  labels = [],
+                                  from, to;
+
+                              labels.push(choropleth_data[name].unit);
+
+                              for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                              }
+
+                              div.innerHTML = labels.join('<br>');
+                              return div;
+                            };
+
+                            legends["{{ layer }}"] = legend;
                           }
 
-                          var legend = L.control({position: 'bottomright'});
+                          // Show layer or not
+                          {% if data.show  == '1' %}
+                              map.addLayer(layer);
+                          {% endif %}
 
-                          legend.onAdd = function (map) {
-                            var div = L.DomUtil.create('div', 'choropleth_legend'),
-                                    grades = grades_list,
-                                    labels = [],
-                                    from, to;
+                          // show progress
+                          loader_text.text('Layer ' +
+                                           String(layer_ctr) + '/' + String(layer_count) +
+                                           ': ' + '{{ data.title }}');
 
-                            labels.push(choropleth_data[name].unit);
-
-                            for (var i = 0; i < grades.length; i++) {
-                              from = grades[i];
-                              to = grades[i + 1];
-
-                              labels.push(
-                                      '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
-                                      from + (to ? '&ndash;' + to : '+'));
-                            }
-
-                            div.innerHTML = labels.join('<br>');
-                            return div;
+                          // hide load spinner
+                          if (layer_ctr == layer_count) {
+                              loader_text[0].style = 'color: #62f476; font-weight: bold';
+                              //loader_text[0].style.font-weight = 'bold';
+                              loader_text.text('Fertig!');
+                              setTimeout(function(){
+                                  toggleSpinnerVisibility();
+                              }, 500);
                           };
-
-                          legends["{{ layer }}"] = legend;
-                        }
-
-                        // Show layer or not
-                        {% if data.show  == '1' %}
-                            map.addLayer(layer);
-                        {% endif %}
-
-                        // show progress
-                        loader_text.text('Layer ' +
-                                         String(layer_ctr) + '/' + String(layer_count) +
-                                         ': ' + '{{ data.title }}');
-
-                        // hide load spinner
-                        if (layer_ctr == layer_count) {
-                            loader_text[0].style = 'color: #62f476; font-weight: bold';
-                            //loader_text[0].style.font-weight = 'bold';
-                            loader_text.text('Fertig!');
-                            setTimeout(function(){
-                                toggleSpinnerVisibility();
-                            }, 500);
-                        };
-                    },
-                    error: function(page) {
-                        console.log('Fehler beim Laden der Daten!');
-                        loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        loader_text.text('Fehler beim Laden der Daten!');
-                    }
+                      },
+                      error: function(page) {
+                          console.log('Fehler beim Laden der Daten!');
+                          loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                          loader_text.text('Fehler beim Laden der Daten!');
+                      }
+                  });
                 });
             {% endfor %}
         };

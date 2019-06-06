@@ -494,10 +494,73 @@ class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
 # Results serial views (DELTA) #
 ################################
 
+class RegMunEnergyReElDemShareResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunEnergyReElDemShareDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share_result_delta']
+    geometry_field = 'geom_centroid'
+
+
 class RegMunGenEnergyReResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDeltaResult
     properties = ['popup_content',
                   'name',
                   'gen',
                   'gen_energy_re_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenEnergyReDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCapReResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCapReDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCountWindDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCountWindDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunDemElEnergyResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunDemElEnergyPerCapitaResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyPerCapitaDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita_result_delta']
     geometry_field = 'geom_centroid'
