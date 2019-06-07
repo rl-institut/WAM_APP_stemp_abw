@@ -38,7 +38,7 @@ class Results(object):
 
         Returns
         -------
-        :pandas:`pandas.DataFrame<dataframe>`
+        :pandas:`pandas.DataFrame`
             Node results (timeseries)
         """
         if node_label in [str(n) for n in self.simulation.esys.nodes]:

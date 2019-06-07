@@ -26,7 +26,7 @@ class UserSession(object):
     mun_to_reg_ratios : :obj:`dict`
         Capacity ratios of municipality to regional values, for details see
         :meth:`stemp_abw.sessions.UserSession.create_mun_data_ratio_for_aggregation`
-    tech_ratios : :pandas:`pandas.DataFrame<dataframe>`
+    tech_ratios : :pandas:`pandas.DataFrame`
         Capacity ratios of specific technologies in the region belonging to the
         same category from status quo scenario, for details see
         :meth:`stemp_abw.sessions.UserSession.create_reg_tech_ratios`
