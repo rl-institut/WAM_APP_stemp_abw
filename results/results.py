@@ -122,12 +122,11 @@ class Results(object):
 
         # prepare chart data
         hc_column_power_own_cons_both_scn = [
-            {'name': 'Eigenversorgung',
-             'data': [round(data_power_prod_user_scn_sum /
-                            data_power_dem_user_scn_sum * 100, 1),
-                      round(data_power_prod_sq_scn_sum /
-                            data_power_dem_sq_scn_sum * 100, 1)]}
-        ]
+            round(data_power_prod_user_scn_sum /
+                  data_power_dem_user_scn_sum * 100, 1),
+            round(data_power_prod_sq_scn_sum /
+                  data_power_dem_sq_scn_sum * 100, 1)]
+
 
         ######################
         # make dict for json #
