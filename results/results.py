@@ -49,32 +49,99 @@ class Results(object):
     def get_result_charts_data(self):
         """Analyze results and return data for panel display"""
 
-        #
+        #####################
+        # Energy production #
+        #####################
+        # node sources and targets
         nodes_from = ['gen_el_wind',
-                      'gen_el_pv_roof',
                       'gen_el_pv_ground',
+                      'gen_el_pv_roof',
                       'gen_el_hydro',
                       'shortage_el']
         nodes_to = ['bus_el']
 
-        data_user_scn = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.results_raw)
-        data_sq = self.agg_energy_sum_per_flow(nodes_from, nodes_to, self.sq_results_raw)
+        # aggregate raw data
+        data_power_prod_user_scn = self.agg_energy_sum_per_flow(nodes_from,
+                                                                nodes_to,
+                                                                self.results_raw)
+        data_power_prod_sq_scn = self.agg_energy_sum_per_flow(nodes_from,
+                                                              nodes_to,
+                                                              self.sq_results_raw)
 
-        # data_user_scn2 = {'Windenergie': [3,6],
-        #                   'PV': [1,2],
-        #                   'PV2': [2,1]}
-        data_user_scn2 = [{'name': 'Windenergie', 'data': [3,6]},
-                          {'name': 'PV', 'data': [1,2]},
-                          {'name': 'PV2', 'data': [2,1]}]
+        # prepare chart data
+        hc_column_power_prod_both_scn = [{'name': k1, 'data': [v1, v2]}
+                                         for (k1, v1), (k2, v2) in
+                                         zip(data_power_prod_user_scn,
+                                             data_power_prod_sq_scn)]
 
-        # convert data to appropriate format
-        data = {'hc_res_summary_scn': data_user_scn2,
-                'hc_res_summary_sq': data_sq,
-                'hc_res_production_scn': data_user_scn,
-                'hc_res_production_sq': data_sq,
-                'hc_res_wind_time': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0]}
 
-        return data
+        hc_pie_power_production_user_scn = [{'name': k, 'y': v}
+                                            for (k, v) in data_power_prod_user_scn]
+        hc_pie_power_production_sq_scn = [{'name': k, 'y': v}
+                                          for (k, v) in data_power_prod_sq_scn]
+
+        #################
+        # Energy demand #
+        #################
+        # node sources and targets
+        nodes_from = ['bus_el']
+        nodes_to = ['dem_el_hh',
+                    'dem_el_rca',
+                    'dem_el_ind',
+                    'excess_el']
+
+        # aggregate raw data
+        data_power_dem_user_scn = self.agg_energy_sum_per_flow(nodes_from,
+                                                               nodes_to,
+                                                               self.results_raw)
+        data_power_dem_sq_scn = self.agg_energy_sum_per_flow(nodes_from,
+                                                             nodes_to,
+                                                             self.sq_results_raw)
+
+        # prepare chart data
+        hc_column_power_dem_both_scn = [{'name': k1, 'data': [v1, v2]}
+                                        for (k1, v1), (k2, v2) in
+                                        zip(data_power_dem_user_scn,
+                                            data_power_dem_sq_scn)]
+
+        ###################
+        # Own consumption #
+        ###################
+        data_power_prod_user_scn_sum = sum([v for (k,v)
+                                            in data_power_prod_user_scn
+                                            if k != 'Import'])
+        data_power_prod_sq_scn_sum = sum([v for (k, v)
+                                          in data_power_prod_sq_scn
+                                          if k != 'Import'])
+        data_power_dem_user_scn_sum = sum([v for (k,v)
+                                           in data_power_dem_user_scn
+                                           if k != 'Export'])
+        data_power_dem_sq_scn_sum = sum([v for (k, v)
+                                         in data_power_dem_sq_scn
+                                         if k != 'Export'])
+
+        # prepare chart data
+        hc_column_power_own_cons_both_scn = [
+            {'name': 'Eigenversorgung',
+             'data': [round(data_power_prod_user_scn_sum /
+                            data_power_dem_user_scn_sum * 100, 1),
+                      round(data_power_prod_sq_scn_sum /
+                            data_power_dem_sq_scn_sum * 100, 1)]}
+        ]
+
+        ######################
+        # make dict for json #
+        ######################
+        chart_data = {
+            'hc_column_power_prod_both_scn': hc_column_power_prod_both_scn,
+            'hc_column_power_dem_both_scn': hc_column_power_dem_both_scn,
+            'hc_column_power_own_cons_both_scn' : hc_column_power_own_cons_both_scn,
+            'hc_pie_power_production_user_scn': hc_pie_power_production_user_scn,
+            'hc_pie_power_production_sq_scn': hc_pie_power_production_sq_scn,
+            'hc_res_wind_time': [5, 5, 5, 4, 2, 0, 2, 8, 1, 7, 1]
+        }
+
+        return chart_data
 
     def get_layer_results(self):
         """Analyze results and return data for layer display"""
