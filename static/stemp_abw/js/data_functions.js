@@ -154,27 +154,45 @@ function getSimulationResults() {
         url: '/stemp_abw/results/',
         type : "GET",
         success: function(data) {
-            idx=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
-            idx2=parseInt($("#hc_res_summary_scn")[0].getAttribute('data-highcharts-chart'))
-            idx3=parseInt($("#hc_res_summary_sq")[0].getAttribute('data-highcharts-chart'))
-            idx4=parseInt($("#hc_res_production_scn")[0].getAttribute('data-highcharts-chart'))
-            idx5=parseInt($("#hc_res_production_sq")[0].getAttribute('data-highcharts-chart'))
+
+            // get indices of chart (needed since HC increments on reload)
+            idx1=parseInt($("#hc_column_power_prod_both_scn")[0].getAttribute('data-highcharts-chart'))
+            idx2=parseInt($("#hc_column_power_dem_both_scn")[0].getAttribute('data-highcharts-chart'))
+            idx3=parseInt($("#hc_column_power_own_cons_both_scn")[0].getAttribute('data-highcharts-chart'))
+            idx4=parseInt($("#hc_pie_power_production_user_scn")[0].getAttribute('data-highcharts-chart'))
+            idx5=parseInt($("#hc_pie_power_production_sq_scn")[0].getAttribute('data-highcharts-chart'))
+            idx6=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
+
+            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6]
 
             if (data == null) {
-                Highcharts.charts[idx].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
-                Highcharts.charts[idx2].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
-                Highcharts.charts[idx4].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
+                // Show loading text
+                hc_idx_array.forEach(function (item, index) {
+                    Highcharts.charts[item].showLoading('Das Szenario wurde verändert.</br>Für Ergebnisse bitte Simulation starten.');
+                });
             } else {
-                Highcharts.charts[idx].series[0].setData(data['hc_res_wind_time']);
-                Highcharts.charts[idx].hideLoading();
 
-                Highcharts.charts[idx2].series[0].setData(data['hc_res_summary_scn']);
-                Highcharts.charts[idx2].hideLoading();
-                Highcharts.charts[idx3].series[0].setData(data['hc_res_summary_sq']);
+                while(Highcharts.charts[idx1].series.length > 0)
+                    Highcharts.charts[idx1].series[0].remove(true);
+                for (var i = 0; i < data['hc_column_power_prod_both_scn'].length; i++) {
+                    Highcharts.charts[idx1].addSeries(data['hc_column_power_prod_both_scn'][i]);
+                }
+                while(Highcharts.charts[idx2].series.length > 0)
+                    Highcharts.charts[idx2].series[0].remove(true);
+                for (var i = 0; i < data['hc_column_power_dem_both_scn'].length; i++) {
+                    Highcharts.charts[idx2].addSeries(data['hc_column_power_dem_both_scn'][i]);
+                }
 
-                Highcharts.charts[idx4].series[0].setData(data['hc_res_production_scn']);
-                Highcharts.charts[idx4].hideLoading();
-                Highcharts.charts[idx5].series[0].setData(data['hc_res_production_sq']);
+                Highcharts.charts[idx3].series[0].setData(data['hc_column_power_own_cons_both_scn']);
+                Highcharts.charts[idx4].series[0].setData(data['hc_pie_power_production_user_scn']);
+                Highcharts.charts[idx5].series[0].setData(data['hc_pie_power_production_sq_scn']);
+                Highcharts.charts[idx6].series[0].setData(data['hc_res_wind_time']);
+
+                // Hide loading text
+                hc_idx_array.forEach(function (item, index) {
+                    Highcharts.charts[item].hideLoading();
+                });
+
             };
         },
         error: function(page) {
