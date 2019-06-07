@@ -147,25 +147,38 @@ class Results(object):
         """Analyze results and return data for layer display"""
         pass
 
-    def aggregate_sum(self, nodes_from, nodes_to, results):
+    @staticmethod
+    def agg_energy_sum_per_flow(nodes_from, nodes_to, results_raw):
         """Aggregate results for scenario
 
         TODO: Check if aggregation is fast enough on demand, precalculate if not
 
         Parameters
         ----------
-        scenario
+        nodes_from :
+
+        Returns
+        -------
+        :obj:`list` of :obj:`tuple`
+            Sum of annual flow,
+            format [('name_1', value1_), ..., ('name_n', value_n)]
         """
-        if not (len(nodes_from) == 1 and len(nodes_to) >= 1) and\
-           not (len(nodes_to) == 1 and len(nodes_from) >= 1):
+        if len(nodes_to) == 1 and len(nodes_from) >= 1:
+            agg_data = [(NODE_LABELS[n_from],
+                         round(results_raw[(n_from, nodes_to[0])]
+                               ['sequences']['flow'].sum() / 1000))
+                        for n_from in nodes_from]
+
+        elif len(nodes_from) == 1 and len(nodes_to) >= 1:
+            agg_data = [(NODE_LABELS[n_to],
+                         round(results_raw[(nodes_from[0], n_to)]
+                               ['sequences']['flow'].sum() / 1000))
+                        for n_to in nodes_to]
+
+        else:
             raise ValueError('One of source and target nodes '
                              'must contain exactly 1 node, the '
                              'other >=1 nodes.')
-
-        agg_data = [{'name': NODE_LABELS[n_from],
-                     'y': round(results[(n_from, nodes_to[0])]
-                                ['sequences']['flow'].sum()/1000)}
-                    for n_from in nodes_from]
 
         return agg_data
 
