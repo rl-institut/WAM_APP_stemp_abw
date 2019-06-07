@@ -9,7 +9,8 @@ from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
 from stemp_abw.results.result_charts import results_charts_tab1_viz,\
-    results_charts_tab2_viz, results_charts_tab3_viz, visualizations2, visualizations5
+    results_charts_tab2_viz, results_charts_tab3_viz, results_charts_tab4_viz,\
+    results_charts_tab5_viz
 
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
@@ -70,8 +71,8 @@ class MapView(TemplateView):
         context['results_charts_tab1_viz'] = results_charts_tab1_viz
         context['results_charts_tab2_viz'] = results_charts_tab2_viz
         context['results_charts_tab3_viz'] = results_charts_tab3_viz
-        context['visualizations2'] = visualizations2
-        context['visualizations5'] = visualizations5
+        context['results_charts_tab4_viz'] = results_charts_tab4_viz
+        context['results_charts_tab5_viz'] = results_charts_tab5_viz
 
         # Trial: new info button
         # TODO: Move
