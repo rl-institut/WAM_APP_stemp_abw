@@ -80,7 +80,11 @@ NODE_LABELS = {'gen_el_wind': 'Windenergie',
                'gen_el_pv_roof': 'PV Dach',
                'gen_el_pv_ground': 'PV Freifläche',
                'gen_el_hydro': 'Wasserkraft',
-               'shortage_el': 'Import'
+               'dem_el_hh': 'Haushalte',
+               'dem_el_rca': 'GHD',
+               'dem_el_ind': 'Industrie',
+               'shortage_el': 'Import',
+               'excess_el': 'Export'
                }
 
 RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1,7)]
