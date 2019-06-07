@@ -183,17 +183,14 @@ class Results(object):
         return agg_data
 
 
-class ResultAnalysisVisualization(object):
+class ResultChart(object):
     """
     Scenarios are loaded, analyzed and visualized within this class
     """
-    def __init__(self, setup_labels, data_labels=[], type=None):
-        index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        timesteps = len(index)
-        self.data = pd.DataFrame(index=index,
-                                 data={dl: (random(timesteps)*10).round(2) for dl in data_labels})
+    def __init__(self, setup_labels, type=None, data=None):
         self.setup_labels = setup_labels
         self.type = type
+        self.data = data
 
     def visualize(self, **kwargs):
         if self.type == 'line':
@@ -204,16 +201,8 @@ class ResultAnalysisVisualization(object):
                 **kwargs
             )
         elif self.type == 'pie':
-            # temp data
-            data = pd.DataFrame({'name': ['Windenergie', 'Photovoltaik', 'Biogas', 'fossil', 'IMPORT'],
-                                 'y': [1150, 540, 130, 850, 1300]})
-            data.set_index('name', inplace=True)
-
-            # convert data to appropriate format for pie chart
-            data = data.reset_index().to_dict(orient='records')
-
             visualization = highcharts.HCPiechart(
-                data=data,
+                data=self.data,
                 setup_labels=self.setup_labels,
                 style='display: inline-block',
                 **kwargs
@@ -227,4 +216,5 @@ class ResultAnalysisVisualization(object):
             )
         else:
             raise ValueError
+
         return visualization
