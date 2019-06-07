@@ -1,10 +1,11 @@
-import pandas as pd
 from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario
 from stemp_abw.results.io import oemof_json_to_results
-from stemp_abw.app_settings import NODE_LABELS
+from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
 
 from oemof.outputlib import views
+
+import pandas as pd
 
 
 class Results(object):
@@ -26,6 +27,29 @@ class Results(object):
         self.results_raw = results_raw
         self.param_results_raw = param_results_raw
         self.is_up_to_date = True
+
+    @staticmethod
+    def get_results_df(results_raw):
+        """Return DataFrame with optimization results (timeseries) for all
+        nodes
+
+        Parameters
+        ----------
+        results_raw : :obj:`dict` of :pandas:`pandas.DataFrame`
+            Raw result data from optimization as created by oemof
+
+        Returns
+        -------
+        :pandas:`pandas.DataFrame`
+            Node results (timeseries)
+        """
+        timerange = pd.date_range(start=SIM_CFG['date_from'],
+                                  end=SIM_CFG['date_to'],
+                                  freq=SIM_CFG['freq'])
+        df = pd.concat([v['sequences'].rename(columns={'flow': k})
+                        for k, v in results_raw.items()], axis=1)
+        df.index = timerange
+        return df
 
     def get_node_results_df(self, node_label):
         """Return DataFrame with optimization results (timeseries) for single
