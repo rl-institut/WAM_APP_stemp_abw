@@ -10,6 +10,7 @@ RESULT_THEME = {
     'credits': {
         'enabled': False
     },
+    'chart': {'height': '80%'},
     'colors': [
         '#fc8e65', '#55aae5', '#7fadb7', '#fce288', '#f69c3a', '#c28e5e',
         '#a27b82', '#797097'
@@ -46,6 +47,9 @@ RESULT_THEME = {
                 }
             }
         }
+    },
+    'xAxis': {
+        'labels': {'style': {'font': '1.25em Roboto Light, Arial, sans-serif'}}
     },
     'loading': {
         'labelStyle': {
