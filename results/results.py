@@ -84,24 +84,25 @@ class Results(object):
                       'shortage_el']
         nodes_to = ['bus_el']
 
+        # 1) Annual data (user scenario + SQ)
+        #####################################
         # aggregate raw data
-        data_power_prod_user_scn = self.agg_energy_sum_per_flow(nodes_from,
+        data_power_prod_user_scn = self.aggregate_flow_results(nodes_from,
                                                                 nodes_to,
                                                                 self.results_raw)
-        data_power_prod_sq_scn = self.agg_energy_sum_per_flow(nodes_from,
+        data_power_prod_sq_scn = self.aggregate_flow_results(nodes_from,
                                                               nodes_to,
                                                               self.sq_results_raw)
 
         # prepare chart data
-        hc_column_power_prod_both_scn = [{'name': k1, 'data': [v1, v2]}
+        hc_column_power_prod_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
                                          for (k1, v1), (k2, v2) in
                                          zip(data_power_prod_user_scn,
                                              data_power_prod_sq_scn)]
 
-
-        hc_pie_power_production_user_scn = [{'name': k, 'y': v}
+        hc_pie_power_production_user_scn = [{'name': k, 'y': v[0]}
                                             for (k, v) in data_power_prod_user_scn]
-        hc_pie_power_production_sq_scn = [{'name': k, 'y': v}
+        hc_pie_power_production_sq_scn = [{'name': k, 'y': v[0]}
                                           for (k, v) in data_power_prod_sq_scn]
 
         #################
@@ -115,15 +116,15 @@ class Results(object):
                     'excess_el']
 
         # aggregate raw data
-        data_power_dem_user_scn = self.agg_energy_sum_per_flow(nodes_from,
+        data_power_dem_user_scn = self.aggregate_flow_results(nodes_from,
                                                                nodes_to,
                                                                self.results_raw)
-        data_power_dem_sq_scn = self.agg_energy_sum_per_flow(nodes_from,
+        data_power_dem_sq_scn = self.aggregate_flow_results(nodes_from,
                                                              nodes_to,
                                                              self.sq_results_raw)
 
         # prepare chart data
-        hc_column_power_dem_both_scn = [{'name': k1, 'data': [v1, v2]}
+        hc_column_power_dem_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
                                         for (k1, v1), (k2, v2) in
                                         zip(data_power_dem_user_scn,
                                             data_power_dem_sq_scn)]
@@ -131,16 +132,16 @@ class Results(object):
         ###################
         # Own consumption #
         ###################
-        data_power_prod_user_scn_sum = sum([v for (k,v)
+        data_power_prod_user_scn_sum = sum([v[0] for (k,v)
                                             in data_power_prod_user_scn
                                             if k != 'Import'])
-        data_power_prod_sq_scn_sum = sum([v for (k, v)
+        data_power_prod_sq_scn_sum = sum([v[0] for (k, v)
                                           in data_power_prod_sq_scn
                                           if k != 'Import'])
-        data_power_dem_user_scn_sum = sum([v for (k,v)
+        data_power_dem_user_scn_sum = sum([v[0] for (k,v)
                                            in data_power_dem_user_scn
                                            if k != 'Export'])
-        data_power_dem_sq_scn_sum = sum([v for (k, v)
+        data_power_dem_sq_scn_sum = sum([v[0] for (k, v)
                                          in data_power_dem_sq_scn
                                          if k != 'Export'])
 
@@ -170,10 +171,9 @@ class Results(object):
         """Analyze results and return data for layer display"""
         pass
 
-    @staticmethod
-    def agg_energy_sum_per_flow(nodes_from, nodes_to, results_raw):
-        """Create sum from raw data for each node in `nodes_from` to
-        `nodes_to`.
+    def aggregate_flow_results(self, nodes_from, nodes_to, results_raw,
+                               resample_mode='A', agg_mode='sum'):
+        """Aggregate raw data for each node in `nodes_from` to `nodes_to`.
 
         Either `nodes_from` or `nodes_to` must contain a single node
         label, the other one can contain one or more labels.
@@ -184,29 +184,58 @@ class Results(object):
             Source node labels, e.g. ['bus_el']
         nodes_to : :obj:`list` of :obj:`str`
             Target node labels, e.g. ['gen_el_wind', 'gen_el_pv_ground']
+        results_raw : :obj:`dict` of :pandas:`pandas.DataFrame`
+            Raw result data from optimization as created by oemof
+        resample_mode : :obj:`str`
+            Resampling option according to :pandas:`pandas.DataFrame.resample`
+            If None, no resampling takes place and `agg_mode` is not used.
+            Default: 'A' (year)
+        agg_mode : :obj:`str`
+            Aggregation mode for resampling given in `resample_mode`,
+            possible values: 'sum', 'mean'
+            Default: 'sum'
 
         Returns
         -------
         :obj:`list` of :obj:`tuple`
-            Sum of annual flow,
-            format [('name_1', value1_), ..., ('name_n', value_n)]
+            Sum of annual flow by source or target node,
+            format: [('name_1', [value_11, ..., value_1n]),
+                      ...,
+                     ('name_n', [value_n1, ..., value_nn])]
         """
+
+        # extract requested columns
         if len(nodes_to) == 1 and len(nodes_from) >= 1:
-            agg_data = [(NODE_LABELS[n_from],
-                         round(results_raw[(n_from, nodes_to[0])]
-                               ['sequences']['flow'].sum() / 1000))
-                        for n_from in nodes_from]
-
+            ts = self.get_results_df(results_raw)[[(n_from, nodes_to[0])
+                                                   for n_from in nodes_from]]
+            multiple_nodes = 'from'
         elif len(nodes_from) == 1 and len(nodes_to) >= 1:
-            agg_data = [(NODE_LABELS[n_to],
-                         round(results_raw[(nodes_from[0], n_to)]
-                               ['sequences']['flow'].sum() / 1000))
-                        for n_to in nodes_to]
-
+            ts = self.get_results_df(results_raw)[[(nodes_from[0], n_to)
+                                                   for n_to in nodes_to]]
+            multiple_nodes = 'to'
         else:
             raise ValueError('One of source and target nodes '
                              'must contain exactly 1 node, the '
                              'other >=1 nodes.')
+
+        # resampling and aggregation
+        if resample_mode is not None:
+            if agg_mode == 'sum':
+                agg_data = ts.resample(resample_mode).sum()
+            elif agg_mode == 'mean':
+                agg_data = ts.resample(resample_mode).mean()
+            else:
+                raise ValueError('Aggregation mode is invalid.')
+        else:
+            agg_data = ts
+
+        # reformat
+        if multiple_nodes == 'from':
+            agg_data = [(NODE_LABELS[k[0]], [round(_/1000, 1) for _ in v])
+                        for k, v in agg_data.to_dict(orient='list').items()]
+        elif multiple_nodes == 'to':
+            agg_data = [(NODE_LABELS[k[1]], [round(_/1000, 1) for _ in v])
+                        for k, v in agg_data.to_dict(orient='list').items()]
 
         return agg_data
 
