@@ -67,8 +67,8 @@ napoleon_use_rtype = True
 napoleon_use_keyword = False
 
 # Dictionary of external links
-extlinks = {'pandas':('http://pandas.pydata.org/pandas-docs/stable/api.html#%s',
-                      'pandas.')
+extlinks = {'pandas':('https://pandas.pydata.org/pandas-docs/stable/reference/api/%s.html',
+                      '')
             }
 
 # Add any paths that contain templates here, relative to this directory.
