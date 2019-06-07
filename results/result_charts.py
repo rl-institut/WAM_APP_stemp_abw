@@ -81,7 +81,7 @@ results_charts_tab2 = [
         'container_id': 'hc_pie_power_production_user_scn',
         'type': 'pie',
         'setup_labels': {
-            'title': {'text': 'Ihr Szenario'},
+            'title': {'text': 'Zusammensetzung Strom - Ihr Szenario'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
         },
@@ -98,7 +98,7 @@ results_charts_tab2 = [
         'container_id': 'hc_pie_power_production_sq_scn',
         'type': 'pie',
         'setup_labels': {
-            'title': {'text': 'Status quo'},
+            'title': {'text': 'Zusammensetzung Strom - Status quo'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
         },
