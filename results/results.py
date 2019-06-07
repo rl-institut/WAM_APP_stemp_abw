@@ -149,13 +149,18 @@ class Results(object):
 
     @staticmethod
     def agg_energy_sum_per_flow(nodes_from, nodes_to, results_raw):
-        """Aggregate results for scenario
+        """Create sum from raw data for each node in `nodes_from` to
+        `nodes_to`.
 
-        TODO: Check if aggregation is fast enough on demand, precalculate if not
+        Either `nodes_from` or `nodes_to` must contain a single node
+        label, the other one can contain one or more labels.
 
         Parameters
         ----------
-        nodes_from :
+        nodes_from : :obj:`list` of :obj:`str`
+            Source node labels, e.g. ['bus_el']
+        nodes_to : :obj:`list` of :obj:`str`
+            Target node labels, e.g. ['gen_el_wind', 'gen_el_pv_ground']
 
         Returns
         -------
