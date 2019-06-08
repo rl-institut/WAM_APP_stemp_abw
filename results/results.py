@@ -115,8 +115,14 @@ class Results(object):
             results_raw=self.results_raw,
             resample_mode='M')
 
+        data_power_prod_m_user_scn = {k: v
+                                      for (k, v) in data_power_prod_m_user_scn}
+        data_power_prod_m_user_scn['Photovoltaik'] = [
+            x1+x2
+            for x1, x2 in zip(data_power_prod_m_user_scn.pop('PV Freifläche'),
+                              data_power_prod_m_user_scn.pop('PV Dach'))]
         hc_column_power_prod_m_user_scn = [{'name': k, 'data': v}
-                                           for (k, v) in data_power_prod_m_user_scn]
+                                           for k, v in data_power_prod_m_user_scn.items()]
 
         #################
         # Energy demand #
