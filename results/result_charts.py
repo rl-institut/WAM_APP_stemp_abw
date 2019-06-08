@@ -180,8 +180,8 @@ results_charts_tab4 = [
             'subtitle': {'text': 'in GW'},
             'yAxis': {'title': {'text': 'GW'}}
         },
-        'data': {'Windenergie': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0],
-                 'Windenergie2': [8, 3, 3, 6, 2, 2, 1, 5, 5, 8, 7]}
+        'data': {'Windenergie': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0, 5],
+                 'Windenergie2': [8, 3, 3, 6, 2, 2, 1, 5, 5, 8, 7, 5]}
     },
     {
         'container_id': 'hc_res_pv_time',
@@ -191,7 +191,7 @@ results_charts_tab4 = [
             'subtitle': {'text': 'in GW'},
             'yAxis': {'title': {'text': 'GW'}}
         },
-        'data': {'PV': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0]}
+        'data': {'PV': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0, 5]}
     },
     {
         'container_id': 'hc_res_bio_time',
@@ -201,7 +201,7 @@ results_charts_tab4 = [
             'subtitle': {'text': 'in GW'},
             'yAxis': {'title': {'text': 'GW'}}
         },
-        'data': {'Bio': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0]}
+        'data': {'Bio': [1, 2, 3, 4, 5, 4, 3, 2, 1, 8, 0, 5]}
     }
 ]
 
@@ -209,7 +209,7 @@ results_charts_tab4_viz = [results.ResultChart(
     setup_labels=chart['setup_labels'],
     type=chart['type'],
     data=pd.DataFrame(data=chart['data'],
-                      index=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'])).visualize(renderTo=chart['container_id'])
+                      index=MONTH_LABELS)).visualize(renderTo=chart['container_id'])
                            for chart in results_charts_tab4]
 
 
