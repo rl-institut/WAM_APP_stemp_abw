@@ -1,4 +1,5 @@
 from stemp_abw.results import results
+from stemp_abw.app_settings import MONTH_LABELS
 import pandas as pd
 
 
@@ -110,7 +111,20 @@ results_charts_tab2 = [
                                             'Fossile Brennstoffe',
                                             'Import'],
                                    'y': [0] * 7}).reset_index().to_dict(orient='records')
-    }
+    },
+    {
+        'container_id': 'hc_column_power_prod_m_user_scn',
+        'type': 'column',
+        'setup_labels': {
+            'title': {'text': 'Energieerzeugung Strom'},
+            'subtitle': {'text': 'in GWh'},
+            'yAxis': {'title': {'text': 'GWh'}}
+
+        },
+        'data': pd.DataFrame(data={'Windenergie': [0 for _ in MONTH_LABELS],
+                                   'PV': [0 for _ in MONTH_LABELS]},
+                             index=MONTH_LABELS)
+    },
 ]
 
 results_charts_tab2_viz = [results.ResultChart(
@@ -227,5 +241,4 @@ results_charts_tab5 = [
 ]
 results_charts_tab5_viz = [results.ResultChart(
     setup_labels=l['setup_labels'],
-    #data_labels=l['data_labels'],
     type='column').visualize() for l in results_charts_tab5]

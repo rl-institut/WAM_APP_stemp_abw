@@ -161,9 +161,10 @@ function getSimulationResults() {
             idx3=parseInt($("#hc_column_power_own_cons_both_scn")[0].getAttribute('data-highcharts-chart'))
             idx4=parseInt($("#hc_pie_power_production_user_scn")[0].getAttribute('data-highcharts-chart'))
             idx5=parseInt($("#hc_pie_power_production_sq_scn")[0].getAttribute('data-highcharts-chart'))
-            idx6=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
+            idx6=parseInt($("#hc_column_power_prod_m_user_scn")[0].getAttribute('data-highcharts-chart'))
+            idx7=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
 
-            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6]
+            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6, idx7]
 
             if (data == null) {
                 // Show loading text
@@ -186,7 +187,14 @@ function getSimulationResults() {
                 Highcharts.charts[idx3].series[0].setData(data['hc_column_power_own_cons_both_scn']);
                 Highcharts.charts[idx4].series[0].setData(data['hc_pie_power_production_user_scn']);
                 Highcharts.charts[idx5].series[0].setData(data['hc_pie_power_production_sq_scn']);
-                Highcharts.charts[idx6].series[0].setData(data['hc_res_wind_time']);
+
+                while(Highcharts.charts[idx6].series.length > 0)
+                    Highcharts.charts[idx6].series[0].remove(true);
+                for (var i = 0; i < data['hc_column_power_prod_m_user_scn'].length; i++) {
+                    Highcharts.charts[idx6].addSeries(data['hc_column_power_prod_m_user_scn'][i]);
+                }
+
+                Highcharts.charts[idx7].series[0].setData(data['hc_res_wind_time']);
 
                 // Hide loading text
                 hc_idx_array.forEach(function (item, index) {

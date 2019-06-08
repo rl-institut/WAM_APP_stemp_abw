@@ -105,6 +105,19 @@ class Results(object):
         hc_pie_power_production_sq_scn = [{'name': k, 'y': v[0]}
                                           for (k, v) in data_power_prod_sq_scn]
 
+        # 2) Monthly data (user scenario)
+        #################################
+        data_power_prod_m_user_scn = self.aggregate_flow_results(
+            nodes_from=['gen_el_wind',
+                        'gen_el_pv_ground',
+                        'gen_el_pv_roof'],
+            nodes_to=nodes_to,
+            results_raw=self.results_raw,
+            resample_mode='M')
+
+        hc_column_power_prod_m_user_scn = [{'name': k, 'data': v}
+                                           for (k, v) in data_power_prod_m_user_scn]
+
         #################
         # Energy demand #
         #################
@@ -162,6 +175,7 @@ class Results(object):
             'hc_column_power_own_cons_both_scn' : hc_column_power_own_cons_both_scn,
             'hc_pie_power_production_user_scn': hc_pie_power_production_user_scn,
             'hc_pie_power_production_sq_scn': hc_pie_power_production_sq_scn,
+            'hc_column_power_prod_m_user_scn': hc_column_power_prod_m_user_scn,
             'hc_res_wind_time': [5, 5, 5, 4, 2, 0, 2, 8, 1, 7, 1]
         }
 
