@@ -96,3 +96,6 @@ SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
                   'verbose': True,
                   'keepfiles': False
                   }
+
+MONTH_LABELS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
