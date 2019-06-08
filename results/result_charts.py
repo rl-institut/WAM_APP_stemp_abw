@@ -14,7 +14,8 @@ results_charts_tab1 = [
         'setup_labels': {
             'title': {'text': 'Energieerzeugung Strom'},
             'subtitle': {'text': 'in GWh'},
-            'yAxis': {'title': {'text': 'GWh'}}
+            'yAxis': {'title': {'text': 'GWh'}},
+            'plotOptions': {'column': {'stacking': 'normal'}}
         },
         'data': pd.DataFrame(data=[{'Windenergie': 0,
                                     'PV Freifläche': 0,
@@ -39,7 +40,8 @@ results_charts_tab1 = [
         'setup_labels': {
             'title': {'text': 'Energieverbrauch Strom'},
             'subtitle': {'text': 'in GWh'},
-            'yAxis': {'title': {'text': 'GWh'}}
+            'yAxis': {'title': {'text': 'GWh'}},
+            'plotOptions': {'column': {'stacking': 'normal'}}
         },
         'data': pd.DataFrame(data=[{'Haushalte': 0,
                                     'GHD': 0,

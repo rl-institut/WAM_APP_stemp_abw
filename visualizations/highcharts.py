@@ -190,7 +190,6 @@ class HCStackedColumn(HCStemp):
         },
         'plotOptions': {
             'column': {
-                'stacking': 'normal',
                 'dataLabels': {
                     'enabled': False
                 }
