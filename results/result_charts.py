@@ -12,7 +12,7 @@ results_charts_tab1 = [
         'container_id': 'hc_column_power_prod_both_scn',
         'type': 'column',
         'setup_labels': {
-            'title': {'text': 'Energieerzeugung Strom'},
+            'title': {'text': 'Stromerzeugung'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}},
             'plotOptions': {'column': {'stacking': 'normal'}}
@@ -38,7 +38,7 @@ results_charts_tab1 = [
         'container_id': 'hc_column_power_dem_both_scn',
         'type': 'column',
         'setup_labels': {
-            'title': {'text': 'Energieverbrauch Strom'},
+            'title': {'text': 'Stromverbrauch'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}},
             'plotOptions': {'column': {'stacking': 'normal'}}
@@ -84,7 +84,7 @@ results_charts_tab2 = [
         'container_id': 'hc_pie_power_production_user_scn',
         'type': 'pie',
         'setup_labels': {
-            'title': {'text': 'Zusammensetzung Strom - Ihr Szenario'},
+            'title': {'text': 'Zusammensetzung Stromerzeugung (Dein Szenario)'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
         },
@@ -101,7 +101,7 @@ results_charts_tab2 = [
         'container_id': 'hc_pie_power_production_sq_scn',
         'type': 'pie',
         'setup_labels': {
-            'title': {'text': 'Zusammensetzung Strom - Status quo'},
+            'title': {'text': 'Zusammensetzung Stromerzeugung (Status quo)'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
         },
@@ -118,7 +118,7 @@ results_charts_tab2 = [
         'container_id': 'hc_column_power_prod_m_user_scn',
         'type': 'column',
         'setup_labels': {
-            'title': {'text': 'Energieerzeugung Strom'},
+            'title': {'text': 'Jährliche Stromerzeugung (Dein Szenario)'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
 
