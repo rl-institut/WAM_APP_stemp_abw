@@ -51,7 +51,8 @@ class RegMunEnergyReElDemShareData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'energy_re_el_dem_share'
+        'energy_re_el_dem_share',
+        'energy_re_el_dem_share_region'
     ]
 
 

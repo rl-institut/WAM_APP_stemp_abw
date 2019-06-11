@@ -153,6 +153,10 @@ class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     def energy_re_el_dem_share(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)
 
+    @property
+    def energy_re_el_dem_share_region(self):
+        return round(self.gen_energy_re_region / self.dem_el_energy_region * 100)
+
 
 class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
     name = 'reg_mun_gen_energy_re_per_capita'
