@@ -71,7 +71,8 @@ class RegMunGenEnergyRePerCapitaData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_energy_re_per_capita'
+        'gen_energy_re_per_capita',
+        'gen_energy_re_per_capita_region'
     ]
 
 

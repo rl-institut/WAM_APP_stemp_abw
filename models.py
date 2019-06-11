@@ -155,7 +155,7 @@ class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
         return round(self.gen_energy_re_region / self.dem_el_energy_region * 100)
 
 
-class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
+class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe, RegMunPop):
     name = 'reg_mun_gen_energy_re_per_capita'
 
     class Meta:
@@ -164,6 +164,10 @@ class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
     @property
     def gen_energy_re_per_capita(self):
         return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
+
+    @property
+    def gen_energy_re_per_capita_region(self):
+        return round(self.gen_energy_re_region * 1e3 / self.pop_region, 1)
 
 
 class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
