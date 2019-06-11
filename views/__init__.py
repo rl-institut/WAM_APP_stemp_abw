@@ -90,7 +90,7 @@ class MapView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         # Start session (if there's none):
-        SESSION_DATA.start_session(request, UserSession)
+        SESSION_DATA.start_session(request, UserSession, force_new_session=True)
 
         context = self.get_context_data()
         return self.render_to_response(context)
