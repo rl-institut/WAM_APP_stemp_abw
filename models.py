@@ -531,7 +531,7 @@ class RegMunEnergyReElDemShareDeltaResult(RegMun):
 
     @property
     def energy_re_el_dem_share_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -543,7 +543,7 @@ class RegMunGenEnergyReDeltaResult(RegMun):
 
     @property
     def gen_energy_re_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -555,7 +555,7 @@ class RegMunGenEnergyReDensityDeltaResult(RegMun):
 
     @property
     def gen_energy_re_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -567,7 +567,7 @@ class RegMunGenCapReDeltaResult(RegMun):
 
     @property
     def gen_cap_re_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -579,7 +579,7 @@ class RegMunGenCapReDensityDeltaResult(RegMun):
 
     @property
     def gen_cap_re_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -591,7 +591,7 @@ class RegMunGenCountWindDensityDeltaResult(RegMun):
 
     @property
     def gen_count_wind_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -603,7 +603,7 @@ class RegMunDemElEnergyDeltaResult(RegMun):
 
     @property
     def dem_el_energy_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -615,7 +615,7 @@ class RegMunDemElEnergyPerCapitaDeltaResult(RegMun):
 
     @property
     def dem_el_energy_per_capita_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 ###############
