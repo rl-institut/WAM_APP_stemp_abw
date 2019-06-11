@@ -291,11 +291,11 @@ function resultDependentSwitchLocker() {
   // Reset switch override if given
   // Check if results == null, and add switch override
   $.ajax({
-    url: '/stemp_abw/results/',
+    url: '/stemp_abw/sim_status.data',
     type: "GET",
     success: function (data) {
       console.log('Ajax success fired: resultDependentSwitchLocker (), ' + Date.now())
-      if (data == null) {
+      if (data['sim_status'] != 'up_to_date') {
         if (simulation_info.hidden === true) {
           simulation_info.hidden = false;
         }

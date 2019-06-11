@@ -412,6 +412,17 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 ########################
 # Results serial views #
 ########################
+class SimulationStatus(View):
+    model = None
+
+    @staticmethod
+    @never_cache
+    def get(request):
+        session = SESSION_DATA.get_session(request)
+        results = session.simulation.results
+        return JsonResponse({'sim_status': results.status}, safe=True)
+
+
 class ResultChartsData(View):
     model = None
 
@@ -420,10 +431,7 @@ class ResultChartsData(View):
     def get(request):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
-        if results.is_up_to_date:
-            return JsonResponse(results.get_result_charts_data(), safe=True)
-        else:
-            return JsonResponse(None, safe=False)
+        return JsonResponse(results.get_result_charts_data(), safe=True)
 
 
 class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
