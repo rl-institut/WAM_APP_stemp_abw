@@ -81,7 +81,8 @@ class RegMunGenEnergyReDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_energy_re_density'
+        'gen_energy_re_density',
+        'gen_energy_re_density_region'
     ]
 
 
