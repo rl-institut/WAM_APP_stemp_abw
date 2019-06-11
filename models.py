@@ -19,18 +19,12 @@ from stemp_abw.app_settings import LABELS
 
 class LayerModel(models.Model):
 
+    class Meta:
+        abstract = True
+
     @property
     def name(self):
         raise NotImplementedError
-
-    # TODO: This can be chucked away?
-    @property
-    def popup_content(self):
-        #return '<p>'+self.name+'</p>'
-        return 'popup/'
-
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return '{name} Objekt ({pk_name}={pk})'.format(
@@ -42,11 +36,6 @@ class LayerModel(models.Model):
 class RpAbwBound(LayerModel):
     name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)
-
-    # @property
-    # def popup_content(self):
-    #     return '<p>{text}</p>'.format(
-    #         text='PR ABW Grenze des Planungsraumes')
 
 
 class RegMun(LayerModel):

@@ -1,8 +1,9 @@
-import stemp_abw.models as models
-from django.views.generic import DetailView, View
 from django.http import JsonResponse
 from django.views.decorators.cache import never_cache
+from django.views.generic import DetailView, View
 from djgeojson.views import GeoJSONLayerView, GeoJSONResponseMixin
+
+import stemp_abw.models as models
 from wam.settings import SESSION_DATA
 
 
@@ -11,7 +12,7 @@ from wam.settings import SESSION_DATA
 #########################
 class RpAbwBoundData(GeoJSONLayerView):
     model = models.RpAbwBound
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -19,7 +20,7 @@ class RpAbwBoundData(GeoJSONLayerView):
 
 class RegMunData(GeoJSONLayerView):
     model = models.RegMun
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -27,111 +28,124 @@ class RegMunData(GeoJSONLayerView):
 
 class RegMunPopData(GeoJSONLayerView):
     model = models.RegMunPop
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop']
+    properties = [
+        'name',
+        'gen',
+        'pop'
+    ]
 
 
 class RegMunPopDensityData(GeoJSONLayerView):
     model = models.RegMunPopDensity
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_density']
+    properties = [
+        'name',
+        'gen',
+        'pop_density'
+    ]
 
 
 class RegMunEnergyReElDemShareData(GeoJSONLayerView):
     model = models.RegMunEnergyReElDemShare
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'energy_re_el_dem_share']
+    properties = [
+        'name',
+        'gen',
+        'energy_re_el_dem_share'
+    ]
 
 
 class RegMunGenEnergyReData(GeoJSONLayerView):
     model = models.RegMunGenEnergyRe
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re'
+    ]
 
 
 class RegMunGenEnergyRePerCapitaData(GeoJSONLayerView):
     model = models.RegMunGenEnergyRePerCapita
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_per_capita']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_per_capita'
+    ]
 
 
 class RegMunGenEnergyReDensityData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDensity
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_density']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_density'
+    ]
 
 
 class RegMunGenCapReData(GeoJSONLayerView):
     model = models.RegMunGenCapRe
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re'
+    ]
 
 
 class RegMunGenCapReDensityData(GeoJSONLayerView):
     model = models.RegMunGenCapReDensity
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re_density']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re_density'
+    ]
 
 
 class RegMunGenCountWindDensityData(GeoJSONLayerView):
     model = models.RegMunGenCountWindDensity
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_count_wind_density']
+    properties = [
+        'name',
+        'gen',
+        'gen_count_wind_density'
+    ]
 
 
 class RegMunDemElEnergyData(GeoJSONLayerView):
     model = models.RegMunDemElEnergy
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy'
+    ]
 
 
 class RegMunDemElEnergyPerCapitaData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyPerCapita
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy_per_capita']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy_per_capita'
+    ]
 
 
 class RegMunDemThEnergyData(GeoJSONLayerView):
     model = models.RegMunDemThEnergy
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_th_energy']
+    properties = [
+        'name',
+        'gen',
+        'dem_th_energy'
+    ]
 
 
 class RegMunDemThEnergyPerCapitaData(GeoJSONLayerView):
     model = models.RegMunDemThEnergyPerCapita
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_th_energy_per_capita']
+    properties = [
+        'name',
+        'gen',
+        'dem_th_energy_per_capita'
+    ]
 
 
 class RegWaterProtAreaData(GeoJSONLayerView):
     model = models.RegWaterProtArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -139,7 +153,7 @@ class RegWaterProtAreaData(GeoJSONLayerView):
 
 class RegBirdProtAreaData(GeoJSONLayerView):
     model = models.RegBirdProtArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -147,7 +161,7 @@ class RegBirdProtAreaData(GeoJSONLayerView):
 
 class RegBirdProtAreaB200Data(GeoJSONLayerView):
     model = models.RegBirdProtAreaB200
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -155,7 +169,7 @@ class RegBirdProtAreaB200Data(GeoJSONLayerView):
 
 class RegNatureProtAreaData(GeoJSONLayerView):
     model = models.RegNatureProtArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -163,7 +177,7 @@ class RegNatureProtAreaData(GeoJSONLayerView):
 
 class RegLandscProtAreaPartsData(GeoJSONLayerView):
     model = models.RegLandscProtAreaParts
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -171,7 +185,7 @@ class RegLandscProtAreaPartsData(GeoJSONLayerView):
 
 class RegResidAreaData(GeoJSONLayerView):
     model = models.RegResidArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -179,7 +193,7 @@ class RegResidAreaData(GeoJSONLayerView):
 
 class RegResidAreaB500Data(GeoJSONLayerView):
     model = models.RegResidAreaB500
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -187,7 +201,7 @@ class RegResidAreaB500Data(GeoJSONLayerView):
 
 class RegPrioAreaFloodProtData(GeoJSONLayerView):
     model = models.RegPrioAreaFloodProt
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -195,7 +209,7 @@ class RegPrioAreaFloodProtData(GeoJSONLayerView):
 
 class RegPrioAreaCultData(GeoJSONLayerView):
     model = models.RegPrioAreaCult
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -203,7 +217,7 @@ class RegPrioAreaCultData(GeoJSONLayerView):
 
 class RegForestData(GeoJSONLayerView):
     model = models.RegForest
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -211,7 +225,7 @@ class RegForestData(GeoJSONLayerView):
 
 class RegFFHProtAreaData(GeoJSONLayerView):
     model = models.RegFFHProtArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -219,7 +233,7 @@ class RegFFHProtAreaData(GeoJSONLayerView):
 
 class RegResidAreaB1000Data(GeoJSONLayerView):
     model = models.RegResidAreaB1000
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 4
@@ -227,7 +241,7 @@ class RegResidAreaB1000Data(GeoJSONLayerView):
 
 class RegPrioAreaWECData(GeoJSONLayerView):
     model = models.RegPrioAreaWEC
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -235,7 +249,7 @@ class RegPrioAreaWECData(GeoJSONLayerView):
 
 class GenWECData(GeoJSONLayerView):
     model = models.GenWEC
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -243,7 +257,7 @@ class GenWECData(GeoJSONLayerView):
 
 class GenPVGroundData(GeoJSONLayerView):
     model = models.GenPVGround
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -251,7 +265,7 @@ class GenPVGroundData(GeoJSONLayerView):
 
 class RegDeadZoneHardData(GeoJSONLayerView):
     model = models.RegDeadZoneHard
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -259,7 +273,7 @@ class RegDeadZoneHardData(GeoJSONLayerView):
 
 class RegDeadZoneSoftData(GeoJSONLayerView):
     model = models.RegDeadZoneSoft
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -267,7 +281,7 @@ class RegDeadZoneSoftData(GeoJSONLayerView):
 
 class RegFFHProtAreaBData(GeoJSONLayerView):
     model = models.RegFFHProtAreaB
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -275,7 +289,7 @@ class RegFFHProtAreaBData(GeoJSONLayerView):
 
 class RegLandscProtAreaData(GeoJSONLayerView):
     model = models.RegLandscProtArea
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -283,7 +297,7 @@ class RegLandscProtAreaData(GeoJSONLayerView):
 
 class RegNatureParkData(GeoJSONLayerView):
     model = models.RegNaturePark
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -291,7 +305,7 @@ class RegNatureParkData(GeoJSONLayerView):
 
 class RegBioReserveData(GeoJSONLayerView):
     model = models.RegBioReserve
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -299,7 +313,7 @@ class RegBioReserveData(GeoJSONLayerView):
 
 class RegRetentAreaEcosysData(GeoJSONLayerView):
     model = models.RegRetentAreaEcosys
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -307,7 +321,7 @@ class RegRetentAreaEcosysData(GeoJSONLayerView):
 
 class RegPrioAreaNatureData(GeoJSONLayerView):
     model = models.RegPrioAreaNature
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -315,7 +329,7 @@ class RegPrioAreaNatureData(GeoJSONLayerView):
 
 class RegNatureMonumData(GeoJSONLayerView):
     model = models.RegNatureMonum
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -323,7 +337,7 @@ class RegNatureMonumData(GeoJSONLayerView):
 
 class RegPrioAreaWaterData(GeoJSONLayerView):
     model = models.RegPrioAreaWater
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -331,7 +345,7 @@ class RegPrioAreaWaterData(GeoJSONLayerView):
 
 class RegPrioAreaAgriData(GeoJSONLayerView):
     model = models.RegPrioAreaAgri
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -339,7 +353,7 @@ class RegPrioAreaAgriData(GeoJSONLayerView):
 
 class RegRetentAreaAgriData(GeoJSONLayerView):
     model = models.RegRetentAreaAgri
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -347,7 +361,7 @@ class RegRetentAreaAgriData(GeoJSONLayerView):
 
 class RegPrioAreaResData(GeoJSONLayerView):
     model = models.RegPrioAreaRes
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -355,7 +369,7 @@ class RegPrioAreaResData(GeoJSONLayerView):
 
 class RegInfrasRailwayData(GeoJSONLayerView):
     model = models.RegInfrasRailway
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -363,7 +377,7 @@ class RegInfrasRailwayData(GeoJSONLayerView):
 
 class RegInfrasRoadData(GeoJSONLayerView):
     model = models.RegInfrasRoad
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -371,7 +385,7 @@ class RegInfrasRoadData(GeoJSONLayerView):
 
 class RegInfrasHvgridData(GeoJSONLayerView):
     model = models.RegInfrasHvgrid
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -379,7 +393,7 @@ class RegInfrasHvgridData(GeoJSONLayerView):
 
 class RegInfrasAviationData(GeoJSONLayerView):
     model = models.RegInfrasAviation
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -395,15 +409,16 @@ class GeoJSONSingleDatasetLayerView(GeoJSONResponseMixin, DetailView):
     Modified version of GeoJSONResponseMixin - filter queryset before creating
     GeoJSON response.
     """
+
     def render_to_response(self, context, **response_kwargs):
         self.queryset = self.model.objects.filter(id=context['object'].id)
-        return super(GeoJSONSingleDatasetLayerView, self)\
+        return super(GeoJSONSingleDatasetLayerView, self) \
             .render_to_response(context, **response_kwargs)
 
 
 class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
     model = models.REPotentialAreas
-    properties = ['popup_content', 'name']
+    properties = ['name']
     srid = 4326
     geometry_field = 'geom'
     precision = 5
@@ -428,66 +443,74 @@ class ResultChartsData(View):
 
 class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
     model = models.RegMunEnergyReElDemShareResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'energy_re_el_dem_share_result']
+    properties = [
+        'name',
+        'gen',
+        'energy_re_el_dem_share_result'
+    ]
 
 
 class RegMunGenEnergyReResultData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_result']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_result'
+    ]
 
 
 class RegMunGenEnergyReDensityResultData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_density_result']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_density_result'
+    ]
 
 
 class RegMunGenCapReResultData(GeoJSONLayerView):
     model = models.RegMunGenCapReResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re_result']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re_result'
+    ]
 
 
 class RegMunGenCapReDensityResultData(GeoJSONLayerView):
     model = models.RegMunGenCapReDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re_density_result']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re_density_result'
+    ]
 
 
 class RegMunGenCountWindDensityResultData(GeoJSONLayerView):
     model = models.RegMunGenCountWindDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_count_wind_density_result']
+    properties = [
+        'name',
+        'gen',
+        'gen_count_wind_density_result'
+    ]
 
 
 class RegMunDemElEnergyResultData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy_result']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy_result'
+    ]
 
 
 class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyPerCapitaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy_per_capita_result']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy_per_capita_result'
+    ]
 
 
 ################################
@@ -496,71 +519,79 @@ class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
 
 class RegMunEnergyReElDemShareResultDeltaData(GeoJSONLayerView):
     model = models.RegMunEnergyReElDemShareDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'energy_re_el_dem_share_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'energy_re_el_dem_share_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunGenEnergyReResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunGenEnergyReDensityResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenEnergyReDensityDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_energy_re_density_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'gen_energy_re_density_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunGenCapReResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenCapReDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunGenCapReDensityResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenCapReDensityDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_cap_re_density_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'gen_cap_re_density_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunGenCountWindDensityResultDeltaData(GeoJSONLayerView):
     model = models.RegMunGenCountWindDensityDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'gen_count_wind_density_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'gen_count_wind_density_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunDemElEnergyResultDeltaData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy_result_delta'
+    ]
     geometry_field = 'geom_centroid'
 
 
 class RegMunDemElEnergyPerCapitaResultDeltaData(GeoJSONLayerView):
     model = models.RegMunDemElEnergyPerCapitaDeltaResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'dem_el_energy_per_capita_result_delta']
+    properties = [
+        'name',
+        'gen',
+        'dem_el_energy_per_capita_result_delta'
+    ]
     geometry_field = 'geom_centroid'
