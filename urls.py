@@ -29,8 +29,10 @@ urlpatterns = [
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name=app_name),
          name='assumptions'),
-    path('results/', views.ResultChartsData.as_view(),
-         name='results.data'),
+    path('sim_status.data', views.SimulationStatus.as_view(),
+         name='sim_status.data'),
+    path('result_charts.data', views.ResultChartsData.as_view(),
+         name='result_charts.data'),
     ]
 
 # Search detail-view-classes and append to URLs

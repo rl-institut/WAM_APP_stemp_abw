@@ -11,22 +11,18 @@ import pandas as pd
 class Results(object):
     """Results"""
     def __init__(self, simulation):
-        self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(Scenario.objects.get(
-            name='Status quo').results.data)
+        self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(
+            Scenario.objects.get(name='Status quo').results.data)
 
-        self.results_raw = None
-        self.param_results_raw = None
+        self.results_raw = self.sq_results_raw
+        self.param_results_raw = self.sq_param_results_raw
+        self.status = 'init'
         self.simulation = simulation
-        self.is_up_to_date = False
-
-        # set SQ results on startup
-        self.set_result_raw_data(self.sq_results_raw,
-                                 self.param_results_raw)
 
     def set_result_raw_data(self, results_raw, param_results_raw):
         self.results_raw = results_raw
         self.param_results_raw = param_results_raw
-        self.is_up_to_date = True
+        self.status = 'up_to_date'
 
     @staticmethod
     def get_results_df(results_raw):
