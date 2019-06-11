@@ -63,6 +63,13 @@ class RegMunPop(RegMun):
     def pop(self):
         return self.mundata.pop_2017
 
+    @property
+    def pop_region(self):
+        pop_region = 0
+        for pop_mun in MunData.objects.values('pop_2017'):
+            pop_region += pop_mun['pop_2017']
+        return pop_region
+
 
 class RegMunPopDensity(RegMun):
     name = 'reg_mun_pop_density'

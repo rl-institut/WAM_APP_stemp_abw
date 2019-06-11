@@ -31,7 +31,8 @@ class RegMunPopData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'pop'
+        'pop',
+        'pop_region'
     ]
 
 
