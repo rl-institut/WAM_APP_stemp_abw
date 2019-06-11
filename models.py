@@ -81,6 +81,16 @@ class RegMunPopDensity(RegMun):
     def pop_density(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
 
+    @property
+    def pop_density_region(self):
+        pop_region = 0
+        for pop_mun in MunData.objects.values('pop_2017'):
+            pop_region += pop_mun['pop_2017']
+        area_region = 0
+        for area_mun in MunData.objects.values('area'):
+            area_region += area_mun['area']
+        return round(pop_region / area_region)
+
 
 class RegMunGenEnergyRe(RegMun):
     name = 'reg_mun_gen_energy_re'

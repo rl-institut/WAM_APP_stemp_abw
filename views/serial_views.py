@@ -41,7 +41,8 @@ class RegMunPopDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'pop_density'
+        'pop_density',
+        'pop_density_region'
     ]
 
 
