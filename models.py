@@ -131,6 +131,17 @@ class RegMunDemElEnergy(RegMun):
                       self.mundata.dem_el_energy_rca +
                       self.mundata.dem_el_energy_ind) / 1e3)
 
+    @property
+    def dem_el_energy_region(self):
+        dem_el_energy_region = 0
+        for hh in MunData.objects.values('dem_el_energy_hh'):
+            dem_el_energy_region += hh['dem_el_energy_hh']
+        for rca in MunData.objects.values('dem_el_energy_rca'):
+            dem_el_energy_region += rca['dem_el_energy_rca']
+        for ind in MunData.objects.values('dem_el_energy_ind'):
+            dem_el_energy_region += ind['dem_el_energy_ind']
+        return round(dem_el_energy_region / 1e3)
+
 
 class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     name = 'reg_mun_energy_re_el_dem_share'
