@@ -203,6 +203,21 @@ class RegMunGenCapRe(RegMun):
                      self.mundata.gen_capacity_hydro +
                      self.mundata.gen_capacity_bio)
 
+    @property
+    def gen_cap_re_region(self):
+        gen_cap_re_region = 0
+        for value in MunData.objects.values('gen_capacity_wind'):
+            gen_cap_re_region += value['gen_capacity_wind']
+        for value in MunData.objects.values('gen_capacity_pv_roof_large'):
+            gen_cap_re_region += value['gen_capacity_pv_roof_large']
+        for value in MunData.objects.values('gen_capacity_pv_ground'):
+            gen_cap_re_region += value['gen_capacity_pv_ground']
+        for value in MunData.objects.values('gen_capacity_hydro'):
+            gen_cap_re_region += value['gen_capacity_hydro']
+        for value in MunData.objects.values('gen_capacity_bio'):
+            gen_cap_re_region += value['gen_capacity_bio']
+        return round(gen_cap_re_region)
+
 
 class RegMunGenCapReDensity(RegMunGenCapRe):
     name = 'reg_mun_gen_cap_re_density'

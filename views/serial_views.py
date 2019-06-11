@@ -91,7 +91,8 @@ class RegMunGenCapReData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_cap_re'
+        'gen_cap_re',
+        'gen_cap_re_region'
     ]
 
 
