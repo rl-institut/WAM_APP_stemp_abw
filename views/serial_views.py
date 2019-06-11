@@ -60,7 +60,8 @@ class RegMunGenEnergyReData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_energy_re'
+        'gen_energy_re',
+        'gen_energy_re_region'
     ]
 
 

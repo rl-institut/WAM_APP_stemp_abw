@@ -105,6 +105,19 @@ class RegMunGenEnergyRe(RegMun):
                       self.mundata.gen_el_energy_pv_ground +
                       self.mundata.gen_el_energy_hydro) / 1e3)
 
+    @property
+    def gen_energy_re_region(self):
+        gen_energy_re_region = 0
+        for wind_mun in MunData.objects.values('gen_el_energy_wind'):
+            gen_energy_re_region += wind_mun['gen_el_energy_wind']
+        for roof_mun in MunData.objects.values('gen_el_energy_pv_roof'):
+            gen_energy_re_region += roof_mun['gen_el_energy_pv_roof']
+        for pv_ground_mun in MunData.objects.values('gen_el_energy_pv_ground'):
+            gen_energy_re_region += pv_ground_mun['gen_el_energy_pv_ground']
+        for hydro_mun in MunData.objects.values('gen_el_energy_hydro'):
+            gen_energy_re_region += hydro_mun['gen_el_energy_hydro']
+        return round(gen_energy_re_region / 1e3)
+
 
 class RegMunDemElEnergy(RegMun):
     name = 'reg_mun_dem_el_energy'
