@@ -341,6 +341,7 @@
                       <div class="cell" id="results-collapsed">
                         <p>An dieser Stelle werden in Kürze Ebenen mit gemeindescharfen Ergebnissen erscheinen...</p>
                         <p>Nutzen Sie bis dahin den Button oben für Gesamtergebnisse.</p>
+                        <p id="simulation-info" style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;" hidden>Werte müssen berechnet werden - bitte Simulation starten!</p>
                         {% include "forms/layer_results_select.html" %}
                         <!--<form>-->
                           <!--<fieldset>-->
@@ -770,6 +771,124 @@
           ctrlScenario('init-sq-scn');
         });
 
+    </script>
+
+    <script type="text/javascript">
+        function result_map_init (map, options) {
+
+            // show load spinner
+            toggleSpinnerVisibility();
+
+            // Setup layer counter
+            var layer_count = {{ layer_list_results|length }};
+            var layer_ctr = 0;
+            var loader_text = $('#loader-detail-text');
+
+            // Load GeoJsons via Ajax and add layers to map (region and area info)
+            {% for layer, data in layer_list_results.items %}
+                var delta_data_url = "{% url 'stemp_abw:'|add:data.model|add:'_delta.data' %}";
+                $.getJSON(delta_data_url, function (delta_data) {
+                  var data_url = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}";
+                  $.ajax({
+                      url: data_url,
+                      dataType: 'json',
+                      async: true,
+                      success: function(json){
+                          // Add GeoJSON layer
+                          var layer = new L.geoJson(json, {
+                                style: function (feature) {
+                                  var layer_style = getLayerStyle("{{ layer }}", feature);
+                                  return layer_style;
+                                },
+                                onEachFeature: onEachFeature("{{ layer }}"),
+                                pointToLayer: function (feature, latlng) {
+                                  var delta_name = ('{{ layer }}' + '_delta').replace(/reg_mun_/g, '');
+                                  // .bindTooltip can't use straight 'feature.properties.attribute'
+                                  var label = String(feature.properties[delta_name]);
+                                  return new L.CircleMarker(latlng, {
+                                    radius: 0.1,
+                                  }).bindTooltip(label, {
+                                    permanent: true,
+                                    direction: "center",
+                                    className: "my-delta"
+                                  }).openTooltip();
+                                }
+                              }
+                          );
+                          layer.addData(delta_data);
+                          layers["{{ layer }}"] = layer;
+                          layers_cat["{{ layer }}"] = '{{ data.cat }}';
+                          layer_ctr++;
+
+                          // Add legend to map
+                          if (choropleth_data.hasOwnProperty('{{ layer }}')) {
+                            var name = '{{ layer }}';
+                            var schema = choropleth_data[name].color_schema;
+                            var min = choropleth_data[name].min;
+                            var max = choropleth_data[name].max;
+                            var step = choropleth_data[name].step;
+                            var reverse = choropleth_data[name].reverse;
+                            var colorVals = getColorValues(schema, min, max, step, reverse);
+                            var grades_list = [];
+                            for (var key in colorVals['values']) {
+                              grades_list.push(key)
+                            }
+
+                            var legend = L.control({position: 'bottomright'});
+
+                            legend.onAdd = function (map) {
+                              var div = L.DomUtil.create('div', 'choropleth_legend'),
+                                  grades = grades_list,
+                                  labels = [],
+                                  from, to;
+
+                              labels.push(choropleth_data[name].unit);
+
+                              for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                              }
+
+                              div.innerHTML = labels.join('<br>');
+                              return div;
+                            };
+
+                            legends["{{ layer }}"] = legend;
+                          }
+
+                          // Show layer or not
+                          {% if data.show  == '1' %}
+                              map.addLayer(layer);
+                          {% endif %}
+
+                          // show progress
+                          loader_text.text('Layer ' +
+                                           String(layer_ctr) + '/' + String(layer_count) +
+                                           ': ' + '{{ data.title }}');
+
+                          // hide load spinner
+                          if (layer_ctr == layer_count) {
+                              loader_text[0].style = 'color: #62f476; font-weight: bold';
+                              //loader_text[0].style.font-weight = 'bold';
+                              loader_text.text('Fertig!');
+                              setTimeout(function(){
+                                  toggleSpinnerVisibility();
+                              }, 500);
+                          };
+                      },
+                      error: function(page) {
+                          console.log('Fehler beim Laden der Daten!');
+                          loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                          loader_text.text('Fehler beim Laden der Daten!');
+                      }
+                  });
+                });
+            {% endfor %}
+        };
     </script>
 
 {% endblock %}

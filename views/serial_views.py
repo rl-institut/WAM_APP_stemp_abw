@@ -33,30 +33,12 @@ class RegMunPopData(GeoJSONLayerView):
                   'pop']
 
 
-# TODO: Remove/alter after test
-class RegMunPopResultData(GeoJSONLayerView):
-    model = models.RegMunPopResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_result']
-
-
 class RegMunPopDensityData(GeoJSONLayerView):
     model = models.RegMunPopDensity
     properties = ['popup_content',
                   'name',
                   'gen',
                   'pop_density']
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResultData(GeoJSONLayerView):
-    model = models.RegMunPopDensityResult
-    properties = ['popup_content',
-                  'name',
-                  'gen',
-                  'pop_density_result']
 
 
 class RegMunEnergyReElDemShareData(GeoJSONLayerView):
@@ -430,7 +412,6 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 ########################
 # Results serial views #
 ########################
-
 class ResultChartsData(View):
     model = None
 
@@ -443,3 +424,143 @@ class ResultChartsData(View):
             return JsonResponse(results.get_result_charts_data(), safe=True)
         else:
             return JsonResponse(None, safe=False)
+
+
+class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
+    model = models.RegMunEnergyReElDemShareResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share_result']
+
+
+class RegMunGenEnergyReResultData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_result']
+
+
+class RegMunGenEnergyReDensityResultData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density_result']
+
+
+class RegMunGenCapReResultData(GeoJSONLayerView):
+    model = models.RegMunGenCapReResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_result']
+
+
+class RegMunGenCapReDensityResultData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_density_result']
+
+
+class RegMunGenCountWindDensityResultData(GeoJSONLayerView):
+    model = models.RegMunGenCountWindDensityResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density_result']
+
+
+class RegMunDemElEnergyResultData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_result']
+
+
+class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyPerCapitaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita_result']
+
+
+################################
+# Results serial views (DELTA) #
+################################
+
+class RegMunEnergyReElDemShareResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunEnergyReElDemShareDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'energy_re_el_dem_share_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenEnergyReResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenEnergyReDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenEnergyReDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_energy_re_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCapReResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCapReDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCapReDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_cap_re_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunGenCountWindDensityResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunGenCountWindDensityDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'gen_count_wind_density_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunDemElEnergyResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_result_delta']
+    geometry_field = 'geom_centroid'
+
+
+class RegMunDemElEnergyPerCapitaResultDeltaData(GeoJSONLayerView):
+    model = models.RegMunDemElEnergyPerCapitaDeltaResult
+    properties = ['popup_content',
+                  'name',
+                  'gen',
+                  'dem_el_energy_per_capita_result_delta']
+    geometry_field = 'geom_centroid'

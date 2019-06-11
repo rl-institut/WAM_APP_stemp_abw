@@ -87,21 +87,30 @@ function ctrlSimulate() {
   //$('#simulation-save-btn').show();
 
   $.ajax({
-      url : '/stemp_abw/app/',
-      type : "POST",
-      data : {action: 'simulate',
-              data: '',
-              csrfmiddlewaretoken: csrf_token},
-      success: function(page) {
-          console.log('success');
-      },
-      error: function(page) {
-          console.log('error');
-          showErrorPopup();
+    url: '/stemp_abw/app/',
+    type: "POST",
+    data: {
+      action: 'simulate',
+      data: '',
+      csrfmiddlewaretoken: csrf_token
+    },
+    success: function (page) {
+      console.log('simulation success');
+      console.log('hidding result layers and legends');
+      hideResultLayers();
+      if (simulation_info.hidden === false) {
+        simulation_info.hidden = true;
       }
-  }).done(function(returned_data){
-      //updateSimProgressBar(25);
-      console.log(returned_data);
+      console.log('calling result_map_init ...');
+      window.result_map_init(window.maps);
+    },
+    error: function (page) {
+      console.log('error');
+      showErrorPopup();
+    }
+  }).done(function (returned_data) {
+    //updateSimProgressBar(25);
+    console.log(returned_data);
 
       // hide simulation spinner
       toggleSpinnerVisibility();

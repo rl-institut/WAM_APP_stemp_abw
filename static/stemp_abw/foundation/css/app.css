@@ -8432,6 +8432,15 @@ a.thumbnail {
     text-align: justify;
 }
 
+/* remove label background elements */
+.leaflet-tooltip.my-delta {
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    font-weight: normal;
+    font-size: 40px;
+}
+
 /* Map legend */
 .choropleth_legend {
     padding: 6px 8px;

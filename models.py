@@ -1,3 +1,4 @@
+import random
 from uuid import uuid4
 
 from django.db import models
@@ -52,6 +53,7 @@ class RegMun(LayerModel):
     name = 'reg_mun'
     ags = models.IntegerField(primary_key=True)
     geom = geomodels.MultiPolygonField(srid=3035)
+    geom_centroid = geomodels.PointField(srid=3035, null=True)
     gen = models.CharField(max_length=254)
 
 
@@ -81,18 +83,6 @@ class RegMunPopDensity(RegMun):
 
     @property
     def pop_density(self):
-        return round(self.mundata.pop_2017 / self.mundata.area)
-
-
-# TODO: Remove/alter after test
-class RegMunPopDensityResult(RegMun):
-    name = 'reg_mun_pop_density_result'
-
-    class Meta:
-        proxy = True
-
-    @property
-    def pop_density_result(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
 
 
@@ -424,20 +414,208 @@ class RegInfrasAviation(LayerModel):
 ##########################
 # Layer models (results) #
 ##########################
-# Result proxy models for serial views
-import random
-random.seed(1)
-
-
-class RegMunPopResult(RegMun):
-    name = 'reg_mun_pop_result'
+# TODO: Alter extended classes to result classes
+class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
+    name = 'reg_mun_energy_re_el_dem_share_result'
 
     class Meta:
         proxy = True
 
     @property
-    def pop_result(self):
-        return 80000 * random.random()
+    def energy_re_el_dem_share_result(self):
+        return round(self.gen_energy_re / self.dem_el_energy * 100)
+
+
+# TODO: Alter extended class to result class
+class RegMunGenEnergyReResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_result(self):
+        return round((self.mundata.gen_el_energy_wind +
+                      self.mundata.gen_el_energy_pv_roof +
+                      self.mundata.gen_el_energy_pv_ground +
+                      self.mundata.gen_el_energy_hydro) / 1e3)
+
+
+# TODO: Alter extended class to result class
+class RegMunGenEnergyReDensityResult(RegMunGenEnergyRe):
+    name = 'reg_mun_gen_energy_re_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density_result(self):
+        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCapReResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_result(self):
+        return round(self.mundata.gen_capacity_wind +
+                     self.mundata.gen_capacity_pv_roof_large +
+                     self.mundata.gen_capacity_pv_ground +
+                     self.mundata.gen_capacity_hydro +
+                     self.mundata.gen_capacity_bio)
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCapReDensityResult(RegMunGenCapRe):
+    name = 'reg_mun_gen_cap_re_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_density_result(self):
+        return round(self.gen_cap_re / self.mundata.area, 2)
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCountWindDensityResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_count_wind_density_result(self):
+        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
+
+
+# TODO: Alter extended class to result class
+class RegMunDemElEnergyResult(RegMun):
+    name = 'reg_mun_dem_el_energy_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_result(self):
+        return round((self.mundata.dem_el_energy_hh +
+                      self.mundata.dem_el_energy_rca +
+                      self.mundata.dem_el_energy_ind) / 1e3)
+
+
+# TODO: Alter extended class to result class
+class RegMunDemElEnergyPerCapitaResult(RegMunDemElEnergy):
+    name = 'reg_mun_dem_el_energy_per_capita_result'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_per_capita_result(self):
+        return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
+
+
+################################
+# Layer models (results DELTA) #
+################################
+# TODO: This is a test delta layer
+class RegMunEnergyReElDemShareDeltaResult(RegMun):
+    name = 'reg_mun_energy_re_el_dem_share_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def energy_re_el_dem_share_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunGenCountWindDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_count_wind_density_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_result_delta(self):
+        return random.randrange(-100, 100, 1)
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyPerCapitaDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_per_capita_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_per_capita_result_delta(self):
+        return random.randrange(-100, 100, 1)
 
 
 ###############
