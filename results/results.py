@@ -114,7 +114,7 @@ class Results(object):
         data_power_prod_m_user_scn = {k: v
                                       for (k, v) in data_power_prod_m_user_scn}
         data_power_prod_m_user_scn['Photovoltaik'] = [
-            x1+x2
+            round(x1+x2, 1)
             for x1, x2 in zip(data_power_prod_m_user_scn.pop('PV Freifläche'),
                               data_power_prod_m_user_scn.pop('PV Dach'))]
         hc_column_power_prod_m_user_scn = [{'name': k, 'data': v}

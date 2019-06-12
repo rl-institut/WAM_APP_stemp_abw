@@ -526,8 +526,11 @@
             {% for visualization in results_charts_tab5_viz %}
                   {{visualization.media}}
             {% endfor %}
-            getSimulationResults();
-          }, 750);
+            setTimeout(function() {
+              getSimulationResults();
+            }, 50);
+          }, 350);
+
         }
       });
     </script>

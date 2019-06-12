@@ -42210,10 +42210,10 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
   var toggleWidth = function toggleWidth(offCanvasWidth, offCanvasContentWidth) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvas').animate({
       width: offCanvasWidth
-    }, 500);
+    }, 250);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvasContent').animate({
       width: offCanvasContentWidth
-    }, 500);
+    }, 250);
   };
 
   var offCanvasOpacity = function offCanvasOpacity(op, duration) {
