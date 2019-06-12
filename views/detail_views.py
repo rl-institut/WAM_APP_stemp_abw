@@ -783,7 +783,8 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
         chart = highcharts.HCStackedColumn(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -831,7 +832,8 @@ class RegMunGenEnergyReResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -879,7 +881,8 @@ class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -928,7 +931,8 @@ class RegMunGenCapReResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -978,7 +982,8 @@ class RegMunGenCapReDensityResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -1030,7 +1035,8 @@ class RegMunDemElEnergyResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
 
@@ -1077,6 +1083,7 @@ class RegMunDemElEnergyPerCapitaResultDetailView(MasterDetailView):
         chart = highcharts.HCPiechart(
             data=data,
             setup_labels=setup_labels,
-            style='display: inline-block'
+            style='display: inline-block',
+            theme='popups'
         )
         return chart
