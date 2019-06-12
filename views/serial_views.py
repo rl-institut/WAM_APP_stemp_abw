@@ -412,7 +412,7 @@ class RegInfrasAviationData(GeoJSONLayerView):
 ###############################
 
 class GeoJSONSingleDatasetLayerView(GeoJSONResponseMixin, DetailView):
-    """View for single objects of djgeojson's GeoJSON response
+    """Serial view for single objects of djgeojson's GeoJSON response
 
     Modified version of GeoJSONResponseMixin - filter queryset before creating
     GeoJSON response.
@@ -436,6 +436,21 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 # Results serial views #
 ########################
 class SimulationStatus(View):
+    """Serial view to get simulation status
+
+    Returns
+    -------
+    :obj:`django.http.JsonResponse`
+        GeoJSON response with simulation status, format:
+        {'sim_status': <STATUS>} where <STATUS> is one of
+        * 'init' (tool initialized, results contain those from SQ scenario)
+        * 'up_to_date' (results are up-to-date)
+        * 'outdated' (results are outdated)
+
+    See Also
+    --------
+    Status is taken from :obj:`stemp_abw.results.results.Results`
+    """
     model = None
 
     @staticmethod
