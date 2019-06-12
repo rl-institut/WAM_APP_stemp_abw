@@ -19,18 +19,12 @@ from stemp_abw.app_settings import LABELS
 
 class LayerModel(models.Model):
 
+    class Meta:
+        abstract = True
+
     @property
     def name(self):
         raise NotImplementedError
-
-    # TODO: This can be chucked away?
-    @property
-    def popup_content(self):
-        #return '<p>'+self.name+'</p>'
-        return 'popup/'
-
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return '{name} Objekt ({pk_name}={pk})'.format(
@@ -42,11 +36,6 @@ class LayerModel(models.Model):
 class RpAbwBound(LayerModel):
     name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)
-
-    # @property
-    # def popup_content(self):
-    #     return '<p>{text}</p>'.format(
-    #         text='PR ABW Grenze des Planungsraumes')
 
 
 class RegMun(LayerModel):
@@ -74,8 +63,15 @@ class RegMunPop(RegMun):
     def pop(self):
         return self.mundata.pop_2017
 
+    @property
+    def pop_region(self):
+        pop_region = 0
+        for pop_mun in MunData.objects.values('pop_2017'):
+            pop_region += pop_mun['pop_2017']
+        return pop_region
 
-class RegMunPopDensity(RegMun):
+
+class RegMunPopDensity(RegMunPop):
     name = 'reg_mun_pop_density'
 
     class Meta:
@@ -84,6 +80,17 @@ class RegMunPopDensity(RegMun):
     @property
     def pop_density(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
+
+    @property
+    def area_region(self):
+        area_region = 0
+        for area_mun in MunData.objects.values('area'):
+            area_region += area_mun['area']
+        return area_region
+
+    @property
+    def pop_density_region(self):
+        return round(self.pop_region / self.area_region)
 
 
 class RegMunGenEnergyRe(RegMun):
@@ -99,6 +106,19 @@ class RegMunGenEnergyRe(RegMun):
                       self.mundata.gen_el_energy_pv_ground +
                       self.mundata.gen_el_energy_hydro) / 1e3)
 
+    @property
+    def gen_energy_re_region(self):
+        gen_energy_re_region = 0
+        for wind_mun in MunData.objects.values('gen_el_energy_wind'):
+            gen_energy_re_region += wind_mun['gen_el_energy_wind']
+        for roof_mun in MunData.objects.values('gen_el_energy_pv_roof'):
+            gen_energy_re_region += roof_mun['gen_el_energy_pv_roof']
+        for pv_ground_mun in MunData.objects.values('gen_el_energy_pv_ground'):
+            gen_energy_re_region += pv_ground_mun['gen_el_energy_pv_ground']
+        for hydro_mun in MunData.objects.values('gen_el_energy_hydro'):
+            gen_energy_re_region += hydro_mun['gen_el_energy_hydro']
+        return round(gen_energy_re_region / 1e3)
+
 
 class RegMunDemElEnergy(RegMun):
     name = 'reg_mun_dem_el_energy'
@@ -112,6 +132,17 @@ class RegMunDemElEnergy(RegMun):
                       self.mundata.dem_el_energy_rca +
                       self.mundata.dem_el_energy_ind) / 1e3)
 
+    @property
+    def dem_el_energy_region(self):
+        dem_el_energy_region = 0
+        for hh in MunData.objects.values('dem_el_energy_hh'):
+            dem_el_energy_region += hh['dem_el_energy_hh']
+        for rca in MunData.objects.values('dem_el_energy_rca'):
+            dem_el_energy_region += rca['dem_el_energy_rca']
+        for ind in MunData.objects.values('dem_el_energy_ind'):
+            dem_el_energy_region += ind['dem_el_energy_ind']
+        return round(dem_el_energy_region / 1e3)
+
 
 class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     name = 'reg_mun_energy_re_el_dem_share'
@@ -123,8 +154,12 @@ class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     def energy_re_el_dem_share(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)
 
+    @property
+    def energy_re_el_dem_share_region(self):
+        return round(self.gen_energy_re_region / self.dem_el_energy_region * 100)
 
-class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
+
+class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe, RegMunPop):
     name = 'reg_mun_gen_energy_re_per_capita'
 
     class Meta:
@@ -134,8 +169,12 @@ class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
     def gen_energy_re_per_capita(self):
         return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
 
+    @property
+    def gen_energy_re_per_capita_region(self):
+        return round(self.gen_energy_re_region * 1e3 / self.pop_region, 1)
 
-class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
+
+class RegMunGenEnergyReDensity(RegMunGenEnergyRe, RegMunPopDensity):
     name = 'reg_mun_gen_energy_re_density'
 
     class Meta:
@@ -144,6 +183,10 @@ class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
     @property
     def gen_energy_re_density(self):
         return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
+
+    @property
+    def gen_energy_re_density_region(self):
+        return round(self.gen_energy_re_region * 1e3 / self.area_region, 1)
 
 
 class RegMunGenCapRe(RegMun):
@@ -159,6 +202,21 @@ class RegMunGenCapRe(RegMun):
                      self.mundata.gen_capacity_pv_ground +
                      self.mundata.gen_capacity_hydro +
                      self.mundata.gen_capacity_bio)
+
+    @property
+    def gen_cap_re_region(self):
+        gen_cap_re_region = 0
+        for value in MunData.objects.values('gen_capacity_wind'):
+            gen_cap_re_region += value['gen_capacity_wind']
+        for value in MunData.objects.values('gen_capacity_pv_roof_large'):
+            gen_cap_re_region += value['gen_capacity_pv_roof_large']
+        for value in MunData.objects.values('gen_capacity_pv_ground'):
+            gen_cap_re_region += value['gen_capacity_pv_ground']
+        for value in MunData.objects.values('gen_capacity_hydro'):
+            gen_cap_re_region += value['gen_capacity_hydro']
+        for value in MunData.objects.values('gen_capacity_bio'):
+            gen_cap_re_region += value['gen_capacity_bio']
+        return round(gen_cap_re_region)
 
 
 class RegMunGenCapReDensity(RegMunGenCapRe):
@@ -531,7 +589,7 @@ class RegMunEnergyReElDemShareDeltaResult(RegMun):
 
     @property
     def energy_re_el_dem_share_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -543,7 +601,7 @@ class RegMunGenEnergyReDeltaResult(RegMun):
 
     @property
     def gen_energy_re_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -555,7 +613,7 @@ class RegMunGenEnergyReDensityDeltaResult(RegMun):
 
     @property
     def gen_energy_re_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -567,7 +625,7 @@ class RegMunGenCapReDeltaResult(RegMun):
 
     @property
     def gen_cap_re_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -579,7 +637,7 @@ class RegMunGenCapReDensityDeltaResult(RegMun):
 
     @property
     def gen_cap_re_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -591,7 +649,7 @@ class RegMunGenCountWindDensityDeltaResult(RegMun):
 
     @property
     def gen_count_wind_density_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -603,7 +661,7 @@ class RegMunDemElEnergyDeltaResult(RegMun):
 
     @property
     def dem_el_energy_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 # TODO: This is a test delta layer
@@ -615,7 +673,7 @@ class RegMunDemElEnergyPerCapitaDeltaResult(RegMun):
 
     @property
     def dem_el_energy_per_capita_result_delta(self):
-        return random.randrange(-100, 100, 1)
+        return str(random.randrange(-100, 100, 1)) + '%'
 
 
 ###############

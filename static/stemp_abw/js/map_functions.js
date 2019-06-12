@@ -113,10 +113,9 @@ function onEachFeature(layerName) {
           'maxWidth': '500',
           'className': 'custom_popup'
         }
-    if (feature.properties && feature.properties.popup_content) {
+    if (feature.properties) {
       layer.bindPopup('', customPopup);
     }
-    ;
     layer.on({
       click: execClickAction,
       mouseover: setHighlightFeatureStyle,

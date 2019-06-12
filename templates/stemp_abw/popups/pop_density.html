@@ -1,3 +1,10 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
 
-{% block values %}: {{ layer.pop_density }} EinwohnerInnen je km²{% endblock %}
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.pop_density }} EinwohnerInnen je km²</p>
+  </div>
+  <div>
+    Region ABW: {{ layer.pop_density_region }} EinwohnerInnen je km²
+  </div>
+{% endblock %}
