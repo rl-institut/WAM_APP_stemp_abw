@@ -472,6 +472,39 @@ class RegInfrasAviation(LayerModel):
 ##########################
 # Layer models (results) #
 ##########################
+class ResultLayerModel(RegMun):
+    """This model is a dummy proxy model for displaying layer results
+
+    Notes
+    -----
+    It bases the municipalities' model :class:`stemp_abw.models.RegMun` which
+    is required (geom, names) for all result layers. The result data column
+    cannot be defined using property decorator as the results are stored in
+    :class:`stemp_abw.results.results.Results` which is connected to a
+    session and not accessible from models. Instead, the result column is
+    dynamically added in the serial view
+    :class:`stemp_abw.views.serial_views.GeoJSONResultLayerData`.
+    """
+    name = None
+
+    class Meta:
+        proxy = True
+
+    @classmethod
+    def name_init(cls, name):
+        """Class method to set model name property which is needed to match the
+        layer configuration (config/layers_results.cfg) and control (associated
+        layer switch in GUI).
+
+        Parameters
+        ----------
+        name : :obj:`str`
+            Model name as used in config/layers_results.cfg
+        """
+        cls.name = name
+        return cls
+
+
 # TODO: Alter extended classes to result classes
 class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
     name = 'reg_mun_energy_re_el_dem_share_result'
