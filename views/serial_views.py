@@ -472,6 +472,64 @@ class ResultChartsData(View):
         return JsonResponse(results.get_result_charts_data(), safe=True)
 
 
+@method_decorator(never_cache, name='dispatch')
+class GeoJSONResultLayerData(GeoJSONResponseMixin, ListView):
+    """Serial view with custom data in djgeojson's GeoJSON response
+
+    Modified version of GeoJSONResponseMixin - add custom data column before
+    creating GeoJSON response. Municipalities (model RegMun) is used as base
+    model.
+
+    Notes
+    -----
+    Different from static serial layer views (examples see above) which use a
+    specific model each, this view uses the dummy model
+    :class:`stemp_abw.models.ResultLayerModel` on initialization. The property
+    "model" which is required by djgeojson is set dynamically using class
+    method :meth:`stemp_abw.models.ResultLayerModel.name_init`.
+    """
+    custom_property = None
+    properties = []
+
+    def __init__(self, model_name, custom_property, *args, **kwargs):
+        """Instantiate with custom `model_name` and `custom_property`
+
+        Parameters
+        ----------
+        model_name : :obj:`str`
+            Name string of model (used as property "name" in dummy model
+            :class:`stemp_abw.models.ResultLayerModel), see model for detailed
+            description.
+        custom_property : :obj:`str`
+            Property (column) to be added to model, must be a column in
+            layer results DataFrame results_df.
+        """
+        self.model = models.ResultLayerModel.name_init(
+            name=model_name)
+        self.custom_property = custom_property
+        self.properties = ['name',
+                           'gen',
+                           custom_property]
+
+        super(GeoJSONResultLayerData, self).__init__(*args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        session = SESSION_DATA.get_session(context['view'].request)
+        results_df = session.simulation.results.get_layer_results()
+
+        # add additional property column to queryset and fill with result data
+        queryset = list()
+        for feature in self.model.objects.all():
+            setattr(feature,
+                    self.custom_property,
+                    results_df.loc[feature.ags][self.custom_property])
+            queryset.append(feature)
+        self.queryset = queryset
+
+        return super(GeoJSONResultLayerData, self)\
+            .render_to_response(context, **response_kwargs)
+
+
 class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
     model = models.RegMunEnergyReElDemShareResult
     properties = [
