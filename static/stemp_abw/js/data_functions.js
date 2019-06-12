@@ -110,7 +110,6 @@ function ctrlSimulate() {
     }
   }).done(function (returned_data) {
     //updateSimProgressBar(25);
-    console.log(returned_data);
 
       // hide simulation spinner
       toggleSpinnerVisibility();
