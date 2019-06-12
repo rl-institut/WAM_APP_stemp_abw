@@ -63,12 +63,16 @@ detail_views_list = {mem[0]: mem[1]
 for name, obj in detail_views_list.items():
     if isclass(obj):
         if obj.model is not None:
-            # data detail view
+            # serial data detail view
             if issubclass(obj, views.GeoJSONSingleDatasetLayerView):
                 single_data_views[obj.model.name] = obj
-            # data view
+            # serial data view
             elif issubclass(obj, GeoJSONLayerView):
                 data_views[obj.model.name] = obj
+        elif getattr(obj, 'model_name', None) is not None:
+            # serial data result view
+            if issubclass(obj, views.GeoJSONResultLayerData):
+                data_views[obj.model_name] = obj
 # Append data-views' URLs
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name),
