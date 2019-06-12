@@ -1,11 +1,12 @@
 from stemp_abw.visualizations import highcharts
-from stemp_abw.models import Scenario
+from stemp_abw.models import Scenario, RegMun
 from stemp_abw.results.io import oemof_json_to_results
 from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
 
 from oemof.outputlib import views
 
 import pandas as pd
+from numpy.random import uniform
 
 
 class Results(object):
@@ -185,7 +186,26 @@ class Results(object):
 
     def get_layer_results(self):
         """Analyze results and return data for layer display"""
-        pass
+
+        results = pd.DataFrame(list(
+            RegMun.objects \
+                .values_list('ags', named=True)))
+
+        columns = ['energy_re_el_dem_share_result',
+                   'gen_energy_re_result',
+                   'gen_energy_re_density_result',
+                   'gen_cap_re_result',
+                   'gen_cap_re_density_result',
+                   'gen_count_wind_density_result',
+                   'dem_el_energy_result',
+                   'dem_el_energy_per_capita_result']
+
+        for c in columns:
+            results[c] = [round(_,1) for _ in uniform(low=0, high=100, size=20)]
+
+        results.set_index('ags', inplace=True)
+
+        return results
 
     def aggregate_flow_results(self, nodes_from, nodes_to, results_raw,
                                resample_mode='A', agg_mode='sum'):
