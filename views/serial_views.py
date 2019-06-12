@@ -480,36 +480,41 @@ class GeoJSONResultLayerData(GeoJSONResponseMixin, ListView):
     creating GeoJSON response. Municipalities (model RegMun) is used as base
     model.
 
-    Notes
-    -----
     Different from static serial layer views (examples see above) which use a
     specific model each, this view uses the dummy model
     :class:`stemp_abw.models.ResultLayerModel` on initialization. The property
     "model" which is required by djgeojson is set dynamically using class
     method :meth:`stemp_abw.models.ResultLayerModel.name_init`.
+
+    Attributes
+    ----------
+    model_name : :obj:`str`
+        Name string of model (used as property "name" in dummy model
+        :class:`stemp_abw.models.ResultLayerModel), see model for detailed
+        description.
+    custom_property : :obj:`str`
+        Property (column) to be added to model, must be a column in
+        layer results DataFrame results_df.
+    properties : :obj:`list` of :obj:`str`
+        Properties for each feature to be contained in the GeoJSON.
+
+    Notes
+    -----
+    Attributes `model_name` and `custom_property` must be attributes of
+    subclass.
     """
+    model_name = None
     custom_property = None
     properties = []
 
-    def __init__(self, model_name, custom_property, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """Instantiate with custom `model_name` and `custom_property`
-
-        Parameters
-        ----------
-        model_name : :obj:`str`
-            Name string of model (used as property "name" in dummy model
-            :class:`stemp_abw.models.ResultLayerModel), see model for detailed
-            description.
-        custom_property : :obj:`str`
-            Property (column) to be added to model, must be a column in
-            layer results DataFrame results_df.
         """
         self.model = models.ResultLayerModel.name_init(
-            name=model_name)
-        self.custom_property = custom_property
+            name=self.model_name)
         self.properties = ['name',
                            'gen',
-                           custom_property]
+                           self.custom_property]
 
         super(GeoJSONResultLayerData, self).__init__(*args, **kwargs)
 
