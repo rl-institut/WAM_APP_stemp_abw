@@ -1,9 +1,9 @@
+import stemp_abw.models as models
+from django.views.generic import DetailView, View, ListView
 from django.http import JsonResponse
 from django.views.decorators.cache import never_cache
-from django.views.generic import DetailView, View
+from django.utils.decorators import method_decorator
 from djgeojson.views import GeoJSONLayerView, GeoJSONResponseMixin
-
-import stemp_abw.models as models
 from wam.settings import SESSION_DATA
 
 
@@ -435,6 +435,7 @@ class REPotentialAreasData(GeoJSONSingleDatasetLayerView):
 ########################
 # Results serial views #
 ########################
+@method_decorator(never_cache, name='dispatch')
 class SimulationStatus(View):
     """Serial view to get simulation status
 
@@ -454,18 +455,17 @@ class SimulationStatus(View):
     model = None
 
     @staticmethod
-    @never_cache
     def get(request):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
         return JsonResponse({'sim_status': results.status}, safe=True)
 
 
+@method_decorator(never_cache, name='dispatch')
 class ResultChartsData(View):
     model = None
 
     @staticmethod
-    @never_cache
     def get(request):
         session = SESSION_DATA.get_session(request)
         results = session.simulation.results
