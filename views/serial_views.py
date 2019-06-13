@@ -1,4 +1,5 @@
 import stemp_abw.models as models
+from stemp_abw.results.serializers import ResultLayerDataSerializer
 from django.views.generic import DetailView, View, ListView
 from django.http import JsonResponse
 from django.views.decorators.cache import never_cache
@@ -473,7 +474,7 @@ class ResultChartsData(View):
 
 
 @method_decorator(never_cache, name='dispatch')
-class GeoJSONResultLayerData(GeoJSONResponseMixin, ListView):
+class GeoJSONResultLayerData(ListView):
     """Serial view with custom data in djgeojson's GeoJSON response
 
     Modified version of GeoJSONResponseMixin - add custom data column before
@@ -497,6 +498,10 @@ class GeoJSONResultLayerData(GeoJSONResponseMixin, ListView):
         layer results DataFrame results_df.
     properties : :obj:`list` of :obj:`str`
         Properties for each feature to be contained in the GeoJSON.
+    srid : :obj:`int`
+        SRID of CRS
+    geometry_field : :obj:`str`
+        Geometry field of model to be used for the GeoJSON
 
     Notes
     -----
@@ -504,44 +509,32 @@ class GeoJSONResultLayerData(GeoJSONResponseMixin, ListView):
     subclass.
     """
     model_name = None
-    custom_property = None
-    properties = []
+    result_property = None
+    properties = ['name',
+                  'gen']
+    geometry_field = 'geom'
 
     def __init__(self, *args, **kwargs):
         """Instantiate with custom `model_name` and `custom_property`
         """
         self.model = models.ResultLayerModel.name_init(
             name=self.model_name)
-        self.properties = ['name',
-                           'gen',
-                           self.custom_property]
 
         super(GeoJSONResultLayerData, self).__init__(*args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
-        session = SESSION_DATA.get_session(context['view'].request)
+        session = SESSION_DATA.get_session(self.request)
         results_df = session.simulation.results.get_layer_results()
 
-        # add additional property column to queryset and fill with result data
-        queryset = list()
-        for feature in self.model.objects.all():
-            setattr(feature,
-                    self.custom_property,
-                    results_df.loc[feature.ags][self.custom_property])
-            queryset.append(feature)
-        self.queryset = queryset
-
-        return super(GeoJSONResultLayerData, self)\
-            .render_to_response(context, **response_kwargs)
-
-
-class RegMunEnergyReElDemShareResultData(GeoJSONLayerView):
-    model = models.RegMunEnergyReElDemShareResult
-    properties = [
-        'name',
-        'gen',
-        'energy_re_el_dem_share_result'
-    ]
+        options = dict(properties=self.properties,
+                       result_property=self.result_property,
+                       results_df=results_df,
+                       geometry_field=self.geometry_field)
+        serializer = ResultLayerDataSerializer(options)
+        queryset = self.get_queryset()
+        return JsonResponse(serializer.serialize(queryset),
+                            safe=True,
+                            content_type='application/geo+json')
 
 
 class RegMunGenEnergyReResultData(GeoJSONLayerView):
