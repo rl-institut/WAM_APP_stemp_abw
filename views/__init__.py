@@ -32,6 +32,27 @@ def check_session(func):
     return func_wrapper
 
 
+def get_clean_session(request):
+    """Checks for existing session
+
+    Obtain it using WAM's :class:`wam.user_sessions.sessions.SessionData`
+    and delete session data (instantiate
+    :class:`stemp_abw.sessions.UserSession`).
+
+    Parameters
+    ----------
+    request : :obj:`django.core.handlers.wsgi.WSGIRequest`
+        Request
+    """
+    # get current session key
+    session_key = request.session.session_key
+    # get session (existing or new one if there's none)
+    SESSION_DATA.start_session(request, UserSession)
+    # if session existed before: delete session data
+    if session_key is not None:
+        SESSION_DATA.sessions['stemp_abw'][session_key] = UserSession()
+
+
 class IndexView(TemplateView):
     template_name = 'stemp_abw/index.html'
 
@@ -89,8 +110,8 @@ class MapView(TemplateView):
         return context
 
     def get(self, request, *args, **kwargs):
-        # Start session (if there's none):
-        SESSION_DATA.start_session(request, UserSession, force_new_session=True)
+        # get clean session
+        get_clean_session(request)
 
         context = self.get_context_data()
         return self.render_to_response(context)
