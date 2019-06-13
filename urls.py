@@ -62,7 +62,7 @@ detail_views_list = {mem[0]: mem[1]
                      if mem[1].__module__ == views.serial_views.__name__}
 for name, obj in detail_views_list.items():
     if isclass(obj):
-        if obj.model is not None:
+        if getattr(obj, 'model', None) is not None:
             # serial data detail view
             if issubclass(obj, views.GeoJSONSingleDatasetLayerView):
                 single_data_views[obj.model.name] = obj
