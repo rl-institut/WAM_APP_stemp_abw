@@ -537,67 +537,44 @@ class GeoJSONResultLayerData(ListView):
                             content_type='application/geo+json')
 
 
-class RegMunGenEnergyReResultData(GeoJSONLayerView):
-    model = models.RegMunGenEnergyReResult
-    properties = [
-        'name',
-        'gen',
-        'gen_energy_re_result'
-    ]
+class RegMunEnergyReElDemShareResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_energy_re_el_dem_share_result'
+    result_property = 'energy_re_el_dem_share_result'
 
 
-class RegMunGenEnergyReDensityResultData(GeoJSONLayerView):
-    model = models.RegMunGenEnergyReDensityResult
-    properties = [
-        'name',
-        'gen',
-        'gen_energy_re_density_result'
-    ]
+class RegMunGenEnergyReResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_gen_energy_re_result'
+    result_property = 'gen_energy_re_result'
 
 
-class RegMunGenCapReResultData(GeoJSONLayerView):
-    model = models.RegMunGenCapReResult
-    properties = [
-        'name',
-        'gen',
-        'gen_cap_re_result'
-    ]
+class RegMunGenEnergyReDensityResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_gen_energy_re_density_result'
+    result_property = 'gen_energy_re_density_result'
 
 
-class RegMunGenCapReDensityResultData(GeoJSONLayerView):
-    model = models.RegMunGenCapReDensityResult
-    properties = [
-        'name',
-        'gen',
-        'gen_cap_re_density_result'
-    ]
+class RegMunGenCapReResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_gen_cap_re_result'
+    result_property = 'gen_cap_re_result'
 
 
-class RegMunGenCountWindDensityResultData(GeoJSONLayerView):
-    model = models.RegMunGenCountWindDensityResult
-    properties = [
-        'name',
-        'gen',
-        'gen_count_wind_density_result'
-    ]
+class RegMunGenCapReDensityResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_gen_cap_re_density_result'
+    result_property = 'gen_cap_re_density_result'
 
 
-class RegMunDemElEnergyResultData(GeoJSONLayerView):
-    model = models.RegMunDemElEnergyResult
-    properties = [
-        'name',
-        'gen',
-        'dem_el_energy_result'
-    ]
+class RegMunGenCountWindDensityResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_gen_count_wind_density_result'
+    result_property = 'gen_count_wind_density_result'
 
 
-class RegMunDemElEnergyPerCapitaResultData(GeoJSONLayerView):
-    model = models.RegMunDemElEnergyPerCapitaResult
-    properties = [
-        'name',
-        'gen',
-        'dem_el_energy_per_capita_result'
-    ]
+class RegMunDemElEnergyResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_dem_el_energy_result'
+    result_property = 'dem_el_energy_result'
+
+
+class RegMunDemElEnergyPerCapitaResultData(GeoJSONResultLayerData):
+    model_name = 'reg_mun_dem_el_energy_per_capita_result'
+    result_property = 'dem_el_energy_per_capita_result'
 
 
 ################################
