@@ -10,7 +10,10 @@ from numpy.random import uniform
 
 
 class Results(object):
-    """Results"""
+    """Results associated to Simulation
+
+    TODO: Complete docstring
+    """
     def __init__(self, simulation):
         self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(
             Scenario.objects.get(name='Status quo').results.data)
@@ -28,7 +31,7 @@ class Results(object):
     @staticmethod
     def get_results_df(results_raw):
         """Return DataFrame with optimization results (timeseries) for all
-        nodes
+        nodes for given raw results
 
         Parameters
         ----------
