@@ -118,8 +118,10 @@ function ctrlSimulate() {
       if ($('#panel-results').hasClass('is-collapsed')) {
         getSimulationResults();
       } else {
-        $('#rc-tooltip-results-available').foundation('show');
-        highlightPanelTab('tabsResults');
+        if (!$('#panel-results').hasClass('is-active')) {
+          $('#rc-tooltip-results-available').foundation('show');
+          highlightPanelTab('tabsResults');
+        }
       }
   });
 };
