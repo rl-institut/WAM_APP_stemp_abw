@@ -87,12 +87,20 @@ class Results(object):
         # 1) Annual data (user scenario + SQ)
         #####################################
         # aggregate raw data
-        data_power_prod_user_scn = self.aggregate_flow_results(nodes_from,
-                                                                nodes_to,
-                                                                self.results_raw)
-        data_power_prod_sq_scn = self.aggregate_flow_results(nodes_from,
-                                                              nodes_to,
-                                                              self.sq_results_raw)
+        data_power_prod_user_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.results_raw,
+            resample_mode='A',
+            agg_mode='sum'
+        )
+        data_power_prod_sq_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.sq_results_raw,
+            resample_mode='A',
+            agg_mode='sum'
+        )
 
         # prepare chart data
         hc_column_power_prod_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
@@ -113,7 +121,9 @@ class Results(object):
                         'gen_el_pv_roof'],
             nodes_to=nodes_to,
             results_raw=self.results_raw,
-            resample_mode='M')
+            resample_mode='M',
+            agg_mode='sum'
+        )
 
         data_power_prod_m_user_scn = {k: v
                                       for (k, v) in data_power_prod_m_user_scn}
@@ -135,12 +145,20 @@ class Results(object):
                     'excess_el']
 
         # aggregate raw data
-        data_power_dem_user_scn = self.aggregate_flow_results(nodes_from,
-                                                               nodes_to,
-                                                               self.results_raw)
-        data_power_dem_sq_scn = self.aggregate_flow_results(nodes_from,
-                                                             nodes_to,
-                                                             self.sq_results_raw)
+        data_power_dem_user_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.results_raw,
+            resample_mode='A',
+            agg_mode='sum'
+        )
+        data_power_dem_sq_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.sq_results_raw,
+            resample_mode='A',
+            agg_mode='sum'
+        )
 
         # prepare chart data
         hc_column_power_dem_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
@@ -211,7 +229,7 @@ class Results(object):
         return results
 
     def aggregate_flow_results(self, nodes_from, nodes_to, results_raw,
-                               resample_mode='A', agg_mode='sum'):
+                               resample_mode=None, agg_mode='sum'):
         """Aggregate raw data for each node in `nodes_from` to `nodes_to`.
 
         Either `nodes_from` or `nodes_to` must contain a single node
@@ -225,10 +243,11 @@ class Results(object):
             Target node labels, e.g. ['gen_el_wind', 'gen_el_pv_ground']
         results_raw : :obj:`dict` of :pandas:`pandas.DataFrame`
             Raw result data from optimization as created by oemof
-        resample_mode : :obj:`str`
+        resample_mode : :obj:`str` or None
             Resampling option according to :pandas:`pandas.DataFrame.resample`
             If None, no resampling takes place and `agg_mode` is not used.
-            Default: 'A' (year)
+            Examples: 'A' (year), 'M' (month)
+            Default: None
         agg_mode : :obj:`str`
             Aggregation mode for resampling given in `resample_mode`,
             possible values: 'sum', 'mean'
