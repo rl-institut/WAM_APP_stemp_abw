@@ -29,7 +29,7 @@ class Results(object):
         self.status = 'up_to_date'
 
     @staticmethod
-    def get_results_df(results_raw):
+    def get_raw_results_df(results_raw):
         """Return DataFrame with optimization results (timeseries) for all
         nodes for given raw results
 
@@ -245,12 +245,12 @@ class Results(object):
 
         # extract requested columns
         if len(nodes_to) == 1 and len(nodes_from) >= 1:
-            ts = self.get_results_df(results_raw)[[(n_from, nodes_to[0])
-                                                   for n_from in nodes_from]]
+            ts = self.get_raw_results_df(results_raw)[[(n_from, nodes_to[0])
+                                                       for n_from in nodes_from]]
             multiple_nodes = 'from'
         elif len(nodes_from) == 1 and len(nodes_to) >= 1:
-            ts = self.get_results_df(results_raw)[[(nodes_from[0], n_to)
-                                                   for n_to in nodes_to]]
+            ts = self.get_raw_results_df(results_raw)[[(nodes_from[0], n_to)
+                                                       for n_to in nodes_to]]
             multiple_nodes = 'to'
         else:
             raise ValueError('One of source and target nodes '
