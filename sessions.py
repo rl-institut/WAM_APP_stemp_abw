@@ -301,7 +301,13 @@ class Simulation(object):
                                     end=SIM_CFG['date_to'],
                                     freq=SIM_CFG['freq']))
         # create nodes from user scenario and add to energy system
-        self.esys.add(*create_nodes(**json.loads(self.session.user_scenario.data.data)))
+        self.esys.add(
+            *create_nodes(
+                **json.loads(
+                    self.session.user_scenario.data.data
+                )
+            )
+        )
 
     def load_or_simulate(self):
         """Load results from DB if existing, start simulation if not
