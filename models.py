@@ -904,7 +904,7 @@ class MunData(models.Model):
 
 
 class FeedinTs(models.Model):
-    """Renewable feedin timeseries (normalized, hourly)
+    """Feedin timeseries (hourly, partly normalized - see columns)
 
     Attributes
     ----------
@@ -917,14 +917,22 @@ class FeedinTs(models.Model):
         refers to :class:`stemp_abw.models.RegMun`
     pv_ground :
         Photovoltaics (ground-mounted systems)
+        normalized (relative values)
     pv_roof :
         Photovoltaics (roof-mounted systems)
+        normalized (relative values)
     hydro :
         Run-of-river plants
+        normalized (relative values)
     wind_sq :
         Wind turbines (status quo)
+        normalized (relative values)
     wind_fs :
         Wind turbines (future scenarios)
+        normalized (relative values)
+    conventional :
+        Conventional plants (>=10 MW: power-led, <10 MW: heat-led)
+        NOT normalized (absolute values)
 
     Notes
     -----
@@ -940,6 +948,7 @@ class FeedinTs(models.Model):
     hydro = models.FloatField(blank=True, null=True)
     wind_sq = models.FloatField(blank=True, null=True)
     wind_fs = models.FloatField(blank=True, null=True)
+    conventional = models.FloatField(blank=True, null=True)
 
 
 class Powerplant(models.Model):
