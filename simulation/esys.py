@@ -149,6 +149,21 @@ def create_nodes(mun_data, reg_params):
                                                           fixed=True
                                                           )})
                  )
+    nodes.append(solph.Source(label='gen_el_bio',
+                              outputs={bus_el: solph.Flow(nominal_value=1,
+                                                          variable_costs=0,
+                                                          actual_value=feedin['bio'],
+                                                          fixed=True
+                                                          )})
+                 )
+    nodes.append(solph.Source(label='gen_el_conventional',
+                              outputs={bus_el: solph.Flow(
+                                  nominal_value=1,
+                                  variable_costs=0,
+                                  actual_value=feedin['conventional'],
+                                  fixed=True
+                              )})
+                 )
 
     # dispatchable sources (electrical and heat)
     # TBD
