@@ -154,6 +154,24 @@ def insert_repowering_scenarios():
 
 
 def insert_status_quo_results():
+    # ACHTUNG: To make it work:
+    # 1) Comment out in class Results:
+    #        self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(
+    #        Scenario.objects.get(name='Status quo').results.data)
+    # and set
+    #   self.results_raw = None
+    #   self.param_results_raw = None
+    #
+    # 2) Comment out result lookup:
+    # # reverse lookup for scenario
+    # if Scenario.objects.filter(data__data_uuid=user_scn_data_uuid).exists():
+    #     print('Scenario results found, load from DB...')
+    #     results_json = Scenario.objects.get(
+    #         data__data_uuid=user_scn_data_uuid).results.data
+    #     self.store_values(*oemof_json_to_results(results_json))
+    # else:
+    #     print('Scenario results not found, start simulation...')
+
     session = UserSession()
     session.simulation.create_esys()
     session.simulation.load_or_simulate()
@@ -171,4 +189,4 @@ def insert_status_quo_results():
 #insert_repowering_scenarios()
 #insert_potential_areas()
 #insert_status_quo_scenario()
-insert_status_quo_results()
+#insert_status_quo_results()
