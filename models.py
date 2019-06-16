@@ -790,6 +790,11 @@ class MunData(models.Model):
     gen_el_energy_bio :
         Annual el. energy fed in by biomass/biogas systems incl. sewage and
         landfill gas in MWh
+    gen_el_energy_conventional :
+        Annual el. energy fed in by conventional power plants in MWh (large
+        >=10 MW and small <10 MW).
+        Caution: small plants <10 MW do not appear in columns gen_count_* or
+        gen_capacity*, only in :class:`stemp_abw.models.FeedinTs`
 
     dem_el_peak_load_hh :
         El. peak demand of households in MW
@@ -880,6 +885,7 @@ class MunData(models.Model):
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
     gen_el_energy_bio = models.FloatField(null=True)
+    gen_el_energy_conventional = models.FloatField(null=True)
 
     dem_el_peak_load_hh = models.FloatField(null=True)
     dem_el_peak_load_rca = models.FloatField(null=True)
