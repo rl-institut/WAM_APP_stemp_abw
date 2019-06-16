@@ -767,9 +767,9 @@ class MunData(models.Model):
     gen_capacity_pv_ground :
         Total nominal power of ground-mounted PV systems in MW
     gen_capacity_hydro :
-        Total nominal power of run-of-river systems  in MW
+        Total nominal power of run-of-river systems in MW
     gen_capacity_bio :
-        Total nominal power of biogas/biomass PV systems  in MW
+        Total nominal power of biogas/biomass systems in MW
     gen_capacity_steam_turbine :
         Total nominal power of steam turbine systems in MW
     gen_capacity_combined_cycle :
@@ -787,6 +787,9 @@ class MunData(models.Model):
         Annual el. energy fed in by ground-mounted PV systems in MWh
     gen_el_energy_hydro :
         Annual el. energy fed in by run-of-river systems in MWh
+    gen_el_energy_bio :
+        Annual el. energy fed in by biomass/biogas systems incl. sewage and
+        landfill gas in MWh
 
     dem_el_peak_load_hh :
         El. peak demand of households in MW
@@ -841,7 +844,6 @@ class MunData(models.Model):
     reg_prio_area_wec_count :
         Count of priority area (parts)
     """
-    """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
     area = models.FloatField(null=True)
 
@@ -877,6 +879,7 @@ class MunData(models.Model):
     gen_el_energy_pv_roof = models.FloatField(null=True)
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
+    gen_el_energy_bio = models.FloatField(null=True)
 
     dem_el_peak_load_hh = models.FloatField(null=True)
     dem_el_peak_load_rca = models.FloatField(null=True)
