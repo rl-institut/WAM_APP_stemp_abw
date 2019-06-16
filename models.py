@@ -930,6 +930,9 @@ class FeedinTs(models.Model):
     wind_fs :
         Wind turbines (future scenarios)
         normalized (relative values)
+    bio :
+        Biogas/biomass plants (incl. landfill and sewage)
+        normalized (relative values)
     conventional :
         Conventional plants (>=10 MW: power-led, <10 MW: heat-led)
         NOT normalized (absolute values)
@@ -948,6 +951,7 @@ class FeedinTs(models.Model):
     hydro = models.FloatField(blank=True, null=True)
     wind_sq = models.FloatField(blank=True, null=True)
     wind_fs = models.FloatField(blank=True, null=True)
+    bio = models.FloatField(blank=True, null=True)
     conventional = models.FloatField(blank=True, null=True)
 
 
