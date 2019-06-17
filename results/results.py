@@ -82,6 +82,7 @@ class Results(object):
                       'gen_el_pv_roof',
                       'gen_el_hydro',
                       'gen_el_bio',
+                      'gen_el_conventional',
                       'shortage_el']
         nodes_to = ['bus_el']
 
