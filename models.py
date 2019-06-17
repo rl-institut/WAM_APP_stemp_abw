@@ -752,10 +752,10 @@ class MunData(models.Model):
         Count of run-of-river systems
     gen_count_bio :
         Count of biogas/biomass systems
-    gen_count_steam_turbine :
-        Count of steam turbines
-    gen_count_combined_cycle :
-        Count of combined cycle systems
+    gen_count_conventional_large :
+        Count of large (>=10 MW) conventional plants in MW
+    gen_count_conventional_small :
+        Count of small (<10 MW) conventional plants in MW
     gen_count_sewage_landfill_gas :
         Count of sewage/landfill gas systems
     gen_count_storage :
@@ -773,10 +773,10 @@ class MunData(models.Model):
         Total nominal power of run-of-river systems in MW
     gen_capacity_bio :
         Total nominal power of biogas/biomass systems in MW
-    gen_capacity_steam_turbine :
-        Total nominal power of steam turbine systems in MW
-    gen_capacity_combined_cycle :
-        Total nominal power of combined cycle systems in MW
+    gen_capacity_conventional_large :
+        Total nominal power of large (>=10 MW) conventional plants in MW
+    gen_capacity_conventional_small :
+        Total nominal power of small (<10 MW) conventional plants in MW
     gen_capacity_sewage_landfill_gas :
         Total nominal power of sewage/landfill gas systems in MW
     gen_capacity_storage :
@@ -796,8 +796,6 @@ class MunData(models.Model):
     gen_el_energy_conventional :
         Annual el. energy fed in by conventional power plants in MWh (large
         >=10 MW and small <10 MW).
-        Caution: small plants <10 MW do not appear in columns gen_count_* or
-        gen_capacity*, only in :class:`stemp_abw.models.FeedinTs`
 
     dem_el_peak_load_hh :
         El. peak demand of households in MW
@@ -867,8 +865,8 @@ class MunData(models.Model):
     gen_count_pv_ground = models.FloatField(null=True)
     gen_count_hydro = models.FloatField(null=True)
     gen_count_bio = models.FloatField(null=True)
-    gen_count_steam_turbine = models.FloatField(null=True)
-    gen_count_combined_cycle = models.FloatField(null=True)
+    gen_count_conventional_large = models.FloatField(null=True)
+    gen_count_conventional_small = models.FloatField(null=True)
     gen_count_sewage_landfill_gas = models.FloatField(null=True)
     gen_count_storage = models.FloatField(null=True)
 
@@ -878,8 +876,8 @@ class MunData(models.Model):
     gen_capacity_pv_ground = models.FloatField(null=True)
     gen_capacity_hydro = models.FloatField(null=True)
     gen_capacity_bio = models.FloatField(null=True)
-    gen_capacity_steam_turbine = models.FloatField(null=True)
-    gen_capacity_combined_cycle = models.FloatField(null=True)
+    gen_capacity_conventional_large = models.FloatField(null=True)
+    gen_capacity_conventional_small = models.FloatField(null=True)
     gen_capacity_sewage_landfill_gas = models.FloatField(null=True)
     gen_capacity_storage = models.FloatField(null=True)
 
