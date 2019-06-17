@@ -104,7 +104,8 @@ class RegMunGenEnergyRe(RegMun):
         return round((self.mundata.gen_el_energy_wind +
                       self.mundata.gen_el_energy_pv_roof +
                       self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1e3)
+                      self.mundata.gen_el_energy_hydro +
+                      self.mundata.gen_el_energy_bio) / 1e3)
 
     @property
     def gen_energy_re_region(self):
@@ -117,6 +118,8 @@ class RegMunGenEnergyRe(RegMun):
             gen_energy_re_region += pv_ground_mun['gen_el_energy_pv_ground']
         for hydro_mun in MunData.objects.values('gen_el_energy_hydro'):
             gen_energy_re_region += hydro_mun['gen_el_energy_hydro']
+        for bio_mun in MunData.objects.values('gen_el_energy_bio'):
+            gen_energy_re_region += bio_mun['gen_el_energy_bio']
         return round(gen_energy_re_region / 1e3)
 
 
