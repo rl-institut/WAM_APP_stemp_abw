@@ -155,7 +155,7 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
                        reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         data = pd.DataFrame(data={
             'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
-                          'PV Freifläche': pv_ground, 'Hydro': hydro,
+                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro,
                           'Bioenergie': bio}})
         setup_labels = {
             'title': {'text': 'EE-Erzeugung'},
@@ -194,7 +194,7 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
         bio = round((mun_data.gen_el_energy_bio / 1e3), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -246,7 +246,7 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
         bio = round((mun_data.gen_el_energy_bio / mun_data.pop_2017), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -297,7 +297,7 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
         bio = round((mun_data.gen_el_energy_bio / mun_data.area), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -348,7 +348,7 @@ class RegMunGenCapReDetailView(MasterDetailView):
         bio = round(mun_data.gen_capacity_bio, 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -400,7 +400,7 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -782,7 +782,7 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
                        reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         data = pd.DataFrame(data={
             'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
-                          'PV Freifläche': pv_ground, 'Hydro': hydro}})
+                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro}})
         setup_labels = {
             'title': {'text': 'Ergebnis: EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zum Strombedarf'},
@@ -818,7 +818,7 @@ class RegMunGenEnergyReResultDetailView(MasterDetailView):
         pv_ground = round((mun_data.gen_el_energy_pv_ground / 1e3), 1)
         hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
+            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Wasserkraft'],
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
@@ -867,7 +867,7 @@ class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
         pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.area), 1)
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Hydro'],
+            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Wasserkraft'],
             'y': [wind, pv_roof, pv_ground, hydro]
         })
         data.set_index('name', inplace=True)
@@ -918,7 +918,7 @@ class RegMunGenCapReResultDetailView(MasterDetailView):
         bio = round(mun_data.gen_capacity_bio, 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
@@ -970,7 +970,7 @@ class RegMunGenCapReDensityResultDetailView(MasterDetailView):
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Hydro', 'Bioenergie'],
+                     'Wasserkraft', 'Bioenergie'],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
