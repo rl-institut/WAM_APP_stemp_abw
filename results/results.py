@@ -81,6 +81,7 @@ class Results(object):
                       'gen_el_pv_ground',
                       'gen_el_pv_roof',
                       'gen_el_hydro',
+                      'gen_el_bio',
                       'shortage_el']
         nodes_to = ['bus_el']
 
@@ -118,7 +119,9 @@ class Results(object):
         data_power_prod_m_user_scn = self.aggregate_flow_results(
             nodes_from=['gen_el_wind',
                         'gen_el_pv_ground',
-                        'gen_el_pv_roof'],
+                        'gen_el_pv_roof',
+                        'gen_el_hydro',
+                        'gen_el_bio'],
             nodes_to=nodes_to,
             results_raw=self.results_raw,
             resample_mode='M',
