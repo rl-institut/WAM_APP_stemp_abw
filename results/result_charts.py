@@ -118,7 +118,7 @@ results_charts_tab2 = [
         'container_id': 'hc_column_power_prod_m_user_scn',
         'type': 'column',
         'setup_labels': {
-            'title': {'text': 'Jährliche Stromerzeugung (Dein Szenario)'},
+            'title': {'text': 'Jährliche Stromerzeugung aus EE (Dein Szenario)'},
             'subtitle': {'text': 'in GWh'},
             'yAxis': {'title': {'text': 'GWh'}}
 
