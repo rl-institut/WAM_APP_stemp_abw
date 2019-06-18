@@ -101,7 +101,8 @@ class RegMunGenCapReDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_cap_re_density'
+        'gen_cap_re_density',
+        'gen_cap_re_density_region'
     ]
 
 

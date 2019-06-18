@@ -199,7 +199,7 @@ class RegMunGenCapRe(RegMun):
         return round(result)
 
 
-class RegMunGenCapReDensity(RegMunGenCapRe):
+class RegMunGenCapReDensity(RegMunGenCapRe, RegMunPop):
     name = 'reg_mun_gen_cap_re_density'
 
     class Meta:
@@ -208,6 +208,10 @@ class RegMunGenCapReDensity(RegMunGenCapRe):
     @property
     def gen_cap_re_density(self):
         return round(self.gen_cap_re / self.mundata.area, 2)
+
+    @property
+    def gen_cap_re_density_region(self):
+        return round(self.gen_cap_re_region / self.area_region, 2)
 
 
 class RegMunGenCountWindDensity(RegMun):
