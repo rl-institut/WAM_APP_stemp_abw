@@ -151,7 +151,8 @@ class RegMunDemThEnergyPerCapitaData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'dem_th_energy_per_capita'
+        'dem_th_energy_per_capita',
+        'dem_th_energy_per_capita_region'
     ]
 
 
