@@ -2,6 +2,7 @@ import random
 from uuid import uuid4
 
 from django.db import models
+from django.db.models import Sum
 from django.contrib.gis.db import models as geomodels
 from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
@@ -65,10 +66,7 @@ class RegMunPop(RegMun):
 
     @property
     def pop_region(self):
-        pop_region = 0
-        for pop_mun in MunData.objects.values('pop_2017'):
-            pop_region += pop_mun['pop_2017']
-        return pop_region
+        return MunData.objects.aggregate(Sum('pop_2017'))['pop_2017__sum']
 
 
 class RegMunPopDensity(RegMunPop):
@@ -83,10 +81,7 @@ class RegMunPopDensity(RegMunPop):
 
     @property
     def area_region(self):
-        area_region = 0
-        for area_mun in MunData.objects.values('area'):
-            area_region += area_mun['area']
-        return area_region
+        return MunData.objects.aggregate(Sum('area'))['area__sum']
 
     @property
     def pop_density_region(self):
@@ -108,16 +103,11 @@ class RegMunGenEnergyRe(RegMun):
 
     @property
     def gen_energy_re_region(self):
-        gen_energy_re_region = 0
-        for wind_mun in MunData.objects.values('gen_el_energy_wind'):
-            gen_energy_re_region += wind_mun['gen_el_energy_wind']
-        for roof_mun in MunData.objects.values('gen_el_energy_pv_roof'):
-            gen_energy_re_region += roof_mun['gen_el_energy_pv_roof']
-        for pv_ground_mun in MunData.objects.values('gen_el_energy_pv_ground'):
-            gen_energy_re_region += pv_ground_mun['gen_el_energy_pv_ground']
-        for hydro_mun in MunData.objects.values('gen_el_energy_hydro'):
-            gen_energy_re_region += hydro_mun['gen_el_energy_hydro']
-        return round(gen_energy_re_region / 1e3)
+        result = MunData.objects.aggregate(Sum('gen_el_energy_wind'))['gen_el_energy_wind__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_pv_roof'))['gen_el_energy_pv_roof__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_pv_ground'))['gen_el_energy_pv_ground__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_hydro'))['gen_el_energy_hydro__sum']
+        return round(result / 1e3)
 
 
 class RegMunDemElEnergy(RegMun):
@@ -134,14 +124,10 @@ class RegMunDemElEnergy(RegMun):
 
     @property
     def dem_el_energy_region(self):
-        dem_el_energy_region = 0
-        for hh in MunData.objects.values('dem_el_energy_hh'):
-            dem_el_energy_region += hh['dem_el_energy_hh']
-        for rca in MunData.objects.values('dem_el_energy_rca'):
-            dem_el_energy_region += rca['dem_el_energy_rca']
-        for ind in MunData.objects.values('dem_el_energy_ind'):
-            dem_el_energy_region += ind['dem_el_energy_ind']
-        return round(dem_el_energy_region / 1e3)
+        result = MunData.objects.aggregate(Sum('dem_el_energy_hh'))['dem_el_energy_hh__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_el_energy_rca'))['dem_el_energy_rca__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_el_energy_ind'))['dem_el_energy_ind__sum']
+        return round(result / 1e3)
 
 
 class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
@@ -205,18 +191,12 @@ class RegMunGenCapRe(RegMun):
 
     @property
     def gen_cap_re_region(self):
-        gen_cap_re_region = 0
-        for value in MunData.objects.values('gen_capacity_wind'):
-            gen_cap_re_region += value['gen_capacity_wind']
-        for value in MunData.objects.values('gen_capacity_pv_roof_large'):
-            gen_cap_re_region += value['gen_capacity_pv_roof_large']
-        for value in MunData.objects.values('gen_capacity_pv_ground'):
-            gen_cap_re_region += value['gen_capacity_pv_ground']
-        for value in MunData.objects.values('gen_capacity_hydro'):
-            gen_cap_re_region += value['gen_capacity_hydro']
-        for value in MunData.objects.values('gen_capacity_bio'):
-            gen_cap_re_region += value['gen_capacity_bio']
-        return round(gen_cap_re_region)
+        result = MunData.objects.aggregate(Sum('gen_capacity_wind'))['gen_capacity_wind__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_pv_roof_large'))['gen_capacity_pv_roof_large__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_pv_ground'))['gen_capacity_pv_ground__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_hydro'))['gen_capacity_hydro__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_bio'))['gen_capacity_bio__sum']
+        return round(result)
 
 
 class RegMunGenCapReDensity(RegMunGenCapRe):
