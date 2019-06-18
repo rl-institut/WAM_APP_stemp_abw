@@ -31,8 +31,8 @@ function ctrlScenario(element_id) {
         showErrorPopup();
     }
   }).done(function(returned_data) {
+    var scn_data = JSON.parse(returned_data);
     if (element_id == 'select-scn-frm') {
-      var scn_data = JSON.parse(returned_data);
       //console.log(scn_data);
       updateScenarioList(scn_data['scenario_list']);
       updateScenarioControls(scn_data['scenario']['name'],
@@ -40,7 +40,6 @@ function ctrlScenario(element_id) {
                              scn_data['controls'],
                              false);
     } else if (element_id == 'apply-scn-btn' || element_id == 'init-sq-scn') {
-      var scn_data = JSON.parse(returned_data)
       //console.log(returned_data);
       updateScenarioControls(scn_data['scenario']['name'],
                              scn_data['scenario']['desc'],
