@@ -263,7 +263,7 @@ class RegMunDemThEnergy(RegMun):
         return round(result / 1e3)
 
 
-class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
+class RegMunDemThEnergyPerCapita(RegMunDemThEnergy, RegMunPopDensity):
     name = 'reg_mun_dem_th_energy_per_capita'
 
     class Meta:
@@ -272,6 +272,10 @@ class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
     @property
     def dem_th_energy_per_capita(self):
         return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
+
+    @property
+    def dem_th_energy_per_capita_region(self):
+        return round(self.dem_th_energy_region * 1e6 / self.pop_region)
 
 
 class RegWaterProtArea(LayerModel):
