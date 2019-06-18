@@ -111,7 +111,8 @@ class RegMunGenCountWindDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_count_wind_density'
+        'gen_count_wind_density',
+        'gen_count_wind_density_region'
     ]
 
 

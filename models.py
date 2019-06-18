@@ -199,7 +199,7 @@ class RegMunGenCapRe(RegMun):
         return round(result)
 
 
-class RegMunGenCapReDensity(RegMunGenCapRe, RegMunPop):
+class RegMunGenCapReDensity(RegMunGenCapRe, RegMunPopDensity):
     name = 'reg_mun_gen_cap_re_density'
 
     class Meta:
@@ -214,7 +214,7 @@ class RegMunGenCapReDensity(RegMunGenCapRe, RegMunPop):
         return round(self.gen_cap_re_region / self.area_region, 2)
 
 
-class RegMunGenCountWindDensity(RegMun):
+class RegMunGenCountWindDensity(RegMunPopDensity):
     name = 'reg_mun_gen_count_wind_density'
 
     class Meta:
@@ -223,6 +223,11 @@ class RegMunGenCountWindDensity(RegMun):
     @property
     def gen_count_wind_density(self):
         return round(self.mundata.gen_count_wind / self.mundata.area, 2)
+
+    @property
+    def gen_count_wind_density_region(self):
+        result = MunData.objects.aggregate(Sum('gen_count_wind'))['gen_count_wind__sum']
+        return round(result / self.area_region, 2)
 
 
 class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
