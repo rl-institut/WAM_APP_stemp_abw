@@ -141,7 +141,8 @@ class RegMunDemThEnergyData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'dem_th_energy'
+        'dem_th_energy',
+        'dem_th_energy_region'
     ]
 
 

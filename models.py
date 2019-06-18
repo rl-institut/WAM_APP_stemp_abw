@@ -256,6 +256,12 @@ class RegMunDemThEnergy(RegMun):
         return round((self.mundata.dem_th_energy_hh +
                       self.mundata.dem_th_energy_rca) / 1e3)
 
+    @property
+    def dem_th_energy_region(self):
+        result = MunData.objects.aggregate(Sum('dem_th_energy_hh'))['dem_th_energy_hh__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_th_energy_rca'))['dem_th_energy_rca__sum']
+        return round(result / 1e3)
+
 
 class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
     name = 'reg_mun_dem_th_energy_per_capita'
