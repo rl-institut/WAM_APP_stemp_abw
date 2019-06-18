@@ -230,7 +230,7 @@ class RegMunGenCountWindDensity(RegMunPopDensity):
         return round(result / self.area_region, 2)
 
 
-class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
+class RegMunDemElEnergyPerCapita(RegMunDemElEnergy, RegMunPop):
     name = 'reg_mun_dem_el_energy_per_capita'
 
     class Meta:
@@ -239,6 +239,10 @@ class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
     @property
     def dem_el_energy_per_capita(self):
         return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
+
+    @property
+    def dem_el_energy_per_capita_region(self):
+        return round(self.dem_el_energy_region * 1e6 / self.pop_region)
 
 
 class RegMunDemThEnergy(RegMun):
