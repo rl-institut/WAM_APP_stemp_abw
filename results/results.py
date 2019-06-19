@@ -77,28 +77,28 @@ class Results(object):
         # Energy production #
         #####################
         # node sources and targets
-        nodes_from = ['gen_el_wind',
-                      'gen_el_pv_ground',
-                      'gen_el_pv_roof',
-                      'gen_el_hydro',
-                      'gen_el_bio',
-                      'gen_el_conventional',
-                      'shortage_el']
-        nodes_to = ['bus_el']
+        nodes_from_prod = ['gen_el_wind',
+                           'gen_el_pv_ground',
+                           'gen_el_pv_roof',
+                           'gen_el_hydro',
+                           'gen_el_bio',
+                           'gen_el_conventional',
+                           'shortage_el']
+        nodes_to_prod = ['bus_el']
 
         # 1) Annual data (user scenario + SQ)
         #####################################
         # aggregate raw data
-        data_power_prod_user_scn = self.aggregate_flow_results(
-            nodes_from,
-            nodes_to,
+        data_power_prod_a_user_scn = self.aggregate_flow_results(
+            nodes_from_prod,
+            nodes_to_prod,
             self.results_raw,
             resample_mode='A',
             agg_mode='sum'
         )
-        data_power_prod_sq_scn = self.aggregate_flow_results(
-            nodes_from,
-            nodes_to,
+        data_power_prod_a_sq_scn = self.aggregate_flow_results(
+            nodes_from_prod,
+            nodes_to_prod,
             self.sq_results_raw,
             resample_mode='A',
             agg_mode='sum'
@@ -107,13 +107,13 @@ class Results(object):
         # prepare chart data
         hc_column_power_prod_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
                                          for (k1, v1), (k2, v2) in
-                                         zip(data_power_prod_user_scn,
-                                             data_power_prod_sq_scn)]
+                                         zip(data_power_prod_a_user_scn,
+                                             data_power_prod_a_sq_scn)]
 
         hc_pie_power_production_user_scn = [{'name': k, 'y': v[0]}
-                                            for (k, v) in data_power_prod_user_scn]
+                                            for (k, v) in data_power_prod_a_user_scn]
         hc_pie_power_production_sq_scn = [{'name': k, 'y': v[0]}
-                                          for (k, v) in data_power_prod_sq_scn]
+                                          for (k, v) in data_power_prod_a_sq_scn]
 
         # 2) Monthly data (user scenario)
         #################################
@@ -123,7 +123,7 @@ class Results(object):
                         'gen_el_pv_roof',
                         'gen_el_hydro',
                         'gen_el_bio'],
-            nodes_to=nodes_to,
+            nodes_to=['bus_el'],
             results_raw=self.results_raw,
             resample_mode='M',
             agg_mode='sum'
@@ -142,23 +142,23 @@ class Results(object):
         # Energy demand #
         #################
         # node sources and targets
-        nodes_from = ['bus_el']
-        nodes_to = ['dem_el_hh',
-                    'dem_el_rca',
-                    'dem_el_ind',
-                    'excess_el']
+        nodes_from_dem = ['bus_el']
+        nodes_to_dem = ['dem_el_hh',
+                        'dem_el_rca',
+                        'dem_el_ind',
+                        'excess_el']
 
         # aggregate raw data
-        data_power_dem_user_scn = self.aggregate_flow_results(
-            nodes_from,
-            nodes_to,
+        data_power_dem_a_user_scn = self.aggregate_flow_results(
+            nodes_from_dem,
+            nodes_to_dem,
             self.results_raw,
             resample_mode='A',
             agg_mode='sum'
         )
-        data_power_dem_sq_scn = self.aggregate_flow_results(
-            nodes_from,
-            nodes_to,
+        data_power_dem_a_sq_scn = self.aggregate_flow_results(
+            nodes_from_dem,
+            nodes_to_dem,
             self.sq_results_raw,
             resample_mode='A',
             agg_mode='sum'
@@ -167,44 +167,104 @@ class Results(object):
         # prepare chart data
         hc_column_power_dem_both_scn = [{'name': k1, 'data': [v1[0], v2[0]]}
                                         for (k1, v1), (k2, v2) in
-                                        zip(data_power_dem_user_scn,
-                                            data_power_dem_sq_scn)]
+                                        zip(data_power_dem_a_user_scn,
+                                            data_power_dem_a_sq_scn)]
 
         ###################
         # Own consumption #
         ###################
-        data_power_prod_user_scn_sum = sum([v[0] for (k,v)
-                                            in data_power_prod_user_scn
+
+        # 1) column 1: balance
+        ######################
+        data_power_prod_a_user_scn_sum = sum([v[0] for (k,v)
+                                            in data_power_prod_a_user_scn
                                             if k != 'Import'])
-        data_power_prod_sq_scn_sum = sum([v[0] for (k, v)
-                                          in data_power_prod_sq_scn
+        data_power_prod_a_sq_scn_sum = sum([v[0] for (k, v)
+                                          in data_power_prod_a_sq_scn
                                           if k != 'Import'])
-        data_power_dem_user_scn_sum = sum([v[0] for (k,v)
-                                           in data_power_dem_user_scn
+        data_power_dem_a_user_scn_sum = sum([v[0] for (k,v)
+                                           in data_power_dem_a_user_scn
                                            if k != 'Export'])
-        data_power_dem_sq_scn_sum = sum([v[0] for (k, v)
-                                         in data_power_dem_sq_scn
+        data_power_dem_a_sq_scn_sum = sum([v[0] for (k, v)
+                                         in data_power_dem_a_sq_scn
                                          if k != 'Export'])
 
         # prepare chart data
-        hc_column_power_own_cons_both_scn = [
-            round(data_power_prod_user_scn_sum /
-                  data_power_dem_user_scn_sum * 100, 1),
-            round(data_power_prod_sq_scn_sum /
-                  data_power_dem_sq_scn_sum * 100, 1)]
+        hc_column_power_own_cons_both_scn_balance = [
+            round(data_power_prod_a_user_scn_sum /
+                  data_power_dem_a_user_scn_sum * 100, 1),
+            round(data_power_prod_a_sq_scn_sum /
+                  data_power_dem_a_sq_scn_sum * 100, 1)]
 
+        # 2) column 2: simultaneous
+        ###########################
+        # production
+        nodes_from = ['gen_el_wind',
+                      'gen_el_pv_ground',
+                      'gen_el_pv_roof',
+                      'gen_el_hydro',
+                      'gen_el_bio',
+                      'gen_el_conventional']
+        nodes_to = ['bus_el']
+        data_power_prod_user_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            results_raw=self.results_raw
+        ).sum(axis=1)
+        data_power_prod_sq_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.sq_results_raw
+        ).sum(axis=1)
+
+        # demand
+        nodes_from = ['bus_el']
+        nodes_to = ['dem_el_hh',
+                    'dem_el_rca',
+                    'dem_el_ind']
+        data_power_dem_a_user_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.results_raw
+        ).sum(axis=1)
+        data_power_dem_a_sq_scn = self.aggregate_flow_results(
+            nodes_from,
+            nodes_to,
+            self.sq_results_raw
+        ).sum(axis=1)
+
+        # calc time share where prod >= demand
+        data_power_prod_both_scn_simult = [
+            round(sum(data_power_prod_user_scn >= data_power_dem_a_user_scn) /
+                  len(data_power_prod_user_scn) * 100, 1),
+            round(sum(data_power_prod_sq_scn >= data_power_dem_a_sq_scn) /
+                  len(data_power_prod_sq_scn) * 100, 1)]
+
+        # prepare chart data
+        hc_column_power_own_cons_both_scn = [
+            {'name': 'Bilanziell',
+             'data': hc_column_power_own_cons_both_scn_balance},
+            {'name': 'Zeitgleich',
+             'data': data_power_prod_both_scn_simult}]
 
         ######################
         # make dict for json #
         ######################
         chart_data = {
-            'hc_column_power_prod_both_scn': hc_column_power_prod_both_scn,
-            'hc_column_power_dem_both_scn': hc_column_power_dem_both_scn,
-            'hc_column_power_own_cons_both_scn' : hc_column_power_own_cons_both_scn,
-            'hc_pie_power_production_user_scn': hc_pie_power_production_user_scn,
-            'hc_pie_power_production_sq_scn': hc_pie_power_production_sq_scn,
-            'hc_column_power_prod_m_user_scn': hc_column_power_prod_m_user_scn,
-            'hc_res_wind_time': [5, 5, 5, 4, 2, 0, 2, 8, 1, 7, 1]
+            'hc_column_power_prod_both_scn':
+                hc_column_power_prod_both_scn,
+            'hc_column_power_dem_both_scn':
+                hc_column_power_dem_both_scn,
+            'hc_column_power_own_cons_both_scn':
+                hc_column_power_own_cons_both_scn,
+            'hc_pie_power_production_user_scn':
+                hc_pie_power_production_user_scn,
+            'hc_pie_power_production_sq_scn':
+                hc_pie_power_production_sq_scn,
+            'hc_column_power_prod_m_user_scn':
+                hc_column_power_prod_m_user_scn,
+            'hc_res_wind_time':
+                [5, 5, 5, 4, 2, 0, 2, 8, 1, 7, 1]
         }
 
         return chart_data
@@ -259,11 +319,14 @@ class Results(object):
 
         Returns
         -------
-        :obj:`list` of :obj:`tuple`
-            Sum of annual flow by source or target node,
-            format: [('name_1', [value_11, ..., value_1n]),
-                      ...,
-                     ('name_n', [value_n1, ..., value_nn])]
+        * If `resample_mode` is None:
+            :pandas:`pandas.DataFrame` with raw timeseries
+        * If `resample_mode` is not None:
+            :obj:`list` of :obj:`tuple`
+                Sum of annual flow by source or target node,
+                format: [('name_1', [value_11, ..., value_1n]),
+                          ...,
+                         ('name_n', [value_n1, ..., value_nn])]
         """
 
         # extract requested columns
@@ -289,7 +352,7 @@ class Results(object):
             else:
                 raise ValueError('Aggregation mode is invalid.')
         else:
-            agg_data = ts
+            return ts
 
         # reformat
         if multiple_nodes == 'from':

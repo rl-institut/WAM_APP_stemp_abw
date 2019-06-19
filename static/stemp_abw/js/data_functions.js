@@ -193,8 +193,13 @@ function getSimulationResults() {
                         for (var i = 0; i < data['hc_column_power_dem_both_scn'].length; i++) {
                             Highcharts.charts[idx2].addSeries(data['hc_column_power_dem_both_scn'][i]);
                         }
+                        while(Highcharts.charts[idx3].series.length > 0)
+                            Highcharts.charts[idx3].series[0].remove(true);
+                        for (var i = 0; i < data['hc_column_power_own_cons_both_scn'].length; i++) {
+                            Highcharts.charts[idx3].addSeries(data['hc_column_power_own_cons_both_scn'][i]);
+                        }
 
-                        Highcharts.charts[idx3].series[0].setData(data['hc_column_power_own_cons_both_scn']);
+                        //Highcharts.charts[idx3].series[0].setData(data['hc_column_power_own_cons_both_scn']);
                         Highcharts.charts[idx4].series[0].setData(data['hc_pie_power_production_user_scn']);
                         Highcharts.charts[idx5].series[0].setData(data['hc_pie_power_production_sq_scn']);
 

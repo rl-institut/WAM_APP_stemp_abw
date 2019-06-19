@@ -58,12 +58,14 @@ results_charts_tab1 = [
         'container_id': 'hc_column_power_own_cons_both_scn',
         'type': 'column',
         'setup_labels': {
-            'title': {'text': 'Eigenversorgung Strom (bilanziell)'},
+            'title': {'text': 'Eigenversorgung Strom'},
             'subtitle': {'text': 'in %'},
             'yAxis': {'title': {'text': '%'}}
         },
-        'data': pd.DataFrame(data=[{'Eigenversorgung': 0},
-                                   {'Eigenversorgung': 0}
+        'data': pd.DataFrame(data=[{'Bilanziell': 0,
+                                    'Zeitgleich': 0},
+                                   {'Bilanziell': 0,
+                                    'Zeitgleich': 0}
                                    ],
                              index=['Ihr Szenario', 'Status quo'])
     }
