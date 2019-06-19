@@ -25,8 +25,8 @@ def prepare_feedin_timeseries(mun_data, reg_params):
             'gen_capacity_hydro',
             'gen_capacity_bio',
             'gen_capacity_sewage_landfill_gas',
-            'gen_capacity_steam_turbine',
-            'gen_capacity_combined_cycle']
+            'gen_capacity_conventional_large',
+            'gen_capacity_conventional_small']
 
     # mapping for capacity columns to timeseries columns
     # if repowering scenario present, use wind_fs time series
@@ -51,19 +51,23 @@ def prepare_feedin_timeseries(mun_data, reg_params):
                                  'gen_capacity_pv_roof_large',
                                  'gen_capacity_bio',
                                  'gen_capacity_sewage_landfill_gas',
-                                 'gen_capacity_steam_turbine',
-                                 'gen_capacity_combined_cycle'],
+                                 'gen_capacity_conventional_large',
+                                 'gen_capacity_conventional_small'],
                         inplace=True)
 
     # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region:
     # 1) process relative TS
     feedin_agg = {}
     for tech in list(re_cap_per_mun.columns):
-        feedin_agg[tech] = list((TIMESERIES['feedin'][tech] * re_cap_per_mun[tech]).sum(axis=1))
+        feedin_agg[tech] = list(
+            (TIMESERIES['feedin'][tech] *re_cap_per_mun[tech]).sum(axis=1)
+        )
     # 2) process absolute TS
     # Conventional plants absolute as small pp (<10 MW) are missing in capacity
     # stats (MunData)
-    feedin_agg['conventional'] = list(TIMESERIES['feedin']['conventional'].sum(axis=1))
+    feedin_agg['conventional'] = list(
+        TIMESERIES['feedin']['conventional'].sum(axis=1)
+    )
 
     # if repowering scenario present, rename wind_fs time series to wind
     if reg_params['repowering_scn'] == 0:
