@@ -104,7 +104,8 @@ class RegMunGenEnergyRe(RegMun):
         return round((self.mundata.gen_el_energy_wind +
                       self.mundata.gen_el_energy_pv_roof +
                       self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1e3)
+                      self.mundata.gen_el_energy_hydro +
+                      self.mundata.gen_el_energy_bio) / 1e3)
 
     @property
     def gen_energy_re_region(self):
@@ -117,6 +118,8 @@ class RegMunGenEnergyRe(RegMun):
             gen_energy_re_region += pv_ground_mun['gen_el_energy_pv_ground']
         for hydro_mun in MunData.objects.values('gen_el_energy_hydro'):
             gen_energy_re_region += hydro_mun['gen_el_energy_hydro']
+        for bio_mun in MunData.objects.values('gen_el_energy_bio'):
+            gen_energy_re_region += bio_mun['gen_el_energy_bio']
         return round(gen_energy_re_region / 1e3)
 
 
@@ -749,10 +752,11 @@ class MunData(models.Model):
         Count of run-of-river systems
     gen_count_bio :
         Count of biogas/biomass systems
-    gen_count_steam_turbine :
-        Count of steam turbines
-    gen_count_combined_cycle :
-        Count of combined cycle systems
+    gen_count_conventional_large :
+        Count of large (>=10 MW) conventional plants in MW
+    gen_count_conventional_small :
+        Count of small (<10 MW) conventional plants in MW.
+        Simplified assumption: 1 plant per municipality
     gen_count_sewage_landfill_gas :
         Count of sewage/landfill gas systems
     gen_count_storage :
@@ -767,13 +771,13 @@ class MunData(models.Model):
     gen_capacity_pv_ground :
         Total nominal power of ground-mounted PV systems in MW
     gen_capacity_hydro :
-        Total nominal power of run-of-river systems  in MW
+        Total nominal power of run-of-river systems in MW
     gen_capacity_bio :
-        Total nominal power of biogas/biomass PV systems  in MW
-    gen_capacity_steam_turbine :
-        Total nominal power of steam turbine systems in MW
-    gen_capacity_combined_cycle :
-        Total nominal power of combined cycle systems in MW
+        Total nominal power of biogas/biomass systems in MW
+    gen_capacity_conventional_large :
+        Total nominal power of large (>=10 MW) conventional plants in MW
+    gen_capacity_conventional_small :
+        Total nominal power of small (<10 MW) conventional plants in MW
     gen_capacity_sewage_landfill_gas :
         Total nominal power of sewage/landfill gas systems in MW
     gen_capacity_storage :
@@ -787,6 +791,12 @@ class MunData(models.Model):
         Annual el. energy fed in by ground-mounted PV systems in MWh
     gen_el_energy_hydro :
         Annual el. energy fed in by run-of-river systems in MWh
+    gen_el_energy_bio :
+        Annual el. energy fed in by biomass/biogas systems incl. sewage and
+        landfill gas in MWh
+    gen_el_energy_conventional :
+        Annual el. energy fed in by conventional power plants in MWh (large
+        >=10 MW and small <10 MW).
 
     dem_el_peak_load_hh :
         El. peak demand of households in MW
@@ -841,7 +851,6 @@ class MunData(models.Model):
     reg_prio_area_wec_count :
         Count of priority area (parts)
     """
-    """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
     area = models.FloatField(null=True)
 
@@ -857,8 +866,8 @@ class MunData(models.Model):
     gen_count_pv_ground = models.FloatField(null=True)
     gen_count_hydro = models.FloatField(null=True)
     gen_count_bio = models.FloatField(null=True)
-    gen_count_steam_turbine = models.FloatField(null=True)
-    gen_count_combined_cycle = models.FloatField(null=True)
+    gen_count_conventional_large = models.FloatField(null=True)
+    gen_count_conventional_small = models.FloatField(null=True)
     gen_count_sewage_landfill_gas = models.FloatField(null=True)
     gen_count_storage = models.FloatField(null=True)
 
@@ -868,8 +877,8 @@ class MunData(models.Model):
     gen_capacity_pv_ground = models.FloatField(null=True)
     gen_capacity_hydro = models.FloatField(null=True)
     gen_capacity_bio = models.FloatField(null=True)
-    gen_capacity_steam_turbine = models.FloatField(null=True)
-    gen_capacity_combined_cycle = models.FloatField(null=True)
+    gen_capacity_conventional_large = models.FloatField(null=True)
+    gen_capacity_conventional_small = models.FloatField(null=True)
     gen_capacity_sewage_landfill_gas = models.FloatField(null=True)
     gen_capacity_storage = models.FloatField(null=True)
 
@@ -877,6 +886,8 @@ class MunData(models.Model):
     gen_el_energy_pv_roof = models.FloatField(null=True)
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
+    gen_el_energy_bio = models.FloatField(null=True)
+    gen_el_energy_conventional = models.FloatField(null=True)
 
     dem_el_peak_load_hh = models.FloatField(null=True)
     dem_el_peak_load_rca = models.FloatField(null=True)
@@ -904,7 +915,7 @@ class MunData(models.Model):
 
 
 class FeedinTs(models.Model):
-    """Renewable feedin timeseries (normalized, hourly)
+    """Feedin timeseries (hourly, partly normalized - see columns)
 
     Attributes
     ----------
@@ -917,14 +928,25 @@ class FeedinTs(models.Model):
         refers to :class:`stemp_abw.models.RegMun`
     pv_ground :
         Photovoltaics (ground-mounted systems)
+        normalized (relative values)
     pv_roof :
         Photovoltaics (roof-mounted systems)
+        normalized (relative values)
     hydro :
         Run-of-river plants
+        normalized (relative values)
     wind_sq :
         Wind turbines (status quo)
+        normalized (relative values)
     wind_fs :
         Wind turbines (future scenarios)
+        normalized (relative values)
+    bio :
+        Biogas/biomass plants (incl. landfill and sewage)
+        normalized (relative values)
+    conventional :
+        Conventional plants (>=10 MW: power-led, <10 MW: heat-led)
+        NOT normalized (absolute values)
 
     Notes
     -----
@@ -940,6 +962,8 @@ class FeedinTs(models.Model):
     hydro = models.FloatField(blank=True, null=True)
     wind_sq = models.FloatField(blank=True, null=True)
     wind_fs = models.FloatField(blank=True, null=True)
+    bio = models.FloatField(blank=True, null=True)
+    conventional = models.FloatField(blank=True, null=True)
 
 
 class Powerplant(models.Model):
@@ -1015,7 +1039,7 @@ class Powerplant(models.Model):
 
 
 class DemandTs(models.Model):
-    """Demand timeseries (hourly)
+    """Demand timeseries (hourly, partly normalized - see columns)
 
     Attributes
     ----------
