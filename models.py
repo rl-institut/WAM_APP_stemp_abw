@@ -755,7 +755,8 @@ class MunData(models.Model):
     gen_count_conventional_large :
         Count of large (>=10 MW) conventional plants in MW
     gen_count_conventional_small :
-        Count of small (<10 MW) conventional plants in MW
+        Count of small (<10 MW) conventional plants in MW.
+        Simplified assumption: 1 plant per municipality
     gen_count_sewage_landfill_gas :
         Count of sewage/landfill gas systems
     gen_count_storage :
