@@ -51,7 +51,7 @@ der Genauigkeit jedoch notwendig:
 - Die Verfügbarkeit von (inbesondere offener) Eingangsdaten ist begrenzt
 - [ADD MORE]
 
-Weitere Vereinfachungen umfassen:
+Die Vereinfachungen umfassen:
 
-- Keine Betrachtung des Industriesektors [BEGRÜNDUNG]
-- [ADD MORE]
+- Wärme: Keine Betrachtung des Industriesektors [BEGRÜNDUNG]
+- [ADD MORE FROM METHODS DOC]
