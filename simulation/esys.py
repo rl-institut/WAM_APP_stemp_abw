@@ -38,16 +38,19 @@ def prepare_feedin_timeseries(mun_data, reg_params):
     }
 
     # prepare capacities (for relative timeseries only)
-    re_cap_per_mun = pd.DataFrame.from_dict(mun_data, orient='index')[cols]\
+    cap_per_mun = pd.DataFrame.from_dict(mun_data, orient='index')[cols]\
         .rename(columns=tech_mapping)
-    re_cap_per_mun.index = re_cap_per_mun.index.astype(int)
-    re_cap_per_mun['pv_roof'] = \
-        re_cap_per_mun['gen_capacity_pv_roof_small'] + \
-        re_cap_per_mun['gen_capacity_pv_roof_large']
-    re_cap_per_mun['bio'] = \
-        re_cap_per_mun['gen_capacity_bio'] + \
-        re_cap_per_mun['gen_capacity_sewage_landfill_gas']
-    re_cap_per_mun.drop(columns=['gen_capacity_pv_roof_small',
+    cap_per_mun.index = cap_per_mun.index.astype(int)
+    cap_per_mun['pv_roof'] = \
+        cap_per_mun['gen_capacity_pv_roof_small'] + \
+        cap_per_mun['gen_capacity_pv_roof_large']
+    cap_per_mun['bio'] = \
+        cap_per_mun['gen_capacity_bio'] + \
+        cap_per_mun['gen_capacity_sewage_landfill_gas']
+    cap_per_mun['conventional'] = \
+        cap_per_mun['gen_capacity_conventional_large'] + \
+        cap_per_mun['gen_capacity_conventional_small']
+    cap_per_mun.drop(columns=['gen_capacity_pv_roof_small',
                                  'gen_capacity_pv_roof_large',
                                  'gen_capacity_bio',
                                  'gen_capacity_sewage_landfill_gas',
@@ -58,15 +61,20 @@ def prepare_feedin_timeseries(mun_data, reg_params):
     # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region:
     # 1) process relative TS
     feedin_agg = {}
-    for tech in list(re_cap_per_mun.columns):
+    for tech in list(cap_per_mun.loc[:,
+                     cap_per_mun.columns != 'conventional'].columns):
         feedin_agg[tech] = list(
-            (TIMESERIES['feedin'][tech] *re_cap_per_mun[tech]).sum(axis=1)
+            (TIMESERIES['feedin'][tech] * cap_per_mun[tech]).sum(axis=1)
         )
-    # 2) process absolute TS
-    # Conventional plants absolute as small pp (<10 MW) are missing in capacity
-    # stats (MunData)
+    # 2) process absolute TS (conventional plants)
+    # do not use capacities as the full load hours of the plants differ - use
+    # ratio of currently set power values and those from status quo scenario
+    conv_cap_per_mun = \
+        cap_per_mun['conventional'] /\
+        MUN_DATA[['gen_capacity_conventional_large',
+                  'gen_capacity_conventional_small']].sum(axis=1)
     feedin_agg['conventional'] = list(
-        TIMESERIES['feedin']['conventional'].sum(axis=1)
+        (TIMESERIES['feedin']['conventional'] * conv_cap_per_mun).sum(axis=1)
     )
 
     # if repowering scenario present, rename wind_fs time series to wind
