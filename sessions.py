@@ -73,7 +73,7 @@ class UserSession(object):
         scn_data = json.loads(scenario.data.data)
         reg_data = pd.DataFrame.from_dict(scn_data['mun_data'],
                                           orient='index'). \
-            sum(axis=0).round(decimals=1).to_dict()
+            sum(axis=0).round(decimals=3).to_dict()
         reg_data.update(scn_data['reg_params'])
         return reg_data
         
@@ -273,7 +273,7 @@ class UserSession(object):
         for param in reg_data:
             if param in self.mun_to_reg_ratios.columns:
                 mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
-                                       reg_data[param]).round(decimals=1)
+                                       reg_data[param]).round(decimals=3)
         return mun_data_upd.to_dict(orient='index')
 
     # def __prepare_re_potential_
