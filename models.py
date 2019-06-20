@@ -509,15 +509,11 @@ class ResultLayerModel(RegMun):
 
 
 # TODO: Alter extended classes to result classes
-class RegMunEnergyReElDemShareResult(RegMunGenEnergyRe, RegMunDemElEnergy):
+class RegMunEnergyReElDemShareResult(RegMun):
     name = 'reg_mun_energy_re_el_dem_share_result'
 
     class Meta:
         proxy = True
-
-    @property
-    def energy_re_el_dem_share_result(self):
-        return round(self.gen_energy_re / self.dem_el_energy * 100)
 
 
 # TODO: Alter extended class to result class
@@ -527,24 +523,13 @@ class RegMunGenEnergyReResult(RegMun):
     class Meta:
         proxy = True
 
-    @property
-    def gen_energy_re_result(self):
-        return round((self.mundata.gen_el_energy_wind +
-                      self.mundata.gen_el_energy_pv_roof +
-                      self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1e3)
-
 
 # TODO: Alter extended class to result class
-class RegMunGenEnergyReDensityResult(RegMunGenEnergyRe):
+class RegMunGenEnergyReDensityResult(RegMun):
     name = 'reg_mun_gen_energy_re_density_result'
 
     class Meta:
         proxy = True
-
-    @property
-    def gen_energy_re_density_result(self):
-        return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
 
 
 # TODO: Alter extended class to result class
@@ -554,25 +539,13 @@ class RegMunGenCapReResult(RegMun):
     class Meta:
         proxy = True
 
-    @property
-    def gen_cap_re_result(self):
-        return round(self.mundata.gen_capacity_wind +
-                     self.mundata.gen_capacity_pv_roof_large +
-                     self.mundata.gen_capacity_pv_ground +
-                     self.mundata.gen_capacity_hydro +
-                     self.mundata.gen_capacity_bio)
-
 
 # TODO: Alter extended class to result class
-class RegMunGenCapReDensityResult(RegMunGenCapRe):
+class RegMunGenCapReDensityResult(RegMun):
     name = 'reg_mun_gen_cap_re_density_result'
 
     class Meta:
         proxy = True
-
-    @property
-    def gen_cap_re_density_result(self):
-        return round(self.gen_cap_re / self.mundata.area, 2)
 
 
 # TODO: Alter extended class to result class
@@ -582,10 +555,6 @@ class RegMunGenCountWindDensityResult(RegMun):
     class Meta:
         proxy = True
 
-    @property
-    def gen_count_wind_density_result(self):
-        return round(self.mundata.gen_count_wind / self.mundata.area, 2)
-
 
 # TODO: Alter extended class to result class
 class RegMunDemElEnergyResult(RegMun):
@@ -594,23 +563,13 @@ class RegMunDemElEnergyResult(RegMun):
     class Meta:
         proxy = True
 
-    @property
-    def dem_el_energy_result(self):
-        return round((self.mundata.dem_el_energy_hh +
-                      self.mundata.dem_el_energy_rca +
-                      self.mundata.dem_el_energy_ind) / 1e3)
-
 
 # TODO: Alter extended class to result class
-class RegMunDemElEnergyPerCapitaResult(RegMunDemElEnergy):
+class RegMunDemElEnergyPerCapitaResult(RegMun):
     name = 'reg_mun_dem_el_energy_per_capita_result'
 
     class Meta:
         proxy = True
-
-    @property
-    def dem_el_energy_per_capita_result(self):
-        return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
 
 
 ################################
