@@ -53,6 +53,10 @@ def get_clean_session(request):
         SESSION_DATA.sessions['stemp_abw'][session_key] = UserSession()
 
 
+class ContactView(TemplateView):
+    template_name = 'stemp_abw/contact.html'
+
+
 class IndexView(TemplateView):
     template_name = 'stemp_abw/index.html'
 

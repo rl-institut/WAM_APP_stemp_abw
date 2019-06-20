@@ -13,6 +13,8 @@ app_name = 'stemp_abw'
 
 # Regular URLs
 urlpatterns = [
+    path('contact/', views.ContactView.as_view(),
+         name='contact'),
     path('', views.IndexView.as_view(),
          name='index'),
     path('app/', views.MapView.as_view(),
