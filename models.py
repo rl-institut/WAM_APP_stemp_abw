@@ -107,7 +107,8 @@ class RegMunGenEnergyRe(RegMun):
         result = MunData.objects.aggregate(Sum('gen_el_energy_wind'))['gen_el_energy_wind__sum'] + \
               MunData.objects.aggregate(Sum('gen_el_energy_pv_roof'))['gen_el_energy_pv_roof__sum'] + \
               MunData.objects.aggregate(Sum('gen_el_energy_pv_ground'))['gen_el_energy_pv_ground__sum'] + \
-              MunData.objects.aggregate(Sum('gen_el_energy_hydro'))['gen_el_energy_hydro__sum']
+              MunData.objects.aggregate(Sum('gen_el_energy_hydro'))['gen_el_energy_hydro__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_bio'))['gen_el_energy_bio__sum']
         return round(result / 1e3)
 
 

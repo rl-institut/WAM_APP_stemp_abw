@@ -780,9 +780,12 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
                            reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         hydro = round(((mun_data.gen_el_energy_hydro / 1e3) /
                        reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
+        bio = round(((mun_data.gen_el_energy_bio / 1e3) /
+                     reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         data = pd.DataFrame(data={
             'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
-                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro}})
+                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro,
+                          'Bioenergie': bio}})
         setup_labels = {
             'title': {'text': 'Ergebnis: EE-Erzeugung'},
             'subtitle': {'text': 'in Prozent zum Strombedarf'},
@@ -817,9 +820,11 @@ class RegMunGenEnergyReResultDetailView(MasterDetailView):
         pv_roof = round((mun_data.gen_el_energy_pv_roof / 1e3), 1)
         pv_ground = round((mun_data.gen_el_energy_pv_ground / 1e3), 1)
         hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
+        bio = round((mun_data.gen_el_energy_bio / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Wasserkraft'],
-            'y': [wind, pv_roof, pv_ground, hydro]
+            'name': ['Wind', 'PV Dach', 'PV Freifläche',
+                     'Wasserkraft', 'Bioenergie'],
+            'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
@@ -866,9 +871,10 @@ class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
         pv_roof = round((mun_data.gen_el_energy_pv_roof / mun_data.area), 1)
         pv_ground = round((mun_data.gen_el_energy_pv_ground / mun_data.area), 1)
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
+        bio = round((mun_data.gen_el_energy_bio / mun_data.area), 1)
         data = pd.DataFrame({
             'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Wasserkraft'],
-            'y': [wind, pv_roof, pv_ground, hydro]
+            'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
