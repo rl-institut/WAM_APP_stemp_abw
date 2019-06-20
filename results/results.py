@@ -2,6 +2,7 @@ from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario, RegMun
 from stemp_abw.results.io import oemof_json_to_results
 from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
+from stemp_abw.config.io import LABEL_DATA
 
 from oemof.outputlib import views
 
@@ -375,10 +376,23 @@ class ResultChart(object):
         self.data = data
 
     def visualize(self, **kwargs):
+        # load tooltip text from labels using container id
+        container_id = kwargs.get('renderTo', None)
+        if container_id is not None:
+            tooltip_section = LABEL_DATA['charts'].get(container_id, None)
+            if tooltip_section is not None:
+                tooltip_text = tooltip_section.get('text', '')
+            else:
+                tooltip_text = ''
+        else:
+            tooltip_text = ''
+
+        # prepare chart
         if self.type == 'line':
             visualization = highcharts.HCTimeseries(
                 data=self.data,
                 setup_labels=self.setup_labels,
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )
@@ -386,6 +400,7 @@ class ResultChart(object):
             visualization = highcharts.HCPiechart(
                 data=self.data,
                 setup_labels=self.setup_labels,
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )
@@ -393,6 +408,7 @@ class ResultChart(object):
             visualization = highcharts.HCStackedColumn(
                 data=self.data,
                 setup_labels=self.setup_labels,
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )

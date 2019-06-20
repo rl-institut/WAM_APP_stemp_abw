@@ -75,7 +75,7 @@
                       <!--</div>-->
                       {% for visualization in results_charts_tab1_viz %}
                           <div class="cell small-4">
-                            {{visualization|safe}}
+                            {% include "stemp_abw/result_chart.html" %}
                           </div>
                       {% endfor %}
 
@@ -86,7 +86,7 @@
                     <div class="grid-x grid-margin-x">
                       {% for visualization in results_charts_tab2_viz %}
                           <div class="cell small-4">
-                            {{visualization|safe}}
+                            {% include "stemp_abw/result_chart.html" %}
                           </div>
                       {% endfor %}
                     </div>
@@ -95,7 +95,7 @@
                     <div class="grid-x grid-margin-x">
                       {% for visualization in results_charts_tab3_viz %}
                           <div class="cell small-4">
-                            {{visualization|safe}}
+                            {% include "stemp_abw/result_chart.html" %}
                           </div>
                       {% endfor %}
                     </div>
@@ -104,7 +104,7 @@
                     <div class="grid-x grid-margin-x">
                       {% for visualization in results_charts_tab4_viz %}
                           <div class="cell small-4">
-                            {{visualization|safe}}
+                            {% include "stemp_abw/result_chart.html" %}
                           </div>
                       {% endfor %}
                     </div>
@@ -113,7 +113,7 @@
                     <div class="grid-x grid-margin-x">
                       {% for visualization in results_charts_tab5_viz %}
                           <div class="cell small-4">
-                            {{visualization|safe}}
+                            {% include "stemp_abw/result_chart.html" %}
                           </div>
                       {% endfor %}
                   </div>

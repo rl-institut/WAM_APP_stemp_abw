@@ -2,10 +2,9 @@ from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config import io
-
+from stemp_abw.config.io import COMPONENT_DATA, SCENARIO_DATA,\
+    LABEL_DATA, LAYER_DATA
 from stemp_abw.models import Scenario
-
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
 from stemp_abw.results.result_charts import results_charts_tab1_viz,\
@@ -75,7 +74,7 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
 
         # prepare layer data and move result layers to separate context var
-        layer_data = io.prepare_layer_data()
+        layer_data = LAYER_DATA
         layer_list_results = layer_data['layer_list']
         layer_data['layer_list'] = {layer: data
                                     for layer, data in layer_data['layer_list'].items()
@@ -85,9 +84,9 @@ class MapView(TemplateView):
                                             if data['cat'] == 'results'}
         context.update(layer_data)
 
-        context.update(io.prepare_component_data())
-        context.update(io.prepare_scenario_data())
-        context.update(io.prepare_label_data())
+        context.update(COMPONENT_DATA)
+        context.update(SCENARIO_DATA)
+        context.update(LABEL_DATA)
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
         context['results_charts_tab1_viz'] = results_charts_tab1_viz

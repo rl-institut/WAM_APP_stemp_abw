@@ -118,7 +118,8 @@ POPUP_THEME = {
 class HCStemp(Highchart):
     setup = {}
 
-    def __init__(self, theme='results', data=None, setup_labels=None, **kwargs):
+    def __init__(self, theme='results', data=None,
+                 tooltip_text='', setup_labels=None, **kwargs):
         super(HCStemp, self).__init__(**kwargs)
         self.set_dict_options(self.setup)
         self.set_dict_options(setup_labels)
@@ -130,6 +131,11 @@ class HCStemp(Highchart):
             series_type = self.setup.get('chart').get('type')
             self.add_pandas_data_set(data=data,
                                      series_type=series_type)
+        self.tooltip_text = tooltip_text
+
+    @property
+    def tooltip(self):
+        return self.tooltip_text
 
 
 class HCTimeseries(HCStemp):

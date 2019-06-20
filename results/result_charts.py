@@ -215,7 +215,6 @@ results_charts_tab4_viz = [results.ResultChart(
                            for chart in results_charts_tab4]
 
 
-
 # StackedGroupedColumnChart: used in popups as placeholder charts
 results_charts_tab5 = [
     {
