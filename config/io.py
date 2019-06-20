@@ -127,4 +127,10 @@ def prepare_scenario_data():
     
 def prepare_label_data():
     return {'panels': LABELS['panels'],
-            'tooltips': LABELS['tooltips']}
+            'tooltips': LABELS['tooltips'],
+            'charts': LABELS['charts']}
+
+COMPONENT_DATA = prepare_component_data()
+SCENARIO_DATA = prepare_scenario_data()
+LABEL_DATA = prepare_label_data()
+LAYER_DATA = prepare_layer_data()
