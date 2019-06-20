@@ -1,34 +1,3 @@
-      <!-- MAIN NAVIGATION START -->
-      <nav>
-        <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
-          <button class="menu-icon" type="button" data-toggle></button>
-          <div class="title-bar-title">Menu</div>
-        </div>
+{% extends "stemp_abw/navigation_base.html" %}
 
-        <div class="top-bar" id="simple-menu">
-          <div class="top-bar-left show-for-large">
-            <ul class="menu">
-              <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-            </ul>
-          </div>
-          <div class="top-bar-left">
-            (Beta-Version)
-          </div>
-          <div class="top-bar-right">
-            <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-              <li><a class="anchor-text--light" href="{% url 'stemp_abw:privacy_policy' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>
-              <li>
-                <a class="anchor-text--light" href="#">Menu</a>
-                <ul class="menu vertical">
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:contact' %}">Kontakt</a></li>
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:imprint' %}">Impressum</a></li>
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:assumptions' %}">Annahmen</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- MAIN NAVIGATION END -->
+{% block link_to_map %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>{% endblock %}
