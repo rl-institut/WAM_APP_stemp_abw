@@ -21,6 +21,7 @@ class Results(object):
 
         self.results_raw = self.sq_results_raw
         self.param_results_raw = self.sq_param_results_raw
+        self.layer_results = None
         self.status = 'init'
         self.simulation = simulation
 

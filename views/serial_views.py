@@ -529,7 +529,7 @@ class GeoJSONResultLayerData(ListView):
 
     def render_to_response(self, context, **response_kwargs):
         session = SESSION_DATA.get_session(self.request)
-        results_df = session.simulation.results.get_layer_results()
+        results_df = session.simulation.results.layer_results
 
         options = dict(properties=self.properties,
                        result_property=self.result_property,

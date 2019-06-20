@@ -331,7 +331,11 @@ class Simulation(object):
         # update result raw data
         self.results.set_result_raw_data(results_raw=results,
                                          param_results_raw=param_results)
-        # TODO: save results
+        # get layer results for user scn
+        self.results.layer_results =\
+            self.results.get_layer_results()
+
+        # TODO: save results to DB
 
 
 class Tracker(object):
