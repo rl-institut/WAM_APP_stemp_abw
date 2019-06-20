@@ -21,6 +21,7 @@
                 <a class="anchor-text--light" href="#">Menu</a>
                 <ul class="menu vertical">
                   {% block startpage_link_2 %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>{% endblock %}
+                  {% block link_to_map %}{% endblock %}
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:contact' %}">Kontakt</a></li>
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:imprint' %}">Impressum</a></li>
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}">Quellen</a></li>
