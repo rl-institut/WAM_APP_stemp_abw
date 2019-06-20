@@ -10,4 +10,4 @@ Nutze dieses Tool, um einen Überblick über Flächennutzung und Energiesystem d
 
 - Vergleiche unter **Ergebnisse** Erzeugung und Verbrauch des neu erstellten Energiesystems mit dem Referenzszenario. Welcher Anteil des Verbrauchs kann durch erneuerbare Energien gedeckt werden? Wie sieht der Strommix aus? Nach Ausführen der **Simulation** können diese und weitere Fragen beantwortet werden.
 
-**Viel Spaß beim Erkunden!**
+Viel Spaß beim Erkunden!
