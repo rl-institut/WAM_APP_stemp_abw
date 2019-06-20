@@ -20,18 +20,21 @@ function updateScenarioList(scenarios) {
 function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   // Repowering dropdown
   if (apply === true) {
-    rep_dd = $('#dd_repowering').prop('value', controls['dd_repowering'])
+    $('#dd_repowering').prop('value', controls['dd_repowering']);
     if (controls['dd_repowering'] == -1) {
       $('#sl_wind').data("ionRangeSlider").update({
-        disable: false,
+        disable: false
       });
       activateRePotScenarioControls(true);
     } else {
-      $('#sl_wind').data("ionRangeSlider").update({
-        disable: true
-      });
-      activateRePotScenarioControls(false);
-      removeRePotAreaLayers();
+      function disableIRS() {
+        $('#sl_wind').data("ionRangeSlider").update({
+          disable: true
+        });
+        activateRePotScenarioControls(false);
+        removeRePotAreaLayers();
+      };
+      setTimeout(disableIRS, 100);
     }
   }
 

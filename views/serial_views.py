@@ -102,7 +102,8 @@ class RegMunGenCapReDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_cap_re_density'
+        'gen_cap_re_density',
+        'gen_cap_re_density_region'
     ]
 
 
@@ -111,7 +112,8 @@ class RegMunGenCountWindDensityData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'gen_count_wind_density'
+        'gen_count_wind_density',
+        'gen_count_wind_density_region'
     ]
 
 
@@ -130,7 +132,8 @@ class RegMunDemElEnergyPerCapitaData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'dem_el_energy_per_capita'
+        'dem_el_energy_per_capita',
+        'dem_el_energy_per_capita_region'
     ]
 
 
@@ -139,7 +142,8 @@ class RegMunDemThEnergyData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'dem_th_energy'
+        'dem_th_energy',
+        'dem_th_energy_region'
     ]
 
 
@@ -148,7 +152,8 @@ class RegMunDemThEnergyPerCapitaData(GeoJSONLayerView):
     properties = [
         'name',
         'gen',
-        'dem_th_energy_per_capita'
+        'dem_th_energy_per_capita',
+        'dem_th_energy_per_capita_region'
     ]
 
 

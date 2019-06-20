@@ -1,6 +1,13 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
 
-{% block values %}: {{ layer.energy_re_el_dem_share_result }} %{% endblock %}
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.energy_re_el_dem_share_result }} %</p>
+  </div>
+  <div>
+    Region ABW: {{ layer.energy_re_el_dem_share_result }} %
+  </div>
+{% endblock %}
 
 {% block vis %}
 <div class="cell" style="height: 252px;">
