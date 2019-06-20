@@ -54,6 +54,7 @@ def insert_status_quo_scenario():
         'gen_count_wind',
         'gen_el_energy_hydro', 'gen_el_energy_pv_ground',
         'gen_el_energy_pv_roof', 'gen_el_energy_wind',
+        'gen_el_energy_bio', 'gen_el_energy_conventional',
         'pop'
     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
@@ -190,4 +191,4 @@ def insert_status_quo_results():
 #insert_repowering_scenarios()
 #insert_potential_areas()
 #insert_status_quo_scenario()
-#insert_status_quo_results()
+insert_status_quo_results()
