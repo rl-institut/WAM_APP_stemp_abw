@@ -27,6 +27,8 @@
     Quellen:
     {% for source in sources %}
     <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
+       target="_blank"
+       rel="noopener noreferrer"
        class="anchor-text linkto-source"
        id="linkto-source-{{ source.id }}">
       {{ source.infos.title }}{% if not forloop.last %}, {% else %}{% endif %}
