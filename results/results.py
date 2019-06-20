@@ -1,5 +1,5 @@
 from stemp_abw.visualizations import highcharts
-from stemp_abw.models import Scenario, RegMun
+from stemp_abw.models import Scenario, RegMun, MunData
 from stemp_abw.results.io import oemof_json_to_results
 from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
 from stemp_abw.config.io import LABEL_DATA
@@ -7,7 +7,7 @@ from stemp_abw.config.io import LABEL_DATA
 from oemof.outputlib import views
 
 import pandas as pd
-from numpy.random import uniform
+import json
 
 
 class Results(object):
@@ -273,23 +273,62 @@ class Results(object):
     def get_layer_results(self):
         """Analyze results and return data for layer display"""
 
+        # get user scn results for muns
+        scn_data = json.loads(self.simulation.session.user_scenario.data.data)
+        mun_results = pd.DataFrame.from_dict(scn_data['mun_data'],
+                                          orient='index')
+        mun_results.index = mun_results.index.astype(int)
+        mun_data = pd.DataFrame(list(
+            MunData.objects \
+                .values_list('ags', 'area', named=True))).set_index(['ags'])
+        mun_data.index = mun_data.index.astype(int)
+
         results = pd.DataFrame(list(
             RegMun.objects \
-                .values_list('ags', named=True)))
+                .values_list('ags', named=True))).set_index(['ags'])
 
-        columns = ['energy_re_el_dem_share_result',
-                   'gen_energy_re_result',
-                   'gen_energy_re_density_result',
-                   'gen_cap_re_result',
-                   'gen_cap_re_density_result',
-                   'gen_count_wind_density_result',
-                   'dem_el_energy_result',
-                   'dem_el_energy_per_capita_result']
+        # create DF with properties equivalent to those defined in models.py
+        results['pop'] = mun_results['pop']
+        results['pop_density'] = (
+                mun_results['pop'] / mun_data['area']).round()
 
-        for c in columns:
-            results[c] = [round(_,1) for _ in uniform(low=0, high=100, size=20)]
+        results['gen_energy_re'] = (mun_results[[
+            'gen_el_energy_wind',
+            'gen_el_energy_pv_roof',
+            'gen_el_energy_pv_ground',
+            'gen_el_energy_hydro',
+            'gen_el_energy_bio']].sum(axis=1) / 1e3).round()
+        results['dem_el_energy'] = (mun_results[[
+            'dem_el_energy_hh',
+            'dem_el_energy_rca',
+            'dem_el_energy_ind']].sum(axis=1) / 1e3).round()
+        results['energy_re_el_dem_share'] = (
+                results['gen_energy_re'] / results['dem_el_energy'] * 100).round()
+        results['gen_energy_re_per_capita'] = (
+                results['gen_energy_re'] / results['pop']).round(decimals=1)
+        results['gen_energy_re_density'] = (
+                results['gen_energy_re'] * 1e3 / mun_data['area']).round(decimals=1)
 
-        results.set_index('ags', inplace=True)
+        results['gen_cap_re'] = (mun_results[[
+            'gen_capacity_wind',
+            'gen_capacity_pv_roof_large',
+            'gen_capacity_pv_ground',
+            'gen_capacity_hydro',
+            'gen_capacity_bio']].sum(axis=1)).round()
+        results['gen_cap_re_density'] = (
+                results['gen_cap_re'] / mun_data['area']).round(decimals=2)
+
+        results['gen_count_wind_density'] = (
+                mun_results['gen_count_wind'] / mun_data['area']).round(decimals=2)
+        results['dem_el_energy_per_capita'] = (
+                results['dem_el_energy'] * 1e6 / results['pop']).round()
+
+        results['dem_th_energy'] = (mun_results[[
+            'dem_th_energy_hh',
+            'dem_th_energy_rca']].sum(axis=1) / 1e3).round()
+        results['dem_th_energy_per_capita'] = (
+                results['dem_th_energy'] / results['pop']).round()
+        results = results.add_suffix(suffix='_result')
 
         return results
 
