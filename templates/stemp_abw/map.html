@@ -6,6 +6,13 @@
 {% load geojson_tags %}
 
 {% block header %}
+  <!-- Full reload if user is navigating back to map -->
+  <script>
+    if (performance.navigation.type == 2) {
+      console.log("Full reload, because user is navigating back to map from other page");
+      location.reload(true);
+    }
+  </script>
   {% leaflet_css %}
   {% leaflet_js %}
   <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
