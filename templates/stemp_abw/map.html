@@ -18,6 +18,8 @@
   <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
 {% endblock %}
 
+{% block navigation %}{% include 'stemp_abw/navigation2.html' %}{% endblock %}
+
 {% block content %}
 
     <!-- START LOADER -->
@@ -496,6 +498,16 @@
       </button>
     </div>
     <!-- END POP-UP RESULTS -->
+
+    <!-- indexConfirm -->
+    <div class="tiny reveal" id="indexConfirm" data-reveal>
+      <h3>Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren.</h3>
+      <div class="cell">
+        <button data-close class="btn btn-apply btn-apply--secondary">Abbruch</button>
+        <a href="{% url 'stemp_abw:index' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+      </div>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
