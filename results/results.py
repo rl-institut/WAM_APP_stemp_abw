@@ -277,7 +277,7 @@ class Results(object):
         # get user scn results for muns
         scn_data = json.loads(self.simulation.session.user_scenario.data.data)
         mun_results = pd.DataFrame.from_dict(scn_data['mun_data'],
-                                          orient='index')
+                                             orient='index')
         mun_results.index = mun_results.index.astype(int)
         mun_data = pd.DataFrame(list(
             MunData.objects \
