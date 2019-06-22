@@ -331,6 +331,8 @@ class Simulation(object):
         # update result raw data
         self.results.set_result_raw_data(results_raw=results,
                                          param_results_raw=param_results)
+        # update energy values of mun data
+        self.results.update_mun_energy_results_post_simulation()
         # get layer results for user scn
         self.results.layer_results =\
             self.results.get_layer_results()

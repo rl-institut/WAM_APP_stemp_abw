@@ -333,6 +333,80 @@ class Results(object):
 
         return results
 
+    def update_mun_energy_results_post_simulation(self):
+        """Update energy results in mun data of user scenario
+
+        Returns
+        -------
+
+        """
+
+        # get user scn results for muns
+        scn_data = json.loads(self.simulation.session.user_scenario.data.data)
+        scn_mun_data = pd.DataFrame.from_dict(scn_data['mun_data'],
+                                             orient='index')
+        scn_mun_data.index = scn_mun_data.index.astype(int)
+
+        # get energy columns to be updated
+        gen_el_energy_cols = [col for col in scn_mun_data if col.startswith('gen_el_energy')]
+        dem_el_energy_cols = [col for col in scn_mun_data if col.startswith('dem_el_energy')]
+
+        # get results (production)
+        nodes_from_prod = ['gen_el_wind',
+                           'gen_el_pv_ground',
+                           'gen_el_pv_roof',
+                           'gen_el_hydro',
+                           'gen_el_bio',
+                           'gen_el_conventional']
+        nodes_to_prod = ['bus_el']
+
+        data_power_prod_user_scn = self.aggregate_flow_results(
+            nodes_from_prod,
+            nodes_to_prod,
+            self.results_raw
+        ).sum(axis=0)
+
+        data_power_prod_user_scn.index = [src.replace('gen_el', 'gen_el_energy')
+                                          for (src, tar) in
+                                          data_power_prod_user_scn.index]
+
+        # get results (demand)
+        nodes_from_dem = ['bus_el']
+        nodes_to_dem = ['dem_el_hh',
+                        'dem_el_rca',
+                        'dem_el_ind']
+
+        data_power_dem_user_scn = self.aggregate_flow_results(
+            nodes_from_dem,
+            nodes_to_dem,
+            self.results_raw
+        ).sum(axis=0)
+
+        data_power_dem_user_scn.index = [tar.replace('dem_el', 'dem_el_energy')
+                                         for (src, tar) in
+                                         data_power_dem_user_scn.index]
+
+        # calc results and update mun scn data
+        gen_el_energy_results = data_power_prod_user_scn * \
+                                self.simulation.session.mun_to_reg_ratios[
+                                    gen_el_energy_cols]
+        gen_el_energy_results.index = gen_el_energy_results.index.astype(int)
+
+        dem_el_energy_results = data_power_dem_user_scn * \
+                                self.simulation.session.mun_to_reg_ratios[
+                                    dem_el_energy_cols]
+        dem_el_energy_results.index = dem_el_energy_results.index.astype(int)
+
+        scn_mun_data.update(gen_el_energy_results)
+        scn_mun_data.update(dem_el_energy_results)
+        scn_mun_data.index = scn_mun_data.index.astype(str)
+        scn_data['mun_data'] = scn_mun_data.to_dict(orient='index')
+
+        self.simulation.session.user_scenario.data.data = json.dumps(
+            scn_data,
+            sort_keys=True
+        )
+
     def aggregate_flow_results(self, nodes_from, nodes_to, results_raw,
                                resample_mode=None, agg_mode='sum'):
         """Aggregate raw data for each node in `nodes_from` to `nodes_to`.
@@ -368,6 +442,8 @@ class Results(object):
                 format: [('name_1', [value_11, ..., value_1n]),
                           ...,
                          ('name_n', [value_n1, ..., value_nn])]
+
+        # TODO: Always return DF, move conversion to chart-usable format to other fct
         """
 
         # extract requested columns
