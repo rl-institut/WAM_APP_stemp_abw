@@ -202,7 +202,7 @@ class RegResidAreaData(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegResidAreaB500Data(GeoJSONLayerView):
@@ -210,7 +210,7 @@ class RegResidAreaB500Data(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegPrioAreaFloodProtData(GeoJSONLayerView):
@@ -218,7 +218,15 @@ class RegPrioAreaFloodProtData(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
+
+
+class RegSurfaceWaterData(GeoJSONLayerView):
+    model = models.RegSurfaceWater
+    properties = ['name']
+    srid = 4326
+    geometry_field = 'geom'
+    precision = 5
 
 
 class RegPrioAreaCultData(GeoJSONLayerView):
@@ -226,7 +234,7 @@ class RegPrioAreaCultData(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegForestData(GeoJSONLayerView):
@@ -234,7 +242,7 @@ class RegForestData(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegFFHProtAreaData(GeoJSONLayerView):
@@ -242,7 +250,7 @@ class RegFFHProtAreaData(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegResidAreaB1000Data(GeoJSONLayerView):
@@ -250,7 +258,7 @@ class RegResidAreaB1000Data(GeoJSONLayerView):
     properties = ['name']
     srid = 4326
     geometry_field = 'geom'
-    precision = 4
+    precision = 5
 
 
 class RegPrioAreaWECData(GeoJSONLayerView):

@@ -345,6 +345,15 @@ class RegPrioAreaFloodProt(LayerModel):
     bezeich_3 = models.CharField(max_length=254, null=True)
 
 
+class RegSurfaceWater(LayerModel):
+    """Surface water
+
+    Oberflächengewässer (Fließgewässer 1. Ordnung, stehende Gewässer > 1 ha).
+    """
+    name = 'reg_surface_water'
+    geom = geomodels.MultiPolygonField(srid=3035, null=True)
+
+
 class RegPrioAreaCult(LayerModel):
     name = 'reg_prio_area_cult'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)

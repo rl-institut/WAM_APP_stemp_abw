@@ -658,6 +658,10 @@ class RegPrioAreaFloodProtDetailView(MasterDetailView):
     model = models.RegPrioAreaFloodProt
 
 
+class RegSurfaceWaterDetailView(MasterDetailView):
+    model = models.RegSurfaceWater
+
+
 class RegPrioAreaCultDetailView(MasterDetailView):
     model = models.RegPrioAreaCult
 
