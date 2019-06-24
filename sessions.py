@@ -234,6 +234,8 @@ class UserSession(object):
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])
             # 2) mun data update
+            repower_data = json.loads(
+                self.user_scenario.repowering_scenario.data)
             # free sceario
             if int(ctrl_data['dd_repowering']) == -1:
                 sl_wind_repower_pot = round(
@@ -243,8 +245,6 @@ class UserSession(object):
                 )
             # other scenarios
             else:
-                repower_data = json.loads(
-                    self.user_scenario.repowering_scenario.data)
                 for mun in scn_data['mun_data']:
                     scn_data['mun_data'][mun]['gen_capacity_wind'] =\
                         repower_data[mun]['gen_capacity_wind']
@@ -256,13 +256,16 @@ class UserSession(object):
         else:
             sl_wind_repower_pot = None
 
+        # update user scenario
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
 
         return sl_wind_repower_pot
 
     def __disaggregate_reg_to_mun_data(self, reg_data):
-        """Disaggregate given regional data to given municipal data
+        """Disaggregate and assign given regional data to given municipal data
+
+        # TODO: Insert notice that energy values are updated after sim + add reference
         
         Parameters
         ----------
