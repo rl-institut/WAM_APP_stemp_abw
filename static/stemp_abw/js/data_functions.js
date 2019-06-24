@@ -108,7 +108,6 @@ function ctrlSimulate() {
       showErrorPopup();
     }
   }).done(function (returned_data) {
-    //updateSimProgressBar(25);
 
       // hide simulation spinner
       toggleSpinnerVisibility();
