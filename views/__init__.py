@@ -167,14 +167,6 @@ class MapView(TemplateView):
 
             ret_data = 'simulation successful'
 
-        # # check if there are resuls for current scenario
-        # # (trigger: open results panel)
-        # elif action == 'check_results':
-        #     if session.simulation.results is None:
-        #         ret_data = 'none'
-        #     else:
-        #         ret_data = json.dumps({'results': 'found'})
-
         return HttpResponse(ret_data)
 
 
