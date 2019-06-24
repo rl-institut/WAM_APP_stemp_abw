@@ -78,8 +78,8 @@ function ctrlSimulate() {
   console.log('simulation started');
 
   // show simulation spinner
-  $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...<br>(max. 1 Minute)');
-  $('#loader-detail-text').text('');
+  $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
+  $('#loader-detail-text').text('(max. 1 Minute)');
   toggleSpinnerVisibility();
 
   //element.prop("disabled", true);
