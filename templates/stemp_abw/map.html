@@ -824,8 +824,10 @@
                                   var layer_style = getLayerStyle("{{ layer }}", feature);
                                   return layer_style;
                                 },
-                                onEachFeature: onEachFeature("{{ layer }}"),
+                                onEachFeature: onEachFeatureNoPopup("{{ layer }}"),
                                 pointToLayer: function (feature, latlng) {
+                                }
+                                /*
                                   var delta_name = ('{{ layer }}' + '_delta').replace(/reg_mun_/g, '');
                                   // .bindTooltip can't use straight 'feature.properties.attribute'
                                   var label = String(feature.properties[delta_name]);
@@ -837,6 +839,7 @@
                                     className: "my-delta"
                                   }).openTooltip();
                                 }
+                                */
                               }
                           );
                           layer.addData(delta_data);
