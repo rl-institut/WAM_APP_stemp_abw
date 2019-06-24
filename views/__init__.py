@@ -11,7 +11,6 @@ from stemp_abw.results.result_charts import results_charts_tab1_viz,\
     results_charts_tab2_viz, results_charts_tab3_viz, results_charts_tab4_viz,\
     results_charts_tab5_viz
 
-from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
 from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
@@ -98,17 +97,6 @@ class MapView(TemplateView):
         context['results_charts_tab3_viz'] = results_charts_tab3_viz
         context['results_charts_tab4_viz'] = results_charts_tab4_viz
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
-
-        # Trial: new info button
-        # TODO: Move
-        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'config', 'text', 'test.md')
-        f = open(file, 'r', encoding='utf-8')
-        context['info'] = InfoButton(text=f.read(),
-                                     tooltip='tooltip hahaha',
-                                     is_markdown=True,
-                                     ionicon_type='ion-information-circled',
-                                     ionicon_size='medium')
-        f.close()
 
         return context
 
