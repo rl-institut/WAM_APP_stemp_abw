@@ -15,6 +15,11 @@ LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                                'config',
                                                'layers_region.cfg'))
 
+LAYER_RESULT_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
+                                               'stemp_abw',
+                                               'config',
+                                               'layers_results.cfg'))
+
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
                                               'config',
@@ -45,11 +50,12 @@ CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
                           ['gen_capacity_pv_roof_large',
                            'gen_capacity_pv_roof_small'],
                       'sl_pv_ground': 'gen_capacity_pv_ground',
-                      'sl_bio': 'gen_capacity_bio',
-                      'sl_conventional':
-                          ['gen_capacity_combined_cycle',
-                           'gen_capacity_steam_turbine',
+                      'sl_bio':
+                          ['gen_capacity_bio',
                            'gen_capacity_sewage_landfill_gas'],
+                      'sl_conventional':
+                          ['gen_capacity_conventional_large',
+                           'gen_capacity_conventional_small'],
                       'sl_resid_save_el': 'resid_save_el',
                       'sl_crt_save_el': 'crt_save_el',
                       'sl_resid_pth': 'resid_pth',
@@ -71,12 +77,28 @@ RE_POT_CONTROLS = ['sl_dist_resid',
                    'cb_use_ffh_areas',
                    'cb_use_cult_areas']
 
+NODE_LABELS = {'gen_el_wind': 'Windenergie',
+               'gen_el_pv_roof': 'PV Dach',
+               'gen_el_pv_ground': 'PV Freifläche',
+               'gen_el_hydro': 'Wasserkraft',
+               'gen_el_bio': 'Bioenergie',
+               'gen_el_conventional': 'Fossil',
+               'dem_el_hh': 'Haushalte',
+               'dem_el_rca': 'GHD',
+               'dem_el_ind': 'Industrie',
+               'shortage_el': 'Import',
+               'excess_el': 'Export'
+               }
+
 RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1,7)]
 
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
-                  'date_to': '2017-01-07 23:00:00',
+                  'date_to': '2017-03-31 23:00:00',
                   'freq': '60min',
                   'solver': 'cbc',
                   'verbose': True,
                   'keepfiles': False
                   }
+
+MONTH_LABELS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']

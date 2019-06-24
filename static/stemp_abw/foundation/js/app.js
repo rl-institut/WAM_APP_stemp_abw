@@ -42210,10 +42210,10 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
   var toggleWidth = function toggleWidth(offCanvasWidth, offCanvasContentWidth) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvas').animate({
       width: offCanvasWidth
-    }, 500);
+    }, 250);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvasContent').animate({
       width: offCanvasContentWidth
-    }, 500);
+    }, 250);
   };
 
   var offCanvasOpacity = function offCanvasOpacity(op, duration) {
@@ -42227,9 +42227,9 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
 
   var btnExpandText = function btnExpandText(expanded) {
     if (expanded) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Weniger Ergebnisse <i class ="icon ion-android-remove icon--small"></i>');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Zu den Ergebnisflächen <i class ="icon ion-android-remove icon--small"></i>');
     } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Mehr Ergebnisse <i class ="icon ion-android-add icon--small"></i>');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Mehr Ergebnisgrafiken <i class ="icon ion-android-add icon--small"></i>');
     }
   };
 
@@ -42238,9 +42238,10 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
     expanded = false;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').removeClass('results-display-none');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').addClass('results-display-none');
-  }; // collapse or expand results panel
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').addClass('results-display-none');
+  };
 
-
+  // collapse or expand results panel
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').on('click', function () {
     if (!expanded) {
       toggleWidth('100%', '100%');
@@ -42248,18 +42249,20 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').addClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').removeClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-results').addClass('is-collapsed');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').removeClass('results-display-none');
     } else {
       toggleWidth('35rem', '30rem');
       expanded = false;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').removeClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').addClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-results').removeClass('is-collapsed');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').addClass('results-display-none');
     } // changes btn text
 
-
     btnExpandText(expanded);
-  }); // always reduce results panel after click on offcanvas tab
+  });
 
+  // always reduce results panel after click on offcanvas tab
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsRegion').on('click', reducePanel);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsScenarios').on('click', reducePanel);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsEnergy').on('click', reducePanel);

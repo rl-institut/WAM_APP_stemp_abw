@@ -1,0 +1,10 @@
+{% extends 'stemp_abw/popups/base_layer_popup.html' %}
+
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.gen_count_wind_density_result }} WEA pro km²</p>
+  </div>
+  <div>
+    Region ABW: {{ layer.gen_count_wind_density_result }} WEA pro km²
+  </div>
+{% endblock %}

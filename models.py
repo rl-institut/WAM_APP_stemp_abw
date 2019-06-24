@@ -1,6 +1,8 @@
+import random
 from uuid import uuid4
 
 from django.db import models
+from django.db.models import Sum
 from django.contrib.gis.db import models as geomodels
 from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
@@ -12,24 +14,18 @@ from stemp_abw.app_settings import LABELS
 #     caption = models.CharField(max_length=50)
 #     description = models.CharField(max_length=100)
 
-####################
-### Layer models ###
-####################
+#############################
+# Layer models (status quo) #
+#############################
 
 class LayerModel(models.Model):
+
+    class Meta:
+        abstract = True
 
     @property
     def name(self):
         raise NotImplementedError
-
-    # TODO: This can be chucked away?
-    @property
-    def popup_content(self):
-        #return '<p>'+self.name+'</p>'
-        return 'popup/'
-
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return '{name} Objekt ({pk_name}={pk})'.format(
@@ -42,16 +38,12 @@ class RpAbwBound(LayerModel):
     name = 'rpabw'
     geom = geomodels.MultiLineStringField(srid=4326, null=True)
 
-    # @property
-    # def popup_content(self):
-    #     return '<p>{text}</p>'.format(
-    #         text='PR ABW Grenze des Planungsraumes')
-
 
 class RegMun(LayerModel):
     name = 'reg_mun'
     ags = models.IntegerField(primary_key=True)
     geom = geomodels.MultiPolygonField(srid=3035)
+    geom_centroid = geomodels.PointField(srid=3035, null=True)
     gen = models.CharField(max_length=254)
 
 
@@ -72,8 +64,12 @@ class RegMunPop(RegMun):
     def pop(self):
         return self.mundata.pop_2017
 
+    @property
+    def pop_region(self):
+        return MunData.objects.aggregate(Sum('pop_2017'))['pop_2017__sum']
 
-class RegMunPopDensity(RegMun):
+
+class RegMunPopDensity(RegMunPop):
     name = 'reg_mun_pop_density'
 
     class Meta:
@@ -82,6 +78,14 @@ class RegMunPopDensity(RegMun):
     @property
     def pop_density(self):
         return round(self.mundata.pop_2017 / self.mundata.area)
+
+    @property
+    def area_region(self):
+        return MunData.objects.aggregate(Sum('area'))['area__sum']
+
+    @property
+    def pop_density_region(self):
+        return round(self.pop_region / self.area_region)
 
 
 class RegMunGenEnergyRe(RegMun):
@@ -95,7 +99,17 @@ class RegMunGenEnergyRe(RegMun):
         return round((self.mundata.gen_el_energy_wind +
                       self.mundata.gen_el_energy_pv_roof +
                       self.mundata.gen_el_energy_pv_ground +
-                      self.mundata.gen_el_energy_hydro) / 1e3)
+                      self.mundata.gen_el_energy_hydro +
+                      self.mundata.gen_el_energy_bio) / 1e3)
+
+    @property
+    def gen_energy_re_region(self):
+        result = MunData.objects.aggregate(Sum('gen_el_energy_wind'))['gen_el_energy_wind__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_pv_roof'))['gen_el_energy_pv_roof__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_pv_ground'))['gen_el_energy_pv_ground__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_hydro'))['gen_el_energy_hydro__sum'] + \
+              MunData.objects.aggregate(Sum('gen_el_energy_bio'))['gen_el_energy_bio__sum']
+        return round(result / 1e3)
 
 
 class RegMunDemElEnergy(RegMun):
@@ -110,6 +124,13 @@ class RegMunDemElEnergy(RegMun):
                       self.mundata.dem_el_energy_rca +
                       self.mundata.dem_el_energy_ind) / 1e3)
 
+    @property
+    def dem_el_energy_region(self):
+        result = MunData.objects.aggregate(Sum('dem_el_energy_hh'))['dem_el_energy_hh__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_el_energy_rca'))['dem_el_energy_rca__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_el_energy_ind'))['dem_el_energy_ind__sum']
+        return round(result / 1e3)
+
 
 class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     name = 'reg_mun_energy_re_el_dem_share'
@@ -121,8 +142,12 @@ class RegMunEnergyReElDemShare(RegMunGenEnergyRe, RegMunDemElEnergy):
     def energy_re_el_dem_share(self):
         return round(self.gen_energy_re / self.dem_el_energy * 100)
 
+    @property
+    def energy_re_el_dem_share_region(self):
+        return round(self.gen_energy_re_region / self.dem_el_energy_region * 100)
 
-class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
+
+class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe, RegMunPop):
     name = 'reg_mun_gen_energy_re_per_capita'
 
     class Meta:
@@ -132,8 +157,12 @@ class RegMunGenEnergyRePerCapita(RegMunGenEnergyRe):
     def gen_energy_re_per_capita(self):
         return round(self.gen_energy_re * 1e3 / self.mundata.pop_2017, 1)
 
+    @property
+    def gen_energy_re_per_capita_region(self):
+        return round(self.gen_energy_re_region * 1e3 / self.pop_region, 1)
 
-class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
+
+class RegMunGenEnergyReDensity(RegMunGenEnergyRe, RegMunPopDensity):
     name = 'reg_mun_gen_energy_re_density'
 
     class Meta:
@@ -142,6 +171,10 @@ class RegMunGenEnergyReDensity(RegMunGenEnergyRe):
     @property
     def gen_energy_re_density(self):
         return round(self.gen_energy_re * 1e3 / self.mundata.area, 1)
+
+    @property
+    def gen_energy_re_density_region(self):
+        return round(self.gen_energy_re_region * 1e3 / self.area_region, 1)
 
 
 class RegMunGenCapRe(RegMun):
@@ -158,8 +191,17 @@ class RegMunGenCapRe(RegMun):
                      self.mundata.gen_capacity_hydro +
                      self.mundata.gen_capacity_bio)
 
+    @property
+    def gen_cap_re_region(self):
+        result = MunData.objects.aggregate(Sum('gen_capacity_wind'))['gen_capacity_wind__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_pv_roof_large'))['gen_capacity_pv_roof_large__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_pv_ground'))['gen_capacity_pv_ground__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_hydro'))['gen_capacity_hydro__sum'] + \
+                 MunData.objects.aggregate(Sum('gen_capacity_bio'))['gen_capacity_bio__sum']
+        return round(result)
 
-class RegMunGenCapReDensity(RegMunGenCapRe):
+
+class RegMunGenCapReDensity(RegMunGenCapRe, RegMunPopDensity):
     name = 'reg_mun_gen_cap_re_density'
 
     class Meta:
@@ -169,8 +211,12 @@ class RegMunGenCapReDensity(RegMunGenCapRe):
     def gen_cap_re_density(self):
         return round(self.gen_cap_re / self.mundata.area, 2)
 
+    @property
+    def gen_cap_re_density_region(self):
+        return round(self.gen_cap_re_region / self.area_region, 2)
 
-class RegMunGenCountWindDensity(RegMun):
+
+class RegMunGenCountWindDensity(RegMunPopDensity):
     name = 'reg_mun_gen_count_wind_density'
 
     class Meta:
@@ -180,8 +226,13 @@ class RegMunGenCountWindDensity(RegMun):
     def gen_count_wind_density(self):
         return round(self.mundata.gen_count_wind / self.mundata.area, 2)
 
+    @property
+    def gen_count_wind_density_region(self):
+        result = MunData.objects.aggregate(Sum('gen_count_wind'))['gen_count_wind__sum']
+        return round(result / self.area_region, 2)
 
-class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
+
+class RegMunDemElEnergyPerCapita(RegMunDemElEnergy, RegMunPop):
     name = 'reg_mun_dem_el_energy_per_capita'
 
     class Meta:
@@ -190,6 +241,10 @@ class RegMunDemElEnergyPerCapita(RegMunDemElEnergy):
     @property
     def dem_el_energy_per_capita(self):
         return round(self.dem_el_energy * 1e6 / self.mundata.pop_2017)
+
+    @property
+    def dem_el_energy_per_capita_region(self):
+        return round(self.dem_el_energy_region * 1e6 / self.pop_region)
 
 
 class RegMunDemThEnergy(RegMun):
@@ -203,8 +258,14 @@ class RegMunDemThEnergy(RegMun):
         return round((self.mundata.dem_th_energy_hh +
                       self.mundata.dem_th_energy_rca) / 1e3)
 
+    @property
+    def dem_th_energy_region(self):
+        result = MunData.objects.aggregate(Sum('dem_th_energy_hh'))['dem_th_energy_hh__sum'] + \
+                 MunData.objects.aggregate(Sum('dem_th_energy_rca'))['dem_th_energy_rca__sum']
+        return round(result / 1e3)
 
-class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
+
+class RegMunDemThEnergyPerCapita(RegMunDemThEnergy, RegMunPopDensity):
     name = 'reg_mun_dem_th_energy_per_capita'
 
     class Meta:
@@ -213,6 +274,10 @@ class RegMunDemThEnergyPerCapita(RegMunDemThEnergy):
     @property
     def dem_th_energy_per_capita(self):
         return round(self.dem_th_energy * 1e6 / self.mundata.pop_2017)
+
+    @property
+    def dem_th_energy_per_capita_region(self):
+        return round(self.dem_th_energy_region * 1e6 / self.pop_region)
 
 
 class RegWaterProtArea(LayerModel):
@@ -409,9 +474,208 @@ class RegInfrasAviation(LayerModel):
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
-# ###################
-# ### Data models ###
-# ###################
+##########################
+# Layer models (results) #
+##########################
+class ResultLayerModel(RegMun):
+    """This model is a dummy proxy model for displaying layer results
+
+    Notes
+    -----
+    It bases the municipalities' model :class:`stemp_abw.models.RegMun` which
+    is required (geom, names) for all result layers. The result data column
+    cannot be defined using property decorator as the results are stored in
+    :class:`stemp_abw.results.results.Results` which is connected to a
+    session and not accessible from models. Instead, the result column is
+    dynamically added in the serial view
+    :class:`stemp_abw.views.serial_views.GeoJSONResultLayerData`.
+    """
+    name = None
+
+    class Meta:
+        proxy = True
+
+    @classmethod
+    def name_init(cls, name):
+        """Class method to set model name property which is needed to match the
+        layer configuration (config/layers_results.cfg) and control (associated
+        layer switch in GUI).
+
+        Parameters
+        ----------
+        name : :obj:`str`
+            Model name as used in config/layers_results.cfg
+        """
+        cls.name = name
+        return cls
+
+
+# TODO: Alter extended classes to result classes
+class RegMunEnergyReElDemShareResult(RegMun):
+    name = 'reg_mun_energy_re_el_dem_share_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunGenEnergyReResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunGenEnergyReDensityResult(RegMun):
+    name = 'reg_mun_gen_energy_re_density_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCapReResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCapReDensityResult(RegMun):
+    name = 'reg_mun_gen_cap_re_density_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunGenCountWindDensityResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunDemElEnergyResult(RegMun):
+    name = 'reg_mun_dem_el_energy_result'
+
+    class Meta:
+        proxy = True
+
+
+# TODO: Alter extended class to result class
+class RegMunDemElEnergyPerCapitaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_per_capita_result'
+
+    class Meta:
+        proxy = True
+
+
+################################
+# Layer models (results DELTA) #
+################################
+# TODO: This is a test delta layer
+class RegMunEnergyReElDemShareDeltaResult(RegMun):
+    name = 'reg_mun_energy_re_el_dem_share_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def energy_re_el_dem_share_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunGenEnergyReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_energy_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_energy_re_density_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunGenCapReDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_cap_re_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_cap_re_density_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunGenCountWindDensityDeltaResult(RegMun):
+    name = 'reg_mun_gen_count_wind_density_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def gen_count_wind_density_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+# TODO: This is a test delta layer
+class RegMunDemElEnergyPerCapitaDeltaResult(RegMun):
+    name = 'reg_mun_dem_el_energy_per_capita_result_delta'
+
+    class Meta:
+        proxy = True
+
+    @property
+    def dem_el_energy_per_capita_result_delta(self):
+        return str(random.randrange(-100, 100, 1)) + '%'
+
+
+###############
+# Data models #
+###############
 # The following tables contain initial data only, data that result from
 # adjustments in the tool are not saved to these tables.
 
@@ -449,10 +713,11 @@ class MunData(models.Model):
         Count of run-of-river systems
     gen_count_bio :
         Count of biogas/biomass systems
-    gen_count_steam_turbine :
-        Count of steam turbines
-    gen_count_combined_cycle :
-        Count of combined cycle systems
+    gen_count_conventional_large :
+        Count of large (>=10 MW) conventional plants in MW
+    gen_count_conventional_small :
+        Count of small (<10 MW) conventional plants in MW.
+        Simplified assumption: 1 plant per municipality
     gen_count_sewage_landfill_gas :
         Count of sewage/landfill gas systems
     gen_count_storage :
@@ -467,13 +732,13 @@ class MunData(models.Model):
     gen_capacity_pv_ground :
         Total nominal power of ground-mounted PV systems in MW
     gen_capacity_hydro :
-        Total nominal power of run-of-river systems  in MW
+        Total nominal power of run-of-river systems in MW
     gen_capacity_bio :
-        Total nominal power of biogas/biomass PV systems  in MW
-    gen_capacity_steam_turbine :
-        Total nominal power of steam turbine systems in MW
-    gen_capacity_combined_cycle :
-        Total nominal power of combined cycle systems in MW
+        Total nominal power of biogas/biomass systems in MW
+    gen_capacity_conventional_large :
+        Total nominal power of large (>=10 MW) conventional plants in MW
+    gen_capacity_conventional_small :
+        Total nominal power of small (<10 MW) conventional plants in MW
     gen_capacity_sewage_landfill_gas :
         Total nominal power of sewage/landfill gas systems in MW
     gen_capacity_storage :
@@ -487,6 +752,12 @@ class MunData(models.Model):
         Annual el. energy fed in by ground-mounted PV systems in MWh
     gen_el_energy_hydro :
         Annual el. energy fed in by run-of-river systems in MWh
+    gen_el_energy_bio :
+        Annual el. energy fed in by biomass/biogas systems incl. sewage and
+        landfill gas in MWh
+    gen_el_energy_conventional :
+        Annual el. energy fed in by conventional power plants in MWh (large
+        >=10 MW and small <10 MW).
 
     dem_el_peak_load_hh :
         El. peak demand of households in MW
@@ -541,7 +812,6 @@ class MunData(models.Model):
     reg_prio_area_wec_count :
         Count of priority area (parts)
     """
-    """"""
     ags = models.OneToOneField(RegMun, primary_key=True, on_delete=models.DO_NOTHING)
     area = models.FloatField(null=True)
 
@@ -557,8 +827,8 @@ class MunData(models.Model):
     gen_count_pv_ground = models.FloatField(null=True)
     gen_count_hydro = models.FloatField(null=True)
     gen_count_bio = models.FloatField(null=True)
-    gen_count_steam_turbine = models.FloatField(null=True)
-    gen_count_combined_cycle = models.FloatField(null=True)
+    gen_count_conventional_large = models.FloatField(null=True)
+    gen_count_conventional_small = models.FloatField(null=True)
     gen_count_sewage_landfill_gas = models.FloatField(null=True)
     gen_count_storage = models.FloatField(null=True)
 
@@ -568,8 +838,8 @@ class MunData(models.Model):
     gen_capacity_pv_ground = models.FloatField(null=True)
     gen_capacity_hydro = models.FloatField(null=True)
     gen_capacity_bio = models.FloatField(null=True)
-    gen_capacity_steam_turbine = models.FloatField(null=True)
-    gen_capacity_combined_cycle = models.FloatField(null=True)
+    gen_capacity_conventional_large = models.FloatField(null=True)
+    gen_capacity_conventional_small = models.FloatField(null=True)
     gen_capacity_sewage_landfill_gas = models.FloatField(null=True)
     gen_capacity_storage = models.FloatField(null=True)
 
@@ -577,6 +847,8 @@ class MunData(models.Model):
     gen_el_energy_pv_roof = models.FloatField(null=True)
     gen_el_energy_pv_ground = models.FloatField(null=True)
     gen_el_energy_hydro = models.FloatField(null=True)
+    gen_el_energy_bio = models.FloatField(null=True)
+    gen_el_energy_conventional = models.FloatField(null=True)
 
     dem_el_peak_load_hh = models.FloatField(null=True)
     dem_el_peak_load_rca = models.FloatField(null=True)
@@ -604,7 +876,7 @@ class MunData(models.Model):
 
 
 class FeedinTs(models.Model):
-    """Renewable feedin timeseries (normalized, hourly)
+    """Feedin timeseries (hourly, partly normalized - see columns)
 
     Attributes
     ----------
@@ -617,14 +889,25 @@ class FeedinTs(models.Model):
         refers to :class:`stemp_abw.models.RegMun`
     pv_ground :
         Photovoltaics (ground-mounted systems)
+        normalized (relative values)
     pv_roof :
         Photovoltaics (roof-mounted systems)
+        normalized (relative values)
     hydro :
         Run-of-river plants
+        normalized (relative values)
     wind_sq :
         Wind turbines (status quo)
+        normalized (relative values)
     wind_fs :
         Wind turbines (future scenarios)
+        normalized (relative values)
+    bio :
+        Biogas/biomass plants (incl. landfill and sewage)
+        normalized (relative values)
+    conventional :
+        Conventional plants (>=10 MW: power-led, <10 MW: heat-led)
+        NOT normalized (absolute values)
 
     Notes
     -----
@@ -640,6 +923,8 @@ class FeedinTs(models.Model):
     hydro = models.FloatField(blank=True, null=True)
     wind_sq = models.FloatField(blank=True, null=True)
     wind_fs = models.FloatField(blank=True, null=True)
+    bio = models.FloatField(blank=True, null=True)
+    conventional = models.FloatField(blank=True, null=True)
 
 
 class Powerplant(models.Model):
@@ -715,7 +1000,7 @@ class Powerplant(models.Model):
 
 
 class DemandTs(models.Model):
-    """Demand timeseries (hourly)
+    """Demand timeseries (hourly, partly normalized - see columns)
 
     Attributes
     ----------
@@ -783,7 +1068,10 @@ class DemandTs(models.Model):
 
 
 class RepoweringScenario(models.Model):
-    """Repowering scenario"""
+    """Repowering scenario
+
+    TODO: Add doctring
+    """
 
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
@@ -799,8 +1087,10 @@ class REPotentialAreas(models.Model):
     id :
         DB id
     area_params :
+        TODO: Define format
         App settings for usable areas (area panel)
     mun_data :
+        TODO: Define format
         Available potentials (per technology)
         TO BE SPECIFIED
     geom : Geometry
@@ -814,6 +1104,23 @@ class REPotentialAreas(models.Model):
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
 
 
+class SimulationResults(models.Model):
+    """Results of a scenario simulation
+
+    Attributes
+    ----------
+    id :
+        DB id
+    data : json
+        Result data, format as defined <HERE>
+    """
+    id = models.BigAutoField(primary_key=True)
+    data = JSONField()
+
+    def __str__(self):
+        return self.data
+
+
 class ScenarioData(models.Model):
     """Scenario data
 
@@ -822,14 +1129,19 @@ class ScenarioData(models.Model):
     id :
         DB id
     data : json
+        TODO: Define format
         Scenario data, format as defined <HERE>
     data_uuid :
-        UUID for scenario data to quickly compare settings
+        UUID for scenario data to quickly compare settings to avoid blowing
+        up postgreSQL
     """
     id = models.BigAutoField(primary_key=True)
     data = JSONField()
     data_uuid = models.UUIDField(default=uuid4, editable=False,
                                  unique=True, null=False)
+
+    def __str__(self):
+        return self.data
 
 
 class Scenario(models.Model):
@@ -847,8 +1159,12 @@ class Scenario(models.Model):
         True, if scenario was created by a user (default)
     data :
         Reference to ScenarioData
+    results :
+        Reference to SimulationResults
     re_potential_areas :
         Reference to REPotentialAreas
+    repowering_scenario :
+        Reference to RepoweringScenario
     """
     id = models.BigAutoField(primary_key=True)
     created = models.DateTimeField(default=timezone.now)
@@ -856,27 +1172,12 @@ class Scenario(models.Model):
     description = models.CharField(max_length=255, null=True)
     is_user_scenario = models.BooleanField(default=True)
     data = models.ForeignKey(ScenarioData, on_delete=models.DO_NOTHING)
+    results = models.ForeignKey(SimulationResults, on_delete=models.DO_NOTHING,
+                                null=True, default=None)
     re_potential_areas = models.ForeignKey(REPotentialAreas,
                                            on_delete=models.DO_NOTHING)
     repowering_scenario = models.ForeignKey(RepoweringScenario,
                                             on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.name
-
-
-class SimulationResults(models.Model):
-    """Results of a scenario
-
-    Attributes
-    ----------
-    id :
-        DB id
-    scenario :
-        Reference to scenario
-    data : json
-        Result data, format as defined <HERE>
-    """
-    id = models.BigAutoField(primary_key=True)
-    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
-    data = JSONField()
+        return f'{self.name}'

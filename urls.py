@@ -7,12 +7,14 @@ from djgeojson.views import GeoJSONLayerView
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
 from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
-from . import views
+from stemp_abw import views
 
 app_name = 'stemp_abw'
 
 # Regular URLs
 urlpatterns = [
+    path('contact/', views.ContactView.as_view(),
+         name='contact'),
     path('', views.IndexView.as_view(),
          name='index'),
     path('app/', views.MapView.as_view(),
@@ -29,6 +31,10 @@ urlpatterns = [
          name='sources'),
     path('assumptions/', AssumptionsView.as_view(app_name=app_name),
          name='assumptions'),
+    path('sim_status.data', views.SimulationStatus.as_view(),
+         name='sim_status.data'),
+    path('result_charts.data', views.ResultChartsData.as_view(),
+         name='result_charts.data'),
     ]
 
 # Search detail-view-classes and append to URLs
@@ -58,13 +64,17 @@ detail_views_list = {mem[0]: mem[1]
                      if mem[1].__module__ == views.serial_views.__name__}
 for name, obj in detail_views_list.items():
     if isclass(obj):
-        if obj.model is not None:
-            # data detail view
+        if getattr(obj, 'model', None) is not None:
+            # serial data detail view
             if issubclass(obj, views.GeoJSONSingleDatasetLayerView):
                 single_data_views[obj.model.name] = obj
-            # data view
+            # serial data view
             elif issubclass(obj, GeoJSONLayerView):
                 data_views[obj.model.name] = obj
+        elif getattr(obj, 'model_name', None) is not None:
+            # serial data result view
+            if issubclass(obj, views.GeoJSONResultLayerData):
+                data_views[obj.model_name] = obj
 # Append data-views' URLs
 urlpatterns.extend(
     re_path(r'^{}.data/'.format(name),

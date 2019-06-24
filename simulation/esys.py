@@ -22,33 +22,60 @@ def prepare_feedin_timeseries(mun_data, reg_params):
             'gen_capacity_pv_ground',
             'gen_capacity_pv_roof_small',
             'gen_capacity_pv_roof_large',
-            'gen_capacity_hydro']
+            'gen_capacity_hydro',
+            'gen_capacity_bio',
+            'gen_capacity_sewage_landfill_gas',
+            'gen_capacity_conventional_large',
+            'gen_capacity_conventional_small']
 
-
-    # mapping for RE capacity columns to RE timeseries columns
+    # mapping for capacity columns to timeseries columns
     # if repowering scenario present, use wind_fs time series
     tech_mapping = {
         'gen_capacity_wind':
             'wind_sq' if reg_params['repowering_scn'] == 0 else 'wind_fs',
         'gen_capacity_pv_ground': 'pv_ground',
-        'gen_capacity_hydro': 'hydro'
+        'gen_capacity_hydro': 'hydro',
     }
 
-    # prepare RE capacities
-    re_cap_per_mun = pd.DataFrame.from_dict(mun_data, orient='index')[cols]\
+    # prepare capacities (for relative timeseries only)
+    cap_per_mun = pd.DataFrame.from_dict(mun_data, orient='index')[cols]\
         .rename(columns=tech_mapping)
-    re_cap_per_mun.index = re_cap_per_mun.index.astype(int)
-    re_cap_per_mun['pv_roof'] = \
-        re_cap_per_mun['gen_capacity_pv_roof_small'] + \
-        re_cap_per_mun['gen_capacity_pv_roof_large']
-    re_cap_per_mun.drop(columns=['gen_capacity_pv_roof_small',
-                                 'gen_capacity_pv_roof_large'],
+    cap_per_mun.index = cap_per_mun.index.astype(int)
+    cap_per_mun['pv_roof'] = \
+        cap_per_mun['gen_capacity_pv_roof_small'] + \
+        cap_per_mun['gen_capacity_pv_roof_large']
+    cap_per_mun['bio'] = \
+        cap_per_mun['gen_capacity_bio'] + \
+        cap_per_mun['gen_capacity_sewage_landfill_gas']
+    cap_per_mun['conventional'] = \
+        cap_per_mun['gen_capacity_conventional_large'] + \
+        cap_per_mun['gen_capacity_conventional_small']
+    cap_per_mun.drop(columns=['gen_capacity_pv_roof_small',
+                                 'gen_capacity_pv_roof_large',
+                                 'gen_capacity_bio',
+                                 'gen_capacity_sewage_landfill_gas',
+                                 'gen_capacity_conventional_large',
+                                 'gen_capacity_conventional_small'],
                         inplace=True)
 
-    # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region
+    # calculate capacity(mun)-weighted aggregated feedin timeseries for entire region:
+    # 1) process relative TS
     feedin_agg = {}
-    for tech in list(re_cap_per_mun.columns):
-        feedin_agg[tech] = list((TIMESERIES['feedin'][tech] * re_cap_per_mun[tech]).sum(axis=1))
+    for tech in list(cap_per_mun.loc[:,
+                     cap_per_mun.columns != 'conventional'].columns):
+        feedin_agg[tech] = list(
+            (TIMESERIES['feedin'][tech] * cap_per_mun[tech]).sum(axis=1)
+        )
+    # 2) process absolute TS (conventional plants)
+    # do not use capacities as the full load hours of the plants differ - use
+    # ratio of currently set power values and those from status quo scenario
+    conv_cap_per_mun = \
+        cap_per_mun['conventional'] /\
+        MUN_DATA[['gen_capacity_conventional_large',
+                  'gen_capacity_conventional_small']].sum(axis=1)
+    feedin_agg['conventional'] = list(
+        (TIMESERIES['feedin']['conventional'] * conv_cap_per_mun).sum(axis=1)
+    )
 
     # if repowering scenario present, rename wind_fs time series to wind
     if reg_params['repowering_scn'] == 0:
@@ -133,6 +160,21 @@ def create_nodes(mun_data, reg_params):
                                                           actual_value=feedin['hydro'],
                                                           fixed=True
                                                           )})
+                 )
+    nodes.append(solph.Source(label='gen_el_bio',
+                              outputs={bus_el: solph.Flow(nominal_value=1,
+                                                          variable_costs=0,
+                                                          actual_value=feedin['bio'],
+                                                          fixed=True
+                                                          )})
+                 )
+    nodes.append(solph.Source(label='gen_el_conventional',
+                              outputs={bus_el: solph.Flow(
+                                  nominal_value=1,
+                                  variable_costs=0,
+                                  actual_value=feedin['conventional'],
+                                  fixed=True
+                              )})
                  )
 
     # dispatchable sources (electrical and heat)

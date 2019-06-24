@@ -1,0 +1,16 @@
+{% extends 'stemp_abw/popups/base_layer_popup.html' %}
+
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.gen_energy_re_density_result }} MWh pro km²</p>
+  </div>
+  <div>
+    Region ABW: {{ layer.gen_energy_re_density_result }} MWh pro km²
+  </div>
+{% endblock %}
+
+{% block vis %}
+<div class="cell" style="height: 252px;">
+  {{ chart }}
+</div>
+{% endblock%}

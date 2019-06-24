@@ -1,14 +1,17 @@
 import json
-from uuid import uuid4
+from uuid import uuid4, UUID
+import hashlib
 import pandas as pd
 import oemof.solph as solph
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
-from stemp_abw.models import Scenario, RepoweringScenario
-from stemp_abw.app_settings import CONTROL_VALUES_MAP, RE_POT_CONTROLS
+from stemp_abw.models import Scenario, RepoweringScenario, ScenarioData
+from stemp_abw.app_settings import CONTROL_VALUES_MAP
 from stemp_abw.simulation.bookkeeping import simulate_energysystem
 from stemp_abw.app_settings import SIMULATION_CFG as SIM_CFG
 from stemp_abw.simulation.esys import create_nodes
+from stemp_abw.results.results import Results
+from stemp_abw.results.io import oemof_json_to_results
 
 
 class UserSession(object):
@@ -23,7 +26,7 @@ class UserSession(object):
     mun_to_reg_ratios : :obj:`dict`
         Capacity ratios of municipality to regional values, for details see
         :meth:`stemp_abw.sessions.UserSession.create_mun_data_ratio_for_aggregation`
-    tech_ratios : :pandas:`pandas.DataFrame<dataframe>`
+    tech_ratios : :pandas:`pandas.DataFrame`
         Capacity ratios of specific technologies in the region belonging to the
         same category from status quo scenario, for details see
         :meth:`stemp_abw.sessions.UserSession.create_reg_tech_ratios`
@@ -70,7 +73,7 @@ class UserSession(object):
         scn_data = json.loads(scenario.data.data)
         reg_data = pd.DataFrame.from_dict(scn_data['mun_data'],
                                           orient='index'). \
-            sum(axis=0).round(decimals=1).to_dict()
+            sum(axis=0).round(decimals=3).to_dict()
         reg_data.update(scn_data['reg_params'])
         return reg_data
         
@@ -86,6 +89,7 @@ class UserSession(object):
           id of scenario. If not provided, status quo scenario from DB is used
         """
         if scn_id is None:
+            # TODO: Use exists() instead
             try:
                 scn = Scenario.objects.get(name='Status quo')
             except ObjectDoesNotExist:
@@ -97,6 +101,7 @@ class UserSession(object):
         scn.id = None
         scn.is_user_scenario = True
         scn.created = timezone.now()
+        # TODO: Save scenario
         # scn.save()
         return scn
     
@@ -268,36 +273,71 @@ class UserSession(object):
         for param in reg_data:
             if param in self.mun_to_reg_ratios.columns:
                 mun_data_upd[param] = (self.mun_to_reg_ratios[param] *
-                                       reg_data[param]).round(decimals=1)
+                                       reg_data[param]).round(decimals=3)
         return mun_data_upd.to_dict(orient='index')
 
     # def __prepare_re_potential_
 
 
 class Simulation(object):
-    """Simulation data"""
+    """Simulation data
+
+    TODO: Finish docstring
+    """
     def __init__(self, session):
         self.esys = None
         self.session = session
+        self.results = Results(simulation=self)
         #self.create_esys()
-        #self.simulate()
+        #self.load_or_simulate()
+        #self.x = self.results.get_result_charts_data()
     
     def create_esys(self):
+        """Create energy system, parametrize and add nodes"""
+
         # create esys
         self.esys = solph.EnergySystem(
             timeindex=pd.date_range(start=SIM_CFG['date_from'],
                                     end=SIM_CFG['date_to'],
                                     freq=SIM_CFG['freq']))
-        # create nodes from user scenario and add o energy system
-        self.esys.add(*create_nodes(**json.loads(self.session.user_scenario.data.data)))
-    
-    def simulate(self):
-        self.store_values(*simulate_energysystem(self.esys))
+        # create nodes from user scenario and add to energy system
+        self.esys.add(
+            *create_nodes(
+                **json.loads(
+                    self.session.user_scenario.data.data
+                )
+            )
+        )
+
+    def load_or_simulate(self):
+        """Load results from DB if existing, start simulation if not
+
+        Check if results are already in the DB using Scenario data's UUID
+        """
+        user_scn_data_uuid = UUID(hashlib.md5(
+            self.session.user_scenario.data.data.encode('utf-8')).hexdigest())
+
+        # reverse lookup for scenario
+        if Scenario.objects.filter(data__data_uuid=user_scn_data_uuid).exists():
+            print('Scenario results found, load from DB...')
+            results_json = Scenario.objects.get(
+                data__data_uuid=user_scn_data_uuid).results.data
+            self.store_values(*oemof_json_to_results(results_json))
+        else:
+            print('Scenario results not found, start simulation...')
+            self.store_values(*simulate_energysystem(self.esys))
 
     def store_values(self, results, param_results):
-        #print('Results:', results)
-        #print('Params:', param_results)
-        pass
+        # update result raw data
+        self.results.set_result_raw_data(results_raw=results,
+                                         param_results_raw=param_results)
+        # update energy values of mun data
+        self.results.update_mun_energy_results_post_simulation()
+        # get layer results for user scn
+        self.results.layer_results =\
+            self.results.get_layer_results()
+
+        # TODO: save results to DB
 
 
 class Tracker(object):

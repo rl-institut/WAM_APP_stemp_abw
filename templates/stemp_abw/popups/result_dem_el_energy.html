@@ -1,0 +1,16 @@
+{% extends 'stemp_abw/popups/base_layer_popup.html' %}
+
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.dem_el_energy_result }} GWh</p>
+  </div>
+  <div>
+    Region ABW: {{ layer.dem_el_energy_result }} GWh
+  </div>
+{% endblock %}
+
+{% block vis %}
+<div class="cell" style="height: 252px;">
+  {{ chart }}
+</div>
+{% endblock%}

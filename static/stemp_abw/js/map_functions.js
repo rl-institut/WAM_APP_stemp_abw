@@ -64,17 +64,14 @@ function execClickAction(e) {
   var layer = e.target;
   layer.setStyle(style);
 
-  // center map to clicked entity
-  layer._map.panTo(e.latlng, {duration: 1});
-
   // load popup content from detail view
   var url = "../popup/" + layer.feature.properties.name + "/"
-            + String(layer.feature.id) + "/"
+      + String(layer.feature.id) + "/"
   $.get(url, function (data) {
     layer.setPopupContent(data);
     if (data.indexOf('id="hc_') !== -1) {
       var url_js = "../popupjs/" + layer.feature.properties.name + "/"
-                   + String(layer.feature.id) + "/"
+          + String(layer.feature.id) + "/"
       $.get(url_js, function (data) {
         setTimeout(function () {
           eval(data);
@@ -83,7 +80,12 @@ function execClickAction(e) {
     }
   });
 
-
+  // center map to clicked location, consider viewport size and panel area
+  var new_center = layer._map.project(e.latlng);
+  var map_size = layer._map.getSize();
+  new_center.y -= map_size.y / 4; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+  new_center.x -= map_size.x / 8;
+  layer._map.panTo(layer._map.unproject(new_center), {duration: 1.5}); // pan to new center
 }
 
 // feature: mousover style
@@ -111,10 +113,9 @@ function onEachFeature(layerName) {
           'maxWidth': '500',
           'className': 'custom_popup'
         }
-    if (feature.properties && feature.properties.popup_content) {
+    if (feature.properties) {
       layer.bindPopup('', customPopup);
     }
-    ;
     layer.on({
       click: execClickAction,
       mouseover: setHighlightFeatureStyle,
@@ -155,11 +156,12 @@ function getLayerStyle(name, feature) {
 }
 
 // Control layer visibility via checkboxes (region layers)
-$('.switch-input-layer-select-region').click(function () {
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
 
   // Individual layers switches
-  l = layers[id.replace('cb_region_', '')];
+  l = layers[id.replace(/cb_(region|results)_/, '')];
+  console.log("Adding OR removing from lmap: " + lmap);
   if (this.checked) lmap.addLayer(l);
   else lmap.removeLayer(l);
 });
@@ -188,20 +190,9 @@ $('.switch-input-layer-select-areas').click(function () {
   ;
 });
 
-// Control layer visibility via checkboxes (result layers)
-$('.switch-input-layer-select-results').click(function () {
-  var id = $(this).attr('id');
-  console.log(id);
 
-  // Individual layers switches
-  /*l = layers[id.replace('cb_region_','')];
-  if (this.checked) lmap.addLayer(l);
-  else lmap.removeLayer(l);*/
-});
-
-
-// Control legend visibility via checkboxes
-$('.switch-input-layer-select-region').click(function () {
+// Region layers: control legend visibility via checkboxes
+$('.switch-input-layer-select-region, .switch-input-layer-select-results').click(function () {
   var id = $(this).attr('id');
 
   // Master switch for all legends
@@ -219,13 +210,13 @@ $('.switch-input-layer-select-region').click(function () {
 
   // Individual legend switches
   //else {
-  id = id.replace('cb_region_', '');
+  id = id.replace(/cb_(region|results)_/, '');
   for (var l in legends) {
     if (l !== id && choropleth_data.hasOwnProperty(id)) {
       if (this.checked) {
         lmap.removeLayer(layers[l]);
         lmap.removeControl(legends[l]);
-        var el = document.getElementById('cb_region_' + l);
+        var el = document.querySelector('#cb_region_' + l + ', ' + '#cb_results_' + l);
         el.checked = false;
       }
     } else if (l === id) {
@@ -287,3 +278,75 @@ function removeRePotAreaLayers() {
     lmap.removeLayer(layers_re_pot[l]);
   }
 }
+
+// Lock result switches if results are null
+var result_panel = document.querySelector('#panel-results fieldset');
+var result_switches = result_panel.querySelectorAll('.switch-input-layer-select-results');
+var simulation_info = document.getElementById('simulation-info');
+
+
+function resultDependentSwitchLocker() {
+  console.log('Fired: resultDependentSwitchLocker (), ' + Date.now());
+  // Reset switch override if given
+  // Check if results == null, and add switch override
+  $.ajax({
+    url: '/stemp_abw/sim_status.data',
+    type: "GET",
+    success: function (data) {
+      console.log('Ajax success fired: resultDependentSwitchLocker (), ' + Date.now())
+      if (data['sim_status'] != 'up_to_date') {
+        if (simulation_info.hidden === true) {
+          simulation_info.hidden = false;
+        }
+        result_switches.forEach(function (currentValue) {
+              currentValue.setAttribute('disabled', '');
+            }
+        );
+      } else {
+        result_switches.forEach(function (currentValue) {
+              if (currentValue.hasAttribute('disabled')) {
+                currentValue.removeAttribute('disabled');
+              }
+            }
+        );
+      }
+    },
+    error: function (page) {
+      console.log('error');
+      showErrorPopup();
+    },
+    cache: false
+  });
+}
+
+result_panel.onmouseenter = resultDependentSwitchLocker;
+
+
+// Hide result layers, if user goes to region, areas or energy panel
+function hideResultLayers() {
+  console.log('In panel: ' + this.id);
+  result_switches.forEach(function (currentValue) {
+      if (currentValue.checked === true) {
+        console.log('setting switch to false: ' + currentValue.id);
+        currentValue.checked = false;
+        var layer_to_remove = currentValue.id.replace('cb_results_', '');
+        console.log('remove result layer of: ' + layer_to_remove);
+        lmap.removeLayer(layers[layer_to_remove]);
+        console.log('remove result layer of: ' + layer_to_remove);
+        lmap.removeControl(legends[layer_to_remove]);
+      }
+    }
+  );
+};
+
+var region_panel_label = document.getElementById('panel-region-label');
+region_panel_label.onclick = hideResultLayers;
+
+var energy_panel_label = document.getElementById('panel-energy-label');
+energy_panel_label.onclick = hideResultLayers;
+
+var area_panel_label = document.getElementById('panel-areas-label');
+area_panel_label.onclick = hideResultLayers;
+
+var results_panel_label = document.getElementById('panel-results-label');
+results_panel_label.onclick = resultDependentSwitchLocker;

@@ -2,14 +2,14 @@ from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config import io
-from stemp_abw import results
-
+from stemp_abw.config.io import COMPONENT_DATA, SCENARIO_DATA,\
+    LABEL_DATA, LAYER_DATA
 from stemp_abw.models import Scenario
-
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from stemp_abw.charts_data import visualizations1, visualizations2, visualizations4, visualizations5
+from stemp_abw.results.result_charts import results_charts_tab1_viz,\
+    results_charts_tab2_viz, results_charts_tab3_viz, results_charts_tab4_viz,\
+    results_charts_tab5_viz
 
 from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
@@ -18,6 +18,7 @@ from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
 
 import os
 import stemp_abw
+
 
 # TODO: use WAM's + Test it
 def check_session(func):
@@ -28,6 +29,31 @@ def check_session(func):
             return render(request, 'stemp_abw/session_not_found.html')
         return func(self, request, session=session, *args, **kwargs)
     return func_wrapper
+
+
+def get_clean_session(request):
+    """Checks for existing session
+
+    Obtain it using WAM's :class:`wam.user_sessions.sessions.SessionData`
+    and delete session data (instantiate
+    :class:`stemp_abw.sessions.UserSession`).
+
+    Parameters
+    ----------
+    request : :obj:`django.core.handlers.wsgi.WSGIRequest`
+        Request
+    """
+    # get current session key
+    session_key = request.session.session_key
+    # get session (existing or new one if there's none)
+    SESSION_DATA.start_session(request, UserSession)
+    # if session existed before: delete session data
+    if session_key is not None:
+        SESSION_DATA.sessions['stemp_abw'][session_key] = UserSession()
+
+
+class ContactView(TemplateView):
+    template_name = 'stemp_abw/contact.html'
 
 
 class IndexView(TemplateView):
@@ -48,21 +74,30 @@ class MapView(TemplateView):
     def __init__(self):
         super(MapView, self).__init__()
 
-        #self.simulation = Simulation()
-
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context.update(io.prepare_layer_data())
-        context.update(io.prepare_component_data())
-        context.update(io.prepare_scenario_data())
-        context.update(io.prepare_label_data())
+
+        # prepare layer data and move result layers to separate context var
+        layer_data = LAYER_DATA
+        layer_list_results = layer_data['layer_list']
+        layer_data['layer_list'] = {layer: data
+                                    for layer, data in layer_data['layer_list'].items()
+                                    if data['cat'] != 'results'}
+        layer_data['layer_list_results'] = {layer: data
+                                            for layer, data in layer_list_results.items()
+                                            if data['cat'] == 'results'}
+        context.update(layer_data)
+
+        context.update(COMPONENT_DATA)
+        context.update(SCENARIO_DATA)
+        context.update(LABEL_DATA)
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
-        # TODO: Temp stuff for WS
-        context['visualizations1'] = visualizations1
-        context['visualizations2'] = visualizations2
-        context['visualizations4'] = visualizations4
-        context['visualizations5'] = visualizations5
+        context['results_charts_tab1_viz'] = results_charts_tab1_viz
+        context['results_charts_tab2_viz'] = results_charts_tab2_viz
+        context['results_charts_tab3_viz'] = results_charts_tab3_viz
+        context['results_charts_tab4_viz'] = results_charts_tab4_viz
+        context['results_charts_tab5_viz'] = results_charts_tab5_viz
 
         # Trial: new info button
         # TODO: Move
@@ -78,8 +113,8 @@ class MapView(TemplateView):
         return context
 
     def get(self, request, *args, **kwargs):
-        # Start session (if there's none):
-        SESSION_DATA.start_session(request, UserSession)
+        # get clean session
+        get_clean_session(request)
 
         context = self.get_context_data()
         return self.render_to_response(context)
@@ -99,9 +134,10 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+            ret_data = json.dumps(ret_data)
         
         # apply scenario (trigger: scn button) -> set as user scenario
-        elif action == 'apply_scenario':
+        elif action in ['apply_scenario', 'init_sq_scenario']:
             scn_id = int(data)
             scn = session.scenarios[scn_id]
             ret_data = {'scenario': {'name': scn.name,
@@ -109,7 +145,11 @@ class MapView(TemplateView):
                                      'data': scn.data.data},
                         'controls': session.get_control_values(scn)
                         }
+            ret_data = json.dumps(ret_data)
             session.set_user_scenario(scn_id=scn_id)
+            # set results to outdated (if scn is not applied on startup)
+            if action == 'apply_scenario':
+                session.simulation.results.status = 'outdated'  # set results to outdated
 
         # change scenario/control value (trigger: control)
         elif action == 'update_scenario':
@@ -117,15 +157,25 @@ class MapView(TemplateView):
             sl_wind_repower_pot = session.update_scenario_data(
                 ctrl_data=json.loads(data))
             ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
+            ret_data = json.dumps(ret_data)
+            session.simulation.results.status = 'outdated'  # set results to outdated
 
         # start simulation (trigger: sim button)
         elif action == 'simulate':
             session.simulation.create_esys()
-            session.simulation.simulate()
+            session.simulation.load_or_simulate()
 
-            ret_data = {'simulation': 'successful'}
+            ret_data = 'simulation successful'
 
-        return HttpResponse(json.dumps(ret_data))
+        # # check if there are resuls for current scenario
+        # # (trigger: open results panel)
+        # elif action == 'check_results':
+        #     if session.simulation.results is None:
+        #         ret_data = 'none'
+        #     else:
+        #         ret_data = json.dumps({'results': 'found'})
+
+        return HttpResponse(ret_data)
 
 
 class SourcesView(TemplateView):

@@ -63,8 +63,11 @@ $('.tabs-title').click( function () {
 /**********************/
 function openAreaTab() {
   // open/collapse tab content
+
   $('#deeplinked-tabs').foundation('_openTab', $('#panel-areas'));
   $('#deeplinked-tabs').foundation('_collapseTab', $('#panel-energy')); // activate/deactivate tab highlight
+  // New version from bmlancien
+  // $("#offcanvas-tabs").foundation('_handleTabChange', $("#tabsAreas"));
 
   // remove special tab highlight
   $('#tabsAreas > a').removeClass('tab-highlighted');
@@ -77,8 +80,11 @@ $('.openAreaTab').on('click', openAreaTab);
 
 function openEnergyTab() {
   // open/collapse tab content
+
   $('#deeplinked-tabs').foundation('_openTab', $('#panel-energy'));
   $('#deeplinked-tabs').foundation('_collapseTab', $('#panel-areas')); // activate/deactivate tab highlight
+  // New version from bmlancien
+  // $("#offcanvas-tabs").foundation('_handleTabChange', $("#tabsEnergy"));
 
   // remove special tab highlight
   $('#tabsEnergy > a').removeClass('tab-highlighted');
@@ -103,3 +109,14 @@ $('.openEnergyTab').on('click', openEnergyTab);
 //$('.tabs-title').click( function () {
 //  $('#' + $(this).attr('id') + ' > a').removeClass('tab-highlighted');
 //});
+
+// Show a popup with error message
+function showErrorPopup() {
+  $('#errorMessage').foundation('open');
+}
+
+// Toggle spinner visibility
+function toggleSpinnerVisibility() {
+  $('.loader-wrapper').toggleClass("loader-wrapper--hide");
+  $('body').toggleClass("body--nopointer");
+}
