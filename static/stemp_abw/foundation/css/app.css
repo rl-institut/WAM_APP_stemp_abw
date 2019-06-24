@@ -6597,7 +6597,7 @@ html.is-reveal-open {
     margin-bottom: 0; }
   @media print, screen and (min-width: 40em) {
     .reveal {
-      width: 900px;
+      width: 1000px;
       max-width: 75rem; } }
   .reveal.collapse {
     padding: 0; }
@@ -6640,6 +6640,10 @@ html.is-reveal-open {
       border-radius: 0; } }
   .reveal.without-overlay {
     position: fixed; }
+
+.reveal h1 {
+  margin-top: 0rem;
+  margin-bottom: 1rem;}
 
 .switch {
   height: 2rem;
