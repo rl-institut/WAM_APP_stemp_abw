@@ -152,6 +152,7 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
     activateRePotScenarioControls(true);
     wind_slider.update({
       from: sl_wind_value,
+      max: 3310,
       disable: false
     });
     $('#rc-tooltip-areas-enabled').foundation('show');
