@@ -274,6 +274,7 @@ class Results(object):
     def get_layer_results(self):
         """Analyze results and return data for layer display"""
 
+        # TODO: better var names below!
         # get user scn results for muns
         scn_data = json.loads(self.simulation.session.user_scenario.data.data)
         mun_results = pd.DataFrame.from_dict(scn_data['mun_data'],
