@@ -6597,7 +6597,7 @@ html.is-reveal-open {
     margin-bottom: 0; }
   @media print, screen and (min-width: 40em) {
     .reveal {
-      width: 600px;
+      width: 900px;
       max-width: 75rem; } }
   .reveal.collapse {
     padding: 0; }
