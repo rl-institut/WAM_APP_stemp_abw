@@ -351,9 +351,6 @@ function hideResultLayers() {
   );
 };
 
-var region_panel_label = document.getElementById('panel-region-label');
-region_panel_label.onclick = hideResultLayers;
-
 var energy_panel_label = document.getElementById('panel-energy-label');
 energy_panel_label.onclick = hideResultLayers;
 
