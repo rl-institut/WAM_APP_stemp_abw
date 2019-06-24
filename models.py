@@ -279,6 +279,7 @@ class RegMunDemThEnergyPerCapita(RegMunDemThEnergy, RegMunPopDensity):
     def dem_th_energy_per_capita_region(self):
         return round(self.dem_th_energy_region * 1e6 / self.pop_region)
 
+# TODO: Add docstrings for models below
 
 class RegWaterProtArea(LayerModel):
     name = 'reg_water_prot_area'
