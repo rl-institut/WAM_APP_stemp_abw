@@ -137,9 +137,9 @@ function getSimulationResults() {
             idx4=parseInt($("#hc_pie_power_production_user_scn")[0].getAttribute('data-highcharts-chart'))
             idx5=parseInt($("#hc_pie_power_production_sq_scn")[0].getAttribute('data-highcharts-chart'))
             idx6=parseInt($("#hc_column_power_prod_m_user_scn")[0].getAttribute('data-highcharts-chart'))
-            idx7=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
+            //idx7=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
 
-            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6, idx7]
+            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6]//, idx7]
 
             // Check if results are not outdated
             if (data['sim_status'] == 'init' || data['sim_status'] == 'up_to_date') {
@@ -174,7 +174,7 @@ function getSimulationResults() {
                             Highcharts.charts[idx6].addSeries(data['hc_column_power_prod_m_user_scn'][i]);
                         }
 
-                        Highcharts.charts[idx7].series[0].setData(data['hc_res_wind_time']);
+                        //Highcharts.charts[idx7].series[0].setData(data['hc_res_wind_time']);
 
                         // Hide loading text
                         hc_idx_array.forEach(function (item, index) {
