@@ -128,7 +128,7 @@ $('.switch-input.esys').click( function () {
 function changeScenarioControlRepDropdown(element_id) {
   if (element_id == 'dd_repowering') {
     //ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
-    ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+    ctrlScenarioPost(element_id, parseInt($('#' + element_id).prop('value')));
     if ($('#' + element_id).prop('value') != -1) {
       removeRePotAreaLayers();
     };
