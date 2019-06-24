@@ -243,7 +243,8 @@ class UserSession(object):
                 )
             # other scenarios
             else:
-                repower_data = json.loads(self.user_scenario.repowering_scenario.data)
+                repower_data = json.loads(
+                    self.user_scenario.repowering_scenario.data)
                 for mun in scn_data['mun_data']:
                     scn_data['mun_data'][mun]['gen_capacity_wind'] =\
                         repower_data[mun]['gen_capacity_wind']
