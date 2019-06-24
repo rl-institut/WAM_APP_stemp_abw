@@ -110,7 +110,9 @@ function ctrlSimulate() {
   }).done(function (returned_data) {
 
       // hide simulation spinner
-      toggleSpinnerVisibility();
+      //toggleSpinnerVisibility();
+      $('.loader-wrapper').addClass("loader-wrapper--hide");
+      $('body').removeClass("body--nopointer");
 
       // reload results if simulation was triggered from result panel
       if ($('#panel-results').hasClass('is-collapsed')) {
