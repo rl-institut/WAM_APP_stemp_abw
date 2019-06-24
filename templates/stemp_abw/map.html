@@ -801,10 +801,6 @@
 
     <script type="text/javascript">
         function result_map_init (map, options) {
-
-            // show load spinner
-            toggleSpinnerVisibility();
-
             // Setup layer counter
             var layer_count = {{ layer_list_results|length }};
             var layer_ctr = 0;
@@ -904,9 +900,6 @@
                               loader_text[0].style = 'color: #62f476; font-weight: bold';
                               //loader_text[0].style.font-weight = 'bold';
                               loader_text.text('Fertig!');
-                              setTimeout(function(){
-                                  toggleSpinnerVisibility();
-                              }, 500);
                           };
                       },
                       error: function(page) {
