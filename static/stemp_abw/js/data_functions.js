@@ -125,38 +125,6 @@ function ctrlSimulate() {
   });
 };
 
-//// Control simulation
-//function checkForSimulationResults() {
-//  console.log('checking for results...');
-//
-//  $.ajax({
-//      url : '/stemp_abw/app/',
-//      type : "POST",
-//      data : {action: 'check_results',
-//              data: '',
-//              csrfmiddlewaretoken: csrf_token},
-//      success: function(page) {
-//          console.log('success');
-//      },
-//      error: function(page) {
-//          console.log('error');
-//      }
-//  }).done(function(returned_data){
-//      if (returned_data === 'none') {
-//          console.log(Highcharts.charts);
-//
-//          for (var hc_ctr = 0; hc_ctr < 11; hc_ctr++) {
-//              idx=$("#hc_" + hc_ctr.toString()).data('highchartsChart');
-//              Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
-//          };
-//      } else {
-//          data = JSON.parse(returned_data);
-//          console.log(data)
-//      };
-//      getSimulationResults();
-//  });
-//};
-
 // Load simulation results from serial view
 function getSimulationResults() {
     // Check if simulation results are up-to-date
