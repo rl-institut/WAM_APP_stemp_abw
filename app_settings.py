@@ -41,6 +41,17 @@ LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'config',
                                 'labels.cfg'))
 
+TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
+                              'stemp_abw',
+                              'config',
+                              'text')
+TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
+                     'icon': icon}
+              for name, icon in
+              {'welcome': 'ion-help-buoy',
+               'outlook': 'ion-navigate'}.items()
+              }
+
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
 
 # Mapping between UI control id and data in scenario data dict.

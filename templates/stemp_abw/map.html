@@ -89,7 +89,6 @@
                     <p class="lead" style="margin-bottom: 0;">
                       {{ panels.region.title }}
                       <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
-                      <!--{{ info }}-->
                     </p>
                     {% include "forms/layer_region_select.html" %}
                   </div>
@@ -662,6 +661,7 @@
                             setTimeout(function(){
                                 toggleSpinnerVisibility();
                             }, 500);
+                            showWelcomePopup();
                         };
                     },
                     error: function(page) {
