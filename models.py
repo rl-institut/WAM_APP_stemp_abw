@@ -415,53 +415,78 @@ class RegFFHProtAreaB(LayerModel):
 class RegLandscProtArea(LayerModel):
     name = 'reg_landsc_prot_area'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    gebietsnam = models.CharField(max_length=254, null=True)
+    gebietsnum = models.CharField(max_length=254, null=True)
+    rechtsgrun = models.CharField(max_length=254, null=True)
+    erfassungs = models.CharField(max_length=254, null=True)
+    info_konta = models.CharField(max_length=254, null=True)
 
 
 class RegNaturePark(LayerModel):
     name = 'reg_nature_park'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    gebietsnam = models.CharField(max_length=254, null=True)
+    gebietsnum = models.CharField(max_length=254, null=True)
+    rechtsgrun = models.CharField(max_length=254, null=True)
+    erfassungs = models.CharField(max_length=254, null=True)
+    info_konta = models.CharField(max_length=254, null=True)
 
 
 class RegBioReserve(LayerModel):
     name = 'reg_bio_reserve'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    gebietsnam = models.CharField(max_length=254, null=True)
+    gebietsnum = models.CharField(max_length=254, null=True)
+    rechtsgrun = models.CharField(max_length=254, null=True)
+    schutzzone = models.CharField(max_length=254, null=True)
+    erfassungs = models.CharField(max_length=254, null=True)
+    info_konta = models.CharField(max_length=254, null=True)
 
 
 class RegRetentAreaEcosys(LayerModel):
     name = 'reg_retent_area_ecosys'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
 
 
 class RegPrioAreaNature(LayerModel):
     name = 'reg_prio_area_nature'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
 
 
 class RegNatureMonum(LayerModel):
     name = 'reg_nature_monum'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    gebietsnam = models.CharField(max_length=254, null=True)
+    gebietsnum = models.CharField(max_length=254, null=True)
+    rechtsgrun = models.CharField(max_length=254, null=True)
+    erfassungs = models.CharField(max_length=254, null=True)
+    info_konta = models.CharField(max_length=254, null=True)
 
 
 class RegPrioAreaWater(LayerModel):
     name = 'reg_prio_area_water'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
 
 
 class RegPrioAreaAgri(LayerModel):
     name = 'reg_prio_area_agri'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
 
 
 class RegRetentAreaAgri(LayerModel):
     name = 'reg_retent_area_agri'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
+    bezeich_2 = models.CharField(max_length=254, null=True)
 
 
 class RegPrioAreaRes(LayerModel):
     name = 'reg_prio_area_res'
     geom = geomodels.MultiPolygonField(srid=3035, null=True)
     bezeich_2 = models.CharField(max_length=254, null=True)
-    bezeich_3 = models.CharField(max_length=254, null=True)
 
 
 class RegInfrasRailway(LayerModel):
