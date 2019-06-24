@@ -3,7 +3,7 @@ from django.shortcuts import HttpResponse, render
 import json
 
 from stemp_abw.config.io import COMPONENT_DATA, SCENARIO_DATA,\
-    LABEL_DATA, LAYER_DATA
+    LABEL_DATA, TEXT_DATA, prepare_layer_data
 from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
@@ -78,7 +78,7 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
 
         # prepare layer data and move result layers to separate context var
-        layer_data = LAYER_DATA
+        layer_data = prepare_layer_data()
         layer_list_results = layer_data['layer_list']
         layer_data['layer_list'] = {layer: data
                                     for layer, data in layer_data['layer_list'].items()

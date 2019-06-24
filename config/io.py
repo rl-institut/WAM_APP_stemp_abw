@@ -133,4 +133,3 @@ def prepare_label_data():
 COMPONENT_DATA = prepare_component_data()
 SCENARIO_DATA = prepare_scenario_data()
 LABEL_DATA = prepare_label_data()
-LAYER_DATA = prepare_layer_data()
