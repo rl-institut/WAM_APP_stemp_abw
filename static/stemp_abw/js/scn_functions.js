@@ -171,6 +171,12 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
 }
 
 function activateRePotScenarioControls(enable) {
+  //reset values
+  $('#sl_dist_resid').data("ionRangeSlider").update({
+    from: 1000
+  });
+  $('#cb_use_forest').prop('checked', false);
+  //disable controls
   $('#cb_use_forest').prop('disabled', !enable);
   $('#sl_dist_resid').data("ionRangeSlider").update({
     disable: !enable,
