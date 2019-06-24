@@ -93,7 +93,7 @@ NODE_LABELS = {'gen_el_wind': 'Windenergie',
 RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1,7)]
 
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
-                  'date_to': '2017-03-31 23:00:00',
+                  'date_to': '2017-12-31 23:00:00',
                   'freq': '60min',
                   'solver': 'cbc',
                   'verbose': True,
