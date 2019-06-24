@@ -3,7 +3,7 @@ from django.shortcuts import HttpResponse, render
 import json
 
 from stemp_abw.config.io import COMPONENT_DATA, SCENARIO_DATA,\
-    LABEL_DATA, TEXT_DATA, prepare_layer_data
+    LABEL_DATA, prepare_layer_data
 from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
