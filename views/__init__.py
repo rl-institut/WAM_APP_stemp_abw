@@ -168,7 +168,3 @@ class MapView(TemplateView):
             ret_data = 'simulation successful'
 
         return HttpResponse(ret_data)
-
-
-class SourcesView(TemplateView):
-    template_name = 'stemp_abw/sources.html'

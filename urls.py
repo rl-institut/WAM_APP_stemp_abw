@@ -23,8 +23,6 @@ urlpatterns = [
          name='imprint'),
     path('privacy_policy/', views.PrivacyPolicyView.as_view(),
          name='privacy_policy'),
-    path('sources_old/', views.SourcesView.as_view(),
-         name='sources_old'),
     # Source views from WAM with highlighting
     path('sources/', AppListView.as_view(app_name=app_name,
                                          model=Source),
