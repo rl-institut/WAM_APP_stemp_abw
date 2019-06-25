@@ -6995,7 +6995,7 @@ a.thumbnail {
   position: absolute;
   top: calc(100% + 0.6495rem);
   z-index: 9999999 !important;
-  max-width: 30rem;
+  max-width: 40rem;
   padding: 0.75rem;
   border-radius: 0;
   background-color: #81C3D7 !important;
