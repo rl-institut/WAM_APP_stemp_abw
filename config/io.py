@@ -137,7 +137,7 @@ def load_text_files():
     for name, data in TEXT_FILES.items():
         f = open(data['file'], 'r', encoding='utf-8')
         text_data[name] = InfoButton(text=f.read(),
-                                     tooltip='Für eine kurze Einführung bitte hier klicken, ',
+                                     tooltip='',
                                      is_markdown=True,
                                      ionicon_type=data['icon'],
                                      ionicon_size='medium')
