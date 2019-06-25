@@ -6645,6 +6645,10 @@ html.is-reveal-open {
   margin-top: 0rem;
   margin-bottom: 1rem;}
 
+.reveal h2 {
+  margin-top: 0rem;
+  margin-bottom: 1rem;}
+
 .switch {
   height: 2rem;
   position: relative;
