@@ -103,11 +103,11 @@ def prepare_component_data():
                     LABELS['components'][l]['text2']
 
             # reveal windows
-            popup_id = LABELS['components'][l].get('popup_id')
-            popup_icon = LABELS['components'][l].get('popup_icon')
-            if (popup_id is not None) and (popup_icon is not None):
+            reveal_id = LABELS['components'][l].get('reveal_id')
+            reveal_icon = LABELS['components'][l].get('reveal_icon')
+            if (reveal_id is not None) and (reveal_icon is not None):
                 comp_metadata[grp]['comps'][l]['popup'] =\
-                    create_reveal_info_button(popup_id, popup_icon)
+                    create_reveal_info_button(reveal_id, reveal_icon)
             else:
                 comp_metadata[grp]['comps'][l]['popup'] = None
 
@@ -139,15 +139,15 @@ def prepare_scenario_data():
     return {'scenarios': ScenarioDropdownForm()}
 
 
-def create_reveal_info_button(popup_id, popup_icon):
+def create_reveal_info_button(reveal_id, reveal_icon):
     """Creates reveal window with trigger button with content from markdown file"""
-    f = open(os.path.join(TEXT_FILES_DIR, f'{popup_id}.md'), 'r', encoding='utf-8')
+    f = open(os.path.join(TEXT_FILES_DIR, f'{reveal_id}.md'), 'r', encoding='utf-8')
     popup = InfoButton(text=f.read(),
                        tooltip='',
                        is_markdown=True,
-                       ionicon_type=popup_icon,
+                       ionicon_type=reveal_icon,
                        ionicon_size='small',
-                       info_id=popup_id)
+                       info_id=reveal_id)
     f.close()
     return popup
 
