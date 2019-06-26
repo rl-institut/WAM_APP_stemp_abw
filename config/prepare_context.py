@@ -1,11 +1,13 @@
 from collections import OrderedDict
 import json
+import os
+from utils.widgets import InfoButton
+
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
-
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
     LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
-    ESYS_AREAS_METADATA, LABELS
+    ESYS_AREAS_METADATA, LABELS, TEXT_FILES_DIR
 
 
 def prepare_layer_data():
@@ -121,8 +123,21 @@ def prepare_component_data():
 
 
 def prepare_scenario_data():
-    """create scenarios for scenario dropdown menu (tool initialization only)"""
+    """Create scenarios for scenario dropdown menu (tool initialization only)"""
     return {'scenarios': ScenarioDropdownForm()}
+
+
+def create_reveal_info_button(popup_id, popup_icon):
+    """Creates reveal window with trigger button with content from markdown file"""
+    f = open(os.path.join(TEXT_FILES_DIR, f'{popup_id}.md'), 'r', encoding='utf-8')
+    popup = InfoButton(text=f.read(),
+                       tooltip='',
+                       is_markdown=True,
+                       ionicon_type=popup_icon,
+                       ionicon_size='small',
+                       info_id=popup_id)
+    f.close()
+    return popup
 
 
 COMPONENT_DATA = prepare_component_data()
