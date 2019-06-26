@@ -57,6 +57,7 @@ class ComponentGroupForm(forms.Form):
                          'title': f'{data["title"]} [{data["unit"]}]',
                          'text': data['text'],
                          'text2': data.get('text2'),
+                         'popup': data.get('popup'),
                          'min': data['min'],
                          'max': data['max'],
                          'from': data['value'],
@@ -87,6 +88,7 @@ class ComponentGroupForm(forms.Form):
                                'title': data['title'],
                                'text': data['text'],
                                'text2': data.get('text2'),
+                               'popup': data.get('popup'),
                                'checked': True if data['value'] == '1' else False
                                }
                     ),
