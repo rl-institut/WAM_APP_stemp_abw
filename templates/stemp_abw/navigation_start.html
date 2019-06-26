@@ -1,3 +1,8 @@
 {% extends "stemp_abw/navigation_base.html" %}
 
 {% block link_to_map %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:map' %}">Zum Tool</a></li>{% endblock %}
+{% block link_to_wam %}
+<div class="top-bar-left show-for-large">
+    <a class="anchor-text--light" href="../">Zu den WAM-Seiten des RLI<i class="icon ion-chevron-right icon--small"></i></a>
+</div>
+{% endblock %}
