@@ -2,7 +2,7 @@ from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario, RegMun, MunData
 from stemp_abw.results.io import oemof_json_to_results
 from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
-from stemp_abw.config.io import LABEL_DATA
+from stemp_abw.config.prepare_texts import LABEL_DATA
 
 from oemof.outputlib import views
 

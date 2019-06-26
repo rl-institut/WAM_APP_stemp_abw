@@ -2,11 +2,10 @@ from collections import OrderedDict
 import json
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
-from utils.widgets import InfoButton
 
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
     LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
-    ESYS_AREAS_METADATA, LABELS, TEXT_FILES
+    ESYS_AREAS_METADATA, LABELS
 
 
 def prepare_layer_data():
@@ -125,27 +124,6 @@ def prepare_scenario_data():
     """create scenarios for scenario dropdown menu (tool initialization only)"""
     return {'scenarios': ScenarioDropdownForm()}
 
-    
-def prepare_label_data():
-    return {'panels': LABELS['panels'],
-            'tooltips': LABELS['tooltips'],
-            'charts': LABELS['charts']}
 
-
-def load_text_files():
-    text_data = {}
-    for name, data in TEXT_FILES.items():
-        f = open(data['file'], 'r', encoding='utf-8')
-        text_data[name] = InfoButton(text=f.read(),
-                                     tooltip='',
-                                     is_markdown=True,
-                                     ionicon_type=data['icon'],
-                                     ionicon_size='medium')
-        f.close()
-    return {'texts': text_data}
-
-
-TEXT_DATA = load_text_files()
 COMPONENT_DATA = prepare_component_data()
 SCENARIO_DATA = prepare_scenario_data()
-LABEL_DATA = prepare_label_data()
