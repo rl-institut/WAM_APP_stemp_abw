@@ -96,8 +96,20 @@ def prepare_component_data():
         for l, v in comps.items():
             comp_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             comp_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+
+            # additional text
             if LABELS['components'][l].get('text2') is not None:
-                comp_metadata[grp]['comps'][l]['text2'] = LABELS['components'][l]['text2']
+                comp_metadata[grp]['comps'][l]['text2'] =\
+                    LABELS['components'][l]['text2']
+
+            # reveal windows
+            popup_id = LABELS['components'][l].get('popup_id')
+            popup_icon = LABELS['components'][l].get('popup_icon')
+            if (popup_id is not None) and (popup_icon is not None):
+                comp_metadata[grp]['comps'][l]['popup'] =\
+                    create_reveal_info_button(popup_id, popup_icon)
+            else:
+                comp_metadata[grp]['comps'][l]['popup'] = None
 
     for (grp, comps) in ESYS_AREAS_METADATA.items():
         area_metadata.update({grp: {'comps': comps}})
