@@ -13,5 +13,6 @@ Nutze dieses Tool, um einen Überblick über Flächennutzung und Energiesystem d
 Viel Spaß beim Erkunden!
 
 <div style="background-color: #002E4F; color: #fff; width: 100%; padding: 0.5rem; vertical-align: middle; text-align: center;">
-  <p style="margin: 0;"><strong>Tipp: </strong>Hinter jedem<i class ="icon ion-information-circled icon--small"></i>verbirgt sich ein Infotext, der weitere Hilfestellung gibt oder Sachverhalte erklärt.</p>
+  <p style="margin: 0;"><strong>Tipp 1: </strong>Hinter jedem<i class ="icon ion-information-circled icon--small"></i>verbirgt sich ein kurzer Infotext, der durch Rüberfahren mit der Maus geöffnet wird.</p>
+  <p style="margin: 0;"><strong>Tipp 2: </strong>Hinter jedem<i class ="icon ion-help-circled icon--small"></i>verbirgt sich ein ausführliche Erklärung, die durch Klicken geöffnet werden kann.</p>
 </div>
