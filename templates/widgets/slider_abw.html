@@ -1,7 +1,11 @@
 <div class="cell small-12 parameter-slider" style="{{widget.attrs.cell_style}}">
   <p class="parameter-slider__label">
     {{widget.attrs.title}}
-    <i class="icon ion-information-circled icon--small" title="{{widget.attrs.text}}" data-tooltip data-position="right" data-alignment="center"></i>
+    {% if not widget.attrs.popup %}
+      <i class="icon ion-information-circled icon--small" title="{{widget.attrs.text}}" data-tooltip data-position="right" data-alignment="center"></i>
+    {% else %}
+      {{widget.attrs.popup}}
+    {% endif %}
   </p>
   <!--include repowering menu in wind slider-->
   {% if widget.attrs.id == 'sl_wind' %}
