@@ -140,7 +140,9 @@ def prepare_scenario_data():
 
 
 def create_reveal_info_button(reveal_id, reveal_icon):
-    """Creates reveal window with trigger button with content from markdown file"""
+    """Creates reveal window with trigger button with content from markdown file
+    (component info buttons, e.g. in wind slider)
+    """
     f = open(os.path.join(TEXT_FILES_DIR, f'{reveal_id}.md'), 'r', encoding='utf-8')
     popup = InfoButton(text=f.read(),
                        tooltip='Bitte klicken!',

@@ -8,6 +8,9 @@ def prepare_label_data():
 
 
 def load_text_files():
+    """Create reveal window with trigger button with content from markdown file
+    (general app info buttons, e.g. in top navigation bar)
+    """
     text_data = {}
     for name, data in TEXT_FILES.items():
         f = open(data['file'], 'r', encoding='utf-8')
