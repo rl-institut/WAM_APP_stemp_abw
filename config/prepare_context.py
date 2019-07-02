@@ -107,7 +107,7 @@ def prepare_component_data():
             reveal_icon = LABELS['components'][l].get('reveal_icon')
             if (reveal_id is not None) and (reveal_icon is not None):
                 comp_metadata[grp]['comps'][l]['popup'] =\
-                    create_reveal_info_button(reveal_id, reveal_icon)
+                    create_panel_reveal_info_button(reveal_id, reveal_icon)
             else:
                 comp_metadata[grp]['comps'][l]['popup'] = None
 
@@ -139,9 +139,9 @@ def prepare_scenario_data():
     return {'scenarios': ScenarioDropdownForm()}
 
 
-def create_reveal_info_button(reveal_id, reveal_icon):
+def create_panel_reveal_info_button(reveal_id, reveal_icon):
     """Creates reveal window with trigger button with content from markdown file
-    (component info buttons, e.g. in wind slider)
+    (panel info button, e.g. in wind slider)
     """
     f = open(os.path.join(TEXT_FILES_DIR, f'{reveal_id}.md'), 'r', encoding='utf-8')
     popup = InfoButton(text=f.read(),
