@@ -1,11 +1,13 @@
 from collections import OrderedDict
 import json
+import os
+from utils.widgets import InfoButton
+
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
-
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
     LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
-    ESYS_AREAS_METADATA, LABELS
+    ESYS_AREAS_METADATA, LABELS, TEXT_FILES_DIR
 
 
 def prepare_layer_data():
@@ -94,8 +96,20 @@ def prepare_component_data():
         for l, v in comps.items():
             comp_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             comp_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+
+            # additional text
             if LABELS['components'][l].get('text2') is not None:
-                comp_metadata[grp]['comps'][l]['text2'] = LABELS['components'][l]['text2']
+                comp_metadata[grp]['comps'][l]['text2'] =\
+                    LABELS['components'][l]['text2']
+
+            # reveal windows
+            reveal_id = LABELS['components'][l].get('reveal_id')
+            reveal_icon = LABELS['components'][l].get('reveal_icon')
+            if (reveal_id is not None) and (reveal_icon is not None):
+                comp_metadata[grp]['comps'][l]['popup'] =\
+                    create_panel_reveal_info_button(reveal_id, reveal_icon)
+            else:
+                comp_metadata[grp]['comps'][l]['popup'] = None
 
     for (grp, comps) in ESYS_AREAS_METADATA.items():
         area_metadata.update({grp: {'comps': comps}})
@@ -121,8 +135,24 @@ def prepare_component_data():
 
 
 def prepare_scenario_data():
-    """create scenarios for scenario dropdown menu (tool initialization only)"""
+    """Create scenarios for scenario dropdown menu (tool initialization only)"""
     return {'scenarios': ScenarioDropdownForm()}
+
+
+def create_panel_reveal_info_button(reveal_id, reveal_icon):
+    """Creates reveal window with trigger button with content from markdown file
+    (panel info button, e.g. in wind slider)
+    """
+    f = open(os.path.join(TEXT_FILES_DIR, f'{reveal_id}.md'), 'r', encoding='utf-8')
+    popup = InfoButton(text=f.read(),
+                       tooltip='Bitte klicken!',
+                       is_markdown=True,
+                       ionicon_type=reveal_icon,
+                       ionicon_size='small',
+                       ionicon_color='#F2994A',
+                       info_id=reveal_id)
+    f.close()
+    return popup
 
 
 COMPONENT_DATA = prepare_component_data()

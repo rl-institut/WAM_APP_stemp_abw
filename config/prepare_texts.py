@@ -7,12 +7,15 @@ def prepare_label_data():
             'charts': LABELS['charts']}
 
 
-def load_text_files():
+def create_reveal_info_button():
+    """Create reveal window with trigger button with content from markdown file
+    (general app info buttons, e.g. in top navigation bar)
+    """
     text_data = {}
     for name, data in TEXT_FILES.items():
         f = open(data['file'], 'r', encoding='utf-8')
         text_data[name] = InfoButton(text=f.read(),
-                                     tooltip='',
+                                     tooltip='Bitte klicken!',
                                      is_markdown=True,
                                      ionicon_type=data['icon'],
                                      ionicon_size='medium',
@@ -22,4 +25,4 @@ def load_text_files():
 
 
 LABEL_DATA = prepare_label_data()
-TEXT_DATA = load_text_files()
+TEXT_DATA = create_reveal_info_button()

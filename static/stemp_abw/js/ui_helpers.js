@@ -116,7 +116,7 @@ function showErrorPopup() {
 }
 
 function showWelcomePopup() {
-  $('#info_0').foundation('open');
+  $('#info_welcome').foundation('open');
 }
 
 // Toggle spinner visibility
