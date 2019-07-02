@@ -7,7 +7,7 @@ def prepare_label_data():
             'charts': LABELS['charts']}
 
 
-def load_text_files():
+def create_reveal_info_button():
     """Create reveal window with trigger button with content from markdown file
     (general app info buttons, e.g. in top navigation bar)
     """
@@ -25,4 +25,4 @@ def load_text_files():
 
 
 LABEL_DATA = prepare_label_data()
-TEXT_DATA = load_text_files()
+TEXT_DATA = create_reveal_info_button()
