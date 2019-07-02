@@ -149,6 +149,7 @@ def create_reveal_info_button(reveal_id, reveal_icon):
                        is_markdown=True,
                        ionicon_type=reveal_icon,
                        ionicon_size='small',
+                       ionicon_color='#F2994A',
                        info_id=reveal_id)
     f.close()
     return popup
