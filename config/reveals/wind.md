@@ -14,7 +14,7 @@ Sie können hier ein Zubau-Szenario wählen:
 
 Als Neuanlage wird in den **Szenarien 2-4** vereinfacht eine Enercon E-141 (4,2 MW) mit einer Nabenhöhe von 159 m angenommen (im Mittel 2500 Volllaststunden in der gesamten Region).
 
-Durch die höhere Effizienz neuer Anlagen kann bei _gleicher installierter Leistung ein größerer Ertrag_ erreicht werden. Wenn Sie also das Repowering bzw. den freien Zubau aktiviert haben, führt dies auch ohne zusätzliche Kapazitäten stets zu einem höheren Ertrag.
+**Wichtig:** Durch die höhere Effizienz neuer Anlagen kann bei _gleicher installierter Leistung ein größerer Ertrag_ erreicht werden. Wenn Sie also das Repowering bzw. den freien Zubau aktiviert haben, führt dies auch ohne zusätzliche Kapazitäten stets zu einem höheren Ertrag.
 
 ## Randbedingungen
 
