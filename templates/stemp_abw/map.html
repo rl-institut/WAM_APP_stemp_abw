@@ -88,7 +88,9 @@
                   <div class="tabs-panel is-active" id="panel-region">
                     <p class="lead" style="margin-bottom: 0;">
                       {{ panels.region.title }}
-                      <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% if panels.region.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
                     </p>
                     {% include "forms/layer_region_select.html" %}
                   </div>
@@ -164,7 +166,9 @@
                   <div class="tabs-panel" id="panel-energy">
                     <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
                       {{ panels.esys.title }}
-                      <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% if panels.esys.text %}
+                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
                     </p>
                     <!--<a class="btn btn-cta" id="openAreaTab">-->
                       <!--Zu Flächen springen-->
@@ -212,7 +216,9 @@
                   <div class="tabs-panel" id="panel-areas">
                     <p class="lead" style="margin-bottom: 0;">
                       {{ panels.areas.title }}
-                      <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% if panels.areas.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
                     </p>
 
                     <div class="grid-x">
@@ -332,7 +338,9 @@
                   <div class="tabs-panel" id="panel-results">
                     <p class="lead">
                       {{ panels.results.title }}
-                      <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% if panels.results.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
                     </p>
                     <div class="grid-x">
                       <div class="cell large-2 u-text--center"></div>
