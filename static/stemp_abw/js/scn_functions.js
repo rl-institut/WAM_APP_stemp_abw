@@ -77,7 +77,7 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
 
 // Slider markers
 function convertToPercent(num, min, max) {
-  var percent = (num - min) / (max - min) * 100;
+  var percent = (num - min) / (max - min) * 96;
   return percent;
 }
 function addMarks($slider, min, max, marks) {
