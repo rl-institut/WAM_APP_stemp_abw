@@ -126,6 +126,15 @@ def prepare_component_data():
             area_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             area_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
 
+            # reveal window
+            reveal_id = LABELS['components'][l].get('reveal_id')
+            reveal_icon = LABELS['components'][l].get('reveal_icon')
+            if (reveal_id is not None) and (reveal_icon is not None):
+                area_metadata[grp]['comps'][l]['popup'] =\
+                    create_panel_reveal_info_button(reveal_id, reveal_icon)
+            else:
+                area_metadata[grp]['comps'][l]['popup'] = None
+
             # icon
             if LABELS['components'][l].get('icon') is not None:
                 area_metadata[grp]['comps'][l]['icon'] =\
