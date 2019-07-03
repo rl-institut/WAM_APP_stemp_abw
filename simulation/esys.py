@@ -97,8 +97,8 @@ def prepare_demand_timeseries(reg_params):
 
     # apply savings
     demand = TIMESERIES['demand'].copy()
-    demand['el_hh'] = demand['el_hh'] * (1 - reg_params['resid_save_el'] / 100)
-    demand['el_rca'] = demand['el_rca'] * (1 - reg_params['crt_save_el'] / 100)
+    demand['el_hh'] = demand['el_hh'] * reg_params['resid_dem_el'] / 100
+    demand['el_rca'] = demand['el_rca'] * reg_params['crt_dem_el'] / 100
 
     # aggregated:
     demand_agg = demand \
