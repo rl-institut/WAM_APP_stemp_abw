@@ -414,9 +414,6 @@
           </button>
 
           <!-- MAP -->
-          <!--<div id="mapid"> data-open="resultsModal">-->
-            <!--{% leaflet_map "mapid" callback="window.main_map_init" creatediv=False %}-->
-          <!--</div>-->
           {% leaflet_map "mapid" callback="window.main_map_init" %}
 
         </div>
@@ -497,14 +494,6 @@
       <h2>Fehler</h2>
       <p>Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu.</p>
     </div>
-
-    <!-- START POP-UP RESULTS -->
-    <div class="large reveal" id="resultsModal" data-reveal>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <!-- END POP-UP RESULTS -->
 
     <!-- indexConfirm -->
     <div class="tiny reveal" id="indexConfirm" data-reveal>
