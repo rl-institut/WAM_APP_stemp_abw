@@ -6,6 +6,8 @@ from djgeojson.views import GeoJSONLayerView
 
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
+from utils.views import FeedbackView
+
 from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
 from stemp_abw import views
 
@@ -33,6 +35,8 @@ urlpatterns = [
          name='sim_status.data'),
     path('result_charts.data', views.ResultChartsData.as_view(),
          name='result_charts.data'),
+    path('feedback/', FeedbackView.as_view(app_name=app_name),
+         name='feedback')
     ]
 
 # Search detail-view-classes and append to URLs
