@@ -5,6 +5,7 @@
   <ul>
     <li>In den Ergebnis-Ebenen werden die <strong>Änderungen ggü. dem Status quo</strong> angezeigt</li>
     <li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden</li>
+    <li>Der <strong>el. Energiebedarf</strong> kann nun auch erhöht werden</li>
     <li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>
     <li>Über das neue <strong>Feedback-Formular</strong> können Sie uns nun Rückmeldung zum Tool geben</li>
     <li><strong>Ausführlichere Erklärtexte</strong> (z.B. bei Windenergieanlagen und konventionellen Kraftwerken)</li>
