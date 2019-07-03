@@ -1,4 +1,4 @@
-# Neue Funktionen! <i class="icon ion-ios-lightbulb icon--large info-box"></i>
+# Neue Funktionen!
 
 Es sind kürzlich neue Funktionen hinzugekommen:
 
