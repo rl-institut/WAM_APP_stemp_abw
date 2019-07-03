@@ -58,6 +58,7 @@ class ComponentGroupForm(forms.Form):
                          'text': data['text'],
                          'text2': data.get('text2'),
                          'popup': data.get('popup'),
+                         'icon': data.get('icon'),
                          'min': data['min'],
                          'max': data['max'],
                          'from': data['value'],
@@ -89,6 +90,7 @@ class ComponentGroupForm(forms.Form):
                                'text': data['text'],
                                'text2': data.get('text2'),
                                'popup': data.get('popup'),
+                               'icon': data.get('icon'),
                                'checked': True if data['value'] == '1' else False
                                }
                     ),
@@ -118,6 +120,7 @@ class AreaGroupForm(forms.Form):
                                'cell_style': 'margin-bottom: 1.5rem;',
                                'title': f'{data["title"]} [{data["unit"]}]',
                                'text': data['text'],
+                               'icon': data.get('icon'),
                                'min': data['min'],
                                'max': data['max'],
                                'from': data['value'],
@@ -139,6 +142,7 @@ class AreaGroupForm(forms.Form):
                                'name': name,
                                'title': data['title'],
                                'text': data['text'],
+                               'icon': data.get('icon'),
                                'checked': True if data['value'] == '1' else False
                                }
                     ),
