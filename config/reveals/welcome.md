@@ -1,6 +1,6 @@
 # Willkommen!
 
-<div style="background-color: #002E4F; color: #fff; width: 100%; padding: 0 0.75rem 0 0.75rem; vertical-align: middle; margin-bottom: 0.75rem;">
+<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0 0.75rem 0 0.75rem; vertical-align: middle; margin-bottom: 0.75rem;">
   <h3>Neue Funktionen!</h3>
   <ul>
     <li>In den Ergebnis-Ebenen werden die <strong>Änderungen ggü. dem Status quo</strong> angezeigt</li>
