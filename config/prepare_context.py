@@ -102,7 +102,7 @@ def prepare_component_data():
                 comp_metadata[grp]['comps'][l]['text2'] =\
                     LABELS['components'][l]['text2']
 
-            # reveal windows
+            # reveal window
             reveal_id = LABELS['components'][l].get('reveal_id')
             reveal_icon = LABELS['components'][l].get('reveal_icon')
             if (reveal_id is not None) and (reveal_icon is not None):
@@ -111,6 +111,13 @@ def prepare_component_data():
             else:
                 comp_metadata[grp]['comps'][l]['popup'] = None
 
+            # icon
+            if LABELS['components'][l].get('icon') is not None:
+                comp_metadata[grp]['comps'][l]['icon'] =\
+                    LABELS['components'][l]['icon']
+            else:
+                comp_metadata[grp]['comps'][l]['icon'] = None
+
     for (grp, comps) in ESYS_AREAS_METADATA.items():
         area_metadata.update({grp: {'comps': comps}})
         area_metadata[grp]['title'] = LABELS['component_groups'][grp]['title']
@@ -118,6 +125,13 @@ def prepare_component_data():
         for l, v in comps.items():
             area_metadata[grp]['comps'][l]['title'] = LABELS['components'][l]['title']
             area_metadata[grp]['comps'][l]['text'] = LABELS['components'][l]['text']
+
+            # icon
+            if LABELS['components'][l].get('icon') is not None:
+                area_metadata[grp]['comps'][l]['icon'] =\
+                    LABELS['components'][l]['icon']
+            else:
+                area_metadata[grp]['comps'][l]['icon'] = None
 
     # create component groups for esys panel using components config
     comp_groups = comp_metadata.copy()
