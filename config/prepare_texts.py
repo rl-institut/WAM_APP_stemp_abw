@@ -14,8 +14,9 @@ def create_reveal_info_button():
     text_data = {}
     for name, data in TEXT_FILES.items():
         f = open(data['file'], 'r', encoding='utf-8')
-        text_data[name] = InfoButton(text=f.read(),
-                                     tooltip='Bitte klicken!',
+        text = f.read()
+        text_data[name] = InfoButton(text=text,
+                                     tooltip=text.split("\n")[0][2:],
                                      is_markdown=True,
                                      ionicon_type=data['icon'],
                                      ionicon_size='medium',
