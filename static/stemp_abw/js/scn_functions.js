@@ -65,8 +65,6 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
 
       var marks = [[slider_val, scn_name, scn_desc]];
       addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
-
-
     };
   };
   // timeout needed to wait for all sliders to be loaded
