@@ -50,8 +50,7 @@ TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
                      'icon': icon}
               for name, icon in
               {'welcome': 'ion-help-buoy',
-               'outlook': 'ion-navigate',
-               'whats_new': 'ion-ios-lightbulb'}.items()
+               'outlook': 'ion-navigate'}.items()
               }
 
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
