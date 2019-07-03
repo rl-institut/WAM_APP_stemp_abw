@@ -1,0 +1,11 @@
+leaflet
+pandas
+numpy
+configobj
+django
+django-postgresql
+django-leaflet
+django-geojson
+pathos
+oemof
+git+https://github.com/rl-institut/WAM@master#egg=wam
