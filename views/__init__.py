@@ -5,6 +5,7 @@ import json
 from stemp_abw.config.prepare_context import COMPONENT_DATA, SCENARIO_DATA,\
     prepare_layer_data
 from stemp_abw.config.prepare_texts import LABEL_DATA, TEXT_DATA
+from stemp_abw.config.leaflet import LEAFLET_CONFIG
 from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
@@ -96,6 +97,8 @@ class MapView(TemplateView):
         context['results_charts_tab3_viz'] = results_charts_tab3_viz
         context['results_charts_tab4_viz'] = results_charts_tab4_viz
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
+
+        context['leaflet_config'] = LEAFLET_CONFIG
 
         return context
 
