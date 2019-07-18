@@ -27,7 +27,7 @@
                   <li><a class="anchor-text--light" href="https://stemp-abw.readthedocs.io" target="_blank" rel=”noopener noreferrer”><i class ="icon ion-document icon--small"></i> Dokumentation</a></li>
                   <li><a class="anchor-text--light" href="https://github.com/rl-institut/WAM_APP_stemp_abw" target="_blank" rel=”noopener noreferrer”><i class ="icon ion-social-github icon--small"></i> Quellcode</a></li>
                   <li><a class="anchor-text--light text-primary" href="{% url 'stemp_abw:feedback' %}" target="_blank"><i class ="icon ion-chatbubbles icon--small text-primary"></i> Feedback</a></li>
-                  <li><a class="anchor-text--light" href="{% url 'stemp_abw:contact' %}"><i class ="icon ion-chatbubbles icon--small"></i> Kontakt</a></li>
+                  {% block map-contact-confirm %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:contact' %}"><i class ="icon ion-chatbubbles icon--small"></i> Kontakt</a></li>{% endblock %}
                   <li><a class="anchor-text--light" href="{% url 'stemp_abw:imprint' %}"><i class ="icon ion-filing icon--small"></i> Impressum</a></li>
                   <!--<li><a class="anchor-text&#45;&#45;light" href="{% url 'stemp_abw:assumptions' %}">Annahmen</a></li>-->
                 </ul>
