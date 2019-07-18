@@ -8480,8 +8480,8 @@ div.choropleth_legend.leaflet-control {
 }
 
 
-/* Confirms */
-.map-leaving-confirm {
+/* Map confirm style */
+.map-confirm-style {
     text-align: center;
 }
 
