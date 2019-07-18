@@ -511,6 +511,19 @@
       </div>
     </div>
 
+    <!-- map-index-confirm -->
+    <div class="tiny reveal" id="map-private-policy-confirm" data-reveal>
+      <h3>Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren.</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:privacy_policy' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">Abbruch</button>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
