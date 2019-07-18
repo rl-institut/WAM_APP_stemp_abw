@@ -8481,7 +8481,7 @@ div.choropleth_legend.leaflet-control {
 
 
 /* Confirms */
-#indexConfirm div div {
+.map-leaving-confirm {
     text-align: center;
 }
 
