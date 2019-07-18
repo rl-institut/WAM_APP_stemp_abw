@@ -17,7 +17,7 @@
           <div>{{ texts.outlook }}</div>
           <div class="top-bar-right">
             <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
-              {% block map-privacy-policy-confirm %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:privacy_policy' %}" style="font-weight: 300; padding-right: 1.5rem">Datenschutz</a></li>{% endblock %}
+              {% block map-privacy-policy-confirm %}<li><a id="navbar-privacy-policy" class="anchor-text--light" href="{% url 'stemp_abw:privacy_policy' %}">Datenschutz</a></li>{% endblock %}
               <li>
                 <a class="anchor-text--light" href="#">Menu</a>
                 <ul class="menu vertical">
