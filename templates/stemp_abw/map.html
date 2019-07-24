@@ -15,7 +15,14 @@
   </script>
   {% leaflet_css %}
   {% leaflet_js %}
-  <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+
+  <!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/7.0.3/modules/oldie-polyfills.js"></script>
+  <![endif]-->
+  <script src="https://code.highcharts.com/7.0.3/highcharts.js"></script>
+  <!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/7.0.3/modules/oldie.js"></script>
+  <![endif]-->
 {% endblock %}
 
 {% block navigation %}{% include 'stemp_abw/navigation_app.html' %}{% endblock %}
