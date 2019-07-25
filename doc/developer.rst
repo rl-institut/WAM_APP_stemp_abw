@@ -110,17 +110,39 @@ verschiedenen Blickwinkeln statt, um die Komplexität des Projektes besser
 durchdringen zu können.
 
 In einer ersten Betrachtung widmet sich dieses Dokument im Folgenden der
-Ordnerstruktur des Projektes::
+Ordnerstruktur des Projektes - dies ist eine relativ grobe Betrachtung::
 
     .
     ├── config
     ├── dataio
     ├── doc
     ├── migrations
+    ├── results
     ├── simulation
     ├── static
     ├── templates
-    └── views
+    ├── views
+    └── visualizations
+
+Im Rootordner "." finden sich die djangotypischen aber auch einige
+stemp_abw-spezifische Dateien. Hervorzuheben sind dabei queries.py, welches
+Hilfsfunktionen für wiederkehrende Prozesse enthält und sessions.py, in der
+User-Sessions gehandhabt werden.
+
+Bei den Ordnern (Modulen) verhält es sich ähnlich. Einige sind djangotypisch
+(doc, migrations, static, templates, views), andere nicht projektspezifisch (config,
+dataio, results, simulation, visualizations). Im Folgenden soll ausschließlich
+kurz auf die projektspezifischen Module eingegangen werden.
+
+`config:` Konfigurationsmodul, in dem Layer-, Labels- und Kartenparameter definiert werden.
+
+`dataio:` Modul, in dem das Laden von statischen Daten gehandhabt wird.
+
+`results:` Modul, in dem die Resultate der Simulation behandelt werden.
+
+`simulation:` Modul, in dem die Simulation mit der Energiesystemmodellierungsframework oemof_ durchgeführt wird.
+
+`visualizations:` In diesem Modul befindet sich der Wrapper für die JS-Chartsbibliothek.
 
 Zusammenspiel UI und Backend
 ----------------------------
@@ -210,6 +232,7 @@ Hilfetexte
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
 .. _getting started Tutorial: https://www.djangoproject.com/start/
+.. _oemof: https://github.com/oemof/oemof
 .. _stemp_abw: https://github.com/rl-institut/WAM_APP_stemp_abw
 .. _stemp_mv: https://github.com/rl-institut/WAM_APP_stemp_mv
 .. _Tutorial: https://realpython.com/location-based-app-with-geodjango-tutorial/
