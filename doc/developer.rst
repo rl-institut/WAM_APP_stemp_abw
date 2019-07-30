@@ -197,7 +197,7 @@ Ebenen mit räumlichen Informationen werden an 4 Stellen im Tool verwendet:
 1. Regions-Informationen (Panel "Region")
 2. Statische Flächen (Panel "Flächen" -> "Statische Flächen")
 3. Weißflächen (Panel "Flächen" -> "Variierbare Flächen")
-4. Ergebnise (Panel "Ergebnisse")
+4. Ergebnisse (Panel "Ergebnisse")
 
 TBD:
 
@@ -207,6 +207,262 @@ TBD:
 - Wie werden Ebenen geladen und aktiviert?
 - Wie werden die Endpunkte bereitgestellt (urls.py)?
 - Wie kann ich einen neuen Layer hinzufügen?
+
+Hinzufügen eines neuen Layers
+.............................
+
+Wenn ein neuer Layer hinzugefügt werden soll, dann muss an 6 Stellen Code
+hinzugefügt und eine Migration (neues Modell) durchgeführt
+werden:
+
+- models.py
+- config/labels.cfg
+- config/layers_<Panelname>.cfg
+- templates/stemp_abw/popups/<Templatename-des-Popups>.html
+- views/detail_views.py
+- views/serial_views.py
+
+Als Referenz für die Implementation von weiteren Layern, können folgende drei
+Commits exemplarisch herangezogen werden:
+
+- `Add layer for reg_mun_gen_count_wind_density_result #38`_
+- `Add layer for reg_mun_gen_cap_re_density_result #38`_
+- `Add layer for reg_mun_gen_cap_re_result #38`_
+
+Wie sich aus den Commits entnehmen lässt folgt das Hinzufügen von weiteren
+Layern einem definierten Ablauf, welcher die Layer automatisch in das
+gewählte Panel hinzufügt ohne das hierfür der HTML-Code des Panels angefasst
+werden muss. Im Folgenden soll auf die einzelnen Schritte vertieft eingegangen
+werden:
+
+Erstellung eines neuen Modells in `models.py`
+.............................................
+
+Die Basis eines jeden neuen Layers ist ein Modell aus dem es die Daten speist.
+Bei den Modellen handelt es sich um den bekannten `Modellmechanismus aus Django`_.
+In diesem Projekt werden mit zwei Arten von Modellen gearbeitet:
+
+- Modelle, welche mit einer Datenbanktabelle (via ORM-Mechanismus) korrespondieren
+- Proxymodelle, welche von anderen Modellen erben und nicht direkt mit einer eigenen Datenbanktabelle korrespondieren, sondern mit den Datenbanktabellen der vererbten Modelle
+
+In beiden Modellarten können über den `@property`-Dekorator weitere Eigenschaften
+definiert werden. In diesem Projekt ist dies z.B. in den Proxymodellen der Fall,
+hier werden Werte mit Hilfe der arithmetischen Grundrechenarten aus bestehenden
+Werten ermittelt und zurück gegeben.
+
+Im Folgenden zwei Beispiele für das Modell `RegMun`_ und dem davon erbenden
+Proxymodell `RegMunDemElEnergy`_:
+
+- Modell-Klassendefinition, mit Datenbanktabelle RegMun::
+
+    class RegMun(LayerModel):
+        name = 'reg_mun'
+        ags = models.IntegerField(primary_key=True)
+        geom = geomodels.MultiPolygonField(srid=3035)
+        geom_centroid = geomodels.PointField(srid=3035, null=True)
+        gen = models.CharField(max_length=254)
+
+Jedes Modell hat mindestens zwei definierte Eigenschaften `name` und `geom`.
+Mit der Eigenschaft `name` wird der Name definiert, welche in der Datenbanktabelle
+Verwendung findet. Darüber hinaus wird der Name als Bezugspunkt, zum Beispiel
+für die automatische Panelkonfiguration in den Configdateien verwendet.
+Im  weiteren Verlauf dieses Abschnitt geht dieses Dokument exemplarisch auf die
+Erstellung eines Layers ein. Dadurch sollen die Zusammenhänge noch prägnanter
+herausgarbeitet werden.
+Mit der Eigenschaft `geom` wird die Geometrie des Layers mit dem Modell verknüpft.
+Alle weiteren Eigenschaften sind optional.
+
+- Proxymodell-Klassendefinition, ohne Datenbanktabelle `RegMunGenEnergyRe`::
+
+    class RegMunDemElEnergy(RegMun):
+        name = 'reg_mun_dem_el_energy'
+
+        class Meta:
+            proxy = True
+
+        @property
+        def dem_el_energy(self):
+            return round((self.mundata.dem_el_energy_hh +
+                          self.mundata.dem_el_energy_rca +
+                          self.mundata.dem_el_energy_ind) / 1e3)
+
+        @property
+        def dem_el_energy_region(self):
+            result = MunData.objects.aggregate(Sum('dem_el_energy_hh'))['dem_el_energy_hh__sum'] + \
+                     MunData.objects.aggregate(Sum('dem_el_energy_rca'))['dem_el_energy_rca__sum'] + \
+                     MunData.objects.aggregate(Sum('dem_el_energy_ind'))['dem_el_energy_ind__sum']
+            return round(result / 1e3)
+
+In jedem  Proxymodell wird ein eigener Name (`name`) als Eigenschaft vergeben,
+die Geometrie (`geom`) wird in der Regel geerbt. Das Proxymodell wird über
+`class Meta` als Proxyklasse gekennzeichnet. Weitere Schritte sind nicht nötig,
+für die Kennzeichnung eines Modells als Proxymodell.
+Wie sich an dem Beispiel von `RegMunGenEnergyRe` ablesen lässt, ist die bereits
+erwähnte exemplarische Verwendung des `@property`-Dekorators in den
+Methodendefinitionen von `dem_el_energy` und `dem_el_energy_region`.
+
+Die Registrierung und automatische Erstellung des Layers in einem Panel
+.......................................................................
+
+Dieses Projekt verfügt über die Möglichkeit einen neuen Layer automatisiert
+einem bestimmten Panel hinzuzufügen. Dies wird durch die Definition des Layers
+in zwei Konfigurationsdateien ermöglicht:
+
+- config/labels.cfg
+- config/layers_<Panelname>.cfg
+
+In `config/labels.cfg` wird hierbei das zu verwendende Panel, die Bezeichnung des
+Layers im Panel (`title`) und die (Tooltip-)Beschreibung des Layers im Panel
+(`text`) definiert. Eine vertiefende  Beschreibung der Datenstruktur und ihrer
+Verwendung kann dem Dateikommentar_ in `config/labels.cfg` entnommen werden.
+
+In `config/layers_<Panelname>.cfg` wird der Layer anhand des Modell konfiguriert und
+das Aussehen definiert. Im Folgenden eine generelle Übersicht::
+
+    Format:
+    [<GROUP_ID>]
+        [[<LAYER_ID>]]
+             model = <DATA MODEL NAME (property 'name' of model)>
+             geom_type = <TYPE OF GEOMETRY (line, point, poly)>
+             show = <SHOW LAYER ON STARTUP (0/1)>
+             sources = <COMMA-SEPARATED SOURCES ID(s) (PK from database)>, (0 = no source)
+             [[[style]]]
+                 <CSS STYLE OPTIONS>
+             [[[accuracy]]]
+                 <ACCURACY OF LAYER DISPLAY -> GEOJSON PARAMS>
+             [[[choropleth]]]
+                 unit = <LEGEND TITLE>
+                 data_column = <MODEL PROPERTY USED AS DATA>
+                 color_schema = <COLORBREWER COLOR SCHEMA>
+                 min = <MIN VALUE FOR COLOR AND LEGEND (int or float)>
+                 max = <MAX VALUE FOR COLOR AND LEGEND (int or float)>
+                 step = <STEP SIZE FOR COLOR AND LEGEND (int or float)>
+                 reverse = <REVERSE COLOR SCHEMA (true/false)>
+
+Anhand des konkreten Beispiels von `RegMunDemElEnergy in config/layers_region.cfg`_
+soll an dieser Stelle exemplarisch auf die Konfiguration eines Layers eingegangen werden,
+wecher im Panel `Region` Verwendung findet::
+
+    [layer_grp_demand]
+        [[reg_mun_dem_el_energy]]
+            model = reg_mun_dem_el_energy
+            geom_type = poly
+            show = 0
+            sources = 0
+            [[[style]]]
+                fillColor = '#41b6c4'
+                weight = 1
+                opacity = 1
+                color = gray
+                fillOpacity = 0.7
+            [[[accuracy]]]
+                precision = 5
+                simplify = 0
+            [[[choropleth]]]
+                unit = 'GWh'
+                data_column = dem_el_energy
+                color_schema = YlGnBu
+                min = 0
+                max = 500
+                step = 50
+                reverse = false
+
+`[layer_grp_demand]`: jedes Panel besteht aus Layergruppen. Die Bezeichnung und
+die Beschreibung einer Layergruppe wird wie bei den Layern ebenfalls in `config/labels.cfg`
+definiert. Er wird je Layergruppe nur einmal angegeben.
+
+`[[reg_mun_dem_el_energy]]`: der Name des Layers.
+
+`model = reg_mun_dem_el_energy`: der exakte Modellname des Layers aus der Modelldefinition.
+
+`geom_type = poly`: der Geomtetrietyp. Es stehen `line`, `point`, `poly` zur Verfügung.
+
+`show = 0`: fragt ab, ob der Layer beim Start der Applikation sichtbar sein soll.
+In der Regel wird hier 0 angegeben. Mögliche Werte: 0 oder 1 (false/true).
+
+`sources = 0`: jedem Layer kann auf bestimmte Quellen zu den Daten verweisen,
+welche im Gesamten über die URL `<Hostname>/stemp_abw/sources/` im Browser zugänglich ist.
+Die Quellen werden im Backend (`<Hostname>/admin/`) angelegt. Es können pro Layer
+mehrere Quellen verwendet werden (`1, 2, 3, ... n`). Die Angabe erfolgt kommagetrennt und entspricht
+dem Primärschlüssel (PK) der jeweiligen Quelle in der Datenbank.
+In unserem Beispiel wird keine Quelle angegeben (deswegen der Wert 0).
+
+`[[[style]]]`: in diesem Abschnitt wird das grundlegende Styling eines Layers
+definiert.
+
+`fillColor = '#41b6c4'`: der Parameter `fillColor` definiert die Grundfarbe des
+Layers und nimmt als Wert alle Werte entgegen, welche vom CSS `color`-Attribut
+entgegen genommen werden können (z.B. Hexadezimalwerte und sprechende Bezeichnungen).
+
+`weight = 1?`: der Parameter `weight` definiert die Randstärke eines Layers.
+Ein Wert von 10 steht hierbei beispielsweise für eine Randstärke von 10 Pixeln.
+In der Regel steht der Wert bei 1.
+
+`opacity = 1`: der Transparenzwert des Randes eines Layers. Bei dem Wert
+handelt es sich um einen Dezimalwert von 0 bis 1. Dieser Wert ist in der Regel 1.
+
+`color = gray`: mit dem Parameter `color` wird die Farbe des Randes definiert.
+Dieser Wert ist in der Regel grau (`grey`).
+
+`fillOpacity = 0.7`: der Transparenzwert eines Layers. Bei dem Wert
+handelt es sich um einen Dezimalwert von 0 bis 1. Dieser Wert liegt in der Regel
+bei 0.7, damit der Layer teildurchsichtig ist.
+
+`[[[accuracy]]]`: in diesem Abschnitt wird die Genauigkeit definiert, mit der
+die Geometriedaten eines Layers angezeigt werden sollen.
+
+`precision = 5`: der Parameter `precision` wird als Ganzzahl angegeben und definiert
+die Anzahl von Nachkommastellen, welche bei den Geometriewerten eines Layers
+berücksichtigt werden sollen. Dieser Wert ist in der Regel 5. Der Parameter
+`precision` spiegelt hierbei das Verhalten des Attributes `precision aus der Django GEOS API`_,
+welcher in diesem Projekt als Unterbau Verwendung findet.
+
+`simplify = 0`: der Parameter `simplify` definiert inwieweit die Geometrie
+eines Layers vereinfacht werden soll. Weil dieser Prozess rechenintensiv
+ist wird er in der Regel in diesem Projekt nicht verwendet und deswegen
+der Wert auf 0 gesetzt. Der Parameter `simplify` spiegelt hierbei das Verhalten
+des Attributes `simplify aus der Django GEOS API`_, welcher in diesem Projekt
+als Unterbau Verwendung findet.
+
+`[[[choropleth]]]`: in diesem Abschnitt wird, falls es sich bei dem Layer
+um eine `Choroplethkarte`_ handelt, diese definiert. Jede Choroplethkarte
+hat zusätzlich noch rechts unten eine Legende, welche eine Farbskala mit ihren
+Werten beschreibt.
+
+`unit = 'GWh'`: Einheit, welche in der Legende als Maßeinheit verwendet wird.
+Der Wert wird als String angegeben.
+
+`data_column = dem_el_energy`: Der Parameter `data_column` enthält den
+`property`-Wert welcher als Wert in der Choroplethkarte auf Gemeindeebene
+Verwendung finden soll. Der `property`-Wert wird zwar im Modell definiert,
+aber in `views/serial_views.py` für die Verwendung im Layer explizit ausgewiesen.
+
+`color_schema = YlGnBu`: Der Parameter `color_schema` definiert das Farbschema,
+welches in der jeweiligen Choroplethkarte Verwendung findet. Mögliche Werte
+richten sich nach den von Cynthia Brewer entwickelten Farbschemata. Mit dem
+von Frau Brewer entwickelten Online-Tool `colorbrewer2.org`_ lassen sich die
+passenden Farbschemata und ihre Bezeichnungen ermitteln. Um diese Funktionalität
+zur Verfügung zu stellen, verwendet dieses Projekt die JavaScript-Farbibliothek
+`Chroma.js`_ als Unterbau.
+
+`min = 0`: der Parameter `min` definiert einen Minimalwert für die Choroplethkarte.
+Dieser Minimalwert sollte sich am Minimalwert aller Werte aus `data_column` orientieren.
+
+`max = 500`: der Parameter `max` definiert einen Maximalwert für die Choroplethkarte.
+Dieser Maximalwert sollte sich am Maximalwert aller Werte aus `data_column` orientieren.
+
+`step = 50`: der Parameter `step` definiert die Schrittgröße einer Farbabstufung
+einer Choropletkarte. Hierbei sollten sinnvolle Werte verwendet werden, welche
+mehrfach in das Intervall von Maximalwert minus Minimalwert passen. In unserem
+Beispiel hatt das Intervall eine Länge von 500, eine Schrittgröße von 50 und somit
+10 Farbabstufungen in der Choroplethkarte.
+
+`reverse = false`: der Parameter `reverse` definiert, ob das verwendet Farbschema
+gedreht werden soll. Mögliche Werte sind hierbei `false` (nein) und `true` (ja).
+Ein Farbschema das z.B bei dem Minimalwert blau und beim Maximalwert rot ist, wird
+durch den Wert `true` farbtechnisch vertauscht, so das der Minimalwert rot und
+der Maximalwert blau sind.
+
 
 .. _developer_energy_system_label:
 
@@ -231,12 +487,24 @@ Hilfetexte
 - Wo liegen die Hilfetexte (Tooltips)?
 - Wie werden diese eingebunden?
 
-
+.. _`Chroma.js`: https://github.com/gka/chroma.js/
+.. _`colorbrewer2.org`: http://colorbrewer2.org
+.. _`Choroplethkarte`: https://de.wikipedia.org/wiki/Choroplethenkarte
+.. _`simplify aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.GEOSGeometry.simplify
+.. _`precision aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.WKTWriter.precision
+.. _`RegMunDemElEnergy in config/layers_region.cfg`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/config/layers_region.cfg#L286-L307
+.. _Dateikommentar: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/config/labels.cfg#L1-L34
+.. _`RegMunDemElEnergy`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/models.py#L115-L132
+.. _`RegMun`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/models.py#L42-L47
+.. _`Add layer for reg_mun_gen_cap_re_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/720f2e7e69d942d0b4344da8c086b72aa7ec2621
+.. _`Add layer for reg_mun_gen_cap_re_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/b9331809f1e66594c46ce1d4ac544bceb7a6ac60
+.. _`Add layer for reg_mun_gen_count_wind_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/41c70311fcbc1ad2f6db59e1c34a62bdcea5d5f0
 .. _API: https://stemp-abw.readthedocs.io/en/dev/api.html
 .. _Django: https://www.djangoproject.com/
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
 .. _getting started Tutorial: https://www.djangoproject.com/start/
+.. _`Modellmechanismus aus Django`: https://docs.djangoproject.com/en/2.2/topics/db/models/
 .. _oemof: https://github.com/oemof/oemof
 .. _stemp_abw: https://github.com/rl-institut/WAM_APP_stemp_abw
 .. _stemp_mv: https://github.com/rl-institut/WAM_APP_stemp_mv
