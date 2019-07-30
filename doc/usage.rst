@@ -68,4 +68,4 @@ Sprachen
 ........
 
 Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
-erweitert werden. Für Details siehe :ref:`developer_config_files_label`.
+erweitert werden. Für Details siehe :ref:`developer_language_packs_label`.

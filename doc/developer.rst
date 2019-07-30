@@ -230,3 +230,13 @@ Konfigurationsdateien, die von der WAM eingelesen werden:
 - app.cfg
 - app_settings.cfg
 - settings.cfg
+
+.. _developer_language_packs_label:
+
+Sprachpakete
+------------
+
+Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
+erweitert werden. Hierzu...
+
+.. warning:: TBD
