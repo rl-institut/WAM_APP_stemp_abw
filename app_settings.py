@@ -39,12 +39,15 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'config',
+                                'labels',
+                                'de',
                                 'labels.cfg'))
 
 TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
                               'stemp_abw',
                               'config',
-                              'reveals')
+                              'reveals',
+                              'de')
 
 TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
                      'icon': icon}
