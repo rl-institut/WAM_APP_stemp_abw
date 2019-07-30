@@ -216,3 +216,17 @@ Hilfetexte
 .. _WAM: https://github.com/rl-institut/WAM
 .. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
 .. _WAM-Dokumentation: https://wam.readthedocs.io/en/latest/
+
+.. _developer_config_files_label:
+
+Konfigurationsdateien
+---------------------
+
+.. warning:: TBD
+
+Neben den in den vorherigen Abschnitten erwähnten existieren weitere
+Konfigurationsdateien, die von der WAM eingelesen werden:
+
+- app.cfg
+- app_settings.cfg
+- settings.cfg
