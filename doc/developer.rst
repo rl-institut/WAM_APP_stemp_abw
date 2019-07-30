@@ -301,6 +301,11 @@ Wie sich an dem Beispiel von `RegMunGenEnergyRe` ablesen lässt, ist die bereits
 erwähnte exemplarische Verwendung des `@property`-Dekorators in den
 Methodendefinitionen von `dem_el_energy` und `dem_el_energy_region`.
 
+Nach der Erstellung eines oder mehrerer Modelle, sollte eine Datenbankmigration
+mit `python manage.py makemigrations` und `python manage.py migrate` durchgeführt
+werden, falls dies nötig ist. Der Befehl `python manage.py makemigrations` gibt
+Aufschluss darüber.
+
 Die Registrierung und automatische Erstellung des Layers in einem Panel
 .......................................................................
 
@@ -460,11 +465,103 @@ Beispiel hatt das Intervall eine Länge von 500, eine Schrittgröße von 50 und 
 `reverse = false`: der Parameter `reverse` definiert, ob das verwendet Farbschema
 gedreht werden soll. Mögliche Werte sind hierbei `false` (nein) und `true` (ja).
 Ein Farbschema das z.B bei dem Minimalwert blau und beim Maximalwert rot ist, wird
-durch den Wert `true` farbtechnisch vertauscht, so das der Minimalwert rot und
+durch den Wert `true` farbtechnisch vertauscht, so dass der Minimalwert rot und
 der Maximalwert blau sind.
 
+Die Verwendung von angepassten Popup-Fenstern in Layern
+.......................................................
 
-.. _developer_energy_system_label:
+In jedem Layer können Popup-Fenster verwendet werden, welche das die einzelnen
+Elemente eines Layers genauer beschreiben. In diesen Popup-Fenstern können
+desweiteren Charts verwendet werden, welche sich aus den Layerdaten speisen.
+
+Standardmäßig ist eine Standard-Popup definiert, welcher Verwendung findet.
+Dieser kann angepasst werden, indem ein eigenes Popup-Template verwendet wird.
+Hierbei wird der von Django zur Verfügunge gestellte Templatemechanimus_
+verwendet, um das Standard-Popup zu erweitern.
+
+Die Templates der Popups befinden sich im Ordner `templates/stemp_abw/popups/`.
+Falls für einen neuen Layer ein angepasstes Popup erstellt werden soll, bietet
+es sich an eine bestehendes Popup-Template als Vorlage zu verwenden.
+
+Im Folgenden soll exemplarisch auf das Popup-Template von `RegMunGenEnergyRe`_
+eingegangen werden::
+
+    {% extends 'stemp_abw/popups/base_layer_popup.html' %}
+
+    {% block gen %}
+      <div class="cell">
+        <p>{{ layer.gen }}: {{ layer.gen_energy_re }} GWh</p>
+      </div>
+      <div>
+        Region ABW: {{ layer.gen_energy_re_region }} GWh
+      </div>
+    {% endblock %}
+
+    {% block vis %}
+    <div class="cell" style="height: 252px;">
+      {{ chart }}
+    </div>
+    {% endblock%}
+
+Im ersten Abschnitt "{% extends ..." wird vom Basis-Popup geerbt.
+
+Im Block `gen` werden Angaben zur erzeugten Energie "layer.gen_energy_re" der
+Gemeinde "layer.gen" im Verhältnis zum Gesamtgebiet von ABW
+"layer.gen_energy_re_region" gemacht.
+
+Im Block `vis` wird ein Chart (`chart`) eingebunden, welcher in der Detailview in
+`views/detail_views.py` definiert wird.
+
+Die Erstellung der Detailansicht
+................................
+
+Alle Detailansichten finden sich in `views/detail_views.py`. In der Detailansicht
+werden Modell und Template verbunden, damit das passende Popup bei einem Klick
+auf eine Element in einem bestimmten Layer angezeigt wird.
+
+`Einfache Detailansichten`_ enthalten nur die Werte für das zu verwendende
+Modell (`model`) und das zugrunde liegende Template (`template_name`).
+
+`Komplexere Detailansichten`_ enthalten darüber hinaus auch Methoden für die Übergabe
+des Django `context`_ (`get_context_data`) und die Erstellung eines Charts (`build_chart`),
+welcher mittels `{{ chart }}`-Tag im Template Verwendung findet.
+
+Die Definition der zu serialisierenden Daten
+............................................
+
+Die Daten einer jeden Ansicht werden serialisiert und an einem bestimmten Endpunkt
+zur Verfügung gestellt, damit von der Applikation via AJAX-Abruf darauf zugegriffen
+werden kann.
+
+Im Folgendne soll hierbei exemplarisch auf die `Serialisierungsansicht von RegMunGenEnergyRe`_
+eingegangen werden::
+
+    class RegMunGenEnergyReData(GeoJSONLayerView):
+        model = models.RegMunGenEnergyRe
+        properties = [
+            'name',
+            'gen',
+            'gen_energy_re',
+            'gen_energy_re_region'
+        ]
+
+Als erstes wird das Modell (`model`) definiert, welches Verwendung finden soll.
+
+In einem zweiten Schritt werden alle `properties` aus dem Modell definiert,
+welche serialisert werden sollen, um an dem Endpunkt zur Verfügung zu stehen.
+
+Bei den Layern der Gemeinden orientieren sich die Endpunkte an den `Amtlichen
+Gemeindeschlüsseln`_ (AGS). Die Endpunkte bei der Gemeinde Dessau mit dem
+AGS-Wert 15001000 sind somit::
+
+    stemp_abw/popup/reg_mun_gen_energy_re/15001000/
+    stemp_abw/popupjs/reg_mun_gen_energy_re/15001000/
+
+Unter `stemp_abw/popup/` finden sich hierbei die menschenlesbaren Daten für das
+Popup und unter `stemp_abw/popupjs/` befinden Daten, wenn ein Chart in einem Popup
+Verwendung findet.
+
 
 Energiesystem
 -------------
@@ -487,6 +584,13 @@ Hilfetexte
 - Wo liegen die Hilfetexte (Tooltips)?
 - Wie werden diese eingebunden?
 
+.. _`Amtlichen Gemeindeschlüsseln`: https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel
+.. _`Serialisierungsansicht von RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/serial_views.py#L60-L67
+.. _`context`: https://docs.djangoproject.com/en/2.2/ref/templates/api/#rendering-a-context
+.. _`Komplexere Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L177-L225
+.. _`Einfache Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L434-L436
+.. _`RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/templates/stemp_abw/popups/gen_energy_re.html
+.. _Templatemechanimus: https://docs.djangoproject.com/en/2.2/topics/templates/
 .. _`Chroma.js`: https://github.com/gka/chroma.js/
 .. _`colorbrewer2.org`: http://colorbrewer2.org
 .. _`Choroplethkarte`: https://de.wikipedia.org/wiki/Choroplethenkarte
