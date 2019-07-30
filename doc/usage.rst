@@ -64,3 +64,8 @@ Die unter ''Ergebnisse für die Planungsregion'' zusammengefassten Reiter könne
 
 Diese Funktionalität kann dazu genutzt werden, Zukunftsszenarien zu simulieren und unterschiedliche Arten zu beleuchten, vorgegebene Zielsetzungen zu erreichen. So können sowohl der Zubau an erneuerbaren Erzeugern als auch die Reduktion des Verbrauchs zu einer Verminderung der Treibhausgase führen. Den Verantwortlichen der Region steht somit ein Instrument zur Verfügung, unterschiedliche Zukunftsszenarien zu simulieren und hinsichtlich vorher festzulegender Kriterien zu vergleichen.
 
+Sprachen
+........
+
+Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
+erweitert werden. Für Details siehe :ref:`developer_config_files_label`.
