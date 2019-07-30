@@ -144,6 +144,10 @@ kurz auf die projektspezifischen Module eingegangen werden.
 
 `visualizations:` In diesem Modul befindet sich der Wrapper für die JS-Chartsbibliothek.
 
+Nach diesem kurzen strukturellen Überblick folgt nun ein funktionaler Überblick
+der wichtigsten Komponenten des Projektes. Eine komplette Beschreibung aller
+Schnittstellen findet sich im Kapitel API_ dieser Dokumentation.
+
 Zusammenspiel UI und Backend
 ----------------------------
 
@@ -228,6 +232,7 @@ Hilfetexte
 - Wie werden diese eingebunden?
 
 
+.. _API: https://stemp-abw.readthedocs.io/en/dev/api.html
 .. _Django: https://www.djangoproject.com/
 .. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
 .. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
