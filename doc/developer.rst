@@ -109,8 +109,8 @@ konkrete Codebasis heranzuführen. Die Strukturbetrachtung findet hierbei aus
 verschiedenen Blickwinkeln statt, um die Komplexität des Projektes besser
 durchdringen zu können.
 
-In einer ersten Betrachtung widmet sich dieses Dokument im Folgenden der
-Ordnerstruktur des Projektes - dies ist eine relativ grobe Betrachtung::
+In einer ersten groben Betrachtung widmet sich dieses Dokument im Folgenden der
+Ordnerstruktur des Projektes::
 
     .
     ├── config
@@ -124,25 +124,26 @@ Ordnerstruktur des Projektes - dies ist eine relativ grobe Betrachtung::
     ├── views
     └── visualizations
 
-Im Rootordner "." finden sich die djangotypischen aber auch einige
-stemp_abw-spezifische Dateien. Hervorzuheben sind dabei queries.py, welches
-Hilfsfunktionen für wiederkehrende Prozesse enthält und sessions.py, in der
-User-Sessions gehandhabt werden.
+Im Rootordner "." finden sich die für Django typischen Dateien, darunter sind
+aber auch einige Dateien, welche projektspezifischer Natur sind. Unter den
+projektspezifischen Dateien sind queries.py (welches Hilfsfunktionen
+für wiederkehrende Prozesse enthält) und sessions.py (in der User-Sessions
+gehandhabt werden) hervorzuheben.
 
-Bei den Ordnern (Modulen) verhält es sich ähnlich. Einige sind djangotypisch
-(doc, migrations, static, templates, views), andere nicht projektspezifisch (config,
-dataio, results, simulation, visualizations). Im Folgenden soll ausschließlich
-kurz auf die projektspezifischen Module eingegangen werden.
+Bei den Ordnern (Modulen) verhält es sich ähnlich. Einige sind typisch für Django
+(doc, migrations, static, templates, views), andere spezifisch für dieses Projekt
+(config, dataio, results, simulation, visualizations). Im Folgenden soll
+ausschließlich auf die projektspezifischen Module kurz eingegangen werden:
 
-`config:` Konfigurationsmodul, in dem Layer-, Labels- und Kartenparameter definiert werden.
+- `config:` Konfigurationsmodul, in dem Layer-, Label- und Kartenparameter definiert werden.
 
-`dataio:` Modul, in dem das Laden von statischen Daten gehandhabt wird.
+- `dataio:` Modul, in dem das Laden von statischen Daten gehandhabt wird.
 
-`results:` Modul, in dem die Resultate der Simulation behandelt werden.
+- `results:` Modul, in dem die Resultate der Simulation behandelt werden.
 
-`simulation:` Modul, in dem die Simulation mit der Energiesystemmodellierungsframework oemof_ durchgeführt wird.
+- `simulation:` Modul, in dem die Simulation mit der Energiesystemmodellierungsframework oemof_ realisiert wird.
 
-`visualizations:` In diesem Modul befindet sich der Wrapper für die JS-Chartsbibliothek.
+- `visualizations:` In diesem Modul befindet sich der Python-Wrapper für die JS-Chartsbibliothek.
 
 Nach diesem kurzen strukturellen Überblick folgt nun ein funktionaler Überblick
 der wichtigsten Komponenten des Projektes. Eine komplette Beschreibung aller
@@ -211,9 +212,9 @@ TBD:
 Hinzufügen eines neuen Layers
 .............................
 
-Wenn ein neuer Layer hinzugefügt werden soll, dann muss an 6 Stellen Code
+Wenn ein neuer Layer hinzugefügt werden soll, dann muss an sechs Stellen Code
 hinzugefügt und eine Migration (neues Modell) durchgeführt
-werden:
+werden. Die sechs Stellen sind:
 
 - models.py
 - config/labels.cfg
@@ -231,14 +232,15 @@ Commits exemplarisch herangezogen werden:
 
 Wie sich aus den Commits entnehmen lässt folgt das Hinzufügen von weiteren
 Layern einem definierten Ablauf, welcher die Layer automatisch in das
-gewählte Panel hinzufügt ohne das hierfür der HTML-Code des Panels angefasst
-werden muss. Im Folgenden soll auf die einzelnen Schritte vertieft eingegangen
-werden:
+gewählte Panel hinzufügt, ohne das hierfür der HTML-Code des Panels angefasst
+werden muss. In den folgenden Abschnitten soll auf die einzelnen Schritte
+vertiefend eingegangen werden, indem exemplarisch auf die Erstellung eines Layers
+eingegangen wird.
 
 Erstellung eines neuen Modells in `models.py`
 .............................................
 
-Die Basis eines jeden neuen Layers ist ein Modell aus dem es die Daten speist.
+Die Basis eines jeden neuen Layers ist ein Modell, aus dem der Layer seine Daten speist.
 Bei den Modellen handelt es sich um den bekannten `Modellmechanismus aus Django`_.
 In diesem Projekt werden mit zwei Arten von Modellen gearbeitet:
 
@@ -247,13 +249,13 @@ In diesem Projekt werden mit zwei Arten von Modellen gearbeitet:
 
 In beiden Modellarten können über den `@property`-Dekorator weitere Eigenschaften
 definiert werden. In diesem Projekt ist dies z.B. in den Proxymodellen der Fall,
-hier werden Werte mit Hilfe der arithmetischen Grundrechenarten aus bestehenden
-Werten ermittelt und zurück gegeben.
+hier werden neue Werte mit Hilfe der arithmetischen Grundrechenarten aus bestehenden
+Werten ermittelt und zurückgegeben.
 
 Im Folgenden zwei Beispiele für das Modell `RegMun`_ und dem davon erbenden
 Proxymodell `RegMunDemElEnergy`_:
 
-- Modell-Klassendefinition, mit Datenbanktabelle RegMun::
+-  Klassendefinition des `RegMun`-Modells, mit Datenbanktabelle `stemp_abw_regmun`::
 
     class RegMun(LayerModel):
         name = 'reg_mun'
@@ -263,16 +265,17 @@ Proxymodell `RegMunDemElEnergy`_:
         gen = models.CharField(max_length=254)
 
 Jedes Modell hat mindestens zwei definierte Eigenschaften `name` und `geom`.
-Mit der Eigenschaft `name` wird der Name definiert, welche in der Datenbanktabelle
-Verwendung findet. Darüber hinaus wird der Name als Bezugspunkt, zum Beispiel
-für die automatische Panelkonfiguration in den Configdateien verwendet.
-Im  weiteren Verlauf dieses Abschnitt geht dieses Dokument exemplarisch auf die
-Erstellung eines Layers ein. Dadurch sollen die Zusammenhänge noch prägnanter
-herausgarbeitet werden.
-Mit der Eigenschaft `geom` wird die Geometrie des Layers mit dem Modell verknüpft.
+Mit der Eigenschaft `name` wird der Name definiert, welcher im Konfigurationsmodell
+(`config/`) Verwendung findet. Für die Benennung und Verwendung der Datenbanktabelle wiederum
+wird der Appname (`stemp_abw`) mit dem Klassennamen (`RegMun`) zu einem eindeutigen
+Tabellennamen von Django automatisiert verbunden (`stemp_abw_regmun`). Somit ist
+Obacht geboten, denn wir haben an zwei Stellen die Vergabe von Namensräumen für
+dasselbe Modell, einmal automatisiert für die Handhabung der Daten und einmal
+manuell für die automatisierte Konfiguration und Verwendung des Modells in einem
+Layer. Mit der Eigenschaft `geom` wird die Geometrie des Layers mit dem Modell verknüpft.
 Alle weiteren Eigenschaften sind optional.
 
-- Proxymodell-Klassendefinition, ohne Datenbanktabelle `RegMunGenEnergyRe`::
+- Klassendefinition des `RegMunGenEnergyRe`-Proxymodells, ohne eigene Datenbanktabelle::
 
     class RegMunDemElEnergy(RegMun):
         name = 'reg_mun_dem_el_energy'
@@ -295,11 +298,10 @@ Alle weiteren Eigenschaften sind optional.
 
 In jedem  Proxymodell wird ein eigener Name (`name`) als Eigenschaft vergeben,
 die Geometrie (`geom`) wird in der Regel geerbt. Das Proxymodell wird über
-`class Meta` als Proxyklasse gekennzeichnet. Weitere Schritte sind nicht nötig,
-für die Kennzeichnung eines Modells als Proxymodell.
-Wie sich an dem Beispiel von `RegMunGenEnergyRe` ablesen lässt, ist die bereits
-erwähnte exemplarische Verwendung des `@property`-Dekorators in den
-Methodendefinitionen von `dem_el_energy` und `dem_el_energy_region`.
+`class Meta` als Proxyklasse gekennzeichnet. Weitere Schritte, für die Kennzeichnung
+eines Modells als Proxymodell, sind nicht nötig. An dem Beispiel von `RegMunGenEnergyRe`
+lässt sich die bereits erwähnte Verwendung des `@property`-Dekorators exemplarisch
+in den Methodendefinitionen von `dem_el_energy` und `dem_el_energy_region` alesen.
 
 Nach der Erstellung eines oder mehrerer Modelle, sollte eine Datenbankmigration
 mit `python manage.py makemigrations` und `python manage.py migrate` durchgeführt
@@ -346,7 +348,7 @@ das Aussehen definiert. Im Folgenden eine generelle Übersicht::
 
 Anhand des konkreten Beispiels von `RegMunDemElEnergy in config/layers_region.cfg`_
 soll an dieser Stelle exemplarisch auf die Konfiguration eines Layers eingegangen werden,
-wecher im Panel `Region` Verwendung findet::
+welcher im Panel `Region` Verwendung findet::
 
     [layer_grp_demand]
         [[reg_mun_dem_el_energy]]
@@ -373,23 +375,23 @@ wecher im Panel `Region` Verwendung findet::
                 reverse = false
 
 `[layer_grp_demand]`: jedes Panel besteht aus Layergruppen. Die Bezeichnung und
-die Beschreibung einer Layergruppe wird wie bei den Layern ebenfalls in `config/labels.cfg`
-definiert. Er wird je Layergruppe nur einmal angegeben.
+die Beschreibung einer Layergruppe wird, wie bei den Layern, in `config/labels.cfg`
+definiert. Der Layergruppenname wird je Layergruppe nur einmal angegeben.
 
 `[[reg_mun_dem_el_energy]]`: der Name des Layers.
 
-`model = reg_mun_dem_el_energy`: der exakte Modellname des Layers aus der Modelldefinition.
+`model = reg_mun_dem_el_energy`: der Modellname (`name`) des Layers aus der Modelldefinition.
 
-`geom_type = poly`: der Geomtetrietyp. Es stehen `line`, `point`, `poly` zur Verfügung.
+`geom_type = poly`: der Geometrietyp des Layers. Es stehen `line`, `point`, `poly` zur Verfügung.
 
 `show = 0`: fragt ab, ob der Layer beim Start der Applikation sichtbar sein soll.
-In der Regel wird hier 0 angegeben. Mögliche Werte: 0 oder 1 (false/true).
+In der Regel wird hier 0 angegeben. Mögliche Werte: 0 oder 1 (false|true).
 
 `sources = 0`: jedem Layer kann auf bestimmte Quellen zu den Daten verweisen,
-welche im Gesamten über die URL `<Hostname>/stemp_abw/sources/` im Browser zugänglich ist.
+welche im Gesamten über die URL `<Hostname>/stemp_abw/sources/` im Browser zugänglich sind.
 Die Quellen werden im Backend (`<Hostname>/admin/`) angelegt. Es können pro Layer
-mehrere Quellen verwendet werden (`1, 2, 3, ... n`). Die Angabe erfolgt kommagetrennt und entspricht
-dem Primärschlüssel (PK) der jeweiligen Quelle in der Datenbank.
+mehrere Quellen verwendet werden (`1, 2, 3, ... n`). Die Angabe erfolgt kommagetrennt
+und entspricht dem Primärschlüssel (PK) der jeweiligen Quelle in der Datenbank.
 In unserem Beispiel wird keine Quelle angegeben (deswegen der Wert 0).
 
 `[[[style]]]`: in diesem Abschnitt wird das grundlegende Styling eines Layers
@@ -407,7 +409,7 @@ In der Regel steht der Wert bei 1.
 handelt es sich um einen Dezimalwert von 0 bis 1. Dieser Wert ist in der Regel 1.
 
 `color = gray`: mit dem Parameter `color` wird die Farbe des Randes definiert.
-Dieser Wert ist in der Regel grau (`grey`).
+Dieser Wert ist in der Regel grau (`gray`).
 
 `fillOpacity = 0.7`: der Transparenzwert eines Layers. Bei dem Wert
 handelt es sich um einen Dezimalwert von 0 bis 1. Dieser Wert liegt in der Regel
@@ -438,7 +440,7 @@ Werten beschreibt.
 Der Wert wird als String angegeben.
 
 `data_column = dem_el_energy`: Der Parameter `data_column` enthält den
-`property`-Wert welcher als Wert in der Choroplethkarte auf Gemeindeebene
+`property`-Wert, welcher als Wert in der Choroplethkarte auf Gemeindeebene
 Verwendung finden soll. Der `property`-Wert wird zwar im Modell definiert,
 aber in `views/serial_views.py` für die Verwendung im Layer explizit ausgewiesen.
 
@@ -447,7 +449,7 @@ welches in der jeweiligen Choroplethkarte Verwendung findet. Mögliche Werte
 richten sich nach den von Cynthia Brewer entwickelten Farbschemata. Mit dem
 von Frau Brewer entwickelten Online-Tool `colorbrewer2.org`_ lassen sich die
 passenden Farbschemata und ihre Bezeichnungen ermitteln. Um diese Funktionalität
-zur Verfügung zu stellen, verwendet dieses Projekt die JavaScript-Farbibliothek
+zur Verfügung zu stellen, verwendet dieses Projekt die JavaScript-Farbbibliothek
 `Chroma.js`_ als Unterbau.
 
 `min = 0`: der Parameter `min` definiert einen Minimalwert für die Choroplethkarte.
@@ -459,30 +461,30 @@ Dieser Maximalwert sollte sich am Maximalwert aller Werte aus `data_column` orie
 `step = 50`: der Parameter `step` definiert die Schrittgröße einer Farbabstufung
 einer Choropletkarte. Hierbei sollten sinnvolle Werte verwendet werden, welche
 mehrfach in das Intervall von Maximalwert minus Minimalwert passen. In unserem
-Beispiel hatt das Intervall eine Länge von 500, eine Schrittgröße von 50 und somit
-10 Farbabstufungen in der Choroplethkarte.
+Beispiel hat das Intervall eine Länge von 500, eine Schrittgröße von 50 und somit
+zehn Farbabstufungen in der Choroplethkarte.
 
 `reverse = false`: der Parameter `reverse` definiert, ob das verwendet Farbschema
 gedreht werden soll. Mögliche Werte sind hierbei `false` (nein) und `true` (ja).
-Ein Farbschema das z.B bei dem Minimalwert blau und beim Maximalwert rot ist, wird
-durch den Wert `true` farbtechnisch vertauscht, so dass der Minimalwert rot und
-der Maximalwert blau sind.
+Ein Farbschema das z.B. bei dem Minimalwert blau und beim Maximalwert rot ist, wird
+durch den Wert `true` vertauscht, so dass der Minimalwert rot und
+der Maximalwert blau ist.
 
 Die Verwendung von angepassten Popup-Fenstern in Layern
 .......................................................
 
-In jedem Layer können Popup-Fenster verwendet werden, welche das die einzelnen
+In jedem Layer können Popup-Fenster verwendet werden, welche die einzelnen
 Elemente eines Layers genauer beschreiben. In diesen Popup-Fenstern können
-desweiteren Charts verwendet werden, welche sich aus den Layerdaten speisen.
+des Weiteren Charts verwendet werden, welche sich aus den Layerdaten speisen.
 
-Standardmäßig ist eine Standard-Popup definiert, welcher Verwendung findet.
+Standardmäßig ist ein Standard-Popup definiert, welcher Verwendung findet.
 Dieser kann angepasst werden, indem ein eigenes Popup-Template verwendet wird.
-Hierbei wird der von Django zur Verfügunge gestellte Templatemechanimus_
+Hierbei wird der von Django zur Verfügung gestellte Templatemechanimus_
 verwendet, um das Standard-Popup zu erweitern.
 
 Die Templates der Popups befinden sich im Ordner `templates/stemp_abw/popups/`.
 Falls für einen neuen Layer ein angepasstes Popup erstellt werden soll, bietet
-es sich an eine bestehendes Popup-Template als Vorlage zu verwenden.
+es sich an, eine bestehendes Popup-Template als Vorlage zu verwenden.
 
 Im Folgenden soll exemplarisch auf das Popup-Template von `RegMunGenEnergyRe`_
 eingegangen werden::
@@ -534,7 +536,7 @@ Die Daten einer jeden Ansicht werden serialisiert und an einem bestimmten Endpun
 zur Verfügung gestellt, damit von der Applikation via AJAX-Abruf darauf zugegriffen
 werden kann.
 
-Im Folgendne soll hierbei exemplarisch auf die `Serialisierungsansicht von RegMunGenEnergyRe`_
+Im Folgenden soll hierbei exemplarisch auf die `Serialisierungsansicht von RegMunGenEnergyRe`_
 eingegangen werden::
 
     class RegMunGenEnergyReData(GeoJSONLayerView):
@@ -549,7 +551,7 @@ eingegangen werden::
 Als erstes wird das Modell (`model`) definiert, welches Verwendung finden soll.
 
 In einem zweiten Schritt werden alle `properties` aus dem Modell definiert,
-welche serialisert werden sollen, um an dem Endpunkt zur Verfügung zu stehen.
+welche serialisiert werden sollen, um an dem Endpunkt zur Verfügung zu stehen.
 
 Bei den Layern der Gemeinden orientieren sich die Endpunkte an den `Amtlichen
 Gemeindeschlüsseln`_ (AGS). Die Endpunkte bei der Gemeinde Dessau mit dem
@@ -559,7 +561,7 @@ AGS-Wert 15001000 sind somit::
     stemp_abw/popupjs/reg_mun_gen_energy_re/15001000/
 
 Unter `stemp_abw/popup/` finden sich hierbei die menschenlesbaren Daten für das
-Popup und unter `stemp_abw/popupjs/` befinden Daten, wenn ein Chart in einem Popup
+Popup und unter `stemp_abw/popupjs/` befinden sich Daten, wenn ein Chart in einem Popup
 Verwendung findet.
 
 
