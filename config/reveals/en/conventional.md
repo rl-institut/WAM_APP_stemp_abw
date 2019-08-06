@@ -1,23 +1,23 @@
-# Konventionelle Kraftwerke <img src="../../static/stemp_abw/img/energy_icons/Kraftwerk_Thermisches_Kraftwerk_technologieneutral.svg" alt="Kraftwerk" width="35">
+# Conventional Power Plants <img src="../../static/stemp_abw/img/energy_icons/Kraftwerk_Thermisches_Kraftwerk_technologieneutral.svg" alt="Kraftwerk" width="35">
 
-Zu den konventionellen Kraftwerken zählen alle Kraftwerke, die aus fossilen Quellen gespeist werden.
+Conventional power plants include all power plants fed from fossil sources.
 
-In diesem Tool werden folgende Erzeuger berücksichtigt (Stand: Ende 2018):
+The following power plants are included in this tool (as of the end of 2018):
 
-## Netto-Stromerzeugungsleistung > 10 Megawatt
+## Net electrcity generation capacity > 10 megawatt
 
-- 2 Erdgaskraftwerke (106 MW, 40 MW)
-- 1 Braunkohlekraftwerk (49 MW)
+- 2 gas-fired power plants (106 MW, 40MW)
+- 1 lignite-fired power plants (49 MW)
 
-Sie werden vereinfacht mit konstanter Einspeiseleistung und typischen Werten für die Jahresvolllaststunden betrieben:
+They run with simplified consistent feed-in power and typical/common data for the annual load hours are used:
 
-- Erdgaskraftwerk (Turbine): 1250 h/a
-- Erdgaskraftwerk (GuD): 2900 h/a
-- Braunkohlekraftwerk: 7000 h/a
+- gas-fired power plants (turbine): 1250 h/a
+- gas-fired power plants (CCGT): 2900 h/a
+- lignite-fired power plants: 7000h/a
 
-## Netto-Stromerzeugungsleistung < 10 Megawatt
+## Net electrcity generation capacity < 10 megawatt
 
-Hierzu zählen 21 Anlagen im Leistungsbereich von 750 kW bis 9,9 MW.
-Es werden eine wärmegeführte Betriebsweise und 5000 Jahresvolllaststunden angenommen.
+21 power plants with a power range of 750 kW to 9,9 MW fall under this category. 
+Additional assumptions are the heat-controlled operation with 5000 annual full load hours.
 
-(Quelle: Marktstammdatenregister der BNetzA)
+(Source: Core energy market data register of the BNetzA )
