@@ -1,5 +1,6 @@
-# Ausblick
+# Outlook
 
+This tool offers the possibility to display energy- and area-related data of the region Anhalt-Bitterfeld-Wittenberg. Furthermore, the formatted data gives a precise representation of each region.
 Dieses Tool bietet die Möglichkeit, sich energie- und flächenbezogene Daten der Region Anhalt-Bitterfeld-Wittenberg in aufbereiteter Form und gemeindescharf darstellen zu lassen. Neben einem allgemeinen Verständnis für das Energiesystem der Region soll es vor allem die Komplexität der Planungsaufgabe von Windenergieanlagen und Handlungsmöglichkeiten in diesem Prozess aufzeigen. Es ermöglicht außerdem den Vergleich eines selbst variierten Energiesystems mit dem Status Quo.
 
 Um dies in dem gegebenen Projektrahmen umsetzen zu können, mussten einige Vereinfachungen getroffen und andere Bereiche zunächst vernachlässigt werden. Hier soll beschrieben werden, welche Bereiche in möglichen Erweiterungen abgedeckt werden können. Bei allen möglichen Erweiterungen sei zu bedenken, dass die Komplexität des Tools mit jeder neuen Funktionalität ansteigt. Die Zielsetzung ist, die Informationen trotzdem auf eine verständliche Art und Weise zu transportieren.
