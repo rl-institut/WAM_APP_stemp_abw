@@ -1,6 +1,6 @@
 # Outlook
 
-This tool offers the possibility to display energy- and area-related data of the region Anhalt-Bitterfeld-Wittenberg. Furthermore, the formatted data gives a precise representation of each region.Although the emphasis lies in showing the complex process of planning wind turbines considering the given framework, the tool provides an overview of the regional energy system. It is possible to make a comparison between the self-edited energy system and the Status Quo.
+This tool offers the possibility to display energy and area related data of the region Anhalt-Bitterfeld-Wittenberg. Furthermore, the formatted data gives a precise representation of each region.Although the emphasis lies in showing the complex process of planning wind turbines considering the given framework, the tool provides an overview of the regional energy system. It is possible to make a comparison between the self-edited energy system and the Status Quo.
 
 To realize this project within the framework, specific aspects were initially left out and simplifications were made. The following points describe which aspects can be covered in possible extensions. It should be considered that the complexity of the tool increases with each new functionality. The objective is to transport the information in an understandable way.
 
