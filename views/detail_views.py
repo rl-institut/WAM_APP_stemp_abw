@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import pandas as pd
 import stemp_abw.models as models
 from django.views.generic import DetailView
@@ -6,6 +7,7 @@ from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
     LAYER_RESULT_METADATA, LAYER_AREAS_METADATA
 from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
+
 
 
 class MasterDetailView(DetailView):
@@ -108,11 +110,11 @@ class RegMunPopDetailView(MasterDetailView):
         pop_2050 = mun_data.pop_2050
         index = ['2017', '2030', '2050']
         data = pd.DataFrame(index=index,
-                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
+                            data={str(_('Personen')): [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
-            'title': {'text': 'Bevölkerungsentwicklung'},
-            'subtitle': {'text': 'Prognose'},
-            'yAxis': {'title': {'text': 'Personen'}}
+            'title': {'text': str(_('Bevölkerungsentwicklung'))},
+            'subtitle': {'text': str(_('Prognose'))},
+            'yAxis': {'title': {'text': str(_('Personen'))}}
         }
         chart = highcharts.HCTimeseries(
             data=data,

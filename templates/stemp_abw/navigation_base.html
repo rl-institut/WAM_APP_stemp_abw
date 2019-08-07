@@ -1,3 +1,4 @@
+{% load i18n %}
       <!-- MAIN NAVIGATION START -->
       <nav>
         <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
@@ -13,6 +14,25 @@
           </div>
           {% block link_to_wam %}
           {% endblock %}
+          <div>
+            <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select class="menu dropdown" name="language">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% get_available_languages as LANGUAGES %}
+                  {% get_language_info_list for LANGUAGES as languages %}
+                  <option value="de"{% if LANGUAGE_CODE == "de" %} selected{% endif %}>
+                    Deutsch (de)
+                  </option>
+                  <option value="en"{% if LANGUAGE_CODE == "en" %} selected{% endif %}>
+                    English (en)
+                  </option>
+                </select>
+            </form>
+          </div>
+          <div>
+            <input type="submit" class="menu btn" form="set-lang-form" value="OK">
+          </div>
           <div>{{ texts.welcome }}</div>
           <div>{{ texts.outlook }}</div>
           <div class="top-bar-right">
