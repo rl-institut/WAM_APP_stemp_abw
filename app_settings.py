@@ -5,6 +5,10 @@ from wam import settings
 
 # TODO: Explain vars!
 
+# tool language
+# available languages: German ('de') and English ('en')
+LANGUAGE = 'de'
+
 # import configs
 LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
@@ -39,12 +43,15 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
                                 'config',
+                                'labels',
+                                LANGUAGE,
                                 'labels.cfg'))
 
 TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
                               'stemp_abw',
                               'config',
-                              'reveals')
+                              'reveals',
+                              LANGUAGE)
 
 TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
                      'icon': icon}
