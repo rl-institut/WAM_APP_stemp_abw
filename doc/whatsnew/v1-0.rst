@@ -1,4 +1,4 @@
-v1.0 (25. Juni 2019)
+v1.0 (??. ???? 2019)
 ....................
 
 Die erste öffentliche Version des Tools!

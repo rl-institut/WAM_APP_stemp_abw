@@ -7013,7 +7013,7 @@ a.thumbnail {
     content: '';
     border-top-width: 0;
     border-bottom-style: solid;
-    border-color: transparent transparent #fefefe;
+    border-color: transparent transparent #81C3D7 !important;
     bottom: 100%; }
   .tooltip.bottom.align-center::before {
     left: 50%;
@@ -7028,7 +7028,7 @@ a.thumbnail {
     content: '';
     border-bottom-width: 0;
     border-top-style: solid;
-    border-color: #fefefe transparent transparent;
+    border-color: #81C3D7 transparent transparent !important;
     top: 100%;
     bottom: auto; }
   .tooltip.top.align-center::before {
@@ -8477,6 +8477,12 @@ a.thumbnail {
 
 div.choropleth_legend.leaflet-control {
     margin-bottom: 80px;
+}
+
+/* Tooltip */
+#simulation-btn.has-tip {
+    font-weight: 400;
+    cursor: pointer;
 }
 
 /* Map confirms */
