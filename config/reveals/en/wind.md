@@ -1,25 +1,26 @@
-# Windenergieanlagen und Repowering <img src="../../static/stemp_abw/img/energy_icons/Stromerzeuger_Windenergieanlage.svg" alt="WEA" width="35">
+# Wind Turbines and Repowering <img src="../../static/stemp_abw/img/energy_icons/Stromerzeuger_Windenergieanlage.svg" alt="WEA" width="35">
 
-Sie können hier ein Zubau-Szenario wählen:
+You can select a type of extension scenario here:
 
-1. **Kein Repowering:** Es wird kein Repowering vorgenommen (nur heutige Anlagen vorhanden, mittlere Volllaststunden für gesamte Region: 1630).
+1. **No Repowering:** No repowering will be carried out (only present wind plants, average full load hours for the entire region: 1630).
 
-2. **1:1-Repowering (standorttreu):** Standorttreues Repowering aller heute in Betrieb befindlichen Altanlagen durch eine neue Anlage, sowohl innerhalb als auch außerhalb von Vorranggebieten (VR/EG) für Windenergie. Diese Variante ist nicht mit den Vorgaben des Landesentwicklungsplans 2010 und 
+2. **1:1-Repowering (locally):** Local repowering of all currently active old plants by a new plant, both within and outside priority areas (VR/EG) for wind energy. Diese Variante ist nicht mit den Vorgaben des Landesentwicklungsplans 2010 und 
 
-3. **Variabler Zubau:** Sie können frei zubauen, wobei neben den Vorranggebieten (VR/EG) weitere Flächen verwendet werden. Das maximale Potenzial richtet sich nach den verfügbaren Flächen, welche Sie im Menü Flächen verändern können.
+3. **Variable extension:** You are free to choose your extension. Other areas can be selected in addition to the priority areas (VG/EG). The maximum potential depends on the available surfaces which can be adjusted in the area category.
 
-4. **Volle Nutzung VR/EG:** In allen aktuellen Vorranggebieten (VR/EG) für Windenergie wird ein Maximum an Neuanlagen installiert. Alle Anlagen außerhalb dieser Gebiete werden abgebaut.
+4. **Full utilization VR/EG:** A maximum number of new turbines will be installed in all current priority areas (VR/EG) for wind energy. All turbines outside these areas will be disassembled. 
 
-## Musteranlage
+## Model plant
 
-Als Neuanlage wird in den **Szenarien 2-4** vereinfacht eine Enercon E-141 (4,2 MW) mit einer Nabenhöhe von 159 m angenommen (im Mittel 2500 Volllaststunden in der gesamten Region).
+For the simplification an Enercon E-141 (4.2 MW) with a hub height of 159 m is used as the new plant in **scenarios 2-4**
+(on average 2500 full load hours in the entire region).
 
-**Wichtig:** Durch die höhere Effizienz neuer Anlagen kann bei _gleicher installierter Leistung ein größerer Ertrag_ erreicht werden. Wenn Sie also das Repowering bzw. den freien Zubau aktiviert haben, führt dies auch ohne zusätzliche Kapazitäten stets zu einem höheren Ertrag.
+**Attention:** Due to the higher efficiency of new plants, a higher energy production can be achieved with the same installed capacity. If you have activated repowering or free extension, this will always lead to a higher energy prodction even without additional capacity.
 
-## Randbedingungen
+## Framework
 
-- Die Altersstruktur der bestehenden Windenergieanlagen wird vernachlässigt, d.h. in den **Szenarien 2-4** wird kein sukzessiver Zubau o.ä. berücksichtigt.
-- Es wird keine Optimierung der Anlagenanordnung vorgenommen. Stattdessen wird pauschal wird ein Flächenbedarf von 20 Hektar pro Anlage zugrunde gelegt (basierend auf Annahmen aus
+- The different structure of existing wind turbines will be neglected, i.e. in **scenarios 2-4** no successive extensions or the like are taken into account.
+- The wind plant arrangement is not optimized. A general area requirement of 20 hectares per plant is assumed (based on assumptions from
 <a href="https://mlv.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MLV/Service/Publikationen/Abschlussbericht-Repowering-2018.pdf" target="_blank">ImAG 2018</a>, 
 <a href="https://www.umweltbundesamt.de/sites/default/files/medien/378/publikationen/potenzial_der_windenergie.pdf" target="_blank">UBA 2013</a>,
 <a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf" target="_blank">BMWi 2017</a>).
