@@ -26,5 +26,5 @@ Have fun exploring!
 
 <div style="background-color: #002E4F; color: #fff; width: 100%; padding: 0.5rem; vertical-align: middle; text-align: center;">
   <p style="margin: 0;"><strong>Tip 1: </strong>Behind each<i class ="icon ion-information-circled icon--small"></i> icon there is a short info text which can be opened by moving the mouse over it.</p>
-  <p style="margin: 0;"><strong>Tip 2: </strong>Behind each<i class ="icon ion-help-circled icon--small" style="color: #F2994A;"></i>icon is a detailed explanation, which can be opened by clicking on it.</p>
+  <p style="margin: 0;"><strong>Tip 2: </strong>Behind each<i class ="icon ion-help-circled icon--small" style="color: #F2994A;"></i> icon is a detailed explanation, which can be opened by clicking on it.</p>
 </div>
