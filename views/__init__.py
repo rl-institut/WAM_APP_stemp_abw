@@ -2,9 +2,9 @@ from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config.prepare_context import COMPONENT_DATA, SCENARIO_DATA,\
+from stemp_abw.config.prepare_context import component_data, SCENARIO_DATA,\
     prepare_layer_data
-from stemp_abw.config.prepare_texts import LABEL_DATA, TEXT_DATA
+from stemp_abw.config.prepare_texts import label_data, text_data
 from stemp_abw.config.leaflet import LEAFLET_CONFIG
 from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
@@ -86,10 +86,10 @@ class MapView(TemplateView):
                                             if data['cat'] == 'results'}
         context.update(layer_data)
 
-        context.update(COMPONENT_DATA)
+        context.update(component_data())
         context.update(SCENARIO_DATA)
-        context.update(LABEL_DATA)
-        context.update(TEXT_DATA)
+        context.update(label_data())
+        context.update(text_data())
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
         context['results_charts_tab1_viz'] = results_charts_tab1_viz

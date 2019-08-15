@@ -51,6 +51,7 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                              'config',
                                              'esys_areas.cfg'))
 
+
 def labels():
     language = get_language_or_fallback()
     return ConfigObj(os.path.join(settings.BASE_DIR,
@@ -59,18 +60,24 @@ def labels():
                                     language,
                                     'labels.cfg'))
 
-TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
-                              'stemp_abw',
-                              'locale',
-                              DEFAULT_LANGUAGE,
-                              'reveals')
 
-TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
+def text_files_dir():
+    language = get_language_or_fallback()
+    return os.path.join(settings.BASE_DIR,
+                                  'stemp_abw',
+                                  'locale',
+                                  language,
+                                  'reveals')
+
+
+def text_files():
+    return {name: {'file': os.path.join(text_files_dir(), f'{name}.md'),
                      'icon': icon}
               for name, icon in
               {'welcome': 'ion-help-buoy',
                'outlook': 'ion-navigate'}.items()
               }
+
 
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
 

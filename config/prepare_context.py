@@ -7,7 +7,7 @@ from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
 from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
     LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
-    ESYS_AREAS_METADATA, labels, TEXT_FILES_DIR
+    ESYS_AREAS_METADATA, labels, text_files_dir
 
 
 def prepare_layer_data():
@@ -83,8 +83,8 @@ def prepare_layer_data():
     return layer_data
 
 
-def prepare_component_data():
-    component_data = {}
+def component_data():
+    component_data_store = {}
 
     # update component/area and group labels using labels config
     comp_metadata = OrderedDict()
@@ -146,15 +146,15 @@ def prepare_component_data():
     comp_groups = comp_metadata.copy()
     for grp, comps in comp_groups.items():
         comp_groups[grp]['comps'] = ComponentGroupForm(components=comps['comps'])
-    component_data['comp_groups'] = comp_groups
+    component_data_store['comp_groups'] = comp_groups
 
     # create area groups for areas panel (variable areas) using components config
     area_groups = area_metadata.copy()
     for grp, comps in area_groups.items():
         area_groups[grp]['comps'] = AreaGroupForm(components=comps['comps'])
-    component_data['area_groups'] = area_groups
+    component_data_store['area_groups'] = area_groups
 
-    return component_data
+    return component_data_store
 
 
 def prepare_scenario_data():
@@ -166,7 +166,7 @@ def create_panel_reveal_info_button(reveal_id, reveal_icon):
     """Creates reveal window with trigger button with content from markdown file
     (panel info button, e.g. in wind slider)
     """
-    f = open(os.path.join(TEXT_FILES_DIR, f'{reveal_id}.md'), 'r', encoding='utf-8')
+    f = open(os.path.join(text_files_dir(), f'{reveal_id}.md'), 'r', encoding='utf-8')
     popup = InfoButton(text=f.read(),
                        tooltip='Bitte klicken!',
                        is_markdown=True,
@@ -177,6 +177,4 @@ def create_panel_reveal_info_button(reveal_id, reveal_icon):
     f.close()
     return popup
 
-
-COMPONENT_DATA = prepare_component_data()
 SCENARIO_DATA = prepare_scenario_data()
