@@ -48,9 +48,9 @@ LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
 
 TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
                               'stemp_abw',
-                              'config',
-                              'reveals',
-                              LANGUAGE)
+                              'locale',
+                              LANGUAGE,
+                              'reveals')
 
 TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
                      'icon': icon}
