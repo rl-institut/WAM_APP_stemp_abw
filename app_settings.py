@@ -1,13 +1,24 @@
 import os
+from django.utils import translation
 from configobj import ConfigObj
 
 from wam import settings
 
 # TODO: Explain vars!
 
-# tool language
-# available languages: German ('de') and English ('en')
-LANGUAGE = 'de'
+# Set default language for app
+DEFAULT_LANGUAGE = 'de'
+
+# Store which defines all available languages for an app
+LANGUAGE_STORE = ['de', 'en']
+
+# Get the language of current app thread or fallback to default language.
+def get_language_or_fallback():
+    current_thread_language = translation.get_language()
+    if current_thread_language in LANGUAGE_STORE:
+        return current_thread_language
+    else:
+        return DEFAULT_LANGUAGE
 
 # import configs
 LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
@@ -40,16 +51,18 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                              'config',
                                              'esys_areas.cfg'))
 
-LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
-                                'stemp_abw',
-                                'locale',
-                                LANGUAGE,
-                                'labels.cfg'))
+def labels():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'labels.cfg'))
 
 TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
                               'stemp_abw',
                               'locale',
-                              LANGUAGE,
+                              DEFAULT_LANGUAGE,
                               'reveals')
 
 TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),

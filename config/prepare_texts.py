@@ -1,10 +1,10 @@
 from utils.widgets import InfoButton
-from stemp_abw.app_settings import LABELS, TEXT_FILES
+from stemp_abw.app_settings import labels, TEXT_FILES
 
 def prepare_label_data():
-    return {'panels': LABELS['panels'],
-            'tooltips': LABELS['tooltips'],
-            'charts': LABELS['charts']}
+    return {'panels': labels()['panels'],
+            'tooltips': labels()['tooltips'],
+            'charts': labels()['charts']}
 
 
 def create_reveal_info_button():

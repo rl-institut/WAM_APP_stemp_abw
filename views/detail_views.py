@@ -3,7 +3,7 @@ import pandas as pd
 import stemp_abw.models as models
 from django.views.generic import DetailView
 from meta.models import Source
-from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
+from stemp_abw.app_settings import labels, LAYER_REGION_METADATA, \
     LAYER_RESULT_METADATA, LAYER_AREAS_METADATA
 from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
@@ -52,8 +52,8 @@ class MasterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
-        context['title'] = LABELS['layers'][self.model.name]['title']
-        context['text'] = LABELS['layers'][self.model.name]['text']
+        context['title'] = labels()['layers'][self.model.name]['title']
+        context['text'] = labels()['layers'][self.model.name]['text']
 
         # Get app_name from request
         app_name = self.request.resolver_match.app_name
