@@ -1,4 +1,8 @@
 {% load i18n %}
+{% load language_tags %}
+{% language_store as languages %}
+{% get_current_language as current_language %}
+
       <!-- MAIN NAVIGATION START -->
       <nav>
         <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
@@ -18,13 +22,12 @@
             <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">{% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
                 <select class="menu dropdown" name="language">
-                  {% get_current_language as LANGUAGE_CODE %}
-                  <option value="de"{% if LANGUAGE_CODE == "de" %} selected{% endif %}>
-                    Deutsch (de)
-                  </option>
-                  <option value="en"{% if LANGUAGE_CODE == "en" %} selected{% endif %}>
-                    English (en)
-                  </option>
+                  {% for language in languages %}
+                    {% get_language_info for language as lang %}
+                    <option value="{{ language }}" {% if current_language == language %} selected{% endif %}>
+                      {{lang.code}} ({{ lang.name_local }})
+                    </option>
+                  {% endfor %}
                 </select>
             </form>
           </div>
