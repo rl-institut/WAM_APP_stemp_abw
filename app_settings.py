@@ -42,8 +42,7 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
 
 LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
                                 'stemp_abw',
-                                'config',
-                                'labels',
+                                'locale',
                                 LANGUAGE,
                                 'labels.cfg'))
 
