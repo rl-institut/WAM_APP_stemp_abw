@@ -12,6 +12,7 @@
     <!--<li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>-->
     <li>Über das neue <strong>Feedback-Formular</strong> können Sie uns nun Rückmeldung zum Tool geben (s. Hauptmenü)</li>
     <li><strong>Ausführlichere Erklärtexte</strong> (z.B. bei Windenergieanlagen und konventionellen Kraftwerken)</li>
+    <li><strong>Einwohnerzahlen und Wärmebedarfe</strong> korrigiert</li>
     <li>Weitere <strong>Diverse Bugfixes</strong></li>
   </ul>
 </div>
