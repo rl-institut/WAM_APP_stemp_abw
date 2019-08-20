@@ -1,7 +1,6 @@
 {% extends "stemp_abw/base.html" %}
-
 {% load staticfiles %}
-
+{% load i18n %}
 {% load leaflet_tags %}
 {% load geojson_tags %}
 
@@ -35,7 +34,7 @@
       <div class="cell">
         <div class="loader"></div>
         <div class="loader__text">
-          <p id="loader-text">Daten werden geladen</p>
+          <p id="loader-text">{% trans 'Daten werden geladen' %}</p>
           <p id="loader-detail-text"></p>
         </div>
       </div>
@@ -55,7 +54,7 @@
                   <li class="tabs-title is-active" id="tabsRegion">
                     <a href="#panel-region" aria-selected="true">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
-                      <h2 class="tabs-title__head">Region</h2>
+                      <h2 class="tabs-title__head">{% trans 'Region' %}</h2>
                     </a>
                   </li>
                   <!--<li class="tabs-title" id="tabsScenarios">-->
@@ -68,7 +67,7 @@
                     <a href="#panel-energy">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
                       <div style="float: right;" id="rc-tooltip-esys" title="{{ tooltips.tabs_esys_changes.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
-                      <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
+                      <h2 class="tabs-title__head tabs-title__head--long">{% trans 'Energie-<br>system' %}</h2>
                     </a>
                   </li>
                   <li class="tabs-title" id="tabsAreas">
@@ -76,14 +75,14 @@
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
                       <div style="float: right;" id="rc-tooltip-areas-enabled" title="{{ tooltips.tabs_areas_changes_enabled.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
                       <div style="float: right;" id="rc-tooltip-areas-disabled" title="{{ tooltips.tabs_areas_changes_disabled.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
-                      <h2 class="tabs-title__head">Flächen</h2>
+                      <h2 class="tabs-title__head">{% trans 'Flächen' %}</h2>
                     </a>
                   </li>
                   <li class="tabs-results tabs-title" id="tabsResults">
                     <a href="#panel-results">
                       <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
                       <div style="float: right;" id="rc-tooltip-results-available" title="<i class='icon ion-checkmark-circled icon--small'></i>{{ tooltips.tabs_results_available.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
-                      <h2 class="tabs-title__head">Ergebnisse</h2>
+                      <h2 class="tabs-title__head">{% trans 'Ergebnisse' %}</h2>
                     </a>
                   </li>
                 </ul>
@@ -180,14 +179,14 @@
                     <!--<a class="btn btn-cta" id="openAreaTab">-->
                       <!--Zu Flächen springen-->
                     <!--</a>-->
-                    <p style="padding-left: 1rem;">Bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
+                    <p style="padding-left: 1rem;">{% trans 'Bitte ein Vergleichs-Szenario auswählen' %} <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
                     <div class="grid-x">
                       <div class="cell small-9">
                         {% include "forms/scenario_menu.html" %}
                       </div>
                       <div class="cell small-2">
                         <button type="submit" class="btn btn-rect-small" id="apply-scn-btn" onclick="ctrlScenario(this.id)" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
-                          Übernehmen
+                          {% trans 'Übernehmen' %}
                         </button>
                       </div>
                       <div class="cell small-1"></div>
@@ -195,7 +194,7 @@
 
                     {% include "forms/esys_components.html" %}
 
-                    <p style="padding-left: 1rem;">In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung.</p>
+                    <p style="padding-left: 1rem;">{% trans 'In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung.' %}</p>
 
                     <!--<div class="grid-x">-->
 
@@ -231,8 +230,8 @@
                     <div class="grid-x">
                       <div class="cell" id="areas-wrap">
                         <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                          <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
-                          <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
+                          <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">{% trans 'Variierbare Flächen' %}</a></li>
+                          <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">{% trans 'Statische Flächen' %}</a></li>
                         </ul>
 
                         <div class="tabs-content" data-tabs-content="deeplinked-tabs">
@@ -241,7 +240,7 @@
                             <div class="grid-x">
                               <div class="cell">
                                 <p>
-                                  Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
+                                  {% trans 'Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.' %}
                                   <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                 </p>
                               </div>
@@ -259,12 +258,12 @@
                               <div class="grid-x">
                               <div class="cell">
                                 <p>
-                                  Hier erfahren Sie mehr über Restriktionsflächen.
+                                  {% trans 'Hier erfahren Sie mehr über Restriktionsflächen.' %}
                                   <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}" data-tooltip data-position="right" data-alignment="center"></i>
                                 </p>
                               </div>
                                 <div class="cell small-11">
-                                  <p>Alle Ebenen anzeigen</p>
+                                  <p>{% trans 'Alle Ebenen anzeigen' %}</p>
                                 </div>
                                 <div class="cell small-1">
                                   <div class="switch tiny master">
@@ -353,7 +352,7 @@
                       <div class="cell large-2 u-text--center"></div>
                       <div class="cell large-8 u-text--center">
                         <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                          Mehr Ergebnisgrafiken
+                          {% trans 'Mehr Ergebnisgrafiken' %}
                           <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
                         </button>
                       </div>
@@ -364,7 +363,7 @@
                         </button>
                       </div>
                       <div class="cell" id="results-collapsed">
-                        <p id="simulation-info" style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;" hidden>Werte müssen berechnet werden - bitte Simulation starten!</p>
+                        <p id="simulation-info" style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;" hidden>{% trans 'Werte müssen berechnet werden - bitte Simulation starten!' %}</p>
                         {% include "forms/layer_results_select.html" %}
                         <!--<form>-->
                           <!--<fieldset>-->
@@ -441,25 +440,25 @@
         <div class="cell" id="footer-logos">
           <ul class="map-footer__logo">
             <li>
-              <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="Energieavantgarde Anhalt">
-                <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
+              <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Energieavantgarde Anhalt' %}">
+                <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="{% trans 'Logo Energieavantgarde Anhalt' %}">
               </a>
             </li>
             <li>
-              <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="Reiner Lemoine Institut">
-                <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
+              <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Reiner Lemoine Institut' %}">
+                <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="{% trans 'Logo Reiner Lemoine Institut' %}">
               </a>
             </li>
             <li>
-              <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="Kopernikus Projekte">
-                <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="Logo ENavi">
+              <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Kopernikus Projekte' %}">
+                <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="{% trans 'Logo ENavi' %}">
               </a>
             </li>
             <li>
-              <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="Bundesministerium für Bildung und Forschung">
+              <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Bundesministerium für Bildung und Forschung' %}">
 <!--                <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">-->
                 <div style="font-size: 0.8rem; width: 9rem; vertical-align: middle; height: auto; display: inline-block; text-align:center; border: 1px solid;">
-                  <p style="margin: 0;">Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> (FKZ 03SFK4E1)</p>
+                  <p style="margin: 0;">{% trans 'Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> (FKZ 03SFK4E1)' %}</p>
                 </div>
               </a>
             </li>
@@ -483,7 +482,7 @@
         </div>
 
         <div class="tiny reveal" id="saveSimulation" data-reveal>
-          Dieses Feature ist derzeit noch nicht verfügbar.
+          {% trans 'Dieses Feature ist derzeit noch nicht verfügbar.' %}
           <!--<p>Geben Sie dem Szenario einen Namen</p>-->
           <!--<label>-->
             <!--<input type="text" placeholder="Szenarioname">-->
@@ -501,19 +500,19 @@
     </footer>
 
     <div class="tiny reveal" id="errorMessage" data-reveal>
-      <h2>Fehler</h2>
-      <p>Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu.</p>
+      <h2>{% trans 'Fehler' %}</h2>
+      <p>{% trans 'Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu.' %}</p>
     </div>
 
     <!-- indexConfirm -->
     <div class="tiny reveal" id="indexConfirm" data-reveal>
-      <h3>Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren.</h3>
+      <h3>{% trans 'Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren.' %}</h3>
       <div class="grid-x">
         <div class="cell small-12" style="text-align: center;">
           <a href="{% url 'stemp_abw:index' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
         </div>
         <div class="cell small-12" style="text-align: center;">
-          <button data-close class="btn btn-apply btn-apply--secondary">Abbruch</button>
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
         </div>
       </div>
     </div>
@@ -655,7 +654,7 @@
                         if (layer_ctr == layer_count) {
                             loader_text[0].style = 'color: #62f476; font-weight: bold';
                             //loader_text[0].style.font-weight = 'bold';
-                            loader_text.text('Fertig!');
+                            loader_text.text("{% trans 'Fertig!' %}");
                             setTimeout(function(){
                                 toggleSpinnerVisibility();
                             }, 500);
@@ -663,9 +662,9 @@
                         };
                     },
                     error: function(page) {
-                        console.log('Fehler beim Laden der Daten!');
+                        console.log("{% trans 'Fehler beim Laden der Daten!' %}");
                         loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        loader_text.text('Fehler beim Laden der Daten!');
+                        loader_text.text("{% trans 'Fehler beim Laden der Daten!' %}");
                     }
                 });
             {% endfor %}
@@ -897,13 +896,13 @@
                           if (layer_ctr == layer_count) {
                               loader_text[0].style = 'color: #62f476; font-weight: bold';
                               //loader_text[0].style.font-weight = 'bold';
-                              loader_text.text('Fertig!');
+                              loader_text.text("{% trans 'Fertig!' %}");
                           };
                       },
                       error: function(page) {
-                          console.log('Fehler beim Laden der Daten!');
+                          console.log("{% trans 'Fehler beim Laden der Daten!' %}");
                           loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                          loader_text.text('Fehler beim Laden der Daten!');
+                          loader_text.text("{% trans 'Fehler beim Laden der Daten!' %}");
                       }
                   });
                 });

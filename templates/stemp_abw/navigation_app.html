@@ -1,4 +1,5 @@
 {% extends "stemp_abw/navigation_base.html" %}
+{% load i18n %}
 
-{% block startpage_link_1 %}<li><a data-open="indexConfirm" class="anchor-text--light" href="#">Startseite</a></li>{% endblock %}
-{% block startpage_link_2 %}<li><a data-open="indexConfirm" class="anchor-text--light" href="#">Startseite</a></li>{% endblock %}
+{% block startpage_link_1 %}<li><a data-open="indexConfirm" class="anchor-text--light" href="#">{% trans 'Startseite' %}</a></li>{% endblock %}
+{% block startpage_link_2 %}<li><a data-open="indexConfirm" class="anchor-text--light" href="#">{% trans 'Startseite' %}</a></li>{% endblock %}

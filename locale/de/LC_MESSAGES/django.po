@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-20 14:25+0200\n"
+"POT-Creation-Date: 2019-08-20 15:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,583 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/stemp_abw/contact.html:11
+msgid "Projektleiterin"
+msgstr ""
+
+#: templates/stemp_abw/contact.html:12 templates/stemp_abw/contact.html:16
+msgid "E-Mail"
+msgstr ""
+
+#: templates/stemp_abw/contact.html:15
+msgid "Wissenschaftlicher Mitarbeiter"
+msgstr ""
+
+#: templates/stemp_abw/contact.html:22
+msgid "Aufgang D"
+msgstr ""
+
+#: templates/stemp_abw/contact.html:26 templates/stemp_abw/imprint.html:26
+msgid "Telefon"
+msgstr ""
+
+#: templates/stemp_abw/contact.html:27
+msgid "Telefax"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:220
+#: templates/stemp_abw/navigation_base.html:52
+msgid "Impressum"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:12
+msgid "Herausgeber"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:13
+msgid ""
+"Diese Internetseite wird betrieben von der Reiner Lemoine Institut gGmbH"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:16
+msgid "Geschäftsführung"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:20
+msgid "Postanschrift:"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:27
+msgid "Fax"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:30
+msgid "Handelsregister Berlin"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:33
+msgid "Steuernummer"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:36
+msgid "USt-IdNr."
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:39
+msgid "Disclaimer"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:42
+msgid "1. Haftungshinweis"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:43
+msgid ""
+"Die Inhalte sind mit größter Sorgfalt recherchiert. Dennoch übernimmt der\n"
+"      Autor keinerlei Gewähr für die Aktualität, Korrektheit, "
+"Vollständigkeit\n"
+"      oder Qualität der bereitgestellten Informationen. Haftungsansprüche "
+"gegen\n"
+"      den Autor, welche sich auf Schäden materieller oder ideeller Art "
+"beziehen\n"
+"      die durch die Nutzung oder Nichtnutzung der dargebotenen "
+"Informationen\n"
+"      bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen\n"
+"      verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens "
+"des\n"
+"      Autors kein nachweislich vorsätzliches oder grob fahrlässiges "
+"Verschulden\n"
+"      vorliegt. Alle Angebote sind freibleibend und unverbindlich. Der "
+"Autor\n"
+"      behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte "
+"Angebot\n"
+"      ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder "
+"die\n"
+"      Veröffentlichung zeitweise oder endgültig einzustellen."
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:57
+msgid "2. Verweise und Links"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:58
+msgid ""
+"Bei direkten oder indirekten Verweisen auf fremde Internetseiten\n"
+"      („Links”), die außerhalb des Verantwortungsbereiches des Autors "
+"liegen,\n"
+"      würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft\n"
+"      treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm\n"
+"      technisch möglich und zumutbar wäre, die Nutzung im Falle "
+"rechtswidriger\n"
+"      Inhalte zu verhindern. Der Autor erklärt daher ausdrücklich, dass zum\n"
+"      Zeitpunkt der Linksetzung die entsprechenden verlinkten Seiten frei "
+"von\n"
+"      illegalen Inhalten waren. Der Autor hat keinerlei Einfluss auf die\n"
+"      aktuelle und zukünftige Gestaltung und auf die Inhalte der\n"
+"      gelinkten/verknüpften Seiten. Deshalb distanziert er sich hiermit\n"
+"      ausdrücklich von allen Inhalten aller gelinkten /verknüpften Seiten, "
+"die\n"
+"      nach der Linksetzung verändert wurden. Diese Feststellung gilt für "
+"alle\n"
+"      innerhalb des eigenen Internetangebotes gesetzten Links und Verweise "
+"sowie\n"
+"      für Fremdeinträge in vom Autor eingerichteten Gästebüchern,\n"
+"      Diskussionsforen und Mailinglisten. Für illegale, fehlerhafte oder\n"
+"      unvollständige Inhalte und insbesondere für Schäden, die aus der "
+"Nutzung\n"
+"      oder Nichtnutzung solcherart dargebotener Informationen entstehen, "
+"haftet\n"
+"      allein der Anbieter der Seite, auf welche verwiesen wurde, nicht\n"
+"      derjenige, der über Links auf die jeweilige Veröffentlichung "
+"lediglich\n"
+"      verweist."
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:80
+msgid "3. Urheber- und Kennzeichenrecht"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:81
+msgid ""
+"Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der\n"
+"      verwendeten Grafiken, Tondokumente, Videosequenzen und Texte zu "
+"beachten,\n"
+"      von ihm selbst erstellte Grafiken, Tondokumente, Videosequenzen und "
+"Texte\n"
+"      zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen "
+"und\n"
+"      Texte zurückzugreifen. Alle innerhalb des Internetangebotes genannten "
+"und\n"
+"      ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen\n"
+"      uneingeschränkt den Bestimmungen des jeweils gültigen "
+"Kennzeichenrechts\n"
+"      und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein\n"
+"      aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass\n"
+"      Markenzeichen nicht durch Rechte Dritter geschützt sind! Das Copyright "
+"für\n"
+"      veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein "
+"beim\n"
+"      Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher "
+"Grafiken,\n"
+"      Tondokumente, Videosequenzen und Texte in anderen elektronischen oder\n"
+"      gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors\n"
+"      nicht gestattet."
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:98
+msgid "4. Rechtswirksamkeit dieses Haftungsausschlusses"
+msgstr ""
+
+#: templates/stemp_abw/imprint.html:99
+msgid ""
+"Dieser Haftungsausschluss ist als Teil des Internetangebotes zu\n"
+"      betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile "
+"oder\n"
+"      einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht,\n"
+"      nicht mehr oder nicht vollständig entsprechen sollten, bleiben die "
+"übrigen\n"
+"      Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon "
+"unberührt.\n"
+"      "
+msgstr ""
+
+#: templates/stemp_abw/index.html:13
+msgid "Regionaler Energiebalancekreis Anhalt-Bitterfeld-Wittenberg"
+msgstr ""
+
+#: templates/stemp_abw/index.html:16
+msgid "Szenarien unter dem Aspekt einer abgestimmten Flächennutzung"
+msgstr ""
+
+#: templates/stemp_abw/index.html:19
+msgid "Anhalt Karte als Bild"
+msgstr ""
+
+#: templates/stemp_abw/index.html:23
+#: templates/stemp_abw/navigation_start.html:4
+msgid "Zum Tool"
+msgstr ""
+
+#: templates/stemp_abw/index.html:29
+msgid "Neu hier?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:37
+msgid ""
+"Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die "
+"Partizipation der Bürger und Bürgerinnen. Allerdings erschwert die "
+"Komplexität von Energiesystemen und damit verbundenen Fragestellungen den "
+"Partizipationsprozess oft erheblich."
+msgstr ""
+
+#: templates/stemp_abw/index.html:38
+msgid ""
+"Der Szenarienrechner schafft die Möglichkeit, allen interessierten "
+"Anspruchsgruppen ein besseres Verständnis über verschiedene Szenarien des "
+"regionalen Energiebalancekreises zu vermitteln und die Auswirkungen von "
+"Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige "
+"Diskussion geschaffen und eine gemeinsame Planung ermöglicht."
+msgstr ""
+
+#: templates/stemp_abw/index.html:46
+msgid ""
+"Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in "
+"Zukunft aussehen?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:49
+msgid "Partizipation"
+msgstr ""
+
+#: templates/stemp_abw/index.html:50
+msgid ""
+"Regionale Akteure, insbesondere BürgerInnen, sollen ermutigt werden, seriös "
+"und real an der Mitgestaltung der Energiewende in ABW teilzunehmen. Durch "
+"anschauliches Design und geeignete Moderation werden die komplexen "
+"Zusammenhänge erfahr- und diskutierbar."
+msgstr ""
+
+#: templates/stemp_abw/index.html:53
+msgid "Effizientere Arbeitsweise"
+msgstr ""
+
+#: templates/stemp_abw/index.html:54
+msgid ""
+"Die regionale Energiewende kann mit besser verhandelten Ergebnissen "
+"effizienter vorangetrieben werden. Es wird, in der Gesamtheit, eine bessere "
+"Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht."
+msgstr ""
+
+#: templates/stemp_abw/index.html:59
+msgid "Tieferes Verständnis"
+msgstr ""
+
+#: templates/stemp_abw/index.html:60
+msgid ""
+"Dieses Tool wird nicht nur dabei helfen, die Zusammenhänge zwischen "
+"verschiedenen Systemen der Energiewirtschaft, Ökologie und Kulturlandschaft "
+"besser zu erklären, auch die Interessen und Werte der regionalen "
+"Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis "
+"wächst - auch und gerade bei unterschiedlichen Meinungen."
+msgstr ""
+
+#: templates/stemp_abw/index.html:63
+msgid "Open Science"
+msgstr ""
+
+#: templates/stemp_abw/index.html:64
+msgid ""
+"Daten und Quellcodes werden für alle Interessenten bereitgestellt. Das "
+"schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher "
+"Tools somit erleichtert werden."
+msgstr ""
+
+#: templates/stemp_abw/index.html:74
+msgid "Wie funktioniert das Tool?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:85
+msgid "Verschaffe dir einen Überblick über deine Region"
+msgstr ""
+
+#: templates/stemp_abw/index.html:87
+msgid "Wieviele Menschen leben in den Gemeinden?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:88
+msgid "Wieviel Strom kommt aus Erneuerbaren Energien?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:89
+msgid "Wieviele Windkraftanlagen stehen in den Gemeinden?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:90
+msgid "Welcher Flächenbelastung entspricht das?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:95
+msgid "Bild Region"
+msgstr ""
+
+#: templates/stemp_abw/index.html:106
+msgid "Definiere dein eigenes Szenario / Energiesystem"
+msgstr ""
+
+#: templates/stemp_abw/index.html:108
+msgid "Untersuche das Energiesystem der Region"
+msgstr ""
+
+#: templates/stemp_abw/index.html:109
+msgid "Wähle ein Zubauszenario für Windenergie"
+msgstr ""
+
+#: templates/stemp_abw/index.html:110
+msgid ""
+"Variiere den Anteil von Windenergie- Photovoltaik- und Biomasseanlagen oder "
+"konventionellen Kraftwerken"
+msgstr ""
+
+#: templates/stemp_abw/index.html:111
+msgid "Passe den Verbrauch der Region an"
+msgstr ""
+
+#: templates/stemp_abw/index.html:116
+msgid "Bild Energiesystem"
+msgstr ""
+
+#: templates/stemp_abw/index.html:127
+msgid "Passe Flächen für Windenergie an"
+msgstr ""
+
+#: templates/stemp_abw/index.html:129
+msgid "Sieh dir vorhandene Vorrangflächen für Windenergie an"
+msgstr ""
+
+#: templates/stemp_abw/index.html:130
+msgid "Sieh dir die Tabuzonen für Windenergie in der Region an"
+msgstr ""
+
+#: templates/stemp_abw/index.html:131
+msgid ""
+"Entscheide ob der Mindestabstand zu Siedlungen verändert werden soll, um "
+"mehr Windenergieanlagen bauen zu können"
+msgstr ""
+
+#: templates/stemp_abw/index.html:132
+msgid ""
+"Entscheide ob Waldgebiete zum Bau von Windenergieanlagen zur Verfügung "
+"stehen sollen"
+msgstr ""
+
+#: templates/stemp_abw/index.html:133
+msgid ""
+"Beobachte die Auswirkungen in der Karte und auf die mögliche Stromerzeugung "
+"des Energiesystems"
+msgstr ""
+
+#: templates/stemp_abw/index.html:138
+msgid "Bild Flächennutzung"
+msgstr ""
+
+#: templates/stemp_abw/index.html:149
+msgid "Vergleiche die Ergebnisse mit dem Status Quo"
+msgstr ""
+
+#: templates/stemp_abw/index.html:151
+msgid ""
+"Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der "
+"Region?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:152
+msgid "Wie viele Windkraftanlagen pro km² kommen hinzu?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:153
+msgid "Wie verändert sich der Im- und Export von Strom?"
+msgstr ""
+
+#: templates/stemp_abw/index.html:158
+msgid "Bild Ergebnisse"
+msgstr ""
+
+#: templates/stemp_abw/index.html:168
+msgid "Get involved!"
+msgstr ""
+
+#: templates/stemp_abw/index.html:171
+#: templates/stemp_abw/navigation_base.html:48
+msgid "Dokumentation"
+msgstr ""
+
+#: templates/stemp_abw/index.html:172
+msgid ""
+"Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation "
+"auf"
+msgstr ""
+
+#: templates/stemp_abw/index.html:176
+msgid "Der Quellcode ist auf"
+msgstr ""
+
+#: templates/stemp_abw/index.html:176
+msgid "unter der Lizenz GNU AGPL v3 frei verfügbar."
+msgstr ""
+
+#: templates/stemp_abw/index.html:192 templates/stemp_abw/map.html:443
+msgid "Energieavantgarde Anhalt"
+msgstr ""
+
+#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
+msgid "Logo Energieavantgarde Anhalt"
+msgstr ""
+
+#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
+msgid "Reiner Lemoine Institut"
+msgstr ""
+
+#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+msgid "Logo Reiner Lemoine Institut"
+msgstr ""
+
+#: templates/stemp_abw/index.html:202 templates/stemp_abw/map.html:453
+msgid "Kopernikus Projekte"
+msgstr ""
+
+#: templates/stemp_abw/index.html:203 templates/stemp_abw/map.html:454
+msgid "Logo ENavi"
+msgstr ""
+
+#: templates/stemp_abw/index.html:207 templates/stemp_abw/map.html:458
+msgid "Bundesministerium für Bildung und Forschung"
+msgstr ""
+
+#: templates/stemp_abw/index.html:210 templates/stemp_abw/map.html:461
+msgid ""
+"Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> "
+"(FKZ 03SFK4E1)"
+msgstr ""
+
+#: templates/stemp_abw/index.html:219
+#: templates/stemp_abw/navigation_base.html:51
+msgid "Kontakt"
+msgstr ""
+
+#: templates/stemp_abw/index.html:221
+#: templates/stemp_abw/navigation_base.html:41
+msgid "Datenschutz"
+msgstr ""
+
+#: templates/stemp_abw/index.html:222
+msgid "Lizenz"
+msgstr ""
+
+#: templates/stemp_abw/index.html:224
+msgid "Reiner Lemoine Institut gGmbH"
+msgstr ""
+
+#: templates/stemp_abw/map.html:37
+msgid "Daten werden geladen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:57
+msgid "Region"
+msgstr ""
+
+#: templates/stemp_abw/map.html:70
+msgid "Energie-<br>system"
+msgstr ""
+
+#: templates/stemp_abw/map.html:78
+msgid "Flächen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:85
+msgid "Ergebnisse"
+msgstr ""
+
+#: templates/stemp_abw/map.html:182
+msgid "Bitte ein Vergleichs-Szenario auswählen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:189
+msgid "Übernehmen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:197
+msgid ""
+"In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten "
+"geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
+msgstr ""
+
+#: templates/stemp_abw/map.html:233
+msgid "Variierbare Flächen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:234
+msgid "Statische Flächen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:243
+msgid ""
+"Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf "
+"das Energiesystem haben."
+msgstr ""
+
+#: templates/stemp_abw/map.html:261
+msgid "Hier erfahren Sie mehr über Restriktionsflächen."
+msgstr ""
+
+#: templates/stemp_abw/map.html:266
+msgid "Alle Ebenen anzeigen"
+msgstr ""
+
+#: templates/stemp_abw/map.html:355
+msgid "Mehr Ergebnisgrafiken"
+msgstr ""
+
+#: templates/stemp_abw/map.html:366
+msgid "Werte müssen berechnet werden - bitte Simulation starten!"
+msgstr ""
+
+#: templates/stemp_abw/map.html:485
+msgid "Dieses Feature ist derzeit noch nicht verfügbar."
+msgstr ""
+
+#: templates/stemp_abw/map.html:503
+msgid "Fehler"
+msgstr ""
+
+#: templates/stemp_abw/map.html:504
+msgid "Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu."
+msgstr ""
+
+#: templates/stemp_abw/map.html:509
+msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
+msgstr ""
+
+#: templates/stemp_abw/map.html:515
+msgid "Abbruch"
+msgstr ""
+
+#: templates/stemp_abw/map.html:657 templates/stemp_abw/map.html:899
+msgid "Fertig!"
+msgstr ""
+
+#: templates/stemp_abw/map.html:665 templates/stemp_abw/map.html:667
+#: templates/stemp_abw/map.html:903 templates/stemp_abw/map.html:905
+msgid "Fehler beim Laden der Daten!"
+msgstr ""
+
+#: templates/stemp_abw/navigation_app.html:4
+#: templates/stemp_abw/navigation_app.html:5
+#: templates/stemp_abw/navigation_base.html:16
+#: templates/stemp_abw/navigation_base.html:45
+msgid "Startseite"
+msgstr ""
+
+#: templates/stemp_abw/navigation_base.html:10
+#: templates/stemp_abw/navigation_base.html:43
+msgid "Menü"
+msgstr ""
+
+#: templates/stemp_abw/navigation_base.html:47
+msgid "Quellen"
+msgstr ""
+
+#: templates/stemp_abw/navigation_base.html:49
+msgid "Quellcode"
+msgstr ""
+
+#: templates/stemp_abw/navigation_base.html:50
+msgid "Feedback"
+msgstr ""
+
+#: templates/stemp_abw/navigation_start.html:7
+msgid "Zu den WAM-Seiten des RLI"
+msgstr ""
 
 #: templates/stemp_abw/popups/dem_el_energy_per_capita.html:6
 #: templates/stemp_abw/popups/dem_el_energy_per_capita.html:9
@@ -57,16 +634,24 @@ msgstr ""
 #: templates/stemp_abw/popups/pop_density.html:6
 #: templates/stemp_abw/popups/pop_density.html:9
 msgid "EinwohnerInnen je km²"
-msgstr "EinwohnerInnen je km²"
+msgstr ""
+
+#: templates/stemp_abw/results.html:4
+msgid "Übersicht"
+msgstr ""
+
+#: templates/stemp_abw/results.html:5
+msgid "Stromerzeugung"
+msgstr ""
 
 #: views/detail_views.py:114 views/detail_views.py:118
 msgid "Personen"
-msgstr "Personen"
+msgstr ""
 
 #: views/detail_views.py:116
 msgid "Bevölkerungsentwicklung"
-msgstr "Bevölkerungsentwicklung"
+msgstr ""
 
 #: views/detail_views.py:117
 msgid "Prognose"
-msgstr "Prognose"
+msgstr ""

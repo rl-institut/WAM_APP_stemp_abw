@@ -1,4 +1,5 @@
 {% extends 'stemp_abw/base.html' %}
+{% load i18n %}
 
 {% block body-class %}u-vh--100{% endblock %}
 {% block grid-y-options %}style="overflow-y: visible;"{% endblock %}
@@ -6,40 +7,40 @@
 {% block content %}
 <div class="grid-x grid-padding-x align-center">
   <div class="cell medium-8 large-6">
-    <h1>Impressum</h1>
+    <h1>{% trans 'Impressum' %}</h1>
     <p>
-      Herausgeber:<br>
-      Diese Internetseite wird betrieben von der Reiner Lemoine Institut gGmbH
+      {% trans 'Herausgeber' %}:<br>
+      {% trans 'Diese Internetseite wird betrieben von der Reiner Lemoine Institut gGmbH' %}
     </p>
     <p>
-      Geschäftsführung:<br>
+      {% trans 'Geschäftsführung' %}:<br>
       Dr. Kathrin Goldammer
     </p>
     <p>
-      Postanschrift:<br>
+      {% trans 'Postanschrift:' %}<br>
       Reiner Lemoine Institut gGmbH<br>
       Rudower Chaussee 12<br>
       12489 Berlin
     </p>
     <p>
-      Telefon +49 (0)30 1208 434 0<br>
-      Fax +49 (0)30 1208 434 99
+      {% trans 'Telefon' %} +49 (0)30 1208 434 0<br>
+      {% trans 'Fax' %} +49 (0)30 1208 434 99
     </p>
     <p>
-      Handelsregister Berlin – HRB 124659 B
+      {% trans 'Handelsregister Berlin' %} – HRB 124659 B
     </p>
     <p>
-      Steuernummer: 27/602/55211
+      {% trans 'Steuernummer' %}: 27/602/55211
     </p>
     <p>
-      USt-IdNr.: DE274491408
+      {% trans 'USt-IdNr.' %}: DE274491408
     </p>
     <p>
-      Disclaimer:
+      {% trans 'Disclaimer' %}:
     </p>
     <p>
-      1. Haftungshinweis<br>
-      Die Inhalte sind mit größter Sorgfalt recherchiert. Dennoch übernimmt der
+      {% trans '1. Haftungshinweis' %}<br>
+      {% blocktrans %}Die Inhalte sind mit größter Sorgfalt recherchiert. Dennoch übernimmt der
       Autor keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit
       oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen
       den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen
@@ -50,11 +51,11 @@
       vorliegt. Alle Angebote sind freibleibend und unverbindlich. Der Autor
       behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot
       ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die
-      Veröffentlichung zeitweise oder endgültig einzustellen.
+      Veröffentlichung zeitweise oder endgültig einzustellen.{% endblocktrans %}
     </p>
     <p>
-      2. Verweise und Links<br>
-      Bei direkten oder indirekten Verweisen auf fremde Internetseiten
+      {% trans '2. Verweise und Links' %}<br>
+      {% blocktrans %}Bei direkten oder indirekten Verweisen auf fremde Internetseiten
       („Links”), die außerhalb des Verantwortungsbereiches des Autors liegen,
       würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft
       treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm
@@ -73,11 +74,11 @@
       oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet
       allein der Anbieter der Seite, auf welche verwiesen wurde, nicht
       derjenige, der über Links auf die jeweilige Veröffentlichung lediglich
-      verweist.
+      verweist.{% endblocktrans %}
     </p>
     <p>
-      3. Urheber- und Kennzeichenrecht<br>
-      Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der
+      {% trans '3. Urheber- und Kennzeichenrecht' %}<br>
+      {% blocktrans %}Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der
       verwendeten Grafiken, Tondokumente, Videosequenzen und Texte zu beachten,
       von ihm selbst erstellte Grafiken, Tondokumente, Videosequenzen und Texte
       zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und
@@ -91,15 +92,16 @@
       Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken,
       Tondokumente, Videosequenzen und Texte in anderen elektronischen oder
       gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors
-      nicht gestattet.
+      nicht gestattet.{% endblocktrans %}
     </p>
     <p>
-      4. Rechtswirksamkeit dieses Haftungsausschlusses<br>
-      Dieser Haftungsausschluss ist als Teil des Internetangebotes zu
+      {% trans '4. Rechtswirksamkeit dieses Haftungsausschlusses' %}<br>
+      {% blocktrans %}Dieser Haftungsausschluss ist als Teil des Internetangebotes zu
       betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder
       einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht,
       nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen
       Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.
+      {% endblocktrans %}
     </p>
   </div>
 </div>
