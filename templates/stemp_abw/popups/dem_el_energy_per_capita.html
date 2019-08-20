@@ -1,11 +1,12 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
+{% load i18n %}
 
 {% block gen %}
   <div class="cell">
-    <p>{{ layer.gen }}: {{ layer.dem_el_energy_per_capita }} kWh pro EinwohnerIn</p>
+    <p>{{ layer.gen }}: {{ layer.dem_el_energy_per_capita }} {% trans 'kWh pro EinwohnerIn' %}</p>
   </div>
   <div>
-    Region ABW: {{ layer.dem_el_energy_per_capita_region }} kWh pro EinwohnerIn
+    Region ABW: {{ layer.dem_el_energy_per_capita_region }} {% trans 'kWh pro EinwohnerIn' %}
   </div>
 {% endblock %}
 

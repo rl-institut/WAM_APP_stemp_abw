@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-07 18:35+0200\n"
+"POT-Creation-Date: 2019-08-20 14:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: templates/stemp_abw/popups/dem_el_energy_per_capita.html:6
+#: templates/stemp_abw/popups/dem_el_energy_per_capita.html:9
+#: templates/stemp_abw/popups/dem_th_energy_per_capita.html:6
+#: templates/stemp_abw/popups/dem_th_energy_per_capita.html:9
+msgid "kWh pro EinwohnerIn"
+msgstr ""
+
+#: templates/stemp_abw/popups/gen_cap_re_density.html:6
+#: templates/stemp_abw/popups/gen_cap_re_density.html:9
+#: templates/stemp_abw/popups/result_gen_cap_re_density.html:6
+#: templates/stemp_abw/popups/result_gen_cap_re_density.html:9
+msgid "MW pro km²"
+msgstr ""
+
+#: templates/stemp_abw/popups/gen_count_wind_density.html:6
+#: templates/stemp_abw/popups/gen_count_wind_density.html:9
+#: templates/stemp_abw/popups/result_gen_count_wind_density.html:9
+msgid "WEA pro km²"
+msgstr ""
+
+#: templates/stemp_abw/popups/gen_energy_re_density.html:6
+#: templates/stemp_abw/popups/gen_energy_re_density.html:9
+#: templates/stemp_abw/popups/result_gen_energy_re_density.html:6
+#: templates/stemp_abw/popups/result_gen_energy_re_density.html:9
+msgid "MWh pro km²"
+msgstr ""
+
+#: templates/stemp_abw/popups/gen_energy_re_per_capita.html:6
+#: templates/stemp_abw/popups/gen_energy_re_per_capita.html:9
+msgid "MWh pro EinwohnerIn"
+msgstr ""
+
 #: templates/stemp_abw/popups/pop.html:6 templates/stemp_abw/popups/pop.html:9
-#, fuzzy
-#| msgid "EinwohnerInnen je km²"
 msgid "EinwohnerInnen"
+msgstr ""
+
+#: templates/stemp_abw/popups/pop_density.html:6
+#: templates/stemp_abw/popups/pop_density.html:9
+msgid "EinwohnerInnen je km²"
 msgstr "EinwohnerInnen je km²"
 
-#: views/detail_views.py:113 views/detail_views.py:117
+#: views/detail_views.py:114 views/detail_views.py:118
 msgid "Personen"
 msgstr "Personen"
 
-#: views/detail_views.py:115
+#: views/detail_views.py:116
 msgid "Bevölkerungsentwicklung"
 msgstr "Bevölkerungsentwicklung"
 
-#: views/detail_views.py:116
+#: views/detail_views.py:117
 msgid "Prognose"
 msgstr "Prognose"
