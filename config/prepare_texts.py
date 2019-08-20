@@ -2,9 +2,10 @@ from utils.widgets import InfoButton
 from stemp_abw.app_settings import labels, text_files
 
 def label_data():
-    return {'panels': labels()['panels'],
-            'tooltips': labels()['tooltips'],
-            'charts': labels()['charts']}
+    _labels = labels()
+    return {'panels': _labels['panels'],
+            'tooltips': _labels['tooltips'],
+            'charts': _labels['charts']}
 
 
 def text_data():

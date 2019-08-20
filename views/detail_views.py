@@ -52,8 +52,9 @@ class MasterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
-        context['title'] = labels()['layers'][self.model.name]['title']
-        context['text'] = labels()['layers'][self.model.name]['text']
+        _labels = labels()
+        context['title'] = _labels['layers'][self.model.name]['title']
+        context['text'] = _labels['layers'][self.model.name]['text']
 
         # Get app_name from request
         app_name = self.request.resolver_match.app_name

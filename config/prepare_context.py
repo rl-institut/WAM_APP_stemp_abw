@@ -14,6 +14,7 @@ def prepare_layer_data():
 
     def _config2layer(cat_name, layer_cfg_metadata):
         layer_data = {}
+        _labels = labels()
 
         # create layer list for AJAX data urls,
         # include show (initial showup) and title (for spinner)
@@ -23,7 +24,7 @@ def prepare_layer_data():
                       for ls in layer_cfg_metadata.values()
                       for l, d in ls.items()}
         for l, v in layer_list.items():
-            layer_list[l]['title'] = labels()['layers'][l]['title']
+            layer_list[l]['title'] = _labels['layers'][l]['title']
 
         # create JSON for layer styles
         layer_style = {l: a['style']
@@ -36,15 +37,15 @@ def prepare_layer_data():
                            for v in layer_cfg_metadata.values()
                            for l, a in v.items() if 'choropleth' in a}
 
-        # update layer and layer group labels using labels config
+        # update layer and layer group _labels using _labels config
         layer_metadata = OrderedDict()
         for (grp, layers) in layer_cfg_metadata.items():
             layer_metadata.update({grp: {'layers': layers}})
-            layer_metadata[grp]['title'] = labels()['layer_groups'][grp]['title']
-            layer_metadata[grp]['text'] = labels()['layer_groups'][grp]['text']
+            layer_metadata[grp]['title'] = _labels['layer_groups'][grp]['title']
+            layer_metadata[grp]['text'] = _labels['layer_groups'][grp]['text']
             for l, v in layers.items():
-                layer_metadata[grp]['layers'][l]['title'] = labels()['layers'][l]['title']
-                layer_metadata[grp]['layers'][l]['text'] = labels()['layers'][l]['text']
+                layer_metadata[grp]['layers'][l]['title'] = _labels['layers'][l]['title']
+                layer_metadata[grp]['layers'][l]['text'] = _labels['layers'][l]['text']
 
         # create layer groups for layer menu using layers config
         layer_groups = layer_metadata.copy()
@@ -85,26 +86,27 @@ def prepare_layer_data():
 
 def component_data():
     component_data_store = {}
+    _labels = labels()
 
-    # update component/area and group labels using labels config
+    # update component/area and group _labels using _labels config
     comp_metadata = OrderedDict()
     area_metadata = OrderedDict()
     for (grp, comps) in ESYS_COMPONENTS_METADATA.items():
         comp_metadata.update({grp: {'comps': comps}})
-        comp_metadata[grp]['title'] = labels()['component_groups'][grp]['title']
-        comp_metadata[grp]['text'] = labels()['component_groups'][grp]['text']
+        comp_metadata[grp]['title'] = _labels['component_groups'][grp]['title']
+        comp_metadata[grp]['text'] = _labels['component_groups'][grp]['text']
         for l, v in comps.items():
-            comp_metadata[grp]['comps'][l]['title'] = labels()['components'][l]['title']
-            comp_metadata[grp]['comps'][l]['text'] = labels()['components'][l]['text']
+            comp_metadata[grp]['comps'][l]['title'] = _labels['components'][l]['title']
+            comp_metadata[grp]['comps'][l]['text'] = _labels['components'][l]['text']
 
             # additional text
-            if labels()['components'][l].get('text2') is not None:
+            if _labels['components'][l].get('text2') is not None:
                 comp_metadata[grp]['comps'][l]['text2'] =\
-                    labels()['components'][l]['text2']
+                    _labels['components'][l]['text2']
 
             # reveal window
-            reveal_id = labels()['components'][l].get('reveal_id')
-            reveal_icon = labels()['components'][l].get('reveal_icon')
+            reveal_id = _labels['components'][l].get('reveal_id')
+            reveal_icon = _labels['components'][l].get('reveal_icon')
             if (reveal_id is not None) and (reveal_icon is not None):
                 comp_metadata[grp]['comps'][l]['popup'] =\
                     create_panel_reveal_info_button(reveal_id, reveal_icon)
@@ -112,23 +114,23 @@ def component_data():
                 comp_metadata[grp]['comps'][l]['popup'] = None
 
             # icon
-            if labels()['components'][l].get('icon') is not None:
+            if _labels['components'][l].get('icon') is not None:
                 comp_metadata[grp]['comps'][l]['icon'] =\
-                    labels()['components'][l]['icon']
+                    _labels['components'][l]['icon']
             else:
                 comp_metadata[grp]['comps'][l]['icon'] = None
 
     for (grp, comps) in ESYS_AREAS_METADATA.items():
         area_metadata.update({grp: {'comps': comps}})
-        area_metadata[grp]['title'] = labels()['component_groups'][grp]['title']
-        area_metadata[grp]['text'] = labels()['component_groups'][grp]['text']
+        area_metadata[grp]['title'] = _labels['component_groups'][grp]['title']
+        area_metadata[grp]['text'] = _labels['component_groups'][grp]['text']
         for l, v in comps.items():
-            area_metadata[grp]['comps'][l]['title'] = labels()['components'][l]['title']
-            area_metadata[grp]['comps'][l]['text'] = labels()['components'][l]['text']
+            area_metadata[grp]['comps'][l]['title'] = _labels['components'][l]['title']
+            area_metadata[grp]['comps'][l]['text'] = _labels['components'][l]['text']
 
             # reveal window
-            reveal_id = labels()['components'][l].get('reveal_id')
-            reveal_icon = labels()['components'][l].get('reveal_icon')
+            reveal_id = _labels['components'][l].get('reveal_id')
+            reveal_icon = _labels['components'][l].get('reveal_icon')
             if (reveal_id is not None) and (reveal_icon is not None):
                 area_metadata[grp]['comps'][l]['popup'] =\
                     create_panel_reveal_info_button(reveal_id, reveal_icon)
@@ -136,9 +138,9 @@ def component_data():
                 area_metadata[grp]['comps'][l]['popup'] = None
 
             # icon
-            if labels()['components'][l].get('icon') is not None:
+            if _labels['components'][l].get('icon') is not None:
                 area_metadata[grp]['comps'][l]['icon'] =\
-                    labels()['components'][l]['icon']
+                    _labels['components'][l]['icon']
             else:
                 area_metadata[grp]['comps'][l]['icon'] = None
 
@@ -176,5 +178,6 @@ def create_panel_reveal_info_button(reveal_id, reveal_icon):
                        info_id=reveal_id)
     f.close()
     return popup
+
 
 SCENARIO_DATA = prepare_scenario_data()
