@@ -1,12 +1,9 @@
 {% extends "stemp_abw/base.html" %}
+{% load i18n %}
 
 {% block content %}
 
-<h1>
-  Deine Sitzung ist abgelaufen
-</h1>
-<h2>
-  Bitte starte eine neue Session
-</h2>
+<h1>{% trans 'Deine Sitzung ist abgelaufen' %}</h1>
+<h2>{% trans 'Bitte starte eine neue Session' %}</h2>
 
 {% endblock %}
