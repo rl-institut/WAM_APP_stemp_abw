@@ -5,8 +5,8 @@ from utils.widgets import InfoButton
 
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
-from stemp_abw.app_settings import LAYER_AREAS_METADATA, LAYER_REGION_METADATA,\
-    LAYER_RESULT_METADATA, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
+from stemp_abw.app_settings import layer_areas_metadata, layer_region_metadata,\
+    layer_result_metadata, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
     ESYS_AREAS_METADATA, labels, text_files_dir
 
 
@@ -59,9 +59,9 @@ def prepare_layer_data():
     # categories are different lists of layers, e.g.
     # 'region' is for the info layers of the status quo (region panel)
     # 'areas' is for areas that put restrictions on use for e.g. wind turbines
-    layer_categories = {'areas': LAYER_AREAS_METADATA,
-                        'region': LAYER_REGION_METADATA,
-                        'results': LAYER_RESULT_METADATA}
+    layer_categories = {'areas': layer_areas_metadata(),
+                        'region': layer_region_metadata(),
+                        'results': layer_result_metadata()}
 
     # init data dict
     layer_data = {'layer_list': {},

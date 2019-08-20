@@ -12,6 +12,7 @@ DEFAULT_LANGUAGE = 'de'
 # Store which defines all available languages for an app
 LANGUAGE_STORE = ['de', 'en']
 
+
 # Get the language of current app thread or fallback to default language.
 def get_language_or_fallback():
     current_thread_language = translation.get_language()
@@ -20,21 +21,33 @@ def get_language_or_fallback():
     else:
         return DEFAULT_LANGUAGE
 
-# import configs
-LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                              'stemp_abw',
-                                              'config',
-                                              'layers_areas.cfg'))
 
-LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_region.cfg'))
+def layer_areas_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_areas.cfg'))
 
-LAYER_RESULT_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_results.cfg'))
+
+def layer_region_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_region.cfg'))
+
+
+def layer_result_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_results.cfg'))
+
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',

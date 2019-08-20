@@ -3,8 +3,8 @@ import pandas as pd
 import stemp_abw.models as models
 from django.views.generic import DetailView
 from meta.models import Source
-from stemp_abw.app_settings import labels, LAYER_REGION_METADATA, \
-    LAYER_RESULT_METADATA, LAYER_AREAS_METADATA
+from stemp_abw.app_settings import labels, layer_region_metadata, \
+    layer_result_metadata, layer_areas_metadata
 from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
 
@@ -59,9 +59,9 @@ class MasterDetailView(DetailView):
         # Get app_name from request
         app_name = self.request.resolver_match.app_name
         # Gather all layer metadata ConfigObj objects
-        layers_metadata = [LAYER_REGION_METADATA,
-                           LAYER_RESULT_METADATA,
-                           LAYER_AREAS_METADATA]
+        layers_metadata = [layer_region_metadata(),
+                           layer_result_metadata(),
+                           layer_areas_metadata()]
         # Put sources PKs into context
         for layer_metadata in layers_metadata:
             source_layer_metadata = self.get_source_data(layer_metadata,
