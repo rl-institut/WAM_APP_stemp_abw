@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-20 16:38+0200\n"
+"POT-Creation-Date: 2019-08-21 15:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,7 @@ msgid "Telefax"
 msgstr ""
 
 #: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:220
+#: templates/stemp_abw/navigation_app.html:9
 #: templates/stemp_abw/navigation_base.html:52
 msgid "Impressum"
 msgstr ""
@@ -456,12 +457,12 @@ msgid ""
 "(FKZ 03SFK4E1)"
 msgstr ""
 
-#: templates/stemp_abw/index.html:219
+#: templates/stemp_abw/index.html:219 templates/stemp_abw/navigation_app.html:8
 #: templates/stemp_abw/navigation_base.html:51
 msgid "Kontakt"
 msgstr ""
 
-#: templates/stemp_abw/index.html:221
+#: templates/stemp_abw/index.html:221 templates/stemp_abw/navigation_app.html:6
 #: templates/stemp_abw/navigation_base.html:41
 msgid "Datenschutz"
 msgstr ""
@@ -538,49 +539,69 @@ msgstr ""
 msgid "Werte müssen berechnet werden - bitte Simulation starten!"
 msgstr ""
 
-#: templates/stemp_abw/map.html:485
+#: templates/stemp_abw/map.html:494
 msgid "Dieses Feature ist derzeit noch nicht verfügbar."
 msgstr ""
 
-#: templates/stemp_abw/map.html:503
+#: templates/stemp_abw/map.html:512
 msgid "Fehler"
 msgstr ""
 
-#: templates/stemp_abw/map.html:504
+#: templates/stemp_abw/map.html:513
 msgid "Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu."
 msgstr ""
 
-#: templates/stemp_abw/map.html:509
+#: templates/stemp_abw/map.html:518
 msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:515
+#: templates/stemp_abw/map.html:524 templates/stemp_abw/map.html:537
+#: templates/stemp_abw/map.html:550 templates/stemp_abw/map.html:563
+#: templates/stemp_abw/map.html:576
 msgid "Abbruch"
 msgstr ""
 
-#: templates/stemp_abw/map.html:657 templates/stemp_abw/map.html:899
+#: templates/stemp_abw/map.html:531
+msgid ""
+"Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+
+#: templates/stemp_abw/map.html:544
+msgid ""
+"Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+
+#: templates/stemp_abw/map.html:557
+msgid "Wollen Sie zur Kontaktseite? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+
+#: templates/stemp_abw/map.html:570
+msgid "Wollen Sie zum Impressum? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+
+#: templates/stemp_abw/map.html:718 templates/stemp_abw/map.html:960
 msgid "Fertig!"
 msgstr ""
 
-#: templates/stemp_abw/map.html:665 templates/stemp_abw/map.html:667
-#: templates/stemp_abw/map.html:903 templates/stemp_abw/map.html:905
+#: templates/stemp_abw/map.html:726 templates/stemp_abw/map.html:728
+#: templates/stemp_abw/map.html:964 templates/stemp_abw/map.html:966
 msgid "Fehler beim Laden der Daten!"
 msgstr ""
 
 #: templates/stemp_abw/navigation_app.html:4
 #: templates/stemp_abw/navigation_app.html:5
 #: templates/stemp_abw/navigation_base.html:16
-#: templates/stemp_abw/navigation_base.html:45
 msgid "Startseite"
+msgstr ""
+
+#: templates/stemp_abw/navigation_app.html:7
+#: templates/stemp_abw/navigation_base.html:47
+msgid "Quellen"
 msgstr ""
 
 #: templates/stemp_abw/navigation_base.html:10
 #: templates/stemp_abw/navigation_base.html:43
 msgid "Menü"
-msgstr ""
-
-#: templates/stemp_abw/navigation_base.html:47
-msgid "Quellen"
 msgstr ""
 
 #: templates/stemp_abw/navigation_base.html:49

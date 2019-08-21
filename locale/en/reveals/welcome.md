@@ -1,6 +1,10 @@
 # EN: Willkommen!
 
-<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.75rem;">
+<div style="background-color: #F24A4F; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Achtung:</strong> Die finale Version wird ab Anfang Oktober zur Verfügung stehen, bis dahin werden noch Anpassungen vorgenommen und kleine Fehler behoben (das Tool kann bis dahin vollumfänglich verwendet werden).</p>
+</div>
+
+<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <h3>Neue Funktionen!</h3>
   <ul>
     <!--<li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden und <strong>Änderungen ggü. dem Status quo</strong> werden angezeigt</li>-->
@@ -8,6 +12,7 @@
     <!--<li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>-->
     <li>Über das neue <strong>Feedback-Formular</strong> können Sie uns nun Rückmeldung zum Tool geben (s. Hauptmenü)</li>
     <li><strong>Ausführlichere Erklärtexte</strong> (z.B. bei Windenergieanlagen und konventionellen Kraftwerken)</li>
+    <li><strong>Einwohnerzahlen und Wärmebedarfe</strong> korrigiert</li>
     <li>Weitere <strong>Diverse Bugfixes</strong></li>
   </ul>
 </div>
