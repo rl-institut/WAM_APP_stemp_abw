@@ -1,4 +1,5 @@
 from django import forms
+import django.db.utils
 from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
 
 from stemp_abw.models import Scenario
@@ -161,6 +162,10 @@ class ScenarioDropdownForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ScenarioDropdownForm, self).__init__(*args, **kwargs)
 
-        self.fields['scn'] = forms.ChoiceField(
-            choices=[(scn.id, str(scn))
-                     for scn in Scenario.objects.filter(is_user_scenario=False)])
+        try:
+            self.fields['scn'] = forms.ChoiceField(
+                choices=[(scn.id, str(scn))
+                         for scn in Scenario.objects.filter(is_user_scenario=False)])
+        except django.db.utils.ProgrammingError as e:
+            print('Catched & passed - django.db.utils.ProgrammingError:', e)
+            pass
