@@ -1,6 +1,6 @@
 from inspect import getmembers, isclass
 
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 from django.views.decorators.cache import cache_page
 from djgeojson.views import GeoJSONLayerView
 
@@ -15,6 +15,9 @@ app_name = 'stemp_abw'
 
 # Regular URLs
 urlpatterns = [
+    # https://docs.djangoproject.com/en/2.2/topics/i18n/\
+    # translation/#the-set-language-redirect-view
+    path('i18n/', include('django.conf.urls.i18n'), name='set_language'),
     path('contact/', views.ContactView.as_view(),
          name='contact'),
     path('', views.IndexView.as_view(),

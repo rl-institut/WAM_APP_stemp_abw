@@ -6,7 +6,7 @@ from django.db.models import Sum
 from django.contrib.gis.db import models as geomodels
 from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
-from stemp_abw.app_settings import LABELS
+from stemp_abw.app_settings import labels
 
 
 # class MapLayers(models.Model):
@@ -29,7 +29,7 @@ class LayerModel(models.Model):
 
     def __str__(self):
         return '{name} Objekt ({pk_name}={pk})'.format(
-            name=LABELS['layers'][self.name]['title'],
+            name=labels()['layers'][self.name]['title'],
             pk_name=self._meta.pk.name,
             pk=self.pk)
 

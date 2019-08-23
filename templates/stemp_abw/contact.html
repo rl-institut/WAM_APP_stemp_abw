@@ -1,4 +1,5 @@
 {% extends 'stemp_abw/base.html' %}
+{% load i18n %}
 
 {% block body-class %}u-vh--100{% endblock %}
 {% block grid-y-options %}style="overflow-y: visible;"{% endblock %}
@@ -7,23 +8,23 @@
 <div class="grid-x grid-padding-x align-center">
   <div class="cell medium-8 large-6">
     <h1>Kontakt</h1>
-    <p style="font-weight: 700">Mascha Richter (Projektleiterin)<br>
-      <a href="mailto:Mascha.Richter@rl-institut.de">E-Mail</a><br>
+    <p style="font-weight: 700">Mascha Richter ({% trans 'Projektleiterin' %})<br>
+      <a href="mailto:Mascha.Richter@rl-institut.de">{% trans 'E-Mail' %}</a><br>
       <span style="font-weight: 400">+49 (0)30 1208 434 27</span>
     </p>
-    <p style="font-weight: 700">Jonathan Amme (Wissenschaftlicher Mitarbeiter)<br>
-      <a href="mailto:jonathan.amme@rl-institut.de">E-Mail</a><br>
+    <p style="font-weight: 700">Jonathan Amme ({% trans 'Wissenschaftlicher Mitarbeiter' %})<br>
+      <a href="mailto:jonathan.amme@rl-institut.de">{% trans 'E-Mail' %}</a><br>
       <span style="font-weight: 400">+49 (0)30 1208 434 26</span>
     </p>
     <p>
       Reiner Lemoine Institut gGmbH<br>
       Rudower Chaussee 12<br>
-      Aufgang D<br>
+      {% trans 'Aufgang D' %}<br>
       12489 Berlin
     </p>
     <p>
-      Telefon: +49 (0)30 1208 434 0<br>
-      Telefax: +49 (0)30 1208 434 99
+      {% trans 'Telefon' %}: +49 (0)30 1208 434 0<br>
+      {% trans 'Telefax' %}: +49 (0)30 1208 434 99
     </p>
   </div>
 </div>

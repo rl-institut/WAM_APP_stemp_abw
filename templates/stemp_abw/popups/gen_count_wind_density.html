@@ -1,10 +1,11 @@
 {% extends 'stemp_abw/popups/base_layer_popup.html' %}
+{% load i18n %}
 
 {% block gen %}
   <div class="cell">
-    <p>{{ layer.gen }}: {{ layer.gen_count_wind_density }} WEA pro km²</p>
+    <p>{{ layer.gen }}: {{ layer.gen_count_wind_density }} {% trans 'WEA pro km²' %}</p>
   </div>
   <div>
-    Region ABW: {{ layer.gen_count_wind_density_region }} WEA pro km²
+    Region ABW: {{ layer.gen_count_wind_density_region }} {% trans 'WEA pro km²' %}
   </div>
 {% endblock %}

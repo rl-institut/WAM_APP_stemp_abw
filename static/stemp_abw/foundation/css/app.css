@@ -8496,6 +8496,34 @@ div.choropleth_legend.leaflet-control {
     padding-right: 1.5rem;
 }
 
+.menu-form-button {
+    background-color: rgb(27, 123, 187);
+    color: white;
+    margin: 2px 2px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    padding: 0.5rem 0.5rem;
+}
+
+.menu-form-button:hover {
+        background-color: rgb(48, 153, 243);
+        cursor: pointer;
+}
+
+
+select.dropdown.menu-form-dropdown {
+    background-color: rgb(235, 242, 250);
+    height: 2rem;
+    border: none;
+    display: inline-block;
+    color: rgb(0, 46, 79) !important;
+    padding: 0 1.4rem 0 0.4rem;
+    cursor: pointer;
+}
+
 /* Utility Classes */
 .text-primary {
     color: #F2994A !important;

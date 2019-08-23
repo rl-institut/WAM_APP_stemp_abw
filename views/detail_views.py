@@ -1,11 +1,13 @@
+from django.utils.translation import gettext_lazy as _
 import pandas as pd
 import stemp_abw.models as models
 from django.views.generic import DetailView
 from meta.models import Source
-from stemp_abw.app_settings import LABELS, LAYER_REGION_METADATA, \
-    LAYER_RESULT_METADATA, LAYER_AREAS_METADATA
+from stemp_abw.app_settings import labels, layer_region_metadata, \
+    layer_result_metadata, layer_areas_metadata
 from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
+
 
 
 class MasterDetailView(DetailView):
@@ -50,15 +52,16 @@ class MasterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
 
-        context['title'] = LABELS['layers'][self.model.name]['title']
-        context['text'] = LABELS['layers'][self.model.name]['text']
+        _labels = labels()
+        context['title'] = _labels['layers'][self.model.name]['title']
+        context['text'] = _labels['layers'][self.model.name]['text']
 
         # Get app_name from request
         app_name = self.request.resolver_match.app_name
         # Gather all layer metadata ConfigObj objects
-        layers_metadata = [LAYER_REGION_METADATA,
-                           LAYER_RESULT_METADATA,
-                           LAYER_AREAS_METADATA]
+        layers_metadata = [layer_region_metadata(),
+                           layer_result_metadata(),
+                           layer_areas_metadata()]
         # Put sources PKs into context
         for layer_metadata in layers_metadata:
             source_layer_metadata = self.get_source_data(layer_metadata,
@@ -108,11 +111,11 @@ class RegMunPopDetailView(MasterDetailView):
         pop_2050 = mun_data.pop_2050
         index = ['2017', '2030', '2050']
         data = pd.DataFrame(index=index,
-                            data={'Personen': [pop_2017, pop_2030, pop_2050]})
+                            data={str(_('Personen')): [pop_2017, pop_2030, pop_2050]})
         setup_labels = {
-            'title': {'text': 'Bevölkerungsentwicklung'},
-            'subtitle': {'text': 'Prognose'},
-            'yAxis': {'title': {'text': 'Personen'}}
+            'title': {'text': str(_('Bevölkerungsentwicklung'))},
+            'subtitle': {'text': str(_('Prognose'))},
+            'yAxis': {'title': {'text': str(_('Personen'))}}
         }
         chart = highcharts.HCTimeseries(
             data=data,
@@ -154,15 +157,15 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
         bio = round(((mun_data.gen_el_energy_bio / 1e3) /
                        reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         data = pd.DataFrame(data={
-            'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
-                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro,
-                          'Bioenergie': bio}})
+            'EE-Träger': {str(_('Wind')): wind, str(_('PV Dach')): pv_roof,
+                          str(_('PV Freifläche')): pv_ground, str(_('Wasserkraft')): hydro,
+                          str(_('Bioenergie')): bio}})
         setup_labels = {
-            'title': {'text': 'EE-Erzeugung'},
-            'subtitle': {'text': 'in Prozent zum Strombedarf'},
-            'yAxis': {'title': {'text': 'Prozent'}},
+            'title': {'text': str(_('EE-Erzeugung'))},
+            'subtitle': {'text': str(_('in Prozent zum Strombedarf'))},
+            'yAxis': {'title': {'text': str(_('Prozent'))}},
             'tooltip': {
-                'pointFormat': 'Bedarf: {point.stackTotal} %'
+                'pointFormat': str(_('Bedarf')) + '{point.stackTotal} %'
             }
         }
         chart = highcharts.HCStackedColumn(
@@ -193,16 +196,16 @@ class RegMunGenEnergyReDetailView(MasterDetailView):
         hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
         bio = round((mun_data.gen_el_energy_bio / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'nach Quelle'},
+            'title': {'text': str(_('Gewonnene Energie aus EE'))},
+            'subtitle': {'text': str(_('nach Quelle'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -245,16 +248,16 @@ class RegMunGenEnergyRePerCapitaDetailView(MasterDetailView):
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.pop_2017), 1)
         bio = round((mun_data.gen_el_energy_bio / mun_data.pop_2017), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'je EinwohnerIn'},
+            'title': {'text': str(_('Gewonnene Energie aus EE'))},
+            'subtitle': {'text': str(_('je EinwohnerIn'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -296,16 +299,16 @@ class RegMunGenEnergyReDensityDetailView(MasterDetailView):
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
         bio = round((mun_data.gen_el_energy_bio / mun_data.area), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'je km²'},
+            'title': {'text': str(_('Gewonnene Energie aus EE'))},
+            'subtitle': {'text': str(_('je km²'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -347,16 +350,16 @@ class RegMunGenCapReDetailView(MasterDetailView):
         hydro = round(mun_data.gen_capacity_hydro, 1)
         bio = round(mun_data.gen_capacity_bio, 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach, groß')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Installierte Leistung EE'},
-            'subtitle': {'text': 'nach Quelle'},
+            'title': {'text': str(_('Installierte Leistung EE'))},
+            'subtitle': {'text': str(_('nach Quelle'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -399,16 +402,16 @@ class RegMunGenCapReDensityDetailView(MasterDetailView):
         hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach, groß')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Installierte Leistung EE'},
-            'subtitle': {'text': 'je km²'},
+            'title': {'text': str(_('Installierte Leistung EE'))},
+            'subtitle': {'text': str(_('je km²'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -453,15 +456,15 @@ class RegMunDemElEnergyDetailView(MasterDetailView):
         rca = round((mun_data.dem_el_energy_rca / 1e3), 1)
         ind = round((mun_data.dem_el_energy_ind / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.')), str(_('Industrie'))],
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Strombedarf'},
-            'subtitle': {'text': 'nach Verbrauchergruppe'},
+            'title': {'text': str(_('Strombedarf'))},
+            'subtitle': {'text': str(_('nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -501,15 +504,15 @@ class RegMunDemElEnergyPerCapitaDetailView(MasterDetailView):
         rca = round((mun_data.dem_el_energy_rca * 1000 / mun_data.pop_2017))
         ind = round((mun_data.dem_el_energy_ind * 1000 / mun_data.pop_2017))
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.')), str(_('Industrie'))],
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Strombedarf'},
-            'subtitle': {'text': 'je EinwohnerIn nach Verbrauchergruppe'},
+            'title': {'text': str(_('Strombedarf'))},
+            'subtitle': {'text': str(_('je EinwohnerIn nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -548,15 +551,15 @@ class RegMunDemThEnergyDetailView(MasterDetailView):
         hh = round((mun_data.dem_th_energy_hh / 1e3), 1)
         rca = round((mun_data.dem_th_energy_rca / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.'))],
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': ' Wärmebedarf'},
-            'subtitle': {'text': 'nach Verbrauchergruppe'},
+            'title': {'text': str(_(' Wärmebedarf'))},
+            'subtitle': {'text': str(_('nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -595,15 +598,15 @@ class RegMunDemThEnergyPerCapitaDetailView(MasterDetailView):
         hh = round((mun_data.dem_th_energy_hh * 1000 / mun_data.pop_2017))
         rca = round((mun_data.dem_th_energy_rca * 1000 / mun_data.pop_2017))
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.'))],
             'y': [hh, rca]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Wärmebedarf'},
-            'subtitle': {'text': 'je EinwohnerIn nach Verbrauchergruppe'},
+            'title': {'text': str(_('Wärmebedarf'))},
+            'subtitle': {'text': str(_('je EinwohnerIn nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -787,15 +790,15 @@ class RegMunEnergyReElDemShareResultDetailView(MasterDetailView):
         bio = round(((mun_data.gen_el_energy_bio / 1e3) /
                      reg_mun_dem_el_energy.dem_el_energy) * 100, 1)
         data = pd.DataFrame(data={
-            'EE-Träger': {'Wind': wind, 'PV Dach': pv_roof,
-                          'PV Freifläche': pv_ground, 'Wasserkraft': hydro,
-                          'Bioenergie': bio}})
+            'EE-Träger': {str(_('Wind')): wind, str(_('PV Dach')): pv_roof,
+                          str(_('PV Freifläche')): pv_ground, str(_('Wasserkraft')): hydro,
+                          str(_('Bioenergie')): bio}})
         setup_labels = {
-            'title': {'text': 'Ergebnis: EE-Erzeugung'},
-            'subtitle': {'text': 'in Prozent zum Strombedarf'},
-            'yAxis': {'title': {'text': 'Prozent'}},
+            'title': {'text': str(_('Ergebnis: EE-Erzeugung'))},
+            'subtitle': {'text': str(_('in Prozent zum Strombedarf'))},
+            'yAxis': {'title': {'text': str(_('Prozent'))}},
             'tooltip': {
-                'pointFormat': 'Bedarf: {point.stackTotal} %'
+                'pointFormat': str(_('Bedarf: {point.stackTotal} %'))
             }
         }
         chart = highcharts.HCStackedColumn(
@@ -826,16 +829,16 @@ class RegMunGenEnergyReResultDetailView(MasterDetailView):
         hydro = round((mun_data.gen_el_energy_hydro / 1e3), 1)
         bio = round((mun_data.gen_el_energy_bio / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Ergebnis: Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'nach Quelle'},
+            'title': {'text': str(_('Ergebnis: Gewonnene Energie aus EE'))},
+            'subtitle': {'text': str(_('nach Quelle'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -877,15 +880,15 @@ class RegMunGenEnergyReDensityResultDetailView(MasterDetailView):
         hydro = round((mun_data.gen_el_energy_hydro / mun_data.area), 1)
         bio = round((mun_data.gen_el_energy_bio / mun_data.area), 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach', 'PV Freifläche', 'Wasserkraft'],
+            'name': [str(_('Wind')), str(_('PV Dach')), str(_('PV Freifläche')), str(_('Wasserkraft'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Ergebnis: Gewonnene Energie aus EE'},
-            'subtitle': {'text': 'je km²'},
+            'title': {'text': str(_('Ergebnis: Gewonnene Energie aus EE'))},
+            'subtitle': {'text': str(_('je km²'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -927,16 +930,16 @@ class RegMunGenCapReResultDetailView(MasterDetailView):
         hydro = round(mun_data.gen_capacity_hydro, 1)
         bio = round(mun_data.gen_capacity_bio, 1)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach, groß')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Ergebnis: Installierte Leistung EE'},
-            'subtitle': {'text': 'nach Quelle'},
+            'title': {'text': str(_('Ergebnis: Installierte Leistung EE'))},
+            'subtitle': {'text': str(_('nach Quelle'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -979,16 +982,16 @@ class RegMunGenCapReDensityResultDetailView(MasterDetailView):
         hydro = round((mun_data.gen_capacity_hydro / mun_data.area), 2)
         bio = round((mun_data.gen_capacity_bio / mun_data.area), 2)
         data = pd.DataFrame({
-            'name': ['Wind', 'PV Dach, groß', 'PV Freifläche',
-                     'Wasserkraft', 'Bioenergie'],
+            'name': [str(_('Wind')), str(_('PV Dach, groß')), str(_('PV Freifläche')),
+                     str(_('Wasserkraft')), str(_('Bioenergie'))],
             'y': [wind, pv_roof, pv_ground, hydro, bio]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Ergebnis: Installierte Leistung EE'},
-            'subtitle': {'text': 'je km²'},
+            'title': {'text': str(_('Ergebnis: Installierte Leistung EE'))},
+            'subtitle': {'text': str(_('je km²'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -1033,15 +1036,15 @@ class RegMunDemElEnergyResultDetailView(MasterDetailView):
         rca = round((mun_data.dem_el_energy_rca / 1e3), 1)
         ind = round((mun_data.dem_el_energy_ind / 1e3), 1)
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.')), str(_('Industrie'))],
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Ergebnis: Strombedarf'},
-            'subtitle': {'text': 'nach Verbrauchergruppe'},
+            'title': {'text': str(_('Ergebnis: Strombedarf'))},
+            'subtitle': {'text': str(_('nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {
@@ -1081,15 +1084,15 @@ class RegMunDemElEnergyPerCapitaResultDetailView(MasterDetailView):
         rca = round((mun_data.dem_el_energy_rca * 1000 / mun_data.pop_2017))
         ind = round((mun_data.dem_el_energy_ind * 1000 / mun_data.pop_2017))
         data = pd.DataFrame({
-            'name': ['Haushalte', 'GHD und Landw.', 'Industrie'],
+            'name': [str(_('Haushalte')), str(_('GHD und Landw.')), str(_('Industrie'))],
             'y': [hh, rca, ind]
         })
         data.set_index('name', inplace=True)
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': 'Eregbnis: Strombedarf'},
-            'subtitle': {'text': 'je EinwohnerIn nach Verbrauchergruppe'},
+            'title': {'text': str(_('Eregbnis: Strombedarf'))},
+            'subtitle': {'text': str(_('je EinwohnerIn nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
                     'dataLabels': {

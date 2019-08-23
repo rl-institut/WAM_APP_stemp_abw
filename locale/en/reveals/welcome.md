@@ -1,6 +1,10 @@
 # Welcome!
 
-<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.75rem;">
+<div style="background-color: #F24A4F; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Achtung:</strong> Die finale Version wird ab Anfang Oktober zur Verfügung stehen, bis dahin werden noch Anpassungen vorgenommen und kleine Fehler behoben (das Tool kann bis dahin vollumfänglich verwendet werden).</p>
+</div>
+
+<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <h3>New features!</h3>
   <ul>
     <!--<li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden und <strong>Änderungen ggü. dem Status quo</strong> werden angezeigt</li>-->
@@ -8,7 +12,8 @@
     <!--<li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>-->
     <li>You can now use <strong>the feedback form</strong> to give us your review on the tool (see main menu)</li>
     <li><strong>More detailed explanatory texts</strong> (e.g. for wind turbines and conventional power plants)</li>
-    <li>A variety of <strong>bugs</strong> are fixed</li>
+    <li><strong>Inhabitants and heat demand</strong> corrected</li>
+    <li>Some minor <strong>bugs</strong> fixed</li>
   </ul>
 </div>
 
