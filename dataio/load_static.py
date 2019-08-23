@@ -22,7 +22,8 @@ def load_timeseries():
                 .values_list('ags_id', 'wind_sq', 'wind_fs',
                              'pv_ground', 'pv_roof',
                              'hydro', 'bio', 'conventional', named=True)))
-        # create normalized feedin DF with technology & mun MultiIndex on columns
+        # create normalized feedin DF with technology & mun MultiIndex on
+        # columns
         timeseries['feedin'] = ts_feedin \
             .pivot(index=ts_feedin.index, columns='ags_id') \
             .apply(lambda _: pd.Series(_.dropna().values)) \
