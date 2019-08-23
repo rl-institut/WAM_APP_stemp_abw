@@ -242,9 +242,10 @@ msgid ""
 msgstr ""
 "The scenario calculator enables all interested stakeholders to obtain a better "
 "understanding of various scenarios of the regional energy balance district. "
-"In addition, the effects of measures can be directly determined."
+"In addition, the effects of measures can be directly determined. "
+"This creates the basis for an equal discussion and enables collaborative "
+"decision-making."
 
-This creates the basis for an equal discussion and enables collaborative decision-making.
 #: templates/stemp_abw/index.html:46
 msgid ""
 "Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in "
