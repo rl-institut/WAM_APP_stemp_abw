@@ -24,7 +24,8 @@ Panels
 
 Die App umfasst die Panels ''Region'', ''Energiesystem'',  ''Flächen'' und ''Ergebnisse'', deren Aufbau und Handhabung nachfolgend beschrieben ist.
 
-- **Region**
+Region
+......
 
 Diese Funktionalität stellt grafisch aufbereitete Informationen zur Region und deren Energiesystem dar. Dabei werden Eckdaten der Region, Informationen zur Einspeisung aus Erneuerbaren Energien und zum Energiebedarf der einzelnen Gemeinden bereitgestellt.
 
@@ -35,11 +36,13 @@ Die Abbildung zeigt eine beispielhafte Nutzung. Links im Panel kann der Nutzer a
    :alt: Kartenansicht Region
    :align: center
 
-- **Energiesystem**
+Energiesystem
+.............
 
 Das Panel ''Energiesystem'' ermöglicht die Variation und Untersuchung desselben in der Region. Als erster Schritt kann ein Vergleichs-Szenario ausgewählt werden, in Relation zu welchem die Ergebnisse angezeigt werden. Danach ist es möglich, über die Reiter ''Stromerzeugung'', ''Strombedarf'', ''Wärmeerzeugung'' und ''Wärmebedarf'' die entsprechenden Größen individuell anzupassen. In den Bedarfsfällen können jeweils die prozentualen Einsparungen zum Vergleichsszenario in Haushalten sowie in Gewerbe, Handel und Dienstleistungen (GHD) definiert werden. Bei der Stromerzeugung dagegen gibt es mehr Einstellparameter. Für die einzelnen Erzeuger sind die Leistungen des Vergleichsszenarios voreingestellt. Es wird außerdem automatisch das Potenzial der erneuerbaren Erzeuger, gemessen an ausgewähltem Zubau-Szenario und Flächennutzung, errechnet. Die Regler können entsprechend verschoben werden, um die gewünschte installierte Kapazität der Erzeuger einzustellen. Das Zubau-Szenario bezieht sich auf Windenergieanlagen und beeinflusst auch die Flächennutzung, was im folgenden Unterkapitel näher erläutert wird. Bei der Wärmeerzeugung kann der prozentuale Anteil von Power-to-Heat in Haushalten und GHD verändert werden. 
 
-- **Flächen**
+Flächen
+.......
 
 Dieses Panel beinhaltet zwei Ebenen, die statische und die variierbare. ''Statische Flächen'' zeigt optisch aufbereitete Informationen zur Flächennutzung in der Region. Dabei sind vor allem für Planungen von Windergieanlagen relevante Informationen zusammengefasst. Die Informationen, die dargestellt werden können, sind in verschiedene Kategorien eingeteilt. Unter ''Planungsregion'' können die Vorranggebiete für Energie angezeigt werden. Dies sind die Gebiete in der Region, die sich am besten zur Errichtung von Windenergieanlagen eignen und in denen keine Konflikte mit anderen Flächennutzungsoptionen auftreten. Unter der Überschrift ''Harte Tabuzonen'' sind Gebiete zusammengefasst, in denen nach aktueller Rechtslage kein Bau von Windenergieanlagen möglich ist. Unter ''Weiche Tabuzonen'' aufgeführte Flächen unterliegen zwar aktuell genauso dem Verbot der Bebauung durch Windenergieanlagen. Hier besteht allerdings mehr Gestaltungsspielraum und durch Anpassung der rechtlichen Rahmenbedingungen könnten diese nutzbar gemacht werden. Unter ''Einzelfallprüfung'' sind solche Gebiete zusammengefasst, bei denen es einer individuellen Abwägung der Interessen bedarf, um zu entscheiden, ob hier der Bau von Windenergieanlagen erlaubt werden sollte. 
 
@@ -52,7 +55,8 @@ Die Abbildung zeigt die Darstellung aller harten und weichen Tabuzonen in dunkel
 
 Den Reiter ''Variierbare Flächen'' kann man wie das Energiesystem-Panel dazu nutzen, ein eigenes Szenario näher zu definieren, um es dann mit einem Referenz-Szenario zu vergleichen. Diese Option kann allerdings nur dann genutzt werden, wenn als Zubau-Szenario für Windenergie die Option ''Freier Zubau'' ausgewählt wurde. Dann kann einerseits der gesetzlich vorgeschriebene Abstand von Windenergieanlagen zu Gemeinden variiert und andererseits ausgewählt werden, ob Waldflächen für die Bebauung freigegeben werden sollen. Verändert man diese Optionen, so gleicht sich auch das Potenzial der installierbaren Leistung von Windenergieanlagen unter ''Energiesystem'' an. 
 
-- **Ergebnisse**
+Ergebnisse
+..........
 
 Wurden unter ''Energiesystem'' und/oder ''Flächen'' Änderungen zum Vergleichsszenario vorgenommen, so kann eine Simulation durch Anklicken des entsprechenden Buttons gestartet werden. Diese berechnet dann Erzeugungs- und Verbrauchstdaten mit dem neuen Erzeugungspool. Die Ergebnisse der Simulation können im gleichnamigen Panel eingesehen werden. 
 
@@ -60,3 +64,8 @@ Die unter ''Ergebnisse für die Planungsregion'' zusammengefassten Reiter könne
 
 Diese Funktionalität kann dazu genutzt werden, Zukunftsszenarien zu simulieren und unterschiedliche Arten zu beleuchten, vorgegebene Zielsetzungen zu erreichen. So können sowohl der Zubau an erneuerbaren Erzeugern als auch die Reduktion des Verbrauchs zu einer Verminderung der Treibhausgase führen. Den Verantwortlichen der Region steht somit ein Instrument zur Verfügung, unterschiedliche Zukunftsszenarien zu simulieren und hinsichtlich vorher festzulegender Kriterien zu vergleichen.
 
+Sprachen
+........
+
+Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
+erweitert werden. Für Details siehe :ref:`developer_language_packs_label`.
