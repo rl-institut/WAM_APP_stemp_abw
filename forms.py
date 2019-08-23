@@ -162,6 +162,11 @@ class ScenarioDropdownForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ScenarioDropdownForm, self).__init__(*args, **kwargs)
 
+        # The following exception handling catches errors on app module import.
+        # Django management commands such as "migrate" or "get_fixtures_stemp_abw"
+        # try to import the app module which may fail, e.g. in case of non-existent
+        # DB tables when installing fixtures.
+        # cf. https://github.com/rl-institut/WAM_APP_stemp_abw/issues/71
         try:
             self.fields['scn'] = forms.ChoiceField(
                 choices=[(scn.id, str(scn))
