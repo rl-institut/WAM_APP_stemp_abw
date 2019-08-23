@@ -14,8 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         FILES_URLS = [
-            'https://zenodo.org/record/3374666/files/empty_fixture.zip',
-            'https://zenodo.org/record/3374666/files/empty_fixture_error.zip',
+            'https://zenodo.org/record/3376168/files/stemp-abw_data_v0.1.dev0_2019-08-23.tar.gz'
         ]
         for file_url in FILES_URLS:
             r = requests.get(file_url)
