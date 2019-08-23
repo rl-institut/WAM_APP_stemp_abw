@@ -4,7 +4,7 @@ from stemp_abw.models import FeedinTs, DemandTs, MunData, RepoweringScenario
 
 
 def load_timeseries():
-    """Load and format time series for all municipalities XXX
+    """Load and format time series for all municipalities
 
     Notes
     -----
@@ -13,7 +13,6 @@ def load_timeseries():
     """
 
     timeseries = {}
-
 
     try:
         # load normalized feedin ts
@@ -34,7 +33,6 @@ def load_timeseries():
     except KeyError as e:
         print('Catched & passed - KeyError:', e)
         pass
-
 
     try:
         # load demand ts
