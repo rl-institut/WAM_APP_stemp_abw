@@ -1,35 +1,35 @@
-# EN: Willkommen!
+# Welcome!
 
-<div style="background-color: #F24A4F; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
-  <p style="margin: 0.25rem;"><strong>Achtung:</strong> Die finale Version wird ab Anfang Oktober zur Verfügung stehen, bis dahin werden noch Anpassungen vorgenommen und kleine Fehler behoben (das Tool kann bis dahin vollumfänglich verwendet werden).</p>
+<div style="background-color: #e0961f; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Caution:</strong> The final version will be available at the beginning of October, until then adjustments will be made and minor bugs fixed (however, the tool can be used until then).</p>
 </div>
 
-<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
-  <h3>Neue Funktionen!</h3>
+<div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <h3>New features!</h3>
   <ul>
     <!--<li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden und <strong>Änderungen ggü. dem Status quo</strong> werden angezeigt</li>-->
-    <li>Der <strong>el. Energiebedarf</strong> kann nun auch erhöht werden</li>
+    <li>The <strong>electrical energy demand</strong> can now be increased</li>
     <!--<li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>-->
-    <li>Über das neue <strong>Feedback-Formular</strong> können Sie uns nun Rückmeldung zum Tool geben (s. Hauptmenü)</li>
-    <li><strong>Ausführlichere Erklärtexte</strong> (z.B. bei Windenergieanlagen und konventionellen Kraftwerken)</li>
-    <li><strong>Einwohnerzahlen und Wärmebedarfe</strong> korrigiert</li>
-    <li>Weitere <strong>Diverse Bugfixes</strong></li>
+    <li>You can now use <strong>the feedback form</strong> to give us your review on the tool (see main menu)</li>
+    <li><strong>More detailed explanatory texts</strong> (e.g. for wind turbines and conventional power plants)</li>
+    <li><strong>Inhabitants and heat demand</strong> corrected</li>
+    <li>Some minor <strong>bugs</strong> fixed</li>
   </ul>
 </div>
 
-Nutze dieses Tool, um einen Überblick über Flächennutzung und Energiesystem deiner Region zu bekommen. Spiele mit dem Energiesystem und vergleiche die Ergebnisse mit Referenzszenarien.
+Use this tool to get an overview of land use and the energy system in your region. Play around with the energy system and compare the results with reference scenarios.
 
-- Erkunde unter **Region** die Region zum heutigen Zeitpunkt. Lass dir allgemeine oder energiebezogene Daten, wie Bevölkerungsdichte, die installierte Leistung an erneuerbaren Energieanlagen oder den Strombedarf, gemeindescharf darstellen. Klicke auf eine Gemeinde, um dir weiterführende Informationen anzeigen zu lassen.
+- In the category **region** you can explore the region at its present state. General or energy related data such as population density, installed capacity of renewable energy plants or electricity demand can be displayed for each community in the region. With just a click on the community further information can be viewed.
 
-- Definiere unter **Energiesystem** dein Energiesystem für die Region. Wähle ein Referenzszenario und ändere Erzeugungs- und Verbrauchsdaten ausgehend von diesem Szenario. Als Referenzszenario steht derzeit der *Status quo* (2017) zur Verfügung.
+- Define your own **energy system** for the region in the category energy system. Choose a reference scenario and change production and consumption data based on this scenario. The reference scenario currently available is the status quo (2017)
 
-- Lass dir unter **Flächen** die verfügbaren Vorranggebiete für Windenergie anzeigen und passe die nutzbaren Flächen an. Unter **Statische Flächen** können Flächen und Gebiete angezeigt werden, die für die Planung neuer Windenergieanlagen relevant sind, wie beispielsweise Pufferzonen um Siedlungen. Dabei sind die aktuellen gesetzlichen Vorgaben zugrunde gelegt. Unter **Variierbare Flächen** können die für Windenergie nutzbaren Flächen angepasst werden, sofern im **Energiesystem** beim Zubau-Szenario für Windenergieanlagen *Freier Zubau* ausgewählt wurde. Dann kann beispielsweise der Puffer um Siedlungen angepasst werden. So verändert sich auch das verfügbare Potenzial für Windenergieanlagen im **Energiesystem**.
+- The category **areas** allows you to have a look at and adjust available prirority areas for wind energy. In **static areas** you can highlight areas and a various number of territories which are relevant for planning new wind turbines. Buffer zones surrounding residential areas are one of many examples. This is based on the current legal requirements. If you select the free extensions option in the **energy system** category for the extension scenario, you will be able to adapt usable areas for wind energy in **variable areas**. As an example, buffer zones surrounding residential areas can now be adapted. This also changes the available potential for wind turbines in the **energy system**.
 
-- Vergleiche unter **Ergebnisse** Erzeugung und Verbrauch des neu erstellten Energiesystems mit dem Referenzszenario. Welcher Anteil des Verbrauchs kann durch erneuerbare Energien gedeckt werden? Wie sieht der Strommix aus? Nach Ausführen der **Simulation** können diese und weitere Fragen beantwortet werden.
+- Compare the **results** of generation and consumption of the newly created energy system with the reference scenario. What share of consumption can be covered by renewable energies? What does the electricity mix look like? After running the **simulation**, these and other questions can be answered.
 
-Viel Spaß beim Erkunden!
+Have fun exploring!
 
 <div style="background-color: #002E4F; color: #fff; width: 100%; padding: 0.5rem; vertical-align: middle; text-align: center;">
-  <p style="margin: 0;"><strong>Tipp 1: </strong>Hinter jedem<i class ="icon ion-information-circled icon--small"></i>verbirgt sich ein kurzer Infotext, der durch Rüberfahren mit der Maus geöffnet wird.</p>
-  <p style="margin: 0;"><strong>Tipp 2: </strong>Hinter jedem<i class ="icon ion-help-circled icon--small" style="color: #F2994A;"></i>verbirgt sich ein ausführliche Erklärung, die durch Klicken geöffnet werden kann.</p>
+  <p style="margin: 0;"><strong>Tip 1: </strong>Behind each<i class ="icon ion-information-circled icon--small"></i> icon is a short info text which can be opened by moving the mouse over it.</p>
+  <p style="margin: 0;"><strong>Tip 2: </strong>Behind each<i class ="icon ion-help-circled icon--small" style="color: #F2994A;"></i> icon is a detailed explanation, which can be opened by clicking on it.</p>
 </div>
