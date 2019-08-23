@@ -1,10 +1,10 @@
 # Welcome!
 
-<div style="background-color: #F24A4F; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
-  <p style="margin: 0.25rem;"><strong>Achtung:</strong> Die finale Version wird ab Anfang Oktober zur Verfügung stehen, bis dahin werden noch Anpassungen vorgenommen und kleine Fehler behoben (das Tool kann bis dahin vollumfänglich verwendet werden).</p>
+<div style="background-color: #e0961f; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Caution:</strong> The final version will be available at the beginning of October, until then adjustments will be made and minor bugs fixed (however, the tool can be used until then).</p>
 </div>
 
-<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+<div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <h3>New features!</h3>
   <ul>
     <!--<li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden und <strong>Änderungen ggü. dem Status quo</strong> werden angezeigt</li>-->
