@@ -7,8 +7,7 @@ Voraussetzungen
 ---------------
 
 - Python Version >=3.6
-- `WAM <https://github.com/rl-institut/WAM>`_ (Installation in der folgenden
-Anleitung enthalten)
+- `WAM <https://github.com/rl-institut/WAM>`_ (Installation in der folgenden Anleitung enthalten)
 
 Installation (Quellcode)
 ------------------------
@@ -47,7 +46,7 @@ den master-Branch wechseln:
 
 Einrichtung der WAM entsprechend der `WAM-Doku
 <https://wam.readthedocs.io/en/latest/getting_started.html>`_ (PostgreSQL,
-PostGIS, Celery, Umgebungsvariablen etc.).
+PostGIS, Celery, Umgebungsvariablen, benötigte Pakete etc.).
 
 GitHub-Repository des StEmp-Tools in das WAM-Verzeichnis klonen und in den
 master-Branch wechseln:
