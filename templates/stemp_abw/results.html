@@ -1,12 +1,126 @@
+{% load i18n %}
+              <div class="cell results-display-none" id="results-wrap">
+                <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                  <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">{% trans 'Übersicht' %}</a></li>
+                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">{% trans 'Stromerzeugung' %}</a></li>
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel3">Strombedarf</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel4">Wärmeerzeugung</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel5">Wärmebedarf</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel6">Flächenbedarf</a></li>-->
+                </ul>
 
-  <!--<div class="cell l-bg-color-w scen-create__wrapper u-text&#45;&#45;center">-->
-    <!--<div class="grid-x grid-padding-x">-->
-    {% for visualization in visualizations1 %}
-        <div class="cell small-4">
-          {{visualization.div|safe}}
-          {{visualization.script|safe}}
-        </div>
-    {% endfor %}
+                <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+                  <div class="tabs-panel is-active" id="results-panel1">
+                    <div class="grid-x grid-margin-x">
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Windenergie</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">650 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Windenergieanlagen</td>-->
+                              <!--<td width="25%">412</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">1040 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
 
-    <!--</div>-->
-  <!--</div>-->
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Photovoltaik</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">470 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Photovoltaikanlagen</td>-->
+                              <!--<td width="25%">6018</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">470 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
+
+                      <!--<div class="cell small-4">-->
+                        <!--<p class="lead">Biomasse und Biogas</p>-->
+                        <!--<table>-->
+                          <!--<tbody>-->
+                            <!--<tr>-->
+                              <!--<td>Installierte Gesamtleistung</td>-->
+                              <!--<td width="25%">70 MW</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Anzahl Biomasse- und Biogasanlagen</td>-->
+                              <!--<td width="25%">50</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>Jährlich erzeugte Energiemenge</td>-->
+                              <!--<td width="25%">210 GWh</td>-->
+                            <!--</tr>-->
+                          <!--</tbody>-->
+                        <!--</table>-->
+                      <!--</div>-->
+                      {% for visualization in results_charts_tab1_viz %}
+                          <div class="cell small-4">
+                            {% include "stemp_abw/result_chart.html" %}
+                          </div>
+                      {% endfor %}
+
+
+                    </div>
+                  </div>
+                  <div class="tabs-panel" id="results-panel2">
+                    <div class="grid-x grid-margin-x">
+                      {% for visualization in results_charts_tab2_viz %}
+                          <div class="cell small-4">
+                            {% include "stemp_abw/result_chart.html" %}
+                          </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+<!--                  <div class="tabs-panel" id="results-panel3">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab3_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel4">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab4_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel5">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab5_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel6">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                </div>
+              </div>

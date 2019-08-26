@@ -11892,7 +11892,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
  * Date: 2018-01-20T17:24Z
  */
 (function (global, factory) {
-
 	"use strict";
 
   if (( false ? undefined : _typeof(module)) === "object" && _typeof(module.exports) === "object") {
@@ -11907,6 +11906,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			if (!w.document) {
 				throw new Error("jQuery requires a window with a document");
 			}
+
 			return factory(w);
 		};
 	} else {
@@ -11921,33 +11921,20 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 	"use strict";
 
 	var arr = [];
-
 	var document = window.document;
-
 	var getProto = Object.getPrototypeOf;
-
 	var _slice = arr.slice;
-
 	var concat = arr.concat;
-
 	var push = arr.push;
-
 	var indexOf = arr.indexOf;
-
 	var class2type = {};
-
 	var toString = class2type.toString;
-
 	var hasOwn = class2type.hasOwnProperty;
-
 	var fnToString = hasOwn.toString;
-
 	var ObjectFunctionString = fnToString.call(Object);
-
 	var support = {};
 
 	var isFunction = function isFunction(obj) {
-
 		// Support: Chrome <=57, Firefox <=52
 		// In some browsers, typeof returns "function" for HTML <object> elements
 		// (i.e., `typeof document.createElement( "object" ) === "function"`).
@@ -11967,11 +11954,10 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 	function DOMEval(code, doc, node) {
 		doc = doc || document;
-
 		var i,
 		    script = doc.createElement("script");
-
 		script.text = code;
+
 		if (node) {
 			for (i in preservedScriptAttributes) {
 				if (node[i]) {
@@ -11979,6 +11965,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 				}
 			}
 		}
+
 		doc.head.appendChild(script).parentNode.removeChild(script);
 	}
 
@@ -11996,39 +11983,28 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 
 	var version = "3.3.1",
-
-
 	// Define a local copy of jQuery
 	jQuery = function jQuery(selector, context) {
-
 		// The jQuery object is actually just the init constructor 'enhanced'
 		// Need init if jQuery is called (just allow error to be thrown if not included)
 		return new jQuery.fn.init(selector, context);
 	},
-
-
 	// Support: Android <=4.0 only
 	// Make sure we trim BOM and NBSP
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
 
 	jQuery.fn = jQuery.prototype = {
-
 		// The current version of jQuery being used
 		jquery: version,
-
 		constructor: jQuery,
-
 		// The default length of a jQuery object is 0
 		length: 0,
-
 		toArray: function toArray() {
 			return _slice.call(this);
 		},
-
 		// Get the Nth element in the matched element set OR
 		// Get the whole matched element set as a clean array
 		get: function get(num) {
-
 			// Return all the elements in a clean array
 			if (num == null) {
 				return _slice.call(this);
@@ -12037,11 +12013,9 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return num < 0 ? this[num + this.length] : this[num];
 		},
-
 		// Take an array of elements and push it onto the stack
 		// (returning the new matched element set)
 		pushStack: function pushStack(elems) {
-
 			// Build a new jQuery matched element set
       var ret = jQuery.merge(this.constructor(), elems); // Add the old object onto the stack (as a reference)
 
@@ -12049,40 +12023,32 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return ret;
 		},
-
 		// Execute a callback for every element in the matched set.
 		each: function each(callback) {
 			return jQuery.each(this, callback);
 		},
-
 		map: function map(callback) {
 			return this.pushStack(jQuery.map(this, function (elem, i) {
 				return callback.call(elem, i, elem);
 			}));
 		},
-
 		slice: function slice() {
 			return this.pushStack(_slice.apply(this, arguments));
 		},
-
 		first: function first() {
 			return this.eq(0);
 		},
-
 		last: function last() {
 			return this.eq(-1);
 		},
-
 		eq: function eq(i) {
 			var len = this.length,
 			    j = +i + (i < 0 ? len : 0);
 			return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
 		},
-
 		end: function end() {
 			return this.prevObject || this.constructor();
 		},
-
 		// For internal use only.
 		// Behaves like an Array's method, not like a jQuery method.
 		push: push,
@@ -12121,10 +12087,8 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 		}
 
 		for (; i < length; i++) {
-
 			// Only deal with non-null/undefined values
 			if ((options = arguments[i]) != null) {
-
 				// Extend the base object
 				for (name in options) {
 					src = target[name];
@@ -12136,7 +12100,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 
 					if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
-
 						if (copyIsArray) {
 							copyIsArray = false;
 							clone = src && Array.isArray(src) ? src : [];
@@ -12158,24 +12121,18 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 	};
 
 	jQuery.extend({
-
 		// Unique for each copy of jQuery on the page
 		expando: "jQuery" + (version + Math.random()).replace(/\D/g, ""),
-
 		// Assume jQuery is ready without the ready module
 		isReady: true,
-
 		error: function error(msg) {
 			throw new Error(msg);
 		},
-
 		noop: function noop() {},
-
 		isPlainObject: function isPlainObject(obj) {
-			var proto, Ctor;
-
-			// Detect obvious negatives
+      var proto, Ctor; // Detect obvious negatives
 			// Use toString instead of jQuery.type to catch host objects
+
 			if (!obj || toString.call(obj) !== "[object Object]") {
 				return false;
 			}
@@ -12190,9 +12147,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
 			return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
 		},
-
 		isEmptyObject: function isEmptyObject(obj) {
-
 			/* eslint-disable no-unused-vars */
 			// See https://github.com/eslint/eslint/issues/6125
 			var name;
@@ -12200,20 +12155,20 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			for (name in obj) {
 				return false;
 			}
+
 			return true;
 		},
-
 		// Evaluates a script in a global context
 		globalEval: function globalEval(code) {
 			DOMEval(code);
 		},
-
 		each: function each(obj, callback) {
 			var length,
 			    i = 0;
 
 			if (isArrayLike(obj)) {
 				length = obj.length;
+
 				for (; i < length; i++) {
 					if (callback.call(obj[i], i, obj[i]) === false) {
 						break;
@@ -12229,12 +12184,10 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return obj;
 		},
-
 		// Support: Android <=4.0 only
 		trim: function trim(text) {
 			return text == null ? "" : (text + "").replace(rtrim, "");
 		},
-
 		// results is for internal usage only
 		makeArray: function makeArray(arr, results) {
 			var ret = results || [];
@@ -12249,11 +12202,9 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return ret;
 		},
-
 		inArray: function inArray(elem, arr, i) {
 			return arr == null ? -1 : indexOf.call(arr, elem, i);
 		},
-
 		// Support: Android <=4.0 only, PhantomJS 1 only
 		// push.apply(_, arraylike) throws on ancient WebKit
 		merge: function merge(first, second) {
@@ -12266,21 +12217,19 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			}
 
 			first.length = i;
-
 			return first;
 		},
-
 		grep: function grep(elems, callback, invert) {
 			var callbackInverse,
 			    matches = [],
 			    i = 0,
 			    length = elems.length,
-			    callbackExpect = !invert;
-
-			// Go through the array, only saving the items
+          callbackExpect = !invert; // Go through the array, only saving the items
 			// that pass the validator function
+
 			for (; i < length; i++) {
 				callbackInverse = !callback(elems[i], i);
+
 				if (callbackInverse !== callbackExpect) {
 					matches.push(elems[i]);
 				}
@@ -12288,7 +12237,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return matches;
 		},
-
 		// arg is for internal usage only
 		map: function map(elems, callback, arg) {
 			var length,
@@ -12298,6 +12246,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			if (isArrayLike(elems)) {
 				length = elems.length;
+
 				for (; i < length; i++) {
 					value = callback(elems[i], i, arg);
 
@@ -12319,10 +12268,8 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return concat.apply([], ret);
 		},
-
 		// A global GUID counter for objects
 		guid: 1,
-
 		// jQuery.support is not used in Core but other projects attach their
 		// properties to it so it needs to exist.
 		support: support
@@ -12338,7 +12285,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 	});
 
 	function isArrayLike(obj) {
-
 		// Support: real iOS 8.2 only (not reproducible in simulator)
 		// `in` check used to prevent JIT error (gh-2145)
 		// hasOwn isn't used here due to false negatives
@@ -12352,6 +12298,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 		return type === "array" || length === 0 || typeof length === "number" && length > 0 && length - 1 in obj;
 	}
+
 	var Sizzle =
 	/*!
   * Sizzle CSS Selector Engine v2.3.3
@@ -12364,7 +12311,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
   * Date: 2016-08-08
   */
 	function (window) {
-
 		var i,
 		    support,
 		    Expr,
@@ -12376,8 +12322,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 		    outermostContext,
 		    sortInput,
 		    hasDuplicate,
-
-
 		// Local document vars
 		setDocument,
 		    document,
@@ -12387,8 +12331,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 		    rbuggyMatches,
 		    matches,
 		    contains,
-
-
 		// Instance-specific data
 		expando = "sizzle" + 1 * new Date(),
 		    preferredDoc = window.document,
@@ -12401,10 +12343,9 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			if (a === b) {
 				hasDuplicate = true;
 			}
+
 			return 0;
 		},
-
-
 		// Instance methods
 		hasOwn = {}.hasOwnProperty,
 		    arr = [],
@@ -12412,48 +12353,35 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 		    push_native = arr.push,
 		    push = arr.push,
 		    slice = arr.slice,
-
 		// Use a stripped-down indexOf as it's faster than native
 		// https://jsperf.com/thor-indexof-vs-for/5
 		indexOf = function indexOf(list, elem) {
 			var i = 0,
 			    len = list.length;
+
 			for (; i < len; i++) {
 				if (list[i] === elem) {
 					return i;
 				}
 			}
+
 			return -1;
 		},
 		    booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
-
-
 		// Regular expressions
-
 		// http://www.w3.org/TR/css3-selectors/#whitespace
 		whitespace = "[\\x20\\t\\r\\n\\f]",
-
-
 		// http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
 		identifier = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+",
-
-
 		// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
-		attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
-		// Operator (capture 2)
-		"*([*^$|!~]?=)" + whitespace +
-		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+    attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace + // Operator (capture 2)
+    "*([*^$|!~]?=)" + whitespace + // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
 		"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace + "*\\]",
-		    pseudos = ":(" + identifier + ")(?:\\((" +
-		// To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
+        pseudos = ":(" + identifier + ")(?:\\((" + // To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
 		// 1. quoted (capture 3; capture 4 or capture 5)
-		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
-		// 2. simple (capture 6)
-		"((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
-		// 3. anything else (capture 2)
+    "('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" + // 2. simple (capture 6)
+    "((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" + // 3. anything else (capture 2)
 		".*" + ")\\)|)",
-
-
 		// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
 		rwhitespace = new RegExp(whitespace + "+", "g"),
 		    rtrim = new RegExp("^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g"),
@@ -12477,35 +12405,26 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 		    rinputs = /^(?:input|select|textarea|button)$/i,
 		    rheader = /^h\d$/i,
 		    rnative = /^[^{]+\{\s*\[native \w/,
-
-
 		// Easily-parseable/retrievable ID or TAG or CLASS selectors
 		rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
 		    rsibling = /[+~]/,
-
-
 		// CSS escapes
 		// http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
 		runescape = new RegExp("\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig"),
 		    funescape = function funescape(_, escaped, escapedWhitespace) {
-			var high = "0x" + escaped - 0x10000;
-			// NaN means non-codepoint
+      var high = "0x" + escaped - 0x10000; // NaN means non-codepoint
 			// Support: Firefox<24
 			// Workaround erroneous numeric interpretation of +"0x"
-			return high !== high || escapedWhitespace ? escaped : high < 0 ?
-			// BMP codepoint
-			String.fromCharCode(high + 0x10000) :
-			// Supplemental Plane codepoint (surrogate pair)
+
+      return high !== high || escapedWhitespace ? escaped : high < 0 ? // BMP codepoint
+      String.fromCharCode(high + 0x10000) : // Supplemental Plane codepoint (surrogate pair)
 			String.fromCharCode(high >> 10 | 0xD800, high & 0x3FF | 0xDC00);
 		},
-
-
 		// CSS string/identifier serialization
 		// https://drafts.csswg.org/cssom/#common-serializing-idioms
 		rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
 		    fcssescape = function fcssescape(ch, asCodePoint) {
 			if (asCodePoint) {
-
 				// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
 				if (ch === "\0") {
 					return "\uFFFD";
@@ -12518,8 +12437,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return "\\" + ch;
 		},
-
-
 		// Used for iframes
 		// See setDocument()
 		// Removing the function wrapper causes a "Permission Denied"
@@ -12536,25 +12453,23 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 
 		try {
-			push.apply(arr = slice.call(preferredDoc.childNodes), preferredDoc.childNodes);
-			// Support: Android<4.0
+      push.apply(arr = slice.call(preferredDoc.childNodes), preferredDoc.childNodes); // Support: Android<4.0
 			// Detect silently failing push.apply
+
 			arr[preferredDoc.childNodes.length].nodeType;
 		} catch (e) {
-			push = { apply: arr.length ?
-
-				// Leverage slice if possible
+      push = {
+        apply: arr.length ? // Leverage slice if possible
 				function (target, els) {
 					push_native.apply(target, slice.call(els));
-				} :
-
-				// Support: IE<9
+        } : // Support: IE<9
 				// Otherwise append directly
 				function (target, els) {
 					var j = target.length,
-					    i = 0;
-					// Can't trust NodeList.length
+              i = 0; // Can't trust NodeList.length
+
 					while (target[j++] = els[i++]) {}
+
 					target.length = j - 1;
 				}
 			};
@@ -12569,38 +12484,31 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 			    groups,
 			    newSelector,
 			    newContext = context && context.ownerDocument,
-
-
 			// nodeType defaults to 9, since context defaults to document
 			nodeType = context ? context.nodeType : 9;
       results = results || []; // Return early from calls with invalid selector or context
 
 			if (typeof selector !== "string" || !selector || nodeType !== 1 && nodeType !== 9 && nodeType !== 11) {
-
 				return results;
       } // Try to shortcut find operations (as opposed to filters) in HTML documents
 
 
 			if (!seed) {
-
 				if ((context ? context.ownerDocument || context : preferredDoc) !== document) {
 					setDocument(context);
 				}
+
 				context = context || document;
 
 				if (documentIsHTML) {
-
 					// If the selector is sufficiently simple, try using a "get*By*" DOM method
 					// (excepting DocumentFragment context, where the methods don't exist)
 					if (nodeType !== 11 && (match = rquickExpr.exec(selector))) {
-
 						// ID selector
 						if (m = match[1]) {
-
 							// Document context
 							if (nodeType === 9) {
 								if (elem = context.getElementById(m)) {
-
 									// Support: IE, Opera, Webkit
 									// TODO: identify versions
 									// getElementById can match elements by name instead of ID
@@ -12613,12 +12521,10 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
                 } // Element context
 
 							} else {
-
 								// Support: IE, Opera, Webkit
 								// TODO: identify versions
 								// getElementById can match elements by name instead of ID
 								if (newContext && (elem = newContext.getElementById(m)) && contains(context, elem) && elem.id === m) {
-
 									results.push(elem);
 									return results;
 								}
@@ -12626,11 +12532,8 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 						} else if (match[2]) {
 							push.apply(results, context.getElementsByTagName(selector));
-							return results;
-
-							// Class selector
+              return results; // Class selector
 						} else if ((m = match[3]) && support.getElementsByClassName && context.getElementsByClassName) {
-
 							push.apply(results, context.getElementsByClassName(m));
 							return results;
 						}
@@ -12638,17 +12541,13 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 
 					if (support.qsa && !compilerCache[selector + " "] && (!rbuggyQSA || !rbuggyQSA.test(selector))) {
-
 						if (nodeType !== 1) {
 							newContext = context;
-							newSelector = selector;
-
-							// qSA looks outside Element context, which is not what we want
+							newSelector = selector; // qSA looks outside Element context, which is not what we want
 							// Thanks to Andrew Dupont for this workaround technique
 							// Support: IE <=8
 							// Exclude object elements
 						} else if (context.nodeName.toLowerCase() !== "object") {
-
 							// Capture the context ID, setting it first if necessary
 							if (nid = context.getAttribute("id")) {
 								nid = nid.replace(rcssescape, fcssescape);
@@ -12659,6 +12558,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 							groups = tokenize(selector);
 							i = groups.length;
+
 							while (i--) {
 								groups[i] = "#" + nid + " " + toSelector(groups[i]);
 							}
@@ -12685,13 +12585,14 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return select(selector.replace(rtrim, "$1"), context, results, seed);
 		}
-
 		/**
    * Create key-value caches of limited size
    * @returns {function(string, object)} Returns the Object data after storing it on itself with
    *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
    *	deleting the oldest entry
    */
+
+
 		function createCache() {
 			var keys = [];
 
@@ -12701,24 +12602,28 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 					// Only keep the most recent entries
 					delete cache[keys.shift()];
 				}
+
 				return cache[key + " "] = value;
 			}
+
 			return cache;
 		}
-
 		/**
    * Mark a function for special use by Sizzle
    * @param {Function} fn The function to mark
    */
+
+
 		function markFunction(fn) {
 			fn[expando] = true;
 			return fn;
 		}
-
 		/**
    * Support testing using an element
    * @param {Function} fn Passed the created element and returns a boolean result
    */
+
+
 		function assert(fn) {
 			var el = document.createElement("fieldset");
 
@@ -12730,17 +12635,19 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 				// Remove from its parent by default
 				if (el.parentNode) {
 					el.parentNode.removeChild(el);
-				}
-				// release memory in IE
+        } // release memory in IE
+
+
 				el = null;
 			}
 		}
-
 		/**
    * Adds the same handler for all of the specified attrs
    * @param {String} attrs Pipe-separated list of attributes
    * @param {Function} handler The method that will be applied
    */
+
+
 		function addHandle(attrs, handler) {
 			var arr = attrs.split("|"),
 			    i = arr.length;
@@ -12749,13 +12656,14 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 				Expr.attrHandle[arr[i]] = handler;
 			}
 		}
-
 		/**
    * Checks document order of two siblings
    * @param {Element} a
    * @param {Element} b
    * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
    */
+
+
 		function siblingCheck(a, b) {
 			var cur = b && a,
           diff = cur && a.nodeType === 1 && b.nodeType === 1 && a.sourceIndex - b.sourceIndex; // Use IE sourceIndex if available on both nodes
@@ -12775,43 +12683,43 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
 			return a ? 1 : -1;
 		}
-
 		/**
    * Returns a function to use in pseudos for input types
    * @param {String} type
    */
+
+
 		function createInputPseudo(type) {
 			return function (elem) {
 				var name = elem.nodeName.toLowerCase();
 				return name === "input" && elem.type === type;
 			};
 		}
-
 		/**
    * Returns a function to use in pseudos for buttons
    * @param {String} type
    */
+
+
 		function createButtonPseudo(type) {
 			return function (elem) {
 				var name = elem.nodeName.toLowerCase();
 				return (name === "input" || name === "button") && elem.type === type;
 			};
 		}
-
 		/**
    * Returns a function to use in pseudos for :enabled/:disabled
    * @param {Boolean} disabled true for :disabled; false for :enabled
    */
-		function createDisabledPseudo(disabled) {
 
+
+		function createDisabledPseudo(disabled) {
 			// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 			return function (elem) {
-
 				// Only certain elements can match :enabled or :disabled
 				// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
 				// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
 				if ("form" in elem) {
-
 					// Check for inherited disabledness on relevant non-disabled elements:
 					// * listed form-associated elements in a disabled fieldset
 					//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
@@ -12820,7 +12728,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 					//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
 					// All such elements have a "form" property.
 					if (elem.parentNode && elem.disabled === false) {
-
 						// Option elements defer to a parent optgroup if present
 						if ("label" in elem) {
 							if ("label" in elem.parentNode) {
@@ -12828,9 +12735,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 							} else {
 								return elem.disabled === disabled;
 							}
-						}
-
-						// Support: IE 6 - 11
+            } // Support: IE 6 - 11
 						// Use the isDisabled shortcut property to check for disabled fieldset ancestors
 
 
@@ -12840,9 +12745,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 						elem.isDisabled !== !disabled && disabledAncestor(elem) === disabled;
 					}
 
-					return elem.disabled === disabled;
-
-					// Try to winnow out elements that can't be disabled before trusting the disabled property.
+          return elem.disabled === disabled; // Try to winnow out elements that can't be disabled before trusting the disabled property.
 					// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
 					// even exist on them, let alone have a boolean value.
 				} else if ("label" in elem) {
@@ -12853,11 +12756,12 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 				return false;
 			};
 		}
-
 		/**
    * Returns a function to use in pseudos for positionals
    * @param {Function} fn
    */
+
+
 		function createPositionalPseudo(fn) {
 			return markFunction(function (argument) {
 				argument = +argument;
@@ -22238,19 +22142,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer--hide').click(function ()
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-// after simulation is done
-// replace click event with appropriate event
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn').on('click', function () {
-  // if user has already results panel open
-  if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').is('.is-active')) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').addClass('results-highlighted');
-  }
-}); // when user clicks on results tab
+// ************** OPEN TAB ************** //
+// initialize the Foundation javascript
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults').on('click', function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsResults > a').removeClass('results-highlighted');
-});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
+
 
 /***/ }),
 
@@ -22390,8 +22287,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
   var base_html = '<span class="irs">' + '<span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' + '<span class="irs-min">0</span><span class="irs-max">1</span>' + '<span class="irs-from">0</span><span class="irs-to">0</span><span class="irs-single">0</span>' + '</span>' + '<span class="irs-grid"></span>' + '<span class="irs-bar"></span>';
-  var single_html = '<span class="irs-bar-edge"></span>' + '<span class="irs-shadow shadow-single"></span>' + '<span class="irs-slider single"></span>';
-  var double_html = '<span class="irs-shadow shadow-from"></span>' + '<span class="irs-shadow shadow-to"></span>' + '<span class="irs-slider from"></span>' + '<span class="irs-slider to"></span>';
+  var single_html = '<span class="irs-bar-edge"></span>' + '<span class="irs-shadow shadow-single"></span>' + '<span class="irs-slider single rc-tooltip-trigger-override"></span>';
+  var double_html = '<span class="irs-shadow shadow-from"></span>' + '<span class="irs-shadow shadow-to"></span>' + '<span class="irs-slider from rc-tooltip-trigger-override"></span>' + '<span class="irs-slider to rc-tooltip-trigger-override"></span>';
   var disable_html = '<span class="irs-disable-mask"></span>'; // =================================================================================================================
   // Core
 
@@ -42258,21 +42155,18 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 // If statement fixes bug
 /*
 if (document.getElementById('mapid')) {
-
-	var mymap = L.map('mapid', {
-		zoomControl: false
-	}).setView([51.834167, 12.237778], 10);
-
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox.streets',
-		zoomControl: false
-	}).addTo(mymap);
-
-	L.control.zoom({
-		position: 'topright'
-	}).addTo(mymap);
+  var mymap = L.map('mapid', {
+    zoomControl: false
+  }).setView([51.505, -0.09], 13);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox.streets',
+    zoomControl: false
+  }).addTo(mymap);
+  L.control.zoom({
+    position: 'topright'
+  }).addTo(mymap);
 }*/
 
 /***/ }),
@@ -42316,10 +42210,10 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
   var toggleWidth = function toggleWidth(offCanvasWidth, offCanvasContentWidth) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvas').animate({
       width: offCanvasWidth
-    }, 500);
+    }, 250);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#offCanvasContent').animate({
       width: offCanvasContentWidth
-    }, 500);
+    }, 250);
   };
 
   var offCanvasOpacity = function offCanvasOpacity(op, duration) {
@@ -42333,9 +42227,9 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
 
   var btnExpandText = function btnExpandText(expanded) {
     if (expanded) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Weniger Ergebnisse <i class ="icon ion-android-remove icon--small"></i>');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Zu den Ergebnisflächen <i class ="icon ion-android-remove icon--small"></i>');
     } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Mehr Ergebnisse <i class ="icon ion-android-add icon--small"></i>');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Mehr Ergebnisgrafiken <i class ="icon ion-android-add icon--small"></i>');
     }
   };
 
@@ -42344,9 +42238,10 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
     expanded = false;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').removeClass('results-display-none');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').addClass('results-display-none');
-  }; // collapse or expand results panel
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').addClass('results-display-none');
+  };
 
-
+  // collapse or expand results panel
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').on('click', function () {
     if (!expanded) {
       toggleWidth('100%', '100%');
@@ -42354,18 +42249,20 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').addClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').removeClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-results').addClass('is-collapsed');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').removeClass('results-display-none');
     } else {
       toggleWidth('35rem', '30rem');
       expanded = false;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-collapsed').removeClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-wrap').addClass('results-display-none');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#panel-results').removeClass('is-collapsed');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#simulation-btn2').addClass('results-display-none');
     } // changes btn text
 
-
     btnExpandText(expanded);
-  }); // always reduce results panel after click on offcanvas tab
+  });
 
+  // always reduce results panel after click on offcanvas tab
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsRegion').on('click', reducePanel);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsScenarios').on('click', reducePanel);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabsEnergy').on('click', reducePanel);

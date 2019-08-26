@@ -1,29 +1,186 @@
 {% extends "stemp_abw/base.html" %}
-
 {% load staticfiles %}
+{% load i18n %}
 
 {% block content %}
-    <div class="l-bg-color u-vh--100">
+
       <!-- HERO SECTION START -->
-      <main class="grid-container hp__wrapper">
+      <main>
         <div class="grid-x">
 
-          <div class="cell u-text--center">
-            <h1 class="hp__header">Stakeholder Empowerment Tool</h1>
-          </div>
-          <div class="cell u-text--center hp-subheader">
-            <h2 class="hp__subheader">Flächennutzung für Regionalen Energiebalancekreis</h2>
-          </div>
-          <div class="cell u-text--center hp__btn">
-            <a href="{% url 'stemp_abw:map' %}" class="btn btn-cta">
-              Zum Tool
-              <i class ="icon ion-chevron-right icon--small"></i>
-            </a>
-          </div>
+          <section class="grid-x l-bg-color hp-hero">
+            <div class="cell u-text--center">
+                <h1 class="hp-hero__header">{% trans 'Regionaler Energiebalancekreis Anhalt-Bitterfeld-Wittenberg' %}</h1>
+            </div>
+            <div class="cell u-text--center hp-subheader">
+                <h2 class="hp-hero__subheader">{% trans 'Szenarien unter dem Aspekt einer abgestimmten Flächennutzung' %}</h2>
+            </div>
+            <div class="cell u-text--center hp-hero__img">
+              <img src="{% static 'stemp_abw/img/Anhalt_map_website.png' %}" alt="{% trans 'Anhalt Karte als Bild' %}">
+            </div>
+            <div class="cell u-text--center hp-hero__btn">
+              <a href="{% url 'stemp_abw:map' %}" class="btn btn-cta">
+                {% trans 'Zum Tool' %}
+                <i class ="icon ion-chevron-right icon--small"></i>
+              </a>
+            </div>
+            <div class="cell u-text--center hp-hero__toinfos" id="hp-chevron">
+              <a href="#hp-info" class="anchor-text anchor-text--light">
+                {% trans 'Neu hier?' %}
+                <i class ="icon ion-chevron-down icon--small"></i>
+              </a>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--w hp-info" id="hp-info">
+            <div class="cell medium-8 large-6 hp-info__text">
+              <p>{% trans 'Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die Partizipation der Bürger und Bürgerinnen. Allerdings erschwert die Komplexität von Energiesystemen und damit verbundenen Fragestellungen den Partizipationsprozess oft erheblich.' %}</p>
+              <p>{% trans 'Der Szenarienrechner schafft die Möglichkeit, allen interessierten Anspruchsgruppen ein besseres Verständnis über verschiedene Szenarien des regionalen Energiebalancekreises zu vermitteln und die Auswirkungen von Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige Diskussion geschaffen und eine gemeinsame Planung ermöglicht.' %}</p>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--light hp-features">
+            <div class="cell large-10">
+              <div class="grid-x align-center">
+                <div class="cell">
+                  <h2 class="hp-features__header">{% trans 'Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in Zukunft aussehen?' %}</h2>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Partizipation' %}</h3>
+                  <p>{% trans 'Regionale Akteure, insbesondere BürgerInnen, sollen ermutigt werden, seriös und real an der Mitgestaltung der Energiewende in ABW teilzunehmen. Durch anschauliches Design und geeignete Moderation werden die komplexen Zusammenhänge erfahr- und diskutierbar.' %}</p>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Effizientere Arbeitsweise' %}</h3>
+                  <p>{% trans 'Die regionale Energiewende kann mit besser verhandelten Ergebnissen effizienter vorangetrieben werden. Es wird, in der Gesamtheit, eine bessere Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht.' %}</p>
+                </div>
+              </div>
+              <div class="grid-x align-center">
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Tieferes Verständnis' %}</h3>
+                  <p>{% trans 'Dieses Tool wird nicht nur dabei helfen, die Zusammenhänge zwischen verschiedenen Systemen der Energiewirtschaft, Ökologie und Kulturlandschaft besser zu erklären, auch die Interessen und Werte der regionalen Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis wächst - auch und gerade bei unterschiedlichen Meinungen.' %}</p>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Open Science' %}</h3>
+                  <p>{% trans 'Daten und Quellcodes werden für alle Interessenten bereitgestellt. Das schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher Tools somit erleichtert werden.' %}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--white hp-how">
+            <div class="cell large-10">
+              <div class="grid-x align-center">
+                <div class="cell">
+                  <h2 class="hp-how__header">{% trans 'Wie funktioniert das Tool?' %}</h2>
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>1</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    {% trans 'Verschaffe dir einen Überblick über deine Region' %}
+                    <ul>
+                      <li>{% trans 'Wieviele Menschen leben in den Gemeinden?' %}</li>
+                      <li>{% trans 'Wieviel Strom kommt aus Erneuerbaren Energien?' %}</li>
+                      <li>{% trans 'Wieviele Windkraftanlagen stehen in den Gemeinden?' %}</li>
+                      <li>{% trans 'Welcher Flächenbelastung entspricht das?' %}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Region.png' %}" alt="{% trans 'Bild Region' %}">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>2</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    {% trans 'Definiere dein eigenes Szenario / Energiesystem' %}
+                    <ul>
+                      <li>{% trans 'Untersuche das Energiesystem der Region' %}</li>
+                      <li>{% trans 'Wähle ein Zubauszenario für Windenergie' %}</li>
+                      <li>{% trans 'Variiere den Anteil von Windenergie- Photovoltaik- und Biomasseanlagen oder konventionellen Kraftwerken' %}</li>
+                      <li>{% trans 'Passe den Verbrauch der Region an' %}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Energiesystem.png' %}" alt="{% trans 'Bild Energiesystem' %}">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>3</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    {% trans 'Passe Flächen für Windenergie an' %}
+                    <ul>
+                      <li>{% trans 'Sieh dir vorhandene Vorrangflächen für Windenergie an' %}</li>
+                      <li>{% trans 'Sieh dir die Tabuzonen für Windenergie in der Region an' %}</li>
+                      <li>{% trans 'Entscheide ob der Mindestabstand zu Siedlungen verändert werden soll, um mehr Windenergieanlagen bauen zu können' %}</li>
+                      <li>{% trans 'Entscheide ob Waldgebiete zum Bau von Windenergieanlagen zur Verfügung stehen sollen' %}</li>
+                      <li>{% trans 'Beobachte die Auswirkungen in der Karte und auf die mögliche Stromerzeugung des Energiesystems' %}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Flächen.png' %}" alt="{% trans 'Bild Flächennutzung' %}">
+                </div>
+              </div>
+              <div class="grid-x align-center hp-how__section">
+                <div class="cell medium-1 hp-how__text medium-order-2">
+                  <div class="hp-how__text-nb">
+                    <div>4</div>
+                  </div>
+                </div>
+                <div class="cell medium-4 hp-how__text medium-order-3">
+                  <div class="hp-how__text-desc">
+                    {% trans 'Vergleiche die Ergebnisse mit dem Status Quo' %}
+                    <ul>
+                      <li>{% trans 'Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der Region?' %}</li>
+                      <li>{% trans 'Wie viele Windkraftanlagen pro km² kommen hinzu?' %}</li>
+                      <li>{% trans 'Wie verändert sich der Im- und Export von Strom?' %}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell medium-7 hp-how__img medium-order-1">
+                  <img src="{% static 'stemp_abw/img/tool/Ergebnisse.png' %}" alt="{% trans 'Bild Ergebnisse' %}">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid-x align-center l-bg-color--light hp-features">
+            <div class="cell large-10">
+              <div class="grid-x align-center">
+                <div class="cell">
+                  <h2 class="hp-features__header">{% trans 'Get involved!' %}</h2>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Dokumentation' %}</h3>
+                  <p>{% trans 'Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation auf' %} <a href="https://stemp-abw.readthedocs.io/" target="_blank">ReadTheDocs</a>.</p>
+                </div>
+                <div class="cell medium-6 hp-features__card">
+                  <h3 class="hp-features__subheader">{% trans 'Quellcode</h3>
+                  <p>{% trans 'Der Quellcode ist auf' %} <a href="https://github.com/rl-institut/WAM_APP_stemp_abw" target="_blank">GitHub<i class="icon ion-social-github" style="font-size: 1.25rem;"></i></a> {% trans 'unter der Lizenz GNU AGPL v3 frei verfügbar.' %}</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
         </div>
       </main>
-      <!-- HERO SECTION END -->
 
 
       <footer class="footer-hp l-bg-color--w">
@@ -32,23 +189,26 @@
           <div class="cell footer-hp__logo">
             <ul>
               <li>
-                <a href="https://www.energieavantgarde.de/" target="_blank" rel="noopener" title="Energieavantgarde Anhalt">
-                  <img class="footer-hp__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
+                <a href="https://www.energieavantgarde.de/" target="_blank" rel="noopener" title="{% trans 'Energieavantgarde Anhalt' %}">
+                  <img class="footer-hp__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="{% trans 'Logo Energieavantgarde Anhalt' %}">
                 </a>
               </li>
               <li>
-                <a href="https://reiner-lemoine-institut.de/" target="_blank" rel="noopener" title="Reiner Lemoine Institut">
-                  <img class="footer-hp__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
+                <a href="https://reiner-lemoine-institut.de/" target="_blank" rel="noopener" title="{% trans 'Reiner Lemoine Institut' %}">
+                  <img class="footer-hp__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="{% trans 'Logo Reiner Lemoine Institut' %}">
                 </a>
               </li>
               <li>
-                <a href="https://www.energieavantgarde.de/" target="_blank" rel="noopener" title="Kopernikus Projekte">
-                  <img class="footer-hp__logo-kopernikus" src="{% static 'stemp_abw/img/kopernikus_logo.png' %}" alt="Logo Kopernikus Projekte">
+                <a href="https://www.energieavantgarde.de/" target="_blank" rel="noopener" title="{% trans 'Kopernikus Projekte' %}">
+                  <img class="footer-hp__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="{% trans 'Logo ENavi' %}">
                 </a>
               </li>
               <li>
-                <a href="https://www.bmbf.de/" target="_blank" rel="noopener" title="Bundesministerium für Bildung und Forschung">
-                  <img class="footer-hp__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">
+                <a href="https://www.bmbf.de/" target="_blank" rel="noopener" title="{% trans 'Bundesministerium für Bildung und Forschung' %}">
+<!--                  <img class="footer-hp__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">-->
+                  <div style="font-size: 0.8rem; width: 9rem; vertical-align: middle; height: auto; display: inline-block; border: 1px solid;">
+                    <p style="margin: 0;">{% trans 'Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> (FKZ 03SFK4E1)' %}</p>
+                  </div>
                 </a>
               </li>
             </ul>
@@ -56,17 +216,16 @@
 
           <div class="cell medium-10 medium-offset-1">
             <ul class="u-text--center" id="footer-links">
-              <li><a class="anchor-text--dark" href="#">Kontakt</a></li>
-              <li><a class="anchor-text--dark" href="#">Impressum</a></li>
-              <li><a class="anchor-text--dark" href="#">Datenschutz</a></li>
-              <li><a class="anchor-text--dark" href="#">Lizenz</a></li>
+              <li><a class="anchor-text--dark" href="#">{% trans 'Kontakt' %}</a></li>
+              <li><a class="anchor-text--dark" href="#">{% trans 'Impressum' %}</a></li>
+              <li><a class="anchor-text--dark" href="#">{% trans 'Datenschutz' %}</a></li>
+              <li><a class="anchor-text--dark" href="#">{% trans 'Lizenz' %}</a></li>
               <li class="hide-for-small-only">
-                <p class="u-no-margin">&copy; Reiner Lemoine Institut gGmbH</p>
+                <p class="u-no-margin">&copy; {% trans 'Reiner Lemoine Institut gGmbH' %}</p>
               </li>
             </ul>
           </div>
 
         </div>
       </footer>
-    </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 <form>
   {% csrf_token %}
-  <ul class="accordion" data-accordion>
+  <ul class="accordion" data-accordion data-allow-all-closed="true">
     {% for group, data in comp_groups.items %}
 
       <li class="accordion-item {% if data.title == 'Stromerzeugung' %}accordion-item--no-border is-active{% endif %}" data-accordion-item>

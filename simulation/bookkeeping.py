@@ -1,21 +1,20 @@
 import multiprocessing as mp
-from stemp_abw.simulation.simulation import simulation_fct_test
+from stemp_abw.simulation.simulation import default_simulation_fct
 
 
-def simulate_energysystem():
-    #energysystem = session.energysystem
-    simulation_fct = simulation_fct_test
-    result, param_result = multiprocess_energysystem(
+def simulate_energysystem(esys):
+    simulation_fct = default_simulation_fct
+    results, parameters = multiprocess_energysystem(
+        esys,
         simulation_fct)
-    return result, param_result
+    return results, parameters
 
 
-# TODO: Create user-dependent pool in settings
-def multiprocess_energysystem(simulate_fct):
+def multiprocess_energysystem(esys, simulate_fct):
     queue = mp.Queue()
     p = mp.Process(
         target=queue_energysystem,
-        args=(queue, simulate_fct)
+        args=(queue, esys, simulate_fct)
     )
     p.start()
     results = queue.get()
@@ -23,9 +22,9 @@ def multiprocess_energysystem(simulate_fct):
     return results
 
 
-def queue_energysystem(queue, simulate_fct):
+def queue_energysystem(queue, esys, simulate_fct):
     """
     All function in fcts are succesively run on energysystem
     """
-    results = simulate_fct()
+    results = simulate_fct(esys)
     queue.put(results)

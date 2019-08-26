@@ -1,0 +1,17 @@
+{% extends 'stemp_abw/popups/base_layer_popup.html' %}
+{% load i18n %}
+
+{% block gen %}
+  <div class="cell">
+    <p>{{ layer.gen }}: {{ layer.pop }} {% trans 'EinwohnerInnen' %}</p>
+  </div>
+  <div>
+    Region ABW: {{layer.pop_region }} {% trans 'EinwohnerInnen' %}
+  </div>
+{% endblock %}
+
+{% block vis %}
+<div class="cell" style="height: 252px;">
+  {{ chart }}
+</div>
+{% endblock%}

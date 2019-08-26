@@ -30,5 +30,6 @@ class SliderWidget(NumberInput):
     #     #context['widget']['precision'] = self.__get_precision()
     #     return context
 
-class SwitchWidget(NumberInput):
-    template_name = 'widgets/switch.html'
+
+class EsysSwitchWidget(NumberInput):
+    template_name = 'widgets/esys_switch.html'

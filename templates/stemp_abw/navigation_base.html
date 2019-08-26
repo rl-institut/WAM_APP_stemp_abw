@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load language_tags %}
+{% language_store as languages %}
+{% get_current_language as current_language %}
+
+      <!-- MAIN NAVIGATION START -->
+      <nav>
+        <div class="title-bar" id="nav-container" data-responsive-toggle="simple-menu" data-hide-for="medium">
+          <button class="menu-icon" type="button" data-toggle></button>
+          <div class="title-bar-title">{% trans 'Menü' %}</div>
+        </div>
+
+        <div class="top-bar" id="simple-menu">
+          <div class="top-bar-left show-for-large">
+            <ul class="menu">
+              {% block map-index-confirm_1 %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">{% trans 'Startseite' %}</a></li>{% endblock %}
+            </ul>
+          </div>
+          {% block link_to_wam %}
+          {% endblock %}
+          <div class="menu">
+            <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select class="dropdown menu-form-dropdown" name="language">
+                  {% for language in languages %}
+                    {% get_language_info for language as lang %}
+                    <option value="{{ language }}" {% if current_language == language %} selected{% endif %}>
+                      {{lang.code}} ({{ lang.name_local }})
+                    </option>
+                  {% endfor %}
+                </select>
+            </form>
+          </div>
+          <div>
+            <input type="submit" class="menu menu-form-button" form="set-lang-form" value="OK">
+          </div>
+          <div>{{ texts.welcome }}</div>
+          <div>{{ texts.outlook }}</div>
+          <div class="top-bar-right">
+            <ul class="dropdown menu" id="nav-list-vertical" data-dropdown-menu>
+              {% block map-privacy-policy-confirm %}<li><a id="navbar-privacy-policy" class="anchor-text--light" href="{% url 'stemp_abw:privacy_policy' %}">{% trans 'Datenschutz' %}</a></li>{% endblock %}
+              <li>
+                <a class="anchor-text--light" href="#">{% trans 'Menü' %}</a>
+                <ul class="menu vertical">
+                  {% block map-index-confirm_2 %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">Startseite</a></li>{% endblock %}
+                  {% block link_to_map %}{% endblock %}
+                  {% block map-sources-confirm %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:sources' %}"><i class ="icon ion-document-text icon--small"></i> {% trans 'Quellen' %}</a></li>{% endblock %}
+                  <li><a class="anchor-text--light" href="https://stemp-abw.readthedocs.io" target="_blank" rel=”noopener noreferrer”><i class ="icon ion-document icon--small"></i> {% trans 'Dokumentation' %}</a></li>
+                  <li><a class="anchor-text--light" href="https://github.com/rl-institut/WAM_APP_stemp_abw" target="_blank" rel=”noopener noreferrer”><i class ="icon ion-social-github icon--small"></i> {% trans 'Quellcode' %}</a></li>
+                  <li><a class="anchor-text--light text-primary" href="{% url 'stemp_abw:feedback' %}" target="_blank"><i class ="icon ion-chatbubbles icon--small text-primary"></i> {% trans 'Feedback' %}</a></li>
+                  {% block map-contact-confirm %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:contact' %}"><i class ="icon ion-chatbubbles icon--small"></i> {% trans 'Kontakt' %}</a></li>{% endblock %}
+                  {% block map-imprint-confirm %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:imprint' %}"><i class ="icon ion-filing icon--small"></i> {% trans 'Impressum' %}</a></li>{% endblock %}
+                  <!--<li><a class="anchor-text&#45;&#45;light" href="{% url 'stemp_abw:assumptions' %}">Annahmen</a></li>-->
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- MAIN NAVIGATION END -->

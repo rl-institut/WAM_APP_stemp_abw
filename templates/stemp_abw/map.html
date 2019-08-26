@@ -1,15 +1,30 @@
 {% extends "stemp_abw/base.html" %}
-
 {% load staticfiles %}
-
+{% load i18n %}
 {% load leaflet_tags %}
 {% load geojson_tags %}
 
 {% block header %}
+  <!-- Full reload if user is navigating back to map -->
+  <script>
+    if (performance.navigation.type == 2) {
+      console.log("Full reload, because user is navigating back to map from other page");
+      location.reload(true);
+    }
+  </script>
   {% leaflet_css %}
   {% leaflet_js %}
-  <script src="{% static 'highcharts/code/highcharts.js' %}"></script>
+
+  <!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/7.0.3/modules/oldie-polyfills.js"></script>
+  <![endif]-->
+  <script src="https://code.highcharts.com/7.0.3/highcharts.js"></script>
+  <!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/7.0.3/modules/oldie.js"></script>
+  <![endif]-->
 {% endblock %}
+
+{% block navigation %}{% include 'stemp_abw/navigation_app.html' %}{% endblock %}
 
 {% block content %}
 
@@ -19,547 +34,610 @@
       <div class="cell">
         <div class="loader"></div>
         <div class="loader__text">
-          <p>Daten werden geladen</p>
+          <p id="loader-text">{% trans 'Daten werden geladen' %}</p>
           <p id="loader-detail-text"></p>
         </div>
       </div>
     </div>
     <!-- END LOADER -->
 
-    <div class="l-bg-color-w u-vh--100">
+    <div class="off-canvas-wrapper off-canvas-wrapper--left">
 
-        <div class="off-canvas-wrapper off-canvas-wrapper--left">
+      <!-- OFF CANVAS START -->
+      <aside class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap">
 
-          <!-- OFF CANVAS START -->
-          <aside class="off-canvas position-left" id="offCanvas" data-off-canvas data-close-on-click="false" data-content-overlay="false" data-transition="overlap">
+        <div class="grid-y medium-grid-frame">
+          <div class="cell medium-auto medium-cell-block-container">
+            <div class="grid-x">
+              <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
+                <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
+                  <li class="tabs-title is-active" id="tabsRegion">
+                    <a href="#panel-region" aria-selected="true">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
+                      <h2 class="tabs-title__head">{% trans 'Region' %}</h2>
+                    </a>
+                  </li>
+                  <!--<li class="tabs-title" id="tabsScenarios">-->
+                    <!--<a href="#panel-scenarios">-->
+                      <!--<img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon&#45;&#45;scenarios">-->
+                      <!--<h2 class="tabs-title__head">Szenarien</h2>-->
+                    <!--</a>-->
+                  <!--</li>-->
+                  <li class="tabs-title" id="tabsEnergy">
+                    <a href="#panel-energy">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
+                      <div style="float: right;" id="rc-tooltip-esys" title="{{ tooltips.tabs_esys_changes.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <h2 class="tabs-title__head tabs-title__head--long">{% trans 'Energie-<br>system' %}</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-title" id="tabsAreas">
+                    <a href="#panel-areas">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
+                      <div style="float: right;" id="rc-tooltip-areas-enabled" title="{{ tooltips.tabs_areas_changes_enabled.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <div style="float: right;" id="rc-tooltip-areas-disabled" title="{{ tooltips.tabs_areas_changes_disabled.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <h2 class="tabs-title__head">{% trans 'Flächen' %}</h2>
+                    </a>
+                  </li>
+                  <li class="tabs-results tabs-title" id="tabsResults">
+                    <a href="#panel-results">
+                      <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
+                      <div style="float: right;" id="rc-tooltip-results-available" title="<i class='icon ion-checkmark-circled icon--small'></i>{{ tooltips.tabs_results_available.text }}" data-tooltip data-allow-html="true" data-position="right" data-alignment="center"></div>
+                      <h2 class="tabs-title__head">{% trans 'Ergebnisse' %}</h2>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
+                <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
 
-            <div class="grid-y medium-grid-frame">
-              <div class="cell medium-auto medium-cell-block-container">
-                <div class="grid-x">
-                  <nav class="cell offcanvas-tabs__wrapper medium-cell-block-y">
-                    <ul class="vertical tabs" data-tabs id="offcanvas-tabs">
-                      <li class="tabs-title is-active" id="tabsRegion">
-                        <a href="#panel-region" aria-selected="true">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Pin_w.svg' %}" id="tabs-icon--region">
-                          <h2 class="tabs-title__head">Region</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsScenarios">
-                        <a href="#panel-scenarios">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Scenario_w.svg' %}" id="tabs-icon--scenarios">
-                          <h2 class="tabs-title__head">Szenarien</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsEnergy">
-                        <a href="#panel-energy">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Energy_w.svg' %}" id="tabs-icon--energy">
-                          <h2 class="tabs-title__head tabs-title__head--long">Energie-<br>system</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-results tabs-title" id="tabsResults">
-                        <a href="#panel-results">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Results_w.svg' %}" id="tabs-icon--results">
-                          <h2 class="tabs-title__head">Ergebnisse</h2>
-                        </a>
-                      </li>
-                      <li class="tabs-title" id="tabsAreas">
-                        <a href="#panel-areas">
-                          <img src="{% static 'stemp_abw/img/icons_custom/Enavi_Layers_w.svg' %}" id="tabs-icon--areas">
-                          <h2 class="tabs-title__head">Flächen</h2>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                  <section class="cell medium-cell-block-y tabs-content__wrapper" id="offCanvasContent">
-                    <div class="tabs-content" data-tabs-content="offcanvas-tabs" id="offcanvasTabs">
+                  <!-- First panel content -->
+                  <div class="tabs-panel is-active" id="panel-region">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.region.title }}
+                      {% if panels.region.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
+                    </p>
+                    {% include "forms/layer_region_select.html" %}
+                  </div>
 
-                        <!-- First panel content -->
-                        <div class="tabs-panel is-active" id="panel-region">
-                          <p class="lead" style="margin-bottom: 0;">
-                            {{ panels.region.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}"></i>
-                            {{ info }}
-                          </p>
-                          {% include "forms/layer_region_select.html" %}
-                        </div>
+                  <!-- Second panel content -->
+                  <!--<div class="tabs-panel" id="panel-scenarios">-->
+                    <!--<p class="lead" style="margin-bottom: 0;">-->
+                      <!--{{ panels.scenarios.title }}-->
+                      <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ panels.scenarios.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                    <!--</p>-->
+                    <!--<div class="grid-x">-->
+                      <!--<div class="cell" id="scenarios-wrap">-->
+                        <!--<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">-->
+                          <!--<li class="tabs-title tabs-title&#45;&#45;horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>-->
+                          <!--<li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>-->
+                        <!--</ul>-->
 
-                        <!-- Second panel content -->
-                        <div class="tabs-panel" id="panel-scenarios">
-                          <p class="lead" style="margin-bottom: 0;">
-                            {{ panels.scenarios.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.scenarios.text }}"></i>
-                          </p>
-                          <div class="grid-x">
-                            <div class="cell" id="scenarios-wrap">
-                              <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                                <li class="tabs-title tabs-title--horizontal is-active"><a href="#scenario-panel1" aria-selected="true">Szenarien</a></li>
-                                <li class="tabs-title tabs-title--horizontal"><a href="#scenario-panel2">User-Szenarien</a></li>
-                              </ul>
-
-                              <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-                                <div class="tabs-panel is-active" id="scenario-panel1">
-                                  <div class="grid-x grid-margin-x">
-                                    <div class="cell">
-                                      <form>
-                                        <fieldset>
-                                            <legend>Vorgegebenes Szenario auswählen
-                                              <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_predef.text }}"></i>
-                                            </legend>
-                                            <label class="control control--radio">Status Quo
-                                              <input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Deutsches Klimaschutzziel
-                                              <input type="radio" name="scenario" value="germany" id="scenarioGermany"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">100% erneuerbar
-                                              <input type="radio" name="scenario" value="100" id="scenario100"/>
-                                              <div class="control__indicator"></div>
-                                            </label>
-                                        </fieldset>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="tabs-panel" id="scenario-panel2">
-                                  <div class="grid-x grid-margin-x">
-                                    <div class="cell">
-                                      <form class="select-menu">
-                                        <label>
-                                          Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_user.text }}"></i>
-                                          <select>
-                                            <option value="husker">Husker</option>
-                                            <option value="starbuck">Starbuck</option>
-                                            <option value="hotdog">Hot Dog</option>
-                                            <option value="apollo">Apollo</option>
-                                          </select>
-                                        </label>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        <div class="panel-desc">
-                            <p id="scenarioPanelText">
-                            <span class="panel-desc__header">Status Quo</span>
-                            <span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>
-                            </p>
-                        </div>
-                      </div>
-
-                      <!-- Third panel content -->
-                        <div class="tabs-panel" id="panel-energy">
-                          <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
-                            {{ panels.esys.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.esys.text }}"></i>
-                          </p>
-                          <form class="select-menu" style="margin-bottom: 0; padding-left: 1rem; padding-right: 1rem;">
-                            <label>
-                              Für Marker bitte ein Vergleichs-Szenario auswählen <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}"></i>
-                              <select>
-                                <option value="husker">Status Quo</option>
-                              </select>
-                            </label>
-                          </form>
-
-                          {% include "forms/esys_components.html" %}
-
-                          <!--<div class="grid-x">-->
-
-                            <!--<div class="cell u-text&#45;&#45;center">-->
-                              <!--<form method="post" id="frmSimulate">-->
-                                <!--{% csrf_token %}-->
-                                <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="btnAction(this.id)" value="simulate" disabled>-->
-                                  <!--Simulieren-->
-                                  <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small"></i>-->
-                                <!--</button>-->
-                              <!--</form>-->
-                            <!--</div>-->
-
-                            <!--<div class="cell small-1"></div>-->
-                            <!--<div class="cell small-2">Fortschritt</div>-->
-                              <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
-                                <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
+                        <!--<div class="tabs-content" data-tabs-content="deeplinked-tabs">-->
+                          <!--<div class="tabs-panel is-active" id="scenario-panel1">-->
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
+                                <!--<form>-->
+                                  <!--<fieldset>-->
+                                      <!--<legend>Vorgegebenes Szenario auswählen-->
+                                        <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_predef.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                      <!--</legend>-->
+                                      <!--<label class="control control&#45;&#45;radio">Status Quo-->
+                                        <!--<input type="radio" name="scenario" value="statusQuo" id="scenarioStatusQuo" required checked="checked"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                      <!--<label class="control control&#45;&#45;radio">Deutsches Klimaschutzziel-->
+                                        <!--<input type="radio" name="scenario" value="germany" id="scenarioGermany"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                      <!--<label class="control control&#45;&#45;radio">100% erneuerbar-->
+                                        <!--<input type="radio" name="scenario" value="100" id="scenario100"/>-->
+                                        <!--<div class="control__indicator"></div>-->
+                                      <!--</label>-->
+                                  <!--</fieldset>-->
+                                <!--</form>-->
                               <!--</div>-->
-                            <!--<div class="cell small-1"></div>-->
-
+                            <!--</div>-->
                           <!--</div>-->
-                        </div>
+                          <!--<div class="tabs-panel" id="scenario-panel2">-->
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
+                                <!--<form class="select-menu">-->
+                                  <!--<label>-->
+                                    <!--Nutzer-Szenario auswählen <i class ="icon ion-information-circled icon&#45;&#45;small" title="{{ tooltips.scn_dropdown_user.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                    <!--<select>-->
+                                      <!--<option value="husker">Husker</option>-->
+                                      <!--<option value="starbuck">Starbuck</option>-->
+                                      <!--<option value="hotdog">Hot Dog</option>-->
+                                      <!--<option value="apollo">Apollo</option>-->
+                                    <!--</select>-->
+                                  <!--</label>-->
+                                <!--</form>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="panel-desc">-->
+                        <!--<p id="scenarioPanelText">-->
+                        <!--<span class="panel-desc__header">Status Quo</span>-->
+                        <!--<span class="panel-desc__text">Dieses Szenario enthält den aktuellen Zustand der Energieversorgung und Flächennutzung in der Region.</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
 
-                        <!-- Fourth panel content -->
-                        <div class="tabs-panel" id="panel-results">
-                          <p class="lead">
-                            {{ panels.results.title }}
-                            <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}"></i>
-                          </p>
-
-                          <div class="grid-x">
-                            <div class="cell u-text--center">
-                              <button href="map.html" class="btn btn--hollow" id="btnExpand">
-                                Mehr Ergebnisse
-                                <i class ="icon ion-android-add icon--small"></i>
-                              </button>
-                            </div>
-                            <div class="cell" id="results-collapsed">
-                              <p>Some results</p>
-                            </div>
-                            {% include "stemp_abw/results_full.html" %}
-                          </div>
-                        </div>
-
-                     <!-- Fifth panel content -->
-                      <div class="tabs-panel" id="panel-areas">
-                        <p class="lead" style="margin-bottom: 0;">
-                          {{ panels.areas.title }}
-                          <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}"></i>
-                        </p>
-
-                        <div class="grid-x">
-                          <div class="cell" id="areas-wrap">
-                            <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                              <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">Variierbare Flächen</a></li>
-                              <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">Statische Flächen</a></li>
-                            </ul>
-
-                            <div class="tabs-content" data-tabs-content="deeplinked-tabs">
-
-                              <div class="tabs-panel is-active" id="areas-panel1">
-                                <div class="grid-x">
-                                  <div class="cell">
-                                    <p>
-                                      Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}"></i>
-                                    </p>
-                                  </div>
-                                </div>
-
-                                {% include "forms/esys_areas.html" %}
-                              </div>
-
-                              <div class="tabs-panel" id="areas-panel2">
-                                <form>
-                                  <div class="grid-x">
-                                  <div class="cell">
-                                    <p>
-                                      Hier erfahren Sie mehr über Restriktionsflächen.
-                                      <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}"></i>
-                                    </p>
-                                  </div>
-                                    <div class="cell small-11">
-                                      <p>Alle Ebenen anzeigen</p>
-                                    </div>
-                                    <div class="cell small-1">
-                                      <div class="switch tiny master">
-                                        <input class="switch-input-layer-select-areas" id="cb_all_areas_layers" type="checkbox" name="all_layers">
-                                        <label class="switch-paddle" for="cb_all_areas_layers">
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </form>
-
-                                {% include "forms/layer_areas_select.html" %}
-
-                                <div class="grid-x grid-margin-x">
-                                  <div class="cell">
-
-                                    <span class="has-tip--no-border">
-                                      Layer Beispiel
-                                      <i data-open="modal-example" class ="icon ion-information-circled icon--small info-box" title="Hier klicken für mehr Informationen zum Layer"></i>
-                                    </span>
-
-                                    <div class="reveal" id="modal-example" data-reveal>
-                                      <div class="grid-x">
-                                        <div class="cell reveal__header">
-                                          <h2>Layer Beispiel</h2>
-                                        </div>
-                                        <div class="cell reveal__img">
-                                          <img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">
-                                          <figcaption>Figure caption</figcaption>
-                                        </div>
-                                        <div class="cell reveal__text">
-                                          <p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>
-                                        </div>
-                                        <div class="cell reveal__source">
-                                          <a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">
-                                            <i class ="icon ion-android-arrow-dropright icon--small"></i>
-                                            Quelle ansehen
-                                          </a>
-                                        </div>
-                                      </div>
-                                      <button class="close-button" data-close aria-label="Schließen" type="button">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-
-                                    <div class="switch">
-                                      <input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
-                                      <label class="switch-paddle" for="exampleSwitch">
-                                        <span class="show-for-sr">Download Kittens</span>
-                                      </label>
-                                    </div>
-
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                  <!-- Third panel content -->
+                  <div class="tabs-panel" id="panel-energy">
+                    <p class="lead" style="margin-bottom: 0; padding-left: 1rem; padding-bottom: 1rem;">
+                      {{ panels.esys.title }}
+                      {% if panels.esys.text %}
+                        <i class ="icon ion-information-circled icon--small" id="rc-tooltip-1" title="{{ panels.esys.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
+                    </p>
+                    <!--<a class="btn btn-cta" id="openAreaTab">-->
+                      <!--Zu Flächen springen-->
+                    <!--</a>-->
+                    <p style="padding-left: 1rem;">{% trans 'Bitte ein Vergleichs-Szenario auswählen' %} <i class ="icon ion-information-circled icon--small" title="{{ tooltips.scn_dropdown_esys.text }}" data-tooltip data-position="right" data-alignment="center"></i></p>
+                    <div class="grid-x">
+                      <div class="cell small-9">
+                        {% include "forms/scenario_menu.html" %}
                       </div>
-
+                      <div class="cell small-2">
+                        <button type="submit" class="btn btn-rect-small" id="apply-scn-btn" onclick="ctrlScenario(this.id)" title="{{ tooltips.scn_button_esys.text }}" data-tooltip data-position="right" data-alignment="center">
+                          {% trans 'Übernehmen' %}
+                        </button>
+                      </div>
+                      <div class="cell small-1"></div>
                     </div>
 
-                  </section>
+                    {% include "forms/esys_components.html" %}
+
+                    <p style="padding-left: 1rem;">{% trans 'In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung.' %}</p>
+
+                    <!--<div class="grid-x">-->
+
+                      <!--<div class="cell u-text&#45;&#45;center">-->
+                        <!--<form method="post" id="frmSimulate">-->
+                          <!--{% csrf_token %}-->
+                          <!--<button class="btn btn-cta" type="button" id="btnSimulate" onclick="ctrlSimulation(this.id)" value="simulate" disabled>-->
+                            <!--Simulieren-->
+                            <!--<i class ="icon ion-android-arrow-dropright-circle icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                          <!--</button>-->
+                        <!--</form>-->
+                      <!--</div>-->
+
+                      <!--<div class="cell small-1"></div>-->
+                      <!--<div class="cell small-2">Fortschritt</div>-->
+                        <!--<div class="cell small-8 progress" id="progressBar" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">-->
+                          <!--<div class="progress-meter" id="progressMeter" style="width: 0%"></div>-->
+                        <!--</div>-->
+                      <!--<div class="cell small-1"></div>-->
+
+                    <!--</div>-->
+                  </div>
+
+                  <!-- Fourth panel content -->
+                  <div class="tabs-panel" id="panel-areas">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.areas.title }}
+                      {% if panels.areas.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.areas.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
+                    </p>
+
+                    <div class="grid-x">
+                      <div class="cell" id="areas-wrap">
+                        <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
+                          <li class="tabs-title tabs-title--horizontal is-active"><a href="#areas-panel1" aria-selected="true">{% trans 'Variierbare Flächen' %}</a></li>
+                          <li class="tabs-title tabs-title--horizontal"><a href="#areas-panel2">{% trans 'Statische Flächen' %}</a></li>
+                        </ul>
+
+                        <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+
+                          <div class="tabs-panel is-active" id="areas-panel1">
+                            <div class="grid-x">
+                              <div class="cell">
+                                <p>
+                                  {% trans 'Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem haben.' %}
+                                  <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_variable.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                </p>
+                              </div>
+                            </div>
+
+                            {% include "forms/esys_areas.html" %}
+
+                            <!--<a class="btn btn-cta" id="openEnergyTab">-->
+                              <!--Zum Esys springen-->
+                            <!--</a>-->
+                          </div>
+
+                          <div class="tabs-panel" id="areas-panel2">
+                            <form>
+                              <div class="grid-x">
+                              <div class="cell">
+                                <p>
+                                  {% trans 'Hier erfahren Sie mehr über Restriktionsflächen.' %}
+                                  <i class ="icon ion-information-circled icon--small" title="{{ tooltips.areas_intro_static.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                                </p>
+                              </div>
+                                <div class="cell small-11">
+                                  <p>{% trans 'Alle Ebenen anzeigen' %}</p>
+                                </div>
+                                <div class="cell small-1">
+                                  <div class="switch tiny master">
+                                    <input class="switch-input-layer-select-areas" id="cb_all_areas_layers" type="checkbox" name="all_layers">
+                                    <label class="switch-paddle" for="cb_all_areas_layers">
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+
+                            {% include "forms/layer_areas_select.html" %}
+
+                            <p style="height: 2rem;"></p>
+
+                            <!--<div class="grid-x grid-margin-x">-->
+                              <!--<div class="cell">-->
+
+                                <!--<span class="has-tip&#45;&#45;no-border">-->
+                                  <!--Layer Beispiel-->
+                                  <!--<i data-open="modal-example" class ="icon ion-information-circled icon&#45;&#45;small info-box" title="Hier klicken für mehr Informationen zum Layer" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                <!--</span>-->
+
+                                <!--<div class="reveal" id="modal-example" data-reveal>-->
+                                  <!--<div class="grid-x">-->
+                                    <!--<div class="cell reveal__header">-->
+                                      <!--<h2>Layer Beispiel</h2>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__img">-->
+                                      <!--<img src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="">-->
+                                      <!--<figcaption>Figure caption</figcaption>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__text">-->
+                                      <!--<p>Hier gibt es ein Text zur Beschreibung der Fläche und unten einen Link zur entsprechenden Quelle</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="cell reveal__source">-->
+                                      <!--<a href="{% url 'stemp_abw:sources' %}source-2" class="anchor-text linkto-source" id="linkto-source-2">-->
+                                        <!--<i class ="icon ion-android-arrow-dropright icon&#45;&#45;small" data-tooltip data-position="right" data-alignment="center"></i>-->
+                                        <!--Quelle ansehen-->
+                                      <!--</a>-->
+                                    <!--</div>-->
+                                  <!--</div>-->
+                                  <!--<button class="close-button" data-close aria-label="Schließen" type="button">-->
+                                    <!--<span aria-hidden="true">&times;</span>-->
+                                  <!--</button>-->
+                                <!--</div>-->
+
+                                <!--<div class="switch">-->
+                                  <!--<input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">-->
+                                  <!--<label class="switch-paddle" for="exampleSwitch">-->
+                                    <!--<span class="show-for-sr">Download Kittens</span>-->
+                                  <!--</label>-->
+                                <!--</div>-->
+
+                              <!--</div>-->
+                            <!--</div>-->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- TEST START
+
+                  <div class="tabs-panel is-active" id="panel-region">
+                    <p class="lead" style="margin-bottom: 0;">
+                      {{ panels.region.title }}
+                      <i class ="icon ion-information-circled icon--small" title="{{ panels.region.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                    </p>
+                    {% include "forms/layer_region_select.html" %}
+                  </div>
+
+                  TEST END -->
+
+
+                  <!-- Fifth panel content -->
+                  <div class="tabs-panel" id="panel-results">
+                    <p class="lead">
+                      {{ panels.results.title }}
+                      {% if panels.results.text %}
+                        <i class ="icon ion-information-circled icon--small" title="{{ panels.results.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                      {% endif %}
+                    </p>
+                    <div class="grid-x">
+                      <div class="cell large-2 u-text--center"></div>
+                      <div class="cell large-8 u-text--center">
+                        <button href="map.html" class="btn btn--hollow" id="btnExpand">
+                          {% trans 'Mehr Ergebnisgrafiken' %}
+                          <i class ="icon ion-android-add icon--small" data-tooltip data-position="right" data-alignment="center"></i>
+                        </button>
+                      </div>
+                      <div class="cell large-2 u-text--right">
+                        <button type="submit" class="btn btn-cta results-display-none" id="simulation-btn2" onclick="ctrlSimulate()" value="simulate">
+                          Simulation
+                          <i class ="icon ion-android-arrow-dropright-circle icon--small" title="{{ tooltips.simulation_button.text }}" data-tooltip data-position="right" data-alignment="center"></i>
+                        </button>
+                      </div>
+                      <div class="cell" id="results-collapsed">
+                        <p id="simulation-info" style="color: #000; padding: 0.25em; border: 2px dashed #fc8e65;" hidden>{% trans 'Werte müssen berechnet werden - bitte Simulation starten!' %}</p>
+                        {% include "forms/layer_results_select.html" %}
+                        <!--<form>-->
+                          <!--<fieldset>-->
+                            <!--<legend>-->
+                              <!--<small style="color: #000; border-bottom: 1px solid #000;">Gruppe 1</small>-->
+                              <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="{{data.text}}" data-tooltip data-position="right" data-alignment="center"></i>-->
+                            <!--</legend>-->
+                            <!--<div class="grid-x">-->
+                              <!--<div class="cell small-1">-->
+                                <!--<i class ="icon ion-stop icon&#45;&#45;small" style="color: #ff0000;"></i>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-9">-->
+                                <!--<p>Anteil Energie aus EE an Strombedarf</p>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-1">-->
+                                <!--<i class ="icon ion-information-circled icon&#45;&#45;small" title="TOOLTIP" data-tooltip data-position="right" data-alignment="center"></i>-->
+                              <!--</div>-->
+                              <!--<div class="cell small-1">-->
+                                <!--<div class="switch tiny">-->
+                                  <!--<input class="switch-input-layer-select-results" id="sw1" type="checkbox" name="harharhar">-->
+                                  <!--<label class="switch-paddle" for="sw1">-->
+                                  <!--</label>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</div>-->
+
+                          <!--</fieldset>-->
+                        <!--</form>-->
+                      </div>
+                      {% include "stemp_abw/results.html" %}
+                    </div>
+                  </div>
+
                 </div>
-              </div>
+
+              </section>
             </div>
-
-            <button class="close-button" aria-label="Close menu" type="button" data-close id="btnCloseOffcanvas">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-          </aside>
-          <!-- OFF CANVAS END -->
-
-          <!-- CONTENT (MAP + FOOTER) START -->
-          <main class="off-canvas-content" data-off-canvas-content>
-            <div class="map-wrapper">
-
-              <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
-                <i class="icon ion-android-options"></i>
-              </button>
-
-              <!-- MAP -->
-              <!--<div id="mapid"> data-open="resultsModal">-->
-                <!--{% leaflet_map "mapid" callback="window.main_map_init" creatediv=False %}-->
-              <!--</div>-->
-              {% leaflet_map "mapid" callback="window.main_map_init" %}
-
-            </div>
-          </main>
-          <!-- CONTENT (MAP + FOOTER) END -->
-
+          </div>
         </div>
 
-        <footer class="map-footer">
-          <div class="grid-x">
+        <button class="close-button" aria-label="Close menu" type="button" data-close id="btnCloseOffcanvas">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-            <div class="cell u-text--center" id="footer--hide">
-              <div>
-                <i class="icon ion-chevron-down" id="footer--hide__icon"></i>
-              </div>
-            </div>
+      </aside>
+      <!-- OFF CANVAS END -->
 
-            <div class="cell" id="footer-logos">
-              <ul class="map-footer__logo">
-                <li>
-                  <a href="https://www.energieavantgarde.de/" target="_blank" title="Energieavantgarde Anhalt">
-                    <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="Logo Energieavantgarde Anhalt">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://reiner-lemoine-institut.de/" target="_blank" title="Reiner Lemoine Institut">
-                    <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="Logo Reiner Lemoine Institut">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.kopernikus-projekte.de/" target="_blank" title="Kopernikus Projekte">
-                    <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/kopernikus_logo.png' %}" alt="Logo Kopernikus">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.bmbf.de/" target="_blank" title="Bundesministerium für Bildung und Forschung">
-                    <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">
-                  </a>
-                </li>
-              </ul>
-            </div>
+      <!-- CONTENT (MAP + FOOTER) START -->
+      <main class="off-canvas-content" data-off-canvas-content>
+        <div class="map-wrapper">
 
-            <!-- START SIMULATION BTNS -->
-            <div class="cell" id="simulation-save-btn">
-              <div class="grid-x">
-                <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
-                  <button type="submit" class="btn btn-cta" id="simulation-btn" onclick="btnAction(this.id)" value="simulate">
-                    Simulation
-                    <i class ="icon ion-android-arrow-dropright-circle icon--small"></i>
-                  </button>
-                  <button type="submit" class="btn btn-apply btn-apply--secondary" id="save-btn" data-open="saveSimulation">
-                    Speichern
-                    <i class ="icon ion-archive icon--small"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+          <button type="button" class="button open-offcanvas" data-toggle="offCanvas" title="Parameter" id="openOffCanvas">
+            <i class="icon ion-android-options" data-tooltip data-position="right" data-alignment="center"></i>
+          </button>
 
-            <div class="tiny reveal" id="saveSimulation" data-reveal>
-              <p>Geben Sie dem Szenario einen Namen</p>
-              <label>
-                <input type="text" placeholder="Szenarioname">
-              </label>
-              <button type="submit" class="btn btn-apply btn-apply--secondary">
-                Speichern
-              </button>
-              <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <!-- END SIMULATION BTNS -->
+          <!-- MAP -->
+          {% leaflet_map "mapid" callback="window.main_map_init" settings_overrides=leaflet_config %}
 
+        </div>
+      </main>
+      <!-- CONTENT (MAP + FOOTER) END -->
+
+    </div>
+
+    <footer class="map-footer">
+      <div class="grid-x">
+
+        <div class="cell u-text--center" id="footer--hide">
+          <div>
+            <i class="icon ion-chevron-down" id="footer--hide__icon"></i>
           </div>
-        </footer>
+        </div>
 
+        <div class="cell" id="footer-logos">
+          <ul class="map-footer__logo">
+            <li>
+              <a href="https://www.energieavantgarde.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Energieavantgarde Anhalt' %}">
+                <img class="map-footer__logo-eaa" src="{% static 'stemp_abw/img/EAA_logo.png' %}" alt="{% trans 'Logo Energieavantgarde Anhalt' %}">
+              </a>
+            </li>
+            <li>
+              <a href="https://reiner-lemoine-institut.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Reiner Lemoine Institut' %}">
+                <img class="map-footer__logo-rli" src="{% static 'stemp_abw/img/rli_logo.png' %}" alt="{% trans 'Logo Reiner Lemoine Institut' %}">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.kopernikus-projekte.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Kopernikus Projekte' %}">
+                <img class="map-footer__logo-kopernikus" src="{% static 'stemp_abw/img/Logo_ENavi.png' %}" alt="{% trans 'Logo ENavi' %}">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bmbf.de/" target="_blank" rel=”noopener noreferrer” title="{% trans 'Bundesministerium für Bildung und Forschung' %}">
+<!--                <img class="map-footer__logo-bmbf" src="{% static 'stemp_abw/img/BMBF_widget_final.png' %}" alt="Logo BMBF">-->
+                <div style="font-size: 0.8rem; width: 9rem; vertical-align: middle; height: auto; display: inline-block; text-align:center; border: 1px solid;">
+                  <p style="margin: 0;">{% trans 'Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> (FKZ 03SFK4E1)' %}</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- START SIMULATION BTNS -->
+        <div class="cell" id="simulation-save-btn">
+          <div class="grid-x">
+            <div class="cell medium-8 medium-offset-4 large-4 large-offset-8">
+              <button
+                type="submit"
+                class="btn btn-cta"
+                id="simulation-btn"
+                onclick="ctrlSimulate()"
+                value="simulate"
+                title="{{ tooltips.simulation_button.text }}"
+                data-tooltip
+                data-position="left"
+                data-alignment="center">
+                Simulation
+                <i class ="icon ion-android-arrow-dropright-circle icon--small" ></i>
+              </button>
+<!--              <button type="submit" class="btn btn-apply btn-apply&#45;&#45;secondary" id="save-btn" data-open="saveSimulation" disabled>-->
+<!--                Speichern-->
+<!--                <i class ="icon ion-archive icon&#45;&#45;small" title="{{ tooltips.scn_button_esys_save.text }}" data-tooltip data-position="right" data-alignment="center"></i>-->
+<!--              </button>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny reveal" id="saveSimulation" data-reveal>
+          {% trans 'Dieses Feature ist derzeit noch nicht verfügbar.' %}
+          <!--<p>Geben Sie dem Szenario einen Namen</p>-->
+          <!--<label>-->
+            <!--<input type="text" placeholder="Szenarioname">-->
+          <!--</label>-->
+          <!--<button type="submit" class="btn btn-apply btn-apply&#45;&#45;secondary">-->
+            <!--Speichern-->
+          <!--</button>-->
+          <!--<button class="close-button" data-close aria-label="Close modal" type="button">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        </div>
+        <!-- END SIMULATION BTNS -->
+
+      </div>
+    </footer>
+
+    <div class="tiny reveal" id="errorMessage" data-reveal>
+      <h2>{% trans 'Fehler' %}</h2>
+      <p>{% trans 'Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu.' %}</p>
     </div>
 
-    <!-- START POP-UP RESULTS -->
-    <div class="large reveal" id="resultsModal" data-reveal>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <!-- map-index-confirm -->
+    <div class="tiny reveal" id="map-index-confirm" data-reveal>
+      <h3>{% trans 'Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren.' %}</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:index' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
+        </div>
+      </div>
     </div>
-    <!-- END POP-UP RESULTS -->
+
+    <!-- map-private-policy-confirm -->
+    <div class="tiny reveal" id="map-private-policy-confirm" data-reveal>
+      <h3>{% trans 'Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren.' %}</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:privacy_policy' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- map-sources-confirm -->
+    <div class="tiny reveal" id="map-sources-confirm" data-reveal>
+      <h3>{% trans 'Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren.' %}</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:sources' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- map-contact-confirm -->
+    <div class="tiny reveal" id="map-contact-confirm" data-reveal>
+      <h3>{% trans 'Wollen Sie zur Kontaktseite? Alle Änderungen gehen dadurch verloren.' %}</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:contact' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- map-imprint-confirm -->
+    <div class="tiny reveal" id="map-imprint-confirm" data-reveal>
+      <h3>{% trans 'Wollen Sie zum Impressum? Alle Änderungen gehen dadurch verloren.' %}</h3>
+      <div class="grid-x">
+        <div class="cell small-12 map-confirm-style">
+          <a href="{% url 'stemp_abw:imprint' %}"><button type="submit" class="btn btn-apply btn-apply--secondary">OK</button></a>
+        </div>
+        <div class="cell small-12 map-confirm-style">
+          <button data-close class="btn btn-apply btn-apply--secondary">{% trans 'Abbruch' %}</button>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
-    <!-- LOAD SLIDER DATA -->
-    <script type="text/javascript">
-        {% for group, data in comp_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        {% for group, data in area_groups.items %}
-            {% for comp in data.comps %}
-                {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
-                    $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
-                        min: {{comp.field.widget.attrs.min}},
-                        max: {{comp.field.widget.attrs.max}},
-                        from: {{comp.field.widget.attrs.from}},
-                        step: {{comp.field.widget.attrs.step}},
-                        grid: true
-                    });
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
+    <!--Get CSRF token and make it global-->
+    <script>
+      var csrf_token = '{{ csrf_token }}';
     </script>
+
+    <!--Load required helper scripts-->
     <script src="{% static 'stemp_abw/js/chroma.1.3.5.min.js' %}"></script>
     <script src="{% static 'stemp_abw/js/map_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/scn_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/data_functions.js' %}"></script>
+    <script src="{% static 'stemp_abw/js/ui_helpers.js' %}"></script>
+
+    <!-- LOAD HIGHCHARTS -->
+    <script>
+      $('#btnExpand').on('click', function(e) {
+        if ($('#panel-results').hasClass('is-collapsed')) {
+
+          // Load JS for highcharts
+          setTimeout(function() {
+            {% for visualization in results_charts_tab1_viz %}
+                  {{visualization.media}}
+            {% endfor %}
+            {% for visualization in results_charts_tab2_viz %}
+                  {{visualization.media}}
+            {% endfor %}
+            setTimeout(function() {
+              getSimulationResults();
+            }, 50);
+          }, 350);
+
+        }
+      });
+    </script>
+
     <script type="text/javascript">
         function main_map_init (map, options) {
+            // make map global
+            lmap = map;
+
             // show load spinner
-            $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-            $('body').toggleClass("body--nopointer");
+            toggleSpinnerVisibility();
 
-            // Parse layer style JSONs
-            var style_data = JSON.parse('{{ layer_style | escapejs }}');
-            var choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
+            // Parse layer style JSONs and make global
+            style_data = JSON.parse('{{ layer_style | escapejs }}');
+            choropleth_data = JSON.parse('{{ choropleth_data | escapejs }}');
 
-            // popup style
-            var customPopup =
-                {
-                'maxWidth': '500',
-                'className' : 'custom_popup'
-                }
-
-            // feature: click style
-            function execClickAction(e) {
-                var style = getLayerStyle("_click");
-                var layer = e.target;
-                layer.setStyle(style);
-
-                // center map to clicked entity
-                layer._map.panTo(e.latlng, {duration: 1});
-
-                // load popup content from detail view
-                var url = "../popup/" + layer.feature.properties.name + "/" + String(layer.feature.id)
-                $.get( url, function( data ) {
-                  layer.setPopupContent(data);
-                });
-            }
-
-            // feature: mousover style
-            function setHighlightFeatureStyle(e) {
-                var style = getLayerStyle("_highlight");
-                var layer = e.target;
-                layer.setStyle(style);
-            }
-
-            // feature: normal style
-            function setNormalFeatureStyle(layerName, feature) {
-              return function _(e) {
-                var style = getLayerStyle(layerName, feature);
-                var layer = e.target;
-                layer.setStyle(style);
-            };
-            }
-
-            // bind popups for each feature and define event actions
-            function onEachFeature(layerName) {
-            return function(feature, layer) {
-                if (feature.properties && feature.properties.popup_content) {
-                    layer.bindPopup('', customPopup);
-                    };
-                    layer.on({
-                        click: execClickAction,
-                        mouseover: setHighlightFeatureStyle,
-                        mouseout: setNormalFeatureStyle(layerName, feature)
-                    });
-            };
-            }
-
-            function pointToLayer(feature, latlng) {
-                var marker = L.circleMarker(latlng)
-                return marker;
-            }
-
-            // Create layer style from style_data json obj
-            // if it does not exist, use default
-            function getLayerStyle(name, feature) {
-              if (choropleth_data.hasOwnProperty(name)) {
-                var column = choropleth_data[name].data_column;
-                var schema = choropleth_data[name].color_schema;
-                var min = choropleth_data[name].min;
-                var max = choropleth_data[name].max;
-                var step = choropleth_data[name].step;
-                var reverse = choropleth_data[name].reverse;
-                var colorVals = getColorValues(schema, min, max, step, reverse);
-                var fill = getColor(colorVals, feature.properties[column]);
-                return {
-                  fillColor: fill,
-                  weight: style_data[name].weight,
-                  opacity: style_data[name].opacity,
-                  color: style_data[name].color,
-                  fillOpacity: style_data[name].fillOpacity,
-                };
-              } else if (style_data.hasOwnProperty(name)) {
-                return style_data[name];
-              } else {
-                return style_data._default;
-              }
-            }
-
-            // Setup layer and legend stores
-            var layers = {};
-            var legends = {};
-            var layers_cat = {};
+            // Setup layer and legend stores (global)
+            layers = {};
+            legends = {};
+            layers_cat = {};
 
             // Setup layer counter
             layer_count = {{ layer_list|length }};
             var layer_ctr = 0;
             var loader_text = $('#loader-detail-text');
 
-            // Load GeoJsons via Ajax and add layers to map
+            // Load GeoJsons via Ajax and add layers to map (region and area info)
             {% for layer, data in layer_list.items %}
                 // Build data URL
                 var dataurl = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}"
@@ -572,7 +650,8 @@
                     success: function(json){
                         // Add GeoJSON layer
                         var layer = new L.geoJson(json, {style: function(feature) {
-                                                            return getLayerStyle("{{ layer }}", feature);
+                                                            return getLayerStyle("{{ layer }}",
+                                                                                 feature);
                                                          },
                                                          onEachFeature: onEachFeature("{{ layer }}"),
                                                          pointToLayer: pointToLayer
@@ -636,118 +715,133 @@
                         if (layer_ctr == layer_count) {
                             loader_text[0].style = 'color: #62f476; font-weight: bold';
                             //loader_text[0].style.font-weight = 'bold';
-                            loader_text.text('Fertig!');
+                            loader_text.text("{% trans 'Fertig!' %}");
                             setTimeout(function(){
-                                $('.loader-wrapper').toggleClass("loader-wrapper--hide");
-                                $('body').toggleClass("body--nopointer");
+                                toggleSpinnerVisibility();
                             }, 500);
+                            showWelcomePopup();
                         };
                     },
                     error: function(page) {
-                        console.log('Fehler beim Laden der Daten!');
+                        console.log("{% trans 'Fehler beim Laden der Daten!' %}");
                         loader_text[0].style = 'color: #f4a662; font-weight: bold';
-                        loader_text.text('Fehler beim Laden der Daten!');
+                        loader_text.text("{% trans 'Fehler beim Laden der Daten!' %}");
                     }
                 });
             {% endfor %}
 
+            // Load GeoJsons via Ajax and add layers to map (RE potential areas)
+            // Setup layer store (global)
+            layers_re_pot = {};
+            {% for layer_id in re_pot_layer_id_list %}
+
+                // Build data URL
+                var dataurl = "{% url 'stemp_abw:re_pot_areas.data' pk=layer_id %}";
+
+                // Load data via Ajax
+                $.ajax({
+                    url: dataurl,
+                    dataType: 'json',
+                    async: true,
+                    success: function(json){
+                        // Add GeoJSON layer
+                        var layer = new L.geoJson(json, {style: function(feature) {
+                                                            return getLayerStyle("{{ layer }}",
+                                                                                 feature);
+                                                           }
+                                                         }
+                                                 );
+                        layers_re_pot["{{ layer_id }}"] = layer;
+                        }
+                });
+            {% endfor %}
+
+            /*
+            var dwdWind = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
+              layers: 'dwd:BRD_1km_winddaten_80m',
+              format: 'image/png',
+              transparent: true,
+              attribution: "Datenbasis: Deutscher Wetterdienst"
+            }).addTo(map);
+            var dwdSolar = L.tileLayer.wms('https://maps.dwd.de/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities', {
+              layers: 'dwd:SISMM_annual_map_normals_1981_30',
+              format: 'image/png',
+              transparent: true,
+              attribution: "Datenbasis: Deutscher Wetterdienst"
+            }).addTo(map);
+            */
+
             // Move zoom control
             map.removeControl(map.zoomControl);
             L.control.zoom({
-		        position: 'bottomright'
-	        }).addTo(map);
+		          position: 'topright'
+	          }).addTo(map);
 
-            // Control layer
-            $(document).foundation();
+	          // Move scale control
+	          L.control.scale({
+	            position: 'topright',
+	            metric: true,
+	            imperial: false
+	          }).addTo(map);
 
-            // Control layer visibility via checkboxes (region layers)
-            $( '.switch-input-layer-select-region' ).click( function () {
-              var id = $(this).attr('id');
+            // Load sliders (layers)
+            {% for group, data in comp_groups.items %}
+                {% for comp in data.comps %}
+                    {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                        $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                            type: "single",
+                            min: {{comp.field.widget.attrs.min}},
+                            max: {{comp.field.widget.attrs.max}},
+                            from: {{comp.field.widget.attrs.from}},
+                            step: {{comp.field.widget.attrs.step}},
+                            grid: true,
+                            grid_num: {{comp.field.widget.attrs.grid_num}},
+                            {% if comp.field.widget.attrs.disable %}
+                              disable: true,
+                            {% endif %}
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
+                            onFinish: changeScenarioControlSlider
+                        });
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
 
-              // Individual layers switches
-              l = layers[id.replace('cb_region_','')];
-              if (this.checked) map.addLayer(l);
-              else map.removeLayer(l);
+            // Load sliders (esys)
+            {% for group, data in area_groups.items %}
+                {% for comp in data.comps %}
+                    {% if comp.field.widget.attrs.id|slice:":3" == 'sl_' %}
+                        $("#{{comp.field.widget.attrs.id}}").ionRangeSlider({
+                            type: "single",
+                            min: {{comp.field.widget.attrs.min}},
+                            max: {{comp.field.widget.attrs.max}},
+                            from: {{comp.field.widget.attrs.from}},
+                            step: {{comp.field.widget.attrs.step}},
+                            grid: true,
+                            grid_num: {{comp.field.widget.attrs.grid_num}},
+                            {% if comp.field.widget.attrs.disable %}
+                              disable: true,
+                            {% endif %}
+                            extra_classes: "{{comp.field.widget.attrs.extra_classes}}",
+                            onFinish: changeScenarioControlSlider
+                        });
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+            // test some upcoming features with wind slider
+            /*
+            var test_slider = $("#sl_wind").data("ionRangeSlider");
+            test_slider.reset();
+            test_slider.update({
+              min: 0,
+              max: 1000,
+              from_min: 250,
+              from_max: 750,
+              from_shadow: true,
+              to_shadow: true
             });
+            */
 
-            // Control layer visibility via checkboxes (areas layers)
-            $( '.switch-input-layer-select-areas' ).click( function () {
-              var id = $(this).attr('id');
-
-              // Master switch for all layers
-              if (id == "cb_all_areas_layers") {
-                for (var l in layers) {
-                  if (layers.hasOwnProperty(l) && layers_cat[l] == 'areas') {
-                    if (this.checked) map.addLayer(layers[l]);
-                    else map.removeLayer(layers[l]);
-                  }
-                $( '.switch-input-layer-select-areas' ).prop('checked', this.checked);
-                }
-              }
-
-              // Individual layers switches
-              else {
-                l = layers[id.replace('cb_areas_','')];
-                if (this.checked) map.addLayer(l);
-                else map.removeLayer(l);
-              };
-            });
-
-            // Control legend visibility via checkboxes
-            $( '.switch-input-layer-select-region' ).click( function () {
-              var id = $(this).attr('id');
-
-              // Master switch for all legends
-              // (CURRENTLY DISABLED AS ONLY REGION LAYER LIST CONTAINS CHORO MAPS)
-              /*
-              if (id == "cb_all_areas_layers") {
-                for (var l in legends) {
-                  if (legends.hasOwnProperty(l)) {
-                    map.removeControl(legends[l]);
-                  }
-                $( '.switch-input-layer-select' ).prop('checked', this.checked);
-                }
-              }
-              */
-
-              // Individual legend switches
-              //else {
-                id = id.replace('cb_region_', '');
-                for (var l in legends) {
-                  if (l !== id && choropleth_data.hasOwnProperty(id)) {
-                    if (this.checked) map.removeControl(legends[l]);
-                  } else if (l === id) {
-                    l = legends[id];
-                    if (this.checked) l.addTo(map);
-                    else map.removeControl(l);
-                  }
-                }
-              //}
-            });
-        };
-
-        // Post to view if button is clicked without reloading page
-        function btnAction(element_id) {
-            element = $('#' + element_id)
-            element.prop("disabled", true);
-            //$('#simulation-save-btn').show();
-            // TODO: make generic
-
-            $.ajax({
-                url : '{% url 'stemp_abw:map' %}',
-                type : "POST",
-                data : {value : element.val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}'},
-                success: function(page) {
-                    console.log('success');
-                },
-                error: function(page) {
-                    console.log('error');
-                }
-            }).done(function(returned_data){
-                console.log(returned_data);
-                //updateSimProgressBar(25);
-            });
         };
 
         // Update simulation progress bar
@@ -755,5 +849,126 @@
             $('#progressBar').prop('aria-valuenow', value);
             $('#progressMeter').prop('style', 'width: ' + String(value) + '%');
         };
+
+        $(document).ready(function () {
+          // Set controls for Status quo scenario on startup
+          ctrlScenario('init-sq-scn');
+        });
+
     </script>
+
+    <script type="text/javascript">
+        function result_map_init (map, options) {
+            // Setup layer counter
+            var layer_count = {{ layer_list_results|length }};
+            var layer_ctr = 0;
+            var loader_text = $('#loader-detail-text');
+
+            // Load GeoJsons via Ajax and add layers to map (region and area info)
+            {% for layer, data in layer_list_results.items %}
+                var delta_data_url = "{% url 'stemp_abw:'|add:data.model|add:'_delta.data' %}";
+                $.getJSON(delta_data_url, function (delta_data) {
+                  var data_url = "{% url 'stemp_abw:'|add:data.model|add:'.data' %}";
+                  $.ajax({
+                      url: data_url,
+                      dataType: 'json',
+                      async: true,
+                      success: function(json){
+                          // Add GeoJSON layer
+                          var layer = new L.geoJson(json, {
+                                style: function (feature) {
+                                  var layer_style = getLayerStyle("{{ layer }}", feature);
+                                  return layer_style;
+                                },
+                                onEachFeature: onEachFeatureNoPopup("{{ layer }}"),
+                                pointToLayer: function (feature, latlng) {
+                                }
+                                /*
+                                  var delta_name = ('{{ layer }}' + '_delta').replace(/reg_mun_/g, '');
+                                  // .bindTooltip can't use straight 'feature.properties.attribute'
+                                  var label = String(feature.properties[delta_name]);
+                                  return new L.CircleMarker(latlng, {
+                                    radius: 0.1,
+                                  }).bindTooltip(label, {
+                                    permanent: true,
+                                    direction: "center",
+                                    className: "my-delta"
+                                  }).openTooltip();
+                                }
+                                */
+                              }
+                          );
+                          //layer.addData(delta_data);
+                          layers["{{ layer }}"] = layer;
+                          layers_cat["{{ layer }}"] = '{{ data.cat }}';
+                          layer_ctr++;
+
+                          // Add legend to map
+                          if (choropleth_data.hasOwnProperty('{{ layer }}')) {
+                            var name = '{{ layer }}';
+                            var schema = choropleth_data[name].color_schema;
+                            var min = choropleth_data[name].min;
+                            var max = choropleth_data[name].max;
+                            var step = choropleth_data[name].step;
+                            var reverse = choropleth_data[name].reverse;
+                            var colorVals = getColorValues(schema, min, max, step, reverse);
+                            var grades_list = [];
+                            for (var key in colorVals['values']) {
+                              grades_list.push(key)
+                            }
+
+                            var legend = L.control({position: 'bottomright'});
+
+                            legend.onAdd = function (map) {
+                              var div = L.DomUtil.create('div', 'choropleth_legend'),
+                                  grades = grades_list,
+                                  labels = [],
+                                  from, to;
+
+                              labels.push(choropleth_data[name].unit);
+
+                              for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColor(colorVals, parseFloat(from)) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                              }
+
+                              div.innerHTML = labels.join('<br>');
+                              return div;
+                            };
+
+                            legends["{{ layer }}"] = legend;
+                          }
+
+                          // Show layer or not
+                          {% if data.show  == '1' %}
+                              map.addLayer(layer);
+                          {% endif %}
+
+                          // show progress
+                          loader_text.text('Layer ' +
+                                           String(layer_ctr) + '/' + String(layer_count) +
+                                           ': ' + '{{ data.title }}');
+
+                          // hide load spinner
+                          if (layer_ctr == layer_count) {
+                              loader_text[0].style = 'color: #62f476; font-weight: bold';
+                              //loader_text[0].style.font-weight = 'bold';
+                              loader_text.text("{% trans 'Fertig!' %}");
+                          };
+                      },
+                      error: function(page) {
+                          console.log("{% trans 'Fehler beim Laden der Daten!' %}");
+                          loader_text[0].style = 'color: #f4a662; font-weight: bold';
+                          loader_text.text("{% trans 'Fehler beim Laden der Daten!' %}");
+                      }
+                  });
+                });
+            {% endfor %}
+        };
+    </script>
+
 {% endblock %}

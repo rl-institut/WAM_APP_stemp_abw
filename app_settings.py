@@ -1,60 +1,53 @@
 import os
-from collections import OrderedDict
-import sqlalchemy
-import sqlahelper
+from django.utils import translation
 from configobj import ConfigObj
 
-import oedialect as _
-
 from wam import settings
-#from db_apps import oemof_results
-from stemp_abw import oep_models
 
-# SCENARIO_PATH = os.path.join('stemp', 'scenarios')
+# TODO: Explain vars!
 
-# ADDITIONAL_PARAMETERS = ConfigObj(
-#     os.path.join(settings.BASE_DIR, 'stemp', 'attributes.cfg'))
+# Set default language for app
+DEFAULT_LANGUAGE = 'de'
 
-
-DB_URL = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}'
+# Store which defines all available languages for an app
+LANGUAGE_STORE = ['de', 'en']
 
 
-def build_db_url(db_name):
-    conf = settings.config['DATABASES'][db_name]
-    #conf['ENGINE'] = 'postgresql+oedialect'
-    db_url = DB_URL + '/{NAME}' if 'NAME' in conf else DB_URL
-    return db_url.format(**conf)
+# Get the language of current app thread or fallback to default language.
+def get_language_or_fallback():
+    current_thread_language = translation.get_language()
+    if current_thread_language in LANGUAGE_STORE:
+        return current_thread_language
+    else:
+        return DEFAULT_LANGUAGE
 
 
-# # Add sqlalchemy for oemof_results:
-# engine = sqlalchemy.create_engine(build_db_url('DEFAULT'))
-# sqlahelper.add_engine(engine, 'oemof_results')
-# oemof_results.Base.metadata.bind = engine
+def layer_areas_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_areas.cfg'))
 
-# # Add local DB:
-# engine = sqlalchemy.create_engine(build_db_url('DEFAULT'))
-# sqlahelper.add_engine(engine, 'lokal')
-# oep_models.Base.metadata.bind = engine
 
-# # Add OEP:
-# engine = sqlalchemy.create_engine(build_db_url('OEP'))
-# sqlahelper.add_engine(engine, 'oep')
-# oep_models.Base.metadata.bind = engine
+def layer_region_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_region.cfg'))
 
-# # Add reiner:
-# engine = sqlalchemy.create_engine(build_db_url('reiners_db'))
-# sqlahelper.add_engine(engine, 'reiners_db')
 
-# TODO: Verify configs after import / make failsafe!
-LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                              'stemp_abw',
-                                              'config',
-                                              'layers_areas.cfg'))
+def layer_result_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_results.cfg'))
 
-LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_region.cfg'))
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
@@ -71,9 +64,93 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                              'config',
                                              'esys_areas.cfg'))
 
-LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
-                                'stemp_abw',
-                                'config',
-                                'labels.cfg'))
+
+def labels():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'labels.cfg'))
+
+
+def text_files_dir():
+    language = get_language_or_fallback()
+    return os.path.join(settings.BASE_DIR,
+                                  'stemp_abw',
+                                  'locale',
+                                  language,
+                                  'reveals')
+
+
+def text_files():
+    return {name: {'file': os.path.join(text_files_dir(), f'{name}.md'),
+                     'icon': icon}
+              for name, icon in
+              {'welcome': 'ion-help-buoy',
+               'outlook': 'ion-navigate'}.items()
+              }
+
 
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
+
+# Mapping between UI control id and data in scenario data dict.
+# The value can be string or list of strings. If a list is provided, the
+# control value is calculated using the sum of scenario's data values
+CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
+                      'sl_pv_roof':
+                          ['gen_capacity_pv_roof_large',
+                           'gen_capacity_pv_roof_small'],
+                      'sl_pv_ground': 'gen_capacity_pv_ground',
+                      'sl_bio':
+                          ['gen_capacity_bio',
+                           'gen_capacity_sewage_landfill_gas'],
+                      'sl_conventional':
+                          ['gen_capacity_conventional_large',
+                           'gen_capacity_conventional_small'],
+                      'sl_resid_dem_el': 'resid_dem_el',
+                      'sl_crt_dem_el': 'crt_dem_el',
+                      'sl_resid_pth': 'resid_pth',
+                      'sl_crt_pth': 'crt_pth',
+                      'sl_resid_save_th': 'resid_save_th',
+                      'sl_crt_save_th': 'crt_save_th',
+                      'sl_battery': 'battery',
+                      'sl_dsm_resid': 'dsm_resid',
+                      'sl_emobility': 'emobility',
+                      'sl_dist_resid': 'dist_resid',
+                      'cb_use_forest': 'use_forest',
+                      'cb_use_ffh_areas': 'use_ffh_areas',
+                      'cb_use_cult_areas': 'use_cult_areas',
+                      'dd_repowering': 'repowering_scn'
+                      }
+
+RE_POT_CONTROLS = ['sl_dist_resid',
+                   'cb_use_forest',
+                   'cb_use_ffh_areas',
+                   'cb_use_cult_areas']
+
+NODE_LABELS = {'gen_el_wind': 'Windenergie',
+               'gen_el_pv_roof': 'PV Dach',
+               'gen_el_pv_ground': 'PV Freifläche',
+               'gen_el_hydro': 'Wasserkraft',
+               'gen_el_bio': 'Bioenergie',
+               'gen_el_conventional': 'Fossil',
+               'dem_el_hh': 'Haushalte',
+               'dem_el_rca': 'GHD',
+               'dem_el_ind': 'Industrie',
+               'shortage_el': 'Import',
+               'excess_el': 'Export'
+               }
+
+RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1, 7)]
+
+SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
+                  'date_to': '2017-12-31 23:00:00',
+                  'freq': '60min',
+                  'solver': 'cbc',
+                  'verbose': True,
+                  'keepfiles': False
+                  }
+
+MONTH_LABELS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']

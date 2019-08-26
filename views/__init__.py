@@ -1,22 +1,24 @@
 from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
-from collections import OrderedDict
-#import sqlahelper
 
-from stemp_abw.config import io
-from stemp_abw.simulation.bookkeeping import simulate_energysystem
-from stemp_abw import results
-
+from stemp_abw.config.prepare_context import component_data, SCENARIO_DATA,\
+    prepare_layer_data
+from stemp_abw.config.prepare_texts import label_data, text_data
+from stemp_abw.config.leaflet import LEAFLET_CONFIG
+from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
-from utils.widgets import InfoButton
+from stemp_abw.results.result_charts import results_charts_tab1_viz,\
+    results_charts_tab2_viz, results_charts_tab3_viz, results_charts_tab4_viz,\
+    results_charts_tab5_viz
+
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
-import os
-import stemp_abw
+from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
 
 
+# TODO: use WAM's + Test it
 def check_session(func):
     def func_wrapper(self, request, *args, **kwargs):
         try:
@@ -27,9 +29,42 @@ def check_session(func):
     return func_wrapper
 
 
+def get_clean_session(request):
+    """Checks for existing session
+
+    Obtain it using WAM's :class:`wam.user_sessions.sessions.SessionData`
+    and delete session data (instantiate
+    :class:`stemp_abw.sessions.UserSession`).
+
+    Parameters
+    ----------
+    request : :obj:`django.core.handlers.wsgi.WSGIRequest`
+        Request
+    """
+    # get current session key
+    session_key = request.session.session_key
+    # get session (existing or new one if there's none)
+    SESSION_DATA.start_session(request, UserSession)
+    # if session existed before: delete session data
+    if session_key is not None:
+        SESSION_DATA.sessions['stemp_abw'][session_key] = UserSession()
+
+
+class ContactView(TemplateView):
+    template_name = 'stemp_abw/contact.html'
+
+
 class IndexView(TemplateView):
     template_name = 'stemp_abw/index.html'
 
+
+class ImprintView(TemplateView):
+    template_name = 'stemp_abw/imprint.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'stemp_abw/privacy_policy.html'
+    
 
 class MapView(TemplateView):
     template_name = 'stemp_abw/map.html'
@@ -37,63 +72,89 @@ class MapView(TemplateView):
     def __init__(self):
         super(MapView, self).__init__()
 
-        #self.simulation = Simulation()
-
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context.update(io.prepare_layer_data())
-        context.update(io.prepare_component_data())
-        context.update(io.prepare_label_data())
 
-        # TODO: Temp stuff for WS
-        labels1 = OrderedDict((
-            ('Windenergie Erzeugung', ['Wind']),
-            ('Photovoltaik Erzeugung', ['PV']),
-            ('Bioenergie Erzeugung', ['Biomasse', 'Biogas'])
-        ))
-        visualizations1 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
-                          for t, c in labels1.items()]
-        labels2 = {'Erzeugung': ['Strom', 'Wärme'],
-                  'Bedarf': ['Strom', 'Wärme'],
-                  'Erneuerbare Energien': ['Wind', 'Solar']
-                  }
-        visualizations2 = [results.ResultAnalysisVisualization(title=t, captions=c).visualize()
-                          for t, c in labels2.items()]
-        context['visualizations1'] = visualizations1
-        context['visualizations2'] = visualizations2
+        # prepare layer data and move result layers to separate context var
+        layer_data = prepare_layer_data()
+        layer_list_results = layer_data['layer_list']
+        layer_data['layer_list'] = {layer: data
+                                    for layer, data in layer_data['layer_list'].items()
+                                    if data['cat'] != 'results'}
+        layer_data['layer_list_results'] = {layer: data
+                                            for layer, data in layer_list_results.items()
+                                            if data['cat'] == 'results'}
+        context.update(layer_data)
 
-        # Trial: new info button
-        # TODO: Move
-        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'config', 'text', 'test.md')
-        f = open(file, 'r', encoding='utf-8')
-        context['info'] = InfoButton(text=f.read(),
-                                     tooltip='tooltip hahaha',
-                                     is_markdown=True,
-                                     ionicon_type='ion-help-circled',
-                                     ionicon_size='medium')
-        f.close()
+        context.update(component_data())
+        context.update(SCENARIO_DATA)
+        context.update(label_data())
+        context.update(text_data())
+        context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
+
+        context['results_charts_tab1_viz'] = results_charts_tab1_viz
+        context['results_charts_tab2_viz'] = results_charts_tab2_viz
+        context['results_charts_tab3_viz'] = results_charts_tab3_viz
+        context['results_charts_tab4_viz'] = results_charts_tab4_viz
+        context['results_charts_tab5_viz'] = results_charts_tab5_viz
+
+        context['leaflet_config'] = LEAFLET_CONFIG
 
         return context
 
     def get(self, request, *args, **kwargs):
-        # Start session (if there's none):
-        SESSION_DATA.start_session(request, UserSession)
-        session = SESSION_DATA.get_session(request)
+        # get clean session
+        get_clean_session(request)
 
         context = self.get_context_data()
         return self.render_to_response(context)
 
     @check_session
     def post(self, request, session):
-        print(request.POST)
+        action = request.POST['action']
+        data = request.POST['data']
+        
+        # get scnenario values (trigger: scenario dropdown)
+        if action == 'select_scenario':
+            scn = session.scenarios[int(data)]
+            ret_data = {'scenario_list': dict(Scenario.objects.filter(
+                is_user_scenario=False).values_list('id', 'name')),
+                        'scenario': {'name': scn.name,
+                                     'desc': scn.description,
+                                     'data': scn.data.data},
+                        'controls': session.get_control_values(scn)
+                        }
+            ret_data = json.dumps(ret_data)
+        
+        # apply scenario (trigger: scn button) -> set as user scenario
+        elif action in ['apply_scenario', 'init_sq_scenario']:
+            scn_id = int(data)
+            scn = session.scenarios[scn_id]
+            ret_data = {'scenario': {'name': scn.name,
+                                     'desc': scn.description,
+                                     'data': scn.data.data},
+                        'controls': session.get_control_values(scn)
+                        }
+            ret_data = json.dumps(ret_data)
+            session.set_user_scenario(scn_id=scn_id)
+            # set results to outdated (if scn is not applied on startup)
+            if action == 'apply_scenario':
+                session.simulation.results.status = 'outdated'  # set results to outdated
 
-        result, param_result = simulate_energysystem()
+        # change scenario/control value (trigger: control)
+        elif action == 'update_scenario':
+            print(json.loads(data))
+            sl_wind_repower_pot = session.update_scenario_data(
+                ctrl_data=json.loads(data))
+            ret_data = {'sl_wind_repower_pot': sl_wind_repower_pot}
+            ret_data = json.dumps(ret_data)
+            session.simulation.results.status = 'outdated'  # set results to outdated
 
-        print('Results:', results)
-        print('Params:', param_result)
+        # start simulation (trigger: sim button)
+        elif action == 'simulate':
+            session.simulation.create_esys()
+            session.simulation.load_or_simulate()
 
-        return HttpResponse(json.dumps({'hallo': 'test'}))
+            ret_data = 'simulation successful'
 
-
-class SourcesView(TemplateView):
-    template_name = 'stemp_abw/sources.html'
+        return HttpResponse(ret_data)
