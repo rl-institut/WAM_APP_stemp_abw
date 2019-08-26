@@ -1,29 +1,53 @@
 import os
+from django.utils import translation
 from configobj import ConfigObj
 
 from wam import settings
 
 # TODO: Explain vars!
 
-# tool language
-# available languages: German ('de') and English ('en')
-LANGUAGE = 'de'
+# Set default language for app
+DEFAULT_LANGUAGE = 'de'
 
-# import configs
-LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                              'stemp_abw',
-                                              'config',
-                                              'layers_areas.cfg'))
+# Store which defines all available languages for an app
+LANGUAGE_STORE = ['de', 'en']
 
-LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_region.cfg'))
 
-LAYER_RESULT_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_results.cfg'))
+# Get the language of current app thread or fallback to default language.
+def get_language_or_fallback():
+    current_thread_language = translation.get_language()
+    if current_thread_language in LANGUAGE_STORE:
+        return current_thread_language
+    else:
+        return DEFAULT_LANGUAGE
+
+
+def layer_areas_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_areas.cfg'))
+
+
+def layer_region_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_region.cfg'))
+
+
+def layer_result_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_results.cfg'))
+
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
@@ -40,25 +64,33 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                              'config',
                                              'esys_areas.cfg'))
 
-LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
-                                'stemp_abw',
-                                'config',
-                                'labels',
-                                LANGUAGE,
-                                'labels.cfg'))
 
-TEXT_FILES_DIR = os.path.join(settings.BASE_DIR,
-                              'stemp_abw',
-                              'config',
-                              'reveals',
-                              LANGUAGE)
+def labels():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'labels.cfg'))
 
-TEXT_FILES = {name: {'file': os.path.join(TEXT_FILES_DIR, f'{name}.md'),
+
+def text_files_dir():
+    language = get_language_or_fallback()
+    return os.path.join(settings.BASE_DIR,
+                                  'stemp_abw',
+                                  'locale',
+                                  language,
+                                  'reveals')
+
+
+def text_files():
+    return {name: {'file': os.path.join(text_files_dir(), f'{name}.md'),
                      'icon': icon}
               for name, icon in
               {'welcome': 'ion-help-buoy',
                'outlook': 'ion-navigate'}.items()
               }
+
 
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
 
