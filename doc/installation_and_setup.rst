@@ -25,6 +25,8 @@ Ordner anlegen (hier im Benutzerverzeichnis) und in diesen wechseln:
 Wir empfehlen die vorherige Einrichtung einer virtuellen Umgebung (`virtual
 environment <https://virtualenv.pypa.io>`_):
 
+.. warning:: VENV kann raus, da Conda mit der WAM installiert wird
+
 .. code-block:: bash
 
     virtualenv stemp_abw_venv
