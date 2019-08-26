@@ -17,9 +17,7 @@ ins Verhältnis gesetzt werden. Das Tool dient der Versachlichung der Diskussion
 um Flächenkonkurrenz und Ausbau erneuerbarer Energien, um die energie- und
 klimapolitischen Ziele der Region erreichen zu können.
 
-<div style="text-align: center;">
-  <img width="500" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Anhalt_map_website.png">
-</div>
+<img style="display: block; margin-left: auto; margin-right: auto; width: 50%;" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Anhalt_map_website.png">
 
 ## Dokumentation
 
