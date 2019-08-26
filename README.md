@@ -1,4 +1,4 @@
-<img align="right" width="200" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/rli_logo.png">
+<img align="right" width="150" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/rli_logo.png">
 
 # StEmp-ABW
 
@@ -17,7 +17,7 @@ ins Verhältnis gesetzt werden. Das Tool dient der Versachlichung der Diskussion
 um Flächenkonkurrenz und Ausbau erneuerbarer Energien, um die energie- und
 klimapolitischen Ziele der Region erreichen zu können.
 
-<img align="center" width="500" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Anhalt_map_website.png">
+<img align="middle" width="500" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Anhalt_map_website.png">
 
 ## Dokumentation
 
