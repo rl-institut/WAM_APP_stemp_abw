@@ -21,7 +21,7 @@ klimapolitischen Ziele der Region erreichen zu können.
 
 ## Dokumentation
 
-Eine ausführliche Dokumentation finden Sie auf
+Eine ausführliche Dokumentation mit Hintergrundinformationen finden Sie auf
 [ReadTheDocs](https://stemp-abw.readthedocs.io). Dort erfahren Sie mehr über
 die Installation und Nutzung des Tools. Sie enthält Erklärungen zu den
 Funktionalitäten des Programms und welche Annahmen und Quellen hinter Modellen
