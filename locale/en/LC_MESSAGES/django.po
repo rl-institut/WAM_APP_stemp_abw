@@ -230,7 +230,7 @@ msgstr ""
 "An important aspect in meeting the climate targets for 2050 is the "
 "participation of citizens. However, the complexity of energy systems "
 "and the associated issues often make the participation process "
-"significantly more difficult."
+"significantly difficult."
 
 #: templates/stemp_abw/index.html:38
 msgid ""
@@ -240,9 +240,9 @@ msgid ""
 "Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige "
 "Diskussion geschaffen und eine gemeinsame Planung ermöglicht."
 msgstr ""
-"The scenario calculator enables all interested stakeholders to obtain a better "
+"The scenario calculator enables all interested stakeholders to gain a better "
 "understanding of various scenarios of the regional energy balance district. "
-"In addition, the effects of measures can be directly determined. "
+"In addition, the effects of the measures taken can be directly determined. "
 "This creates the basis for an equal discussion and enables collaborative "
 "decision-making."
 
@@ -251,7 +251,7 @@ msgid ""
 "Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in "
 "Zukunft aussehen?"
 msgstr ""
-"How could a renewable, sector-coupled energy system for the region look like "
+"How could a renewable sector-coupled energy system for the region look like "
 "in the future?"
 
 #: templates/stemp_abw/index.html:49
@@ -266,13 +266,13 @@ msgid ""
 "Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
 "Regional actors, especially citizens, should be encouraged to participate "
-"sincerely and in real terms in shaping the energy system transformation in ABW. "
+"in shaping the energy system transformation sincerely and ion real terms in ABW. "
 "The complex connections can be experienced and discussed through clear design and "
-"suitable accompaniment."
+"suitable guidance."
 
 #: templates/stemp_abw/index.html:53
 msgid "Effizientere Arbeitsweise"
-msgstr "More efficient working methods"
+msgstr "More efficient methods"
 
 #: templates/stemp_abw/index.html:54
 msgid ""
@@ -297,7 +297,7 @@ msgid ""
 "wächst - auch und gerade bei unterschiedlichen Meinungen."
 msgstr ""
 "This tool will not only help to explain the connections between different "
-"systems of the energy industry, ecology and cultural landscape better, but "
+"systems of the energy industry, ecology, and cultural landscape better, but "
 "will also make the interests and values of the regional stakeholders visible. "
 "Mutual understanding is growing especially when opinions differ."
 
@@ -311,9 +311,9 @@ msgid ""
 "schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher "
 "Tools somit erleichtert werden."
 msgstr ""
-"Data and source codes are made available to all interested users. This creates "
-"transparency and reproducibility. In addition, the implementation of similar "
-"tools can be made easier"
+"Data and source codes are made available to all interested stakeholders. "
+"This creates transparency and reproducibility. In addition, the implementation "
+"of similar tools can be made easier."
 
 #: templates/stemp_abw/index.html:74
 msgid "Wie funktioniert das Tool?"
@@ -337,7 +337,7 @@ msgstr "How many wind turbines are located in the municipalities?""
 
 #: templates/stemp_abw/index.html:90
 msgid "Welcher Flächenbelastung entspricht das?"
-msgstr "What impact does this have on the area?"
+msgstr "What impact does this have on the surface?"
 
 #: templates/stemp_abw/index.html:95
 msgid "Bild Region"
@@ -389,7 +389,7 @@ msgid ""
 "mehr Windenergieanlagen bauen zu können"
 msgstr ""
 "Decide whether the minimum distance to residential areas should be adapted "
-"in order to build more wind turbines."
+"in order to build more wind turbines"
 
 #: templates/stemp_abw/index.html:132
 msgid ""
@@ -409,7 +409,7 @@ msgstr ""
 
 #: templates/stemp_abw/index.html:138
 msgid "Bild Flächennutzung"
-msgstr "Image Land use"
+msgstr "Image land use"
 
 #: templates/stemp_abw/index.html:149
 msgid "Vergleiche die Ergebnisse mit dem Status Quo"
@@ -448,7 +448,7 @@ msgstr "Documentation"
 msgid ""
 "Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation "
 "auf"
-msgstr "Further information and background can be found in our documentation at"
+msgstr "Further information and background information can be found in our documentation at"
 
 
 #: templates/stemp_abw/index.html:176
@@ -546,8 +546,8 @@ msgid ""
 "In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten "
 "geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
 msgstr ""
-"In a future version of this tool further features are planned. For "
-"example the consideration of the heat sector and sector coupling."
+"In a future version of this tool more features are planned. For "
+"example the consideration of the heat sector and the sector coupling."
 
 #: templates/stemp_abw/map.html:233
 msgid "Variierbare Flächen"
@@ -575,7 +575,7 @@ msgstr "Show all layers"
 
 #: templates/stemp_abw/map.html:355
 msgid "Mehr Ergebnisgrafiken"
-msgstr "More result graphs"
+msgstr "More graphs"
 
 #: templates/stemp_abw/map.html:366
 msgid "Werte müssen berechnet werden - bitte Simulation starten!"
@@ -595,7 +595,7 @@ msgstr "An error has occurred. Please restart the tool."
 
 #: templates/stemp_abw/map.html:518
 msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
-msgstr "Do you really want to go to the home page? All changes will be lost."
+msgstr "Would you like to proceed to the home page? All changes will be lost."
 
 #: templates/stemp_abw/map.html:524 templates/stemp_abw/map.html:537
 #: templates/stemp_abw/map.html:550 templates/stemp_abw/map.html:563
@@ -714,10 +714,6 @@ msgid ""
 "      nationaler Datenschutzgesetze der Mitgliedsstaaten sowie sonstiger\n"
 "      datenschutzrechtlicher Bestimmungen ist die:"
 msgstr ""
-"The responsible person in terms of the data protection basic regulation and other\n"
-"      national data protection laws of the member states and others\n."
-"      of data protection regulations is the:"
-
 
 #: templates/stemp_abw/privacy_policy.html:27
 msgid ""
@@ -726,12 +722,6 @@ msgid ""
 "kein\n"
 "      Datenschutzbeauftragter bestellt."
 msgstr ""
-"Since the type and scope of data processing at the RLI meet the criteria set "
-"out in Art. 37\n "
-"      Abs. 1 DSGVO and § 38 Abs. 1 S. 1 BDSG-neu, the following conditions "
-"      were not met in the new version "
-"no\n"
-"      data protection officer was appointed."
 
 #: templates/stemp_abw/privacy_policy.html:33
 msgid ""
@@ -747,16 +737,6 @@ msgid ""
 "Vorschriften\n"
 "      gestattet ist."
 msgstr ""
-"We process the personal data of our users only to the extent necessary\n"
-"      to provide a functioning website as well as our content and services.\n"
-"      The processing of personal data of our users takes place regularly\n"
-"      only with the consent of the user.\n"
-"      An exception applies in such cases,"
-"in which\n"
-"      prior to obtaining the consent is "
-"not\n"
-"      possible for technical reasons and the processing of the data is permitted by legal "
-"reglations\n"
 
 #: templates/stemp_abw/privacy_policy.html:43
 msgid ""
@@ -1369,7 +1349,7 @@ msgstr "Overview"
 
 #: templates/stemp_abw/results.html:5
 msgid "Stromerzeugung"
-msgstr "electricity generation"
+msgstr "Electricity generation"
 
 #: templates/stemp_abw/session_not_found.html:6
 msgid "Deine Sitzung ist abgelaufen"
@@ -1405,7 +1385,7 @@ msgstr "Wind"
 #: views/detail_views.py:793 views/detail_views.py:832
 #: views/detail_views.py:883
 msgid "PV Dach"
-msgstr ""
+msgstr "PV roof"
 
 #: views/detail_views.py:161 views/detail_views.py:199
 #: views/detail_views.py:251 views/detail_views.py:302
@@ -1463,7 +1443,7 @@ msgstr "from source"
 #, fuzzy
 #| msgid "EinwohnerInnen"
 msgid "je EinwohnerIn"
-msgstr "Inhabitants"
+msgstr "per Inhabitant"
 
 #: views/detail_views.py:311 views/detail_views.py:414
 #: views/detail_views.py:891 views/detail_views.py:994
@@ -1529,7 +1509,7 @@ msgstr "Demand: {point.stackTotal} %"
 
 #: views/detail_views.py:840 views/detail_views.py:890
 msgid "Ergebnis: Gewonnene Energie aus EE"
-msgstr "Result: Energy generated from renewables"
+msgstr "Result: Energy generated from Renewables"
 
 #: views/detail_views.py:941 views/detail_views.py:993
 msgid "Ergebnis: Installierte Leistung EE"
