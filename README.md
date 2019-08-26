@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/stemp-abw/badge/?version=dev)](https://stemp-abw.readthedocs.io/en/dev/?badge=dev)
+
 <img align="right" width="150" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/rli_logo.png">
 
 # StEmp-ABW
