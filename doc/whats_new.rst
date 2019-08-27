@@ -10,4 +10,4 @@ Eine Liste neuer Funktionen, Verbesserungen und Bugfixes für jedes Release.
     :local:
     :backlinks: top
 
-.. include::  whatsnew/v1-0.rst
+.. include::  whatsnew/v0.1.rst
