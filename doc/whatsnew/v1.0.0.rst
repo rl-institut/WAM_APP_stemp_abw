@@ -1,0 +1,19 @@
+v1.0.0 (??. September 2019)
+...........................
+
+Erste stabile Version
+
+Neue Features
+~~~~~~~~~~~~~
+
+- Mehrsprachenunterstützung #72
+- Installation der vom Tool verwenden Daten ermöglicht via Django fixtures #71
+- Dokumentation fertiggestellt #30
+- Ergebnis-Ebenen: Es werden nun Änderungen ggü. dem Status quo sowie Popups angezeigt #38
+
+Änderungen
+~~~~~~~~~~
+
+- PV-Freiflächen-Potenziale korrigiert #75
+- Verbesserungen an der Benutzeroberfläche
+- diverse Bugfixes
