@@ -1,4 +1,6 @@
-<img align="right" width="150" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/rli_logo.png">
+[![Documentation Status](https://readthedocs.org/projects/stemp-abw/badge/?version=dev)](https://stemp-abw.readthedocs.io/en/dev/?badge=dev)
+
+<img align="right" width="150" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/master/static/stemp_abw/img/rli_logo.png">
 
 # StEmp-ABW
 
@@ -17,7 +19,7 @@ ins Verhältnis gesetzt werden. Das Tool dient der Versachlichung der Diskussion
 um Flächenkonkurrenz und Ausbau erneuerbarer Energien, um die energie- und
 klimapolitischen Ziele der Region erreichen zu können.
 
-<img align="middle" width="500" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Anhalt_map_website.png">
+<img align="middle" width="500" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/master/static/stemp_abw/img/Anhalt_map_website.png">
 
 ## Dokumentation
 
@@ -68,4 +70,4 @@ Bundesministeriums für Bildung und Forschung (BMBF).
 
 Förderkennzeichen: 03SFK4E1
 
-<img align="left" width="200" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/static/stemp_abw/img/Logo_ENavi.png">
+<img align="left" width="200" src="https://github.com/rl-institut/WAM_APP_stemp_abw/blob/master/static/stemp_abw/img/Logo_ENavi.png">
