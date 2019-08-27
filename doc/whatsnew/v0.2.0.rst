@@ -1,0 +1,15 @@
+v0.2.0 (07. Juli 2019)
+......................
+
+Neue Features
+~~~~~~~~~~~~~
+
+- Feedback-Formular
+- der el. Energiebedarf kann nun auch erhöht werden
+- ausführlichere Erklärtexte (z.B. bei Windenergieanlagen und konventionellen Kraftwerken)
+
+Änderungen
+~~~~~~~~~~
+
+- Verbesserungen an der Benutzeroberfläche
+- diverse Bugfixes
