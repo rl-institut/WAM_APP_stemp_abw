@@ -46,7 +46,7 @@ Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
     Restriktionsflächen, s.u.) lediglich **0,5 % als raumverträglich
     verfügbar** angenommen (`ZSW 2019`_).
 
-.. 	image:: files/areas_and_potentials_pv_ground_potential_areas.png
+.. 	image:: files/areas_and_potentials_pv_ground_potential_areas.jpg
    :width: 500 px
    :alt: Potenzialflächen
    :align: center
@@ -86,7 +86,7 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
         - Landesbedeutsame Industrie- und Gewerbestandorte (Bestand + Planung)
         - Region bedeutsame Standort für Industrie und Gewerbe (Bestand + Planung)
 
-.. 	image:: files/areas_and_potentials_pv_ground_hard_restr.png
+.. 	image:: files/areas_and_potentials_pv_ground_hard_restr.jpg
    :width: 500 px
    :alt: Harte Restriktionsflächen
    :align: center
@@ -104,7 +104,7 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
     - UNESCO Weltkulturerbegebiet (Gartenreich Dessau-Wörlitz)
     - Vorbehaltsgebiete für Landwirtschaft
 
-.. 	image:: files/areas_and_potentials_pv_ground_soft_restr.png
+.. 	image:: files/areas_and_potentials_pv_ground_soft_restr.jpg
    :width: 500 px
    :alt: Weiche Restriktionsflächen
    :align: center
@@ -143,7 +143,7 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
 Nennleistung mit harten Restriktionsflächen dar**.
 
-.. 	image:: files/areas_and_potentials_pv_ground_hard_restr_results.png
+.. 	image:: files/areas_and_potentials_pv_ground_hard_restr_results.jpg
    :width: 500 px
    :alt: Potenzialflächen: Ergebnisse
    :align: center
