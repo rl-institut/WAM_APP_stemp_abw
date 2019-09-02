@@ -46,6 +46,11 @@ Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
     Restriktionsflächen, s.u.) lediglich **0,5 % als raumverträglich
     verfügbar** angenommen (`ZSW 2019`_).
 
+.. 	image:: files/areas_and_potentials_pv_ground_potential_areas.png
+   :width: 500 px
+   :alt: Potenzialflächen
+   :align: center
+
 Weitere in der Förderkulisse des EEG enthaltenen Standorte Konversionsflächen
 und bundeseigene Immobilien finden hier aufgrund des vergleichsweise geringen
 Potenzials und mangelhafter Datenverfügbarkeit keine Berücksichtigung.
@@ -81,6 +86,11 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
         - Landesbedeutsame Industrie- und Gewerbestandorte (Bestand + Planung)
         - Region bedeutsame Standort für Industrie und Gewerbe (Bestand + Planung)
 
+.. 	image:: files/areas_and_potentials_pv_ground_hard_restr.png
+   :width: 500 px
+   :alt: Harte Restriktionsflächen
+   :align: center
+
 :Weiche Restriktionen:
     - FFH-Gebiete
     - SPA-/Vogelschutzgebiete
@@ -93,6 +103,11 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
     - Vorbehaltsgebiete für Tourismus und Erholung
     - UNESCO Weltkulturerbegebiet (Gartenreich Dessau-Wörlitz)
     - Vorbehaltsgebiete für Landwirtschaft
+
+.. 	image:: files/areas_and_potentials_pv_ground_soft_restr.png
+   :width: 500 px
+   :alt: Weiche Restriktionsflächen
+   :align: center
 
 Randbedingungen
 ...............
@@ -127,6 +142,11 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
 Nennleistung mit harten Restriktionsflächen dar**.
+
+.. 	image:: files/areas_and_potentials_pv_ground_hard_restr_results.png
+   :width: 500 px
+   :alt: Potenzialflächen: Ergebnisse
+   :align: center
 
 .. _`§37 EEG`: https://www.gesetze-im-internet.de/eeg_2014/__37.html
 .. _`§9 FStrG`: https://www.gesetze-im-internet.de/fstrg/__9.html
