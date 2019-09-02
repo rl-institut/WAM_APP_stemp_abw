@@ -1976,9 +1976,6 @@ footer.map-footer {
 #panel-results.tabs-panel.is-active.is-collapsed {
   width: calc(100% - 5rem); }
 
-.reveal-overlay {
-  z-index: 9999999 !important; }
-
 .table .table__head--color {
   background-color: #006494;
   color: #EBF2FA; }
@@ -6562,6 +6559,7 @@ html.is-reveal-open {
     overflow-y: hidden; }
 
 .reveal-overlay {
+  z-index: 999999999 !important;
   position: fixed;
   top: 0;
   right: 0;
