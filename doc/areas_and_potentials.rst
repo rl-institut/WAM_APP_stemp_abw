@@ -75,8 +75,7 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
     - Überschwemmungsgebiete
     - Flächenhafte Naturdenkmale
     - Wasserschutzgebiete
-    - Harte Restriktionsflächen nach
-    <a href="https://www.planungsregion-abw.de/wp-content/uploads/2019/05/REP-ABW_2018_Text.pdf" target="_blank">Regionalplan ABW 2018</a>
+    - Harte Restriktionsflächen nach `Regionalplan ABW 2018`_
         - Vorranggebiete für die Landwirtschaft
         - Vorranggebiete für die Rohstoffgewinnung
         - Landesbedeutsame Industrie- und Gewerbestandorte (Bestand + Planung)
@@ -137,4 +136,5 @@ Nennleistung mit harten Restriktionsflächen dar**.
 .. _`BGR 2014`: https://www.bgr.bund.de/DE/Themen/Boden/Ressourcenbewertung/Ertragspotential/Ertragspotential_node.html
 .. _`MULE 2019`: https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf
 .. _`BMVI 2015`: https://www.bbr.bund.de/BBSR/DE/Veroeffentlichungen/ministerien/BMVI/BMVIOnline/2015/DL_BMVI_Online_08_15.pdf?__blob=publicationFile&v=2
+.. _`Regionalplan ABW 2018`: https://www.planungsregion-abw.de/wp-content/uploads/2019/05/REP-ABW_2018_Text.pdf
 .. _`BMWi 2017`: https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6
