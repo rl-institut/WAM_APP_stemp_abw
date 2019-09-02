@@ -205,7 +205,7 @@ msgstr "Anhalt-Bitterfeld-Wittenberg Regional Energy Balance District"
 
 #: templates/stemp_abw/index.html:16
 msgid "Szenarien unter dem Aspekt einer abgestimmten Flächennutzung"
-msgstr "Scenarios under the consideration of a coordinated use of space"
+msgstr "Scenarios under the consideration of coordinated land use"
 
 #: templates/stemp_abw/index.html:19
 msgid "Anhalt Karte als Bild"
@@ -230,7 +230,7 @@ msgstr ""
 "An important aspect in meeting the climate targets for 2050 is the "
 "participation of citizens. However, the complexity of energy systems "
 "and the associated issues often make the participation process "
-"significantly difficult."
+"significantly more difficult."
 
 #: templates/stemp_abw/index.html:38
 msgid ""
@@ -251,7 +251,7 @@ msgid ""
 "Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in "
 "Zukunft aussehen?"
 msgstr ""
-"How could a renewable sector-coupled energy system for the region look like "
+"How could a renewable, sector-coupled energy system for the region look like "
 "in the future?"
 
 #: templates/stemp_abw/index.html:49
@@ -266,8 +266,8 @@ msgid ""
 "Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
 "Regional actors, especially citizens, should be encouraged to participate "
-"in shaping the energy system transformation sincerely and ion real terms in ABW. "
-"The complex connections can be experienced and discussed through clear design and "
+"in shaping the energy system transformation seriously and in real terms in ABW. "
+"The complex connections can be experienced and discussed through clear and vivid design as well as "
 "suitable guidance."
 
 #: templates/stemp_abw/index.html:53
@@ -282,7 +282,7 @@ msgid ""
 msgstr ""
 "The transformation of the regional energy systems can be promoted more "
 "efficiently with improved negotiated results. The overall result enables "
-"better planning and the approval of renewables."
+"better planning and approval of renewables."
 
 #: templates/stemp_abw/index.html:59
 msgid "Tieferes Verständnis"
@@ -296,8 +296,8 @@ msgid ""
 "Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis "
 "wächst - auch und gerade bei unterschiedlichen Meinungen."
 msgstr ""
-"This tool will not only help to explain the connections between different "
-"systems of the energy industry, ecology, and cultural landscape better, but "
+"This tool will not only help to better explain the connections between different "
+"systems of the energy industry, ecology, and cultural landscape, but "
 "will also make the interests and values of the regional stakeholders visible. "
 "Mutual understanding is growing especially when opinions differ."
 
@@ -311,9 +311,9 @@ msgid ""
 "schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher "
 "Tools somit erleichtert werden."
 msgstr ""
-"Data and source codes are made available to all interested stakeholders. "
+"Data and source codes are made available to all interested parties. "
 "This creates transparency and reproducibility. In addition, the implementation "
-"of similar tools can be made easier."
+"of similar tools can thus be facilitated."
 
 #: templates/stemp_abw/index.html:74
 msgid "Wie funktioniert das Tool?"
@@ -353,7 +353,7 @@ msgstr "Explore the region's energy system"
 
 #: templates/stemp_abw/index.html:109
 msgid "Wähle ein Zubauszenario für Windenergie"
-msgstr "Select an extension scenario for wind energy"
+msgstr "Select an expansion scenario for wind energy"
 
 #: templates/stemp_abw/index.html:110
 msgid ""
@@ -389,7 +389,7 @@ msgid ""
 "mehr Windenergieanlagen bauen zu können"
 msgstr ""
 "Decide whether the minimum distance to residential areas should be adapted "
-"in order to build more wind turbines"
+"in order to be able to build more wind turbines"
 
 #: templates/stemp_abw/index.html:132
 msgid ""
@@ -420,8 +420,8 @@ msgid ""
 "Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der "
 "Region?"
 msgstr ""
-"How does the share of renewable energy change in the municipalities " 
-"and the region?"
+"How is the share of renewable energies in the municipalities "
+"and the region changing?"
 
 #: templates/stemp_abw/index.html:152
 msgid "Wie viele Windkraftanlagen pro km² kommen hinzu?"
@@ -492,7 +492,7 @@ msgid ""
 "Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> "
 "(FKZ 03SFK4E1)"
 msgstr ""
-"Frunded from <strong>Federal Ministry of Education and Research</strong> "
+"Funded by <strong>Federal Ministry of Education and Research</strong> "
 "(FKZ 03SFK4E1)"
 
 #: templates/stemp_abw/index.html:219 templates/stemp_abw/navigation_app.html:8
@@ -547,7 +547,7 @@ msgid ""
 "geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
 msgstr ""
 "In a future version of this tool more features are planned. For "
-"example the consideration of the heat sector and the sector coupling."
+"example, the consideration of the heat sector and sector coupling."
 
 #: templates/stemp_abw/map.html:233
 msgid "Variierbare Flächen"
@@ -562,8 +562,8 @@ msgid ""
 "Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf "
 "das Energiesystem haben."
 msgstr ""
-"Here you can adjust the settings for the surfaces. These settings will have an "
-"effect on the energy system."
+"Here you can make settings for the areas that have an effect "
+"on the energy system.
 
 #: templates/stemp_abw/map.html:261
 msgid "Hier erfahren Sie mehr über Restriktionsflächen."
