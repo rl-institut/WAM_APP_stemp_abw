@@ -8,7 +8,7 @@ Sie können hier ein Zubau-Szenario wählen:
 
 3. **Variabler Zubau:** Sie können frei zubauen, wobei neben den Vorranggebieten (VR/EG) weitere Flächen verwendet werden. Das maximale Potenzial richtet sich nach den verfügbaren Flächen, welche Sie im Menü **Flächen** verändern können.
 
-4. **Volle Nutzung VR/EG:** In allen aktuellen Vorranggebieten (VR/EG) für Windenergie wird ein Maximum an Neuanlagen installiert. Alle Anlagen außerhalb dieser Gebiete werden abgebaut.
+4. **Volle Nutzung VR/EG:** In allen aktuellen Vorranggebieten (VR/EG) für Windenergie (welche Sie unter **Flächen -> Statische Flächen** einsehen können) wird ein Maximum an Neuanlagen installiert. Alle Anlagen außerhalb dieser Gebiete werden abgebaut.
 
 ## Musteranlage
 
