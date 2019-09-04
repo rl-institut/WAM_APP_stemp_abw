@@ -9,7 +9,7 @@ The following power plants are included in this tool (as of the end of 2018):
 - 2 Gas-fired power plants (106 MW, 40MW)
 - 1 Lignite-fired power plant (49 MW)
 
-They run with simplified consistent feed-in power and typical/common data for the annual load hours are used:
+They run with simplified constant feed-in power and typical data for the annual load hours are used:
 
 - Gas-fired power plants (turbine): 1250 h/a
 - Gas-fired power plants (CCGT): 2900 h/a
