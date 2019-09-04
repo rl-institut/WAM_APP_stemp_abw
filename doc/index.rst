@@ -24,6 +24,7 @@ Inhalt:
    installation_and_setup
    energy_system
    scenarios_and_methods
+   areas_and_potentials
    data
    tool_transfer
    developer
