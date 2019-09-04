@@ -17,7 +17,7 @@ They run with simplified constant feed-in power and typical data for the annual 
 
 ## Net electrcity generation capacity < 10 megawatt
 
-21 power plants with a power range of 750 kW to 9,9 MW fall under this category. 
+These include 21 turbines in the output range from 750 kW to 9.9 MW.
 Additional assumptions are the heat-controlled operation with 5000 annual full load hours.
 
 (Source: Core energy market data register of the BNetzA )
