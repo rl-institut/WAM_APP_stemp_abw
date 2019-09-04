@@ -7,7 +7,7 @@ The following power plants are included in this tool (as of the end of 2018):
 ## Net electrcity generation capacity > 10 megawatt
 
 - 2 Gas-fired power plants (106 MW, 40MW)
-- 1 Lignite-fired power plants (49 MW)
+- 1 Lignite-fired power plant (49 MW)
 
 They run with simplified consistent feed-in power and typical/common data for the annual load hours are used:
 
