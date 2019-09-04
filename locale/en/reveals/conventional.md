@@ -18,6 +18,6 @@ They run with simplified constant feed-in power and typical data for the annual 
 ## Net electrcity generation capacity < 10 megawatt
 
 These include 21 turbines in the output range from 750 kW to 9.9 MW.
-Additional assumptions are the heat-controlled operation with 5000 annual full load hours.
+Additional assumptions are the heat-controlled operation and 5000 annual full load hours.
 
 (Source: Core energy market data register of the BNetzA )
