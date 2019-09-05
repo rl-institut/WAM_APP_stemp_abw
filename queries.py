@@ -3,6 +3,7 @@
 import os
 import json
 import hashlib
+import pandas as pd
 from uuid import UUID
 from django.core.wsgi import get_wsgi_application
 
@@ -58,7 +59,7 @@ def insert_status_quo_scenario():
         'pop'
     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
-    global_params = {'resid_save_el': 0, 'crt_save_el': 0, 'battery': 0,
+    global_params = {'resid_dem_el': 100, 'crt_dem_el': 100, 'battery': 0,
                      'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
                      'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
                      'dist_resid': 1000, 'use_forest': False,
@@ -142,6 +143,23 @@ def insert_repowering_scenarios():
     }
     RepoweringScenario.objects.create(**scn)
 
+    # insert VR/EG scenario
+    mun_data_vreg = load_mun_data()[['gen_count_wind', 'gen_capacity_wind', 'reg_prio_area_wec_area']]
+    mun_data_vreg['gen_count_wind'] = (mun_data_vreg['reg_prio_area_wec_area'] / 20).round()
+    mun_data_vreg['gen_capacity_wind'] = (mun_data_vreg['gen_count_wind'] * 4.2).round(decimals=1)
+    mun_data_vreg.drop(columns=['reg_prio_area_wec_area'], inplace=True)
+
+    scn = {
+        'id': 2,
+        'name': 'Volle Nutzung VR/EG',
+        'description': 'In allen aktuellen Vorranggebieten (VR/EG) für '
+                       'Windenergie wird ein Maximum an Neuanlagen '
+                       'installiert. Alle Anlagen außerhalb dieser '
+                       'Gebiete werden abgebaut.',
+        'data': json.dumps(mun_data_vreg.to_dict(orient='index'), sort_keys=True)
+    }
+    RepoweringScenario.objects.create(**scn)
+
 # def insert_potential_areas():
 #     # test RE area object
 #     repot_area_params = {'repot_area_params': {'dist_resid': 1000,
@@ -190,5 +208,5 @@ def insert_status_quo_results():
 
 #insert_repowering_scenarios()
 #insert_potential_areas()
-#insert_status_quo_scenario()
+insert_status_quo_scenario()
 insert_status_quo_results()

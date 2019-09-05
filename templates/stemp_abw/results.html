@@ -1,14 +1,12 @@
+{% load i18n %}
               <div class="cell results-display-none" id="results-wrap">
                 <ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500" data-tabs id="deeplinked-tabs">
-                  <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">Übersicht</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">Stromerzeugung</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel3">Strombedarf</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel4">Wärmeerzeugung</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel5">Wärmebedarf</a></li>
-                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel6">Flächenbedarf</a></li>
-                  <!--<li class="tabs-title"><a href="#results-panel7">eMobilität</a></li>-->
-                  <!--<li class="tabs-title"><a href="#results-panel8">Demand-Side-Management</a></li>-->
-                  <!--<li class="tabs-title"><a href="#results-panel9">Batterie</a></li>-->
+                  <li class="tabs-title tabs-title--horizontal is-active"><a href="#results-panel1" aria-selected="true">{% trans 'Übersicht' %}</a></li>
+                  <li class="tabs-title tabs-title--horizontal"><a href="#results-panel2">{% trans 'Stromerzeugung' %}</a></li>
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel3">Strombedarf</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel4">Wärmeerzeugung</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel5">Wärmebedarf</a></li>-->
+<!--                  <li class="tabs-title tabs-title&#45;&#45;horizontal"><a href="#results-panel6">Flächenbedarf</a></li>-->
                 </ul>
 
                 <div class="tabs-content" data-tabs-content="deeplinked-tabs">
@@ -91,38 +89,38 @@
                       {% endfor %}
                     </div>
                   </div>
-                  <div class="tabs-panel" id="results-panel3">
-                    <div class="grid-x grid-margin-x">
-                      {% for visualization in results_charts_tab3_viz %}
-                          <div class="cell small-4">
-                            {% include "stemp_abw/result_chart.html" %}
-                          </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-                  <div class="tabs-panel" id="results-panel4">
-                    <div class="grid-x grid-margin-x">
-                      {% for visualization in results_charts_tab4_viz %}
-                          <div class="cell small-4">
-                            {% include "stemp_abw/result_chart.html" %}
-                          </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-                  <div class="tabs-panel" id="results-panel5">
-                    <div class="grid-x grid-margin-x">
-                      {% for visualization in results_charts_tab5_viz %}
-                          <div class="cell small-4">
-                            {% include "stemp_abw/result_chart.html" %}
-                          </div>
-                      {% endfor %}
-                  </div>
-                  <div class="tabs-panel" id="results-panel6">
-                    <div class="grid-x grid-margin-x">
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>
-                    </div>
-                  </div>
+<!--                  <div class="tabs-panel" id="results-panel3">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab3_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel4">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab4_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel5">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      {% for visualization in results_charts_tab5_viz %}-->
+<!--                          <div class="cell small-4">-->
+<!--                            {% include "stemp_abw/result_chart.html" %}-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                  </div>-->
+<!--                  <div class="tabs-panel" id="results-panel6">-->
+<!--                    <div class="grid-x grid-margin-x">-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                      <div class="cell small-4"><p>Hier folgen in Kürze Detailergebnisse...</p></div>-->
+<!--                    </div>-->
+<!--                  </div>-->
                 </div>
               </div>

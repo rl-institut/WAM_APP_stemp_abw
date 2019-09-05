@@ -1,24 +1,53 @@
 import os
+from django.utils import translation
 from configobj import ConfigObj
 
 from wam import settings
 
+# TODO: Explain vars!
 
-# import configs
-LAYER_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                              'stemp_abw',
-                                              'config',
-                                              'layers_areas.cfg'))
+# Set default language for app
+DEFAULT_LANGUAGE = 'de'
 
-LAYER_REGION_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_region.cfg'))
+# Store which defines all available languages for an app
+LANGUAGE_STORE = ['de', 'en']
 
-LAYER_RESULT_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
-                                               'stemp_abw',
-                                               'config',
-                                               'layers_results.cfg'))
+
+# Get the language of current app thread or fallback to default language.
+def get_language_or_fallback():
+    current_thread_language = translation.get_language()
+    if current_thread_language in LANGUAGE_STORE:
+        return current_thread_language
+    else:
+        return DEFAULT_LANGUAGE
+
+
+def layer_areas_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_areas.cfg'))
+
+
+def layer_region_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_region.cfg'))
+
+
+def layer_result_metadata():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'layers_results.cfg'))
+
 
 LAYER_DEFAULT_STYLES = ConfigObj(os.path.join(settings.BASE_DIR,
                                               'stemp_abw',
@@ -35,10 +64,33 @@ ESYS_AREAS_METADATA = ConfigObj(os.path.join(settings.BASE_DIR,
                                              'config',
                                              'esys_areas.cfg'))
 
-LABELS = ConfigObj(os.path.join(settings.BASE_DIR,
-                                'stemp_abw',
-                                'config',
-                                'labels.cfg'))
+
+def labels():
+    language = get_language_or_fallback()
+    return ConfigObj(os.path.join(settings.BASE_DIR,
+                                    'stemp_abw',
+                                    'locale',
+                                    language,
+                                    'labels.cfg'))
+
+
+def text_files_dir():
+    language = get_language_or_fallback()
+    return os.path.join(settings.BASE_DIR,
+                                  'stemp_abw',
+                                  'locale',
+                                  language,
+                                  'reveals')
+
+
+def text_files():
+    return {name: {'file': os.path.join(text_files_dir(), f'{name}.md'),
+                     'icon': icon}
+              for name, icon in
+              {'welcome': 'ion-help-buoy',
+               'outlook': 'ion-navigate'}.items()
+              }
+
 
 MAP_DATA_CACHE_TIMEOUT = 60 * 60
 
@@ -56,8 +108,8 @@ CONTROL_VALUES_MAP = {'sl_wind': 'gen_capacity_wind',
                       'sl_conventional':
                           ['gen_capacity_conventional_large',
                            'gen_capacity_conventional_small'],
-                      'sl_resid_save_el': 'resid_save_el',
-                      'sl_crt_save_el': 'crt_save_el',
+                      'sl_resid_dem_el': 'resid_dem_el',
+                      'sl_crt_dem_el': 'crt_dem_el',
                       'sl_resid_pth': 'resid_pth',
                       'sl_crt_pth': 'crt_pth',
                       'sl_resid_save_th': 'resid_save_th',
@@ -90,10 +142,10 @@ NODE_LABELS = {'gen_el_wind': 'Windenergie',
                'excess_el': 'Export'
                }
 
-RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1,7)]
+RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1, 7)]
 
 SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
-                  'date_to': '2017-03-31 23:00:00',
+                  'date_to': '2017-12-31 23:00:00',
                   'freq': '60min',
                   'solver': 'cbc',
                   'verbose': True,

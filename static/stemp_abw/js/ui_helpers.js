@@ -115,6 +115,10 @@ function showErrorPopup() {
   $('#errorMessage').foundation('open');
 }
 
+function showWelcomePopup() {
+  $('#info_welcome').foundation('open');
+}
+
 // Toggle spinner visibility
 function toggleSpinnerVisibility() {
   $('.loader-wrapper').toggleClass("loader-wrapper--hide");

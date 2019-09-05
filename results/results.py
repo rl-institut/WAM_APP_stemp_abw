@@ -2,7 +2,7 @@ from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario, RegMun, MunData
 from stemp_abw.results.io import oemof_json_to_results
 from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
-from stemp_abw.config.io import LABEL_DATA
+from stemp_abw.config.prepare_texts import label_data
 
 from oemof.outputlib import views
 
@@ -274,6 +274,7 @@ class Results(object):
     def get_layer_results(self):
         """Analyze results and return data for layer display"""
 
+        # TODO: better var names below!
         # get user scn results for muns
         scn_data = json.loads(self.simulation.session.user_scenario.data.data)
         mun_results = pd.DataFrame.from_dict(scn_data['mun_data'],
@@ -495,7 +496,7 @@ class ResultChart(object):
         # load tooltip text from labels using container id
         container_id = kwargs.get('renderTo', None)
         if container_id is not None:
-            tooltip_section = LABEL_DATA['charts'].get(container_id, None)
+            tooltip_section = label_data()['charts'].get(container_id, None)
             if tooltip_section is not None:
                 tooltip_text = tooltip_section.get('text', '')
             else:

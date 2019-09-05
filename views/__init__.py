@@ -2,8 +2,10 @@ from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config.io import COMPONENT_DATA, SCENARIO_DATA,\
-    LABEL_DATA, LAYER_DATA
+from stemp_abw.config.prepare_context import component_data, SCENARIO_DATA,\
+    prepare_layer_data
+from stemp_abw.config.prepare_texts import label_data, text_data
+from stemp_abw.config.leaflet import LEAFLET_CONFIG
 from stemp_abw.models import Scenario
 from stemp_abw.views.detail_views import *
 from stemp_abw.views.serial_views import *
@@ -11,13 +13,9 @@ from stemp_abw.results.result_charts import results_charts_tab1_viz,\
     results_charts_tab2_viz, results_charts_tab3_viz, results_charts_tab4_viz,\
     results_charts_tab5_viz
 
-from utils.widgets import InfoButton
 from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
 from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
-
-import os
-import stemp_abw
 
 
 # TODO: use WAM's + Test it
@@ -78,7 +76,7 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
 
         # prepare layer data and move result layers to separate context var
-        layer_data = LAYER_DATA
+        layer_data = prepare_layer_data()
         layer_list_results = layer_data['layer_list']
         layer_data['layer_list'] = {layer: data
                                     for layer, data in layer_data['layer_list'].items()
@@ -88,9 +86,10 @@ class MapView(TemplateView):
                                             if data['cat'] == 'results'}
         context.update(layer_data)
 
-        context.update(COMPONENT_DATA)
+        context.update(component_data())
         context.update(SCENARIO_DATA)
-        context.update(LABEL_DATA)
+        context.update(label_data())
+        context.update(text_data())
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
         context['results_charts_tab1_viz'] = results_charts_tab1_viz
@@ -99,16 +98,7 @@ class MapView(TemplateView):
         context['results_charts_tab4_viz'] = results_charts_tab4_viz
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
 
-        # Trial: new info button
-        # TODO: Move
-        file = os.path.join(os.path.dirname(stemp_abw.__file__), 'config', 'text', 'test.md')
-        f = open(file, 'r', encoding='utf-8')
-        context['info'] = InfoButton(text=f.read(),
-                                     tooltip='tooltip hahaha',
-                                     is_markdown=True,
-                                     ionicon_type='ion-information-circled',
-                                     ionicon_size='medium')
-        f.close()
+        context['leaflet_config'] = LEAFLET_CONFIG
 
         return context
 
@@ -167,16 +157,4 @@ class MapView(TemplateView):
 
             ret_data = 'simulation successful'
 
-        # # check if there are resuls for current scenario
-        # # (trigger: open results panel)
-        # elif action == 'check_results':
-        #     if session.simulation.results is None:
-        #         ret_data = 'none'
-        #     else:
-        #         ret_data = json.dumps({'results': 'found'})
-
         return HttpResponse(ret_data)
-
-
-class SourcesView(TemplateView):
-    template_name = 'stemp_abw/sources.html'

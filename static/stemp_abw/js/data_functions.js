@@ -79,7 +79,7 @@ function ctrlSimulate() {
 
   // show simulation spinner
   $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
-  $('#loader-detail-text').text('');
+  $('#loader-detail-text').text('(max. 1 Minute)');
   toggleSpinnerVisibility();
 
   //element.prop("disabled", true);
@@ -108,8 +108,6 @@ function ctrlSimulate() {
       showErrorPopup();
     }
   }).done(function (returned_data) {
-    //updateSimProgressBar(25);
-
       // hide simulation spinner
       toggleSpinnerVisibility();
 
@@ -125,38 +123,6 @@ function ctrlSimulate() {
   });
 };
 
-//// Control simulation
-//function checkForSimulationResults() {
-//  console.log('checking for results...');
-//
-//  $.ajax({
-//      url : '/stemp_abw/app/',
-//      type : "POST",
-//      data : {action: 'check_results',
-//              data: '',
-//              csrfmiddlewaretoken: csrf_token},
-//      success: function(page) {
-//          console.log('success');
-//      },
-//      error: function(page) {
-//          console.log('error');
-//      }
-//  }).done(function(returned_data){
-//      if (returned_data === 'none') {
-//          console.log(Highcharts.charts);
-//
-//          for (var hc_ctr = 0; hc_ctr < 11; hc_ctr++) {
-//              idx=$("#hc_" + hc_ctr.toString()).data('highchartsChart');
-//              Highcharts.charts[idx].showLoading('Daten noch nicht verfügbar,</br>bitte Simulation starten..');
-//          };
-//      } else {
-//          data = JSON.parse(returned_data);
-//          console.log(data)
-//      };
-//      getSimulationResults();
-//  });
-//};
-
 // Load simulation results from serial view
 function getSimulationResults() {
     // Check if simulation results are up-to-date
@@ -171,9 +137,9 @@ function getSimulationResults() {
             idx4=parseInt($("#hc_pie_power_production_user_scn")[0].getAttribute('data-highcharts-chart'))
             idx5=parseInt($("#hc_pie_power_production_sq_scn")[0].getAttribute('data-highcharts-chart'))
             idx6=parseInt($("#hc_column_power_prod_m_user_scn")[0].getAttribute('data-highcharts-chart'))
-            idx7=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
+            //idx7=parseInt($("#hc_res_wind_time")[0].getAttribute('data-highcharts-chart'))
 
-            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6, idx7]
+            const hc_idx_array = [idx1, idx2, idx3, idx4, idx5, idx6]//, idx7]
 
             // Check if results are not outdated
             if (data['sim_status'] == 'init' || data['sim_status'] == 'up_to_date') {
@@ -208,7 +174,7 @@ function getSimulationResults() {
                             Highcharts.charts[idx6].addSeries(data['hc_column_power_prod_m_user_scn'][i]);
                         }
 
-                        Highcharts.charts[idx7].series[0].setData(data['hc_res_wind_time']);
+                        //Highcharts.charts[idx7].series[0].setData(data['hc_res_wind_time']);
 
                         // Hide loading text
                         hc_idx_array.forEach(function (item, index) {

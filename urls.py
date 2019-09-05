@@ -1,11 +1,13 @@
 from inspect import getmembers, isclass
 
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 from django.views.decorators.cache import cache_page
 from djgeojson.views import GeoJSONLayerView
 
 from meta.models import Source
 from meta.views import AppListView, AssumptionsView
+from utils.views import FeedbackView
+
 from stemp_abw.app_settings import MAP_DATA_CACHE_TIMEOUT
 from stemp_abw import views
 
@@ -13,6 +15,9 @@ app_name = 'stemp_abw'
 
 # Regular URLs
 urlpatterns = [
+    # https://docs.djangoproject.com/en/2.2/topics/i18n/\
+    # translation/#the-set-language-redirect-view
+    path('i18n/', include('django.conf.urls.i18n'), name='set_language'),
     path('contact/', views.ContactView.as_view(),
          name='contact'),
     path('', views.IndexView.as_view(),
@@ -23,8 +28,6 @@ urlpatterns = [
          name='imprint'),
     path('privacy_policy/', views.PrivacyPolicyView.as_view(),
          name='privacy_policy'),
-    path('sources_old/', views.SourcesView.as_view(),
-         name='sources_old'),
     # Source views from WAM with highlighting
     path('sources/', AppListView.as_view(app_name=app_name,
                                          model=Source),
@@ -35,6 +38,8 @@ urlpatterns = [
          name='sim_status.data'),
     path('result_charts.data', views.ResultChartsData.as_view(),
          name='result_charts.data'),
+    path('feedback/', FeedbackView.as_view(app_name=app_name),
+         name='feedback')
     ]
 
 # Search detail-view-classes and append to URLs

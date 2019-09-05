@@ -234,9 +234,10 @@ class UserSession(object):
                 RepoweringScenario.objects.get(
                     id=scn_data['reg_params']['repowering_scn'])
             # 2) mun data update
+            repower_data = json.loads(
+                self.user_scenario.repowering_scenario.data)
             # free sceario
             if int(ctrl_data['dd_repowering']) == -1:
-                print(self.user_scenario)
                 sl_wind_repower_pot = round(
                     sum([scn_data['mun_data'][mun]['gen_capacity_wind']
                          for mun in scn_data['mun_data'].keys()]
@@ -244,7 +245,6 @@ class UserSession(object):
                 )
             # other scenarios
             else:
-                repower_data = json.loads(self.user_scenario.repowering_scenario.data)
                 for mun in scn_data['mun_data']:
                     scn_data['mun_data'][mun]['gen_capacity_wind'] =\
                         repower_data[mun]['gen_capacity_wind']
@@ -256,13 +256,16 @@ class UserSession(object):
         else:
             sl_wind_repower_pot = None
 
+        # update user scenario
         self.user_scenario.data.data = json.dumps(scn_data,
                                                   sort_keys=True)
 
         return sl_wind_repower_pot
 
     def __disaggregate_reg_to_mun_data(self, reg_data):
-        """Disaggregate given regional data to given municipal data
+        """Disaggregate and assign given regional data to given municipal data
+
+        # TODO: Insert notice that energy values are updated after sim + add reference
         
         Parameters
         ----------
@@ -288,10 +291,7 @@ class Simulation(object):
         self.esys = None
         self.session = session
         self.results = Results(simulation=self)
-        #self.create_esys()
-        #self.load_or_simulate()
-        #self.x = self.results.get_result_charts_data()
-    
+
     def create_esys(self):
         """Create energy system, parametrize and add nodes"""
 

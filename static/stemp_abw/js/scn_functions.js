@@ -39,31 +39,36 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
   }
 
   // Sliders
-  var esys_sliders = $('.irs-hidden-input').get();
-  for (var index in esys_sliders) {
-    var slider = $('#' + esys_sliders[index].id).data("ionRangeSlider");
-    var slider_vals_old = slider.options;
-    var slider_val = controls[esys_sliders[index].id];
+  function updateSliders() {
+    var esys_sliders = $('.irs-hidden-input').get();
+    for (var index in esys_sliders) {
+      var slider = $('#' + esys_sliders[index].id).data("ionRangeSlider");
+      var slider_vals_old = slider.options;
+      var slider_val = controls[esys_sliders[index].id];
 
-    // Set values
-    if (apply === true) {
-      slider.update({
-        from: slider_val
-        //min: 0
-        //max: 10,
-        //from_min: 1,
-        //from_max: 9,
-        //from_shadow: true,
-        //to_shadow: true
-      });
-    } else {
-      slider.update(slider_vals_old);
-    }
+      // Set values
+      if (apply === true) {
+        slider.update({
+          from: slider_val
+          //min: 0
+          //max: 10,
+          //from_min: 1,
+          //from_max: 9,
+          //from_shadow: true,
+          //to_shadow: true
+        });
+      } else {
+        slider.update(slider_vals_old);
+      }
 
-    // add marker
-    var marks = [[slider_val, scn_name, scn_desc]];
-    addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
+      // add marker
+
+      var marks = [[slider_val, scn_name, scn_desc]];
+      addMarks(slider.result.slider, slider.options.min, slider.options.max, marks);
+    };
   };
+  // timeout needed to wait for all sliders to be loaded
+  setTimeout(updateSliders, 100);
   
   // Switches
   if (apply === true) {
@@ -77,7 +82,7 @@ function updateScenarioControls(scn_name, scn_desc, controls, apply) {
 
 // Slider markers
 function convertToPercent(num, min, max) {
-  var percent = (num - min) / (max - min) * 100;
+  var percent = (num - min) / (max - min) * 96;
   return percent;
 }
 function addMarks($slider, min, max, marks) {
@@ -128,7 +133,7 @@ $('.switch-input.esys').click( function () {
 function changeScenarioControlRepDropdown(element_id) {
   if (element_id == 'dd_repowering') {
     //ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
-    ctrlScenarioPost(element_id, $('#' + element_id).prop('value'));
+    ctrlScenarioPost(element_id, parseInt($('#' + element_id).prop('value')));
     if ($('#' + element_id).prop('value') != -1) {
       removeRePotAreaLayers();
     };
@@ -152,6 +157,7 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
     activateRePotScenarioControls(true);
     wind_slider.update({
       from: sl_wind_value,
+      max: 3310,
       disable: false
     });
     $('#rc-tooltip-areas-enabled').foundation('show');
@@ -170,6 +176,12 @@ function updateScenarioControlRepDropdown(sl_wind_value) {
 }
 
 function activateRePotScenarioControls(enable) {
+  //reset values
+  $('#sl_dist_resid').data("ionRangeSlider").update({
+    from: 1000
+  });
+  $('#cb_use_forest').prop('checked', false);
+  //disable controls
   $('#cb_use_forest').prop('disabled', !enable);
   $('#sl_dist_resid').data("ionRangeSlider").update({
     disable: !enable,

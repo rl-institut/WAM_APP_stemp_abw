@@ -65,8 +65,10 @@ function execClickAction(e) {
   layer.setStyle(style);
 
   // load popup content from detail view
+  console.log(layer.feature.properties.name);
   var url = "../popup/" + layer.feature.properties.name + "/"
       + String(layer.feature.id) + "/"
+  console.log(url);
   $.get(url, function (data) {
     layer.setPopupContent(data);
     if (data.indexOf('id="hc_') !== -1) {
@@ -118,6 +120,16 @@ function onEachFeature(layerName) {
     }
     layer.on({
       click: execClickAction,
+      mouseover: setHighlightFeatureStyle,
+      mouseout: setNormalFeatureStyle(layerName, feature)
+    });
+  };
+}
+
+// TEMP FUNCTION TO PREVENT RESULT LAYER POPUPS
+function onEachFeatureNoPopup(layerName) {
+  return function (feature, layer) {
+    layer.on({
       mouseover: setHighlightFeatureStyle,
       mouseout: setNormalFeatureStyle(layerName, feature)
     });
@@ -338,9 +350,6 @@ function hideResultLayers() {
     }
   );
 };
-
-var region_panel_label = document.getElementById('panel-region-label');
-region_panel_label.onclick = hideResultLayers;
 
 var energy_panel_label = document.getElementById('panel-energy-label');
 energy_panel_label.onclick = hideResultLayers;
