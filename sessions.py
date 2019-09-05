@@ -45,6 +45,12 @@ class UserSession(object):
         self.tracker = Tracker(session=self)
         self.highcharts_temp = None
 
+        #self.simulation.create_esys()
+        #self.simulation.load_or_simulate()
+        #self.simulation.results.update_mun_energy_results_post_simulation()
+
+        #self.simulation.results.get_result_charts_data()
+
     @property
     def scenarios(self):
         """Return all default scenarios (not created by user)"""

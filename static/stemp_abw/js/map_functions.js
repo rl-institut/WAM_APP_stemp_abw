@@ -277,7 +277,7 @@ function addRePotAreaLayer() {
       wec_count = 3751;
     }
   }
-
+  console.log(Math.round(wec_count * 4.2));
   $('#sl_wind').data("ionRangeSlider").update({
     max: Math.round(wec_count * 4.2)
   });
