@@ -9,19 +9,20 @@ supply, which must be balanced against the spatial and environmental impact.
 
 ## Potential areas
 
-Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
-<a href="https://www.gesetze-im-internet.de/eeg_2014/__37.html" target="_blank">§37 EEG</a>
-(2017) bestimmt. Es werden die folgenden Flächen berücksichtigt:  
+The potential areas are determined according to 
+<a href="https://www.gesetze-im-internet.de/eeg_2014/__37.html" target="_blank">§37 EEG</a> 
+(2017) on the basis of the current support scheme. 
+The following areas are taken into account:
 
-1. **110 m-Streifen entlang von Bundesautobahnen und Schienenwegen**
+1. **110 m strips along federal motorways and railways**
   
-    Eine 110 m-Pufferzone um BAB und Schienenwege, abzüglich einer 40 m-Zone um
-    BAB
+    A 110 m buffer zone around federal motorways and railways, 
+    minus a 40 m zone around federal motorways.
     (<a href="https://www.gesetze-im-internet.de/fstrg/__9.html" target="_blank">§9 FStrG</a>)
-    und 10 m-Zone bei Schienenwegen
+    and 10 m zone for railways
     (<a href="https://www.erneuerbare-energien.de/EE/Redaktion/DE/Downloads/bmwi_de/bericht-eeg-4-solar.pdf?__blob=publicationFile&v=4" target="_blank">ZSW</a>)
-    wird genutzt. Es werden weiterhin eine Breite von 24 m (BAB) respektive 12
-    m (Schienenwege) angenommen.
+    is used. Furthermore, a width of 24 m (federal motorways) or 12 m (railways) 
+    is assumed.
     
 2. **Böden mit geringem ackerbaulichen Ertragspotenzial (Bodengüte)**
     
