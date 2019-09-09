@@ -83,19 +83,19 @@ into account here
         - Region important location for industry and commerce (existing + planned)
     
 2. **Soft restrictions**
-    - FFH-Gebiete
-    - SPA-/Vogelschutzgebiete
-    - Landschaftsschutzgebiete
-    - Vorbehaltsgebiete für den Aufbau eine ökologischen Verbundsystems
-    - Vorranggebiete für Forstwirtschaft
-    - Naturparke
-    - Vorranggebiete für Natur und Landschaft
-    - Vorranggebiete für Wassergewinnung
-    - Vorbehaltsgebiete für Tourismus und Erholung
-    - UNESCO Weltkulturerbegebiet (Gartenreich Dessau-Wörlitz)
-    - Vorbehaltsgebiete für Landwirtschaft
+    - FFH areas
+    - SPA-/bird sanctuaries
+    - Protected landscapes
+    - Reserved areas for the development of an integrated ecological system
+    - Priority areas for forestry
+    - Nature parks
+    - Priority areas for nature and landscape
+    - Priority areas for water extraction
+    - Reserved areas for tourism and recreation
+    - UNESCO World Heritage Site (Gartenreich Dessau-Wörlitz)
+    - Reserved areas for agriculture
 
-## Randbedingungen
+## Boundary conditions
 
 - Aus wirtschaftlichen Gründen werden nur Gebiete >1 ha berücksichtigt
 - Bereis bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
