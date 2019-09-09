@@ -30,7 +30,7 @@ Energiesystem
 .............
 
 Mehr über die Integration des Energiesystems in das Tool erfahren sie unter
-:ref:`developer_energy_system_label` (für EntwicklerInnen).
+:ref:`developer_energy_system_label`.
 
 Daten
 .....
@@ -38,6 +38,12 @@ Daten
 Hier kommen Details zu der Erstellung der verwendeten :ref:`data_label` rein.
 
 Beispiel: Einspeisezeitreihen
+
+Flächen und Potenziale
+......................
+
+Details zur Ermittlung der Potenzialflächen für erneuerbare Energieanlagen
+finden sie im Bereich :ref:`areas_and_potentials_label`.
 
 Vereinfachungen
 ---------------
