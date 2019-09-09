@@ -34,16 +34,18 @@ The following areas are taken into account:
     are offset against the very and extremely low soil quality (<50) 
     according to the Soil Quality Rating of
     <a href="https://www.bgr.bund.de/DE/Themen/Boden/Ressourcenbewertung/Ertragspotential/Ertragspotential_node.html"         target="_blank">BGR</a>.
+    
+    According to the <a href="https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf" target="_blank">Klima- und Energiekonzept</a> (2019) (climate and energy concept)
+    of the state of Saxony-Anhalt, the current planning aims to a  
+    to avoid the construction of photovoltaic open-air plants on agricultural 
+    land as far as possible.  
+    To take this restriction into account, only **0.5 % of the resulting 
+    **areas (after deduction of the restriction areas, see below) are 
+    **assumed to be spatially compatible**  
+    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
         
-    In der aktuellen Planung sollen laut
-    <a href="https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf" target="_blank">Klima- und Energiekonzept</a>
-    (2019) des Landes Sachsen-Anhalt "die Errichtung von
-    Photovoltaik-Freiflächenanlagen auf landwirtschaftlich genutzten Flächen
-    weitestgehend vermieden werden". Um dieser Einschränkung Rechnung zu
-    tragen, werden von den resultierenden Flächen (nach Abzug der
-    Restriktionsflächen, s.u.) lediglich **0,5 % als raumverträglich
-    verfügbar** angenommen
-    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>). 
+   
+    
 
 Weitere in der Förderkulisse des EEG enthaltenen Standorte Konversionsflächen
 und bundeseigene Immobilien finden hier aufgrund des vergleichsweise geringen
