@@ -1,12 +1,13 @@
-# Freiflächen-Photovoltaikanlagen <img src="../../static/stemp_abw/img/energy_icons/Stromerzeuger_Photovoltaik_technologieneutral.svg" alt="PVA" width="35">
+# Ground-mounted photovoltaic plants <img src="../../static/stemp_abw/img/energy_icons/Stromerzeuger_Photovoltaik_technologieneutral.svg" alt="PVA" width="35">
 
-Freiflächen-Photovoltaikanlagen leisten mit einer installierten Kapazität von
-445 Megawatt und einem Anteil von rund 18 % am Strombedarf der Region bereits
-Ende 2017 einen entscheidenden Beitrag. Der weitere Ausbau ist ein wichtiger
-Bestandteil auf dem Weg zu einer vollständig erneuerbaren Energieversorgung,
-welcher in Abwägung mit der Raum- und Umweltwirkung erfolgen muss. 
+With an installed capacity of 445 megawatts and a share of around 18 % 
+of the region's electricity demand, ground-mounted photovoltaic 
+plants are already making a decisive contribution by the end of 2017. Further
+expansion is an important element on the way to a fully renewable energy 
+supply, which must be balanced against the spatial and environmental impact.
 
-## Potenzialflächen
+
+## Potential areas
 
 Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
 <a href="https://www.gesetze-im-internet.de/eeg_2014/__37.html" target="_blank">§37 EEG</a>
