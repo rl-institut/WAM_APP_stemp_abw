@@ -59,23 +59,23 @@ into account here
 ). 
 
 1. **Hard restrictions**
-    - Siedlungsflächen (+100 m Puffer) 
-    - Verkehrswege
-        - BAB: (24 m Breite, +40 m Puffer)
-        - Bundes-, Land- und Kreisstraßen (+20 m Puffer)
-        - Nebenstraßen  (5 m Breite)
-        - Schienenwege (12 m Breite, +10 m Puffer)
-    - Bahnanlagen
-    - Flugverkehrsanlagen
-    - Gewässer, stehend und fließend (+20 m Puffer)
-    - Wald (+100 m Puffer)
-    - Naturschutzgebiete
-    - Nationalpark (in ABW n.V.)
-    - Biosphärenreservate
-    - Überschwemmungsgebiete
-    - Flächenhafte Naturdenkmale
-    - Wasserschutzgebiete
-    - Harte Restriktionsflächen nach
+    - Settlement areas (+100 m buffer) 
+    - Transport Routes
+        - Federal motorways: (24 m width, +40 m buffer)
+        - Federal, rural and district roads (+20 m buffer)
+        - Side roads  (5 m width)
+        - Railways (12 m width, +10 m buffer)
+    - Railway facilities
+    - Air traffic facilities
+    - Waters, standing and flowing (+20 m buffer)
+    - Forest (+100 m buffer)
+    - Nature conservation areas
+    - National Park (in ABW n.a.)
+    - Biosphere reserves
+    - Flood plains
+    - Natural monuments with a large surface area
+    - Water conservation areas
+    - Hard restriction areas according to
     <a href="https://www.planungsregion-abw.de/wp-content/uploads/2019/05/REP-ABW_2018_Text.pdf" target="_blank">Regionalplan ABW 2018</a>
         - Vorranggebiete für die Landwirtschaft
         - Vorranggebiete für die Rohstoffgewinnung
