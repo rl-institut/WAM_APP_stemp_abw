@@ -48,12 +48,13 @@ Other sites included in the EEG's funding programme - conversion areas
 and federal real estate - are not taken into account here due to the comparatively
 low potential and lack of data availability.
 
-## Restriktionsflächen
+## Restriction areas
 
-Den Potenzialflächen entgegen stehen Restriktionsflächen, in welchen die
-Errichtung von Photovoltaikanlagen ausgeschlossen (hart) oder
-unwahrscheinlich (weich) ist. Hierbei wurden sowohl die aktuelle Rechtslage als
-auch Planungskriterien einbezogen (vgl.
+In contrast to the potential areas, the installation of photovoltaic systems 
+is excluded (hard) or unlikely (soft) in restriction areas. 
+Both the current legal situation and the planning criteria were taken 
+into account here
+(see.
 <a href="https://www.bbr.bund.de/BBSR/DE/Veroeffentlichungen/ministerien/BMVI/BMVIOnline/2015/DL_BMVI_Online_08_15.pdf?__blob=publicationFile&v=2" target="_blank">BMVI</a>
 ). 
 
