@@ -109,7 +109,7 @@ In order to determine the actually available areas, the restriction areas
 are subtracted from the potential areas. The following potentials result 
 for areas and maximum installable capacity:
 
-|                                         | Hart<br/>Fläche [ha]<br/> | Hart<br/>Leistung [MWp] | Hart + Weich<br/>Fläche [ha] | Hart+Weich<br/>Leistung [MWp] |
+|                                         | Hard<br/>area [ha]<br/> | Hard<br/>Leistung [MWp] | Hard + Soft<br/>area [ha] | Hard+Soft<br/>Leistung [MWp] |
 | --------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
 | Bundesautobahn                          |       226,0 |                          90,4 |       138,0 |                          55,2 |
 | Schienenwege                            |      1959,0 |                         783,6 |       963,0 |                         385,2 |
