@@ -97,10 +97,10 @@ into account here
 
 ## Boundary conditions
 
-- Aus wirtschaftlichen Gründen werden nur Gebiete >1 ha berücksichtigt
-- Bereis bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
-- Für den spezifischen Flächenbedarf werden 2,5 Hektar pro installiertem
-  Megawatt (peak) angenommen
+- For economic reasons, only areas >1 ha are taken into account.
+- Existing plants and areas used for plants are neglected.
+- For the specific area requirement, 2.5 hectares per installed megawatt (peak) 
+  are assumed
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
 
 ## Ergebnisse
