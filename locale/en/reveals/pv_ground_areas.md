@@ -116,5 +116,5 @@ for areas and maximum installable capacity:
 | Äcker und Wiesen mit geringer Bodengüte |      2267,6 |                         907,0 |       699,9 |                         280,0 |
 | **Summe**                               |      4452,6 |                    **1781,0** |      1800,9 |                     **720,4** |
 
-**Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
-Nennleistung mit harten Restriktionsflächen dar**.
+**The value displayed in the menu controller represents the maximum installable 
+rated power with hard restriction areas.**.
