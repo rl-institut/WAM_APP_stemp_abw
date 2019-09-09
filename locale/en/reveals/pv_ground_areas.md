@@ -111,10 +111,10 @@ for areas and maximum installable capacity:
 
 |                                         | Hard<br/>area [ha]<br/> | Hard<br/>Electric power [MWp] | Hard + Soft<br/>area [ha] | Hard+Soft<br/>Electric power [MWp] |
 | --------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
-| Bundesautobahn                          |       226,0 |                          90,4 |       138,0 |                          55,2 |
-| Schienenwege                            |      1959,0 |                         783,6 |       963,0 |                         385,2 |
-| Äcker und Wiesen mit geringer Bodengüte |      2267,6 |                         907,0 |       699,9 |                         280,0 |
-| **Summe**                               |      4452,6 |                    **1781,0** |      1800,9 |                     **720,4** |
+| Federal motorways                          |       226,0 |                          90,4 |       138,0 |                          55,2 |
+| Railways                            |      1959,0 |                         783,6 |       963,0 |                         385,2 |
+| Fields and meadows with low soil quality |      2267,6 |                         907,0 |       699,9 |                         280,0 |
+| **Sum**                               |      4452,6 |                    **1781,0** |      1800,9 |                     **720,4** |
 
 **The value displayed in the menu controller represents the maximum installable 
 rated power with hard restriction areas.**.
