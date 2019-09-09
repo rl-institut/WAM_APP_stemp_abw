@@ -39,8 +39,8 @@ The following areas are taken into account:
     of the state of Saxony-Anhalt, the current planning aims to a  
     to avoid the construction of photovoltaic open-air plants on agricultural 
     land as far as possible.  
-    To take this restriction into account, only **0.5 % of the resulting 
-    **areas (after deduction of the restriction areas, see below) are 
+    To take this restriction into account, only **0.5 % of the resulting** 
+    **areas (after deduction of the restriction areas, see below) are** 
     **assumed to be spatially compatible**  
     (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
         
