@@ -36,8 +36,8 @@ The following areas are taken into account:
     <a href="https://www.bgr.bund.de/DE/Themen/Boden/Ressourcenbewertung/Ertragspotential/Ertragspotential_node.html"         target="_blank">BGR</a>.
     
     According to the <a href="https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf" target="_blank">Klima- und Energiekonzept</a> (2019) (climate and energy concept)
-    of the state of Saxony-Anhalt, the current planning aims to a  
-    to avoid the construction of photovoltaic open-air plants on agricultural 
+    of the state of Saxony-Anhalt, the current planning aims to avoid
+    the construction of photovoltaic open-air plants on agricultural 
     land as far as possible.  
     To take this restriction into account, only **0.5 % of the resulting** 
     **areas (after deduction of the restriction areas, see below) are** 
