@@ -98,7 +98,7 @@ auch Planungskriterien einbezogen (vgl.
 ## Randbedingungen
 
 - Aus wirtschaftlichen Gründen werden nur Gebiete >1 ha berücksichtigt
-- Bereis bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
+- Bereits bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
 - Für den spezifischen Flächenbedarf werden 2,5 Hektar pro installiertem
   Megawatt (peak) angenommen
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
