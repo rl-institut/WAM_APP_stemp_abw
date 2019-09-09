@@ -58,7 +58,7 @@ into account here
 <a href="https://www.bbr.bund.de/BBSR/DE/Veroeffentlichungen/ministerien/BMVI/BMVIOnline/2015/DL_BMVI_Online_08_15.pdf?__blob=publicationFile&v=2" target="_blank">BMVI</a>
 ). 
 
-1. **Harte Restriktionen**
+1. **Hard restrictions**
     - Siedlungsflächen (+100 m Puffer) 
     - Verkehrswege
         - BAB: (24 m Breite, +40 m Puffer)
@@ -82,7 +82,7 @@ into account here
         - Landesbedeutsame Industrie- und Gewerbestandorte (Bestand + Planung)
         - Region bedeutsame Standort für Industrie und Gewerbe (Bestand + Planung)
     
-2. **Weiche Restriktionen**
+2. **Soft restrictions**
     - FFH-Gebiete
     - SPA-/Vogelschutzgebiete
     - Landschaftsschutzgebiete
