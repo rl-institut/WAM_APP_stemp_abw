@@ -15,7 +15,7 @@ You can select a type of extension scenario here:
 For the simplification an Enercon E-141 (4.2 MW) with a hub height of 159 m is used as the new plant in **scenarios 2-4**
 (on average 2500 full load hours in the entire region).
 
-**Attention:** Due to the higher efficiency of new plants, a higher energy production can be achieved with the same installed capacity. If you have activated repowering or free extension, this will always lead to a higher energy prodction even without additional capacity.
+**Attention:** Due to the higher efficiency of new plants, _a higher energy production can be achieved with the same installed capacity_. If you have activated repowering or free extension, this will always lead to a higher energy prodction even without additional capacity.
 
 ## Framework
 
