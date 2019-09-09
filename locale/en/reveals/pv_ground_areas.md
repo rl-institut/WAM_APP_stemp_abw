@@ -95,7 +95,7 @@ into account here
     - UNESCO World Heritage Site (Gartenreich Dessau-Wörlitz)
     - Reserved areas for agriculture
 
-## Boundary conditions
+## Framework
 
 - For economic reasons, only areas >1 ha are taken into account.
 - Existing plants and areas used for plants are neglected.
