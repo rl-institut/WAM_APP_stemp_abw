@@ -24,19 +24,17 @@ The following areas are taken into account:
     is used. Furthermore, a width of 24 m (federal motorways) or 12 m (railways) 
     is assumed.
     
-2. **Böden mit geringem ackerbaulichen Ertragspotenzial (Bodengüte)**
+2. **Soils with low arable yield potential (soil quality)**
     
-    Große Flächenpotenziale sind in den landwirtschaftlich genutzten Gebieten
-    zu finden. In Anlehnung an
-    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>)
-    werden Flächen mit geringem ackerbaulichen Ertragspotenzial (Bodengüte)
-    herangezogen. Hierfür werden die Ackerflächen und Wiesen aus
+    Large potential areas can be found in agricultural areas. According to
+    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>),
+    areas with low arable yield potential (soil quality) are used.
+    For this purpose, the arable land and meadows from
     <a href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018" target="_blank">Corine Land Cover</a>
-    mit den Flächen sehr und äußerst geringer Bodengüte (<50) laut Soil Quality
-    Rating des
-    <a href="https://www.bgr.bund.de/DE/Themen/Boden/Ressourcenbewertung/Ertragspotential/Ertragspotential_node.html" target="_blank">BGR</a>
-    verschnitten.
-    
+    are offset against the very and extremely low soil quality (<50) 
+    according to the Soil Quality Rating of
+    <a href="https://www.bgr.bund.de/DE/Themen/Boden/Ressourcenbewertung/Ertragspotential/Ertragspotential_node.html"         target="_blank">BGR</a>.
+        
     In der aktuellen Planung sollen laut
     <a href="https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf" target="_blank">Klima- und Energiekonzept</a>
     (2019) des Landes Sachsen-Anhalt "die Errichtung von
