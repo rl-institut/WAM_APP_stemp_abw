@@ -44,12 +44,9 @@ The following areas are taken into account:
     **assumed to be spatially compatible**  
     (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
         
-   
-    
-
-Weitere in der Förderkulisse des EEG enthaltenen Standorte Konversionsflächen
-und bundeseigene Immobilien finden hier aufgrund des vergleichsweise geringen
-Potenzials und mangelhafter Datenverfügbarkeit keine Berücksichtigung.
+Other sites included in the EEG's funding programme - conversion areas
+and federal real estate - are not taken into account here due to the comparatively
+low potential and lack of data availability.
 
 ## Restriktionsflächen
 
