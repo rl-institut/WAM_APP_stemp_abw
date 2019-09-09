@@ -86,7 +86,7 @@ auch Planungskriterien einbezogen (vgl.
     - FFH-Gebiete
     - SPA-/Vogelschutzgebiete
     - Landschaftsschutzgebiete
-    - Vorbehaltsgebiete für den Aufbau eine ökologischen Verbundsystems
+    - Vorbehaltsgebiete für den Aufbau eines ökologischen Verbundsystems
     - Vorranggebiete für Forstwirtschaft
     - Naturparke
     - Vorranggebiete für Natur und Landschaft
