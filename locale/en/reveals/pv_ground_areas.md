@@ -103,11 +103,11 @@ into account here
   are assumed
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
 
-## Ergebnisse
+## Results
 
-Um das tatsächlich verfügbaren Flächen zu bestimmen, werden die
-Restriktionsflächen von den Potenzialflächen abgezogen. Es ergeben sich die
-folgenden Potenziale für Flächen und maximal installierbare Leistung:
+In order to determine the actually available areas, the restriction areas 
+are subtracted from the potential areas. The following potentials result 
+for areas and maximum installable capacity:
 
 |                                         | Hart<br/>Fläche [ha]<br/> | Hart<br/>Leistung [MWp] | Hart + Weich<br/>Fläche [ha] | Hart+Weich<br/>Leistung [MWp] |
 | --------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
