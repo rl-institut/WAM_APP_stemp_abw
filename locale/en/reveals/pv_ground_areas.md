@@ -77,10 +77,10 @@ into account here
     - Water conservation areas
     - Hard restriction areas according to
     <a href="https://www.planungsregion-abw.de/wp-content/uploads/2019/05/REP-ABW_2018_Text.pdf" target="_blank">Regionalplan ABW 2018</a>
-        - Vorranggebiete für die Landwirtschaft
-        - Vorranggebiete für die Rohstoffgewinnung
-        - Landesbedeutsame Industrie- und Gewerbestandorte (Bestand + Planung)
-        - Region bedeutsame Standort für Industrie und Gewerbe (Bestand + Planung)
+        - Priority areas for agriculture
+        - Priority areas for raw material extraction
+        - Important industrial and commercial locations in the state (existing + planned)
+        - Region important location for industry and commerce (existing + planned)
     
 2. **Soft restrictions**
     - FFH-Gebiete
