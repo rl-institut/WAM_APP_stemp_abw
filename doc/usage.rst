@@ -13,7 +13,7 @@ Aufbau des Tools
 Das Tool hat unterschiedliche Funktionalitäten, die in der Legende links aufgeführt sind. Es ist möglich, sich die Region, deren Energiesystem und die Flächennutzung anzeigen zu lassen. Eine weitere Anwendung ist die Optimierung des Energiesystems unter selbst vorgegebenen Bedingungen. Von dieser kann man sich die Ergebnisse nach der Simulation anzeigen und abspeichern lassen. Die einzelnen Funktionen sind im Weiteren näher beschrieben. Durch Hovern über die dunkelblau hinterlegten Informationsbuttons ''i'' können weitere Informationen abgefragt werden. Diese öffnen sich nach wenigen Sekunden, wenn man die Maus darüber bewegt.
 Über den Button ''Startseite'' gelangt man wieder auf die Anfangsseite der App, wo man einige Informationen zur App nachlesen kann. Unter ''Datenschutz'' lassen sich die aktuellen diesbezüglichen Bestimmungen anzeigen. Im ''Menu'' finden sich Kontaktdaten sowie die Angabe von Quellen und Annahmen, die der Anwendung zu Grunde liegen. Außerdem kann man sich hier zurück ''Zum Tool'' navigieren lassen. 
 
-.. 	image:: files/Startbildschirm.png
+.. 	image:: files/Startscreen.jpg
    :width: 500 px
    :alt: Startseite des Tools
    :align: center
@@ -31,7 +31,7 @@ Diese Funktionalität stellt grafisch aufbereitete Informationen zur Region und 
 
 Die Abbildung zeigt eine beispielhafte Nutzung. Links im Panel kann der Nutzer auswählen, welche der Daten dargestellt werden sollen. Hier ist 'Gewonnene Energie aus EE' angewählt, welche auf der Karte gemeindescharf dargestellt ist. Außerdem werden die Standorte der Windenergieanlagen angezeigt. Durch Anklicken einer Gemeinde öffnet sich eine Informationstafel über die angewählte Funktionalität, hier Erzeugung aus EE. Dort finden sich nähere Informationen zu der ausgewählten Gemeinde, in diesem Fall die jährlich eingespeiste Energiemenge und die Anteile einzelner Energieträger. Im Beispiel wird der größte Anteil der 190 GWh durch Windenergie bereit gestellt.
 
-.. 	image:: files/Kartenansicht.png
+.. 	image:: files/Mapview.jpg
    :width: 650 px
    :alt: Kartenansicht Region
    :align: center
@@ -48,7 +48,7 @@ Dieses Panel beinhaltet zwei Ebenen, die statische und die variierbare. ''Statis
 
 Die Abbildung zeigt die Darstellung aller harten und weichen Tabuzonen in dunkelgrau und grau, sowie der Voranggebiete für Windenergie in weiß. Dieses Panel kann veranschaulichen, wie begrenzt die tatsächlich für Windenergieanlagen zur Verfügung stehenden Flächen sind und wie hoch die Flächenkonkurrenz im untersuchten Gebiet. Diese Visualisierung kann außerdem als Grundlage für Diskussionen über Regularien und Rahmenbedingungen genutzt werden.
 
-.. 	image:: files/Flächenansicht.png
+.. 	image:: files/Areaview.jpg
    :width: 650 px
    :alt: Flächenansicht Region
    :align: center
