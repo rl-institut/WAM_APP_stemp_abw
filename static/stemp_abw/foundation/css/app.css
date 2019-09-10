@@ -1773,10 +1773,10 @@ footer.map-footer {
     footer.map-footer ul.map-footer__logo li {
       margin-top: 0.5rem; }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-        height: 2.5rem; }
+        height: 2rem; }
         @media print, screen and (min-width: 40em) {
           footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-            height: 3.9rem;
+            height: 3.2rem;
             margin-top: 1.8rem; } }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-rli {
         height: 2rem; }
