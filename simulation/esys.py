@@ -99,6 +99,7 @@ def prepare_demand_timeseries(reg_params):
     demand = TIMESERIES['demand'].copy()
     demand['el_hh'] = demand['el_hh'] * reg_params['resid_dem_el'] / 100
     demand['el_rca'] = demand['el_rca'] * reg_params['crt_dem_el'] / 100
+    demand['el_ind'] = demand['el_ind'] * reg_params['ind_dem_el'] / 100
 
     # aggregated:
     demand_agg = demand \
