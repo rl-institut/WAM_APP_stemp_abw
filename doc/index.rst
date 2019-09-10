@@ -49,6 +49,6 @@ Indices and tables
 .. 	image:: files/Logo_ENavi.png
    :height: 80 px
    :alt: Logo ENavi
-.. 	image:: files/BMBF_widget_final.png
+.. 	image:: files/BMBF_logo.png
    :height: 80 px
    :alt: Logo des Bundesministeriums für Bildung und Forschung
