@@ -18,5 +18,6 @@ Neue Features
 ~~~~~~~~~~
 
 - PV-Freiflächen-Potenziale korrigiert #75
+- Einwohnerzahlen und Wärmebedarfe korrigiert #74
 - Verbesserungen an der Benutzeroberfläche
 - diverse Bugfixes
