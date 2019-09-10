@@ -50,5 +50,5 @@ Indices and tables
    :height: 80 px
    :alt: Logo ENavi
 .. 	image:: files/BMBF_logo.png
-   :height: 80 px
+   :height: 120 px
    :alt: Logo des Bundesministeriums für Bildung und Forschung
