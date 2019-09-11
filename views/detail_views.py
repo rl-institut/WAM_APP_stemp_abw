@@ -1091,7 +1091,7 @@ class RegMunDemElEnergyPerCapitaResultDetailView(MasterDetailView):
         # Convert data to appropriate format for pie chart
         data = data.reset_index().to_dict(orient='records')
         setup_labels = {
-            'title': {'text': str(_('Eregbnis: Strombedarf'))},
+            'title': {'text': str(_('Ergebnis: Strombedarf'))},
             'subtitle': {'text': str(_('je EinwohnerIn nach Verbrauchergruppe'))},
             'plotOptions': {
                 'pie': {
