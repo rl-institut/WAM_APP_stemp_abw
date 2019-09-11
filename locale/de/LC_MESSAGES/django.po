@@ -7,16 +7,199 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-21 15:07+0200\n"
+"POT-Creation-Date: 2019-09-11 18:18+0200\n"
 "PO-Revision-Date: 2019-09-10 11:41+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.0.6\n"
+
+#: results/result_charts.py:16 templates/stemp_abw/results.html:5
+msgid "Stromerzeugung"
+msgstr ""
+
+#: results/result_charts.py:17 results/result_charts.py:43
+#: results/result_charts.py:91 results/result_charts.py:108
+#: results/result_charts.py:125 results/result_charts.py:151
+msgid "in GWh"
+msgstr ""
+
+#: results/result_charts.py:18 results/result_charts.py:44
+#: results/result_charts.py:92 results/result_charts.py:109
+#: results/result_charts.py:126 results/result_charts.py:152
+msgid "GWh"
+msgstr ""
+
+#: results/result_charts.py:21 results/result_charts.py:28
+#: results/result_charts.py:94 results/result_charts.py:111
+#: results/result_charts.py:129 results/result_charts.py:186
+msgid "Windenergie"
+msgstr ""
+
+#: results/result_charts.py:22 results/result_charts.py:29
+#: results/result_charts.py:95 results/result_charts.py:112
+#: views/detail_views.py:161 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:353 views/detail_views.py:405
+#: views/detail_views.py:794 views/detail_views.py:832
+#: views/detail_views.py:883 views/detail_views.py:933
+#: views/detail_views.py:985
+msgid "PV Freifläche"
+msgstr ""
+
+#: results/result_charts.py:23 results/result_charts.py:30
+#: results/result_charts.py:96 results/result_charts.py:113
+#: views/detail_views.py:160 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:793 views/detail_views.py:832
+#: views/detail_views.py:883
+msgid "PV Dach"
+msgstr ""
+
+#: results/result_charts.py:24 results/result_charts.py:31
+#: results/result_charts.py:97 results/result_charts.py:114
+#: views/detail_views.py:161 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:794 views/detail_views.py:833
+#: views/detail_views.py:883 views/detail_views.py:934
+#: views/detail_views.py:986
+msgid "Wasserkraft"
+msgstr ""
+
+#: results/result_charts.py:25 results/result_charts.py:32
+#: results/result_charts.py:98 results/result_charts.py:115
+msgid "Biogas"
+msgstr ""
+
+#: results/result_charts.py:26 results/result_charts.py:33
+#: results/result_charts.py:99 results/result_charts.py:116
+msgid "Fossile Brennstoffe"
+msgstr ""
+
+#: results/result_charts.py:27 results/result_charts.py:34
+#: results/result_charts.py:100 results/result_charts.py:117
+msgid "Import"
+msgstr ""
+
+#: results/result_charts.py:36 results/result_charts.py:56
+#: results/result_charts.py:71 results/result_charts.py:163
+msgid "Ihr Szenario"
+msgstr ""
+
+#: results/result_charts.py:36 results/result_charts.py:56
+#: results/result_charts.py:71 results/result_charts.py:163
+msgid "Status quo"
+msgstr ""
+
+#: results/result_charts.py:42
+msgid "Stromverbrauch"
+msgstr ""
+
+#: results/result_charts.py:47 results/result_charts.py:51
+#: results/result_charts.py:154 results/result_charts.py:158
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:554 views/detail_views.py:601
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Haushalte"
+msgstr ""
+
+#: results/result_charts.py:48 results/result_charts.py:52
+#: results/result_charts.py:155 results/result_charts.py:159
+msgid "GHD"
+msgstr ""
+
+#: results/result_charts.py:49 results/result_charts.py:53
+#: results/result_charts.py:156 results/result_charts.py:160
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Industrie"
+msgstr ""
+
+#: results/result_charts.py:50 results/result_charts.py:54
+#: results/result_charts.py:157 results/result_charts.py:161
+msgid "Export"
+msgstr ""
+
+#: results/result_charts.py:62
+msgid "Eigenversorgung Strom"
+msgstr ""
+
+#: results/result_charts.py:63
+msgid "in %"
+msgstr ""
+
+#: results/result_charts.py:66 results/result_charts.py:68
+msgid "Bilanziell"
+msgstr ""
+
+#: results/result_charts.py:67 results/result_charts.py:69
+msgid "Zeitgleich"
+msgstr ""
+
+#: results/result_charts.py:90
+msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
+msgstr ""
+
+#: results/result_charts.py:107
+msgid "Zusammensetzung Stromerzeugung (Status quo)"
+msgstr ""
+
+#: results/result_charts.py:124
+msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
+msgstr ""
+
+#: results/result_charts.py:130
+msgid "PV"
+msgstr ""
+
+#: results/result_charts.py:150
+msgid "Energieverbrauch (Strom)"
+msgstr ""
+
+#: results/result_charts.py:182
+msgid "Windenergie Erzeugung"
+msgstr ""
+
+#: results/result_charts.py:183 results/result_charts.py:194
+#: results/result_charts.py:204 results/result_charts.py:224
+#: results/result_charts.py:232 results/result_charts.py:240
+msgid "in GW"
+msgstr ""
+
+#: results/result_charts.py:184 results/result_charts.py:195
+#: results/result_charts.py:205 results/result_charts.py:225
+#: results/result_charts.py:233 results/result_charts.py:241
+msgid "GW"
+msgstr ""
+
+#: results/result_charts.py:187
+msgid "Windenergie2"
+msgstr ""
+
+#: results/result_charts.py:193
+msgid "Photovoltaik Erzeugung"
+msgstr ""
+
+#: results/result_charts.py:203
+msgid "Bioenergie Erzeugung"
+msgstr ""
+
+#: results/result_charts.py:223
+msgid "Erzeugung"
+msgstr ""
+
+#: results/result_charts.py:231 views/detail_views.py:168
+msgid "Bedarf"
+msgstr ""
+
+#: results/result_charts.py:239
+msgid "Erneuerbare Energien"
+msgstr ""
 
 #: templates/stemp_abw/contact.html:11
 msgid "Projektleiterin"
@@ -42,7 +225,7 @@ msgstr ""
 msgid "Telefax"
 msgstr ""
 
-#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:220
+#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:217
 #: templates/stemp_abw/navigation_app.html:9
 #: templates/stemp_abw/navigation_base.html:52
 msgid "Impressum"
@@ -415,6 +598,11 @@ msgid ""
 "auf"
 msgstr ""
 
+#: templates/stemp_abw/index.html:175
+#: templates/stemp_abw/navigation_base.html:49
+msgid "Quellcode"
+msgstr ""
+
 #: templates/stemp_abw/index.html:176
 msgid "Der Quellcode ist auf"
 msgstr ""
@@ -424,19 +612,19 @@ msgid "unter der Lizenz GNU AGPL v3 frei verfügbar."
 msgstr ""
 
 #: templates/stemp_abw/index.html:192 templates/stemp_abw/map.html:443
-msgid "Energieavantgarde Anhalt"
-msgstr ""
-
-#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
-msgid "Logo Energieavantgarde Anhalt"
-msgstr ""
-
-#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
 msgid "Reiner Lemoine Institut"
 msgstr ""
 
-#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
 msgid "Logo Reiner Lemoine Institut"
+msgstr ""
+
+#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
+msgid "Energieavantgarde Anhalt"
+msgstr ""
+
+#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+msgid "Logo Energieavantgarde Anhalt"
 msgstr ""
 
 #: templates/stemp_abw/index.html:202 templates/stemp_abw/map.html:453
@@ -447,31 +635,25 @@ msgstr ""
 msgid "Logo ENavi"
 msgstr ""
 
-#: templates/stemp_abw/index.html:207 templates/stemp_abw/map.html:458
+#: templates/stemp_abw/index.html:207
 msgid "Bundesministerium für Bildung und Forschung"
 msgstr ""
 
-#: templates/stemp_abw/index.html:210 templates/stemp_abw/map.html:461
-msgid ""
-"Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> "
-"(FKZ 03SFK4E1)"
-msgstr ""
-
-#: templates/stemp_abw/index.html:219 templates/stemp_abw/navigation_app.html:8
+#: templates/stemp_abw/index.html:216 templates/stemp_abw/navigation_app.html:8
 #: templates/stemp_abw/navigation_base.html:51
 msgid "Kontakt"
 msgstr ""
 
-#: templates/stemp_abw/index.html:221 templates/stemp_abw/navigation_app.html:6
+#: templates/stemp_abw/index.html:218 templates/stemp_abw/navigation_app.html:6
 #: templates/stemp_abw/navigation_base.html:41
 msgid "Datenschutz"
 msgstr ""
 
-#: templates/stemp_abw/index.html:222
+#: templates/stemp_abw/index.html:219
 msgid "Lizenz"
 msgstr ""
 
-#: templates/stemp_abw/index.html:224
+#: templates/stemp_abw/index.html:221
 msgid "Reiner Lemoine Institut gGmbH"
 msgstr ""
 
@@ -539,52 +721,52 @@ msgstr ""
 msgid "Werte müssen berechnet werden - bitte Simulation starten!"
 msgstr ""
 
-#: templates/stemp_abw/map.html:494
+#: templates/stemp_abw/map.html:491
 msgid "Dieses Feature ist derzeit noch nicht verfügbar."
 msgstr ""
 
-#: templates/stemp_abw/map.html:512
+#: templates/stemp_abw/map.html:509
 msgid "Fehler"
 msgstr ""
 
-#: templates/stemp_abw/map.html:513
+#: templates/stemp_abw/map.html:510
 msgid "Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu."
 msgstr ""
 
-#: templates/stemp_abw/map.html:518
+#: templates/stemp_abw/map.html:515
 msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:524 templates/stemp_abw/map.html:537
-#: templates/stemp_abw/map.html:550 templates/stemp_abw/map.html:563
-#: templates/stemp_abw/map.html:576
+#: templates/stemp_abw/map.html:521 templates/stemp_abw/map.html:534
+#: templates/stemp_abw/map.html:547 templates/stemp_abw/map.html:560
+#: templates/stemp_abw/map.html:573
 msgid "Abbruch"
 msgstr ""
 
-#: templates/stemp_abw/map.html:531
+#: templates/stemp_abw/map.html:528
 msgid ""
 "Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:544
+#: templates/stemp_abw/map.html:541
 msgid ""
 "Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:557
+#: templates/stemp_abw/map.html:554
 msgid "Wollen Sie zur Kontaktseite? Alle Änderungen gehen dadurch verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:570
+#: templates/stemp_abw/map.html:567
 msgid "Wollen Sie zum Impressum? Alle Änderungen gehen dadurch verloren."
 msgstr ""
 
-#: templates/stemp_abw/map.html:718 templates/stemp_abw/map.html:960
+#: templates/stemp_abw/map.html:715 templates/stemp_abw/map.html:957
 msgid "Fertig!"
 msgstr ""
 
-#: templates/stemp_abw/map.html:726 templates/stemp_abw/map.html:728
-#: templates/stemp_abw/map.html:964 templates/stemp_abw/map.html:966
+#: templates/stemp_abw/map.html:723 templates/stemp_abw/map.html:725
+#: templates/stemp_abw/map.html:961 templates/stemp_abw/map.html:963
 msgid "Fehler beim Laden der Daten!"
 msgstr ""
 
@@ -602,10 +784,6 @@ msgstr ""
 #: templates/stemp_abw/navigation_base.html:10
 #: templates/stemp_abw/navigation_base.html:43
 msgid "Menü"
-msgstr ""
-
-#: templates/stemp_abw/navigation_base.html:49
-msgid "Quellcode"
 msgstr ""
 
 #: templates/stemp_abw/navigation_base.html:50
@@ -632,6 +810,7 @@ msgstr ""
 
 #: templates/stemp_abw/popups/gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/gen_count_wind_density.html:9
+#: templates/stemp_abw/popups/result_gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/result_gen_count_wind_density.html:9
 msgid "WEA pro km²"
 msgstr ""
@@ -1296,10 +1475,6 @@ msgstr ""
 msgid "Übersicht"
 msgstr ""
 
-#: templates/stemp_abw/results.html:5
-msgid "Stromerzeugung"
-msgstr ""
-
 #: templates/stemp_abw/session_not_found.html:6
 msgid "Deine Sitzung ist abgelaufen"
 msgstr ""
@@ -1329,31 +1504,6 @@ msgstr ""
 msgid "Wind"
 msgstr ""
 
-#: views/detail_views.py:160 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883
-msgid "PV Dach"
-msgstr ""
-
-#: views/detail_views.py:161 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:794 views/detail_views.py:832
-#: views/detail_views.py:883 views/detail_views.py:933
-#: views/detail_views.py:985
-msgid "PV Freifläche"
-msgstr ""
-
-#: views/detail_views.py:161 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:794 views/detail_views.py:833
-#: views/detail_views.py:883 views/detail_views.py:934
-#: views/detail_views.py:986
-msgid "Wasserkraft"
-msgstr ""
-
 #: views/detail_views.py:162 views/detail_views.py:200
 #: views/detail_views.py:252 views/detail_views.py:303
 #: views/detail_views.py:354 views/detail_views.py:406
@@ -1372,10 +1522,6 @@ msgstr ""
 
 #: views/detail_views.py:166 views/detail_views.py:799
 msgid "Prozent"
-msgstr ""
-
-#: views/detail_views.py:168
-msgid "Bedarf"
 msgstr ""
 
 #: views/detail_views.py:207 views/detail_views.py:259
@@ -1409,18 +1555,7 @@ msgstr ""
 #: views/detail_views.py:459 views/detail_views.py:507
 #: views/detail_views.py:554 views/detail_views.py:601
 #: views/detail_views.py:1039 views/detail_views.py:1087
-msgid "Haushalte"
-msgstr ""
-
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:554 views/detail_views.py:601
-#: views/detail_views.py:1039 views/detail_views.py:1087
 msgid "GHD und Landw."
-msgstr ""
-
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:1039 views/detail_views.py:1087
-msgid "Industrie"
 msgstr ""
 
 #: views/detail_views.py:466 views/detail_views.py:514
@@ -1462,10 +1597,6 @@ msgstr ""
 msgid "Ergebnis: Installierte Leistung EE"
 msgstr ""
 
-#: views/detail_views.py:1046
+#: views/detail_views.py:1046 views/detail_views.py:1094
 msgid "Ergebnis: Strombedarf"
-msgstr ""
-
-#: views/detail_views.py:1094
-msgid "Eregbnis: Strombedarf"
 msgstr ""

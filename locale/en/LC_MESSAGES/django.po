@@ -7,16 +7,199 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-21 15:07+0200\n"
+"POT-Creation-Date: 2019-09-11 18:18+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.0.6\n"
+
+#: results/result_charts.py:16 templates/stemp_abw/results.html:5
+msgid "Stromerzeugung"
+msgstr "Electricity generation"
+
+#: results/result_charts.py:17 results/result_charts.py:43
+#: results/result_charts.py:91 results/result_charts.py:108
+#: results/result_charts.py:125 results/result_charts.py:151
+msgid "in GWh"
+msgstr "in GWh"
+
+#: results/result_charts.py:18 results/result_charts.py:44
+#: results/result_charts.py:92 results/result_charts.py:109
+#: results/result_charts.py:126 results/result_charts.py:152
+msgid "GWh"
+msgstr "GWh"
+
+#: results/result_charts.py:21 results/result_charts.py:28
+#: results/result_charts.py:94 results/result_charts.py:111
+#: results/result_charts.py:129 results/result_charts.py:186
+msgid "Windenergie"
+msgstr "EN: Windenergie"
+
+#: results/result_charts.py:22 results/result_charts.py:29
+#: results/result_charts.py:95 results/result_charts.py:112
+#: views/detail_views.py:161 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:353 views/detail_views.py:405
+#: views/detail_views.py:794 views/detail_views.py:832
+#: views/detail_views.py:883 views/detail_views.py:933
+#: views/detail_views.py:985
+msgid "PV Freifläche"
+msgstr "PV solar park"
+
+#: results/result_charts.py:23 results/result_charts.py:30
+#: results/result_charts.py:96 results/result_charts.py:113
+#: views/detail_views.py:160 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:793 views/detail_views.py:832
+#: views/detail_views.py:883
+msgid "PV Dach"
+msgstr "PV roof"
+
+#: results/result_charts.py:24 results/result_charts.py:31
+#: results/result_charts.py:97 results/result_charts.py:114
+#: views/detail_views.py:161 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:794 views/detail_views.py:833
+#: views/detail_views.py:883 views/detail_views.py:934
+#: views/detail_views.py:986
+msgid "Wasserkraft"
+msgstr "Hydropower"
+
+#: results/result_charts.py:25 results/result_charts.py:32
+#: results/result_charts.py:98 results/result_charts.py:115
+msgid "Biogas"
+msgstr "EN: Biogas"
+
+#: results/result_charts.py:26 results/result_charts.py:33
+#: results/result_charts.py:99 results/result_charts.py:116
+msgid "Fossile Brennstoffe"
+msgstr "EN: Fossile Brennstoffe"
+
+#: results/result_charts.py:27 results/result_charts.py:34
+#: results/result_charts.py:100 results/result_charts.py:117
+msgid "Import"
+msgstr "Import"
+
+#: results/result_charts.py:36 results/result_charts.py:56
+#: results/result_charts.py:71 results/result_charts.py:163
+msgid "Ihr Szenario"
+msgstr "EN: Ihr Szenario"
+
+#: results/result_charts.py:36 results/result_charts.py:56
+#: results/result_charts.py:71 results/result_charts.py:163
+msgid "Status quo"
+msgstr "Status quo"
+
+#: results/result_charts.py:42
+msgid "Stromverbrauch"
+msgstr "EN: Stromverbrauch"
+
+#: results/result_charts.py:47 results/result_charts.py:51
+#: results/result_charts.py:154 results/result_charts.py:158
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:554 views/detail_views.py:601
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Haushalte"
+msgstr "Households"
+
+#: results/result_charts.py:48 results/result_charts.py:52
+#: results/result_charts.py:155 results/result_charts.py:159
+msgid "GHD"
+msgstr "GHD"
+
+#: results/result_charts.py:49 results/result_charts.py:53
+#: results/result_charts.py:156 results/result_charts.py:160
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Industrie"
+msgstr "Industry"
+
+#: results/result_charts.py:50 results/result_charts.py:54
+#: results/result_charts.py:157 results/result_charts.py:161
+msgid "Export"
+msgstr "Export"
+
+#: results/result_charts.py:62
+msgid "Eigenversorgung Strom"
+msgstr "EN: Eigenversorgung Strom"
+
+#: results/result_charts.py:63
+msgid "in %"
+msgstr "in %"
+
+#: results/result_charts.py:66 results/result_charts.py:68
+msgid "Bilanziell"
+msgstr "EN: Bilanziell"
+
+#: results/result_charts.py:67 results/result_charts.py:69
+msgid "Zeitgleich"
+msgstr "EN: Zeitgleich"
+
+#: results/result_charts.py:90
+msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
+msgstr "EN: Zusammensetzung Stromerzeugung (Dein Szenario)"
+
+#: results/result_charts.py:107
+msgid "Zusammensetzung Stromerzeugung (Status quo)"
+msgstr "EN: Zusammensetzung Stromerzeugung (Status quo)"
+
+#: results/result_charts.py:124
+msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
+msgstr "EN: Monatliche Stromerzeugung aus EE (Dein Szenario)"
+
+#: results/result_charts.py:130
+msgid "PV"
+msgstr "PV"
+
+#: results/result_charts.py:150
+msgid "Energieverbrauch (Strom)"
+msgstr "EN: Energieverbrauch (Strom)"
+
+#: results/result_charts.py:182
+msgid "Windenergie Erzeugung"
+msgstr "EN: Windenergie Erzeugung"
+
+#: results/result_charts.py:183 results/result_charts.py:194
+#: results/result_charts.py:204 results/result_charts.py:224
+#: results/result_charts.py:232 results/result_charts.py:240
+msgid "in GW"
+msgstr "in GW"
+
+#: results/result_charts.py:184 results/result_charts.py:195
+#: results/result_charts.py:205 results/result_charts.py:225
+#: results/result_charts.py:233 results/result_charts.py:241
+msgid "GW"
+msgstr "GW"
+
+#: results/result_charts.py:187
+msgid "Windenergie2"
+msgstr "EN: Windenergie2"
+
+#: results/result_charts.py:193
+msgid "Photovoltaik Erzeugung"
+msgstr "EN: Photovoltaik Erzeugung"
+
+#: results/result_charts.py:203
+msgid "Bioenergie Erzeugung"
+msgstr "EN: Bioenergie Erzeugung"
+
+#: results/result_charts.py:223
+msgid "Erzeugung"
+msgstr "EN: Erzeugung"
+
+#: results/result_charts.py:231 views/detail_views.py:168
+msgid "Bedarf"
+msgstr "Demand"
+
+#: results/result_charts.py:239
+msgid "Erneuerbare Energien"
+msgstr "EN: Erneuerbare Energien"
 
 #: templates/stemp_abw/contact.html:11
 msgid "Projektleiterin"
@@ -42,8 +225,9 @@ msgstr "Telephone"
 msgid "Telefax"
 msgstr "Fax"
 
-#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:220
-#: templates/stemp_abw/navigation_app.html:9 templates/stemp_abw/navigation_base.html:52
+#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:217
+#: templates/stemp_abw/navigation_app.html:9
+#: templates/stemp_abw/navigation_base.html:52
 msgid "Impressum"
 msgstr "Imprint"
 
@@ -52,7 +236,8 @@ msgid "Herausgeber"
 msgstr "Publisher"
 
 #: templates/stemp_abw/imprint.html:13
-msgid "Diese Internetseite wird betrieben von der Reiner Lemoine Institut gGmbH"
+msgid ""
+"Diese Internetseite wird betrieben von der Reiner Lemoine Institut gGmbH"
 msgstr "This website is operated by the Reiner Lemoine Institut gGmbH"
 
 #: templates/stemp_abw/imprint.html:16
@@ -90,16 +275,25 @@ msgstr ""
 #: templates/stemp_abw/imprint.html:43
 msgid ""
 "Die Inhalte sind mit größter Sorgfalt recherchiert. Dennoch übernimmt der\n"
-"      Autor keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit\n"
-"      oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen\n"
-"      den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen\n"
-"      die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen\n"
+"      Autor keinerlei Gewähr für die Aktualität, Korrektheit, "
+"Vollständigkeit\n"
+"      oder Qualität der bereitgestellten Informationen. Haftungsansprüche "
+"gegen\n"
+"      den Autor, welche sich auf Schäden materieller oder ideeller Art "
+"beziehen\n"
+"      die durch die Nutzung oder Nichtnutzung der dargebotenen "
+"Informationen\n"
 "      bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen\n"
-"      verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des\n"
-"      Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden\n"
-"      vorliegt. Alle Angebote sind freibleibend und unverbindlich. Der Autor\n"
-"      behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot\n"
-"      ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die\n"
+"      verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens "
+"des\n"
+"      Autors kein nachweislich vorsätzliches oder grob fahrlässiges "
+"Verschulden\n"
+"      vorliegt. Alle Angebote sind freibleibend und unverbindlich. Der "
+"Autor\n"
+"      behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte "
+"Angebot\n"
+"      ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder "
+"die\n"
 "      Veröffentlichung zeitweise oder endgültig einzustellen."
 msgstr ""
 
@@ -110,24 +304,33 @@ msgstr ""
 #: templates/stemp_abw/imprint.html:58
 msgid ""
 "Bei direkten oder indirekten Verweisen auf fremde Internetseiten\n"
-"      („Links”), die außerhalb des Verantwortungsbereiches des Autors liegen,\n"
+"      („Links”), die außerhalb des Verantwortungsbereiches des Autors "
+"liegen,\n"
 "      würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft\n"
 "      treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm\n"
-"      technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger\n"
+"      technisch möglich und zumutbar wäre, die Nutzung im Falle "
+"rechtswidriger\n"
 "      Inhalte zu verhindern. Der Autor erklärt daher ausdrücklich, dass zum\n"
-"      Zeitpunkt der Linksetzung die entsprechenden verlinkten Seiten frei von\n"
+"      Zeitpunkt der Linksetzung die entsprechenden verlinkten Seiten frei "
+"von\n"
 "      illegalen Inhalten waren. Der Autor hat keinerlei Einfluss auf die\n"
 "      aktuelle und zukünftige Gestaltung und auf die Inhalte der\n"
 "      gelinkten/verknüpften Seiten. Deshalb distanziert er sich hiermit\n"
-"      ausdrücklich von allen Inhalten aller gelinkten /verknüpften Seiten, die\n"
-"      nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle\n"
-"      innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie\n"
+"      ausdrücklich von allen Inhalten aller gelinkten /verknüpften Seiten, "
+"die\n"
+"      nach der Linksetzung verändert wurden. Diese Feststellung gilt für "
+"alle\n"
+"      innerhalb des eigenen Internetangebotes gesetzten Links und Verweise "
+"sowie\n"
 "      für Fremdeinträge in vom Autor eingerichteten Gästebüchern,\n"
 "      Diskussionsforen und Mailinglisten. Für illegale, fehlerhafte oder\n"
-"      unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung\n"
-"      oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet\n"
+"      unvollständige Inhalte und insbesondere für Schäden, die aus der "
+"Nutzung\n"
+"      oder Nichtnutzung solcherart dargebotener Informationen entstehen, "
+"haftet\n"
 "      allein der Anbieter der Seite, auf welche verwiesen wurde, nicht\n"
-"      derjenige, der über Links auf die jeweilige Veröffentlichung lediglich\n"
+"      derjenige, der über Links auf die jeweilige Veröffentlichung "
+"lediglich\n"
 "      verweist."
 msgstr ""
 
@@ -138,17 +341,25 @@ msgstr ""
 #: templates/stemp_abw/imprint.html:81
 msgid ""
 "Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der\n"
-"      verwendeten Grafiken, Tondokumente, Videosequenzen und Texte zu beachten,\n"
-"      von ihm selbst erstellte Grafiken, Tondokumente, Videosequenzen und Texte\n"
-"      zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und\n"
-"      Texte zurückzugreifen. Alle innerhalb des Internetangebotes genannten und\n"
+"      verwendeten Grafiken, Tondokumente, Videosequenzen und Texte zu "
+"beachten,\n"
+"      von ihm selbst erstellte Grafiken, Tondokumente, Videosequenzen und "
+"Texte\n"
+"      zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen "
+"und\n"
+"      Texte zurückzugreifen. Alle innerhalb des Internetangebotes genannten "
+"und\n"
 "      ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen\n"
-"      uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts\n"
+"      uneingeschränkt den Bestimmungen des jeweils gültigen "
+"Kennzeichenrechts\n"
 "      und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein\n"
 "      aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass\n"
-"      Markenzeichen nicht durch Rechte Dritter geschützt sind! Das Copyright für\n"
-"      veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim\n"
-"      Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken,\n"
+"      Markenzeichen nicht durch Rechte Dritter geschützt sind! Das Copyright "
+"für\n"
+"      veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein "
+"beim\n"
+"      Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher "
+"Grafiken,\n"
 "      Tondokumente, Videosequenzen und Texte in anderen elektronischen oder\n"
 "      gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors\n"
 "      nicht gestattet."
@@ -161,10 +372,13 @@ msgstr ""
 #: templates/stemp_abw/imprint.html:99
 msgid ""
 "Dieser Haftungsausschluss ist als Teil des Internetangebotes zu\n"
-"      betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder\n"
+"      betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile "
+"oder\n"
 "      einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht,\n"
-"      nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen\n"
-"      Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.\n"
+"      nicht mehr oder nicht vollständig entsprechen sollten, bleiben die "
+"übrigen\n"
+"      Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon "
+"unberührt.\n"
 "      "
 msgstr ""
 
@@ -180,7 +394,8 @@ msgstr "Scenarios under the consideration of coordinated land use"
 msgid "Anhalt Karte als Bild"
 msgstr "Anhalt map as image"
 
-#: templates/stemp_abw/index.html:23 templates/stemp_abw/navigation_start.html:4
+#: templates/stemp_abw/index.html:23
+#: templates/stemp_abw/navigation_start.html:4
 msgid "Zum Tool"
 msgstr "Go to Tool"
 
@@ -190,30 +405,37 @@ msgstr "Are you new here?"
 
 #: templates/stemp_abw/index.html:37
 msgid ""
-"Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die Partizipation der Bürger und "
-"Bürgerinnen. Allerdings erschwert die Komplexität von Energiesystemen und damit verbundenen "
-"Fragestellungen den Partizipationsprozess oft erheblich."
+"Ein wichtiger Aspekt zur Erfüllung der Klimaziele für 2050 ist die "
+"Partizipation der Bürger und Bürgerinnen. Allerdings erschwert die "
+"Komplexität von Energiesystemen und damit verbundenen Fragestellungen den "
+"Partizipationsprozess oft erheblich."
 msgstr ""
-"An important aspect in meeting the climate targets for 2050 is the participation of citizens. "
-"However, the complexity of energy systems and the associated issues often make the participation "
-"process significantly more difficult."
+"An important aspect in meeting the climate targets for 2050 is the "
+"participation of citizens. However, the complexity of energy systems and the "
+"associated issues often make the participation process significantly more "
+"difficult."
 
 #: templates/stemp_abw/index.html:38
 msgid ""
-"Der Szenarienrechner schafft die Möglichkeit, allen interessierten Anspruchsgruppen ein besseres "
-"Verständnis über verschiedene Szenarien des regionalen Energiebalancekreises zu vermitteln und die "
-"Auswirkungen von Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige "
+"Der Szenarienrechner schafft die Möglichkeit, allen interessierten "
+"Anspruchsgruppen ein besseres Verständnis über verschiedene Szenarien des "
+"regionalen Energiebalancekreises zu vermitteln und die Auswirkungen von "
+"Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige "
 "Diskussion geschaffen und eine gemeinsame Planung ermöglicht."
 msgstr ""
-"The scenario calculator enables all interested stakeholders to gain a better understanding of "
-"various scenarios of the regional energy balance district. In addition, the effects of the "
-"measures taken can be directly determined. This creates the basis for an equal discussion and "
-"enables collaborative decision-making."
+"The scenario calculator enables all interested stakeholders to gain a better "
+"understanding of various scenarios of the regional energy balance district. "
+"In addition, the effects of the measures taken can be directly determined. "
+"This creates the basis for an equal discussion and enables collaborative "
+"decision-making."
 
 #: templates/stemp_abw/index.html:46
 msgid ""
-"Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in Zukunft aussehen?"
-msgstr "How could a renewable, sector-coupled energy system for the region look like in the future?"
+"Wie kann ein erneuerbares, sektorgekoppeltes Energiesystem für die Region in "
+"Zukunft aussehen?"
+msgstr ""
+"How could a renewable, sector-coupled energy system for the region look like "
+"in the future?"
 
 #: templates/stemp_abw/index.html:49
 msgid "Partizipation"
@@ -221,13 +443,15 @@ msgstr "Participation"
 
 #: templates/stemp_abw/index.html:50
 msgid ""
-"Regionale Akteure, insbesondere BürgerInnen, sollen ermutigt werden, seriös und real an der "
-"Mitgestaltung der Energiewende in ABW teilzunehmen. Durch anschauliches Design und geeignete "
-"Moderation werden die komplexen Zusammenhänge erfahr- und diskutierbar."
+"Regionale Akteure, insbesondere BürgerInnen, sollen ermutigt werden, seriös "
+"und real an der Mitgestaltung der Energiewende in ABW teilzunehmen. Durch "
+"anschauliches Design und geeignete Moderation werden die komplexen "
+"Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
-"Regional actors, especially citizens, should be encouraged to participate in shaping the energy "
-"system transformation seriously and in real terms in ABW. The complex connections can be "
-"experienced and discussed through clear and vivid design as well as suitable guidance."
+"Regional actors, especially citizens, should be encouraged to participate in "
+"shaping the energy system transformation seriously and in real terms in ABW. "
+"The complex connections can be experienced and discussed through clear and "
+"vivid design as well as suitable guidance."
 
 #: templates/stemp_abw/index.html:53
 msgid "Effizientere Arbeitsweise"
@@ -235,12 +459,13 @@ msgstr "More efficient methods"
 
 #: templates/stemp_abw/index.html:54
 msgid ""
-"Die regionale Energiewende kann mit besser verhandelten Ergebnissen effizienter vorangetrieben "
-"werden. Es wird, in der Gesamtheit, eine bessere Planung und Genehmigung von erneuerbaren "
-"Energieanlagen ermöglicht. "
+"Die regionale Energiewende kann mit besser verhandelten Ergebnissen "
+"effizienter vorangetrieben werden. Es wird, in der Gesamtheit, eine bessere "
+"Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht."
 msgstr ""
-"The transformation of the regional energy systems can be promoted more efficiently with improved "
-"negotiated results. The overall result enables better planning and approval of renewables."
+"The transformation of the regional energy systems can be promoted more "
+"efficiently with improved negotiated results. The overall result enables "
+"better planning and approval of renewables."
 
 #: templates/stemp_abw/index.html:59
 msgid "Tieferes Verständnis"
@@ -248,14 +473,16 @@ msgstr "A deeper insight"
 
 #: templates/stemp_abw/index.html:60
 msgid ""
-"Dieses Tool wird nicht nur dabei helfen, die Zusammenhänge zwischen verschiedenen Systemen der "
-"Energiewirtschaft, Ökologie und Kulturlandschaft besser zu erklären, auch die Interessen und Werte "
-"der regionalen Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis wächst - "
-"auch und gerade bei unterschiedlichen Meinungen."
+"Dieses Tool wird nicht nur dabei helfen, die Zusammenhänge zwischen "
+"verschiedenen Systemen der Energiewirtschaft, Ökologie und Kulturlandschaft "
+"besser zu erklären, auch die Interessen und Werte der regionalen "
+"Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis "
+"wächst - auch und gerade bei unterschiedlichen Meinungen."
 msgstr ""
-"This tool will not only help to better explain the connections between different systems of the "
-"energy industry, ecology, and cultural landscape, but will also make the interests and values of "
-"the regional stakeholders visible. Mutual understanding is growing especially when opinions differ."
+"This tool will not only help to better explain the connections between "
+"different systems of the energy industry, ecology, and cultural landscape, "
+"but will also make the interests and values of the regional stakeholders "
+"visible. Mutual understanding is growing especially when opinions differ."
 
 #: templates/stemp_abw/index.html:63
 msgid "Open Science"
@@ -263,11 +490,13 @@ msgstr "Open science"
 
 #: templates/stemp_abw/index.html:64
 msgid ""
-"Daten und Quellcodes werden für alle Interessenten bereitgestellt. Das schafft Transparenz und "
-"Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher Tools somit erleichtert werden."
+"Daten und Quellcodes werden für alle Interessenten bereitgestellt. Das "
+"schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher "
+"Tools somit erleichtert werden."
 msgstr ""
-"Data and source codes are made available to all interested parties. This creates transparency and "
-"reproducibility. In addition, the implementation of similar tools can thus be facilitated."
+"Data and source codes are made available to all interested parties. This "
+"creates transparency and reproducibility. In addition, the implementation of "
+"similar tools can thus be facilitated."
 
 #: templates/stemp_abw/index.html:74
 msgid "Wie funktioniert das Tool?"
@@ -278,15 +507,15 @@ msgid "Verschaffe dir einen Überblick über deine Region"
 msgstr "Get an overview of your region"
 
 #: templates/stemp_abw/index.html:87
-msgid "Wie viele Menschen leben in den Gemeinden?"
+msgid "Wieviele Menschen leben in den Gemeinden?"
 msgstr "How many people live in the municipalities?"
 
 #: templates/stemp_abw/index.html:88
-msgid "Wie viel Strom kommt aus Erneuerbaren Energien?"
+msgid "Wieviel Strom kommt aus Erneuerbaren Energien?"
 msgstr "How much electricity comes from renewables?"
 
 #: templates/stemp_abw/index.html:89
-msgid "Wie viele Windkraftanlagen stehen in den Gemeinden?"
+msgid "Wieviele Windkraftanlagen stehen in den Gemeinden?"
 msgstr "How many wind turbines are located in the municipalities?"
 
 #: templates/stemp_abw/index.html:90
@@ -311,10 +540,11 @@ msgstr "Select an expansion scenario for wind energy"
 
 #: templates/stemp_abw/index.html:110
 msgid ""
-"Variiere den Anteil von Windenergie- Photovoltaik- und Biomasseanlagen oder konventionellen "
-"Kraftwerken"
+"Variiere den Anteil von Windenergie- Photovoltaik- und Biomasseanlagen oder "
+"konventionellen Kraftwerken"
 msgstr ""
-"Adjust the share of wind energy, photovoltaic, and biomass plants or conventional power plants"
+"Adjust the share of wind energy, photovoltaic, and biomass plants or "
+"conventional power plants"
 
 #: templates/stemp_abw/index.html:111
 msgid "Passe den Verbrauch der Region an"
@@ -338,21 +568,27 @@ msgstr "Take a look at the taboo zones for wind energy in this region"
 
 #: templates/stemp_abw/index.html:131
 msgid ""
-"Entscheide ob der Mindestabstand zu Siedlungen verändert werden soll, um mehr Windenergieanlagen "
-"bauen zu können"
+"Entscheide ob der Mindestabstand zu Siedlungen verändert werden soll, um "
+"mehr Windenergieanlagen bauen zu können"
 msgstr ""
-"Decide whether the minimum distance to residential areas should be adapted in order to be able to "
-"build more wind turbines"
+"Decide whether the minimum distance to residential areas should be adapted "
+"in order to be able to build more wind turbines"
 
 #: templates/stemp_abw/index.html:132
-msgid "Entscheide ob Waldgebiete zum Bau von Windenergieanlagen zur Verfügung stehen sollen"
-msgstr "Decide whether forest areas should be available for the construction of wind turbines"
+msgid ""
+"Entscheide ob Waldgebiete zum Bau von Windenergieanlagen zur Verfügung "
+"stehen sollen"
+msgstr ""
+"Decide whether forest areas should be available for the construction of wind "
+"turbines"
 
 #: templates/stemp_abw/index.html:133
 msgid ""
-"Beobachte die Auswirkungen in der Karte und auf die mögliche Stromerzeugung des Energiesystems"
+"Beobachte die Auswirkungen in der Karte und auf die mögliche Stromerzeugung "
+"des Energiesystems"
 msgstr ""
-"Observe the effects on the map and on the possible electricity generation of the energy system."
+"Observe the effects on the map and on the possible electricity generation of "
+"the energy system."
 
 #: templates/stemp_abw/index.html:138
 msgid "Bild Flächennutzung"
@@ -363,8 +599,12 @@ msgid "Vergleiche die Ergebnisse mit dem Status Quo"
 msgstr "Compare the results with the status quo"
 
 #: templates/stemp_abw/index.html:151
-msgid "Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der Region?"
-msgstr "How is the share of renewable energies in the municipalities and the region changing?"
+msgid ""
+"Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der "
+"Region?"
+msgstr ""
+"How is the share of renewable energies in the municipalities and the region "
+"changing?"
 
 #: templates/stemp_abw/index.html:152
 msgid "Wie viele Windkraftanlagen pro km² kommen hinzu?"
@@ -382,13 +622,23 @@ msgstr "Image Results"
 msgid "Get involved!"
 msgstr "Get involved!"
 
-#: templates/stemp_abw/index.html:171 templates/stemp_abw/navigation_base.html:48
+#: templates/stemp_abw/index.html:171
+#: templates/stemp_abw/navigation_base.html:48
 msgid "Dokumentation"
 msgstr "Documentation"
 
 #: templates/stemp_abw/index.html:172
-msgid "Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation auf"
-msgstr "Further information and background information can be found in our documentation at"
+msgid ""
+"Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation "
+"auf"
+msgstr ""
+"Further information and background information can be found in our "
+"documentation at"
+
+#: templates/stemp_abw/index.html:175
+#: templates/stemp_abw/navigation_base.html:49
+msgid "Quellcode"
+msgstr "Source code"
 
 #: templates/stemp_abw/index.html:176
 msgid "Der Quellcode ist auf"
@@ -399,20 +649,20 @@ msgid "unter der Lizenz GNU AGPL v3 frei verfügbar."
 msgstr "is freely available under the GNU AGPL v3 license."
 
 #: templates/stemp_abw/index.html:192 templates/stemp_abw/map.html:443
-msgid "Energieavantgarde Anhalt"
-msgstr "Energy avant-garde Anhalt"
-
-#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
-msgid "Logo Energieavantgarde Anhalt"
-msgstr "Logo Energy avant-garde Anhalt"
-
-#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
 msgid "Reiner Lemoine Institut"
 msgstr "Reiner Lemoine Institute"
 
-#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
 msgid "Logo Reiner Lemoine Institut"
 msgstr "Logo Reiner Lemoine Institute"
+
+#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
+msgid "Energieavantgarde Anhalt"
+msgstr "Energy avant-garde Anhalt"
+
+#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+msgid "Logo Energieavantgarde Anhalt"
+msgstr "Logo Energy avant-garde Anhalt"
 
 #: templates/stemp_abw/index.html:202 templates/stemp_abw/map.html:453
 msgid "Kopernikus Projekte"
@@ -422,29 +672,25 @@ msgstr "Kopernikus projects"
 msgid "Logo ENavi"
 msgstr "Logo ENavi"
 
-#: templates/stemp_abw/index.html:207 templates/stemp_abw/map.html:458
+#: templates/stemp_abw/index.html:207
 msgid "Bundesministerium für Bildung und Forschung"
 msgstr "Federal Ministry of Education and Research"
 
-#: templates/stemp_abw/index.html:210 templates/stemp_abw/map.html:461
-msgid "Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> (FKZ 03SFK4E1)"
-msgstr "Funded by <strong>Federal Ministry of Education and Research</strong> (FKZ 03SFK4E1)"
-
-#: templates/stemp_abw/index.html:219 templates/stemp_abw/navigation_app.html:8
+#: templates/stemp_abw/index.html:216 templates/stemp_abw/navigation_app.html:8
 #: templates/stemp_abw/navigation_base.html:51
 msgid "Kontakt"
 msgstr "Contact"
 
-#: templates/stemp_abw/index.html:221 templates/stemp_abw/navigation_app.html:6
+#: templates/stemp_abw/index.html:218 templates/stemp_abw/navigation_app.html:6
 #: templates/stemp_abw/navigation_base.html:41
 msgid "Datenschutz"
 msgstr "Data protection"
 
-#: templates/stemp_abw/index.html:222
+#: templates/stemp_abw/index.html:219
 msgid "Lizenz"
 msgstr "License"
 
-#: templates/stemp_abw/index.html:224
+#: templates/stemp_abw/index.html:221
 msgid "Reiner Lemoine Institut gGmbH"
 msgstr "Reiner Lemoine Institut gGmbH"
 
@@ -478,11 +724,11 @@ msgstr "Apply"
 
 #: templates/stemp_abw/map.html:197
 msgid ""
-"In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten geplant, wie die "
-"Berücksichtigung des Wärmesektors und Sektorkopplung."
+"In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten "
+"geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
 msgstr ""
-"In a future version of this tool more features are planned. For example, the consideration of the "
-"heat sector and sector coupling."
+"In a future version of this tool more features are planned. For example, the "
+"consideration of the heat sector and sector coupling."
 
 #: templates/stemp_abw/map.html:233
 msgid "Variierbare Flächen"
@@ -494,9 +740,11 @@ msgstr "Static areas"
 
 #: templates/stemp_abw/map.html:243
 msgid ""
-"Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf das Energiesystem "
-"haben."
-msgstr "Here you can make settings for the areas that have an effect on the energy system."
+"Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf "
+"das Energiesystem haben."
+msgstr ""
+"Here you can make settings for the areas that have an effect on the energy "
+"system."
 
 #: templates/stemp_abw/map.html:261
 msgid "Hier erfahren Sie mehr über Restriktionsflächen."
@@ -514,68 +762,75 @@ msgstr "More graphs"
 msgid "Werte müssen berechnet werden - bitte Simulation starten!"
 msgstr "Values need to be calculated - please start simulation!"
 
-#: templates/stemp_abw/map.html:494
+#: templates/stemp_abw/map.html:491
 msgid "Dieses Feature ist derzeit noch nicht verfügbar."
 msgstr "This feature is currently not available."
 
-#: templates/stemp_abw/map.html:512
+#: templates/stemp_abw/map.html:509
 msgid "Fehler"
 msgstr "Error"
 
-#: templates/stemp_abw/map.html:513
+#: templates/stemp_abw/map.html:510
 msgid "Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu."
 msgstr "An error has occurred. Please restart the tool."
 
-#: templates/stemp_abw/map.html:518
+#: templates/stemp_abw/map.html:515
 msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
 msgstr "Would you like to proceed to the home page? All changes will be lost."
 
-#: templates/stemp_abw/map.html:524 templates/stemp_abw/map.html:537 templates/stemp_abw/map.html:550
-#: templates/stemp_abw/map.html:563 templates/stemp_abw/map.html:576
+#: templates/stemp_abw/map.html:521 templates/stemp_abw/map.html:534
+#: templates/stemp_abw/map.html:547 templates/stemp_abw/map.html:560
+#: templates/stemp_abw/map.html:573
 msgid "Abbruch"
 msgstr "Cancel"
 
-#: templates/stemp_abw/map.html:531
-msgid "Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren."
-msgstr "Would you like to proceed to the data protection declaration? All changes will be lost."
+#: templates/stemp_abw/map.html:528
+msgid ""
+"Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+"Would you like to proceed to the data protection declaration? All changes "
+"will be lost."
 
-#: templates/stemp_abw/map.html:544
-msgid "Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren."
-msgstr "Would you like to proceed to the source overview? All changes will be lost."
+#: templates/stemp_abw/map.html:541
+msgid ""
+"Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+"Would you like to proceed to the source overview? All changes will be lost."
 
-#: templates/stemp_abw/map.html:557
+#: templates/stemp_abw/map.html:554
 msgid "Wollen Sie zur Kontaktseite? Alle Änderungen gehen dadurch verloren."
-msgstr "Would you like to proceed to the contact page? All changes will be lost."
+msgstr ""
+"Would you like to proceed to the contact page? All changes will be lost."
 
-#: templates/stemp_abw/map.html:570
+#: templates/stemp_abw/map.html:567
 msgid "Wollen Sie zum Impressum? Alle Änderungen gehen dadurch verloren."
-msgstr "Would you like to proceed to the imprint page? All changes will be lost."
+msgstr ""
+"Would you like to proceed to the imprint page? All changes will be lost."
 
-#: templates/stemp_abw/map.html:718 templates/stemp_abw/map.html:960
+#: templates/stemp_abw/map.html:715 templates/stemp_abw/map.html:957
 msgid "Fertig!"
 msgstr "Done!"
 
-#: templates/stemp_abw/map.html:726 templates/stemp_abw/map.html:728 templates/stemp_abw/map.html:964
-#: templates/stemp_abw/map.html:966
+#: templates/stemp_abw/map.html:723 templates/stemp_abw/map.html:725
+#: templates/stemp_abw/map.html:961 templates/stemp_abw/map.html:963
 msgid "Fehler beim Laden der Daten!"
 msgstr "Error loading the data!"
 
-#: templates/stemp_abw/navigation_app.html:4 templates/stemp_abw/navigation_app.html:5
+#: templates/stemp_abw/navigation_app.html:4
+#: templates/stemp_abw/navigation_app.html:5
 #: templates/stemp_abw/navigation_base.html:16
 msgid "Startseite"
 msgstr "Home page"
 
-#: templates/stemp_abw/navigation_app.html:7 templates/stemp_abw/navigation_base.html:47
+#: templates/stemp_abw/navigation_app.html:7
+#: templates/stemp_abw/navigation_base.html:47
 msgid "Quellen"
 msgstr "Sources"
 
-#: templates/stemp_abw/navigation_base.html:10 templates/stemp_abw/navigation_base.html:43
+#: templates/stemp_abw/navigation_base.html:10
+#: templates/stemp_abw/navigation_base.html:43
 msgid "Menü"
 msgstr "Menu"
-
-#: templates/stemp_abw/navigation_base.html:49
-msgid "Quellcode"
-msgstr "Source code"
 
 #: templates/stemp_abw/navigation_base.html:50
 msgid "Feedback"
@@ -601,6 +856,7 @@ msgstr "MW per km²"
 
 #: templates/stemp_abw/popups/gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/gen_count_wind_density.html:9
+#: templates/stemp_abw/popups/result_gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/result_gen_count_wind_density.html:9
 msgid "WEA pro km²"
 msgstr "Wind turbines per km²"
@@ -621,7 +877,8 @@ msgstr "MWh per inhabitant"
 msgid "EinwohnerInnen"
 msgstr "Inhabitants"
 
-#: templates/stemp_abw/popups/pop_density.html:6 templates/stemp_abw/popups/pop_density.html:9
+#: templates/stemp_abw/popups/pop_density.html:6
+#: templates/stemp_abw/popups/pop_density.html:9
 msgid "EinwohnerInnen je km²"
 msgstr "Inhabitants per km²"
 
@@ -635,7 +892,8 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:27
 msgid ""
 "Da Art und Umfang der Datenverarbeitung am RLI die Kriterien nach Art. 37\n"
-"      Abs. 1 DSGVO sowie § 38 Abs. 1 S. 1 BDSG-neu nicht erfüllen, wurde kein\n"
+"      Abs. 1 DSGVO sowie § 38 Abs. 1 S. 1 BDSG-neu nicht erfüllen, wurde "
+"kein\n"
 "      Datenschutzbeauftragter bestellt."
 msgstr ""
 
@@ -645,29 +903,41 @@ msgid ""
 "      soweit dies zur Bereitstellung einer funktionsfähigen Website sowie\n"
 "      unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung\n"
 "      personenbezogener Daten unserer Nutzer erfolgt regelmäßig nur nach\n"
-"      Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in denen\n"
-"      eine vorherige Einholung einer Einwilligung aus technischen Gründen nicht\n"
-"      möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften\n"
+"      Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in "
+"denen\n"
+"      eine vorherige Einholung einer Einwilligung aus technischen Gründen "
+"nicht\n"
+"      möglich ist und die Verarbeitung der Daten durch gesetzliche "
+"Vorschriften\n"
 "      gestattet ist."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:43
 msgid ""
 "Soweit wir für Verarbeitungsvorgänge personenbezogener Daten eine\n"
-"      Einwilligung der betroffenen Person einholen, dient Art. 6 Abs. 1 lit. a\n"
+"      Einwilligung der betroffenen Person einholen, dient Art. 6 Abs. 1 lit. "
+"a\n"
 "      EU-Datenschutzgrundverordnung (DSGVO) als Rechtsgrundlage.\n"
-"      Bei der Verarbeitung von personenbezogenen Daten, die zur Erfüllung eines\n"
-"      Vertrages, dessen Vertragspartei die betroffene Person ist, erforderlich\n"
-"      ist, dient Art. 6 Abs. 1 lit. b DSGVO als Rechtsgrundlage. Dies gilt auch\n"
-"      für Verarbeitungsvorgänge, die zur Durchführung vorvertraglicher Maßnahmen\n"
+"      Bei der Verarbeitung von personenbezogenen Daten, die zur Erfüllung "
+"eines\n"
+"      Vertrages, dessen Vertragspartei die betroffene Person ist, "
+"erforderlich\n"
+"      ist, dient Art. 6 Abs. 1 lit. b DSGVO als Rechtsgrundlage. Dies gilt "
+"auch\n"
+"      für Verarbeitungsvorgänge, die zur Durchführung vorvertraglicher "
+"Maßnahmen\n"
 "      erforderlich sind.\n"
 "      Soweit eine Verarbeitung personenbezogener Daten zur Erfüllung einer\n"
 "      rechtlichen Verpflichtung erforderlich ist, der unser Unternehmen\n"
 "      unterliegt, dient Art. 6 Abs. 1 lit. c DSGVO als Rechtsgrundlage.\n"
-"      Für den Fall, dass lebenswichtige Interessen der betroffenen Person oder\n"
-"      einer anderen natürlichen Person eine Verarbeitung personenbezogener Daten\n"
-"      erforderlich machen, dient Art. 6 Abs. 1 lit. d DSGVO als Rechtsgrundlage.\n"
-"      Ist die Verarbeitung zur Wahrung eines berechtigten Interesses unseres\n"
+"      Für den Fall, dass lebenswichtige Interessen der betroffenen Person "
+"oder\n"
+"      einer anderen natürlichen Person eine Verarbeitung personenbezogener "
+"Daten\n"
+"      erforderlich machen, dient Art. 6 Abs. 1 lit. d DSGVO als "
+"Rechtsgrundlage.\n"
+"      Ist die Verarbeitung zur Wahrung eines berechtigten Interesses "
+"unseres\n"
 "      Unternehmens oder eines Dritten erforderlich und überwiegen die\n"
 "      Interessen, Grundrechte und Grundfreiheiten des Betroffenen das\n"
 "      erstgenannte Interesse nicht, so dient Art. 6 Abs. 1 lit. f DSGVO als\n"
@@ -677,12 +947,18 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:64
 msgid ""
 "Die personenbezogenen Daten der betroffenen Person werden gelöscht oder\n"
-"      gesperrt, sobald der Zweck der Speicherung entfällt. Eine Speicherung kann\n"
-"      darüber hinaus erfolgen, wenn dies durch den europäischen oder nationalen\n"
-"      Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder sonstigen\n"
-"      Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde. Eine\n"
-"      Sperrung oder Löschung der Daten erfolgt auch dann, wenn eine durch die\n"
-"      genannten Normen vorgeschriebene Speicherfrist abläuft, es sei denn, dass\n"
+"      gesperrt, sobald der Zweck der Speicherung entfällt. Eine Speicherung "
+"kann\n"
+"      darüber hinaus erfolgen, wenn dies durch den europäischen oder "
+"nationalen\n"
+"      Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder "
+"sonstigen\n"
+"      Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde. "
+"Eine\n"
+"      Sperrung oder Löschung der Daten erfolgt auch dann, wenn eine durch "
+"die\n"
+"      genannten Normen vorgeschriebene Speicherfrist abläuft, es sei denn, "
+"dass\n"
 "      eine Erforderlichkeit zur weiteren Speicherung der Daten für einen\n"
 "      Vertragsabschluss oder eine Vertragserfüllung besteht."
 msgstr ""
@@ -697,7 +973,8 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:90
 msgid ""
 "Die Daten werden ebenfalls in den Logfiles unseres Systems gespeichert.\n"
-"      Eine Speicherung dieser Daten zusammen mit anderen personenbezogenen Daten\n"
+"      Eine Speicherung dieser Daten zusammen mit anderen personenbezogenen "
+"Daten\n"
 "      des Nutzers findet nicht statt."
 msgstr ""
 
@@ -710,13 +987,18 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:99
 msgid ""
 "Die vorübergehende Speicherung der IP-Adresse durch das System ist\n"
-"      notwendig, um eine Auslieferung der Website an den Rechner des Nutzers zu\n"
-"      ermöglichen. Hierfür muss die IP-Adresse des Nutzers für die Dauer der\n"
+"      notwendig, um eine Auslieferung der Website an den Rechner des Nutzers "
+"zu\n"
+"      ermöglichen. Hierfür muss die IP-Adresse des Nutzers für die Dauer "
+"der\n"
 "      Sitzung gespeichert bleiben.\n"
-"      Die Speicherung in Logfiles erfolgt, um die Funktionsfähigkeit der Website\n"
-"      sicherzustellen. Zudem dienen uns die Daten zur Optimierung der Website\n"
+"      Die Speicherung in Logfiles erfolgt, um die Funktionsfähigkeit der "
+"Website\n"
+"      sicherzustellen. Zudem dienen uns die Daten zur Optimierung der "
+"Website\n"
 "      und zur Sicherstellung der Sicherheit unserer informationstechnischen\n"
-"      Systeme. Eine Auswertung der Daten zu Marketingzwecken findet in diesem\n"
+"      Systeme. Eine Auswertung der Daten zu Marketingzwecken findet in "
+"diesem\n"
 "      Zusammenhang nicht statt.\n"
 "      In diesen Zwecken liegt auch unser berechtigtes Interesse an der\n"
 "      Datenverarbeitung nach Art. 6 Abs. 1 lit. f DSGVO."
@@ -725,19 +1007,25 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:112
 msgid ""
 "Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes\n"
-"      ihrer Erhebung nicht mehr erforderlich sind. Im Falle der Erfassung der\n"
-"      Daten zur Bereitstellung der Website ist dies der Fall, wenn die jeweilige\n"
+"      ihrer Erhebung nicht mehr erforderlich sind. Im Falle der Erfassung "
+"der\n"
+"      Daten zur Bereitstellung der Website ist dies der Fall, wenn die "
+"jeweilige\n"
 "      Sitzung beendet ist.\n"
-"      Im Falle der Speicherung der Daten in Logfiles ist dies nach spätestens\n"
-"      sieben Tagen der Fall. Eine darüberhinausgehende Speicherung ist möglich.\n"
-"      In diesem Fall werden die IP-Adressen der Nutzer gelöscht oder verfremdet,\n"
+"      Im Falle der Speicherung der Daten in Logfiles ist dies nach "
+"spätestens\n"
+"      sieben Tagen der Fall. Eine darüberhinausgehende Speicherung ist "
+"möglich.\n"
+"      In diesem Fall werden die IP-Adressen der Nutzer gelöscht oder "
+"verfremdet,\n"
 "      sodass eine Zuordnung des aufrufenden Clients nicht mehr möglich ist."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:122
 msgid ""
 "Die Erfassung der Daten zur Bereitstellung der Website und die\n"
-"      Speicherung der Daten in Logfiles ist für den Betrieb der Internetseite\n"
+"      Speicherung der Daten in Logfiles ist für den Betrieb der "
+"Internetseite\n"
 "      zwingend erforderlich. Es besteht folglich seitens des Nutzers keine\n"
 "      Widerspruchsmöglichkeit."
 msgstr ""
@@ -748,7 +1036,8 @@ msgid ""
 "      zur Möglichkeit der Kontaktaufnahme genannt. Nimmt ein Nutzer diese\n"
 "      Möglichkeit wahr, so werden die mit der E-Mail übermittelten\n"
 "      personenbezogenen Daten des Nutzers gespeichert.\n"
-"      Es erfolgt in diesem Zusammenhang keine Weitergabe der Daten an Dritte.\n"
+"      Es erfolgt in diesem Zusammenhang keine Weitergabe der Daten an "
+"Dritte.\n"
 "      Die Daten werden ausschließlich für die Verarbeitung der Konversation\n"
 "      verwendet."
 msgstr ""
@@ -759,8 +1048,10 @@ msgid ""
 "      Einwilligung des Nutzers Art. 6 Abs. 1 lit. a DSGVO.\n"
 "      Rechtsgrundlage für die Verarbeitung der Daten, die im Zuge einer\n"
 "      Übersendung einer E-Mail übermittelt werden, ist Art. 6 Abs. 1 lit. f\n"
-"      DSGVO. Zielt der E-Mail-Kontakt auf den Abschluss eines Vertrages ab, so\n"
-"      ist zusätzliche Rechtsgrundlage für die Verarbeitung Art. 6 Abs. 1 lit. b\n"
+"      DSGVO. Zielt der E-Mail-Kontakt auf den Abschluss eines Vertrages ab, "
+"so\n"
+"      ist zusätzliche Rechtsgrundlage für die Verarbeitung Art. 6 Abs. 1 "
+"lit. b\n"
 "      DSGVO."
 msgstr ""
 
@@ -773,38 +1064,48 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:151
 msgid ""
 "Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes\n"
-"      ihrer Erhebung nicht mehr erforderlich sind. Für die personenbezogenen\n"
-"      Daten, die per E-Mail übersandt wurden, ist dies dann der Fall, wenn die\n"
+"      ihrer Erhebung nicht mehr erforderlich sind. Für die "
+"personenbezogenen\n"
+"      Daten, die per E-Mail übersandt wurden, ist dies dann der Fall, wenn "
+"die\n"
 "      jeweilige Konversation mit dem Nutzer beendet ist. Beendet ist die\n"
-"      Konversation dann, wenn sich aus den Umständen entnehmen lässt, dass der\n"
+"      Konversation dann, wenn sich aus den Umständen entnehmen lässt, dass "
+"der\n"
 "      betroffene Sachverhalt abschließend geklärt ist."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:159
 msgid ""
 "Der Nutzer hat jederzeit die Möglichkeit, seine Einwilligung zur\n"
-"      Verarbeitung der personenbezogenen Daten zu widerrufen. Nimmt der Nutzer\n"
+"      Verarbeitung der personenbezogenen Daten zu widerrufen. Nimmt der "
+"Nutzer\n"
 "      per E-Mail Kontakt mit uns auf, so kann er der Speicherung seiner\n"
-"      personenbezogenen Daten jederzeit widersprechen. In einem solchen Fall\n"
+"      personenbezogenen Daten jederzeit widersprechen. In einem solchen "
+"Fall\n"
 "      kann die Konversation nicht fortgeführt werden.\n"
-"      Der Widerruf der Einwilligung kann formlos per E-Mail oder schriftlich\n"
+"      Der Widerruf der Einwilligung kann formlos per E-Mail oder "
+"schriftlich\n"
 "      erfolgen.\n"
-"      Alle personenbezogenen Daten, die im Zuge der Kontaktaufnahme gespeichert\n"
+"      Alle personenbezogenen Daten, die im Zuge der Kontaktaufnahme "
+"gespeichert\n"
 "      wurden, werden in diesem Fall binnen von 10 Werktagen gelöscht."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:171
 msgid ""
 "Sie können von dem Verantwortlichen eine Bestätigung darüber verlangen,\n"
-"      ob personenbezogene Daten, die Sie betreffen, von uns verarbeitet werden.\n"
-"      Liegt eine solche Verarbeitung vor, können Sie von dem Verantwortlichen\n"
+"      ob personenbezogene Daten, die Sie betreffen, von uns verarbeitet "
+"werden.\n"
+"      Liegt eine solche Verarbeitung vor, können Sie von dem "
+"Verantwortlichen\n"
 "      über folgende Informationen Auskunft verlangen:"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:179
 msgid ""
 "die Empfänger bzw. die Kategorien von Empfängern, gegenüber denen die\n"
-"        Sie betreffenden personenbezogenen Daten offengelegt wurden oder noch\n"
+"        Sie betreffenden personenbezogenen Daten offengelegt wurden oder "
+"noch\n"
 "        offengelegt werden"
 msgstr ""
 
@@ -818,22 +1119,27 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:187
 msgid ""
 "das Bestehen eines Rechts auf Berichtigung oder Löschung der Sie\n"
-"        betreffenden personenbezogenen Daten, eines Rechts auf Einschränkung der\n"
-"        Verarbeitung durch den Verantwortlichen oder eines Widerspruchsrechts\n"
+"        betreffenden personenbezogenen Daten, eines Rechts auf Einschränkung "
+"der\n"
+"        Verarbeitung durch den Verantwortlichen oder eines "
+"Widerspruchsrechts\n"
 "        gegen diese Verarbeitung"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:193
 msgid ""
 "alle verfügbaren Informationen über die Herkunft der Daten, wenn die\n"
-"        personenbezogenen Daten nicht bei der betroffenen Person erhoben werden"
+"        personenbezogenen Daten nicht bei der betroffenen Person erhoben "
+"werden"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:196
 msgid ""
 "das Bestehen einer automatisierten Entscheidungsfindung einschließlich\n"
-"        Profiling gemäß Art. 22 Abs. 1 und 4 DSGVO und – zumindest in diesen\n"
-"        Fällen – aussagekräftige Informationen über die involvierte Logik sowie\n"
+"        Profiling gemäß Art. 22 Abs. 1 und 4 DSGVO und – zumindest in "
+"diesen\n"
+"        Fällen – aussagekräftige Informationen über die involvierte Logik "
+"sowie\n"
 "        die Tragweite und die angestrebten Auswirkungen einer derartigen\n"
 "        Verarbeitung für die betroffene Person."
 msgstr ""
@@ -842,24 +1148,32 @@ msgstr ""
 msgid ""
 "Ihnen steht das Recht zu, Auskunft darüber zu verlangen, ob die Sie\n"
 "      betreffenden personenbezogenen Daten in ein Drittland oder an eine\n"
-"      internationale Organisation übermittelt werden. In diesem Zusammenhang\n"
-"      können Sie verlangen, über die geeigneten Garantien gem. Art. 46 DSGVO im\n"
+"      internationale Organisation übermittelt werden. In diesem "
+"Zusammenhang\n"
+"      können Sie verlangen, über die geeigneten Garantien gem. Art. 46 DSGVO "
+"im\n"
 "      Zusammenhang mit der Übermittlung unterrichtet zu werden.\n"
 "      Dieses Auskunftsrecht kann insoweit beschränkt werden, als es\n"
-"      voraussichtlich die Verwirklichung von Forschungszwecken unmöglich macht\n"
-"      oder ernsthaft beeinträchtigt und die Beschränkung für die Erfüllung der\n"
+"      voraussichtlich die Verwirklichung von Forschungszwecken unmöglich "
+"macht\n"
+"      oder ernsthaft beeinträchtigt und die Beschränkung für die Erfüllung "
+"der\n"
 "      Forschungswecke notwendig ist."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:215
 msgid ""
 "Sie haben ein Recht auf Berichtigung und/oder Vervollständigung gegenüber\n"
-"      dem Verantwortlichen, sofern die verarbeiteten personenbezogenen Daten,\n"
-"      die Sie betreffen, unrichtig oder unvollständig sind. Der Verantwortliche\n"
+"      dem Verantwortlichen, sofern die verarbeiteten personenbezogenen "
+"Daten,\n"
+"      die Sie betreffen, unrichtig oder unvollständig sind. Der "
+"Verantwortliche\n"
 "      hat die Berichtigung unverzüglich vorzunehmen.\n"
 "      Ihr Recht auf Berichtigung kann insoweit beschränkt werden, als es\n"
-"      voraussichtlich die Verwirklichung von Forschungszwecken unmöglich macht\n"
-"      oder ernsthaft beeinträchtigt und die Beschränkung für die Erfüllung der\n"
+"      voraussichtlich die Verwirklichung von Forschungszwecken unmöglich "
+"macht\n"
+"      oder ernsthaft beeinträchtigt und die Beschränkung für die Erfüllung "
+"der\n"
 "      Forschungszwecke notwendig ist."
 msgstr ""
 
@@ -879,42 +1193,52 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:232
 msgid ""
 "die Verarbeitung unrechtmäßig ist und Sie die Löschung der\n"
-"        personenbezogenen Daten ablehnen und stattdessen die Einschränkung der\n"
+"        personenbezogenen Daten ablehnen und stattdessen die Einschränkung "
+"der\n"
 "        Nutzung der personenbezogenen Daten verlangen"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:236
 msgid ""
 "der Verantwortliche die personenbezogenen Daten für die Zwecke der\n"
-"        Verarbeitung nicht länger benötigt, Sie diese jedoch zur Geltendmachung,\n"
+"        Verarbeitung nicht länger benötigt, Sie diese jedoch zur "
+"Geltendmachung,\n"
 "        Ausübung oder Verteidigung von Rechtsansprüchen benötigen, oder"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:240
 msgid ""
 "wenn Sie Widerspruch gegen die Verarbeitung gemäß Art. 21 Abs. 1 DSGVO\n"
-"        eingelegt haben und noch nicht feststeht, ob die berechtigten Gründe des\n"
+"        eingelegt haben und noch nicht feststeht, ob die berechtigten Gründe "
+"des\n"
 "        Verantwortlichen gegenüber Ihren Gründen überwiegen."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:246
 msgid ""
 "Wurde die Verarbeitung der Sie betreffenden personenbezogenen Daten\n"
-"      eingeschränkt, dürfen diese Daten – von ihrer Speicherung abgesehen – nur\n"
-"      mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung\n"
-"      von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen\n"
-"      oder juristischen Person oder aus Gründen eines wichtigen öffentlichen\n"
+"      eingeschränkt, dürfen diese Daten – von ihrer Speicherung abgesehen – "
+"nur\n"
+"      mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder "
+"Verteidigung\n"
+"      von Rechtsansprüchen oder zum Schutz der Rechte einer anderen "
+"natürlichen\n"
+"      oder juristischen Person oder aus Gründen eines wichtigen "
+"öffentlichen\n"
 "      Interesses der Union oder eines Mitgliedstaats verarbeitet werden."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:252
 msgid ""
 "Wurde die Einschränkung der Verarbeitung nach den o.g. Voraussetzungen\n"
-"      eingeschränkt, werden Sie von dem Verantwortlichen unterrichtet bevor die\n"
+"      eingeschränkt, werden Sie von dem Verantwortlichen unterrichtet bevor "
+"die\n"
 "      Einschränkung aufgehoben wird.\n"
 "      Ihr Recht auf Einschränkung der Verarbeitung kann insoweit beschränkt\n"
-"      werden, als es voraussichtlich die Verwirklichung von Forschungszwecken\n"
-"      unmöglich macht oder ernsthaft beeinträchtigt und die Beschränkung für die\n"
+"      werden, als es voraussichtlich die Verwirklichung von "
+"Forschungszwecken\n"
+"      unmöglich macht oder ernsthaft beeinträchtigt und die Beschränkung für "
+"die\n"
 "      Erfüllung der Forschungszwecke notwendig ist."
 msgstr ""
 
@@ -922,21 +1246,24 @@ msgstr ""
 msgid ""
 "Sie können von dem Verantwortlichen verlangen, dass die Sie betreffenden\n"
 "      personenbezogenen Daten unverzüglich gelöscht werden, und der\n"
-"      Verantwortliche ist verpflichtet, diese Daten unverzüglich zu löschen,\n"
+"      Verantwortliche ist verpflichtet, diese Daten unverzüglich zu "
+"löschen,\n"
 "      sofern einer der folgenden Gründe zutrifft:"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:267
 msgid ""
 "Die Sie betreffenden personenbezogenen Daten sind für die Zwecke, für\n"
-"        die sie erhoben oder auf sonstige Weise verarbeitet wurden, nicht mehr\n"
+"        die sie erhoben oder auf sonstige Weise verarbeitet wurden, nicht "
+"mehr\n"
 "        notwendig."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:271
 msgid ""
 "Sie widerrufen Ihre Einwilligung, auf die sich die Verarbeitung gem.\n"
-"        Art. 6 Abs. 1 lit. a oder Art. 9 Abs. 2 lit. a DSGVO stützte, und es\n"
+"        Art. 6 Abs. 1 lit. a oder Art. 9 Abs. 2 lit. a DSGVO stützte, und "
+"es\n"
 "        fehlt an einer anderweitigen Rechtsgrundlage für die Verarbeitung."
 msgstr ""
 
@@ -944,14 +1271,16 @@ msgstr ""
 msgid ""
 "Sie legen gem. Art. 21 Abs. 1 DSGVO Widerspruch gegen die Verarbeitung\n"
 "        ein und es liegen keine vorrangigen berechtigten Gründe für die\n"
-"        Verarbeitung vor, oder Sie legen gem. Art. 21 Abs. 2 DSGVO Widerspruch\n"
+"        Verarbeitung vor, oder Sie legen gem. Art. 21 Abs. 2 DSGVO "
+"Widerspruch\n"
 "        gegen die Verarbeitung ein."
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:281
 msgid ""
 "Die Löschung der Sie betreffenden personenbezogenen Daten ist zur\n"
-"        Erfüllung einer rechtlichen Verpflichtung nach dem Unionsrecht oder dem\n"
+"        Erfüllung einer rechtlichen Verpflichtung nach dem Unionsrecht oder "
+"dem\n"
 "        Recht der Mitgliedstaaten erforderlich, dem der Verantwortliche\n"
 "        unterliegt."
 msgstr ""
@@ -966,11 +1295,15 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:293
 msgid ""
 "Hat der Verantwortliche die Sie betreffenden personenbezogenen Daten\n"
-"      öffentlich gemacht und ist er gem. Art. 17 Abs. 1 DSGVO zu deren Löschung\n"
+"      öffentlich gemacht und ist er gem. Art. 17 Abs. 1 DSGVO zu deren "
+"Löschung\n"
 "      verpflichtet, so trifft er unter Berücksichtigung der verfügbaren\n"
-"      Technologie und der Implementierungskosten angemessene Maßnahmen, auch\n"
-"      technischer Art, um für die Datenverarbeitung Verantwortliche, die die\n"
-"      personenbezogenen Daten verarbeiten, darüber zu informieren, dass Sie als\n"
+"      Technologie und der Implementierungskosten angemessene Maßnahmen, "
+"auch\n"
+"      technischer Art, um für die Datenverarbeitung Verantwortliche, die "
+"die\n"
+"      personenbezogenen Daten verarbeiten, darüber zu informieren, dass Sie "
+"als\n"
 "      betroffene Person von ihnen die Löschung aller Links zu diesen\n"
 "      personenbezogenen Daten oder von Kopien oder Replikationen dieser\n"
 "      personenbezogenen Daten verlangt haben."
@@ -982,7 +1315,8 @@ msgid ""
 "        nach dem Recht der Union oder der Mitgliedstaaten, dem der\n"
 "        Verantwortliche unterliegt, erfordert, oder zur Wahrnehmung einer\n"
 "        Aufgabe, die im öffentlichen Interesse liegt oder in Ausübung\n"
-"        öffentlicher Gewalt erfolgt, die dem Verantwortlichen übertragen wurde"
+"        öffentlicher Gewalt erfolgt, die dem Verantwortlichen übertragen "
+"wurde"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:313
@@ -994,7 +1328,8 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:316
 msgid ""
 "für im öffentlichen Interesse liegende Archivzwecke, wissenschaftliche\n"
-"        oder historische Forschungszwecke oder für statistische Zwecke gem. Art.\n"
+"        oder historische Forschungszwecke oder für statistische Zwecke gem. "
+"Art.\n"
 "        89 Abs. 1 DSGVO, soweit das unter Abschnitt a) genannte Recht\n"
 "        voraussichtlich die Verwirklichung der Ziele dieser Verarbeitung\n"
 "        unmöglich macht oder ernsthaft beeinträchtigt, oder"
@@ -1003,10 +1338,12 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:326
 msgid ""
 "Haben Sie das Recht auf Berichtigung, Löschung oder Einschränkung der\n"
-"      Verarbeitung gegenüber dem Verantwortlichen geltend gemacht, ist dieser\n"
+"      Verarbeitung gegenüber dem Verantwortlichen geltend gemacht, ist "
+"dieser\n"
 "      verpflichtet, allen Empfängern, denen die Sie betreffenden\n"
 "      personenbezogenen Daten offengelegt wurden, diese Berichtigung oder\n"
-"      Löschung der Daten oder Einschränkung der Verarbeitung mitzuteilen, es sei\n"
+"      Löschung der Daten oder Einschränkung der Verarbeitung mitzuteilen, es "
+"sei\n"
 "      denn, dies erweist sich als unmöglich oder ist mit einem\n"
 "      unverhältnismäßigen Aufwand verbunden.\n"
 "      Ihnen steht gegenüber dem Verantwortlichen das Recht zu, über diese\n"
@@ -1016,9 +1353,12 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:337
 msgid ""
 "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten, die\n"
-"      Sie dem Verantwortlichen bereitgestellt haben, in einem strukturierten,\n"
-"      gängigen und maschinenlesbaren Format zu erhalten. Außerdem haben Sie das\n"
-"      Recht diese Daten einem anderen Verantwortlichen ohne Behinderung durch\n"
+"      Sie dem Verantwortlichen bereitgestellt haben, in einem "
+"strukturierten,\n"
+"      gängigen und maschinenlesbaren Format zu erhalten. Außerdem haben Sie "
+"das\n"
+"      Recht diese Daten einem anderen Verantwortlichen ohne Behinderung "
+"durch\n"
 "      den Verantwortlichen, dem die personenbezogenen Daten bereitgestellt\n"
 "      wurden, zu übermitteln, sofern"
 msgstr ""
@@ -1026,7 +1366,8 @@ msgstr ""
 #: templates/stemp_abw/privacy_policy.html:344
 msgid ""
 "die Verarbeitung auf einer Einwilligung gem. Art. 6 Abs. 1 lit. a\n"
-"        DSGVO oder Art. 9 Abs. 2 lit. a DSGVO oder auf einem Vertrag gem. Art. 6\n"
+"        DSGVO oder Art. 9 Abs. 2 lit. a DSGVO oder auf einem Vertrag gem. "
+"Art. 6\n"
 "        Abs. 1 lit. b DSGVO beruht und"
 msgstr ""
 
@@ -1034,12 +1375,15 @@ msgstr ""
 msgid ""
 "In Ausübung dieses Rechts haben Sie ferner das Recht, zu erwirken, dass\n"
 "      die Sie betreffenden personenbezogenen Daten direkt von einem\n"
-"      Verantwortlichen einem anderen Verantwortlichen übermittelt werden, soweit\n"
-"      dies technisch machbar ist. Freiheiten und Rechte anderer Personen dürfen\n"
+"      Verantwortlichen einem anderen Verantwortlichen übermittelt werden, "
+"soweit\n"
+"      dies technisch machbar ist. Freiheiten und Rechte anderer Personen "
+"dürfen\n"
 "      hierdurch nicht beeinträchtigt werden.\n"
 "      Das Recht auf Datenübertragbarkeit gilt nicht für eine Verarbeitung\n"
 "      personenbezogener Daten, die für die Wahrnehmung einer Aufgabe\n"
-"      erforderlich ist, die im öffentlichen Interesse liegt oder in Ausübung\n"
+"      erforderlich ist, die im öffentlichen Interesse liegt oder in "
+"Ausübung\n"
 "      öffentlicher Gewalt erfolgt, die dem Verantwortlichen übertragen\n"
 "      wurde."
 msgstr ""
@@ -1049,33 +1393,50 @@ msgid ""
 "Sie haben das Recht, aus Gründen, die sich aus ihrer besonderen Situation\n"
 "      ergeben, jederzeit gegen die Verarbeitung der Sie betreffenden\n"
 "      personenbezogenen Daten, die aufgrund von Art. 6 Abs. 1 lit. e oder f\n"
-"      DSGVO erfolgt, Widerspruch einzulegen; dies gilt auch für ein auf diese\n"
+"      DSGVO erfolgt, Widerspruch einzulegen; dies gilt auch für ein auf "
+"diese\n"
 "      Bestimmungen gestütztes Profiling.\n"
-"      Der Verantwortliche verarbeitet die Sie betreffenden personenbezogenen\n"
-"      Daten nicht mehr, es sei denn, er kann zwingende schutzwürdige Gründe für\n"
-"      die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten\n"
-"      überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder\n"
+"      Der Verantwortliche verarbeitet die Sie betreffenden "
+"personenbezogenen\n"
+"      Daten nicht mehr, es sei denn, er kann zwingende schutzwürdige Gründe "
+"für\n"
+"      die Verarbeitung nachweisen, die Ihre Interessen, Rechte und "
+"Freiheiten\n"
+"      überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung "
+"oder\n"
 "      Verteidigung von Rechtsansprüchen.\n"
 "      Werden die Sie betreffenden personenbezogenen Daten verarbeitet, um\n"
-"      Direktwerbung zu betreiben, haben Sie das Recht, jederzeit Widerspruch\n"
-"      gegen die Verarbeitung der Sie betreffenden personenbezogenen Daten zum\n"
-"      Zwecke derartiger Werbung einzulegen; dies gilt auch für das Profiling,\n"
+"      Direktwerbung zu betreiben, haben Sie das Recht, jederzeit "
+"Widerspruch\n"
+"      gegen die Verarbeitung der Sie betreffenden personenbezogenen Daten "
+"zum\n"
+"      Zwecke derartiger Werbung einzulegen; dies gilt auch für das "
+"Profiling,\n"
 "      soweit es mit solcher Direktwerbung in Verbindung steht.\n"
-"      Widersprechen Sie der Verarbeitung für Zwecke der Direktwerbung, so werden\n"
-"      die Sie betreffenden personenbezogenen Daten nicht mehr für diese Zwecke\n"
+"      Widersprechen Sie der Verarbeitung für Zwecke der Direktwerbung, so "
+"werden\n"
+"      die Sie betreffenden personenbezogenen Daten nicht mehr für diese "
+"Zwecke\n"
 "      verarbeitet.\n"
-"      Sie haben die Möglichkeit, im Zusammenhang mit der Nutzung von Diensten\n"
-"      der Informationsgesellschaft – ungeachtet der Richtlinie 2002/58/EG – Ihr\n"
-"      Widerspruchsrecht mittels automatisierter Verfahren auszuüben, bei denen\n"
+"      Sie haben die Möglichkeit, im Zusammenhang mit der Nutzung von "
+"Diensten\n"
+"      der Informationsgesellschaft – ungeachtet der Richtlinie 2002/58/EG – "
+"Ihr\n"
+"      Widerspruchsrecht mittels automatisierter Verfahren auszuüben, bei "
+"denen\n"
 "      technische Spezifikationen verwendet werden.\n"
 "      Sie haben auch das Recht, aus Gründen, die sich aus Ihrer besonderen\n"
-"      Situation ergeben, bei der Verarbeitung Sie betreffender personenbezogener\n"
-"      Daten, die zu wissenschaftlichen oder historischen Forschungszwecken oder\n"
+"      Situation ergeben, bei der Verarbeitung Sie betreffender "
+"personenbezogener\n"
+"      Daten, die zu wissenschaftlichen oder historischen Forschungszwecken "
+"oder\n"
 "      zu statistischen Zwecken gem. Art. 89 Abs. 1 DSGVO erfolgt, dieser zu\n"
 "      widersprechen.\n"
 "      Ihr Widerspruchsrecht kann insoweit beschränkt werden, als es\n"
-"      voraussichtlich die Verwirklichung der Forschungs- oder Statistikzwecke\n"
-"      unmöglich macht oder ernsthaft beeinträchtigt und die Beschränkung für die\n"
+"      voraussichtlich die Verwirklichung der Forschungs- oder "
+"Statistikzwecke\n"
+"      unmöglich macht oder ernsthaft beeinträchtigt und die Beschränkung für "
+"die\n"
 "      Erfüllung der Forschungs- oder Statistikzwecke notwendig ist."
 msgstr ""
 
@@ -1083,7 +1444,8 @@ msgstr ""
 msgid ""
 "Sie haben das Recht, Ihre datenschutzrechtliche Einwilligungserklärung\n"
 "      jederzeit zu widerrufen. Durch den Widerruf der Einwilligung wird die\n"
-"      Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten\n"
+"      Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf "
+"erfolgten\n"
 "      Verarbeitung nicht berührt."
 msgstr ""
 
@@ -1091,8 +1453,10 @@ msgstr ""
 msgid ""
 "Sie haben das Recht, nicht einer ausschließlich auf einer automatisierten\n"
 "      Verarbeitung – einschließlich Profiling – beruhenden Entscheidung\n"
-"      unterworfen zu werden, die Ihnen gegenüber rechtliche Wirkung entfaltet\n"
-"      oder Sie in ähnlicher Weise erheblich beeinträchtigt. Dies gilt nicht,\n"
+"      unterworfen zu werden, die Ihnen gegenüber rechtliche Wirkung "
+"entfaltet\n"
+"      oder Sie in ähnlicher Weise erheblich beeinträchtigt. Dies gilt "
+"nicht,\n"
 "      wenn die Entscheidung"
 msgstr ""
 
@@ -1106,21 +1470,26 @@ msgstr ""
 msgid ""
 "aufgrund von Rechtsvorschriften der Union oder der Mitgliedstaaten,\n"
 "        denen der Verantwortliche unterliegt, zulässig ist und diese\n"
-"        Rechtsvorschriften angemessene Maßnahmen zur Wahrung Ihrer Rechte und\n"
+"        Rechtsvorschriften angemessene Maßnahmen zur Wahrung Ihrer Rechte "
+"und\n"
 "        Freiheiten sowie Ihrer berechtigten Interessen enthalten oder"
 msgstr ""
 
 #: templates/stemp_abw/privacy_policy.html:419
 msgid ""
 "Allerdings dürfen diese Entscheidungen nicht auf besonderen Kategorien\n"
-"      personenbezogener Daten nach Art. 9 Abs. 1 DSGVO beruhen, sofern nicht\n"
+"      personenbezogener Daten nach Art. 9 Abs. 1 DSGVO beruhen, sofern "
+"nicht\n"
 "      Art. 9 Abs. 2 lit. a oder g DSGVO gilt und angemessene Maßnahmen zum\n"
 "      Schutz der Rechte und Freiheiten sowie Ihrer berechtigten Interessen\n"
 "      getroffen wurden.\n"
-"      Hinsichtlich der in (1) und (3) genannten Fälle trifft der Verantwortliche\n"
+"      Hinsichtlich der in (1) und (3) genannten Fälle trifft der "
+"Verantwortliche\n"
 "      angemessene Maßnahmen, um die Rechte und Freiheiten sowie Ihre\n"
-"      berechtigten Interessen zu wahren, wozu mindestens das Recht auf Erwirkung\n"
-"      des Eingreifens einer Person seitens des Verantwortlichen, auf Darlegung\n"
+"      berechtigten Interessen zu wahren, wozu mindestens das Recht auf "
+"Erwirkung\n"
+"      des Eingreifens einer Person seitens des Verantwortlichen, auf "
+"Darlegung\n"
 "      des eigenen Standpunkts und auf Anfechtung der Entscheidung gehört."
 msgstr ""
 
@@ -1128,12 +1497,15 @@ msgstr ""
 msgid ""
 "Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen\n"
 "      Rechtsbehelfs steht Ihnen das Recht auf Beschwerde bei einer\n"
-"      Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres Aufenthaltsorts,\n"
-"      ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes, zu, wenn\n"
+"      Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres "
+"Aufenthaltsorts,\n"
+"      ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes, zu, "
+"wenn\n"
 "      Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden\n"
 "      personenbezogenen Daten gegen die DSGVO verstößt.\n"
 "      Die Aufsichtsbehörde, bei der die Beschwerde eingereicht wurde,\n"
-"      unterrichtet den Beschwerdeführer über den Stand und die Ergebnisse der\n"
+"      unterrichtet den Beschwerdeführer über den Stand und die Ergebnisse "
+"der\n"
 "      Beschwerde einschließlich der Möglichkeit eines gerichtlichen\n"
 "      Rechtsbehelfs nach Art. 78 DSGVO."
 msgstr ""
@@ -1148,10 +1520,6 @@ msgstr ""
 #: templates/stemp_abw/results.html:4
 msgid "Übersicht"
 msgstr "Overview"
-
-#: templates/stemp_abw/results.html:5
-msgid "Stromerzeugung"
-msgstr "Electricity generation"
 
 #: templates/stemp_abw/session_not_found.html:6
 msgid "Deine Sitzung ist abgelaufen"
@@ -1173,37 +1541,20 @@ msgstr "Population Trend"
 msgid "Prognose"
 msgstr "Forecast"
 
-#: views/detail_views.py:160 views/detail_views.py:199 views/detail_views.py:251
-#: views/detail_views.py:302 views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:793 views/detail_views.py:832 views/detail_views.py:883
-#: views/detail_views.py:933 views/detail_views.py:985
+#: views/detail_views.py:160 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:353 views/detail_views.py:405
+#: views/detail_views.py:793 views/detail_views.py:832
+#: views/detail_views.py:883 views/detail_views.py:933
+#: views/detail_views.py:985
 msgid "Wind"
 msgstr "Wind"
 
-#: views/detail_views.py:160 views/detail_views.py:199 views/detail_views.py:251
-#: views/detail_views.py:302 views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883
-msgid "PV Dach"
-msgstr "PV roof"
-
-#: views/detail_views.py:161 views/detail_views.py:199 views/detail_views.py:251
-#: views/detail_views.py:302 views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:794 views/detail_views.py:832 views/detail_views.py:883
-#: views/detail_views.py:933 views/detail_views.py:985
-msgid "PV Freifläche"
-msgstr "PV solar park"
-
-#: views/detail_views.py:161 views/detail_views.py:200 views/detail_views.py:252
-#: views/detail_views.py:303 views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:794 views/detail_views.py:833 views/detail_views.py:883
+#: views/detail_views.py:162 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:795 views/detail_views.py:833
 #: views/detail_views.py:934 views/detail_views.py:986
-msgid "Wasserkraft"
-msgstr "Hydropower"
-
-#: views/detail_views.py:162 views/detail_views.py:200 views/detail_views.py:252
-#: views/detail_views.py:303 views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:795 views/detail_views.py:833 views/detail_views.py:934
-#: views/detail_views.py:986
 msgid "Bioenergie"
 msgstr "Bioenergy"
 
@@ -1219,16 +1570,13 @@ msgstr "in percent of electricity demand"
 msgid "Prozent"
 msgstr "Percent"
 
-#: views/detail_views.py:168
-msgid "Bedarf"
-msgstr "Demand"
-
-#: views/detail_views.py:207 views/detail_views.py:259 views/detail_views.py:310
+#: views/detail_views.py:207 views/detail_views.py:259
+#: views/detail_views.py:310
 msgid "Gewonnene Energie aus EE"
 msgstr "Energy generated from renewables"
 
-#: views/detail_views.py:208 views/detail_views.py:362 views/detail_views.py:841
-#: views/detail_views.py:942
+#: views/detail_views.py:208 views/detail_views.py:362
+#: views/detail_views.py:841 views/detail_views.py:942
 msgid "nach Quelle"
 msgstr "from source"
 
@@ -1236,13 +1584,13 @@ msgstr "from source"
 msgid "je EinwohnerIn"
 msgstr "per Inhabitant"
 
-#: views/detail_views.py:311 views/detail_views.py:414 views/detail_views.py:891
-#: views/detail_views.py:994
+#: views/detail_views.py:311 views/detail_views.py:414
+#: views/detail_views.py:891 views/detail_views.py:994
 msgid "je km²"
 msgstr "per km²"
 
-#: views/detail_views.py:353 views/detail_views.py:405 views/detail_views.py:933
-#: views/detail_views.py:985
+#: views/detail_views.py:353 views/detail_views.py:405
+#: views/detail_views.py:933 views/detail_views.py:985
 msgid "PV Dach, groß"
 msgstr "PV roof, large"
 
@@ -1250,30 +1598,23 @@ msgstr "PV roof, large"
 msgid "Installierte Leistung EE"
 msgstr "Installed Capacity Renewables"
 
-#: views/detail_views.py:459 views/detail_views.py:507 views/detail_views.py:554
-#: views/detail_views.py:601 views/detail_views.py:1039 views/detail_views.py:1087
-msgid "Haushalte"
-msgstr "Households"
-
-#: views/detail_views.py:459 views/detail_views.py:507 views/detail_views.py:554
-#: views/detail_views.py:601 views/detail_views.py:1039 views/detail_views.py:1087
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:554 views/detail_views.py:601
+#: views/detail_views.py:1039 views/detail_views.py:1087
 msgid "GHD und Landw."
 msgstr "TCS and Agriculture"
-
-#: views/detail_views.py:459 views/detail_views.py:507 views/detail_views.py:1039
-#: views/detail_views.py:1087
-msgid "Industrie"
-msgstr "Industry"
 
 #: views/detail_views.py:466 views/detail_views.py:514
 msgid "Strombedarf"
 msgstr "Electricity Demand"
 
-#: views/detail_views.py:467 views/detail_views.py:562 views/detail_views.py:1047
+#: views/detail_views.py:467 views/detail_views.py:562
+#: views/detail_views.py:1047
 msgid "nach Verbrauchergruppe"
 msgstr "by consumer group"
 
-#: views/detail_views.py:515 views/detail_views.py:609 views/detail_views.py:1095
+#: views/detail_views.py:515 views/detail_views.py:609
+#: views/detail_views.py:1095
 msgid "je EinwohnerIn nach Verbrauchergruppe"
 msgstr "per inhabitant by consumer group"
 
@@ -1302,10 +1643,6 @@ msgstr "Result: Energy generated from Renewables"
 msgid "Ergebnis: Installierte Leistung EE"
 msgstr "Result: Installed Capacity Renewables"
 
-#: views/detail_views.py:1046
+#: views/detail_views.py:1046 views/detail_views.py:1094
 msgid "Ergebnis: Strombedarf"
-msgstr "Result: Electricity Demand"
-
-#: views/detail_views.py:1094
-msgid "Eregbnis: Strombedarf"
 msgstr "Result: Electricity Demand"
