@@ -1,5 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
 from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario, RegMun, MunData
 from stemp_abw.results.io import oemof_json_to_results
@@ -511,7 +509,7 @@ class ResultChart(object):
             visualization = highcharts.HCTimeseries(
                 data=self.data,
                 setup_labels=self.setup_labels,
-                tooltip_text=str(_(tooltip_text)),
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )
@@ -519,7 +517,7 @@ class ResultChart(object):
             visualization = highcharts.HCPiechart(
                 data=self.data,
                 setup_labels=self.setup_labels,
-                tooltip_text=str(_(tooltip_text)),
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )
@@ -527,7 +525,7 @@ class ResultChart(object):
             visualization = highcharts.HCStackedColumn(
                 data=self.data,
                 setup_labels=self.setup_labels,
-                tooltip_text=str(_(tooltip_text)),
+                tooltip_text=tooltip_text,
                 style='display: inline-block',
                 **kwargs
             )
