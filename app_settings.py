@@ -1,5 +1,7 @@
 import os
+
 from django.utils import translation
+from django.utils.translation import gettext_lazy as _
 from configobj import ConfigObj
 
 from wam import settings
@@ -130,18 +132,21 @@ RE_POT_CONTROLS = ['sl_dist_resid',
                    'cb_use_ffh_areas',
                    'cb_use_cult_areas']
 
-NODE_LABELS = {'gen_el_wind': 'Windenergie',
-               'gen_el_pv_roof': 'PV Dach',
-               'gen_el_pv_ground': 'PV Freifläche',
-               'gen_el_hydro': 'Wasserkraft',
-               'gen_el_bio': 'Bioenergie',
-               'gen_el_conventional': 'Fossil',
-               'dem_el_hh': 'Haushalte',
-               'dem_el_rca': 'GHD',
-               'dem_el_ind': 'Industrie',
-               'shortage_el': 'Import',
-               'excess_el': 'Export'
-               }
+
+def node_labels():
+    return {'gen_el_wind': str(_('Windenergie')),
+            'gen_el_pv_roof': str(_('PV Dach')),
+            'gen_el_pv_ground': str(_('PV Freifläche')),
+            'gen_el_hydro': str(_('Wasserkraft')),
+            'gen_el_bio': str(_('Bioenergie')),
+            'gen_el_conventional': str(_('Fossil')),
+            'dem_el_hh': str(_('Haushalte')),
+            'dem_el_rca': str(_('GHD')),
+            'dem_el_ind': str(_('Industrie')),
+            'shortage_el': str(_('Import')),
+            'excess_el': str(_('Export'))
+            }
+
 
 RE_POT_LAYER_ID_LIST = [str(_) for _ in range(1, 7)]
 
