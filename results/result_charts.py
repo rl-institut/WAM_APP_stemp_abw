@@ -1,6 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from stemp_abw.results import results
-from stemp_abw.app_settings import MONTH_LABELS
+from stemp_abw.app_settings import month_labels
 import pandas as pd
 
 
@@ -142,9 +142,9 @@ def results_charts_tab2():
 
             },
             'data': pd.DataFrame(
-                data={str(_('Windenergie')): [0 for _ in MONTH_LABELS],
-                      str(_('PV')): [0 for _ in MONTH_LABELS]},
-                index=MONTH_LABELS)
+                data={str(_('Windenergie')): [0 for _ in month_labels()],
+                      str(_('PV')): [0 for _ in month_labels()]},
+                index=month_labels())
         },
     ]
 
@@ -234,7 +234,7 @@ results_charts_tab4_viz = [results.ResultChart(
     setup_labels=chart['setup_labels'],
     type=chart['type'],
     data=pd.DataFrame(data=chart['data'],
-                      index=MONTH_LABELS)).visualize(
+                      index=month_labels())).visualize(
     renderTo=chart['container_id'])
                            for chart in results_charts_tab4]
 

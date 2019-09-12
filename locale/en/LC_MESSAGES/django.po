@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 14:17+0200\n"
+"POT-Creation-Date: 2019-09-12 14:36+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -98,6 +98,54 @@ msgstr "Import"
 #: results/results.py:191 results/results.py:194
 msgid "Export"
 msgstr "Export"
+
+#: app_settings.py:164
+msgid "Jan"
+msgstr ""
+
+#: app_settings.py:165
+msgid "Feb"
+msgstr ""
+
+#: app_settings.py:166
+msgid "Mär"
+msgstr "Mar"
+
+#: app_settings.py:167
+msgid "Apr"
+msgstr ""
+
+#: app_settings.py:168
+msgid "Mai"
+msgstr "May"
+
+#: app_settings.py:169
+msgid "Jun"
+msgstr ""
+
+#: app_settings.py:170
+msgid "Jul"
+msgstr ""
+
+#: app_settings.py:171
+msgid "Aug"
+msgstr ""
+
+#: app_settings.py:172
+msgid "Sep"
+msgstr ""
+
+#: app_settings.py:173
+msgid "Okt"
+msgstr "Oct"
+
+#: app_settings.py:174
+msgid "Nov"
+msgstr ""
+
+#: app_settings.py:175
+msgid "Dez"
+msgstr "Dec"
 
 #: results/result_charts.py:17 templates/stemp_abw/results.html:5
 msgid "Stromerzeugung"
@@ -219,10 +267,8 @@ msgid "Erneuerbare Energien"
 msgstr "EN: Erneuerbare Energien"
 
 #: results/results.py:138
-#, fuzzy
-#| msgid "Photovoltaik Erzeugung"
 msgid "Photovoltaik"
-msgstr "EN: Photovoltaik Erzeugung"
+msgstr "EN: Photovoltaik"
 
 #: results/results.py:462
 msgid ""

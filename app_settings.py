@@ -158,5 +158,19 @@ SIMULATION_CFG = {'date_from': '2017-01-01 00:00:00',
                   'keepfiles': False
                   }
 
-MONTH_LABELS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+
+def month_labels():
+    return [
+        str(_('Jan')),
+        str(_('Feb')),
+        str(_('Mär')),
+        str(_('Apr')),
+        str(_('Mai')),
+        str(_('Jun')),
+        str(_('Jul')),
+        str(_('Aug')),
+        str(_('Sep')),
+        str(_('Okt')),
+        str(_('Nov')),
+        str(_('Dez')),
+    ]
