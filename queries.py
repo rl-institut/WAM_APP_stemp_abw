@@ -59,11 +59,20 @@ def insert_status_quo_scenario():
         'pop'
     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
-    global_params = {'resid_dem_el': 100, 'crt_dem_el': 100, 'battery': 0,
-                     'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
-                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
-                     'dist_resid': 1000, 'use_forest': False,
-                     'use_ffh_areas': False, 'use_cult_areas': False,
+    global_params = {'resid_dem_el': 100,
+                     'crt_dem_el': 100,
+                     'ind_dem_el': 100,
+                     'battery': 0,
+                     'dsm_resid': 0,
+                     'emobility': 0,
+                     'resid_save_th': 0,
+                     'crt_save_th': 0,
+                     'resid_pth': 0,
+                     'crt_pth': 0,
+                     'dist_resid': 1000,
+                     'use_forest': False,
+                     'use_ffh_areas': False,
+                     'use_cult_areas': False,
                      'repowering_scn': 0}
     region_data = mun_data_filtered.sum(axis=0).round(decimals=1).to_dict()
     region_data.update(global_params)

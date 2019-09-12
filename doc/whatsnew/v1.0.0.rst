@@ -12,10 +12,12 @@ Neue Features
 - Ergebnis-Ebenen: Es werden nun Änderungen ggü. dem Status quo sowie Popups angezeigt #38
 - ausführlichere Erklärtexte zu Potenzialen von
     - Freiflächen-Photovoltaikanlagen #75
+- El. Energiebedarf Industrie änderbar #86
 
 Änderungen
 ~~~~~~~~~~
 
 - PV-Freiflächen-Potenziale korrigiert #75
+- Einwohnerzahlen und Wärmebedarfe korrigiert #74
 - Verbesserungen an der Benutzeroberfläche
 - diverse Bugfixes

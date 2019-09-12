@@ -5,16 +5,7 @@
 </div>
 
 <div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
-  <h3>New features!</h3>
-  <ul>
-    <!--<li>In den Ergebnis-Ebenen können die <strong>Ergebnisse nun gemeindescharf</strong> eingesehen werden und <strong>Änderungen ggü. dem Status quo</strong> werden angezeigt</li>-->
-    <li>The <strong>electrical energy demand</strong> can now be increased</li>
-    <!--<li>Die <strong>Potenziale für Photovoltaik-Freiflächenanlagen</strong> wurden überarbeitet</li>-->
-    <li>You can now use <strong>the feedback form</strong> to give us your review on the tool (see main menu)</li>
-    <li><strong>More detailed explanatory texts</strong> (e.g. for wind turbines and conventional power plants)</li>
-    <li><strong>Inhabitants and heat demand</strong> corrected</li>
-    <li>Some minor <strong>bugs</strong> fixed</li>
-  </ul>
+  <p style="margin: 0.25rem;">You can find a list of <strong>changes</strong> (e.g. new features) for every version in the <a href="https://stemp-abw.readthedocs.io/en/dev/whats_new.html" target="_blank" style="color: #fff;">documentation</a>.</p>
 </div>
 
 Use this tool to get an overview of land use and the energy system in your region. Play around with the energy system and compare the results with reference scenarios.
