@@ -214,8 +214,8 @@ def insert_status_quo_results():
     scn.results = results
     scn.save()
 
-
-#insert_repowering_scenarios()
-#insert_potential_areas()
-insert_status_quo_scenario()
-insert_status_quo_results()
+if 'READTHEDOCS' not in os.environ:
+    #insert_repowering_scenarios()
+    #insert_potential_areas()
+    insert_status_quo_scenario()
+    insert_status_quo_results()
