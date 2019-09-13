@@ -3,6 +3,8 @@ import json
 import os
 from utils.widgets import InfoButton
 
+from django.utils.translation import gettext_lazy as _
+
 from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
     ScenarioDropdownForm
 from stemp_abw.app_settings import layer_areas_metadata, layer_region_metadata,\
@@ -170,7 +172,7 @@ def create_panel_reveal_info_button(reveal_id, reveal_icon):
     """
     f = open(os.path.join(text_files_dir(), f'{reveal_id}.md'), 'r', encoding='utf-8')
     popup = InfoButton(text=f.read(),
-                       tooltip='Bitte klicken!',
+                       tooltip=str(_('Bitte klicken!')),
                        is_markdown=True,
                        ionicon_type=reveal_icon,
                        ionicon_size='small',
