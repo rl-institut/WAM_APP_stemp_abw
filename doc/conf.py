@@ -51,8 +51,12 @@ if 'READTHEDOCS' in os.environ:
     except FileNotFoundError:
         pass
 
+    # On RTD, the stemp package is installed in a directory named after the
+    # current branch. To make the APIdocs work properly a symlink to this
+    # directory is necessary:
+    BRANCH_DIR = os.path.dirname(os.path.dirname(__file__))
     os.symlink(
-        os.path.join(STEMP_ABW_ROOT, 'feature-sphinx_apidocs'),
+        BRANCH_DIR,
         os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
     )
 
