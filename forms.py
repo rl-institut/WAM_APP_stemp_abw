@@ -1,10 +1,12 @@
+import os
 from django import forms
 from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
-
 from stemp_abw.models import Scenario
-from stemp_abw.dataio.load_static import load_repowering_scenarios
 
-REPOWERING_SCENARIOS = load_repowering_scenarios()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.dataio.load_static import load_repowering_scenarios
+    REPOWERING_SCENARIOS = load_repowering_scenarios()
 
 
 class LayerGroupForm(forms.Form):

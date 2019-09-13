@@ -5,8 +5,12 @@ from utils.widgets import InfoButton
 
 from django.utils.translation import gettext_lazy as _
 
-from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm,\
-    ScenarioDropdownForm
+from stemp_abw.forms import LayerGroupForm, ComponentGroupForm, AreaGroupForm
+
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.forms import ScenarioDropdownForm
+
 from stemp_abw.app_settings import layer_areas_metadata, layer_region_metadata,\
     layer_result_metadata, LAYER_DEFAULT_STYLES, ESYS_COMPONENTS_METADATA,\
     ESYS_AREAS_METADATA, labels, text_files_dir
@@ -181,5 +185,6 @@ def create_panel_reveal_info_button(reveal_id, reveal_icon):
     f.close()
     return popup
 
-
-SCENARIO_DATA = prepare_scenario_data()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    SCENARIO_DATA = prepare_scenario_data()

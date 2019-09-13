@@ -1,9 +1,14 @@
+import os
 from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config.prepare_context import component_data, SCENARIO_DATA,\
-    prepare_layer_data
+from stemp_abw.config.prepare_context import component_data, prepare_layer_data
+
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.config.prepare_context import SCENARIO_DATA
+
 from stemp_abw.config.prepare_texts import label_data, text_data
 from stemp_abw.config.leaflet import LEAFLET_CONFIG
 from stemp_abw.models import Scenario

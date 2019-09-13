@@ -35,6 +35,11 @@ MOCK_MODULES = [
     'django.contrib.gis.geos'
 ]
 
+# UNCOMMENT TO BUILD DOCS LOCALLY (when building API docs this prevents import
+# of DB data which is not supported on RTD; required locally as the WAM DB
+# config file 'stemp_abw_config.cfg' (see below) is empty):
+#os.environ['READTHEDOCS'] = 'True'
+
 if 'READTHEDOCS' in os.environ:
     # Mock modules not available in RTD-build container:
     sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
