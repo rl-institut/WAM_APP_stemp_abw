@@ -45,7 +45,12 @@ if 'READTHEDOCS' in os.environ:
     # As stemp_abw is cloned under different name, we have to set up a symlink
     # Remove any RTD build relicts:
     print('Running RTD build commands for stemp ABW docs...')
-    os.remove(os.path.join(STEMP_ABW_ROOT, 'stemp_abw'))
+
+    try:
+        os.remove(os.path.join(STEMP_ABW_ROOT, 'stemp_abw'))
+    except FileNotFoundError:
+        pass
+
     os.symlink(
         os.path.join(STEMP_ABW_ROOT, 'doc'),
         os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
