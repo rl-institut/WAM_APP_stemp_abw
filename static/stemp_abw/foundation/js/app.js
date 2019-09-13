@@ -42231,13 +42231,13 @@ if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width() >= 640) {
       if (current_cookies.includes('django_language=de')) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Zu den Ergebnisflächen <i class ="icon ion-android-remove icon--small"></i>');
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Go to results layers <i class ="icon ion-android-remove icon--small"></i>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Go to Results Layers <i class ="icon ion-android-remove icon--small"></i>');
       }
     } else {
       if (current_cookies.includes('django_language=de')) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('Mehr Ergebnisgrafiken <i class ="icon ion-android-add icon--small"></i>');
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('More graphs <i class ="icon ion-android-add icon--small"></i>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btnExpand').html('More Charts <i class ="icon ion-android-add icon--small"></i>');
       }
     }
   };
