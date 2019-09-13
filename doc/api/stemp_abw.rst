@@ -9,8 +9,11 @@ Subpackages
     stemp_abw.config
     stemp_abw.dataio
     stemp_abw.migrations
+    stemp_abw.results
     stemp_abw.simulation
+    stemp_abw.templatetags
     stemp_abw.views
+    stemp_abw.visualizations
 
 Submodules
 ----------
@@ -35,14 +38,6 @@ stemp\_abw.apps module
 ----------------------
 
 .. automodule:: stemp_abw.apps
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-stemp\_abw.charts\_data module
-------------------------------
-
-.. automodule:: stemp_abw.charts_data
     :members:
     :undoc-members:
     :show-inheritance:
@@ -79,14 +74,6 @@ stemp\_abw.queries module
     :undoc-members:
     :show-inheritance:
 
-stemp\_abw.results module
--------------------------
-
-.. automodule:: stemp_abw.results
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 stemp\_abw.sessions module
 --------------------------
 
@@ -115,14 +102,6 @@ stemp\_abw.urls module
 ----------------------
 
 .. automodule:: stemp_abw.urls
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-stemp\_abw.visualizations module
---------------------------------
-
-.. automodule:: stemp_abw.visualizations
     :members:
     :undoc-members:
     :show-inheritance:
