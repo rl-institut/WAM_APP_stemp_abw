@@ -165,7 +165,7 @@ class RegMunEnergyReElDemShareDetailView(MasterDetailView):
             'subtitle': {'text': str(_('in Prozent zum Strombedarf'))},
             'yAxis': {'title': {'text': str(_('Prozent'))}},
             'tooltip': {
-                'pointFormat': str(_('Bedarf')) + '{point.stackTotal} %'
+                'pointFormat': str(_('Bedarf')) + ': {point.y:.1f} %'
             }
         }
         chart = highcharts.HCStackedColumn(

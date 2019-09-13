@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 18:18+0200\n"
+"POT-Creation-Date: 2019-09-12 14:36+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,31 +18,24 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: results/result_charts.py:16 templates/stemp_abw/results.html:5
-msgid "Stromerzeugung"
-msgstr "Electricity generation"
-
-#: results/result_charts.py:17 results/result_charts.py:43
-#: results/result_charts.py:91 results/result_charts.py:108
-#: results/result_charts.py:125 results/result_charts.py:151
-msgid "in GWh"
-msgstr "in GWh"
-
-#: results/result_charts.py:18 results/result_charts.py:44
-#: results/result_charts.py:92 results/result_charts.py:109
-#: results/result_charts.py:126 results/result_charts.py:152
-msgid "GWh"
-msgstr "GWh"
-
-#: results/result_charts.py:21 results/result_charts.py:28
-#: results/result_charts.py:94 results/result_charts.py:111
-#: results/result_charts.py:129 results/result_charts.py:186
+#: app_settings.py:137 results/result_charts.py:22 results/result_charts.py:29
+#: results/result_charts.py:105 results/result_charts.py:124
+#: results/result_charts.py:145 results/result_charts.py:208
 msgid "Windenergie"
 msgstr "EN: Windenergie"
 
-#: results/result_charts.py:22 results/result_charts.py:29
-#: results/result_charts.py:95 results/result_charts.py:112
-#: views/detail_views.py:161 views/detail_views.py:199
+#: app_settings.py:138 results/result_charts.py:24 results/result_charts.py:31
+#: results/result_charts.py:107 results/result_charts.py:126
+#: results/results.py:141 views/detail_views.py:160 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:793 views/detail_views.py:832
+#: views/detail_views.py:883
+msgid "PV Dach"
+msgstr "PV roof"
+
+#: app_settings.py:139 results/result_charts.py:23 results/result_charts.py:30
+#: results/result_charts.py:106 results/result_charts.py:125
+#: results/results.py:140 views/detail_views.py:161 views/detail_views.py:199
 #: views/detail_views.py:251 views/detail_views.py:302
 #: views/detail_views.py:353 views/detail_views.py:405
 #: views/detail_views.py:794 views/detail_views.py:832
@@ -51,17 +44,8 @@ msgstr "EN: Windenergie"
 msgid "PV Freifläche"
 msgstr "PV solar park"
 
-#: results/result_charts.py:23 results/result_charts.py:30
-#: results/result_charts.py:96 results/result_charts.py:113
-#: views/detail_views.py:160 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883
-msgid "PV Dach"
-msgstr "PV roof"
-
-#: results/result_charts.py:24 results/result_charts.py:31
-#: results/result_charts.py:97 results/result_charts.py:114
+#: app_settings.py:140 results/result_charts.py:25 results/result_charts.py:32
+#: results/result_charts.py:108 results/result_charts.py:127
 #: views/detail_views.py:161 views/detail_views.py:200
 #: views/detail_views.py:252 views/detail_views.py:303
 #: views/detail_views.py:354 views/detail_views.py:406
@@ -71,135 +55,230 @@ msgstr "PV roof"
 msgid "Wasserkraft"
 msgstr "Hydropower"
 
-#: results/result_charts.py:25 results/result_charts.py:32
-#: results/result_charts.py:98 results/result_charts.py:115
-msgid "Biogas"
-msgstr "EN: Biogas"
+#: app_settings.py:141 views/detail_views.py:162 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:795 views/detail_views.py:833
+#: views/detail_views.py:934 views/detail_views.py:986
+msgid "Bioenergie"
+msgstr "Bioenergy"
 
-#: results/result_charts.py:26 results/result_charts.py:33
-#: results/result_charts.py:99 results/result_charts.py:116
-msgid "Fossile Brennstoffe"
-msgstr "EN: Fossile Brennstoffe"
+#: app_settings.py:142
+msgid "Fossil"
+msgstr ""
 
-#: results/result_charts.py:27 results/result_charts.py:34
-#: results/result_charts.py:100 results/result_charts.py:117
-msgid "Import"
-msgstr "Import"
-
-#: results/result_charts.py:36 results/result_charts.py:56
-#: results/result_charts.py:71 results/result_charts.py:163
-msgid "Ihr Szenario"
-msgstr "EN: Ihr Szenario"
-
-#: results/result_charts.py:36 results/result_charts.py:56
-#: results/result_charts.py:71 results/result_charts.py:163
-msgid "Status quo"
-msgstr "Status quo"
-
-#: results/result_charts.py:42
-msgid "Stromverbrauch"
-msgstr "EN: Stromverbrauch"
-
-#: results/result_charts.py:47 results/result_charts.py:51
-#: results/result_charts.py:154 results/result_charts.py:158
+#: app_settings.py:143 results/result_charts.py:49 results/result_charts.py:53
+#: results/result_charts.py:175 results/result_charts.py:179
 #: views/detail_views.py:459 views/detail_views.py:507
 #: views/detail_views.py:554 views/detail_views.py:601
 #: views/detail_views.py:1039 views/detail_views.py:1087
 msgid "Haushalte"
 msgstr "Households"
 
-#: results/result_charts.py:48 results/result_charts.py:52
-#: results/result_charts.py:155 results/result_charts.py:159
+#: app_settings.py:144 results/result_charts.py:50 results/result_charts.py:54
+#: results/result_charts.py:176 results/result_charts.py:180
 msgid "GHD"
 msgstr "GHD"
 
-#: results/result_charts.py:49 results/result_charts.py:53
-#: results/result_charts.py:156 results/result_charts.py:160
+#: app_settings.py:145 results/result_charts.py:51 results/result_charts.py:55
+#: results/result_charts.py:177 results/result_charts.py:181
 #: views/detail_views.py:459 views/detail_views.py:507
 #: views/detail_views.py:1039 views/detail_views.py:1087
 msgid "Industrie"
 msgstr "Industry"
 
-#: results/result_charts.py:50 results/result_charts.py:54
-#: results/result_charts.py:157 results/result_charts.py:161
+#: app_settings.py:146 results/result_charts.py:28 results/result_charts.py:35
+#: results/result_charts.py:111 results/result_charts.py:130
+#: results/results.py:185 results/results.py:188
+msgid "Import"
+msgstr "Import"
+
+#: app_settings.py:147 results/result_charts.py:52 results/result_charts.py:56
+#: results/result_charts.py:178 results/result_charts.py:182
+#: results/results.py:191 results/results.py:194
 msgid "Export"
 msgstr "Export"
 
-#: results/result_charts.py:62
+#: app_settings.py:164
+msgid "Jan"
+msgstr ""
+
+#: app_settings.py:165
+msgid "Feb"
+msgstr ""
+
+#: app_settings.py:166
+msgid "Mär"
+msgstr "Mar"
+
+#: app_settings.py:167
+msgid "Apr"
+msgstr ""
+
+#: app_settings.py:168
+msgid "Mai"
+msgstr "May"
+
+#: app_settings.py:169
+msgid "Jun"
+msgstr ""
+
+#: app_settings.py:170
+msgid "Jul"
+msgstr ""
+
+#: app_settings.py:171
+msgid "Aug"
+msgstr ""
+
+#: app_settings.py:172
+msgid "Sep"
+msgstr ""
+
+#: app_settings.py:173
+msgid "Okt"
+msgstr "Oct"
+
+#: app_settings.py:174
+msgid "Nov"
+msgstr ""
+
+#: app_settings.py:175
+msgid "Dez"
+msgstr "Dec"
+
+#: results/result_charts.py:17 templates/stemp_abw/results.html:5
+msgid "Stromerzeugung"
+msgstr "Electricity generation"
+
+#: results/result_charts.py:18 results/result_charts.py:45
+#: results/result_charts.py:102 results/result_charts.py:121
+#: results/result_charts.py:140 results/result_charts.py:172
+msgid "in GWh"
+msgstr "in GWh"
+
+#: results/result_charts.py:19 results/result_charts.py:46
+#: results/result_charts.py:103 results/result_charts.py:122
+#: results/result_charts.py:141 results/result_charts.py:173
+msgid "GWh"
+msgstr "GWh"
+
+#: results/result_charts.py:26 results/result_charts.py:33
+#: results/result_charts.py:109 results/result_charts.py:128
+msgid "Biogas"
+msgstr "EN: Biogas"
+
+#: results/result_charts.py:27 results/result_charts.py:34
+#: results/result_charts.py:110 results/result_charts.py:129
+msgid "Fossile Brennstoffe"
+msgstr "EN: Fossile Brennstoffe"
+
+#: results/result_charts.py:37 results/result_charts.py:58
+#: results/result_charts.py:74 results/result_charts.py:184
+msgid "Ihr Szenario"
+msgstr "EN: Ihr Szenario"
+
+#: results/result_charts.py:38 results/result_charts.py:59
+#: results/result_charts.py:75 results/result_charts.py:185
+#: results/results.py:22
+msgid "Status quo"
+msgstr "Status quo"
+
+#: results/result_charts.py:44
+msgid "Stromverbrauch"
+msgstr "EN: Stromverbrauch"
+
+#: results/result_charts.py:65
 msgid "Eigenversorgung Strom"
 msgstr "EN: Eigenversorgung Strom"
 
-#: results/result_charts.py:63
+#: results/result_charts.py:66
 msgid "in %"
 msgstr "in %"
 
-#: results/result_charts.py:66 results/result_charts.py:68
+#: results/result_charts.py:69 results/result_charts.py:71
+#: results/results.py:249
 msgid "Bilanziell"
 msgstr "EN: Bilanziell"
 
-#: results/result_charts.py:67 results/result_charts.py:69
+#: results/result_charts.py:70 results/result_charts.py:72
+#: results/results.py:251
 msgid "Zeitgleich"
 msgstr "EN: Zeitgleich"
 
-#: results/result_charts.py:90
+#: results/result_charts.py:101
 msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
 msgstr "EN: Zusammensetzung Stromerzeugung (Dein Szenario)"
 
-#: results/result_charts.py:107
+#: results/result_charts.py:120
 msgid "Zusammensetzung Stromerzeugung (Status quo)"
 msgstr "EN: Zusammensetzung Stromerzeugung (Status quo)"
 
-#: results/result_charts.py:124
+#: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
 msgstr "EN: Monatliche Stromerzeugung aus EE (Dein Szenario)"
 
-#: results/result_charts.py:130
+#: results/result_charts.py:146
 msgid "PV"
 msgstr "PV"
 
-#: results/result_charts.py:150
+#: results/result_charts.py:171
 msgid "Energieverbrauch (Strom)"
 msgstr "EN: Energieverbrauch (Strom)"
 
-#: results/result_charts.py:182
+#: results/result_charts.py:204
 msgid "Windenergie Erzeugung"
 msgstr "EN: Windenergie Erzeugung"
 
-#: results/result_charts.py:183 results/result_charts.py:194
-#: results/result_charts.py:204 results/result_charts.py:224
-#: results/result_charts.py:232 results/result_charts.py:240
+#: results/result_charts.py:205 results/result_charts.py:216
+#: results/result_charts.py:226 results/result_charts.py:246
+#: results/result_charts.py:254 results/result_charts.py:262
 msgid "in GW"
 msgstr "in GW"
 
-#: results/result_charts.py:184 results/result_charts.py:195
-#: results/result_charts.py:205 results/result_charts.py:225
-#: results/result_charts.py:233 results/result_charts.py:241
+#: results/result_charts.py:206 results/result_charts.py:217
+#: results/result_charts.py:227 results/result_charts.py:247
+#: results/result_charts.py:255 results/result_charts.py:263
 msgid "GW"
 msgstr "GW"
 
-#: results/result_charts.py:187
+#: results/result_charts.py:209
 msgid "Windenergie2"
 msgstr "EN: Windenergie2"
 
-#: results/result_charts.py:193
+#: results/result_charts.py:215
 msgid "Photovoltaik Erzeugung"
 msgstr "EN: Photovoltaik Erzeugung"
 
-#: results/result_charts.py:203
+#: results/result_charts.py:225
 msgid "Bioenergie Erzeugung"
 msgstr "EN: Bioenergie Erzeugung"
 
-#: results/result_charts.py:223
+#: results/result_charts.py:245
 msgid "Erzeugung"
 msgstr "EN: Erzeugung"
 
-#: results/result_charts.py:231 views/detail_views.py:168
+#: results/result_charts.py:253 views/detail_views.py:168
 msgid "Bedarf"
 msgstr "Demand"
 
-#: results/result_charts.py:239
+#: results/result_charts.py:261
 msgid "Erneuerbare Energien"
 msgstr "EN: Erneuerbare Energien"
+
+#: results/results.py:138
+msgid "Photovoltaik"
+msgstr "EN: Photovoltaik"
+
+#: results/results.py:462
+msgid ""
+"One of source and target nodes must contain exactly 1 node, the other >=1 "
+"nodes."
+msgstr ""
+
+#: results/results.py:473
+msgid "Aggregation mode is invalid."
+msgstr ""
 
 #: templates/stemp_abw/contact.html:11
 msgid "Projektleiterin"
@@ -1549,14 +1628,6 @@ msgstr "Forecast"
 #: views/detail_views.py:985
 msgid "Wind"
 msgstr "Wind"
-
-#: views/detail_views.py:162 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:795 views/detail_views.py:833
-#: views/detail_views.py:934 views/detail_views.py:986
-msgid "Bioenergie"
-msgstr "Bioenergy"
 
 #: views/detail_views.py:164
 msgid "EE-Erzeugung"
