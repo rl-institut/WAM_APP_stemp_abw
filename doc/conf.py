@@ -59,12 +59,12 @@ if 'READTHEDOCS' in os.environ:
         os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
     )
 
-    # Set WAM config manually:
-    os.environ['WAM_CONFIG_PATH'] = os.path.join(
-        os.path.dirname(__file__),
-        'stemp_abw_config.cfg'
-    )
-    os.environ['WAM_APPS'] = 'stemp_abw'
+# Set WAM config manually:
+os.environ['WAM_CONFIG_PATH'] = os.path.join(
+    os.path.dirname(__file__),
+    'stemp_abw_config.cfg'
+)
+os.environ['WAM_APPS'] = 'stemp_abw'
 
 # -- Configure django --------------------------------------------------------
 import django
