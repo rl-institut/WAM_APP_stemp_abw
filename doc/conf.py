@@ -52,7 +52,7 @@ if 'READTHEDOCS' in os.environ:
         pass
 
     os.symlink(
-        os.path.join(STEMP_ABW_ROOT, 'feature/sphinx_apidocs'),
+        os.path.join(STEMP_ABW_ROOT, 'feature-sphinx_apidocs'),
         os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
     )
 
