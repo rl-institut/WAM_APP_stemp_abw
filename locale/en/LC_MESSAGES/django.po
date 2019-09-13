@@ -476,11 +476,11 @@ msgstr "Anhalt map as image"
 #: templates/stemp_abw/index.html:23
 #: templates/stemp_abw/navigation_start.html:4
 msgid "Zum Tool"
-msgstr "Go to Tool"
+msgstr "Take me to the Tool"
 
 #: templates/stemp_abw/index.html:29
 msgid "Neu hier?"
-msgstr "Are you new here?"
+msgstr "New here?"
 
 #: templates/stemp_abw/index.html:37
 msgid ""
