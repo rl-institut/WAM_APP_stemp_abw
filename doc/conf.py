@@ -21,7 +21,6 @@ from unittest.mock import MagicMock
 # Add stemp tool to path:
 STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(STEMP_ABW_ROOT)
-print(STEMP_ABW_ROOT)
 
 # -- Module mocking required for RTD -----------------------------------------
 class Mock(MagicMock):
@@ -52,8 +51,8 @@ if 'READTHEDOCS' in os.environ:
         pass
 
     # On RTD, the stemp package is installed in a directory named after the
-    # current branch. To make the APIdocs work properly a symlink to this
-    # directory is necessary:
+    # current branch. To make the APIdocs work properly a symlink from this
+    # branch directory to the expected module directory is necessary:
     BRANCH_DIR = os.path.dirname(os.path.dirname(__file__))
     os.symlink(
         BRANCH_DIR,
