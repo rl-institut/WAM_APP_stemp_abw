@@ -16,11 +16,12 @@ import os
 import sys
 from unittest.mock import MagicMock
 
-sys.path.insert(0, os.path.abspath('..'))
+#sys.path.insert(0, os.path.abspath('..'))
 
 # Add stemp tool to path:
 STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(STEMP_ABW_ROOT)
+
 
 # -- Module mocking required for RTD -----------------------------------------
 class Mock(MagicMock):
