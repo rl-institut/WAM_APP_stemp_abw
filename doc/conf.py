@@ -16,7 +16,7 @@ import os
 import sys
 from unittest.mock import MagicMock
 
-#sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('..'))
 
 # Add stemp tool to path:
 STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -39,9 +39,9 @@ MOCK_MODULES = [
 if 'READTHEDOCS' in os.environ:
     # Mock modules not available in RTD-build container:
     sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
-print(os.environ)
+
 # -- Symlinks and WAM config -------------------------------------------------
-if 'READTHEDOCS' in os.environ:
+if 'READTHEDOCS' in os.environ or True:
     # As stemp_abw is cloned under different name, we have to set up a symlink
     # Remove any RTD build relicts:
     print('Running RTD build commands for stemp ABW docs...')
