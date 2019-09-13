@@ -14,14 +14,56 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
+from unittest.mock import MagicMock
 
-# -- Configure Django --------------------------------------------------------
-#import django
-#django.setup()
+#sys.path.insert(0, os.path.abspath('..'))
 
-# autodoc_mock_imports = ['stemp_abw.migrations']
+# Add stemp tool to path:
+STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+print (STEMP_ABW_ROOT)
+sys.path.append(STEMP_ABW_ROOT)
+
+# -- Module mocking required for RTD -----------------------------------------
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+
+MOCK_MODULES = [
+    'django.contrib.gis.gdal',
+    'django.contrib.gis.gdal.error',
+    'django.contrib.gis.geos'
+]
+
+if 'READTHEDOCS' in os.environ:
+    # Mock modules not available in RTD-build container:
+    sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+# -- Symlinks and WAM config -------------------------------------------------
+if 'READTHEDOCS' in os.environ:
+    # As stemp_abw is cloned under different name, we have to set up a symlink
+    # Remove any RTD build relicts:
+    print('Running RTD build commands for stemp ABW docs...')
+    os.remove(os.path.join(STEMP_ABW_ROOT, 'stemp_abw'))
+    os.symlink(
+        os.path.join(STEMP_ABW_ROOT, 'doc'),
+        os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
+    )
+
+    # Set WAM config manually:
+    os.environ['WAM_CONFIG_PATH'] = os.path.join(
+        os.path.dirname(__file__),
+        'stemp_abw_config.cfg'
+    )
+    os.environ['WAM_APPS'] = 'stemp_abw'
+
+# -- Configure django --------------------------------------------------------
+import django
+os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
+django.setup()
+
+autodoc_mock_imports = ['stemp_abw.migrations']
 
 # -- Project information -----------------------------------------------------
 
@@ -30,9 +72,10 @@ copyright = '2019, Reiner Lemoine Institut'
 author = 'Reiner Lemoine Institut'
 
 # The short X.Y version
-version = ''
+from stemp_abw import __version__
+version = __version__
 # The full version, including alpha/beta/rc tags
-release = ''
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -158,8 +201,11 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'StEmp-ABW.tex', 'StEmp-ABW Documentation',
-     'Reiner Lemoine Institut', 'manual'),
+    (master_doc,
+     'StEmp-ABW.tex',
+     'StEmp-ABW Documentation',
+     'Reiner Lemoine Institut',
+     'manual'),
 ]
 
 
@@ -168,7 +214,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'stemp-abw', 'StEmp-ABW Documentation',
+    (master_doc,
+     'stemp-abw',
+     'StEmp-ABW Documentation',
      [author], 1)
 ]
 
@@ -179,8 +227,12 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'StEmp-ABW', 'StEmp-ABW Documentation',
-     author, 'StEmp-ABW', 'One line description of project.',
+    (master_doc,
+     'StEmp-ABW',
+     'StEmp-ABW Documentation',
+     author,
+     'StEmp-ABW',
+     'One line description of project.',
      'Miscellaneous'),
 ]
 
