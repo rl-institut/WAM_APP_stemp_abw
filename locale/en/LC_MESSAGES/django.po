@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 14:36+0200\n"
+"POT-Creation-Date: 2019-09-13 09:59+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -146,6 +146,10 @@ msgstr ""
 #: app_settings.py:175
 msgid "Dez"
 msgstr "Dec"
+
+#: config/prepare_context.py:175
+msgid "Bitte klicken!"
+msgstr "Click me!"
 
 #: results/result_charts.py:17 templates/stemp_abw/results.html:5
 msgid "Stromerzeugung"
