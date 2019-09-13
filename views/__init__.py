@@ -92,8 +92,8 @@ class MapView(TemplateView):
         context.update(text_data())
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
-        context['results_charts_tab1_viz'] = results_charts_tab1_viz
-        context['results_charts_tab2_viz'] = results_charts_tab2_viz
+        context['results_charts_tab1_viz'] = results_charts_tab1_viz()
+        context['results_charts_tab2_viz'] = results_charts_tab2_viz()
         context['results_charts_tab3_viz'] = results_charts_tab3_viz
         context['results_charts_tab4_viz'] = results_charts_tab4_viz
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
