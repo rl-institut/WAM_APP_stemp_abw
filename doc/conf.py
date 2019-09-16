@@ -81,7 +81,10 @@ import django
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 django.setup()
 
-autodoc_mock_imports = ['stemp_abw.migrations']
+# mock django's migrations module
+# -> doesn't work, delete file api/stemp_abw.migrations.rst (and remove
+# referencing line from stemp_abw.rst) instead before building)
+#autodoc_mock_imports = ['stemp_abw.migrations']
 
 # -- Project information -----------------------------------------------------
 
