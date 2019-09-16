@@ -15,7 +15,10 @@ os.environ['DJANGO_DATABASE'] = 'default'
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 application = get_wsgi_application()
 
-from stemp_abw.dataio.load_static import load_mun_data
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.dataio.load_static import load_mun_data
+
 from stemp_abw.models import \
     Scenario, ScenarioData, REPotentialAreas, RepoweringScenario, SimulationResults
 from stemp_abw.sessions import UserSession
@@ -215,7 +218,9 @@ def insert_status_quo_results():
     scn.save()
 
 
-#insert_repowering_scenarios()
-#insert_potential_areas()
-insert_status_quo_scenario()
-insert_status_quo_results()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    #insert_repowering_scenarios()
+    #insert_potential_areas()
+    insert_status_quo_scenario()
+    insert_status_quo_results()

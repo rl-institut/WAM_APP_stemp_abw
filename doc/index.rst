@@ -16,6 +16,7 @@ Hintergrundinformationen und Anleitungen.
 Inhalt:
 
 .. toctree::
+   :caption: Inhalt
    :maxdepth: 1
 
    about
@@ -29,7 +30,12 @@ Inhalt:
    tool_transfer
    developer
    whats_new
-   api
+
+.. toctree::
+   :caption: API
+   :maxdepth: 1
+
+   api/modules
 
 Indices and tables
 ==================

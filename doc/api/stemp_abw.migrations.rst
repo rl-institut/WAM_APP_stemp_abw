@@ -140,6 +140,230 @@ stemp\_abw.migrations.0017\_repotentialareas1\_repotentialareas2\_repotentialare
     :undoc-members:
     :show-inheritance:
 
+stemp\_abw.migrations.0018\_auto\_20190510\_1045 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0018_auto_20190510_1045
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0019\_regmunpopdensityresult\_regmunpopresult module
+--------------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0019_regmunpopdensityresult_regmunpopresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0020\_regmunenergyreeldemshareresult module
+-----------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0020_regmunenergyreeldemshareresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0021\_regmungenenergyreresult module
+----------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0021_regmungenenergyreresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0022\_regmungenenergyredensityresult module
+-----------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0022_regmungenenergyredensityresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0023\_regmungencapreresult module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0023_regmungencapreresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0024\_regmungencapredensityresult module
+--------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0024_regmungencapredensityresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0025\_regmungencountwinddensityresult module
+------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0025_regmungencountwinddensityresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0026\_regmundemelenergyresult module
+----------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0026_regmundemelenergyresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0027\_regmundemelenergypercapitaresult module
+-------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0027_regmundemelenergypercapitaresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0028\_regmundemthenergyresult module
+----------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0028_regmundemthenergyresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0029\_regmundemthenergypercapitaresult module
+-------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0029_regmundemthenergypercapitaresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0030\_auto\_20190605\_1642 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0030_auto_20190605_1642
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0031\_regmunenergyreeldemshareresultdelta module
+----------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0031_regmunenergyreeldemshareresultdelta
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0032\_regmun\_geom\_centroid module
+---------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0032_regmun_geom_centroid
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0033\_regmungenenergyredeltaresult module
+---------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0033_regmungenenergyredeltaresult
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0034\_delete\_regmunenergyreeldemshareresultdelta module
+------------------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0034_delete_regmunenergyreeldemshareresultdelta
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0035\_auto\_20190606\_1432 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0035_auto_20190606_1432
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0036\_regmundemelenergydeltaresult\_regmundemelenergypercapitadeltaresult\_regmunenergyreeldemsharedeltaresu module
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0036_regmundemelenergydeltaresult_regmundemelenergypercapitadeltaresult_regmunenergyreeldemsharedeltaresu
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0037\_auto\_20190616\_1434 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0037_auto_20190616_1434
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0038\_feedints\_bio module
+------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0038_feedints_bio
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0039\_mundata\_gen\_el\_energy\_bio module
+----------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0039_mundata_gen_el_energy_bio
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0040\_mundata\_gen\_el\_energy\_conventional module
+-------------------------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0040_mundata_gen_el_energy_conventional
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0041\_auto\_20190617\_1821 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0041_auto_20190617_1821
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0042\_regsurfacewater module
+--------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0042_regsurfacewater
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0043\_delete\_regsurfacewater module
+----------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0043_delete_regsurfacewater
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0044\_regsurfacewater module
+--------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0044_regsurfacewater
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.migrations.0045\_auto\_20190624\_1207 module
+-------------------------------------------------------
+
+.. automodule:: stemp_abw.migrations.0045_auto_20190624_1207
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

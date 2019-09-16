@@ -4,10 +4,26 @@ stemp\_abw.config package
 Submodules
 ----------
 
-stemp\_abw.config.io module
----------------------------
+stemp\_abw.config.leaflet module
+--------------------------------
 
-.. automodule:: stemp_abw.config.io
+.. automodule:: stemp_abw.config.leaflet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.config.prepare\_context module
+-----------------------------------------
+
+.. automodule:: stemp_abw.config.prepare_context
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+stemp\_abw.config.prepare\_texts module
+---------------------------------------
+
+.. automodule:: stemp_abw.config.prepare_texts
     :members:
     :undoc-members:
     :show-inheritance:
