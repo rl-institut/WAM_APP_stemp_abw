@@ -220,7 +220,7 @@ msgstr "Composition power generation (status quo)"
 
 #: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
-msgstr "EN: Monatliche Stromerzeugung aus EE (Dein Szenario)"
+msgstr "Monthly electricity generation from renewable energy sources (your scenario)"
 
 #: results/result_charts.py:146
 msgid "PV"
@@ -228,11 +228,11 @@ msgstr "PV"
 
 #: results/result_charts.py:171
 msgid "Energieverbrauch (Strom)"
-msgstr "EN: Energieverbrauch (Strom)"
+msgstr "Energy consumption (electricity)"
 
 #: results/result_charts.py:204
 msgid "Windenergie Erzeugung"
-msgstr "EN: Windenergie Erzeugung"
+msgstr "Wind energy generation"
 
 #: results/result_charts.py:205 results/result_charts.py:216
 #: results/result_charts.py:226 results/result_charts.py:246
@@ -248,19 +248,19 @@ msgstr "GW"
 
 #: results/result_charts.py:209
 msgid "Windenergie2"
-msgstr "EN: Windenergie2"
+msgstr "Wind energie2"
 
 #: results/result_charts.py:215
 msgid "Photovoltaik Erzeugung"
-msgstr "EN: Photovoltaik Erzeugung"
+msgstr "Photovoltaic generation"
 
 #: results/result_charts.py:225
 msgid "Bioenergie Erzeugung"
-msgstr "EN: Bioenergie Erzeugung"
+msgstr "Bioenergy production"
 
 #: results/result_charts.py:245
 msgid "Erzeugung"
-msgstr "EN: Erzeugung"
+msgstr "Production"
 
 #: results/result_charts.py:253 views/detail_views.py:168
 msgid "Bedarf"
@@ -268,11 +268,11 @@ msgstr "Demand"
 
 #: results/result_charts.py:261
 msgid "Erneuerbare Energien"
-msgstr "EN: Erneuerbare Energien"
+msgstr "Renewable energy sources"
 
 #: results/results.py:138
 msgid "Photovoltaik"
-msgstr "EN: Photovoltaik"
+msgstr "Photovoltaics"
 
 #: results/results.py:462
 msgid ""
