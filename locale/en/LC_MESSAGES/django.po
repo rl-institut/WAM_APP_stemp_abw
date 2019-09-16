@@ -170,17 +170,17 @@ msgstr "GWh"
 #: results/result_charts.py:26 results/result_charts.py:33
 #: results/result_charts.py:109 results/result_charts.py:128
 msgid "Biogas"
-msgstr "EN: Biogas"
+msgstr "Biogas"
 
 #: results/result_charts.py:27 results/result_charts.py:34
 #: results/result_charts.py:110 results/result_charts.py:129
 msgid "Fossile Brennstoffe"
-msgstr "EN: Fossile Brennstoffe"
+msgstr "Fossil Fuels"
 
 #: results/result_charts.py:37 results/result_charts.py:58
 #: results/result_charts.py:74 results/result_charts.py:184
 msgid "Ihr Szenario"
-msgstr "EN: Ihr Szenario"
+msgstr "Your scenario"
 
 #: results/result_charts.py:38 results/result_charts.py:59
 #: results/result_charts.py:75 results/result_charts.py:185
@@ -190,11 +190,11 @@ msgstr "Status quo"
 
 #: results/result_charts.py:44
 msgid "Stromverbrauch"
-msgstr "EN: Stromverbrauch"
+msgstr "Power consumption"
 
 #: results/result_charts.py:65
 msgid "Eigenversorgung Strom"
-msgstr "EN: Eigenversorgung Strom"
+msgstr "Self-sufficiency electricity"
 
 #: results/result_charts.py:66
 msgid "in %"
@@ -203,20 +203,20 @@ msgstr "in %"
 #: results/result_charts.py:69 results/result_charts.py:71
 #: results/results.py:249
 msgid "Bilanziell"
-msgstr "EN: Bilanziell"
+msgstr "On balance"
 
 #: results/result_charts.py:70 results/result_charts.py:72
 #: results/results.py:251
 msgid "Zeitgleich"
-msgstr "EN: Zeitgleich"
+msgstr "Simultaneous"
 
 #: results/result_charts.py:101
 msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
-msgstr "EN: Zusammensetzung Stromerzeugung (Dein Szenario)"
+msgstr "Composition power generation (your scenario)"
 
 #: results/result_charts.py:120
 msgid "Zusammensetzung Stromerzeugung (Status quo)"
-msgstr "EN: Zusammensetzung Stromerzeugung (Status quo)"
+msgstr "Composition power generation (status quo)"
 
 #: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
