@@ -22,7 +22,7 @@ msgstr ""
 #: results/result_charts.py:105 results/result_charts.py:124
 #: results/result_charts.py:145 results/result_charts.py:208
 msgid "Windenergie"
-msgstr "EN: Windenergie"
+msgstr "EN: Wind energy"
 
 #: app_settings.py:138 results/result_charts.py:24 results/result_charts.py:31
 #: results/result_charts.py:107 results/result_charts.py:126
