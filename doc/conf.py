@@ -22,6 +22,7 @@ from unittest.mock import MagicMock
 STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(STEMP_ABW_ROOT)
 
+
 # -- Module mocking required for RTD -----------------------------------------
 class Mock(MagicMock):
     @classmethod
@@ -45,7 +46,6 @@ if 'READTHEDOCS' in os.environ:
     sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # -- Symlinks and WAM config -------------------------------------------------
-if 'READTHEDOCS' in os.environ:
     # As stemp_abw is cloned under different name, we have to set up a symlink
     # Remove any RTD build relicts:
     print('Running RTD build commands for stemp ABW docs...')
@@ -54,15 +54,20 @@ if 'READTHEDOCS' in os.environ:
         os.remove(os.path.join(STEMP_ABW_ROOT, 'stemp_abw'))
     except FileNotFoundError:
         pass
+    except IsADirectoryError:
+        pass
 
     # On RTD, the stemp package is installed in a directory named after the
     # current branch. To make the APIdocs work properly a symlink from this
     # branch directory to the expected module directory is necessary:
     BRANCH_DIR = os.path.dirname(os.path.dirname(__file__))
-    os.symlink(
-        BRANCH_DIR,
-        os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
-    )
+    try:
+        os.symlink(
+            BRANCH_DIR,
+            os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
+        )
+    except FileExistsError:
+        pass
 
 # Set WAM config manually:
 os.environ['WAM_CONFIG_PATH'] = os.path.join(
