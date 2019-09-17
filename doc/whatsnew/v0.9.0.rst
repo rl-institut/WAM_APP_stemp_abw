@@ -1,0 +1,19 @@
+v0.9.0 (17. September 2019)
+...........................
+
+Neue Features
+~~~~~~~~~~~~~
+
+- Mehrsprachenunterstützung #72
+- API docs hinzugefügt #89
+- ausführlichere Erklärtexte zu Potenzialen von
+    - Freiflächen-Photovoltaikanlagen #75
+- El. Energiebedarf Industrie änderbar #86
+
+Änderungen
+~~~~~~~~~~
+
+- PV-Freiflächen-Potenziale korrigiert #75
+- Einwohnerzahlen und Wärmebedarfe korrigiert #74
+- Verbesserungen an der Benutzeroberfläche
+- diverse Bugfixes
