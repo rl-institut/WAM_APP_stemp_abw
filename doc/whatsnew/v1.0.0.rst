@@ -6,16 +6,11 @@ Erste stabile Version
 Neue Features
 ~~~~~~~~~~~~~
 
-- Mehrsprachenunterstützung #72
 - Installation der vom Tool verwenden Daten ermöglicht via Django fixtures #71
-- Dokumentation fertiggestellt #30
+- Dokumentation fertiggestellt #30 inkl. API docs #89
 - Ergebnis-Ebenen: Es werden nun Änderungen ggü. dem Status quo sowie Popups angezeigt #38
-- ausführlichere Erklärtexte zu Potenzialen von
-    - Freiflächen-Photovoltaikanlagen #75
 
 Änderungen
 ~~~~~~~~~~
 
-- PV-Freiflächen-Potenziale korrigiert #75
-- Verbesserungen an der Benutzeroberfläche
 - diverse Bugfixes

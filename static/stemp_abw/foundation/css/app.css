@@ -1167,7 +1167,7 @@ footer {
       width: 7rem; }
       @media print, screen and (min-width: 40em) {
         footer .footer-hp__logo-bmbf {
-          width: 9rem; } }
+          width: 12rem; } }
   footer ul {
     margin: 0 0 .3rem; }
     footer ul li {
@@ -1773,10 +1773,10 @@ footer.map-footer {
     footer.map-footer ul.map-footer__logo li {
       margin-top: 0.5rem; }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-        height: 2.5rem; }
+        height: 2rem; }
         @media print, screen and (min-width: 40em) {
           footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-            height: 3.9rem;
+            height: 3.2rem;
             margin-top: 1.8rem; } }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-rli {
         height: 2rem; }
@@ -1794,7 +1794,7 @@ footer.map-footer {
         height: 3rem; }
         @media print, screen and (min-width: 40em) {
           footer.map-footer ul.map-footer__logo li .map-footer__logo-bmbf {
-            height: 6rem;
+            height: 7rem;
             margin-right: .5rem; } }
 
 @media print, screen and (min-width: 40em) {

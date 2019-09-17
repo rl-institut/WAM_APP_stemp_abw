@@ -14,14 +14,77 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
+from unittest.mock import MagicMock
 
-# -- Configure Django --------------------------------------------------------
-#import django
-#django.setup()
+#sys.path.insert(0, os.path.abspath('..'))
 
-# autodoc_mock_imports = ['stemp_abw.migrations']
+# Add stemp tool to path:
+STEMP_ABW_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(STEMP_ABW_ROOT)
+
+
+# -- Module mocking required for RTD -----------------------------------------
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+
+MOCK_MODULES = [
+    'django.contrib.gis.gdal',
+    'django.contrib.gis.gdal.error',
+    'django.contrib.gis.geos'
+]
+
+# UNCOMMENT TO BUILD DOCS LOCALLY (when building API docs this prevents import
+# of DB data which is not supported on RTD; required locally as the WAM DB
+# config file 'stemp_abw_config.cfg' (see below) is empty):
+#os.environ['READTHEDOCS'] = 'True'
+
+if 'READTHEDOCS' in os.environ:
+    # Mock modules not available in RTD-build container:
+    sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+# -- Symlinks and WAM config -------------------------------------------------
+    # As stemp_abw is cloned under different name, we have to set up a symlink
+    # Remove any RTD build relicts:
+    print('Running RTD build commands for stemp ABW docs...')
+
+    try:
+        os.remove(os.path.join(STEMP_ABW_ROOT, 'stemp_abw'))
+    except FileNotFoundError:
+        pass
+    except IsADirectoryError:
+        pass
+
+    # On RTD, the stemp package is installed in a directory named after the
+    # current branch. To make the APIdocs work properly a symlink from this
+    # branch directory to the expected module directory is necessary:
+    BRANCH_DIR = os.path.dirname(os.path.dirname(__file__))
+    try:
+        os.symlink(
+            BRANCH_DIR,
+            os.path.join(STEMP_ABW_ROOT, 'stemp_abw')
+        )
+    except FileExistsError:
+        pass
+
+# Set WAM config manually:
+os.environ['WAM_CONFIG_PATH'] = os.path.join(
+    os.path.dirname(__file__),
+    'stemp_abw_config.cfg'
+)
+os.environ['WAM_APPS'] = 'stemp_abw'
+
+# -- Configure django --------------------------------------------------------
+import django
+os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
+django.setup()
+
+# mock django's migrations module
+# -> doesn't work, delete file api/stemp_abw.migrations.rst (and remove
+# referencing line from stemp_abw.rst) instead before building)
+#autodoc_mock_imports = ['stemp_abw.migrations']
 
 # -- Project information -----------------------------------------------------
 
@@ -30,9 +93,10 @@ copyright = '2019, Reiner Lemoine Institut'
 author = 'Reiner Lemoine Institut'
 
 # The short X.Y version
-version = ''
+from stemp_abw import __version__
+version = __version__
 # The full version, including alpha/beta/rc tags
-release = ''
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -158,8 +222,11 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'StEmp-ABW.tex', 'StEmp-ABW Documentation',
-     'Reiner Lemoine Institut', 'manual'),
+    (master_doc,
+     'StEmp-ABW.tex',
+     'StEmp-ABW Documentation',
+     'Reiner Lemoine Institut',
+     'manual'),
 ]
 
 
@@ -168,7 +235,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'stemp-abw', 'StEmp-ABW Documentation',
+    (master_doc,
+     'stemp-abw',
+     'StEmp-ABW Documentation',
      [author], 1)
 ]
 
@@ -179,8 +248,12 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'StEmp-ABW', 'StEmp-ABW Documentation',
-     author, 'StEmp-ABW', 'One line description of project.',
+    (master_doc,
+     'StEmp-ABW',
+     'StEmp-ABW Documentation',
+     author,
+     'StEmp-ABW',
+     'One line description of project.',
      'Miscellaneous'),
 ]
 

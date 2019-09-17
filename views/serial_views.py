@@ -504,7 +504,7 @@ class GeoJSONResultLayerData(ListView):
     ----------
     model_name : :obj:`str`
         Name string of model (used as property "name" in dummy model
-        :class:`stemp_abw.models.ResultLayerModel), see model for detailed
+        :class:`stemp_abw.models.ResultLayerModel)`, see model for detailed
         description.
     custom_property : :obj:`str`
         Property (column) to be added to model, must be a column in
