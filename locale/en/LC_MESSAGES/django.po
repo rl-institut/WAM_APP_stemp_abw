@@ -22,7 +22,7 @@ msgstr ""
 #: results/result_charts.py:105 results/result_charts.py:124
 #: results/result_charts.py:145 results/result_charts.py:208
 msgid "Windenergie"
-msgstr "EN: Wind energy"
+msgstr "Wind Energy"
 
 #: app_settings.py:138 results/result_charts.py:24 results/result_charts.py:31
 #: results/result_charts.py:107 results/result_charts.py:126
@@ -31,7 +31,7 @@ msgstr "EN: Wind energy"
 #: views/detail_views.py:793 views/detail_views.py:832
 #: views/detail_views.py:883
 msgid "PV Dach"
-msgstr "PV roof"
+msgstr "PV Roof"
 
 #: app_settings.py:139 results/result_charts.py:23 results/result_charts.py:30
 #: results/result_charts.py:106 results/result_charts.py:125
@@ -42,7 +42,7 @@ msgstr "PV roof"
 #: views/detail_views.py:883 views/detail_views.py:933
 #: views/detail_views.py:985
 msgid "PV Freifläche"
-msgstr "PV solar park"
+msgstr "PV Ground"
 
 #: app_settings.py:140 results/result_charts.py:25 results/result_charts.py:32
 #: results/result_charts.py:108 results/result_charts.py:127
