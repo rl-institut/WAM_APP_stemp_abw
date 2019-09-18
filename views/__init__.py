@@ -105,6 +105,8 @@ class MapView(TemplateView):
 
         context['leaflet_config'] = LEAFLET_CONFIG
 
+        context['redirect_to'] = '/stemp_abw/app/'
+
         return context
 
     def get(self, request, *args, **kwargs):

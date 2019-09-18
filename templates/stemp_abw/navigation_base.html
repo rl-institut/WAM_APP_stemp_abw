@@ -19,7 +19,8 @@
           {% block link_to_wam %}
           {% endblock %}
           <div class="menu">
-            <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">{% csrf_token %}
+            <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">
+                {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
                 <select class="dropdown menu-form-dropdown" name="language">
                   {% for language in languages %}
