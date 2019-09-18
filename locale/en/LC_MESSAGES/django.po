@@ -190,7 +190,7 @@ msgstr "Status quo"
 
 #: results/result_charts.py:44
 msgid "Stromverbrauch"
-msgstr "Power consumption"
+msgstr "Electricity consumption"
 
 #: results/result_charts.py:65
 msgid "Eigenversorgung Strom"
@@ -212,11 +212,11 @@ msgstr "Simultaneous"
 
 #: results/result_charts.py:101
 msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
-msgstr "Composition power generation (your scenario)"
+msgstr "Composition electricity generation (your scenario)"
 
 #: results/result_charts.py:120
 msgid "Zusammensetzung Stromerzeugung (Status quo)"
-msgstr "Composition power generation (status quo)"
+msgstr "Composition electricity generation (status quo)"
 
 #: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
@@ -286,7 +286,7 @@ msgstr ""
 
 #: templates/stemp_abw/contact.html:11
 msgid "Projektleiterin"
-msgstr "Project leader"
+msgstr "Project lead"
 
 #: templates/stemp_abw/contact.html:12 templates/stemp_abw/contact.html:16
 msgid "E-Mail"
@@ -532,7 +532,7 @@ msgid ""
 "Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
 "Regional actors, especially citizens, should be encouraged to participate in "
-"shaping the energy system transformation seriously and in real terms in ABW. "
+"shaping the energy system transformation in the region ABW in a appropriate, serious way. "
 "The complex connections can be experienced and discussed through clear and "
 "vivid design as well as suitable guidance."
 
@@ -695,7 +695,7 @@ msgstr "How many wind turbines per km² will be added?"
 
 #: templates/stemp_abw/index.html:153
 msgid "Wie verändert sich der Im- und Export von Strom?"
-msgstr "How is the import and export of electricity changing?"
+msgstr "How are import and export of electricity changing?"
 
 #: templates/stemp_abw/index.html:158
 msgid "Bild Ergebnisse"
