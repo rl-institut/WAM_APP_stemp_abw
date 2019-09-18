@@ -810,8 +810,8 @@ msgid ""
 "In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten "
 "geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
 msgstr ""
-"In a future version of this tool more features are planned. For example, the "
-"consideration of the heat sector and sector coupling."
+"More features are scheduled for a future version of this tool. For example, "
+"the heat sector, mobility and sector coupling."
 
 #: templates/stemp_abw/map.html:233
 msgid "Variierbare Flächen"
