@@ -153,7 +153,7 @@ msgstr "Click me!"
 
 #: results/result_charts.py:17 templates/stemp_abw/results.html:5
 msgid "Stromerzeugung"
-msgstr "Electricity generation"
+msgstr "Electricity Generation"
 
 #: results/result_charts.py:18 results/result_charts.py:45
 #: results/result_charts.py:102 results/result_charts.py:121
@@ -190,11 +190,11 @@ msgstr "Status quo"
 
 #: results/result_charts.py:44
 msgid "Stromverbrauch"
-msgstr "Electricity consumption"
+msgstr "Electricity Consumption"
 
 #: results/result_charts.py:65
 msgid "Eigenversorgung Strom"
-msgstr "Self-sufficiency electricity"
+msgstr "Self-Sufficiency Electricity"
 
 #: results/result_charts.py:66
 msgid "in %"
@@ -212,16 +212,16 @@ msgstr "Simultaneous"
 
 #: results/result_charts.py:101
 msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
-msgstr "Composition electricity generation (your scenario)"
+msgstr "Composition Electricity Generation (Your Scenario)"
 
 #: results/result_charts.py:120
 msgid "Zusammensetzung Stromerzeugung (Status quo)"
-msgstr "Composition electricity generation (status quo)"
+msgstr "Composition Electricity Generation (Status quo)"
 
 #: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
 msgstr ""
-"Monthly electricity generation from renewable energy sources (your scenario)"
+"Monthly Renewable Electricity Generation (Your Scenario)"
 
 #: results/result_charts.py:146
 msgid "PV"
