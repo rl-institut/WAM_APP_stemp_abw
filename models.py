@@ -1109,7 +1109,7 @@ class RepoweringScenario(models.Model):
     """
 
     id = models.BigAutoField(primary_key=True)
-    name_de = models.CharField(max_length=50, unique=True)
+    name_de = models.CharField(max_length=50)
     desc_de = models.CharField(max_length=255, null=True)
     name_en = models.CharField(max_length=50)
     desc_en = models.CharField(max_length=255, null=True)
