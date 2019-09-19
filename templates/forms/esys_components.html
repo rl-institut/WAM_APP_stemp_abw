@@ -3,7 +3,7 @@
   <ul class="accordion" data-accordion data-allow-all-closed="true">
     {% for group, data in comp_groups.items %}
 
-      <li class="accordion-item {% if data.title == 'Stromerzeugung' %}accordion-item--no-border is-active{% endif %}" data-accordion-item>
+      <li class="accordion-item {% if data.title == 'Stromerzeugung' or data.title == 'Electricity Generation' %}accordion-item--no-border is-active{% endif %}" data-accordion-item>
         <a href="#" class="accordion-title accordion-title--100">{{ data.title }}</a>
 
         {% if data.comps.fields|length > 0 %}
