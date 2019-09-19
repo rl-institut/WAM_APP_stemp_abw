@@ -2,6 +2,7 @@ import os
 from django import forms
 from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
 from stemp_abw.models import Scenario
+from stemp_abw.app_settings import get_language_or_fallback
 
 # do not execute when on RTD (reqd for API docs):
 if 'READTHEDOCS' not in os.environ:
@@ -72,10 +73,21 @@ class ComponentGroupForm(forms.Form):
                 # If slider is wind, add dropdown data.
                 # It is required to provide data via widget as a new <select>
                 # element cannot be added to the slider list
+                lang = get_language_or_fallback().lower()[:2]
                 if attrs.get('id') == 'sl_wind':
-                    attrs['dropdown'] = ['<option value="{id}">{val}</option>'
-                                             .format(id=c.id, val=c.name)
-                                         for c in REPOWERING_SCENARIOS]
+                    attrs['dropdown'] = []
+                    for c in REPOWERING_SCENARIOS:
+                        if lang == 'de':
+                            opt = '<option value="{id}">{val}</option>'\
+                                .format(id=c.id, val=c.name_de)
+                        elif lang == 'en':
+                            opt = '<option value="{id}">{val}</option>'\
+                                .format(id=c.id, val=c.name_en)
+                        else:
+                            opt = '<option value="{id}">{val}</option>'\
+                                .format(id=c.id, val=c.name_de)
+                        attrs['dropdown'].append(opt)
+
                 self.fields[name] = forms.FloatField(
                     label='',
                     widget=SliderWidget(attrs=attrs),
