@@ -9,10 +9,10 @@ from wam import settings
 # TODO: Explain vars!
 
 # Set default language for app
-DEFAULT_LANGUAGE = 'de'
+DEFAULT_LANGUAGE = settings.LANGUAGE_CODE
 
 # Store which defines all available languages for an app
-LANGUAGE_STORE = ['de', 'en']
+LANGUAGE_STORE = [DEFAULT_LANGUAGE, 'en']
 
 
 # Get the language of current app thread or fallback to default language.
