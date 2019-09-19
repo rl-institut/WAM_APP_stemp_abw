@@ -79,7 +79,7 @@ function ctrlSimulate() {
 
   // show simulation spinner
   var current_cookies = document.cookie;
-  if (current_cookies.includes('django_language=de')) {
+  if (current_cookies.includes('django_language=de-DE')) {
       $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
       $('#loader-detail-text').text('(Max. 1 Minute)');
   } else {

@@ -1,6 +1,24 @@
 {% extends "stemp_abw/navigation_base.html" %}
 {% load i18n %}
 
+{% block map-language-switch-confirm %}
+<div class="menu">
+  <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">
+    {% csrf_token %}
+    <select class="dropdown menu-form-dropdown" name="language">
+      {% for language in languages %}
+        {% get_language_info for language as lang %}
+        <option value="{{ language }}" {% if current_language == language %} selected{% endif %}>
+          {{ lang.name_local }}
+        </option>
+      {% endfor %}
+    </select>
+  </form>
+</div>
+<div>
+  <input data-open="map-language-switch-confirm"  type="submit" class="menu menu-form-button" value="OK">
+</div>
+{% endblock %}
 {% block map-index-confirm_1 %}<li><a data-open="map-index-confirm" class="anchor-text--light" href="#">{% trans 'Startseite' %}</a></li>{% endblock %}
 {% block map-index-confirm_2 %}<li><a data-open="map-index-confirm" class="anchor-text--light" href="#">{% trans 'Startseite' %}</a></li>{% endblock %}
 {% block map-privacy-policy-confirm %}<li><a id="navbar-privacy-policy" data-open="map-private-policy-confirm" class="anchor-text--light" href="#"> {% trans 'Datenschutz' %}</a></li>{% endblock %}
