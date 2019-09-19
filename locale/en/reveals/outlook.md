@@ -1,18 +1,16 @@
 # Outlook
 
-This tool offers the possibility to display energy- and area-related data of the region Anhalt-Bitterfeld-Wittenberg. Furthermore, the formatted data gives a precise representation of each region.
+This tool offers the possibility to display energy and area related data of the region Anhalt-Bitterfeld-Wittenberg. Furthermore, the formatted data gives a precise representation of each region. Although the emphasis lies in showing the complex process of planning wind turbines considering the given framework, the tool provides an overview of the regional energy system. Additionally, it is possible to make a comparison between the self-edited energy system and the Status Quo.
 
-Neben einem allgemeinen Verständnis für das Energiesystem der Region soll es vor allem die Komplexität der Planungsaufgabe von Windenergieanlagen und Handlungsmöglichkeiten in diesem Prozess aufzeigen. Es ermöglicht außerdem den Vergleich eines selbst variierten Energiesystems mit dem Status Quo.
+To realize this project within the framework, specific aspects were initially left out and simplifications were made. The following points describe which aspects can be covered in possible extensions. It should be considered that the complexity of the tool increases with each new functionality. The objective is to present the information in a comprehensible way.
 
-Um dies in dem gegebenen Projektrahmen umsetzen zu können, mussten einige Vereinfachungen getroffen und andere Bereiche zunächst vernachlässigt werden. Hier soll beschrieben werden, welche Bereiche in möglichen Erweiterungen abgedeckt werden können. Bei allen möglichen Erweiterungen sei zu bedenken, dass die Komplexität des Tools mit jeder neuen Funktionalität ansteigt. Die Zielsetzung ist, die Informationen trotzdem auf eine verständliche Art und Weise zu transportieren.
+- In order to assess whether the self-designed energy system is sufficient to achieve the energy and climate policy goals, **future scenarios** could be implemented in which these target values are defined. In this way, different paths can be compared and an optimal solution for the region can be determined.
 
-- Um bewerten zu können, ob das selbst designte Energiesystem zur Erreichung der energie- und klimapolitischen Ziele ausreicht, könnten **Zukunftsszenarien** implementiert werden, in denen diese Zielwerte festgelegt werden. So können unterschiedliche Pfade miteinander verglichen und eine für die Region optimale Lösung ermittelt werden. 
+- The tool presents the **energy grid** in the current and future energy system. This includes the identification of transport routes that are particulary at risk from bottlenecks and, particulary the electrical cables. Therefore, it could contribute to the discussion of grid expansion and reinforcement.
 
-- Die Darstellung der **Energienetze** mit Kennzeichnung der besonders durch Engpass gefährdeten Transportwege, inbesondere der elektrischen Leitungen, in jetzigem und zukünftigen Energiesystem könnte der Diskussion um Netzausbau und -verstärkung dienen.
+- Battery Storages or Demand Side Management could be implemented as options to enhance the **flexibility**(Flexibility options). This could illustrate how, on the one hand, the actual self-supply of the region can be increased and, on the other hand, the electrical grid can be relieved.  
 
-- Es könnten außerdem **Flexibilitätsoptionen** wie Batteriespeicher oder Demand Side Management implementiert werden. So könnte veranschaulicht werden, wie auf der einen Seite die tatsächliche Eigenversorgung der Region erhöht und auf der anderen Seite das elektrische Netz entlastet werden kann.
+- As of now, the main focus is the electrical energy system. Further options to extend the tool could be the **sector coupling** which increases the interdependence as well as the inclusion of the heating sector through power-to-heat and the transport sector through electro mobility. Potential sysnergies between sectors can be highlighted, e.g. the use of excess wind power in the heating sector.
 
-- Bisher wird hauptsächlich das elektrische Energiesystem betrachtet. Die im Zuge der **Sektorkopplung** stärker werdende Verflechtung untereinander und die Einbeziehung des Wärmesektors durch Power-to-Heat und des Verkehrssektors durch Elektromobilität wären weitere Erweiterungsmöglichkeiten. So kann aufgezeigt werden, welche Synergien zwischen den Sektoren genutzt werden können, beispielsweise die Nutzung des überschüssigen Windstroms im Wärmesektor.
-
-- Momentan werdem vor allem die technischen und rechtlichen Potenziale für Erneuerbare Erzeugung aufgezeigt. Um verschiedene zukünftige Energiesysteme auf ihre Wirtschaftlichkeit hin zu vergleichen, kann eine **Kostenanalyse** integriert werden.
+- At present, the technical and legal potentials for renewable generation are shown. A **cost analysis** can be integrated to compare the economic viability of different future energy systems. 
 

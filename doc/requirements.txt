@@ -1,0 +1,1 @@
+-e git://github.com/rl-institut/WAM.git@features/packaging#egg=wam

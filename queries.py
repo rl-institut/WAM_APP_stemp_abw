@@ -15,7 +15,10 @@ os.environ['DJANGO_DATABASE'] = 'default'
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 application = get_wsgi_application()
 
-from stemp_abw.dataio.load_static import load_mun_data
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.dataio.load_static import load_mun_data
+
 from stemp_abw.models import \
     Scenario, ScenarioData, REPotentialAreas, RepoweringScenario, SimulationResults
 from stemp_abw.sessions import UserSession
@@ -59,11 +62,20 @@ def insert_status_quo_scenario():
         'pop'
     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
-    global_params = {'resid_dem_el': 100, 'crt_dem_el': 100, 'battery': 0,
-                     'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
-                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
-                     'dist_resid': 1000, 'use_forest': False,
-                     'use_ffh_areas': False, 'use_cult_areas': False,
+    global_params = {'resid_dem_el': 100,
+                     'crt_dem_el': 100,
+                     'ind_dem_el': 100,
+                     'battery': 0,
+                     'dsm_resid': 0,
+                     'emobility': 0,
+                     'resid_save_th': 0,
+                     'crt_save_th': 0,
+                     'resid_pth': 0,
+                     'crt_pth': 0,
+                     'dist_resid': 1000,
+                     'use_forest': False,
+                     'use_ffh_areas': False,
+                     'use_cult_areas': False,
                      'repowering_scn': 0}
     region_data = mun_data_filtered.sum(axis=0).round(decimals=1).to_dict()
     region_data.update(global_params)
@@ -206,7 +218,9 @@ def insert_status_quo_results():
     scn.save()
 
 
-#insert_repowering_scenarios()
-#insert_potential_areas()
-insert_status_quo_scenario()
-insert_status_quo_results()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    #insert_repowering_scenarios()
+    #insert_potential_areas()
+    insert_status_quo_scenario()
+    insert_status_quo_results()

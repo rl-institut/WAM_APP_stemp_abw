@@ -4,11 +4,11 @@ Sie können hier ein Zubau-Szenario wählen:
 
 1. **Kein Repowering:** Es wird kein Repowering vorgenommen (nur heutige Anlagen vorhanden, mittlere Volllaststunden für gesamte Region: 1630).
 
-2. **1:1-Repowering (standorttreu):** Standorttreues Repowering aller heute in Betrieb befindlichen Altanlagen durch eine neue Anlage, sowohl innerhalb als auch außerhalb von Vorranggebieten (VR/EG) für Windenergie. Diese Variante ist nicht mit den Vorgaben des Landesentwicklungsplans 2010 und 
+2. **1:1-Repowering (standorttreu):** Standorttreues Repowering aller heute in Betrieb befindlichen Altanlagen durch eine neue Anlage, sowohl innerhalb als auch außerhalb von Vorranggebieten (VR/EG) für Windenergie. 
 
-3. **Variabler Zubau:** Sie können frei zubauen, wobei neben den Vorranggebieten (VR/EG) weitere Flächen verwendet werden. Das maximale Potenzial richtet sich nach den verfügbaren Flächen, welche Sie im Menü Flächen verändern können.
+3. **Variabler Zubau:** Sie können frei zubauen, wobei neben den Vorranggebieten (VR/EG) weitere Flächen verwendet werden. Das maximale Potenzial richtet sich nach den verfügbaren Flächen, welche Sie im Menü **Flächen** verändern können.
 
-4. **Volle Nutzung VR/EG:** In allen aktuellen Vorranggebieten (VR/EG) für Windenergie wird ein Maximum an Neuanlagen installiert. Alle Anlagen außerhalb dieser Gebiete werden abgebaut.
+4. **Volle Nutzung VR/EG:** In allen aktuellen Vorranggebieten (VR/EG) für Windenergie (welche Sie unter **Flächen -> Statische Flächen** einsehen können) wird ein Maximum an Neuanlagen installiert. Alle Anlagen außerhalb dieser Gebiete werden abgebaut.
 
 ## Musteranlage
 

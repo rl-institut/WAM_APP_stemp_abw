@@ -18,10 +18,10 @@
           </div>
           {% block link_to_wam %}
           {% endblock %}
-          <div>
+          <div class="menu">
             <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">{% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select class="menu dropdown" name="language">
+                <select class="dropdown menu-form-dropdown" name="language">
                   {% for language in languages %}
                     {% get_language_info for language as lang %}
                     <option value="{{ language }}" {% if current_language == language %} selected{% endif %}>
@@ -32,7 +32,7 @@
             </form>
           </div>
           <div>
-            <input type="submit" class="menu btn" form="set-lang-form" value="OK">
+            <input type="submit" class="menu menu-form-button" form="set-lang-form" value="OK">
           </div>
           <div>{{ texts.welcome }}</div>
           <div>{{ texts.outlook }}</div>
