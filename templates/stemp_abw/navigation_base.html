@@ -22,6 +22,7 @@
           <div class="menu">
             <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">
               {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.path }}"/>
               <select class="dropdown menu-form-dropdown" name="language">
                 {% for language in languages %}
                   {% get_language_info for language as lang %}
