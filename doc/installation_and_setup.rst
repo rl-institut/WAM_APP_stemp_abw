@@ -79,4 +79,4 @@ und können mit dem bereitgestellten Skript <XXX> über `Django fixtures
 <https://docs.djangoproject.com/en/2.2/howto/initial-data/>`_ installiert
 werden:
 
-.. warning:: TBD
+.. warning:: TBD. Release-Hinweis: Version im Filename entspricht dem dazugehören Release!
