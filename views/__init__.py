@@ -22,6 +22,7 @@ from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
 from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
 
+from stemp_abw import __version__
 
 # TODO: use WAM's + Test it
 def check_session(func):
@@ -104,6 +105,8 @@ class MapView(TemplateView):
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
 
         context['leaflet_config'] = LEAFLET_CONFIG
+
+        context['app_version'] = str(__version__)
 
         return context
 

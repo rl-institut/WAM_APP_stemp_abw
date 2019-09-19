@@ -1,6 +1,11 @@
 {% extends "stemp_abw/navigation_base.html" %}
 {% load i18n %}
 
+{% block app-version %}
+<div class="top-bar-left show-for-large" id="app-version">
+  Version {{ app_version }}
+</div>
+{% endblock %}
 {% block map-language-switch-confirm %}
 <div class="menu">
   <form id="set-lang-form" action="{% url 'stemp_abw:set_language' %}" method="post">

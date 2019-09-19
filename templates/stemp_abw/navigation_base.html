@@ -16,6 +16,8 @@
               {% block map-index-confirm_1 %}<li><a class="anchor-text--light" href="{% url 'stemp_abw:index' %}">{% trans 'Startseite' %}</a></li>{% endblock %}
             </ul>
           </div>
+          {% block app-version %}
+          {% endblock %}
           {% block link_to_wam %}
           {% endblock %}
           {% block map-language-switch-confirm %}
