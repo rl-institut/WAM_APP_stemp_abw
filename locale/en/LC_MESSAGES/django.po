@@ -3,24 +3,291 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-21 15:07+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-09-19 14:19+0200\n"
+"PO-Revision-Date: 2019-09-10 11:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: app_settings.py:137 results/result_charts.py:22 results/result_charts.py:29
+#: results/result_charts.py:105 results/result_charts.py:124
+#: results/result_charts.py:145 results/result_charts.py:208
+msgid "Windenergie"
+msgstr "Wind Energy"
+
+#: app_settings.py:138 results/result_charts.py:24 results/result_charts.py:31
+#: results/result_charts.py:107 results/result_charts.py:126
+#: results/results.py:141 views/detail_views.py:160 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:793 views/detail_views.py:832
+#: views/detail_views.py:883
+msgid "PV Dach"
+msgstr "PV Roof"
+
+#: app_settings.py:139 results/result_charts.py:23 results/result_charts.py:30
+#: results/result_charts.py:106 results/result_charts.py:125
+#: results/results.py:140 views/detail_views.py:161 views/detail_views.py:199
+#: views/detail_views.py:251 views/detail_views.py:302
+#: views/detail_views.py:353 views/detail_views.py:405
+#: views/detail_views.py:794 views/detail_views.py:832
+#: views/detail_views.py:883 views/detail_views.py:933
+#: views/detail_views.py:985
+msgid "PV Freifläche"
+msgstr "PV Ground"
+
+#: app_settings.py:140 results/result_charts.py:25 results/result_charts.py:32
+#: results/result_charts.py:108 results/result_charts.py:127
+#: views/detail_views.py:161 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:794 views/detail_views.py:833
+#: views/detail_views.py:883 views/detail_views.py:934
+#: views/detail_views.py:986
+msgid "Wasserkraft"
+msgstr "Hydropower"
+
+#: app_settings.py:141 views/detail_views.py:162 views/detail_views.py:200
+#: views/detail_views.py:252 views/detail_views.py:303
+#: views/detail_views.py:354 views/detail_views.py:406
+#: views/detail_views.py:795 views/detail_views.py:833
+#: views/detail_views.py:934 views/detail_views.py:986
+msgid "Bioenergie"
+msgstr "Bioenergy"
+
+#: app_settings.py:142
+msgid "Fossil"
+msgstr ""
+
+#: app_settings.py:143 results/result_charts.py:49 results/result_charts.py:53
+#: results/result_charts.py:175 results/result_charts.py:179
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:554 views/detail_views.py:601
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Haushalte"
+msgstr "Households"
+
+#: app_settings.py:144 results/result_charts.py:50 results/result_charts.py:54
+#: results/result_charts.py:176 results/result_charts.py:180
+msgid "GHD"
+msgstr "GHD"
+
+#: app_settings.py:145 results/result_charts.py:51 results/result_charts.py:55
+#: results/result_charts.py:177 results/result_charts.py:181
+#: views/detail_views.py:459 views/detail_views.py:507
+#: views/detail_views.py:1039 views/detail_views.py:1087
+msgid "Industrie"
+msgstr "Industry"
+
+#: app_settings.py:146 results/result_charts.py:28 results/result_charts.py:35
+#: results/result_charts.py:111 results/result_charts.py:130
+#: results/results.py:185 results/results.py:188
+msgid "Import"
+msgstr "Import"
+
+#: app_settings.py:147 results/result_charts.py:52 results/result_charts.py:56
+#: results/result_charts.py:178 results/result_charts.py:182
+#: results/results.py:191 results/results.py:194
+msgid "Export"
+msgstr "Export"
+
+#: app_settings.py:164
+msgid "Jan"
+msgstr ""
+
+#: app_settings.py:165
+msgid "Feb"
+msgstr ""
+
+#: app_settings.py:166
+msgid "Mär"
+msgstr "Mar"
+
+#: app_settings.py:167
+msgid "Apr"
+msgstr ""
+
+#: app_settings.py:168
+msgid "Mai"
+msgstr "May"
+
+#: app_settings.py:169
+msgid "Jun"
+msgstr ""
+
+#: app_settings.py:170
+msgid "Jul"
+msgstr ""
+
+#: app_settings.py:171
+msgid "Aug"
+msgstr ""
+
+#: app_settings.py:172
+msgid "Sep"
+msgstr ""
+
+#: app_settings.py:173
+msgid "Okt"
+msgstr "Oct"
+
+#: app_settings.py:174
+msgid "Nov"
+msgstr ""
+
+#: app_settings.py:175
+msgid "Dez"
+msgstr "Dec"
+
+#: config/prepare_context.py:179
+msgid "Bitte klicken!"
+msgstr "Click me!"
+
+#: results/result_charts.py:17 templates/stemp_abw/results.html:5
+msgid "Stromerzeugung"
+msgstr "Electricity Generation"
+
+#: results/result_charts.py:18 results/result_charts.py:45
+#: results/result_charts.py:102 results/result_charts.py:121
+#: results/result_charts.py:140 results/result_charts.py:172
+msgid "in GWh"
+msgstr "in GWh"
+
+#: results/result_charts.py:19 results/result_charts.py:46
+#: results/result_charts.py:103 results/result_charts.py:122
+#: results/result_charts.py:141 results/result_charts.py:173
+msgid "GWh"
+msgstr "GWh"
+
+#: results/result_charts.py:26 results/result_charts.py:33
+#: results/result_charts.py:109 results/result_charts.py:128
+msgid "Biogas"
+msgstr "Biogas"
+
+#: results/result_charts.py:27 results/result_charts.py:34
+#: results/result_charts.py:110 results/result_charts.py:129
+msgid "Fossile Brennstoffe"
+msgstr "Fossil Fuels"
+
+#: results/result_charts.py:37 results/result_charts.py:58
+#: results/result_charts.py:74 results/result_charts.py:184
+msgid "Ihr Szenario"
+msgstr "Your scenario"
+
+#: results/result_charts.py:38 results/result_charts.py:59
+#: results/result_charts.py:75 results/result_charts.py:185
+#: results/results.py:22
+msgid "Status quo"
+msgstr "Status quo"
+
+#: results/result_charts.py:44
+msgid "Stromverbrauch"
+msgstr "Electricity Consumption"
+
+#: results/result_charts.py:65
+msgid "Eigenversorgung Strom"
+msgstr "Self-Sufficiency Electricity"
+
+#: results/result_charts.py:66
+msgid "in %"
+msgstr "in %"
+
+#: results/result_charts.py:69 results/result_charts.py:71
+#: results/results.py:249
+msgid "Bilanziell"
+msgstr "On balance"
+
+#: results/result_charts.py:70 results/result_charts.py:72
+#: results/results.py:251
+msgid "Zeitgleich"
+msgstr "Simultaneous"
+
+#: results/result_charts.py:101
+msgid "Zusammensetzung Stromerzeugung (Dein Szenario)"
+msgstr "Composition Electricity Generation (Your Scenario)"
+
+#: results/result_charts.py:120
+msgid "Zusammensetzung Stromerzeugung (Status quo)"
+msgstr "Composition Electricity Generation (Status quo)"
+
+#: results/result_charts.py:139
+msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
+msgstr ""
+"Monthly Renewable Electricity Generation (Your Scenario)"
+
+#: results/result_charts.py:146
+msgid "PV"
+msgstr "PV"
+
+#: results/result_charts.py:171
+msgid "Energieverbrauch (Strom)"
+msgstr "Energy consumption (electricity)"
+
+#: results/result_charts.py:204
+msgid "Windenergie Erzeugung"
+msgstr "Wind energy generation"
+
+#: results/result_charts.py:205 results/result_charts.py:216
+#: results/result_charts.py:226 results/result_charts.py:246
+#: results/result_charts.py:254 results/result_charts.py:262
+msgid "in GW"
+msgstr "in GW"
+
+#: results/result_charts.py:206 results/result_charts.py:217
+#: results/result_charts.py:227 results/result_charts.py:247
+#: results/result_charts.py:255 results/result_charts.py:263
+msgid "GW"
+msgstr "GW"
+
+#: results/result_charts.py:209
+msgid "Windenergie2"
+msgstr "Wind energie2"
+
+#: results/result_charts.py:215
+msgid "Photovoltaik Erzeugung"
+msgstr "Photovoltaic generation"
+
+#: results/result_charts.py:225
+msgid "Bioenergie Erzeugung"
+msgstr "Bioenergy production"
+
+#: results/result_charts.py:245
+msgid "Erzeugung"
+msgstr "Production"
+
+#: results/result_charts.py:253 views/detail_views.py:168
+msgid "Bedarf"
+msgstr "Demand"
+
+#: results/result_charts.py:261
+msgid "Erneuerbare Energien"
+msgstr "Renewable energy sources"
+
+#: results/results.py:138
+msgid "Photovoltaik"
+msgstr "Photovoltaics"
+
+#: results/results.py:462
+msgid ""
+"One of source and target nodes must contain exactly 1 node, the other >=1 "
+"nodes."
+msgstr ""
+
+#: results/results.py:473
+msgid "Aggregation mode is invalid."
+msgstr ""
 
 #: templates/stemp_abw/contact.html:11
 msgid "Projektleiterin"
-msgstr "Project leader"
+msgstr "Project lead"
 
 #: templates/stemp_abw/contact.html:12 templates/stemp_abw/contact.html:16
 msgid "E-Mail"
@@ -42,9 +309,9 @@ msgstr "Telephone"
 msgid "Telefax"
 msgstr "Fax"
 
-#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:220
-#: templates/stemp_abw/navigation_app.html:9
-#: templates/stemp_abw/navigation_base.html:52
+#: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:217
+#: templates/stemp_abw/navigation_app.html:26
+#: templates/stemp_abw/navigation_base.html:53
 msgid "Impressum"
 msgstr "Imprint"
 
@@ -205,7 +472,7 @@ msgstr "Anhalt-Bitterfeld-Wittenberg Regional Energy Balance District"
 
 #: templates/stemp_abw/index.html:16
 msgid "Szenarien unter dem Aspekt einer abgestimmten Flächennutzung"
-msgstr "Scenarios under the consideration of a coordinated use of space"
+msgstr "Scenarios under the consideration of coordinated land use"
 
 #: templates/stemp_abw/index.html:19
 msgid "Anhalt Karte als Bild"
@@ -214,11 +481,11 @@ msgstr "Anhalt map as image"
 #: templates/stemp_abw/index.html:23
 #: templates/stemp_abw/navigation_start.html:4
 msgid "Zum Tool"
-msgstr "Go to Tool"
+msgstr "Take me to the Tool"
 
 #: templates/stemp_abw/index.html:29
 msgid "Neu hier?"
-msgstr "Are you new here?"
+msgstr "New here?"
 
 #: templates/stemp_abw/index.html:37
 msgid ""
@@ -228,9 +495,9 @@ msgid ""
 "Partizipationsprozess oft erheblich."
 msgstr ""
 "An important aspect in meeting the climate targets for 2050 is the "
-"participation of citizens. However, the complexity of energy systems "
-"and the associated issues often make the participation process "
-"significantly more difficult."
+"participation of citizens. However, the complexity of energy systems and the "
+"associated issues often make the participation process significantly more "
+"difficult."
 
 #: templates/stemp_abw/index.html:38
 msgid ""
@@ -240,9 +507,9 @@ msgid ""
 "Maßnahmen direkt zu ermitteln. Damit wird die Grundlage für eine ebenbürtige "
 "Diskussion geschaffen und eine gemeinsame Planung ermöglicht."
 msgstr ""
-"The scenario calculator enables all interested stakeholders to obtain a better "
+"The scenario calculator enables all interested stakeholders to gain a better "
 "understanding of various scenarios of the regional energy balance district. "
-"In addition, the effects of measures can be directly determined. "
+"In addition, the effects of the measures taken can be directly determined. "
 "This creates the basis for an equal discussion and enables collaborative "
 "decision-making."
 
@@ -265,24 +532,24 @@ msgid ""
 "anschauliches Design und geeignete Moderation werden die komplexen "
 "Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
-"Regional actors, especially citizens, should be encouraged to participate "
-"sincerely and in real terms in shaping the energy system transformation in ABW. "
-"The complex connections can be experienced and discussed through clear design and "
-"suitable accompaniment."
+"Regional actors, especially citizens, should be encouraged to participate in "
+"shaping the energy system transformation in the region ABW in a appropriate, "
+"serious way. The complex connections can be experienced and discussed "
+"through clear and vivid design as well as suitable guidance."
 
 #: templates/stemp_abw/index.html:53
 msgid "Effizientere Arbeitsweise"
-msgstr "More efficient working methods"
+msgstr "More efficient methods"
 
 #: templates/stemp_abw/index.html:54
 msgid ""
 "Die regionale Energiewende kann mit besser verhandelten Ergebnissen "
 "effizienter vorangetrieben werden. Es wird, in der Gesamtheit, eine bessere "
-"Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht. "
+"Planung und Genehmigung von erneuerbaren Energieanlagen ermöglicht."
 msgstr ""
 "The transformation of the regional energy systems can be promoted more "
 "efficiently with improved negotiated results. The overall result enables "
-"better planning and the approval of renewables."
+"better planning and approval of renewables."
 
 #: templates/stemp_abw/index.html:59
 msgid "Tieferes Verständnis"
@@ -296,10 +563,10 @@ msgid ""
 "Anspruchsgruppen werden sichtbar gemacht. Das gegenseitige Verständnis "
 "wächst - auch und gerade bei unterschiedlichen Meinungen."
 msgstr ""
-"This tool will not only help to explain the connections between different "
-"systems of the energy industry, ecology and cultural landscape better, but "
-"will also make the interests and values of the regional stakeholders visible. "
-"Mutual understanding is growing especially when opinions differ."
+"This tool will not only help to better explain the connections between "
+"different systems of the energy industry, ecology, and cultural landscape, "
+"but will also make the interests and values of the regional stakeholders "
+"visible. Mutual understanding is growing especially when opinions differ."
 
 #: templates/stemp_abw/index.html:63
 msgid "Open Science"
@@ -311,9 +578,9 @@ msgid ""
 "schafft Transparenz und Überprüfbarkeit. Zudem kann die Umsetzung ähnlicher "
 "Tools somit erleichtert werden."
 msgstr ""
-"Data and source codes are made available to all interested users. This creates "
-"transparency and reproducibility. In addition, the implementation of similar "
-"tools can be made easier"
+"Data and source codes are made available to all interested parties. This "
+"creates transparency and reproducibility. In addition, the implementation of "
+"similar tools can thus be facilitated."
 
 #: templates/stemp_abw/index.html:74
 msgid "Wie funktioniert das Tool?"
@@ -324,20 +591,20 @@ msgid "Verschaffe dir einen Überblick über deine Region"
 msgstr "Get an overview of your region"
 
 #: templates/stemp_abw/index.html:87
-msgid "Wie viele Menschen leben in den Gemeinden?"
+msgid "Wieviele Menschen leben in den Gemeinden?"
 msgstr "How many people live in the municipalities?"
 
 #: templates/stemp_abw/index.html:88
-msgid "Wie viel Strom kommt aus Erneuerbaren Energien?"
+msgid "Wieviel Strom kommt aus Erneuerbaren Energien?"
 msgstr "How much electricity comes from renewables?"
 
 #: templates/stemp_abw/index.html:89
-msgid "Wie viele Windkraftanlagen stehen in den Gemeinden?"
-msgstr "How many wind turbines are located in the municipalities?""
+msgid "Wieviele Windkraftanlagen stehen in den Gemeinden?"
+msgstr "How many wind turbines are located in the municipalities?"
 
 #: templates/stemp_abw/index.html:90
 msgid "Welcher Flächenbelastung entspricht das?"
-msgstr "What impact does this have on the area?"
+msgstr "What impact does this have on the surface?"
 
 #: templates/stemp_abw/index.html:95
 msgid "Bild Region"
@@ -353,7 +620,7 @@ msgstr "Explore the region's energy system"
 
 #: templates/stemp_abw/index.html:109
 msgid "Wähle ein Zubauszenario für Windenergie"
-msgstr "Select an extension scenario for wind energy"
+msgstr "Select an expansion scenario for wind energy"
 
 #: templates/stemp_abw/index.html:110
 msgid ""
@@ -389,15 +656,15 @@ msgid ""
 "mehr Windenergieanlagen bauen zu können"
 msgstr ""
 "Decide whether the minimum distance to residential areas should be adapted "
-"in order to build more wind turbines."
+"in order to be able to build more wind turbines"
 
 #: templates/stemp_abw/index.html:132
 msgid ""
 "Entscheide ob Waldgebiete zum Bau von Windenergieanlagen zur Verfügung "
 "stehen sollen"
 msgstr ""
-"Decide whether forest areas should be available for the construction of "
-"wind turbines"
+"Decide whether forest areas should be available for the construction of wind "
+"turbines"
 
 #: templates/stemp_abw/index.html:133
 msgid ""
@@ -409,7 +676,7 @@ msgstr ""
 
 #: templates/stemp_abw/index.html:138
 msgid "Bild Flächennutzung"
-msgstr "Image Land use"
+msgstr "Image land use"
 
 #: templates/stemp_abw/index.html:149
 msgid "Vergleiche die Ergebnisse mit dem Status Quo"
@@ -420,8 +687,8 @@ msgid ""
 "Wie verändert sich der Anteil Erneuerbarer Energien in den Gemeinden und der "
 "Region?"
 msgstr ""
-"How does the share of renewable energy change in the municipalities " 
-"and the region?"
+"How is the share of renewable energies in the municipalities and the region "
+"changing?"
 
 #: templates/stemp_abw/index.html:152
 msgid "Wie viele Windkraftanlagen pro km² kommen hinzu?"
@@ -429,7 +696,7 @@ msgstr "How many wind turbines per km² will be added?"
 
 #: templates/stemp_abw/index.html:153
 msgid "Wie verändert sich der Im- und Export von Strom?"
-msgstr "How is the import and export of electricity changing?""
+msgstr "How are import and export of electricity changing?"
 
 #: templates/stemp_abw/index.html:158
 msgid "Bild Ergebnisse"
@@ -440,7 +707,7 @@ msgid "Get involved!"
 msgstr "Get involved!"
 
 #: templates/stemp_abw/index.html:171
-#: templates/stemp_abw/navigation_base.html:48
+#: templates/stemp_abw/navigation_base.html:49
 msgid "Dokumentation"
 msgstr "Documentation"
 
@@ -448,8 +715,14 @@ msgstr "Documentation"
 msgid ""
 "Weitere Informationen und Hintergründe finden Sie in unserer Dokumentation "
 "auf"
-msgstr "Further information and background can be found in our documentation at"
+msgstr ""
+"Further information and background information can be found in our "
+"documentation at"
 
+#: templates/stemp_abw/index.html:175
+#: templates/stemp_abw/navigation_base.html:50
+msgid "Quellcode"
+msgstr "Source code"
 
 #: templates/stemp_abw/index.html:176
 msgid "Der Quellcode ist auf"
@@ -457,23 +730,23 @@ msgstr "The source code is available on"
 
 #: templates/stemp_abw/index.html:176
 msgid "unter der Lizenz GNU AGPL v3 frei verfügbar."
-msgstr "is freely available under the GNU AGPL v3 license.""
+msgstr "is freely available under the GNU AGPL v3 license."
 
 #: templates/stemp_abw/index.html:192 templates/stemp_abw/map.html:443
-msgid "Energieavantgarde Anhalt"
-msgstr "Energy avant-garde Anhalt"
-
-#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
-msgid "Logo Energieavantgarde Anhalt"
-msgstr "Logo Energy avant-garde Anhalt"
-
-#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
 msgid "Reiner Lemoine Institut"
 msgstr "Reiner Lemoine Institute"
 
-#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+#: templates/stemp_abw/index.html:193 templates/stemp_abw/map.html:444
 msgid "Logo Reiner Lemoine Institut"
 msgstr "Logo Reiner Lemoine Institute"
+
+#: templates/stemp_abw/index.html:197 templates/stemp_abw/map.html:448
+msgid "Energieavantgarde Anhalt"
+msgstr "Energy avant-garde Anhalt"
+
+#: templates/stemp_abw/index.html:198 templates/stemp_abw/map.html:449
+msgid "Logo Energieavantgarde Anhalt"
+msgstr "Logo Energy avant-garde Anhalt"
 
 #: templates/stemp_abw/index.html:202 templates/stemp_abw/map.html:453
 msgid "Kopernikus Projekte"
@@ -483,33 +756,27 @@ msgstr "Kopernikus projects"
 msgid "Logo ENavi"
 msgstr "Logo ENavi"
 
-#: templates/stemp_abw/index.html:207 templates/stemp_abw/map.html:458
+#: templates/stemp_abw/index.html:207
 msgid "Bundesministerium für Bildung und Forschung"
 msgstr "Federal Ministry of Education and Research"
 
-#: templates/stemp_abw/index.html:210 templates/stemp_abw/map.html:461
-msgid ""
-"Gefördert vom <strong>Bundesministerium für Bildung und Forschung</strong> "
-"(FKZ 03SFK4E1)"
-msgstr ""
-"Frunded from <strong>Federal Ministry of Education and Research</strong> "
-"(FKZ 03SFK4E1)"
-
-#: templates/stemp_abw/index.html:219 templates/stemp_abw/navigation_app.html:8
-#: templates/stemp_abw/navigation_base.html:51
+#: templates/stemp_abw/index.html:216
+#: templates/stemp_abw/navigation_app.html:25
+#: templates/stemp_abw/navigation_base.html:52
 msgid "Kontakt"
 msgstr "Contact"
 
-#: templates/stemp_abw/index.html:221 templates/stemp_abw/navigation_app.html:6
-#: templates/stemp_abw/navigation_base.html:41
+#: templates/stemp_abw/index.html:218
+#: templates/stemp_abw/navigation_app.html:23
+#: templates/stemp_abw/navigation_base.html:42
 msgid "Datenschutz"
 msgstr "Data protection"
 
-#: templates/stemp_abw/index.html:222
+#: templates/stemp_abw/index.html:219
 msgid "Lizenz"
 msgstr "License"
 
-#: templates/stemp_abw/index.html:224
+#: templates/stemp_abw/index.html:221
 msgid "Reiner Lemoine Institut gGmbH"
 msgstr "Reiner Lemoine Institut gGmbH"
 
@@ -546,8 +813,8 @@ msgid ""
 "In einer zukünftigen Version dieses Tools sind weitere Funktionalitäten "
 "geplant, wie die Berücksichtigung des Wärmesektors und Sektorkopplung."
 msgstr ""
-"In a future version of this tool further features are planned. For "
-"example the consideration of the heat sector and sector coupling."
+"More features are scheduled for a future version of this tool. For example, "
+"the heat sector, mobility and sector coupling."
 
 #: templates/stemp_abw/map.html:233
 msgid "Variierbare Flächen"
@@ -562,8 +829,8 @@ msgid ""
 "Hier können Sie Einstellungen zu den Flächen vornehmen, die Auswirkungen auf "
 "das Energiesystem haben."
 msgstr ""
-"Here you can adjust the settings for the surfaces. These settings will have an "
-"effect on the energy system."
+"Here you can make settings for the areas that have an effect on the energy "
+"system."
 
 #: templates/stemp_abw/map.html:261
 msgid "Hier erfahren Sie mehr über Restriktionsflächen."
@@ -575,91 +842,89 @@ msgstr "Show all layers"
 
 #: templates/stemp_abw/map.html:355
 msgid "Mehr Ergebnisgrafiken"
-msgstr "More result graphs"
+msgstr "More graphs"
 
 #: templates/stemp_abw/map.html:366
 msgid "Werte müssen berechnet werden - bitte Simulation starten!"
 msgstr "Values need to be calculated - please start simulation!"
 
-#: templates/stemp_abw/map.html:494
+#: templates/stemp_abw/map.html:491
 msgid "Dieses Feature ist derzeit noch nicht verfügbar."
 msgstr "This feature is currently not available."
 
-#: templates/stemp_abw/map.html:512
+#: templates/stemp_abw/map.html:509
 msgid "Fehler"
 msgstr "Error"
 
-#: templates/stemp_abw/map.html:513
+#: templates/stemp_abw/map.html:510
 msgid "Es ist ein Fehler aufgetreten. Bitte starten Sie das Tool neu."
 msgstr "An error has occurred. Please restart the tool."
 
-#: templates/stemp_abw/map.html:518
+#: templates/stemp_abw/map.html:515
 msgid "Wollen Sie wirklich zur Startseite? Alle Änderungen gehen verloren."
-msgstr "Do you really want to go to the home page? All changes will be lost."
+msgstr "Would you like to proceed to the home page? All changes will be lost."
 
-#: templates/stemp_abw/map.html:524 templates/stemp_abw/map.html:537
-#: templates/stemp_abw/map.html:550 templates/stemp_abw/map.html:563
-#: templates/stemp_abw/map.html:576
+#: templates/stemp_abw/map.html:521 templates/stemp_abw/map.html:534
+#: templates/stemp_abw/map.html:547 templates/stemp_abw/map.html:560
+#: templates/stemp_abw/map.html:573 templates/stemp_abw/map.html:586
 msgid "Abbruch"
 msgstr "Cancel"
 
-#: templates/stemp_abw/map.html:531
+#: templates/stemp_abw/map.html:528
 msgid ""
 "Wollen Sie zur Datenschutzerklärung? Alle Änderungen gehen dadurch verloren."
 msgstr ""
-"Would you like to proceed to the data protection declaration? "
-"All changes will be lost."
+"Would you like to proceed to the data protection declaration? All changes "
+"will be lost."
 
-#: templates/stemp_abw/map.html:544
+#: templates/stemp_abw/map.html:541
 msgid ""
 "Wollen Sie zur Quellen-Übersicht? Alle Änderungen gehen dadurch verloren."
 msgstr ""
-"Would you like to proceed to the source overview? "
-"All changes will be lost."
+"Would you like to proceed to the source overview? All changes will be lost."
 
-#: templates/stemp_abw/map.html:557
+#: templates/stemp_abw/map.html:554
 msgid "Wollen Sie zur Kontaktseite? Alle Änderungen gehen dadurch verloren."
 msgstr ""
-"Would you like to proceed to the contact page? "
-"All changes will be lost."
+"Would you like to proceed to the contact page? All changes will be lost."
 
-#: templates/stemp_abw/map.html:570
+#: templates/stemp_abw/map.html:567
 msgid "Wollen Sie zum Impressum? Alle Änderungen gehen dadurch verloren."
 msgstr ""
-"Would you like to proceed to the imprint page? "
-"All changes will be lost."
+"Would you like to proceed to the imprint page? All changes will be lost."
 
+#: templates/stemp_abw/map.html:580
+msgid "Wollen Sie die Sprache ändern? Alle Änderungen gehen dadurch verloren."
+msgstr ""
+"Would you like to change the language? All changes "
+"will be lost."
 
-#: templates/stemp_abw/map.html:718 templates/stemp_abw/map.html:960
+#: templates/stemp_abw/map.html:728 templates/stemp_abw/map.html:970
 msgid "Fertig!"
 msgstr "Done!"
 
-#: templates/stemp_abw/map.html:726 templates/stemp_abw/map.html:728
-#: templates/stemp_abw/map.html:964 templates/stemp_abw/map.html:966
+#: templates/stemp_abw/map.html:736 templates/stemp_abw/map.html:738
+#: templates/stemp_abw/map.html:974 templates/stemp_abw/map.html:976
 msgid "Fehler beim Laden der Daten!"
 msgstr "Error loading the data!"
 
-#: templates/stemp_abw/navigation_app.html:4
-#: templates/stemp_abw/navigation_app.html:5
+#: templates/stemp_abw/navigation_app.html:21
+#: templates/stemp_abw/navigation_app.html:22
 #: templates/stemp_abw/navigation_base.html:16
 msgid "Startseite"
 msgstr "Home page"
 
-#: templates/stemp_abw/navigation_app.html:7
-#: templates/stemp_abw/navigation_base.html:47
+#: templates/stemp_abw/navigation_app.html:24
+#: templates/stemp_abw/navigation_base.html:48
 msgid "Quellen"
 msgstr "Sources"
 
 #: templates/stemp_abw/navigation_base.html:10
-#: templates/stemp_abw/navigation_base.html:43
+#: templates/stemp_abw/navigation_base.html:44
 msgid "Menü"
 msgstr "Menu"
 
-#: templates/stemp_abw/navigation_base.html:49
-msgid "Quellcode"
-msgstr "Source code"
-
-#: templates/stemp_abw/navigation_base.html:50
+#: templates/stemp_abw/navigation_base.html:51
 msgid "Feedback"
 msgstr "Feedback"
 
@@ -683,6 +948,7 @@ msgstr "MW per km²"
 
 #: templates/stemp_abw/popups/gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/gen_count_wind_density.html:9
+#: templates/stemp_abw/popups/result_gen_count_wind_density.html:6
 #: templates/stemp_abw/popups/result_gen_count_wind_density.html:9
 msgid "WEA pro km²"
 msgstr "Wind turbines per km²"
@@ -714,10 +980,6 @@ msgid ""
 "      nationaler Datenschutzgesetze der Mitgliedsstaaten sowie sonstiger\n"
 "      datenschutzrechtlicher Bestimmungen ist die:"
 msgstr ""
-"The responsible person in terms of the data protection basic regulation and other\n"
-"      national data protection laws of the member states and others\n."
-"      of data protection regulations is the:"
-
 
 #: templates/stemp_abw/privacy_policy.html:27
 msgid ""
@@ -726,12 +988,6 @@ msgid ""
 "kein\n"
 "      Datenschutzbeauftragter bestellt."
 msgstr ""
-"Since the type and scope of data processing at the RLI meet the criteria set "
-"out in Art. 37\n "
-"      Abs. 1 DSGVO and § 38 Abs. 1 S. 1 BDSG-neu, the following conditions "
-"      were not met in the new version "
-"no\n"
-"      data protection officer was appointed."
 
 #: templates/stemp_abw/privacy_policy.html:33
 msgid ""
@@ -747,16 +1003,6 @@ msgid ""
 "Vorschriften\n"
 "      gestattet ist."
 msgstr ""
-"We process the personal data of our users only to the extent necessary\n"
-"      to provide a functioning website as well as our content and services.\n"
-"      The processing of personal data of our users takes place regularly\n"
-"      only with the consent of the user.\n"
-"      An exception applies in such cases,"
-"in which\n"
-"      prior to obtaining the consent is "
-"not\n"
-"      possible for technical reasons and the processing of the data is permitted by legal "
-"reglations\n"
 
 #: templates/stemp_abw/privacy_policy.html:43
 msgid ""
@@ -1367,10 +1613,6 @@ msgstr ""
 msgid "Übersicht"
 msgstr "Overview"
 
-#: templates/stemp_abw/results.html:5
-msgid "Stromerzeugung"
-msgstr "electricity generation"
-
 #: templates/stemp_abw/session_not_found.html:6
 msgid "Deine Sitzung ist abgelaufen"
 msgstr "Your session has expired"
@@ -1378,6 +1620,10 @@ msgstr "Your session has expired"
 #: templates/stemp_abw/session_not_found.html:7
 msgid "Bitte starte eine neue Session"
 msgstr "Please start a new session"
+
+#: templates/widgets/slider_abw.html:20
+msgid "Repowering-Szenario"
+msgstr "Repowering Scenario"
 
 #: views/detail_views.py:114 views/detail_views.py:118
 msgid "Personen"
@@ -1400,39 +1646,6 @@ msgstr "Forecast"
 msgid "Wind"
 msgstr "Wind"
 
-#: views/detail_views.py:160 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883
-msgid "PV Dach"
-msgstr ""
-
-#: views/detail_views.py:161 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:794 views/detail_views.py:832
-#: views/detail_views.py:883 views/detail_views.py:933
-#: views/detail_views.py:985
-msgid "PV Freifläche"
-msgstr "PV solar park"
-
-#: views/detail_views.py:161 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:794 views/detail_views.py:833
-#: views/detail_views.py:883 views/detail_views.py:934
-#: views/detail_views.py:986
-msgid "Wasserkraft"
-msgstr "Hydropower"
-
-#: views/detail_views.py:162 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:795 views/detail_views.py:833
-#: views/detail_views.py:934 views/detail_views.py:986
-msgid "Bioenergie"
-msgstr "Bioenergy"
-
 #: views/detail_views.py:164
 msgid "EE-Erzeugung"
 msgstr "RE generation"
@@ -1445,10 +1658,6 @@ msgstr "in percent of electricity demand"
 msgid "Prozent"
 msgstr "Percent"
 
-#: views/detail_views.py:168
-msgid "Bedarf"
-msgstr "Demand"
-
 #: views/detail_views.py:207 views/detail_views.py:259
 #: views/detail_views.py:310
 msgid "Gewonnene Energie aus EE"
@@ -1460,10 +1669,8 @@ msgid "nach Quelle"
 msgstr "from source"
 
 #: views/detail_views.py:260
-#, fuzzy
-#| msgid "EinwohnerInnen"
 msgid "je EinwohnerIn"
-msgstr "Inhabitants"
+msgstr "per Inhabitant"
 
 #: views/detail_views.py:311 views/detail_views.py:414
 #: views/detail_views.py:891 views/detail_views.py:994
@@ -1482,19 +1689,8 @@ msgstr "Installed Capacity Renewables"
 #: views/detail_views.py:459 views/detail_views.py:507
 #: views/detail_views.py:554 views/detail_views.py:601
 #: views/detail_views.py:1039 views/detail_views.py:1087
-msgid "Haushalte"
-msgstr "Households"
-
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:554 views/detail_views.py:601
-#: views/detail_views.py:1039 views/detail_views.py:1087
 msgid "GHD und Landw."
 msgstr "TCS and Agriculture"
-
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:1039 views/detail_views.py:1087
-msgid "Industrie"
-msgstr "Industry"
 
 #: views/detail_views.py:466 views/detail_views.py:514
 msgid "Strombedarf"
@@ -1529,16 +1725,12 @@ msgstr "Demand: {point.stackTotal} %"
 
 #: views/detail_views.py:840 views/detail_views.py:890
 msgid "Ergebnis: Gewonnene Energie aus EE"
-msgstr "Result: Energy generated from renewables"
+msgstr "Result: Energy generated from Renewables"
 
 #: views/detail_views.py:941 views/detail_views.py:993
 msgid "Ergebnis: Installierte Leistung EE"
 msgstr "Result: Installed Capacity Renewables"
 
-#: views/detail_views.py:1046
+#: views/detail_views.py:1046 views/detail_views.py:1094
 msgid "Ergebnis: Strombedarf"
-msgstr "Result: Electricity Demand"
-
-#: views/detail_views.py:1094
-msgid "Eregbnis: Strombedarf"
 msgstr "Result: Electricity Demand"

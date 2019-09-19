@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="cell small-12 parameter-slider" style="{{widget.attrs.cell_style}}">
   <p class="parameter-slider__label">
@@ -16,7 +17,7 @@
   {% if widget.attrs.id == 'sl_wind' %}
     <div class="grid-x" id="dd_repowering_cell">
       <div class="cell small-5">
-        <p>Zubau-Szenario</p>
+        <p>{% trans 'Repowering-Szenario' %}</p>
       </div>
       <div class="cell small-1"></div>
       <div class="cell small-6">

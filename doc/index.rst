@@ -16,6 +16,7 @@ Hintergrundinformationen und Anleitungen.
 Inhalt:
 
 .. toctree::
+   :caption: Inhalt
    :maxdepth: 1
 
    about
@@ -24,11 +25,17 @@ Inhalt:
    installation_and_setup
    energy_system
    scenarios_and_methods
+   areas_and_potentials
    data
    tool_transfer
    developer
    whats_new
-   api
+
+.. toctree::
+   :caption: API
+   :maxdepth: 1
+
+   api/modules
 
 Indices and tables
 ==================
@@ -48,6 +55,6 @@ Indices and tables
 .. 	image:: files/Logo_ENavi.png
    :height: 80 px
    :alt: Logo ENavi
-.. 	image:: files/BMBF_widget_final.png
-   :height: 80 px
+.. 	image:: files/BMBF_logo.png
+   :height: 120 px
    :alt: Logo des Bundesministeriums für Bildung und Forschung

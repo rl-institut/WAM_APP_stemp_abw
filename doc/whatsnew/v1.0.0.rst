@@ -1,0 +1,16 @@
+v1.0.0 (??. September 2019)
+...........................
+
+Erste stabile Version
+
+Neue Features
+~~~~~~~~~~~~~
+
+- Installation der vom Tool verwenden Daten ermöglicht via Django fixtures #71
+- Dokumentation fertiggestellt #30 inkl. API docs #89
+- Ergebnis-Ebenen: Es werden nun Änderungen ggü. dem Status quo sowie Popups angezeigt #38
+
+Änderungen
+~~~~~~~~~~
+
+- diverse Bugfixes

@@ -1,3 +1,5 @@
+# The settings in this file will be global project settings in wam.settings
+
 INSTALLED_APPS = [
     'leaflet',
     'djgeojson',

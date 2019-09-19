@@ -1134,14 +1134,15 @@ footer {
   width: 100%;
   position: relative;
   bottom: 0;
-  left: 0; }
+  left: 0;}
   footer:not(.footer-hp) {
     padding-bottom: 1rem; }
     @media print, screen and (min-width: 64em) {
       footer:not(.footer-hp) {
         padding-bottom: 2rem; } }
   footer .footer-hp__logo {
-    text-align: center; }
+    text-align: center;
+    background-color: #fff;}
     footer .footer-hp__logo-eaa {
       width: 6rem;
       padding-top: 1rem;
@@ -1167,7 +1168,7 @@ footer {
       width: 7rem; }
       @media print, screen and (min-width: 40em) {
         footer .footer-hp__logo-bmbf {
-          width: 9rem; } }
+          width: 12rem; } }
   footer ul {
     margin: 0 0 .3rem; }
     footer ul li {
@@ -1747,7 +1748,8 @@ footer.map-footer {
   padding: 0;
   width: 100%;
   position: absolute;
-  text-align: right; }
+  text-align: right;
+  background-color: #fff; }
   @media print, screen and (min-width: 40em) {
     footer.map-footer {
       height: 8rem; } }
@@ -1773,10 +1775,10 @@ footer.map-footer {
     footer.map-footer ul.map-footer__logo li {
       margin-top: 0.5rem; }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-        height: 2.5rem; }
+        height: 2rem; }
         @media print, screen and (min-width: 40em) {
           footer.map-footer ul.map-footer__logo li .map-footer__logo-eaa {
-            height: 3.9rem;
+            height: 3.2rem;
             margin-top: 1.8rem; } }
       footer.map-footer ul.map-footer__logo li .map-footer__logo-rli {
         height: 2rem; }
@@ -1794,7 +1796,7 @@ footer.map-footer {
         height: 3rem; }
         @media print, screen and (min-width: 40em) {
           footer.map-footer ul.map-footer__logo li .map-footer__logo-bmbf {
-            height: 6rem;
+            height: 7rem;
             margin-right: .5rem; } }
 
 @media print, screen and (min-width: 40em) {
@@ -1975,9 +1977,6 @@ footer.map-footer {
 
 #panel-results.tabs-panel.is-active.is-collapsed {
   width: calc(100% - 5rem); }
-
-.reveal-overlay {
-  z-index: 9999999 !important; }
 
 .table .table__head--color {
   background-color: #006494;
@@ -6562,6 +6561,7 @@ html.is-reveal-open {
     overflow-y: hidden; }
 
 .reveal-overlay {
+  z-index: 999999999 !important;
   position: fixed;
   top: 0;
   right: 0;
@@ -8522,6 +8522,10 @@ select.dropdown.menu-form-dropdown {
     color: rgb(0, 46, 79) !important;
     padding: 0 1.4rem 0 0.4rem;
     cursor: pointer;
+}
+
+#app-version {
+    color: #888;
 }
 
 /* Utility Classes */

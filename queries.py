@@ -15,7 +15,10 @@ os.environ['DJANGO_DATABASE'] = 'default'
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wam.settings'
 application = get_wsgi_application()
 
-from stemp_abw.dataio.load_static import load_mun_data
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.dataio.load_static import load_mun_data
+
 from stemp_abw.models import \
     Scenario, ScenarioData, REPotentialAreas, RepoweringScenario, SimulationResults
 from stemp_abw.sessions import UserSession
@@ -59,11 +62,20 @@ def insert_status_quo_scenario():
         'pop'
     ]
     mun_data_filtered = mun_data[mun_data_cols].round(decimals=1)
-    global_params = {'resid_dem_el': 100, 'crt_dem_el': 100, 'battery': 0,
-                     'dsm_resid': 0, 'emobility': 0, 'resid_save_th': 0,
-                     'crt_save_th': 0, 'resid_pth': 0, 'crt_pth': 0,
-                     'dist_resid': 1000, 'use_forest': False,
-                     'use_ffh_areas': False, 'use_cult_areas': False,
+    global_params = {'resid_dem_el': 100,
+                     'crt_dem_el': 100,
+                     'ind_dem_el': 100,
+                     'battery': 0,
+                     'dsm_resid': 0,
+                     'emobility': 0,
+                     'resid_save_th': 0,
+                     'crt_save_th': 0,
+                     'resid_pth': 0,
+                     'crt_pth': 0,
+                     'dist_resid': 1000,
+                     'use_forest': False,
+                     'use_ffh_areas': False,
+                     'use_cult_areas': False,
                      'repowering_scn': 0}
     region_data = mun_data_filtered.sum(axis=0).round(decimals=1).to_dict()
     region_data.update(global_params)
@@ -111,8 +123,10 @@ def insert_repowering_scenarios():
     # insert no-repowering-scenario
     scn = {
         'id': 0,
-        'name': 'Kein Repowering/aktuell',
-        'description': 'Es wird kein Repowering vorgenommen.',
+        'name_de': 'Kein Repowering/aktuell',
+        'desc_de': 'Es wird kein Repowering vorgenommen.',
+        'name_en': 'No Repowering',
+        'desc_en': 'No repowering will be carried out.',
         'data': json.dumps(mun_data.round(decimals=1).to_dict(orient='index'), sort_keys=True)
     }
     RepoweringScenario.objects.create(**scn)
@@ -121,11 +135,15 @@ def insert_repowering_scenarios():
     mun_data['gen_capacity_wind'] = (mun_data['gen_count_wind'] * 4.2).round(decimals=1)
 
     scn = {
-        'name': '1:1-Repowering',
-        'description': 'Standorttreues Repowering aller heute in Betrieb '
-                       'befindlichen Altanlagen durch eine neue Anlage, '
-                       'sowohl innerhalb als auch außerhalb von '
-                       'Vorranggebieten (VR/EG) für Windenergie.',
+        'name_de': '1:1-Repowering',
+        'desc_de': 'Standorttreues Repowering aller heute in Betrieb '
+                   'befindlichen Altanlagen durch eine neue Anlage, '
+                   'sowohl innerhalb als auch außerhalb von '
+                   'Vorranggebieten (VR/EG) für Windenergie.',
+        'name_en': '1:1 Repowering',
+        'desc_en': 'Local repowering of all currently active old plants '
+                   'by a new plant, both within and outside priority areas '
+                   '(VR/EG) for wind energy.',
         'data': json.dumps(mun_data.to_dict(orient='index'), sort_keys=True)
     }
     RepoweringScenario.objects.create(**scn)
@@ -134,10 +152,13 @@ def insert_repowering_scenarios():
     # TODO: Insert data
     scn = {
         'id': -1,
-        'name': 'Freier Zubau',
-        'description': 'In diesem Szenario können Windenergieanlagen unter '
-                       'Verwendung zusätzlicher Potenzialflächen frei zugebaut '
-                       'werden.',
+        'name_de': 'Freier Zubau',
+        'desc_de': 'In diesem Szenario können Windenergieanlagen unter '
+                   'Verwendung zusätzlicher Potenzialflächen frei zugebaut '
+                   'werden.',
+        'name_en': 'Variable Extension',
+        'desc_en': 'You are free to choose your extension. Other areas can '
+                   'be selected in addition to the priority areas (VG/EG).',
         #'data': json.dumps(mun_data.to_dict(orient='index'), sort_keys=True
         'data': json.dumps({})
     }
@@ -151,11 +172,16 @@ def insert_repowering_scenarios():
 
     scn = {
         'id': 2,
-        'name': 'Volle Nutzung VR/EG',
-        'description': 'In allen aktuellen Vorranggebieten (VR/EG) für '
-                       'Windenergie wird ein Maximum an Neuanlagen '
-                       'installiert. Alle Anlagen außerhalb dieser '
-                       'Gebiete werden abgebaut.',
+        'name_de': 'Volle Nutzung VR/EG',
+        'desc_de': 'In allen aktuellen Vorranggebieten (VR/EG) für '
+                   'Windenergie wird ein Maximum an Neuanlagen '
+                   'installiert. Alle Anlagen außerhalb dieser '
+                   'Gebiete werden abgebaut.',
+        'name_en': 'Full utilization VR/EG',
+        'desc_en': 'A maximum number of new turbines will be installed '
+                   'in all current priority areas (VR/EG) for wind energy '
+                   '(you can find them in **Areas -> Static Areas**). All '
+                   'turbines outside these areas will be disassembled.',
         'data': json.dumps(mun_data_vreg.to_dict(orient='index'), sort_keys=True)
     }
     RepoweringScenario.objects.create(**scn)
@@ -177,7 +203,7 @@ def insert_status_quo_results():
     # ACHTUNG: To make it work:
     # 1) Comment out in class Results:
     #        self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(
-    #        Scenario.objects.get(name='Status quo').results.data)
+    #            Scenario.objects.get(name='Status quo').results.data)
     # and set
     #   self.results_raw = None
     #   self.param_results_raw = None
@@ -206,7 +232,9 @@ def insert_status_quo_results():
     scn.save()
 
 
-#insert_repowering_scenarios()
-#insert_potential_areas()
-insert_status_quo_scenario()
-insert_status_quo_results()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    #insert_repowering_scenarios()
+    #insert_potential_areas()
+    insert_status_quo_scenario()
+    insert_status_quo_results()

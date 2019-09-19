@@ -1,9 +1,14 @@
+import os
 from django.views.generic import TemplateView
 from django.shortcuts import HttpResponse, render
 import json
 
-from stemp_abw.config.prepare_context import component_data, SCENARIO_DATA,\
-    prepare_layer_data
+from stemp_abw.config.prepare_context import component_data, prepare_layer_data
+
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.config.prepare_context import SCENARIO_DATA
+
 from stemp_abw.config.prepare_texts import label_data, text_data
 from stemp_abw.config.leaflet import LEAFLET_CONFIG
 from stemp_abw.models import Scenario
@@ -17,6 +22,7 @@ from wam.settings import SESSION_DATA
 from stemp_abw.sessions import UserSession
 from stemp_abw.app_settings import RE_POT_LAYER_ID_LIST
 
+from stemp_abw import __version__
 
 # TODO: use WAM's + Test it
 def check_session(func):
@@ -92,13 +98,15 @@ class MapView(TemplateView):
         context.update(text_data())
         context['re_pot_layer_id_list'] = RE_POT_LAYER_ID_LIST
 
-        context['results_charts_tab1_viz'] = results_charts_tab1_viz
-        context['results_charts_tab2_viz'] = results_charts_tab2_viz
+        context['results_charts_tab1_viz'] = results_charts_tab1_viz()
+        context['results_charts_tab2_viz'] = results_charts_tab2_viz()
         context['results_charts_tab3_viz'] = results_charts_tab3_viz
         context['results_charts_tab4_viz'] = results_charts_tab4_viz
         context['results_charts_tab5_viz'] = results_charts_tab5_viz
 
         context['leaflet_config'] = LEAFLET_CONFIG
+
+        context['app_version'] = str(__version__)
 
         return context
 

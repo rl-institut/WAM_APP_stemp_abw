@@ -1,7 +1,9 @@
+from django.utils.translation import gettext_lazy as _
+
 from stemp_abw.visualizations import highcharts
 from stemp_abw.models import Scenario, RegMun, MunData
 from stemp_abw.results.io import oemof_json_to_results
-from stemp_abw.app_settings import NODE_LABELS, SIMULATION_CFG as SIM_CFG
+from stemp_abw.app_settings import node_labels, SIMULATION_CFG as SIM_CFG
 from stemp_abw.config.prepare_texts import label_data
 
 from oemof.outputlib import views
@@ -17,7 +19,7 @@ class Results(object):
     """
     def __init__(self, simulation):
         self.sq_results_raw, self.sq_param_results_raw = oemof_json_to_results(
-            Scenario.objects.get(name='Status quo').results.data)
+            Scenario.objects.get(name=str(_('Status quo'))).results.data)
 
         self.results_raw = self.sq_results_raw
         self.param_results_raw = self.sq_param_results_raw
@@ -133,10 +135,10 @@ class Results(object):
 
         data_power_prod_m_user_scn = {k: v
                                       for (k, v) in data_power_prod_m_user_scn}
-        data_power_prod_m_user_scn['Photovoltaik'] = [
+        data_power_prod_m_user_scn[str(_('Photovoltaik'))] = [
             round(x1+x2, 1)
-            for x1, x2 in zip(data_power_prod_m_user_scn.pop('PV Freifläche'),
-                              data_power_prod_m_user_scn.pop('PV Dach'))]
+            for x1, x2 in zip(data_power_prod_m_user_scn.pop(str(_('PV Freifläche'))),
+                              data_power_prod_m_user_scn.pop(str(_('PV Dach'))))]
         hc_column_power_prod_m_user_scn = [{'name': k, 'data': v}
                                            for k, v in data_power_prod_m_user_scn.items()]
 
@@ -180,16 +182,16 @@ class Results(object):
         ######################
         data_power_prod_a_user_scn_sum = sum([v[0] for (k,v)
                                             in data_power_prod_a_user_scn
-                                            if k != 'Import'])
+                                            if k != str(_('Import'))])
         data_power_prod_a_sq_scn_sum = sum([v[0] for (k, v)
                                           in data_power_prod_a_sq_scn
-                                          if k != 'Import'])
+                                          if k != str(_('Import'))])
         data_power_dem_a_user_scn_sum = sum([v[0] for (k,v)
                                            in data_power_dem_a_user_scn
-                                           if k != 'Export'])
+                                           if k != str(_('Export'))])
         data_power_dem_a_sq_scn_sum = sum([v[0] for (k, v)
                                          in data_power_dem_a_sq_scn
-                                         if k != 'Export'])
+                                         if k != str(_('Export'))])
 
         # prepare chart data
         hc_column_power_own_cons_both_scn_balance = [
@@ -244,9 +246,9 @@ class Results(object):
 
         # prepare chart data
         hc_column_power_own_cons_both_scn = [
-            {'name': 'Bilanziell',
+            {'name': str(_('Bilanziell')),
              'data': hc_column_power_own_cons_both_scn_balance},
-            {'name': 'Zeitgleich',
+            {'name': str(_('Zeitgleich')),
              'data': data_power_prod_both_scn_simult}]
 
         ######################
@@ -457,9 +459,9 @@ class Results(object):
                                                        for n_to in nodes_to]]
             multiple_nodes = 'to'
         else:
-            raise ValueError('One of source and target nodes '
+            raise ValueError(str(_('One of source and target nodes '
                              'must contain exactly 1 node, the '
-                             'other >=1 nodes.')
+                             'other >=1 nodes.')))
 
         # resampling and aggregation
         if resample_mode is not None:
@@ -468,16 +470,16 @@ class Results(object):
             elif agg_mode == 'mean':
                 agg_data = ts.resample(resample_mode).mean()
             else:
-                raise ValueError('Aggregation mode is invalid.')
+                raise ValueError(str(_('Aggregation mode is invalid.')))
         else:
             return ts
 
         # reformat
         if multiple_nodes == 'from':
-            agg_data = [(NODE_LABELS[k[0]], [round(_/1000, 1) for _ in v])
+            agg_data = [(node_labels()[k[0]], [round(_/1000, 1) for _ in v])
                         for k, v in agg_data.to_dict(orient='list').items()]
         elif multiple_nodes == 'to':
-            agg_data = [(NODE_LABELS[k[1]], [round(_/1000, 1) for _ in v])
+            agg_data = [(node_labels()[k[1]], [round(_/1000, 1) for _ in v])
                         for k, v in agg_data.to_dict(orient='list').items()]
 
         return agg_data

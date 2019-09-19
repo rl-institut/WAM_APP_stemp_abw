@@ -78,8 +78,14 @@ function ctrlSimulate() {
   console.log('simulation started');
 
   // show simulation spinner
-  $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
-  $('#loader-detail-text').text('(max. 1 Minute)');
+  var current_cookies = document.cookie;
+  if (current_cookies.includes('django_language=de-DE')) {
+      $('#loader-text').html('<i class="icon ion-coffee"></i> Simuliere...');
+      $('#loader-detail-text').text('(Max. 1 Minute)');
+  } else {
+      $('#loader-text').html('<i class="icon ion-coffee"></i> Simulating...');
+      $('#loader-detail-text').text('(Max. 1 minute)');
+  }
   toggleSpinnerVisibility();
 
   //element.prop("disabled", true);

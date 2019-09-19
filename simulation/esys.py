@@ -1,10 +1,13 @@
+import os
 import pandas as pd
 
 import oemof.solph as solph
 from stemp_abw.dataio.load_static import load_timeseries, load_mun_data
 
-TIMESERIES = load_timeseries()
-MUN_DATA = load_mun_data()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    TIMESERIES = load_timeseries()
+    MUN_DATA = load_mun_data()
 
 
 def prepare_feedin_timeseries(mun_data, reg_params):
@@ -99,6 +102,7 @@ def prepare_demand_timeseries(reg_params):
     demand = TIMESERIES['demand'].copy()
     demand['el_hh'] = demand['el_hh'] * reg_params['resid_dem_el'] / 100
     demand['el_rca'] = demand['el_rca'] * reg_params['crt_dem_el'] / 100
+    demand['el_ind'] = demand['el_ind'] * reg_params['ind_dem_el'] / 100
 
     # aggregated:
     demand_agg = demand \

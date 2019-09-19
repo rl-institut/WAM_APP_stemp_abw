@@ -1,10 +1,12 @@
+import os
 from django import forms
 from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
-
 from stemp_abw.models import Scenario
-from stemp_abw.dataio.load_static import load_repowering_scenarios
+from stemp_abw.app_settings import get_language_or_fallback, LANGUAGE_STORE
 
-REPOWERING_SCENARIOS = load_repowering_scenarios()
+# do not execute when on RTD (reqd for API docs):
+if 'READTHEDOCS' not in os.environ:
+    from stemp_abw.dataio.load_static import load_repowering_scenarios
 
 
 class LayerGroupForm(forms.Form):
@@ -67,10 +69,23 @@ class ComponentGroupForm(forms.Form):
                          'disable': True if data.get('disable') == '1' else False,
                          'extra_classes': ''
                          }
+                ###############
+                # WIND SLIDER #
+                ###############
                 # If slider is wind, add dropdown data.
                 # It is required to provide data via widget as a new <select>
                 # element cannot be added to the slider list
+
                 if attrs.get('id') == 'sl_wind':
+                    # name texts are loaded according to the current language
+                    # (fallback: German).
+                    lang = get_language_or_fallback().lower()[:2]
+                    if lang not in [_[:2] for _ in LANGUAGE_STORE]:
+                        lang = 'de'
+                    REPOWERING_SCENARIOS = load_repowering_scenarios().extra(
+                        select={'name': 'name_{lang}'.format(lang=lang)}
+                    )
+
                     attrs['dropdown'] = ['<option value="{id}">{val}</option>'
                                              .format(id=c.id, val=c.name)
                                          for c in REPOWERING_SCENARIOS]

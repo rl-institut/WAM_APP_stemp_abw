@@ -6,16 +6,16 @@ You can select a type of extension scenario here:
 
 2. **1:1-Repowering (locally):** Local repowering of all currently active old plants by a new plant, both within and outside priority areas (VR/EG) for wind energy. 
 
-3. **Variable extension:** You are free to choose your extension. Other areas can be selected in addition to the priority areas (VG/EG). The maximum potential depends on the available surfaces which can be adjusted in the area category.
+3. **Variable extension:** You are free to choose your extension. Other areas can be selected in addition to the priority areas (VG/EG). The maximum potential depends on the available surfaces which can be adjusted in the **Areas** category.
 
-4. **Full utilization VR/EG:** A maximum number of new turbines will be installed in all current priority areas (VR/EG) for wind energy. All turbines outside these areas will be disassembled. 
+4. **Full utilization VR/EG:** A maximum number of new turbines will be installed in all current priority areas (VR/EG) for wind energy (you can find them in **Areas -> Static Areas**). All turbines outside these areas will be disassembled. 
 
 ## Model plant
 
 For the simplification an Enercon E-141 (4.2 MW) with a hub height of 159 m is used as the new plant in **scenarios 2-4**
 (on average 2500 full load hours in the entire region).
 
-**Attention:** Due to the higher efficiency of new plants, a higher energy production can be achieved with the same installed capacity. If you have activated repowering or free extension, this will always lead to a higher energy prodction even without additional capacity.
+**Attention:** Due to the higher efficiency of new plants, _a higher energy production can be achieved with the same installed capacity_. If you have activated repowering or free extension, this will always lead to a higher energy prodction even without additional capacity.
 
 ## Framework
 
