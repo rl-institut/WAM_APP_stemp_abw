@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 09:59+0200\n"
+"POT-Creation-Date: 2019-09-19 09:24+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Dez"
 msgstr "Dec"
 
-#: config/prepare_context.py:175
+#: config/prepare_context.py:179
 msgid "Bitte klicken!"
 msgstr "Click me!"
 
@@ -220,7 +220,8 @@ msgstr "Composition electricity generation (status quo)"
 
 #: results/result_charts.py:139
 msgid "Monatliche Stromerzeugung aus EE (Dein Szenario)"
-msgstr "Monthly electricity generation from renewable energy sources (your scenario)"
+msgstr ""
+"Monthly electricity generation from renewable energy sources (your scenario)"
 
 #: results/result_charts.py:146
 msgid "PV"
@@ -532,9 +533,9 @@ msgid ""
 "Zusammenhänge erfahr- und diskutierbar."
 msgstr ""
 "Regional actors, especially citizens, should be encouraged to participate in "
-"shaping the energy system transformation in the region ABW in a appropriate, serious way. "
-"The complex connections can be experienced and discussed through clear and "
-"vivid design as well as suitable guidance."
+"shaping the energy system transformation in the region ABW in a appropriate, "
+"serious way. The complex connections can be experienced and discussed "
+"through clear and vivid design as well as suitable guidance."
 
 #: templates/stemp_abw/index.html:53
 msgid "Effizientere Arbeitsweise"
@@ -1611,6 +1612,10 @@ msgstr "Your session has expired"
 #: templates/stemp_abw/session_not_found.html:7
 msgid "Bitte starte eine neue Session"
 msgstr "Please start a new session"
+
+#: templates/widgets/slider_abw.html:20
+msgid "Repowering-Szenario"
+msgstr "Repowering Scenario"
 
 #: views/detail_views.py:114 views/detail_views.py:118
 msgid "Personen"
