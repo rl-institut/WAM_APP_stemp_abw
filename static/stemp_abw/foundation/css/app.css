@@ -8524,6 +8524,10 @@ select.dropdown.menu-form-dropdown {
     cursor: pointer;
 }
 
+#app-version {
+    color: #888;
+}
+
 /* Utility Classes */
 .text-primary {
     color: #F2994A !important;
