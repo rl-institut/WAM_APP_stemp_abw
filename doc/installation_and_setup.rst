@@ -74,9 +74,18 @@ Per Browser kann nun auf das Tool zugegriffen werden: http://127.0.0.1:8888/
 Daten bereitstellen
 -------------------
 
-Die benötigten Daten liegen bei `Zenodo <https://zenodo.org/record/3376168>`_
-und können mit dem bereitgestellten Skript <XXX> über `Django fixtures
-<https://docs.djangoproject.com/en/2.2/howto/initial-data/>`_ installiert
-werden:
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3376167.svg
+   :target: https://doi.org/10.5281/zenodo.3376167
 
-.. warning:: TBD. Release-Hinweis: Version im Filename entspricht dem dazugehören Release!
+Die benötigten Daten liegen bei `Zenodo <https://doi.org/10.5281/zenodo.3376167>`_
+und können mit dem bereitgestellten Skript ``get_fixtures_stemp_abw.py`` über
+`Django fixtures <https://docs.djangoproject.com/en/2.2/howto/initial-data/>`_
+installiert werden:
+
+.. code-block:: bash
+
+    INSERT CODE HERE
+
+.. note::
+    Kompatibilität: Die Versionsnummern des verwendeten Tools und der Daten
+    müssen übereinstimmen.
