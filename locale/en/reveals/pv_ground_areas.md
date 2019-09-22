@@ -4,7 +4,7 @@ With an installed capacity of 445 megawatts and a share of around 18 %
 of the region's electricity demand, ground-mounted photovoltaic 
 plants are already making a decisive contribution by the end of 2017. Further
 expansion is an important element on the way to a fully renewable energy 
-supply, which must be balanced against the spatial and environmental impact.
+supply, which must be balanced against the spatial and environmental impacts.
 
 
 ## Potential areas
@@ -38,10 +38,10 @@ The following areas are taken into account:
     According to the <a href="https://mule.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/MLU/04_Energie/Klimaschutz/00_Startseite_Klimaschutz/190205_Klima-_und_Energiekonzept_Sachsen-Anhalt.pdf" target="_blank">Klima- und Energiekonzept</a> (2019) (climate and energy concept)
     of the state of Saxony-Anhalt, the current planning aims to avoid
     the construction of photovoltaic open-air plants on agricultural 
-    land as far as possible.  
+    land as much as possible.
     To take this restriction into account, only **0.5 % of the resulting** 
     **areas (after deduction of the restriction areas, see below) are** 
-    **assumed to be spatially compatible**  
+    **assumed to be spatially compatible**
     (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
         
 Other sites included in the EEG's funding programme - conversion areas
@@ -54,7 +54,7 @@ In contrast to the potential areas, the installation of photovoltaic systems
 is excluded (hard) or unlikely (soft) in restriction areas. 
 Both the current legal situation and the planning criteria were taken 
 into account here
-(see.
+(see
 <a href="https://www.bbr.bund.de/BBSR/DE/Veroeffentlichungen/ministerien/BMVI/BMVIOnline/2015/DL_BMVI_Online_08_15.pdf?__blob=publicationFile&v=2" target="_blank">BMVI</a>
 ). 
 
@@ -83,7 +83,7 @@ into account here
         - Region important location for industry and commerce (existing + planned)
     
 2. **Soft restrictions**
-    - FFH areas
+   -  FFH (Fauna-Flora-Habitats) areas
     - SPA-/bird sanctuaries
     - Protected landscapes
     - Reserved areas for the development of an integrated ecological system
@@ -98,7 +98,7 @@ into account here
 ## Framework
 
 - For economic reasons, only areas >1 ha are taken into account.
-- Existing plants and areas used for plants are neglected.
+- Existing plants and areas used for plants are not taken into account.
 - For the specific area requirement, 2.5 hectares per installed megawatt (peak) 
   are assumed
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
