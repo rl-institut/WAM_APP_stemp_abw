@@ -118,3 +118,5 @@ for areas and maximum installable capacity:
 
 **The value displayed in the menu controller represents the maximum installable 
 rated power with hard restriction areas.**.
+
+See our <a href="https://stemp-abw.readthedocs.io/en/dev/areas_and_potentials.html#areas-and-potentials-label" target="_blank">documentation</a> for further details.
