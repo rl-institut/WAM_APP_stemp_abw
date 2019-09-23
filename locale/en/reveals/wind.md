@@ -30,7 +30,7 @@ _a higher energy production can be achieved with the same installed capacity_.
 If you have activated repowering or free extension, this will always lead to a
 higher energy prodction even without additional capacity.
 
-## Framework
+## Assumptions
 
 - The year of construction of existing wind turbines will be neglected, i.e. in
   **scenarios 2-4** no successive extensions or the like are taken into
