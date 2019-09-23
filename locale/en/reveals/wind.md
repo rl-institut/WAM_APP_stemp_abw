@@ -21,6 +21,6 @@ For the simplification an Enercon E-141 (4.2 MW) with a hub height of 159 m is u
 
 - The year of construction of existing wind turbines will be neglected, i.e. in **scenarios 2-4** no successive extensions or the like are taken into account.
 - The wind plant arrangement is not optimized. A general area requirement of 20 hectares per plant is assumed (based on assumptions from
-<a href="https://mlv.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MLV/Service/Publikationen/Abschlussbericht-Repowering-2018.pdf" target="_blank">ImAG 2018</a>, 
+<a href="https://mlv.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MLV/Service/Publikationen/Abschlussbericht_der_interministeriellen_Arbeitsgruppe__Repowering__zur_Modernisierung_von_Windenergieanlagen_in_Sachsen-Anhalt.pdf" target="_blank">ImAG 2018</a>, 
 <a href="https://www.umweltbundesamt.de/sites/default/files/medien/378/publikationen/potenzial_der_windenergie.pdf" target="_blank">UBA 2013</a>,
 <a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf" target="_blank">BMWi 2017</a>).
