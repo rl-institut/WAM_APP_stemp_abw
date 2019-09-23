@@ -15,3 +15,4 @@ Neue Features
 ~~~~~~~~~~
 
 - diverse Bugfixes
+- typo fixes in the english version
