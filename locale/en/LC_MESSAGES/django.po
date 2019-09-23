@@ -648,7 +648,7 @@ msgstr "Take a look at existing priority areas for wind energy"
 
 #: templates/stemp_abw/index.html:130
 msgid "Sieh dir die Tabuzonen für Windenergie in der Region an"
-msgstr "Take a look at the taboo zones for wind energy in this region"
+msgstr "Take a look at the prohibited zones for wind energy in this region"
 
 #: templates/stemp_abw/index.html:131
 msgid ""
