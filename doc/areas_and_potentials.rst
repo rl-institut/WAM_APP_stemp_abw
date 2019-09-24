@@ -120,8 +120,9 @@ Repowering
 In Anlehnung an `MLV 2018`_ ermöglicht das Tool die Einstellung verschiedener
 Repowering-Szenarien, die im Folgenden beschrieben werden. Zu beachten ist,
 dass diese Varianten teilweise unvereinbar mit der aktuellen Rechts- und
-Planungslage sind (vgl. `LEntwG LSA`_, ). Entsprechend dem visionären Charakter des Tools sollen sie
-vielmehr alternative Pfade beim Ausbau der Windenergie aufzeigen:
+Planungslage sind (vgl. `LEntwG LSA`_, `MULE 2019`_). Entsprechend dem
+visionären Charakter des Tools sollen sie vielmehr alternative Pfade beim
+Ausbau der Windenergie aufzeigen:
 
 1. **Kein Repowering:** Es wird kein Repowering vorgenommen (nur heutige
    Anlagen vorhanden, mittlere Volllaststunden 2011-2015 für gesamte Region:
