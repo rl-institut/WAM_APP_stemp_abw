@@ -120,7 +120,7 @@ Repowering
 In Anlehnung an `MLV 2018`_ ermöglicht das Tool die Einstellung verschiedener
 Repowering-Szenarien, die im Folgenden beschrieben werden. Zu beachten ist,
 dass diese Varianten teilweise unvereinbar mit der aktuellen Rechts- und
-Planungslage sind. Entsprechend dem visionären Charakter des Tools sollen sie
+Planungslage sind (vgl. `LEntwG LSA`_, ). Entsprechend dem visionären Charakter des Tools sollen sie
 vielmehr alternative Pfade beim Ausbau der Windenergie aufzeigen:
 
 1. **Kein Repowering:** Es wird kein Repowering vorgenommen (nur heutige
@@ -187,25 +187,24 @@ Ergebnisse
    lediglich 10 % der (nach Ausschluss harter und weicher Tabuzonen)
    resultierenden Flächen zur Verfügung stehen.
 
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| **Abstand zu Siedlungen [m]** | **Wald verwenden?** | **Ergebnisse**                                                                           |
-|                               |                     +-------------+---------------------------------------------+------------------------------+
-|                               |                     | Fläche [ha] | Installierbare Anzahl
-WEA (10% der Fläche)  | Installierbare
-Leistung [MW] |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 500                           | nein                | 87847       | 439                                         | 1844                         |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 1000                          | nein                | 30713       | 154                                         | 752                          |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 1500                          | nein                | 7461        | 37                                          | 155                          |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 500                           | ja                  | 147652      | 738                                         | 3100                         |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 1000                          | ja                  | 69057       | 345                                         | 1449                         |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
-| 1500                          | ja                  | 25629       | 128                                         | 538                          |
-+-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| **Abstand zu Siedlungen [m]** | **Wald verwenden?** | **Ergebnisse**                                       |
+|                               |                     +-------------+-----------------------+----------------+
+|                               |                     | Fläche [ha] | Installierbare Anzahl | Installierbare |
+|                               |                     |             | WEA (10% der Fläche)  | Leistung [MW]  |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 500                           | nein                | 87847       | 439                   | 1844           |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 1000                          | nein                | 30713       | 154                   | 752            |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 1500                          | nein                | 7461        | 37                    | 155            |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 500                           | ja                  | 147652      | 738                   | 3100           |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 1000                          | ja                  | 69057       | 345                   | 1449           |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
+| 1500                          | ja                  | 25629       | 128                   | 538            |
++-------------------------------+---------------------+-------------+-----------------------+----------------+
 
 Der im Menü-Regler des Tools angezeigte Wert stellt die maximal installierbare
 unter den gewählten Randbedingungen dar.
@@ -363,3 +362,4 @@ Nennleistung mit harten Restriktionsflächen dar**.
 .. _`MLV 2018`: https://mlv.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MLV/Service/Publikationen/Abschlussbericht_der_interministeriellen_Arbeitsgruppe__Repowering__zur_Modernisierung_von_Windenergieanlagen_in_Sachsen-Anhalt.pdf
 .. _`§35 BauGB`: https://www.gesetze-im-internet.de/bbaug/__35.html
 .. _`AEE 2018`: https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811
+.. _`LEntwG LSA`: http://www.landesrecht.sachsen-anhalt.de/jportal/portal/t/194k/page/bssahprod.psml/screen/JWPDFScreen/filename/LEntwG_ST.pdf
