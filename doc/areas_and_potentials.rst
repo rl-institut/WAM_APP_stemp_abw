@@ -114,6 +114,9 @@ Vorrang-/Eignungsgebiete (VR/EG) (grün):
    :alt: Vereinigung harter und weicher Restriktionsflächen sowie VR/EG
    :align: center
 
+Die Restriktionsflächen finden Sie im Tool unter
+**Flächen -> Statische Flächen**.
+
 Repowering
 ..........
 
