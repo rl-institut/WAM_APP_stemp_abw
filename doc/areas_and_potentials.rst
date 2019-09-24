@@ -188,8 +188,8 @@ Ergebnisse
    resultierenden Flächen zur Verfügung stehen.
 
 +-------------------------------+---------------------+-------------+-----------------------+----------------+
-| **Abstand zu Siedlungen [m]** | **Wald verwenden?** | **Ergebnisse**                                       |
-|                               |                     +-------------+-----------------------+----------------+
+| **Abstand zu**                | **Wald**            | **Ergebnisse**                                       |
+| **Siedlungen [m]**            | **verwenden?**      +-------------+-----------------------+----------------+
 |                               |                     | Fläche [ha] | Installierbare Anzahl | Installierbare |
 |                               |                     |             | WEA (10% der Fläche)  | Leistung [MW]  |
 +-------------------------------+---------------------+-------------+-----------------------+----------------+
