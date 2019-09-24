@@ -11,7 +11,7 @@ größten Beitrag zur erneuerbaren Stromgewinnung - Ende 2017 deckten 438 Anlage
 mit einer installierten Leistung von 717 Megawatt bilanziell bereits rund 45 %
 des regionalen Strombedarfs. Der weitere Ausbau sowie das Repowering
 bestehender Anlagen spielt eine entscheidende Rolle bei der Transformation des
-Energiesystems hin zu Erneuerbaren Energieversorgung.
+Energiesystems hin zu einer erneuerbaren Energieversorgung.
 
 Potenzialflächen
 ................
@@ -32,7 +32,7 @@ Vereinfacht dargestellt werden vom Planungsraum Restriktionsflächen (sog.
 "harte" und "weiche" Tabuzonen, s.u.) abgezogen, die aus verschiedenen Gründen
 (z.B. Naturschutz, vorhandener Infrastruktur, andersartigen Interessen etc.)
 für die Windenergienutzung nicht zur Verfügung stehen. Es resultieren
-potenziell geeignete Flächen - der sog. "Suchraum", die rund 10 % des gesamten
+potenziell geeignete Flächen - der sog. "Suchraum" - die rund 10 % des gesamten
 Planungsraums ausmachen. Diese Flächen werden einer Einzelfallprüfung (s.u.)
 unterzogen, die wiederum zu einem Ausschluss von etwa 90 % des Suchraums
 führen. Resultierend stehen somit für sie Ausweisung von VR/EG noch ca. 1 % des
@@ -61,7 +61,7 @@ detaillierter beschrieben:
 
 :Weiche Restriktionen (Tabuzonen):
     - 1000 m-Pufferzone um Siedlungsflächen mit überwiegender Wohn- und
-      Erholungsnutzung, Kur- und Klinikgebiete
+      Erholungsnutzung, Kur- und Klinikgebiete (`Teilplan Wind ABW 2018`_)
     - Flora-Fauna-Habitat (FFH)-Gebiete
     - Wald gem. § 2 WaldG LSA
     - UNESCO-Welterbegebiete
@@ -158,7 +158,7 @@ Musteranlage
 
 Als Neuanlage wird in den **Repowering-Szenarien 2-4** vereinfacht eine Enercon
 E-141 (4,2 MW) mit einer Nabenhöhe von 159 m angenommen (im Mittel 2500
-Volllaststunden in der gesamten Region (`UBA 2013`_)).
+Volllaststunden in der gesamten Region).
 
 Durch die höhere Effizienz neuer Anlagen kann bei gleicher installierter
 Leistung ein höherer Ertrag erreicht werden. Wenn Sie im Tool also das
@@ -190,7 +190,9 @@ Ergebnisse
 +-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
 | **Abstand zu Siedlungen [m]** | **Wald verwenden?** | **Ergebnisse**                                                                           |
 |                               |                     +-------------+---------------------------------------------+------------------------------+
-|                               |                     | Fläche [ha] | Installierbare Anzahl WEA (10% der Fläche)  | Installierbare Leistung [MW] |
+|                               |                     | Fläche [ha] | Installierbare Anzahl
+WEA (10% der Fläche)  | Installierbare
+Leistung [MW] |
 +-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
 | 500                           | nein                | 87847       | 439                                         | 1844                         |
 +-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
@@ -205,8 +207,8 @@ Ergebnisse
 | 1500                          | ja                  | 25629       | 128                                         | 538                          |
 +-------------------------------+---------------------+-------------+---------------------------------------------+------------------------------+
 
-Der im Menü-Regler angezeigte Wert stellt die maximal installierbare unter den
-gewählten Randbedingungen dar.
+Der im Menü-Regler des Tools angezeigte Wert stellt die maximal installierbare
+unter den gewählten Randbedingungen dar.
 
 Freiflächen-Photovoltaikanlagen
 -------------------------------
