@@ -1,7 +1,7 @@
 .. _areas_and_potentials_label:
 
-Flächen und Potenziale
-======================
+EE-Flächen und -Potenziale
+==========================
 
 Windenergieanlagen
 ------------------
