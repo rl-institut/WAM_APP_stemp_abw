@@ -641,7 +641,29 @@ Konfigurationsdateien, die von der WAM eingelesen werden:
 Sprachpakete
 ------------
 
-Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
-erweitert werden. Hierzu...
+Die StEmp-ABW Applikation enthält Sprachpakete für Deutsch und Englisch und ist somit zweisprachig.
+Beide Sprachpakete befinden sich im Ordner `stemp_abw/locale`.
+StEmp-ABW verwendet hierbei sowohl den `Django-i18n-Mechanismus <https://docs.djangoproject.com/en/2.2/topics/i18n/>`_
+als auch einen eigenen Implementationsteil, welcher auf ConfigObj-Dateien basiert.
 
-.. warning:: TBD
+Für die Funktionsweise des Django-i18n-Teils wird an dieser Stelle auf die offizielle Dokumentation
+verwiesen: `Link <https://docs.djangoproject.com/en/2.2/topics/i18n/>`_.
+
+Der StEmp-ABW Implementationsteil für Mehrsprachigkeit ist hierbei wie folgt.
+In der Datei `stemp_abw/app_settings.py` befinden sich folgende Konstanten:
+
+1. DEFAULT_LANGUAGE
+2. LANGUAGE_STORE
+
+Die Konstante DEFAULT_LANGUAGE definiert die Standardsprache aus der settings.py WAM-Projektbasis.
+Zur Zeit ist diese Deutsch (de-DE).
+
+Die Konstante LANGUAGE_STORE enthält alle zur Verfügung stehenden Sprachen. Zur Zeit sind dies
+en und de-DE.
+
+Wenn jetzt in der Navigationsleiste der App eine Sprache ausgewählt und mit OK bestätigt wird, dann
+wird ein Post-Anfrage an eine `Django-i18n-redirect-view <https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#the-set-language-redirect-view>`_ gestellt, welche darauf u.a. die Sprache im
+Browser-Cookie auf die gewählte Sprache umstellt und die aktuelle Seite neu lädt. Dieser Mechnismus wird
+von den Callables in app_settings.py genutzt um dynamisch die passenden configObj in der passenden Sprache
+in locale zu verwenden. Die Callables in app_settings.py sind dabei alle Funktionen,
+welche ein ConfigObj oder eine Markdowndatei als Rückgabewert zurückgeben.
