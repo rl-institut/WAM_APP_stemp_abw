@@ -622,7 +622,8 @@ wie folgt aus ::
 Die Hilfetexte werden über die StEmp-ABW-eigene i18n-Funktionalität realisiert,
 indem sie dynamisch als ConfigObj-Instanzen in stemp_abw/app_settings.py in der
 passenden Sprache eingebunden werden. Mehr zur Mehrsprachigkeitsfunktionalität
-in stemp_abw/app_settings.py auch im Abschnitt `Sprachpakete`.
+in stemp_abw/app_settings.py auch im Abschnitt
+:ref:`developer_language_packs_label`.
 
 .. _developer_config_files_label:
 
@@ -676,7 +677,8 @@ appspezifisch für StEmp-ABW und bestehen hauptsächlich aus Konstanten und
 Funktionen (Callables), welche einen Teil der Mehrsprachigkeitsfunktionalität
 in StEmp-ABW realisieren sowie Teile der App-Computing-Funktionalität
 via cfg-Dateien mappen. Mehr zur Mehrsprachigkeitsfunktionalität in
-stemp_abw/app_settings.py auch im Abschnitt `Sprachpakete`.
+stemp_abw/app_settings.py auch im Abschnitt
+:ref:`developer_language_packs_label`.
 
 
 .. _developer_language_packs_label:
