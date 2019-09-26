@@ -116,6 +116,9 @@ Ordnerstruktur des Projektes::
     ├── config
     ├── dataio
     ├── doc
+    ├── fixtures
+    ├── locale
+    ├── management
     ├── migrations
     ├── results
     ├── simulation
@@ -131,7 +134,7 @@ für wiederkehrende Prozesse enthält) und sessions.py (in der User-Sessions
 gehandhabt werden) hervorzuheben.
 
 Bei den Ordnern (Modulen) verhält es sich ähnlich. Einige sind typisch für Django
-(doc, migrations, static, templates, views), andere spezifisch für dieses Projekt
+(doc, fixtures, locale, management, migrations, static, templates, views), andere spezifisch für dieses Projekt
 (config, dataio, results, simulation, visualizations). Im Folgenden soll
 ausschließlich auf die projektspezifischen Module kurz eingegangen werden:
 
