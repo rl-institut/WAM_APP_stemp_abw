@@ -84,7 +84,7 @@ installiert werden.
     python manage.py get_fixtures_stemp_abw
     python manage.py loaddata stemp-abw_data_v0.9.0.json
 
-Anmerkung: Falls, der Downloadvorgang (``get_fixtures_stemp_abw``) fehlschlägt, dann einfach den Datensatz von
+Anmerkung: Falls der Downloadvorgang (``get_fixtures_stemp_abw``) fehlschlägt, dann einfach den Datensatz von
 `Zenodo <https://doi.org/10.5281/zenodo.3376167>`_ herunterladen, entpacken und die resultierende JSON-Datei
 in das Fixtureverzeichnis (``stemp_abw/fixtures``) kopieren.
 
