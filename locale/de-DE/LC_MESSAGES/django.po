@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-19 14:21+0200\n"
+"POT-Creation-Date: 2019-09-23 15:46+0200\n"
 "PO-Revision-Date: 2019-09-10 11:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -309,8 +309,8 @@ msgid "Telefax"
 msgstr ""
 
 #: templates/stemp_abw/imprint.html:10 templates/stemp_abw/index.html:217
-#: templates/stemp_abw/navigation_app.html:26
-#: templates/stemp_abw/navigation_base.html:53
+#: templates/stemp_abw/navigation_app.html:33
+#: templates/stemp_abw/navigation_base.html:57
 msgid "Impressum"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgid "Get involved!"
 msgstr ""
 
 #: templates/stemp_abw/index.html:171
-#: templates/stemp_abw/navigation_base.html:49
+#: templates/stemp_abw/navigation_base.html:53
 msgid "Dokumentation"
 msgstr ""
 
@@ -682,7 +682,7 @@ msgid ""
 msgstr ""
 
 #: templates/stemp_abw/index.html:175
-#: templates/stemp_abw/navigation_base.html:50
+#: templates/stemp_abw/navigation_base.html:54
 msgid "Quellcode"
 msgstr ""
 
@@ -723,14 +723,14 @@ msgid "Bundesministerium für Bildung und Forschung"
 msgstr ""
 
 #: templates/stemp_abw/index.html:216
-#: templates/stemp_abw/navigation_app.html:25
-#: templates/stemp_abw/navigation_base.html:52
+#: templates/stemp_abw/navigation_app.html:32
+#: templates/stemp_abw/navigation_base.html:56
 msgid "Kontakt"
 msgstr ""
 
 #: templates/stemp_abw/index.html:218
-#: templates/stemp_abw/navigation_app.html:23
-#: templates/stemp_abw/navigation_base.html:42
+#: templates/stemp_abw/navigation_app.html:30
+#: templates/stemp_abw/navigation_base.html:46
 msgid "Datenschutz"
 msgstr ""
 
@@ -859,23 +859,23 @@ msgstr ""
 msgid "Fehler beim Laden der Daten!"
 msgstr ""
 
-#: templates/stemp_abw/navigation_app.html:21
-#: templates/stemp_abw/navigation_app.html:22
+#: templates/stemp_abw/navigation_app.html:28
+#: templates/stemp_abw/navigation_app.html:29
 #: templates/stemp_abw/navigation_base.html:16
 msgid "Startseite"
 msgstr ""
 
-#: templates/stemp_abw/navigation_app.html:24
-#: templates/stemp_abw/navigation_base.html:48
+#: templates/stemp_abw/navigation_app.html:31
+#: templates/stemp_abw/navigation_base.html:52
 msgid "Quellen"
 msgstr ""
 
 #: templates/stemp_abw/navigation_base.html:10
-#: templates/stemp_abw/navigation_base.html:44
+#: templates/stemp_abw/navigation_base.html:48
 msgid "Menü"
 msgstr ""
 
-#: templates/stemp_abw/navigation_base.html:51
+#: templates/stemp_abw/navigation_base.html:55
 msgid "Feedback"
 msgstr ""
 

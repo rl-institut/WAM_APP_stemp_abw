@@ -14,4 +14,8 @@ Neue Features
 Änderungen
 ~~~~~~~~~~
 
+- Wind-Potenziale korrigiert: Es werden nun lediglich 10 % der nach Abzug der
+  harten und weichen Tabuzonen resultierenden Fläche als Potenzialfläche
+  angenommen (vorher: 50 %).
 - diverse Bugfixes
+- typo fixes in the english version

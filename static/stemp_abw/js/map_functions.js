@@ -255,26 +255,26 @@ function addRePotAreaLayer() {
   if (sl_val == 1000) {
     if (sw_val == false) {
       lmap.addLayer(layers_re_pot['1']);
-      wec_count = 788;
+      wec_count = 179;
     } else {
       lmap.addLayer(layers_re_pot['2']);
-      wec_count = 1761;
+      wec_count = 345;
     }
   } else if (sl_val == 1500) {
     if (sw_val == false) {
       lmap.addLayer(layers_re_pot['3']);
-      wec_count = 186;
+      wec_count = 37;
     } else {
       lmap.addLayer(layers_re_pot['4']);
-      wec_count = 651;
+      wec_count = 128;
     }
   } else if (sl_val == 500) {
     if (sw_val == false) {
       lmap.addLayer(layers_re_pot['5']);
-      wec_count = 2242;
+      wec_count = 439;
     } else {
       lmap.addLayer(layers_re_pot['6']);
-      wec_count = 3751;
+      wec_count = 738;
     }
   }
 
