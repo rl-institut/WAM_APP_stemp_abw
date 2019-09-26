@@ -586,8 +586,45 @@ Szenarien
 Hilfetexte
 ----------
 
-- Wo liegen die Hilfetexte (Tooltips)?
-- Wie werden diese eingebunden?
+Die StEmp-ABW-Applikation ist gespickt mit Hilfetexten, welche an folgenden Stellen
+Verwendung finden:
+
+- Layer
+- Layergruppen
+- Komponenten
+- Komponentengruppen
+- Panels
+- Tooltips
+- Szenarien
+- Charts
+
+Die Hilfetexte werden hierbei in der Datei `labels.cfg` definiert, welche sich im jeweiligen
+Sprachunterordner im locale-Ordner (`stemp_abw/locale`) befindet. Je Sprache gibt es
+hierbei genau eine `labels.cfg`-Datei. Die zu verwendende Formatierung sieht hierbei
+wie folgt aus ::
+
+    [groups]
+     [[<GROUP_ID>]]
+         title = <TITLE OF GROUP>
+         text = '''<DESCRIPTIVE TEXT OF GROUP WITH EACH LINE HAVING ABOUT 50 CHARACTERS>'''
+    [entities]
+     [[<ENTITY_ID>]]
+         title = <TITLE OF ENTITY>
+         text = '''<DESCRIPTIVE TEXT OF ENTITY WITH EACH LINE HAVING ABOUT 50 CHARACTERS>'''
+         text2 = '''<ANOTHER TEXT OF ENTITY> (Supported in components)'''
+         reveal_id = <ID OF REVEAL WINDOW> (Supported in components.
+                     If provided, the tooltip is replaced by a reveal
+                     window with content from markdown file in
+                     config/reveals)
+         reveal_icon = <ION ICON FOR REVEAL BUTTON, MUST BE PROVIDED IF
+                        reveal_id IS SET>
+         icon = <ICON FILE NAME> (Supported in components, located in
+                                  static/stemp_abw/img/energy/icons/)
+
+Die Hilfetexte werden über die StEmp-ABW-eigene i18n-Funktionalität realisiert,
+indem sie dynamisch als ConfigObj-Instanzen in stemp_abw/app_settings.py in der
+passenden Sprache eingebunden werden. Mehr zur Mehrsprachigkeitsfunktionalität
+in stemp_abw/app_settings.py auch im Abschnitt `Sprachpakete`.
 
 .. _developer_config_files_label:
 
@@ -649,7 +686,7 @@ stemp_abw/app_settings.py auch im Abschnitt `Sprachpakete`.
 Sprachpakete
 ------------
 
-Die StEmp-ABW Applikation enthält Sprachpakete für Deutsch und Englisch und ist somit zweisprachig.
+Die StEmp-ABW-Applikation enthält Sprachpakete für Deutsch und Englisch und ist somit zweisprachig.
 Beide Sprachpakete befinden sich im Ordner `stemp_abw/locale`.
 StEmp-ABW verwendet hierbei sowohl den `Django-i18n-Mechanismus <https://docs.djangoproject.com/en/2.2/topics/i18n/>`_
 als auch einen eigenen Implementationsteil, welcher auf ConfigObj-Dateien basiert.
