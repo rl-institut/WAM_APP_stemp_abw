@@ -589,39 +589,6 @@ Hilfetexte
 - Wo liegen die Hilfetexte (Tooltips)?
 - Wie werden diese eingebunden?
 
-.. _`Amtlichen Gemeindeschlüsseln`: https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel
-.. _`Serialisierungsansicht von RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/serial_views.py#L60-L67
-.. _`context`: https://docs.djangoproject.com/en/2.2/ref/templates/api/#rendering-a-context
-.. _`Komplexere Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L177-L225
-.. _`Einfache Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L434-L436
-.. _`RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/templates/stemp_abw/popups/gen_energy_re.html
-.. _Templatemechanimus: https://docs.djangoproject.com/en/2.2/topics/templates/
-.. _`Chroma.js`: https://github.com/gka/chroma.js/
-.. _`colorbrewer2.org`: http://colorbrewer2.org
-.. _`Choroplethkarte`: https://de.wikipedia.org/wiki/Choroplethenkarte
-.. _`simplify aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.GEOSGeometry.simplify
-.. _`precision aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.WKTWriter.precision
-.. _`RegMunDemElEnergy in config/layers_region.cfg`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/config/layers_region.cfg#L286-L307
-.. _Dateikommentar: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/config/labels.cfg#L1-L34
-.. _`RegMunDemElEnergy`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/models.py#L115-L132
-.. _`RegMun`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/models.py#L42-L47
-.. _`Add layer for reg_mun_gen_cap_re_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/720f2e7e69d942d0b4344da8c086b72aa7ec2621
-.. _`Add layer for reg_mun_gen_cap_re_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/b9331809f1e66594c46ce1d4ac544bceb7a6ac60
-.. _`Add layer for reg_mun_gen_count_wind_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/41c70311fcbc1ad2f6db59e1c34a62bdcea5d5f0
-.. _API: https://stemp-abw.readthedocs.io/en/dev/api.html
-.. _Django: https://www.djangoproject.com/
-.. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
-.. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
-.. _getting started Tutorial: https://www.djangoproject.com/start/
-.. _`Modellmechanismus aus Django`: https://docs.djangoproject.com/en/2.2/topics/db/models/
-.. _oemof: https://github.com/oemof/oemof
-.. _stemp_abw: https://github.com/rl-institut/WAM_APP_stemp_abw
-.. _stemp_mv: https://github.com/rl-institut/WAM_APP_stemp_mv
-.. _Tutorial: https://realpython.com/location-based-app-with-geodjango-tutorial/
-.. _WAM: https://github.com/rl-institut/WAM
-.. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
-.. _WAM-Dokumentation: https://wam.readthedocs.io/en/latest/
-
 .. _developer_config_files_label:
 
 Konfigurationsdateien
@@ -708,3 +675,36 @@ Browser-Cookie auf die gewählte Sprache umstellt und die aktuelle Seite neu lä
 von den Callables in app_settings.py genutzt um dynamisch die passenden configObj in der passenden Sprache
 in locale zu verwenden. Die Callables in app_settings.py sind dabei alle Funktionen,
 welche ein ConfigObj oder eine Markdowndatei als Rückgabewert zurückgeben.
+
+.. _`Amtlichen Gemeindeschlüsseln`: https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel
+.. _`Serialisierungsansicht von RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/serial_views.py#L60-L67
+.. _`context`: https://docs.djangoproject.com/en/2.2/ref/templates/api/#rendering-a-context
+.. _`Komplexere Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L177-L225
+.. _`Einfache Detailansichten`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/detail_views.py#L434-L436
+.. _`RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/templates/stemp_abw/popups/gen_energy_re.html
+.. _Templatemechanimus: https://docs.djangoproject.com/en/2.2/topics/templates/
+.. _`Chroma.js`: https://github.com/gka/chroma.js/
+.. _`colorbrewer2.org`: http://colorbrewer2.org
+.. _`Choroplethkarte`: https://de.wikipedia.org/wiki/Choroplethenkarte
+.. _`simplify aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.GEOSGeometry.simplify
+.. _`precision aus der Django GEOS API`: https://docs.djangoproject.com/en/2.2/ref/contrib/gis/geos/#django.contrib.gis.geos.WKTWriter.precision
+.. _`RegMunDemElEnergy in config/layers_region.cfg`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/config/layers_region.cfg#L286-L307
+.. _Dateikommentar: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/config/labels.cfg#L1-L34
+.. _`RegMunDemElEnergy`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/models.py#L115-L132
+.. _`RegMun`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/b5c0a18b79f899e746876f74296c65c906617a00/models.py#L42-L47
+.. _`Add layer for reg_mun_gen_cap_re_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/720f2e7e69d942d0b4344da8c086b72aa7ec2621
+.. _`Add layer for reg_mun_gen_cap_re_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/b9331809f1e66594c46ce1d4ac544bceb7a6ac60
+.. _`Add layer for reg_mun_gen_count_wind_density_result #38`: https://github.com/rl-institut/WAM_APP_stemp_abw/commit/41c70311fcbc1ad2f6db59e1c34a62bdcea5d5f0
+.. _API: https://stemp-abw.readthedocs.io/en/dev/api.html
+.. _Django: https://www.djangoproject.com/
+.. _Django-Design-Philosophie: https://docs.djangoproject.com/en/2.2/misc/design-philosophies/
+.. _Django-Dokumentation: https://docs.djangoproject.com/en/2.2/
+.. _getting started Tutorial: https://www.djangoproject.com/start/
+.. _`Modellmechanismus aus Django`: https://docs.djangoproject.com/en/2.2/topics/db/models/
+.. _oemof: https://github.com/oemof/oemof
+.. _stemp_abw: https://github.com/rl-institut/WAM_APP_stemp_abw
+.. _stemp_mv: https://github.com/rl-institut/WAM_APP_stemp_mv
+.. _Tutorial: https://realpython.com/location-based-app-with-geodjango-tutorial/
+.. _WAM: https://github.com/rl-institut/WAM
+.. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
+.. _WAM-Dokumentation: https://wam.readthedocs.io/en/latest/
