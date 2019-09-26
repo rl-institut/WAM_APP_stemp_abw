@@ -627,14 +627,55 @@ Hilfetexte
 Konfigurationsdateien
 ---------------------
 
-.. warning:: TBD
-
 Neben den in den vorherigen Abschnitten erwähnten existieren weitere
 Konfigurationsdateien, die von der WAM eingelesen werden:
 
-- app.cfg
-- app_settings.cfg
-- settings.cfg
+app.cfg
+.......
+
+Die app.cfg dient als Setup-Datei für den WAM-Launcher, der WAM-Launcher ist die Startseite
+der WAM-Projektbasis in der Apps, welche in einer WAM installiert sind, aufgelistet werden.
+
+Dabei sind folgende Variablen zu konfigurieren - Beispiel anhand von StEmp-ABW:
+
+.. code::
+
+    category = app
+    name = 'StEmp-Tool Anhalt-Bitterfeld-Wittenberg'
+    icon = 'stemp_abw/img/app_stemp_abw_icon.png'
+    email = 'jonathan.amme@rl-institut.de'
+
+`category`: Definition der Kategorie. Standardname ist `app`.
+
+`name`: Name des Projektes.
+
+`icon`: Pfad und Dateiname zum Icon der App des Projektes, welches im WAM-Launcher
+angezeigt wird.
+
+`email`: E-Mailadresse der/des Appveranwortlichen.
+
+settings.py
+...........
+
+Neben der Standard-Django settings.py in der WAM-Projektbasis (`wam/settings.py`)
+gibt es im stemp_abw-Projektordner ebenfalls eine `stemp_abw/settings.py`.
+Die darin enthaltenen Konstanten werden zu den Konstanten in `wam/settings.py`
+der WAM-Projektbasis hinzugeladen, so das appspezifische Konfiguration zu den
+globalen WAM-Konstanten hinzugefügt und über `wam.settings` importierbar sind.
+
+Alle in stemp_abw/settings.py hinzugefügten Konstanten werden somit zur Laufzeit
+zu Konstanten in wam/settings.py.
+
+app_settings.py
+...............
+
+Die Konstanten und Funktionen in stemp_abw/app_settings.py wiederum sind
+appspezifisch für StEmp-ABW und bestehen hauptsächlich aus Konstanten und
+Funktionen (Callables), welche einen Teil der Mehrsprachigkeitsfunktionalität
+in StEmp-ABW realisieren sowie Teile der App-Computing-Funktionalität
+via cfg-Dateien mappen. Mehr zur Mehrsprachigkeitsfunktionalität in
+stemp_abw/app_settings.py auch im Abschnitt `Sprachpakete`.
+
 
 .. _developer_language_packs_label:
 
