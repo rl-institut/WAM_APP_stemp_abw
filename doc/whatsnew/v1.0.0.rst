@@ -8,8 +8,7 @@ Neue Features
 
 - Installation der vom Tool verwenden Daten ermöglicht via Django fixtures #71
 - Dokumentation fertiggestellt #30 inkl. API docs #89
-- Quellen in den Popups verlinkt
-- Ergebnis-Ebenen: Es werden nun Änderungen ggü. dem Status quo sowie Popups angezeigt #38
+- Quellen den layern zugeordnet und in den Popups verlinkt #104
 
 Änderungen
 ~~~~~~~~~~
@@ -17,5 +16,6 @@ Neue Features
 - Wind-Potenziale korrigiert: Es werden nun lediglich 10 % der nach Abzug der
   harten und weichen Tabuzonen resultierenden Fläche als Potenzialfläche
   angenommen (vorher: 50 %).
-- diverse Bugfixes
+- Quellenliste in popup gefixt
+- Diverse Bugfixes
 - typo fixes in the english version

@@ -9,7 +9,6 @@ from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
 
 
-
 class MasterDetailView(DetailView):
     mode = None
     template_name = 'stemp_abw/popups/base_layer_popup.html'
@@ -38,6 +37,12 @@ class MasterDetailView(DetailView):
             for layer in layer_group.values():
                 if layer['model'] == self.model.name:
                     sources = []
+
+                    # convert sources to list type if it's a string
+                    # (happens if there's only 1 source)
+                    if isinstance(layer['sources'], str):
+                        layer['sources'] = [layer['sources']]
+
                     for source in layer['sources']:
                         if source == '0':
                             break
