@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="grid-x" style="width: 450px">
   {% block title %}
   <div class="cell">
@@ -24,7 +26,7 @@
   {% if sources|length == 0 %}
   {% else %}
   <div class="cell sources">
-    Quellen:
+    {% trans 'Quellen' %}:
     {% for source in sources %}
     <a href="{% url 'stemp_abw:sources' %}?source={{ source.id }}"
        target="_blank"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-23 15:46+0200\n"
+"POT-Creation-Date: 2019-09-27 15:27+0200\n"
 "PO-Revision-Date: 2019-09-10 11:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,40 +26,40 @@ msgstr "Wind Energy"
 
 #: app_settings.py:138 results/result_charts.py:24 results/result_charts.py:31
 #: results/result_charts.py:107 results/result_charts.py:126
-#: results/results.py:141 views/detail_views.py:160 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883
+#: results/results.py:141 views/detail_views.py:165 views/detail_views.py:204
+#: views/detail_views.py:256 views/detail_views.py:307
+#: views/detail_views.py:798 views/detail_views.py:837
+#: views/detail_views.py:888
 msgid "PV Dach"
 msgstr "PV Roof"
 
 #: app_settings.py:139 results/result_charts.py:23 results/result_charts.py:30
 #: results/result_charts.py:106 results/result_charts.py:125
-#: results/results.py:140 views/detail_views.py:161 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:794 views/detail_views.py:832
-#: views/detail_views.py:883 views/detail_views.py:933
-#: views/detail_views.py:985
+#: results/results.py:140 views/detail_views.py:166 views/detail_views.py:204
+#: views/detail_views.py:256 views/detail_views.py:307
+#: views/detail_views.py:358 views/detail_views.py:410
+#: views/detail_views.py:799 views/detail_views.py:837
+#: views/detail_views.py:888 views/detail_views.py:938
+#: views/detail_views.py:990
 msgid "PV Freifläche"
 msgstr "PV Ground"
 
 #: app_settings.py:140 results/result_charts.py:25 results/result_charts.py:32
 #: results/result_charts.py:108 results/result_charts.py:127
-#: views/detail_views.py:161 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:794 views/detail_views.py:833
-#: views/detail_views.py:883 views/detail_views.py:934
-#: views/detail_views.py:986
+#: views/detail_views.py:166 views/detail_views.py:205
+#: views/detail_views.py:257 views/detail_views.py:308
+#: views/detail_views.py:359 views/detail_views.py:411
+#: views/detail_views.py:799 views/detail_views.py:838
+#: views/detail_views.py:888 views/detail_views.py:939
+#: views/detail_views.py:991
 msgid "Wasserkraft"
 msgstr "Hydropower"
 
-#: app_settings.py:141 views/detail_views.py:162 views/detail_views.py:200
-#: views/detail_views.py:252 views/detail_views.py:303
-#: views/detail_views.py:354 views/detail_views.py:406
-#: views/detail_views.py:795 views/detail_views.py:833
-#: views/detail_views.py:934 views/detail_views.py:986
+#: app_settings.py:141 views/detail_views.py:167 views/detail_views.py:205
+#: views/detail_views.py:257 views/detail_views.py:308
+#: views/detail_views.py:359 views/detail_views.py:411
+#: views/detail_views.py:800 views/detail_views.py:838
+#: views/detail_views.py:939 views/detail_views.py:991
 msgid "Bioenergie"
 msgstr "Bioenergy"
 
@@ -69,9 +69,9 @@ msgstr ""
 
 #: app_settings.py:143 results/result_charts.py:49 results/result_charts.py:53
 #: results/result_charts.py:175 results/result_charts.py:179
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:554 views/detail_views.py:601
-#: views/detail_views.py:1039 views/detail_views.py:1087
+#: views/detail_views.py:464 views/detail_views.py:512
+#: views/detail_views.py:559 views/detail_views.py:606
+#: views/detail_views.py:1044 views/detail_views.py:1092
 msgid "Haushalte"
 msgstr "Households"
 
@@ -82,8 +82,8 @@ msgstr "GHD"
 
 #: app_settings.py:145 results/result_charts.py:51 results/result_charts.py:55
 #: results/result_charts.py:177 results/result_charts.py:181
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:1039 views/detail_views.py:1087
+#: views/detail_views.py:464 views/detail_views.py:512
+#: views/detail_views.py:1044 views/detail_views.py:1092
 msgid "Industrie"
 msgstr "Industry"
 
@@ -262,7 +262,7 @@ msgstr "Bioenergy production"
 msgid "Erzeugung"
 msgstr "Production"
 
-#: results/result_charts.py:253 views/detail_views.py:168
+#: results/result_charts.py:253 views/detail_views.py:173
 msgid "Bedarf"
 msgstr "Demand"
 
@@ -913,6 +913,7 @@ msgstr "Home page"
 
 #: templates/stemp_abw/navigation_app.html:31
 #: templates/stemp_abw/navigation_base.html:52
+#: templates/stemp_abw/popups/base_layer_popup.html:29
 msgid "Quellen"
 msgstr "Sources"
 
@@ -1622,112 +1623,112 @@ msgstr "Please start a new session"
 msgid "Repowering-Szenario"
 msgstr "Repowering Scenario"
 
-#: views/detail_views.py:114 views/detail_views.py:118
+#: views/detail_views.py:119 views/detail_views.py:123
 msgid "Personen"
 msgstr "Population"
 
-#: views/detail_views.py:116
+#: views/detail_views.py:121
 msgid "Bevölkerungsentwicklung"
 msgstr "Population Trend"
 
-#: views/detail_views.py:117
+#: views/detail_views.py:122
 msgid "Prognose"
 msgstr "Forecast"
 
-#: views/detail_views.py:160 views/detail_views.py:199
-#: views/detail_views.py:251 views/detail_views.py:302
-#: views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:793 views/detail_views.py:832
-#: views/detail_views.py:883 views/detail_views.py:933
-#: views/detail_views.py:985
+#: views/detail_views.py:165 views/detail_views.py:204
+#: views/detail_views.py:256 views/detail_views.py:307
+#: views/detail_views.py:358 views/detail_views.py:410
+#: views/detail_views.py:798 views/detail_views.py:837
+#: views/detail_views.py:888 views/detail_views.py:938
+#: views/detail_views.py:990
 msgid "Wind"
 msgstr "Wind"
 
-#: views/detail_views.py:164
+#: views/detail_views.py:169
 msgid "EE-Erzeugung"
 msgstr "RE generation"
 
-#: views/detail_views.py:165 views/detail_views.py:798
+#: views/detail_views.py:170 views/detail_views.py:803
 msgid "in Prozent zum Strombedarf"
 msgstr "in percent of electricity demand"
 
-#: views/detail_views.py:166 views/detail_views.py:799
+#: views/detail_views.py:171 views/detail_views.py:804
 msgid "Prozent"
 msgstr "Percent"
 
-#: views/detail_views.py:207 views/detail_views.py:259
-#: views/detail_views.py:310
+#: views/detail_views.py:212 views/detail_views.py:264
+#: views/detail_views.py:315
 msgid "Gewonnene Energie aus EE"
 msgstr "Energy generated from renewables"
 
-#: views/detail_views.py:208 views/detail_views.py:362
-#: views/detail_views.py:841 views/detail_views.py:942
+#: views/detail_views.py:213 views/detail_views.py:367
+#: views/detail_views.py:846 views/detail_views.py:947
 msgid "nach Quelle"
 msgstr "from source"
 
-#: views/detail_views.py:260
+#: views/detail_views.py:265
 msgid "je EinwohnerIn"
 msgstr "per Inhabitant"
 
-#: views/detail_views.py:311 views/detail_views.py:414
-#: views/detail_views.py:891 views/detail_views.py:994
+#: views/detail_views.py:316 views/detail_views.py:419
+#: views/detail_views.py:896 views/detail_views.py:999
 msgid "je km²"
 msgstr "per km²"
 
-#: views/detail_views.py:353 views/detail_views.py:405
-#: views/detail_views.py:933 views/detail_views.py:985
+#: views/detail_views.py:358 views/detail_views.py:410
+#: views/detail_views.py:938 views/detail_views.py:990
 msgid "PV Dach, groß"
 msgstr "PV roof, large"
 
-#: views/detail_views.py:361 views/detail_views.py:413
+#: views/detail_views.py:366 views/detail_views.py:418
 msgid "Installierte Leistung EE"
 msgstr "Installed Capacity Renewables"
 
-#: views/detail_views.py:459 views/detail_views.py:507
-#: views/detail_views.py:554 views/detail_views.py:601
-#: views/detail_views.py:1039 views/detail_views.py:1087
+#: views/detail_views.py:464 views/detail_views.py:512
+#: views/detail_views.py:559 views/detail_views.py:606
+#: views/detail_views.py:1044 views/detail_views.py:1092
 msgid "GHD und Landw."
 msgstr "TCS and Agriculture"
 
-#: views/detail_views.py:466 views/detail_views.py:514
+#: views/detail_views.py:471 views/detail_views.py:519
 msgid "Strombedarf"
 msgstr "Electricity Demand"
 
-#: views/detail_views.py:467 views/detail_views.py:562
-#: views/detail_views.py:1047
+#: views/detail_views.py:472 views/detail_views.py:567
+#: views/detail_views.py:1052
 msgid "nach Verbrauchergruppe"
 msgstr "by consumer group"
 
-#: views/detail_views.py:515 views/detail_views.py:609
-#: views/detail_views.py:1095
+#: views/detail_views.py:520 views/detail_views.py:614
+#: views/detail_views.py:1100
 msgid "je EinwohnerIn nach Verbrauchergruppe"
 msgstr "per inhabitant by consumer group"
 
-#: views/detail_views.py:561
+#: views/detail_views.py:566
 msgid " Wärmebedarf"
 msgstr "Heat Demand"
 
-#: views/detail_views.py:608
+#: views/detail_views.py:613
 msgid "Wärmebedarf"
 msgstr "Heat Demand"
 
-#: views/detail_views.py:797
+#: views/detail_views.py:802
 msgid "Ergebnis: EE-Erzeugung"
 msgstr "Result: RE generation"
 
-#: views/detail_views.py:801
+#: views/detail_views.py:806
 #, python-brace-format
 msgid "Bedarf: {point.stackTotal} %"
 msgstr "Demand: {point.stackTotal} %"
 
-#: views/detail_views.py:840 views/detail_views.py:890
+#: views/detail_views.py:845 views/detail_views.py:895
 msgid "Ergebnis: Gewonnene Energie aus EE"
 msgstr "Result: Energy generated from Renewables"
 
-#: views/detail_views.py:941 views/detail_views.py:993
+#: views/detail_views.py:946 views/detail_views.py:998
 msgid "Ergebnis: Installierte Leistung EE"
 msgstr "Result: Installed Capacity Renewables"
 
-#: views/detail_views.py:1046 views/detail_views.py:1094
+#: views/detail_views.py:1051 views/detail_views.py:1099
 msgid "Ergebnis: Strombedarf"
 msgstr "Result: Electricity Demand"
