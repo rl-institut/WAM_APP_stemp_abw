@@ -150,18 +150,6 @@ Nach diesem kurzen strukturellen Überblick folgt nun ein funktionaler Überblic
 der wichtigsten Komponenten des Projektes. Eine komplette Beschreibung aller
 Schnittstellen findet sich im Kapitel API_ dieser Dokumentation.
 
-Zusammenspiel UI und Backend
-----------------------------
-
-Infos/Diagramme z.B. zu
-
-- Verbindung UI-Django-oemof..
-  POST (fired by :meth:`stemp_abw.views.MapView.post`)
-- Datenflüsse
-- ???
-
-[HIER GEHIRNSCHMALZ EINFÜGEN]
-
 User Session
 ------------
 
