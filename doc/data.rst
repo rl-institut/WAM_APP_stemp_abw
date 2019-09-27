@@ -19,5 +19,8 @@ Quellen sind in den Metadaten vermerkt.
 Alle Daten sind auf Zenodo verfügbar, siehe hierzu
 :ref:`Datenmigration <install_data_label>`.
 
+Das Format der Datenbanktabellen inkl. Spaltenbeschreibungen kann den
+Django-Modellen entnommen werden, s. :py:mod:`stemp_abw.models`.
+
 Sofern nicht anders vermerkt, stehen alle Daten unter der Lizenz `CC-BY-4.0
 <https://creativecommons.org/licenses/by/4.0/>`_.
