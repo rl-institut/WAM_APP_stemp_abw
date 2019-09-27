@@ -9,7 +9,6 @@ from stemp_abw.visualizations import highcharts
 from wam.settings import SESSION_DATA
 
 
-
 class MasterDetailView(DetailView):
     mode = None
     template_name = 'stemp_abw/popups/base_layer_popup.html'
