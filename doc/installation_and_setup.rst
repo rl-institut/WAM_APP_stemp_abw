@@ -102,8 +102,6 @@ Anmerkung: Der Ladevorgang der JSON-Daten (``loaddata``) kann bis zu 15 Minuten 
 
 Per Browser kann nun auf das Tool zugegriffen werden: http://127.0.0.1:8888/
 
-.. _install_data_label:
-
 .. note::
     Kompatibilität: Die Versionsnummern des verwendeten Tools und der Daten
     müssen übereinstimmen.
