@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         FILES_URLS = [
-            'https://zenodo.org/record/3452347/files/stemp-abw_data_v0.9.0.tar.gz'
+            'https://zenodo.org/record/3463396/files/stemp-abw_data_v1.0.0.zip'
         ]
         for file_url in FILES_URLS:
             r = requests.get(file_url)
