@@ -67,6 +67,8 @@ Anmerkung: Falls nicht bereits geschehen ins WAM-Stammverzeichnis wechseln, in d
     python manage.py makemigrations
     python manage.py migrate
 
+.. _install_data_label:
+
 6. Datenmigration
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3376167.svg
