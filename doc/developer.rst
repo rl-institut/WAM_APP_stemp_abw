@@ -150,16 +150,15 @@ Nach diesem kurzen strukturellen Überblick folgt nun ein funktionaler Überblic
 der wichtigsten Komponenten des Projektes. Eine komplette Beschreibung aller
 Schnittstellen findet sich im Kapitel API_ dieser Dokumentation.
 
-User Session
+User-Session
 ------------
 
-- Wofür?
-- Cookie (stored data)
-- Initialisierung (fired by :meth:`stemp_abw.views.MapView.get`)
-- Verfall
-- Verknüpfte Daten (scenario, data, results, ...)
-
-(use refs to APIdoc)
+Beim ersten Besuch des Tools (oder einer anderen WAM-Applikation) wird eine
+User-Session mit einer eindeutigen ID erzeugt (fired by
+:meth:`stemp_abw.views.MapView.get()`). Die ID wird beim Client in einem Cookie
+für spätere Seitenbesuche abgelegt und nach Ablauf eines Gültigkeitszeitraums
+erneuert. Die Sessions werden nur für die Bereitstellung von Inhalten im Tool
+verwendet und in keiner Form anderweitig verwendet oder ausgewertet!
 
 .. _developer_geo_layers_label:
 
@@ -172,15 +171,6 @@ Ebenen mit räumlichen Informationen werden an 4 Stellen im Tool verwendet:
 2. Statische Flächen (Panel "Flächen" -> "Statische Flächen")
 3. Weißflächen (Panel "Flächen" -> "Variierbare Flächen")
 4. Ergebnisse (Panel "Ergebnisse")
-
-TBD:
-
-- Wo liegen Daten in welchem Format und CRS/SRID?
-- Wo liegen die Metainformationen & Styles zu den Ebenen?
-- Welche Datenstrukturen sind wichtig? (Serial-/GeoJSONLayerView, DetailView)
-- Wie werden Ebenen geladen und aktiviert?
-- Wie werden die Endpunkte bereitgestellt (urls.py)?
-- Wie kann ich einen neuen Layer hinzufügen?
 
 Hinzufügen eines neuen Layers
 .............................
@@ -207,8 +197,8 @@ Wie sich aus den Commits entnehmen lässt folgt das Hinzufügen von weiteren
 Layern einem definierten Ablauf, welcher die Layer automatisch in das
 gewählte Panel hinzufügt, ohne das hierfür der HTML-Code des Panels angefasst
 werden muss. In den folgenden Abschnitten soll auf die einzelnen Schritte
-vertiefend eingegangen werden, indem exemplarisch auf die Erstellung eines Layers
-eingegangen wird.
+vertiefend eingegangen werden, indem exemplarisch auf die Erstellung eines
+Layers eingegangen wird.
 
 Erstellung eines neuen Modells in `models.py`
 .............................................
@@ -548,8 +538,25 @@ Energiesystem
 Szenarien
 ---------
 
-- Wo werden die Szenarien definiert?
-- Wie kann ich ein neues Szenario anlegen?
+Die Szenarien werden im Modell/der Tabelle :class:`stemp_abw.models.Scenario`
+definiert. Wie sich der API-Dokumentation entnehmen lässt, gehören zu jedem
+Szenario-Datensatz weitere Datensätze:
+
+- Szenario-Daten: :class:`stemp_abw.models.ScenarioData`
+- Ergebnisse: :class:`stemp_abw.models.SimulationResults`
+- EE-Potenzialflächen: :class:`stemp_abw.models.REPotentialAreas`
+- Repowering-Szenario: :class:`stemp_abw.models.RepoweringScenario`
+
+Das Einfügen der Szenarien-betreffenden Datensätze erfolgt durch das Skript
+`queries.py`. Standardmäßig ist hier nur das Szenario *Status quo* vorhanden,
+kann jedoch beliebig erweitert werden.
+
+**Anmerkung:** Die Szenario-Daten enthalten eine eindeutige UUID, die aus dem
+Hash des Daten-JSON erzeugt wird. Beim Start der Optimierung durch die Userin
+wird geprüft, ob für diese UUID bereits Ergebnisse vorliegen. Ist dies der
+Fall, werden diese geladen statt das Energiesystem erneut zu optimieren. Auf
+diese Weise kann die Darstellung der Ergebnisse erheblich verkürzt werden
+(s. :meth:`stemp_abw.sessions.Simulation.load_or_simulate()`).
 
 .. _developer_help_texts_label:
 
