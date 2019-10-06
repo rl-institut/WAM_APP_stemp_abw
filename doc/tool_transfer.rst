@@ -16,8 +16,8 @@ Landesämter, Umweltbehörden, ...) bezogen werden.
 
 Die :ref:`areas_and_potentials_label` werden u.a. durch Verschneidung von
 geeigneten Flächen mit Restriktionsflächen erzeugt. Die Aufbereitung und
-Verarbeitung der Geodaten (z.B. mit `QGIS <https://www.qgis.org>`_) nimmt einen
-großen Teil der  stellt einen großen Teil
+Verarbeitung der Geodaten (z.B. mit `QGIS <https://www.qgis.org>`_) nimmt
+hierbei den meiste Zeit in Anspruch.
 
 Weiterhin werden **Kraftwerksdaten** benötigt, die in vollständiger,
 georeferenzierter Form derzeit (Stand Sep. 2019) noch nicht verfügbar sind. Mit
