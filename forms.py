@@ -1,5 +1,6 @@
 import os
 from django import forms
+import django.db.utils
 from .widgets import LayerSelectWidget, SliderWidget, EsysSwitchWidget
 from stemp_abw.models import Scenario
 from stemp_abw.app_settings import get_language_or_fallback, LANGUAGE_STORE
@@ -176,6 +177,15 @@ class ScenarioDropdownForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ScenarioDropdownForm, self).__init__(*args, **kwargs)
 
-        self.fields['scn'] = forms.ChoiceField(
-            choices=[(scn.id, str(scn))
-                     for scn in Scenario.objects.filter(is_user_scenario=False)])
+        # The following exception handling catches errors on app module import.
+        # Django management commands such as "migrate" or "get_fixtures_stemp_abw"
+        # try to import the app module which may fail, e.g. in case of non-existent
+        # DB tables when installing fixtures.
+        # cf. https://github.com/rl-institut/WAM_APP_stemp_abw/issues/71
+        try:
+            self.fields['scn'] = forms.ChoiceField(
+                choices=[(scn.id, str(scn))
+                         for scn in Scenario.objects.filter(is_user_scenario=False)])
+        except django.db.utils.ProgrammingError as e:
+            print('Catched & passed - django.db.utils.ProgrammingError:', e)
+            pass

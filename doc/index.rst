@@ -1,8 +1,6 @@
 Willkommen!
 ===========
 
-.. warning:: Die Dokumentation befindet sich derzeit noch in Bearbeitung!
-
 StEmp-ABW ist ein Stakeholder-Empowerment-Tool für die Region
 Anhalt-Bitterfeld-Wittenberg (ABW).
 Es wurde vom `Reiner Lemoine Institut (RLI)
@@ -13,7 +11,9 @@ Es wurde vom `Reiner Lemoine Institut (RLI)
 In dieser Dokumentation finden Sie methodische und technische
 Hintergrundinformationen und Anleitungen.
 
-Inhalt:
+Wollen Sie uns Rückmeldung geben? Hierfür können Sie gern unser
+`Feedback-Formular <https://wam.rl-institut.de/stemp_abw/feedback/>`_
+verwenden.
 
 .. toctree::
    :caption: Inhalt

@@ -3,10 +3,8 @@
 Für EntwicklerInnen
 ===================
 
-Der Quellcode ist auf `GitHub
-<https://github.com/rl-institut/WAM_APP_stemp_abw>`_ verfügbar und es existiert
-ein Python-Paket auf PyPI <INSERT LINK> (Details zur Installation siehe
-:ref:`install_label`).
+Der Quellcode zu dieser StEmp-Web-Applikation ist auf `GitHub
+<https://github.com/rl-institut/WAM_APP_stemp_abw>`_ verfügbar.
 
 Technologien
 ------------
@@ -116,6 +114,9 @@ Ordnerstruktur des Projektes::
     ├── config
     ├── dataio
     ├── doc
+    ├── fixtures
+    ├── locale
+    ├── management
     ├── migrations
     ├── results
     ├── simulation
@@ -131,7 +132,7 @@ für wiederkehrende Prozesse enthält) und sessions.py (in der User-Sessions
 gehandhabt werden) hervorzuheben.
 
 Bei den Ordnern (Modulen) verhält es sich ähnlich. Einige sind typisch für Django
-(doc, migrations, static, templates, views), andere spezifisch für dieses Projekt
+(doc, fixtures, locale, management, migrations, static, templates, views), andere spezifisch für dieses Projekt
 (config, dataio, results, simulation, visualizations). Im Folgenden soll
 ausschließlich auf die projektspezifischen Module kurz eingegangen werden:
 
@@ -149,44 +150,15 @@ Nach diesem kurzen strukturellen Überblick folgt nun ein funktionaler Überblic
 der wichtigsten Komponenten des Projektes. Eine komplette Beschreibung aller
 Schnittstellen findet sich im Kapitel API_ dieser Dokumentation.
 
-Zusammenspiel UI und Backend
-----------------------------
-
-Infos/Diagramme z.B. zu
-
-- Verbindung UI-Django-oemof..
-  POST (fired by :meth:`stemp_abw.views.MapView.post`)
-- Datenflüsse
-- ???
-
-[HIER GEHIRNSCHMALZ EINFÜGEN]
-
-User Session
+User-Session
 ------------
 
-- Wofür?
-- Cookie (stored data)
-- Initialisierung (fired by :meth:`stemp_abw.views.MapView.get`)
-
-.. graphviz::
-
-   digraph {
-      "start" -> "set default user scenario" ->
-      "init simulation" -> "set aggregation ratios" ->
-      "init tracker" -> "end";
-
-      "start" [color=red]
-      "set default user scenario" [shape=polygon,sides=4]
-      "init simulation" [shape=polygon,sides=4]
-      "set aggregation ratios" [shape=polygon,sides=4]
-      "init tracker" [shape=polygon,sides=4]
-      "end" [color=green]
-   }
-
-- Verfall
-- Verknüpfte Daten (scenario, data, results, ...)
-
-(use refs to APIdoc)
+Beim ersten Besuch des Tools (oder einer anderen WAM-Applikation) wird eine
+User-Session mit einer eindeutigen ID erzeugt (fired by
+:meth:`stemp_abw.views.MapView.get()`). Die ID wird beim Client in einem Cookie
+für spätere Seitenbesuche abgelegt und nach Ablauf eines Gültigkeitszeitraums
+erneuert. Die Sessions werden nur für die Bereitstellung von Inhalten im Tool
+verwendet und in keiner Form anderweitig verwendet oder ausgewertet!
 
 .. _developer_geo_layers_label:
 
@@ -199,15 +171,6 @@ Ebenen mit räumlichen Informationen werden an 4 Stellen im Tool verwendet:
 2. Statische Flächen (Panel "Flächen" -> "Statische Flächen")
 3. Weißflächen (Panel "Flächen" -> "Variierbare Flächen")
 4. Ergebnisse (Panel "Ergebnisse")
-
-TBD:
-
-- Wo liegen Daten in welchem Format und CRS/SRID?
-- Wo liegen die Metainformationen & Styles zu den Ebenen?
-- Welche Datenstrukturen sind wichtig? (Serial-/GeoJSONLayerView, DetailView)
-- Wie werden Ebenen geladen und aktiviert?
-- Wie werden die Endpunkte bereitgestellt (urls.py)?
-- Wie kann ich einen neuen Layer hinzufügen?
 
 Hinzufügen eines neuen Layers
 .............................
@@ -234,8 +197,8 @@ Wie sich aus den Commits entnehmen lässt folgt das Hinzufügen von weiteren
 Layern einem definierten Ablauf, welcher die Layer automatisch in das
 gewählte Panel hinzufügt, ohne das hierfür der HTML-Code des Panels angefasst
 werden muss. In den folgenden Abschnitten soll auf die einzelnen Schritte
-vertiefend eingegangen werden, indem exemplarisch auf die Erstellung eines Layers
-eingegangen wird.
+vertiefend eingegangen werden, indem exemplarisch auf die Erstellung eines
+Layers eingegangen wird.
 
 Erstellung eines neuen Modells in `models.py`
 .............................................
@@ -575,16 +538,159 @@ Energiesystem
 Szenarien
 ---------
 
-- Wo werden die Szenarien definiert?
-- Wie kann ich ein neues Szenario anlegen?
+Die Szenarien werden im Modell/der Tabelle :class:`stemp_abw.models.Scenario`
+definiert. Wie sich der API-Dokumentation entnehmen lässt, gehören zu jedem
+Szenario-Datensatz weitere Datensätze:
+
+- Szenario-Daten: :class:`stemp_abw.models.ScenarioData`
+- Ergebnisse: :class:`stemp_abw.models.SimulationResults`
+- EE-Potenzialflächen: :class:`stemp_abw.models.REPotentialAreas`
+- Repowering-Szenario: :class:`stemp_abw.models.RepoweringScenario`
+
+Das Einfügen der Szenarien-betreffenden Datensätze erfolgt durch das Skript
+`queries.py`. Standardmäßig ist hier nur das Szenario *Status quo* vorhanden,
+kann jedoch beliebig erweitert werden.
+
+**Anmerkung:** Die Szenario-Daten enthalten eine eindeutige UUID, die aus dem
+Hash des Daten-JSON erzeugt wird. Beim Start der Optimierung durch die Userin
+wird geprüft, ob für diese UUID bereits Ergebnisse vorliegen. Ist dies der
+Fall, werden diese geladen statt das Energiesystem erneut zu optimieren. Auf
+diese Weise kann die Darstellung der Ergebnisse erheblich verkürzt werden
+(s. :meth:`stemp_abw.sessions.Simulation.load_or_simulate()`).
 
 .. _developer_help_texts_label:
 
 Hilfetexte
 ----------
 
-- Wo liegen die Hilfetexte (Tooltips)?
-- Wie werden diese eingebunden?
+Die StEmp-ABW-Applikation ist gespickt mit Hilfetexten, welche an folgenden Stellen
+Verwendung finden:
+
+- Layer
+- Layergruppen
+- Komponenten
+- Komponentengruppen
+- Panels
+- Tooltips
+- Szenarien
+- Charts
+
+Die Hilfetexte werden hierbei in der Datei `labels.cfg` definiert, welche sich im jeweiligen
+Sprachunterordner im locale-Ordner (`stemp_abw/locale`) befindet. Je Sprache gibt es
+hierbei genau eine `labels.cfg`-Datei. Die zu verwendende Formatierung sieht hierbei
+wie folgt aus ::
+
+    [groups]
+     [[<GROUP_ID>]]
+         title = <TITLE OF GROUP>
+         text = '''<DESCRIPTIVE TEXT OF GROUP WITH EACH LINE HAVING ABOUT 50 CHARACTERS>'''
+    [entities]
+     [[<ENTITY_ID>]]
+         title = <TITLE OF ENTITY>
+         text = '''<DESCRIPTIVE TEXT OF ENTITY WITH EACH LINE HAVING ABOUT 50 CHARACTERS>'''
+         text2 = '''<ANOTHER TEXT OF ENTITY> (Supported in components)'''
+         reveal_id = <ID OF REVEAL WINDOW> (Supported in components.
+                     If provided, the tooltip is replaced by a reveal
+                     window with content from markdown file in
+                     config/reveals)
+         reveal_icon = <ION ICON FOR REVEAL BUTTON, MUST BE PROVIDED IF
+                        reveal_id IS SET>
+         icon = <ICON FILE NAME> (Supported in components, located in
+                                  static/stemp_abw/img/energy/icons/)
+
+Die Hilfetexte werden über die StEmp-ABW-eigene i18n-Funktionalität realisiert,
+indem sie dynamisch als ConfigObj-Instanzen in stemp_abw/app_settings.py in der
+passenden Sprache eingebunden werden. Mehr zur Mehrsprachigkeitsfunktionalität
+in stemp_abw/app_settings.py auch im Abschnitt
+:ref:`developer_language_packs_label`.
+
+.. _developer_config_files_label:
+
+Konfigurationsdateien
+---------------------
+
+Neben den in den vorherigen Abschnitten erwähnten existieren weitere
+Konfigurationsdateien, die von der WAM eingelesen werden:
+
+app.cfg
+.......
+
+Die app.cfg dient als Setup-Datei für den WAM-Launcher, der WAM-Launcher ist die Startseite
+der WAM-Projektbasis in der Apps, welche in einer WAM installiert sind, aufgelistet werden.
+
+Dabei sind folgende Variablen zu konfigurieren - Beispiel anhand von StEmp-ABW:
+
+.. code::
+
+    category = app
+    name = 'StEmp-Tool Anhalt-Bitterfeld-Wittenberg'
+    icon = 'stemp_abw/img/app_stemp_abw_icon.png'
+    email = 'jonathan.amme@rl-institut.de'
+
+`category`: Definition der Kategorie. Standardname ist `app`.
+
+`name`: Name des Projektes.
+
+`icon`: Pfad und Dateiname zum Icon der App des Projektes, welches im WAM-Launcher
+angezeigt wird.
+
+`email`: E-Mailadresse der/des Appveranwortlichen.
+
+settings.py
+...........
+
+Neben der Standard-Django settings.py in der WAM-Projektbasis (`wam/settings.py`)
+gibt es im stemp_abw-Projektordner ebenfalls eine `stemp_abw/settings.py`.
+Die darin enthaltenen Konstanten werden zu den Konstanten in `wam/settings.py`
+der WAM-Projektbasis hinzugeladen, so das appspezifische Konfiguration zu den
+globalen WAM-Konstanten hinzugefügt und über `wam.settings` importierbar sind.
+
+Alle in stemp_abw/settings.py hinzugefügten Konstanten werden somit zur Laufzeit
+zu Konstanten in wam/settings.py.
+
+app_settings.py
+...............
+
+Die Konstanten und Funktionen in stemp_abw/app_settings.py wiederum sind
+appspezifisch für StEmp-ABW und bestehen hauptsächlich aus Konstanten und
+Funktionen (Callables), welche einen Teil der Mehrsprachigkeitsfunktionalität
+in StEmp-ABW realisieren sowie Teile der App-Computing-Funktionalität
+via cfg-Dateien mappen. Mehr zur Mehrsprachigkeitsfunktionalität in
+stemp_abw/app_settings.py auch im Abschnitt
+:ref:`developer_language_packs_label`.
+
+
+.. _developer_language_packs_label:
+
+Sprachpakete
+------------
+
+Die StEmp-ABW-Applikation enthält Sprachpakete für Deutsch und Englisch und ist somit zweisprachig.
+Beide Sprachpakete befinden sich im Ordner `stemp_abw/locale`.
+StEmp-ABW verwendet hierbei sowohl den `Django-i18n-Mechanismus <https://docs.djangoproject.com/en/2.2/topics/i18n/>`_
+als auch einen eigenen Implementationsteil, welcher auf ConfigObj-Dateien basiert.
+
+Für die Funktionsweise des Django-i18n-Teils wird an dieser Stelle auf die offizielle Dokumentation
+verwiesen: `Link <https://docs.djangoproject.com/en/2.2/topics/i18n/>`_.
+
+Der StEmp-ABW Implementationsteil für Mehrsprachigkeit ist hierbei wie folgt.
+In der Datei `stemp_abw/app_settings.py` befinden sich folgende Konstanten:
+
+1. DEFAULT_LANGUAGE
+2. LANGUAGE_STORE
+
+Die Konstante DEFAULT_LANGUAGE definiert die Standardsprache aus der settings.py WAM-Projektbasis.
+Zur Zeit ist diese Deutsch (de-DE).
+
+Die Konstante LANGUAGE_STORE enthält alle zur Verfügung stehenden Sprachen. Zur Zeit sind dies
+en und de-DE.
+
+Wenn jetzt in der Navigationsleiste der App eine Sprache ausgewählt und mit OK bestätigt wird, dann
+wird ein Post-Anfrage an eine `Django-i18n-redirect-view <https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#the-set-language-redirect-view>`_ gestellt, welche darauf u.a. die Sprache im
+Browser-Cookie auf die gewählte Sprache umstellt und die aktuelle Seite neu lädt. Dieser Mechnismus wird
+von den Callables in app_settings.py genutzt um dynamisch die passenden configObj in der passenden Sprache
+in locale zu verwenden. Die Callables in app_settings.py sind dabei alle Funktionen,
+welche ein ConfigObj oder eine Markdowndatei als Rückgabewert zurückgeben.
 
 .. _`Amtlichen Gemeindeschlüsseln`: https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel
 .. _`Serialisierungsansicht von RegMunGenEnergyRe`: https://github.com/rl-institut/WAM_APP_stemp_abw/blob/dev/views/serial_views.py#L60-L67
@@ -618,27 +724,3 @@ Hilfetexte
 .. _WAM: https://github.com/rl-institut/WAM
 .. _WAM-Applikationen-Kosmos: https://wam.rl-institut.de/
 .. _WAM-Dokumentation: https://wam.readthedocs.io/en/latest/
-
-.. _developer_config_files_label:
-
-Konfigurationsdateien
----------------------
-
-.. warning:: TBD
-
-Neben den in den vorherigen Abschnitten erwähnten existieren weitere
-Konfigurationsdateien, die von der WAM eingelesen werden:
-
-- app.cfg
-- app_settings.cfg
-- settings.cfg
-
-.. _developer_language_packs_label:
-
-Sprachpakete
-------------
-
-Im Tool bringt Sprachpakete für Deutsch und Englisch mit und kann bei Bedarf
-erweitert werden. Hierzu...
-
-.. warning:: TBD

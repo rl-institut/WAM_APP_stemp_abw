@@ -8,6 +8,7 @@ Subpackages
 
     stemp_abw.config
     stemp_abw.dataio
+    stemp_abw.management
     stemp_abw.results
     stemp_abw.simulation
     stemp_abw.templatetags

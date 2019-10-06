@@ -118,3 +118,5 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
 Nennleistung mit harten Restriktionsflächen dar**.
+
+Mehr Informationen finden Sie in der <a href="https://stemp-abw.readthedocs.io/en/dev/areas_and_potentials.html#areas-and-potentials-label" target="_blank">Dokumentation</a>.
