@@ -1,9 +1,5 @@
 # Willkommen!
 
-<div style="background-color: #e0961f; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
-  <p style="margin: 0.25rem;"><strong>Achtung:</strong> Die finale Version wird ab Anfang Oktober zur Verfügung stehen, bis dahin werden noch Anpassungen vorgenommen und kleine Fehler behoben (das Tool kann bis dahin aber trotzdem verwendet werden).</p>
-</div>
-
 <div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <p style="margin: 0.25rem;">Eine Liste der <strong>Änderungen</strong> (z.B. neue Features) in allen Versionen finden Sie in der <a href="https://stemp-abw.readthedocs.io/en/dev/whats_new.html" target="_blank" style="color: #fff;">Dokumentation</a>.</p>
 </div>
