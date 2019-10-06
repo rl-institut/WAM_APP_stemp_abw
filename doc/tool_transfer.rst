@@ -28,7 +28,9 @@ offenes `Tool <https://github.com/OpenEnergyPlatform/open-MaStR>`_ entwickelt,
 mit dessen Hilfe der aktuelle Stand des heruntergeladen werden kann. Ein
 ständig aktualisierter Datensatz kann auch über die
 `Website des RLI <https://reiner-lemoine-institut.de/datenveroeffentlichung-aus-dem-marktstammdatenregister-der-bundesnetzagentur/>`_
-heruntergeladen werden.
+heruntergeladen werden. Alternativ (wie hier verwendet) kann auf den Datensatz
+von `Open Power Systems Data (OPSD) <https://open-power-system-data.org/>`_
+zurückgegriffen werden.
 
 Aus diesen Daten können unter Verwendung passender Wetterdaten vom Tool
 benötigte **Einspeisezeitreihen** für fluktuierende erneuerbare Energieanlagen
