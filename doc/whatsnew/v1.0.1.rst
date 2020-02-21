@@ -1,0 +1,10 @@
+v1.0.1 (21. Februar 2020)
+.........................
+
+Änderungen
+~~~~~~~~~~
+
+- Bugfix: Erträge aus Windenergie wurden falsch berechnet, wenn die
+  installierbare Kapazität durch Änderung der variablen Flächen nach unten
+  korrigiert wurden #106
+- Tooltip Text Simulation-Button geändert
