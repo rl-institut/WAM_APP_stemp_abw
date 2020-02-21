@@ -282,6 +282,13 @@ function addRePotAreaLayer() {
     max: Math.round(wec_count * 4.2)
   });
 
+  // post wind slider value, this is needed as the slider value is adjusted
+  // by area controls in free repowering scn but not updated in backend scenario,
+  // cf. https://github.com/rl-institut/WAM_APP_stemp_abw/issues/106
+  if ($('#dd_repowering').prop('value') == -1) {
+    ctrlScenarioPost('sl_wind', $('#sl_wind').data("ionRangeSlider").result.from);
+  }
+
 }
 
 // Remove all RE pot layers
