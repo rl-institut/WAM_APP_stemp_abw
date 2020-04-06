@@ -247,9 +247,8 @@ Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
     Sachsen-Anhalt (`MULE 2019`_) "die Errichtung von
     Photovoltaik-Freiflächenanlagen auf landwirtschaftlich genutzten Flächen
     weitestgehend vermieden werden". Um dieser Einschränkung Rechnung zu
-    tragen, werden von den resultierenden Flächen (nach Abzug der
-    Restriktionsflächen, s.u.) lediglich **0,5 % als raumverträglich
-    verfügbar** angenommen (`ZSW 2019`_).
+    tragen, werden nach (`ZSW 2019`_) lediglich
+    **0,5..1,0 % als raumverträglich verfügbar** angenommen.
 
 .. 	image:: files/areas_and_potentials_pv_ground_potential_areas.jpg
    :width: 500 px
@@ -314,13 +313,23 @@ Planungskriterien einbezogen (vgl. `BMVI 2015`_).
    :alt: Weiche Restriktionsflächen
    :align: center
 
-Randbedingungen
-...............
+Annahmen und Randbedingungen
+............................
 
 - Aus wirtschaftlichen Gründen werden nur Gebiete >1 ha berücksichtigt
 - Bereis bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
-- Für den spezifischen Flächenbedarf werden 2,5 Hektar pro installiertem
-  Megawatt (peak) angenommen (`BMWi 2017`_).
+- Für den spezifischen Flächenbedarf werden 1,5 Hektar pro installiertem
+  Megawatt (peak) angenommen. Gängige Werte reichen von 1,5 ha/MWp
+  (`ZSW 2019`_) bis zu 2..2,5 ha/MWp (`BMWi 2017`_). Unter anderem aufgrund von
+  Effizienzsteigerungen ist zukünftig von einem geringeren Flächenbedarf
+  auszugehen (0,8 ha/MWp in 2030 nach `ZSW 2019`_).
+- Aus den weiter oben beschriebenen Gründen werden von Äckern und Wiesen nach
+  (`ZSW 2019`_) nur ein Teil als raumverträglich angenommen. Hierfür werden
+  pauschal **1,0 %** angesetzt. Die gesamte Acker- und Wiesenfläche in ABW
+  beträgt nach `CLC 2018`_ 208.578 ha, die maximal verfügbare Potenzialfläche
+  ist demnach auf rund 2086 ha limitiert **(A)**.
+- Gegenseitige Überschneidungen von Potenzialflächen sind minimal und werden
+  daher vernachlässigt.
 
 Ergebnisse
 ..........
@@ -334,17 +343,26 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 |                     +-------------+----------------+-------------+----------------+
 |                     | Fläche [ha] | Leistung [MWp] | Fläche [ha] | Leistung [MWp] |
 +=====================+=============+================+=============+================+
-| Bundesautobahn      | 226,0       | 90,4           | 138,0       | 55,2           |
+| Bundesautobahn      | 226,0       | 150,7          | 138,0       | 92,0           |
 +---------------------+-------------+----------------+-------------+----------------+
-| Schienenwege        | 1959,0      | 783,6          | 963,0       | 385,2          |
+| Schienenwege        | 1959,0      | 1306,0         | 963,0       | 642,0          |
 +---------------------+-------------+----------------+-------------+----------------+
-| Äcker und Wiesen    | 2267,6      | 907,0          | 699,9       | 280,0          |
+| Äcker und Wiesen    | 45352,0     | 30234,7        | 13997,0     | 9331,3         |
 +---------------------+-------------+----------------+-------------+----------------+
-| **Summe**           | 4452,6      | **1781,0**     | 1800,9      | **720,4**      |
+| **Summe**           | **47537,0** |                | **15098,0** |                |
++---------------------+-------------+----------------+-------------+----------------+
+| Bundesautobahn      | 226,0       | 150,7          | 138,0       | 92,0           |
++---------------------+-------------+----------------+-------------+----------------+
+| Schienenwege        | 1959,0      | 1306,0         | 963,0       | 642,0          |
++---------------------+-------------+----------------+-------------+----------------+
+| Äcker und Wiesen    | *2086,0*    | 1390,7         | *2086,0*    | 1390,7         |
++---------------------+-------------+----------------+-------------+----------------+
+| **Summe inkl. (A)** | **4271,0**  | **2847,4**     | **1800,9**  | **2124,7**     |
 +---------------------+-------------+----------------+-------------+----------------+
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
-Nennleistung mit harten Restriktionsflächen dar**.
+Nennleistung unter Berücksichtigung der harten und weichen Restriktionsflächen
+dar.**
 
 .. 	image:: files/areas_and_potentials_pv_ground_hard_restr_results.jpg
    :width: 500 px
