@@ -1,0 +1,11 @@
+v1.0.2 (06. April 2020)
+.......................
+
+Änderungen
+~~~~~~~~~~
+
+- Potenzialflächen für PV-Freiflächenanlagen korrigiert #108:
+
+  - mehr verfügbare Flächen auf Äcker und Wiesen
+  - geringerer spezifischer Flächenbedarf (1,5 statt 2,5 ha/MWp)
+    Details s. :ref:`areas_and_potentials_label`.
