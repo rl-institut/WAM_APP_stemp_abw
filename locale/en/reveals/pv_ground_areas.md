@@ -98,8 +98,6 @@ into account here
 
 - For economic reasons, only areas >1 ha are taken into account.
 - Existing plants and areas used for plants are not taken into account.
-
-
 - For the specific area requirement, 1.5 hectares per installed megawatt
   (peak) are assumed. Current values range from 1.5 ha/MWp
   (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>)
