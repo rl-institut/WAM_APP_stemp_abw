@@ -40,10 +40,9 @@ Die Potenzialflächen werden in Anlehnung an die aktuelle Förderkulisse nach
     (2019) des Landes Sachsen-Anhalt "die Errichtung von
     Photovoltaik-Freiflächenanlagen auf landwirtschaftlich genutzten Flächen
     weitestgehend vermieden werden". Um dieser Einschränkung Rechnung zu
-    tragen, werden von den resultierenden Flächen (nach Abzug der
-    Restriktionsflächen, s.u.) lediglich **0,5 % als raumverträglich
-    verfügbar** angenommen
-    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>). 
+    tragen, werden nach
+    (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>) 
+    lediglich **0,5..1,0 % als raumverträglich verfügbar** angenommen.
 
 Weitere in der Förderkulisse des EEG enthaltenen Standorte Konversionsflächen
 und bundeseigene Immobilien finden hier aufgrund des vergleichsweise geringen
@@ -95,13 +94,27 @@ auch Planungskriterien einbezogen (vgl.
     - UNESCO Weltkulturerbegebiet (Gartenreich Dessau-Wörlitz)
     - Vorbehaltsgebiete für Landwirtschaft
 
-## Randbedingungen
+## Annahmen und Randbedingungen
 
 - Aus wirtschaftlichen Gründen werden nur Gebiete >1 ha berücksichtigt
 - Bereits bestehende Anlagen und damit genutzte Flächen werden vernachlässigt
-- Für den spezifischen Flächenbedarf werden 2,5 Hektar pro installiertem
-  Megawatt (peak) angenommen
+- Für den spezifischen Flächenbedarf werden 1,5 Hektar pro installiertem
+  Megawatt (peak) angenommen. Gängige Werte reichen von 1,5 ha/MWp
+  (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>)
+  bis zu 2..2,5 ha/MWp
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
+  Unter anderem aufgrund von Effizienzsteigerungen ist zukünftig von einem
+  geringeren Flächenbedarf auszugehen (0,8 ha/MWp in 2030 nach
+  <a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
+- Aus den weiter oben beschriebenen Gründen werden von Äckern und Wiesen nach
+  (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>)
+  nur ein Teil als raumverträglich angenommen. Hierfür werden pauschal **1,0 %**
+  angesetzt. Die gesamte Acker- und Wiesenfläche in ABW beträgt nach
+  <a href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018" target="_blank">Corine Land Cover</a>
+  208.578 ha, die maximal verfügbare Potenzialfläche ist demnach auf rund 2086
+  ha limitiert **(A)**.
+- Gegenseitige Überschneidungen von Potenzialflächen sind minimal und werden
+  daher vernachlässigt.
 
 ## Ergebnisse
 
@@ -111,12 +124,17 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 
 |                                         | Hart<br/>Fläche [ha]<br/> | Hart<br/>Leistung [MWp] | Hart + Weich<br/>Fläche [ha] | Hart+Weich<br/>Leistung [MWp] |
 | --------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
-| Bundesautobahn                          |       226,0 |                          90,4 |       138,0 |                          55,2 |
-| Schienenwege                            |      1959,0 |                         783,6 |       963,0 |                         385,2 |
-| Äcker und Wiesen mit geringer Bodengüte |      2267,6 |                         907,0 |       699,9 |                         280,0 |
-| **Summe**                               |      4452,6 |                    **1781,0** |      1800,9 |                     **720,4** |
+| Bundesautobahn                          |       226,0 |                         150,7 |       138,0 |                          92,0 |
+| Schienenwege                            |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
+| Äcker und Wiesen mit geringer Bodengüte |     45352,6 |                       30234,7 |     13997,0 |                        9331,3 |
+| **Summe**                               | **47537,6** |                               | **15098,0** |                               |
+| Bundesautobahn                          |       226,0 |                         150,7 |       138,0 |                          92,0 |
+| Schienenwege                            |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
+| Äcker und Wiesen mit geringer Bodengüte |    *2086,0* |                        1390,7 |    *2086,0* |                         280,0 |
+| **Summe inkl. (A)**                     |  **4271,0** |                    **2847,4** |  **1800,9** |                    **2124,7** |
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
-Nennleistung mit harten Restriktionsflächen dar**.
+Nennleistung unter Berücksichtigung der harten und weichen Restriktionsflächen
+dar.**
 
 Mehr Informationen finden Sie in der <a href="https://stemp-abw.readthedocs.io/en/dev/areas_and_potentials.html#areas-and-potentials-label" target="_blank">Dokumentation</a>.
