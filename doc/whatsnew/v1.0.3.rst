@@ -1,0 +1,7 @@
+v1.0.3 (06. April 2020)
+.......................
+
+Änderungen
+~~~~~~~~~~
+
+- Tabelle Potenzialflächen für PV-Freiflächenanlagen korrigiert
