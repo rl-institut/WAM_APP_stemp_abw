@@ -39,9 +39,8 @@ The following areas are taken into account:
     of the state of Saxony-Anhalt, the current planning aims to avoid
     the construction of photovoltaic open-air plants on agricultural 
     land as much as possible.
-    To take this restriction into account, only **0.5 % of the resulting** 
-    **areas (after deduction of the restriction areas, see below) are** 
-    **assumed to be spatially compatible**
+    To take this restriction into account, only **0,5..1,0 % are assumed to** 
+    **be available** according to
     (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
         
 Other sites included in the EEG's funding programme - conversion areas
@@ -95,13 +94,28 @@ into account here
     - UNESCO World Heritage Site (Gartenreich Dessau-Wörlitz)
     - Reserved areas for agriculture
 
-## Framework
+## Assumptions and constaints
 
 - For economic reasons, only areas >1 ha are taken into account.
 - Existing plants and areas used for plants are not taken into account.
-- For the specific area requirement, 2.5 hectares per installed megawatt (peak) 
-  are assumed
+
+
+- For the specific area requirement, 1.5 hectares per installed megawatt
+  (peak) are assumed. Current values range from 1.5 ha/MWp
+  (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>)
+  up to 2..2.5 ha/MWp
   (<a href="https://www.bmwi.de/Redaktion/DE/Downloads/B/berichtsmodul-2-modelle-und-modellverbund.pdf?__blob=publicationFile&v=6" target="_blank">BMWi</a>).
+  Lower space requirements can be expected in the future, partly due to
+  efficiency improvements (0,8 ha/MWp in 2030 in accordance to
+  <a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
+- For the reasons described above, only some of the fields and meadows are
+  considered to be available
+  (<a href="https://www.zsw-bw.de/fileadmin/user_upload/PDFs/Aktuelles/2019/politischer-dialog-pv-freiflaechenanlagen-studie-333788.pdf" target="_blank">ZSW</a>).
+  For this purpose, an availability of **1,0 %** is assumed.
+  The total arable and meadow area in ABW is 208,578 ha
+  (<a href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018" target="_blank">CLC</a>),
+  the maximum available potential area is therefore limited to 2086 ha **(A)**.
+- Mutual overlaps of potential areas are very low and are therefore neglected.
 
 ## Results
 
@@ -109,14 +123,18 @@ In order to determine the actually available areas, the restriction areas
 are subtracted from the potential areas. The following potentials result 
 for areas and maximum installable capacity:
 
-|                                         | Hard<br/>area [ha]<br/> | Hard<br/>Electric power [MWp] | Hard + Soft<br/>area [ha] | Hard+Soft<br/>Electric power [MWp] |
-| --------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
-| Federal motorways                          |       226,0 |                          90,4 |       138,0 |                          55,2 |
-| Railways                            |      1959,0 |                         783,6 |       963,0 |                         385,2 |
-| Fields and meadows with low soil quality |      2267,6 |                         907,0 |       699,9 |                         280,0 |
-| **Sum**                               |      4452,6 |                    **1781,0** |      1800,9 |                     **720,4** |
+|                                          | Hard<br/>area [ha]<br/> | Hard<br/>Electric power [MWp] | Hard + Soft<br/>area [ha] | Hard+Soft<br/>Electric power [MWp] |
+| ---------------------------------------- | -----------:| -----------------------------:| -----------:| -----------------------------:|
+| Federal motorways                        |       226,0 |                         150,7 |       138,0 |                          92,0 |
+| Railways                                 |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
+| Fields and meadows with low soil quality |     45352,6 |                       30234,7 |     13997,0 |                        9331,3 |
+| **Summe**                                | **47537,6** |                               | **15098,0** |                               |
+| Federal motorways                        |       226,0 |                         150,7 |       138,0 |                          92,0 |
+| Railways                                 |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
+| Fields and meadows with low soil quality |    *2086,0* |                        1390,7 |    *2086,0* |                         280,0 |
+| **Summe incl. (A)**                      |  **4271,0** |                    **2847,4** |  **1800,9** |                    **2124,7** |
 
-**The value displayed in the menu controller represents the maximum installable 
-rated power with hard restriction areas.**.
+**The value displayed in the menu slider represents the maximum installable 
+rated power with hard and soft restriction areas.**.
 
 See our <a href="https://stemp-abw.readthedocs.io/en/dev/areas_and_potentials.html#areas-and-potentials-label" target="_blank">documentation</a> for further details.
