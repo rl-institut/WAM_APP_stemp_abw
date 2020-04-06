@@ -357,12 +357,12 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 +---------------------+-------------+----------------+-------------+----------------+
 | Äcker und Wiesen    | *2086,0*    | 1390,7         | *2086,0*    | 1390,7         |
 +---------------------+-------------+----------------+-------------+----------------+
-| **Summe inkl. (A)** | **4271,0**  | **2847,4**     | **1800,9**  | **2124,7**     |
+| **Summe inkl. (A)** | **4271,0**  | **2847,4**     | **3187,0**  | **2124,7**     |
 +---------------------+-------------+----------------+-------------+----------------+
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
 Nennleistung unter Berücksichtigung der harten und weichen Restriktionsflächen
-dar.**
+dar (2125 MW).**
 
 .. 	image:: files/areas_and_potentials_pv_ground_hard_restr_results.jpg
    :width: 500 px

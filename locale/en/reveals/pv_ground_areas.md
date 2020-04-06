@@ -129,8 +129,8 @@ for areas and maximum installable capacity:
 | **Summe**                                | **47537,6** |                               | **15098,0** |                               |
 | Federal motorways                        |       226,0 |                         150,7 |       138,0 |                          92,0 |
 | Railways                                 |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
-| Fields and meadows with low soil quality |    *2086,0* |                        1390,7 |    *2086,0* |                         280,0 |
-| **Summe incl. (A)**                      |  **4271,0** |                    **2847,4** |  **1800,9** |                    **2124,7** |
+| Fields and meadows with low soil quality |    *2086,0* |                        1390,7 |    *2086,0* |                        1390,7 |
+| **Summe incl. (A)**                      |  **4271,0** |                    **2847,4** |  **3187,0** |                    **2124,7** |
 
 **The value displayed in the menu slider represents the maximum installable 
 rated power with hard and soft restriction areas.**.

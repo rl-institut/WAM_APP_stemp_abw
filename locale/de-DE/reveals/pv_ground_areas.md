@@ -130,8 +130,8 @@ folgenden Potenziale für Flächen und maximal installierbare Leistung:
 | **Summe**                               | **47537,6** |                               | **15098,0** |                               |
 | Bundesautobahn                          |       226,0 |                         150,7 |       138,0 |                          92,0 |
 | Schienenwege                            |      1959,0 |                        1306,0 |       963,0 |                         642,0 |
-| Äcker und Wiesen mit geringer Bodengüte |    *2086,0* |                        1390,7 |    *2086,0* |                         280,0 |
-| **Summe inkl. (A)**                     |  **4271,0** |                    **2847,4** |  **1800,9** |                    **2124,7** |
+| Äcker und Wiesen mit geringer Bodengüte |    *2086,0* |                        1390,7 |    *2086,0* |                        1390,7 |
+| **Summe inkl. (A)**                     |  **4271,0** |                    **2847,4** |  **3187,0** |                    **2124,7** |
 
 **Der im Menü-Regler angezeigte Wert stellt die maximal installierbare
 Nennleistung unter Berücksichtigung der harten und weichen Restriktionsflächen
