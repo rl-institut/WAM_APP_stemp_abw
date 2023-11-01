@@ -1,0 +1,7 @@
+v1.0.4 (30. Oktober 2020)
+.........................
+
+Änderungen
+~~~~~~~~~~
+
+- Mapbox Tiles entfernt, new default: OSM
