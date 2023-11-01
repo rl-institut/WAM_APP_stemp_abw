@@ -1,5 +1,9 @@
 # Welcome!
 
+<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Good news:</strong> The new version - <strong>Digiplan Anhalt</strong> - is now available here: <a href="https://digiplan.rl-institut.de">digiplan.rl-institut.de</a></p>
+</div>
+
 <div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <p style="margin: 0.25rem;">You can find a list of <strong>changes</strong> (e.g. new features) for every version in the <a href="https://stemp-abw.readthedocs.io/en/dev/whats_new.html" target="_blank" style="color: #fff;">documentation</a>.</p>
 </div>

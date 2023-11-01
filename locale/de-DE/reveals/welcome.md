@@ -1,5 +1,9 @@
 # Willkommen!
 
+<div style="background-color: #F2994A; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
+  <p style="margin: 0.25rem;"><strong>Good news:</strong> Der Nachfolger dieses Tools - <strong>Digiplan Anhalt</strong> - ist seit Oktober 2023 verfügbar unter: <a href="https://digiplan.rl-institut.de">digiplan.rl-institut.de</a></p>
+</div>
+
 <div style="background-color: #1b7bbb; color: #fff; width: 100%; padding: 0.05rem 0.75rem 0.05rem 0.75rem; vertical-align: middle; margin-bottom: 0.5rem;">
   <p style="margin: 0.25rem;">Eine Liste der <strong>Änderungen</strong> (z.B. neue Features) in allen Versionen finden Sie in der <a href="https://stemp-abw.readthedocs.io/en/dev/whats_new.html" target="_blank" style="color: #fff;">Dokumentation</a>.</p>
 </div>
